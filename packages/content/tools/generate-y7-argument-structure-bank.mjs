@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -272,6 +273,7 @@ pack.adaptive_support.audio_first = "Optional prompt and card playback uses only
 pack.qa.notes = "Year 7 argument structure reaches the 240-item pilot target with four preserved curated variants and 236 deterministic review candidates spanning claims, reasons, evidence, counterarguments, rebuttals, paragraph structure, logical links, evidence quality and age-appropriate fallacy diagnosis. Fictional training evidence is labelled as such. Every generated item includes supported SEND interactions, static and reduced-load routes, rich repair feedback, optional policy-compliant ElevenLabs references and private debate-mission progress without timers, leaderboards, streak loss, public performance or peer comparison. Independent English, teacher, SEND, accessibility, safeguarding, audio, renderer and pilot review remain required before promotion.";
 
 validateBank(pack, curated, generated);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`argument-structure-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
 console.log(`argument-structure-bank blueprints=${summary(generated, (variant) => variant.body.variant_blueprint_id)}`);

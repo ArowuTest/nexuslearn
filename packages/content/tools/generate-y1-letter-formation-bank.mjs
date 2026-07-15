@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -84,6 +85,7 @@ pack.qa.readiness_status = "draft";
 pack.qa.notes = "Review-stage Year 1 lowercase-letter-formation pack with a deterministic 180-item pilot bank. Three curated variants are preserved alongside candidates covering recognition, start points, movement paths, orientation, formation families, b/d/p/q and other discrimination support, and transfer to letters within familiar words. Generated tasks separate formation knowledge from fine-motor performance through visual, verbal, tactile, switch, eye-gaze and path-choice alternatives. Referenced narration follows the ElevenLabs policy: browser TTS is prohibited and every asset remains unavailable pending human listening review. Joyful quest progress rewards noticing and choosing strategies, never speed, precision-only scoring or streaks. Handwriting-style, phonics, motor-access, teacher, renderer and human-listening review remains required before promotion.";
 
 validateBank(pack, curated, generated);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`y1-letter-formation-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
 console.log(`y1-letter-formation-bank blueprints=${summary(pack.question_variants, assignedBlueprint)}`);

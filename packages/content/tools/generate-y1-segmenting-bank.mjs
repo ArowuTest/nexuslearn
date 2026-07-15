@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -89,6 +90,7 @@ pack.version = "0.2.0";
 pack.qa.notes = "Review-stage Year 1 segmenting pack with a deterministic 240-variant pilot bank. Three curated variants are unchanged. Generated tasks progress through two to five phonemes, CVC, CCVC, CVCC and SSP-taught digraph/trigraph handling; use sound buttons and phoneme frames; distinguish blending from segmenting; identify initial, medial and final phonemes; transfer to word building and spelling; repair misconceptions; and revisit learning through spaced retrieval. Every task is untimed and offers dyslexia/SEND visual, chunked, tap, keyboard, switch, eye-gaze and adult-scribed routes without mandatory speech or handwriting. Listening-dependent generated tasks reference ElevenLabs whole-word assets held for human/SSP listening review; browser TTS and automatic speech scoring are prohibited. SSP progression, accent, teacher, SEND and renderer review remain required before promotion.";
 
 validateBank(pack, curated, curatedSnapshot, generated, curatedBlueprint);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`y1-segmenting-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
 console.log(`y1-segmenting-bank blueprints=${summary(pack.question_variants, (v) => v.body?.variant_blueprint_id ?? curatedBlueprint.get(v.id))}`);

@@ -273,7 +273,9 @@
           "handwriting_required": false,
           "preserve_correct_work": true,
           "untimed": true
-        }
+        },
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-en-y5-relative-clauses"
       },
       "expected_answer": {
         "value": "who"
@@ -286,7 +288,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "relative_word_by_habit",
-      "animation_hook": "meaning-gate-person"
+      "animation_hook": "meaning-gate-person",
+      "feedback": {
+        "correct": "Correct. 'Who repaired the rover' is a relative clause describing the engineer.",
+        "retry": "Try again calmly: The clause describes a person. Which word can point back to the engineer as the person doing the repair? No progress is lost for checking or changing your answer.",
+        "repair": "Repair the relative word by habit route: The clause describes a person. Then use the evidence to explain your choice.",
+        "misconception_check": "Check the relative word by habit idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "en-y5-relative-clauses-q-placement",
@@ -326,7 +335,9 @@
           "handwriting_required": false,
           "preserve_correct_work": true,
           "untimed": true
-        }
+        },
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-en-y5-relative-clauses"
       },
       "expected_answer": {
         "value": "The drone, which carried the sensor, entered the tunnel."
@@ -339,7 +350,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "distant_antecedent",
-      "animation_hook": "antecedent-arrow-lock"
+      "animation_hook": "antecedent-arrow-lock",
+      "feedback": {
+        "correct": "Correct. Placing 'which carried the sensor' directly after 'the drone' makes the intended antecedent clear.",
+        "retry": "Try again calmly: Place the extra information next to the drone. Check what 'which' points back to. No progress is lost for checking or changing your answer.",
+        "repair": "Repair the distant antecedent route: Place the extra information next to the drone. Then use the evidence to explain your choice.",
+        "misconception_check": "Check the distant antecedent idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "en-y5-relative-clauses-q-that-test",
@@ -375,7 +393,9 @@
           "handwriting_required": false,
           "preserve_correct_work": true,
           "untimed": true
-        }
+        },
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-en-y5-relative-clauses"
       },
       "expected_answer": {
         "value": "The message that arrived at noon contained the code."
@@ -388,7 +408,14 @@
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "every_that_relative",
-      "animation_hook": "relative-test-contrast"
+      "animation_hook": "relative-test-contrast",
+      "feedback": {
+        "correct": "Correct. In the first sentence, 'that arrived at noon' describes 'the message', so it is a relative clause.",
+        "retry": "Try again calmly: Find the sentence where the clause after 'that' describes a noun. Can you draw an arrow from 'that' back to 'the message'? No progress is lost for checking or changing your answer.",
+        "repair": "Repair the every that relative route: Find the sentence where the clause after 'that' describes a noun. Then use the evidence to explain your choice.",
+        "misconception_check": "Check the every that relative idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "en-y5-relative-clauses-q-punctuation",
@@ -425,7 +452,9 @@
           "handwriting_required": false,
           "preserve_correct_work": true,
           "untimed": true
-        }
+        },
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-en-y5-relative-clauses"
       },
       "expected_answer": {
         "value": "The observatory, which stands above Orbit City, tracks distant storms."
@@ -438,7 +467,14 @@
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "comma_every_relative",
-      "animation_hook": "embedded-clause-dock"
+      "animation_hook": "embedded-clause-dock",
+      "feedback": {
+        "correct": "Correct. The paired commas mark the embedded additional information, while 'The observatory tracks distant storms' remains the main clause.",
+        "retry": "Try again calmly: The extra clause is inserted after 'the observatory'. Use a matching pair of commas around the inserted information. No progress is lost for checking or changing your answer.",
+        "repair": "Repair the comma every relative route: The extra clause is inserted after 'the observatory'. Then use the evidence to explain your choice.",
+        "misconception_check": "Check the comma every relative idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "en-y5-relative-clauses-bank-links-001-who-person-observatory",

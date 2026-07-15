@@ -290,6 +290,12 @@
             "aac",
             "adult_scribed"
           ]
+        },
+        "review_batch": "generated-review-ma-y3-number-fractions-tenths",
+        "review_provenance": {
+          "kind": "curated",
+          "pack_id": "ma-y3-number-fractions-tenths",
+          "variant_id": "ma-y3-number-fractions-tenths-q-shade-three"
         }
       },
       "expected_answer": {
@@ -393,6 +399,12 @@
             "aac",
             "adult_scribed"
           ]
+        },
+        "review_batch": "generated-review-ma-y3-number-fractions-tenths",
+        "review_provenance": {
+          "kind": "curated",
+          "pack_id": "ma-y3-number-fractions-tenths",
+          "variant_id": "ma-y3-number-fractions-tenths-q-one-tenth-line"
         }
       },
       "expected_answer": {

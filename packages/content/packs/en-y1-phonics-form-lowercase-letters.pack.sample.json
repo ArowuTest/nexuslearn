@@ -402,7 +402,9 @@
         "correct": "Start rune found for a: near top on the right.",
         "repair": "Hide the finish and show only the start dot, baseline and middle line. Choose or place the start token without tracing.",
         "path_evidence": "In this displayed model, lowercase a starts near top on the right. School handwriting styles can vary, so follow the shown model.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -496,7 +498,9 @@
         "correct": "Start rune found for b: at the top.",
         "repair": "Hide the finish and show only the start dot, baseline and middle line. Choose or place the start token without tracing.",
         "path_evidence": "In this displayed model, lowercase b starts at the top. School handwriting styles can vary, so follow the shown model.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -590,7 +594,9 @@
         "correct": "Start rune found for c: near top on the right.",
         "repair": "Hide the finish and show only the start dot, baseline and middle line. Choose or place the start token without tracing.",
         "path_evidence": "In this displayed model, lowercase c starts near top on the right. School handwriting styles can vary, so follow the shown model.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -684,7 +690,9 @@
         "correct": "Start rune found for d: near top on the right.",
         "repair": "Hide the finish and show only the start dot, baseline and middle line. Choose or place the start token without tracing.",
         "path_evidence": "In this displayed model, lowercase d starts near top on the right. School handwriting styles can vary, so follow the shown model.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -778,7 +786,9 @@
         "correct": "Start rune found for e: in the middle.",
         "repair": "Hide the finish and show only the start dot, baseline and middle line. Choose or place the start token without tracing.",
         "path_evidence": "In this displayed model, lowercase e starts in the middle. School handwriting styles can vary, so follow the shown model.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -872,7 +882,9 @@
         "correct": "Start rune found for f: at the top.",
         "repair": "Hide the finish and show only the start dot, baseline and middle line. Choose or place the start token without tracing.",
         "path_evidence": "In this displayed model, lowercase f starts at the top. School handwriting styles can vary, so follow the shown model.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -966,7 +978,9 @@
         "correct": "Start rune found for g: near top on the right.",
         "repair": "Hide the finish and show only the start dot, baseline and middle line. Choose or place the start token without tracing.",
         "path_evidence": "In this displayed model, lowercase g starts near top on the right. School handwriting styles can vary, so follow the shown model.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1060,7 +1074,9 @@
         "correct": "Start rune found for h: at the top.",
         "repair": "Hide the finish and show only the start dot, baseline and middle line. Choose or place the start token without tracing.",
         "path_evidence": "In this displayed model, lowercase h starts at the top. School handwriting styles can vary, so follow the shown model.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1154,7 +1170,9 @@
         "correct": "Start rune found for i: at the middle line.",
         "repair": "Hide the finish and show only the start dot, baseline and middle line. Choose or place the start token without tracing.",
         "path_evidence": "In this displayed model, lowercase i starts at the middle line. School handwriting styles can vary, so follow the shown model.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1248,7 +1266,9 @@
         "correct": "Start rune found for j: at the middle line.",
         "repair": "Hide the finish and show only the start dot, baseline and middle line. Choose or place the start token without tracing.",
         "path_evidence": "In this displayed model, lowercase j starts at the middle line. School handwriting styles can vary, so follow the shown model.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1342,7 +1362,9 @@
         "correct": "Start rune found for k: at the top.",
         "repair": "Hide the finish and show only the start dot, baseline and middle line. Choose or place the start token without tracing.",
         "path_evidence": "In this displayed model, lowercase k starts at the top. School handwriting styles can vary, so follow the shown model.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1436,7 +1458,9 @@
         "correct": "Start rune found for l: at the top.",
         "repair": "Hide the finish and show only the start dot, baseline and middle line. Choose or place the start token without tracing.",
         "path_evidence": "In this displayed model, lowercase l starts at the top. School handwriting styles can vary, so follow the shown model.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1530,7 +1554,9 @@
         "correct": "Start rune found for m: at the middle line.",
         "repair": "Hide the finish and show only the start dot, baseline and middle line. Choose or place the start token without tracing.",
         "path_evidence": "In this displayed model, lowercase m starts at the middle line. School handwriting styles can vary, so follow the shown model.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1624,7 +1650,9 @@
         "correct": "Start rune found for n: at the middle line.",
         "repair": "Hide the finish and show only the start dot, baseline and middle line. Choose or place the start token without tracing.",
         "path_evidence": "In this displayed model, lowercase n starts at the middle line. School handwriting styles can vary, so follow the shown model.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1718,7 +1746,9 @@
         "correct": "Start rune found for o: near top on the right.",
         "repair": "Hide the finish and show only the start dot, baseline and middle line. Choose or place the start token without tracing.",
         "path_evidence": "In this displayed model, lowercase o starts near top on the right. School handwriting styles can vary, so follow the shown model.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1812,7 +1842,9 @@
         "correct": "Start rune found for p: at the middle line.",
         "repair": "Hide the finish and show only the start dot, baseline and middle line. Choose or place the start token without tracing.",
         "path_evidence": "In this displayed model, lowercase p starts at the middle line. School handwriting styles can vary, so follow the shown model.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1906,7 +1938,9 @@
         "correct": "Start rune found for q: near top on the right.",
         "repair": "Hide the finish and show only the start dot, baseline and middle line. Choose or place the start token without tracing.",
         "path_evidence": "In this displayed model, lowercase q starts near top on the right. School handwriting styles can vary, so follow the shown model.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2000,7 +2034,9 @@
         "correct": "Start rune found for r: at the middle line.",
         "repair": "Hide the finish and show only the start dot, baseline and middle line. Choose or place the start token without tracing.",
         "path_evidence": "In this displayed model, lowercase r starts at the middle line. School handwriting styles can vary, so follow the shown model.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2094,7 +2130,9 @@
         "correct": "Start rune found for s: near the top.",
         "repair": "Hide the finish and show only the start dot, baseline and middle line. Choose or place the start token without tracing.",
         "path_evidence": "In this displayed model, lowercase s starts near the top. School handwriting styles can vary, so follow the shown model.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2188,7 +2226,9 @@
         "correct": "Start rune found for t: near the top.",
         "repair": "Hide the finish and show only the start dot, baseline and middle line. Choose or place the start token without tracing.",
         "path_evidence": "In this displayed model, lowercase t starts near the top. School handwriting styles can vary, so follow the shown model.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2282,7 +2322,9 @@
         "correct": "Start rune found for u: at the middle line.",
         "repair": "Hide the finish and show only the start dot, baseline and middle line. Choose or place the start token without tracing.",
         "path_evidence": "In this displayed model, lowercase u starts at the middle line. School handwriting styles can vary, so follow the shown model.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2376,7 +2418,9 @@
         "correct": "Start rune found for v: at the middle line.",
         "repair": "Hide the finish and show only the start dot, baseline and middle line. Choose or place the start token without tracing.",
         "path_evidence": "In this displayed model, lowercase v starts at the middle line. School handwriting styles can vary, so follow the shown model.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2470,7 +2514,9 @@
         "correct": "Start rune found for w: at the middle line.",
         "repair": "Hide the finish and show only the start dot, baseline and middle line. Choose or place the start token without tracing.",
         "path_evidence": "In this displayed model, lowercase w starts at the middle line. School handwriting styles can vary, so follow the shown model.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2564,7 +2610,9 @@
         "correct": "Start rune found for x: at the middle line.",
         "repair": "Hide the finish and show only the start dot, baseline and middle line. Choose or place the start token without tracing.",
         "path_evidence": "In this displayed model, lowercase x starts at the middle line. School handwriting styles can vary, so follow the shown model.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2658,7 +2706,9 @@
         "correct": "Start rune found for y: at the middle line.",
         "repair": "Hide the finish and show only the start dot, baseline and middle line. Choose or place the start token without tracing.",
         "path_evidence": "In this displayed model, lowercase y starts at the middle line. School handwriting styles can vary, so follow the shown model.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2752,7 +2802,9 @@
         "correct": "Start rune found for z: at the middle line.",
         "repair": "Hide the finish and show only the start dot, baseline and middle line. Choose or place the start token without tracing.",
         "path_evidence": "In this displayed model, lowercase z starts at the middle line. School handwriting styles can vary, so follow the shown model.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2846,7 +2898,9 @@
         "correct": "Start rune found for a: near top on the right.",
         "repair": "Hide the finish and show only the start dot, baseline and middle line. Choose or place the start token without tracing.",
         "path_evidence": "In this displayed model, lowercase a starts near top on the right. School handwriting styles can vary, so follow the shown model.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2940,7 +2994,9 @@
         "correct": "Start rune found for b: at the top.",
         "repair": "Hide the finish and show only the start dot, baseline and middle line. Choose or place the start token without tracing.",
         "path_evidence": "In this displayed model, lowercase b starts at the top. School handwriting styles can vary, so follow the shown model.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -3034,7 +3090,9 @@
         "correct": "Start rune found for c: near top on the right.",
         "repair": "Hide the finish and show only the start dot, baseline and middle line. Choose or place the start token without tracing.",
         "path_evidence": "In this displayed model, lowercase c starts near top on the right. School handwriting styles can vary, so follow the shown model.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -3128,7 +3186,9 @@
         "correct": "Start rune found for d: near top on the right.",
         "repair": "Hide the finish and show only the start dot, baseline and middle line. Choose or place the start token without tracing.",
         "path_evidence": "In this displayed model, lowercase d starts near top on the right. School handwriting styles can vary, so follow the shown model.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -3222,7 +3282,9 @@
         "correct": "Start rune found for e: in the middle.",
         "repair": "Hide the finish and show only the start dot, baseline and middle line. Choose or place the start token without tracing.",
         "path_evidence": "In this displayed model, lowercase e starts in the middle. School handwriting styles can vary, so follow the shown model.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -3316,7 +3378,9 @@
         "correct": "Start rune found for f: at the top.",
         "repair": "Hide the finish and show only the start dot, baseline and middle line. Choose or place the start token without tracing.",
         "path_evidence": "In this displayed model, lowercase f starts at the top. School handwriting styles can vary, so follow the shown model.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -3410,7 +3474,9 @@
         "correct": "Start rune found for g: near top on the right.",
         "repair": "Hide the finish and show only the start dot, baseline and middle line. Choose or place the start token without tracing.",
         "path_evidence": "In this displayed model, lowercase g starts near top on the right. School handwriting styles can vary, so follow the shown model.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -3504,7 +3570,9 @@
         "correct": "Start rune found for h: at the top.",
         "repair": "Hide the finish and show only the start dot, baseline and middle line. Choose or place the start token without tracing.",
         "path_evidence": "In this displayed model, lowercase h starts at the top. School handwriting styles can vary, so follow the shown model.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -3598,7 +3666,9 @@
         "correct": "Start rune found for i: at the middle line.",
         "repair": "Hide the finish and show only the start dot, baseline and middle line. Choose or place the start token without tracing.",
         "path_evidence": "In this displayed model, lowercase i starts at the middle line. School handwriting styles can vary, so follow the shown model.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -3707,7 +3777,9 @@
         "correct": "Path knowledge shown for a. Motor neatness and speed are not scored.",
         "repair": "Keep the correct start. Replay one movement step, select its arrow or guide a large counter along the path before trying the next step.",
         "path_evidence": "The displayed a path starts near top on the right, then: curve anticlockwise to close the round part; move down to finish. A correct verbal, arrow-card or path-choice response shows the same knowledge as tracing.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the shape not path idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3819,7 +3891,9 @@
         "correct": "Path knowledge shown for b. Motor neatness and speed are not scored.",
         "repair": "Keep the correct start. Replay one movement step, select its arrow or guide a large counter along the path before trying the next step.",
         "path_evidence": "The displayed b path starts at the top, then: move straight down; go back up to the middle; curve right and around. A correct verbal, arrow-card or path-choice response shows the same knowledge as tracing.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the shape not path idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3928,7 +4002,9 @@
         "correct": "Path knowledge shown for c. Motor neatness and speed are not scored.",
         "repair": "Keep the correct start. Replay one movement step, select its arrow or guide a large counter along the path before trying the next step.",
         "path_evidence": "The displayed c path starts near top on the right, then: curve anticlockwise around; stop before closing. A correct verbal, arrow-card or path-choice response shows the same knowledge as tracing.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the shape not path idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4040,7 +4116,9 @@
         "correct": "Path knowledge shown for d. Motor neatness and speed are not scored.",
         "repair": "Keep the correct start. Replay one movement step, select its arrow or guide a large counter along the path before trying the next step.",
         "path_evidence": "The displayed d path starts near top on the right, then: curve anticlockwise to make a round part; go up tall; move straight down. A correct verbal, arrow-card or path-choice response shows the same knowledge as tracing.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the shape not path idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4149,7 +4227,9 @@
         "correct": "Path knowledge shown for e. Motor neatness and speed are not scored.",
         "repair": "Keep the correct start. Replay one movement step, select its arrow or guide a large counter along the path before trying the next step.",
         "path_evidence": "The displayed e path starts in the middle, then: move across; curve up and anticlockwise around. A correct verbal, arrow-card or path-choice response shows the same knowledge as tracing.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the shape not path idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4258,7 +4338,9 @@
         "correct": "Path knowledge shown for f. Motor neatness and speed are not scored.",
         "repair": "Keep the correct start. Replay one movement step, select its arrow or guide a large counter along the path before trying the next step.",
         "path_evidence": "The displayed f path starts at the top, then: curve over and move down; lift and cross in the middle. A correct verbal, arrow-card or path-choice response shows the same knowledge as tracing.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the shape not path idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4370,7 +4452,9 @@
         "correct": "Path knowledge shown for g. Motor neatness and speed are not scored.",
         "repair": "Keep the correct start. Replay one movement step, select its arrow or guide a large counter along the path before trying the next step.",
         "path_evidence": "The displayed g path starts near top on the right, then: curve anticlockwise to close the round part; move down below the line; curve left to finish. A correct verbal, arrow-card or path-choice response shows the same knowledge as tracing.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the shape not path idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4482,7 +4566,9 @@
         "correct": "Path knowledge shown for h. Motor neatness and speed are not scored.",
         "repair": "Keep the correct start. Replay one movement step, select its arrow or guide a large counter along the path before trying the next step.",
         "path_evidence": "The displayed h path starts at the top, then: move straight down; go back up to the middle; curve over and down. A correct verbal, arrow-card or path-choice response shows the same knowledge as tracing.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the shape not path idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4591,7 +4677,9 @@
         "correct": "Path knowledge shown for i. Motor neatness and speed are not scored.",
         "repair": "Keep the correct start. Replay one movement step, select its arrow or guide a large counter along the path before trying the next step.",
         "path_evidence": "The displayed i path starts at the middle line, then: move straight down; lift and add a dot above. A correct verbal, arrow-card or path-choice response shows the same knowledge as tracing.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the shape not path idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4703,7 +4791,9 @@
         "correct": "Path knowledge shown for j. Motor neatness and speed are not scored.",
         "repair": "Keep the correct start. Replay one movement step, select its arrow or guide a large counter along the path before trying the next step.",
         "path_evidence": "The displayed j path starts at the middle line, then: move down below the line; curve left; lift and add a dot above. A correct verbal, arrow-card or path-choice response shows the same knowledge as tracing.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the shape not path idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4815,7 +4905,9 @@
         "correct": "Path knowledge shown for k. Motor neatness and speed are not scored.",
         "repair": "Keep the correct start. Replay one movement step, select its arrow or guide a large counter along the path before trying the next step.",
         "path_evidence": "The displayed k path starts at the top, then: move straight down; go to the middle; slant in then slant out. A correct verbal, arrow-card or path-choice response shows the same knowledge as tracing.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the shape not path idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4921,7 +5013,9 @@
         "correct": "Path knowledge shown for l. Motor neatness and speed are not scored.",
         "repair": "Keep the correct start. Replay one movement step, select its arrow or guide a large counter along the path before trying the next step.",
         "path_evidence": "The displayed l path starts at the top, then: move straight down to the line. A correct verbal, arrow-card or path-choice response shows the same knowledge as tracing.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the shape not path idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5033,7 +5127,9 @@
         "correct": "Path knowledge shown for m. Motor neatness and speed are not scored.",
         "repair": "Keep the correct start. Replay one movement step, select its arrow or guide a large counter along the path before trying the next step.",
         "path_evidence": "The displayed m path starts at the middle line, then: move straight down; go back up; curve over and down twice. A correct verbal, arrow-card or path-choice response shows the same knowledge as tracing.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the shape not path idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5145,7 +5241,9 @@
         "correct": "Path knowledge shown for n. Motor neatness and speed are not scored.",
         "repair": "Keep the correct start. Replay one movement step, select its arrow or guide a large counter along the path before trying the next step.",
         "path_evidence": "The displayed n path starts at the middle line, then: move straight down; go back up; curve over and down once. A correct verbal, arrow-card or path-choice response shows the same knowledge as tracing.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the shape not path idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5254,7 +5352,9 @@
         "correct": "Path knowledge shown for o. Motor neatness and speed are not scored.",
         "repair": "Keep the correct start. Replay one movement step, select its arrow or guide a large counter along the path before trying the next step.",
         "path_evidence": "The displayed o path starts near top on the right, then: curve anticlockwise all the way around; close the shape. A correct verbal, arrow-card or path-choice response shows the same knowledge as tracing.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the shape not path idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5366,7 +5466,9 @@
         "correct": "Path knowledge shown for p. Motor neatness and speed are not scored.",
         "repair": "Keep the correct start. Replay one movement step, select its arrow or guide a large counter along the path before trying the next step.",
         "path_evidence": "The displayed p path starts at the middle line, then: move down below the line; go back up; curve right and around. A correct verbal, arrow-card or path-choice response shows the same knowledge as tracing.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the shape not path idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5478,7 +5580,9 @@
         "correct": "Path knowledge shown for q. Motor neatness and speed are not scored.",
         "repair": "Keep the correct start. Replay one movement step, select its arrow or guide a large counter along the path before trying the next step.",
         "path_evidence": "The displayed q path starts near top on the right, then: curve anticlockwise to close the round part; move down below the line; finish with a small right flick. A correct verbal, arrow-card or path-choice response shows the same knowledge as tracing.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the shape not path idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5590,7 +5694,9 @@
         "correct": "Path knowledge shown for r. Motor neatness and speed are not scored.",
         "repair": "Keep the correct start. Replay one movement step, select its arrow or guide a large counter along the path before trying the next step.",
         "path_evidence": "The displayed r path starts at the middle line, then: move straight down; go back up; curve a little over to the right. A correct verbal, arrow-card or path-choice response shows the same knowledge as tracing.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the shape not path idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5699,7 +5805,9 @@
         "correct": "Path knowledge shown for s. Motor neatness and speed are not scored.",
         "repair": "Keep the correct start. Replay one movement step, select its arrow or guide a large counter along the path before trying the next step.",
         "path_evidence": "The displayed s path starts near the top, then: curve left; turn back right and curve to the bottom. A correct verbal, arrow-card or path-choice response shows the same knowledge as tracing.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the shape not path idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5808,7 +5916,9 @@
         "correct": "Path knowledge shown for t. Motor neatness and speed are not scored.",
         "repair": "Keep the correct start. Replay one movement step, select its arrow or guide a large counter along the path before trying the next step.",
         "path_evidence": "The displayed t path starts near the top, then: move straight down; lift and cross near the middle. A correct verbal, arrow-card or path-choice response shows the same knowledge as tracing.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the shape not path idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5920,7 +6030,9 @@
         "correct": "Path knowledge shown for u. Motor neatness and speed are not scored.",
         "repair": "Keep the correct start. Replay one movement step, select its arrow or guide a large counter along the path before trying the next step.",
         "path_evidence": "The displayed u path starts at the middle line, then: move down; curve along the bottom and up; move down to finish. A correct verbal, arrow-card or path-choice response shows the same knowledge as tracing.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the shape not path idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -6029,7 +6141,9 @@
         "correct": "Path knowledge shown for v. Motor neatness and speed are not scored.",
         "repair": "Keep the correct start. Replay one movement step, select its arrow or guide a large counter along the path before trying the next step.",
         "path_evidence": "The displayed v path starts at the middle line, then: slant down; slant up. A correct verbal, arrow-card or path-choice response shows the same knowledge as tracing.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the shape not path idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -6138,7 +6252,9 @@
         "correct": "Path knowledge shown for w. Motor neatness and speed are not scored.",
         "repair": "Keep the correct start. Replay one movement step, select its arrow or guide a large counter along the path before trying the next step.",
         "path_evidence": "The displayed w path starts at the middle line, then: slant down and up; slant down and up again. A correct verbal, arrow-card or path-choice response shows the same knowledge as tracing.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the shape not path idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -6250,7 +6366,9 @@
         "correct": "Path knowledge shown for x. Motor neatness and speed are not scored.",
         "repair": "Keep the correct start. Replay one movement step, select its arrow or guide a large counter along the path before trying the next step.",
         "path_evidence": "The displayed x path starts at the middle line, then: slant down right; lift; slant down left across the first line. A correct verbal, arrow-card or path-choice response shows the same knowledge as tracing.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the shape not path idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -6359,7 +6477,9 @@
         "correct": "Path knowledge shown for y. Motor neatness and speed are not scored.",
         "repair": "Keep the correct start. Replay one movement step, select its arrow or guide a large counter along the path before trying the next step.",
         "path_evidence": "The displayed y path starts at the middle line, then: slant or curve down and up; move down below the line to finish. A correct verbal, arrow-card or path-choice response shows the same knowledge as tracing.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the shape not path idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -6471,7 +6591,9 @@
         "correct": "Path knowledge shown for z. Motor neatness and speed are not scored.",
         "repair": "Keep the correct start. Replay one movement step, select its arrow or guide a large counter along the path before trying the next step.",
         "path_evidence": "The displayed z path starts at the middle line, then: move across; slant down left; move across to the right. A correct verbal, arrow-card or path-choice response shows the same knowledge as tracing.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the shape not path idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -6580,7 +6702,9 @@
         "correct": "Path knowledge shown for a. Motor neatness and speed are not scored.",
         "repair": "Keep the correct start. Replay one movement step, select its arrow or guide a large counter along the path before trying the next step.",
         "path_evidence": "The displayed a path starts near top on the right, then: curve anticlockwise to close the round part; move down to finish. A correct verbal, arrow-card or path-choice response shows the same knowledge as tracing.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the shape not path idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6692,7 +6816,9 @@
         "correct": "Path knowledge shown for b. Motor neatness and speed are not scored.",
         "repair": "Keep the correct start. Replay one movement step, select its arrow or guide a large counter along the path before trying the next step.",
         "path_evidence": "The displayed b path starts at the top, then: move straight down; go back up to the middle; curve right and around. A correct verbal, arrow-card or path-choice response shows the same knowledge as tracing.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the shape not path idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6801,7 +6927,9 @@
         "correct": "Path knowledge shown for c. Motor neatness and speed are not scored.",
         "repair": "Keep the correct start. Replay one movement step, select its arrow or guide a large counter along the path before trying the next step.",
         "path_evidence": "The displayed c path starts near top on the right, then: curve anticlockwise around; stop before closing. A correct verbal, arrow-card or path-choice response shows the same knowledge as tracing.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the shape not path idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6913,7 +7041,9 @@
         "correct": "Path knowledge shown for d. Motor neatness and speed are not scored.",
         "repair": "Keep the correct start. Replay one movement step, select its arrow or guide a large counter along the path before trying the next step.",
         "path_evidence": "The displayed d path starts near top on the right, then: curve anticlockwise to make a round part; go up tall; move straight down. A correct verbal, arrow-card or path-choice response shows the same knowledge as tracing.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the shape not path idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7022,7 +7152,9 @@
         "correct": "Path knowledge shown for e. Motor neatness and speed are not scored.",
         "repair": "Keep the correct start. Replay one movement step, select its arrow or guide a large counter along the path before trying the next step.",
         "path_evidence": "The displayed e path starts in the middle, then: move across; curve up and anticlockwise around. A correct verbal, arrow-card or path-choice response shows the same knowledge as tracing.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the shape not path idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7131,7 +7263,9 @@
         "correct": "Path knowledge shown for f. Motor neatness and speed are not scored.",
         "repair": "Keep the correct start. Replay one movement step, select its arrow or guide a large counter along the path before trying the next step.",
         "path_evidence": "The displayed f path starts at the top, then: curve over and move down; lift and cross in the middle. A correct verbal, arrow-card or path-choice response shows the same knowledge as tracing.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the shape not path idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7243,7 +7377,9 @@
         "correct": "Path knowledge shown for g. Motor neatness and speed are not scored.",
         "repair": "Keep the correct start. Replay one movement step, select its arrow or guide a large counter along the path before trying the next step.",
         "path_evidence": "The displayed g path starts near top on the right, then: curve anticlockwise to close the round part; move down below the line; curve left to finish. A correct verbal, arrow-card or path-choice response shows the same knowledge as tracing.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the shape not path idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7355,7 +7491,9 @@
         "correct": "Path knowledge shown for h. Motor neatness and speed are not scored.",
         "repair": "Keep the correct start. Replay one movement step, select its arrow or guide a large counter along the path before trying the next step.",
         "path_evidence": "The displayed h path starts at the top, then: move straight down; go back up to the middle; curve over and down. A correct verbal, arrow-card or path-choice response shows the same knowledge as tracing.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the shape not path idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7464,7 +7602,9 @@
         "correct": "Path knowledge shown for i. Motor neatness and speed are not scored.",
         "repair": "Keep the correct start. Replay one movement step, select its arrow or guide a large counter along the path before trying the next step.",
         "path_evidence": "The displayed i path starts at the middle line, then: move straight down; lift and add a dot above. A correct verbal, arrow-card or path-choice response shows the same knowledge as tracing.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the shape not path idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7558,7 +7698,9 @@
         "correct": "Direction route unlocked for a.",
         "repair": "Freeze the model into numbered static arrows. Choose the first movement, then reveal the next movement only.",
         "path_evidence": "The modelled a path is: curve anticlockwise to close the round part; move down to finish. Starting at the bottom or reversing the order can change its orientation or fluency.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong direction idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7652,7 +7794,9 @@
         "correct": "Direction route unlocked for b.",
         "repair": "Freeze the model into numbered static arrows. Choose the first movement, then reveal the next movement only.",
         "path_evidence": "The modelled b path is: move straight down; go back up to the middle; curve right and around. Starting at the bottom or reversing the order can change its orientation or fluency.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong direction idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7746,7 +7890,9 @@
         "correct": "Direction route unlocked for c.",
         "repair": "Freeze the model into numbered static arrows. Choose the first movement, then reveal the next movement only.",
         "path_evidence": "The modelled c path is: curve anticlockwise around; stop before closing. Starting at the bottom or reversing the order can change its orientation or fluency.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong direction idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7840,7 +7986,9 @@
         "correct": "Direction route unlocked for d.",
         "repair": "Freeze the model into numbered static arrows. Choose the first movement, then reveal the next movement only.",
         "path_evidence": "The modelled d path is: curve anticlockwise to make a round part; go up tall; move straight down. Starting at the bottom or reversing the order can change its orientation or fluency.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong direction idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7934,7 +8082,9 @@
         "correct": "Direction route unlocked for e.",
         "repair": "Freeze the model into numbered static arrows. Choose the first movement, then reveal the next movement only.",
         "path_evidence": "The modelled e path is: move across; curve up and anticlockwise around. Starting at the bottom or reversing the order can change its orientation or fluency.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong direction idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8028,7 +8178,9 @@
         "correct": "Direction route unlocked for f.",
         "repair": "Freeze the model into numbered static arrows. Choose the first movement, then reveal the next movement only.",
         "path_evidence": "The modelled f path is: curve over and move down; lift and cross in the middle. Starting at the bottom or reversing the order can change its orientation or fluency.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong direction idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8122,7 +8274,9 @@
         "correct": "Direction route unlocked for g.",
         "repair": "Freeze the model into numbered static arrows. Choose the first movement, then reveal the next movement only.",
         "path_evidence": "The modelled g path is: curve anticlockwise to close the round part; move down below the line; curve left to finish. Starting at the bottom or reversing the order can change its orientation or fluency.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong direction idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8216,7 +8370,9 @@
         "correct": "Direction route unlocked for h.",
         "repair": "Freeze the model into numbered static arrows. Choose the first movement, then reveal the next movement only.",
         "path_evidence": "The modelled h path is: move straight down; go back up to the middle; curve over and down. Starting at the bottom or reversing the order can change its orientation or fluency.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong direction idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8310,7 +8466,9 @@
         "correct": "Direction route unlocked for i.",
         "repair": "Freeze the model into numbered static arrows. Choose the first movement, then reveal the next movement only.",
         "path_evidence": "The modelled i path is: move straight down; lift and add a dot above. Starting at the bottom or reversing the order can change its orientation or fluency.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong direction idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8404,7 +8562,9 @@
         "correct": "Direction route unlocked for j.",
         "repair": "Freeze the model into numbered static arrows. Choose the first movement, then reveal the next movement only.",
         "path_evidence": "The modelled j path is: move down below the line; curve left; lift and add a dot above. Starting at the bottom or reversing the order can change its orientation or fluency.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong direction idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8498,7 +8658,9 @@
         "correct": "Direction route unlocked for k.",
         "repair": "Freeze the model into numbered static arrows. Choose the first movement, then reveal the next movement only.",
         "path_evidence": "The modelled k path is: move straight down; go to the middle; slant in then slant out. Starting at the bottom or reversing the order can change its orientation or fluency.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong direction idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8592,7 +8754,9 @@
         "correct": "Direction route unlocked for l.",
         "repair": "Freeze the model into numbered static arrows. Choose the first movement, then reveal the next movement only.",
         "path_evidence": "The modelled l path is: move straight down to the line. Starting at the bottom or reversing the order can change its orientation or fluency.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong direction idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8686,7 +8850,9 @@
         "correct": "Direction route unlocked for m.",
         "repair": "Freeze the model into numbered static arrows. Choose the first movement, then reveal the next movement only.",
         "path_evidence": "The modelled m path is: move straight down; go back up; curve over and down twice. Starting at the bottom or reversing the order can change its orientation or fluency.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong direction idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8780,7 +8946,9 @@
         "correct": "Direction route unlocked for n.",
         "repair": "Freeze the model into numbered static arrows. Choose the first movement, then reveal the next movement only.",
         "path_evidence": "The modelled n path is: move straight down; go back up; curve over and down once. Starting at the bottom or reversing the order can change its orientation or fluency.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong direction idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8874,7 +9042,9 @@
         "correct": "Direction route unlocked for o.",
         "repair": "Freeze the model into numbered static arrows. Choose the first movement, then reveal the next movement only.",
         "path_evidence": "The modelled o path is: curve anticlockwise all the way around; close the shape. Starting at the bottom or reversing the order can change its orientation or fluency.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong direction idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8968,7 +9138,9 @@
         "correct": "Direction route unlocked for p.",
         "repair": "Freeze the model into numbered static arrows. Choose the first movement, then reveal the next movement only.",
         "path_evidence": "The modelled p path is: move down below the line; go back up; curve right and around. Starting at the bottom or reversing the order can change its orientation or fluency.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong direction idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -9062,7 +9234,9 @@
         "correct": "Direction route unlocked for q.",
         "repair": "Freeze the model into numbered static arrows. Choose the first movement, then reveal the next movement only.",
         "path_evidence": "The modelled q path is: curve anticlockwise to close the round part; move down below the line; finish with a small right flick. Starting at the bottom or reversing the order can change its orientation or fluency.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong direction idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -9156,7 +9330,9 @@
         "correct": "Direction route unlocked for r.",
         "repair": "Freeze the model into numbered static arrows. Choose the first movement, then reveal the next movement only.",
         "path_evidence": "The modelled r path is: move straight down; go back up; curve a little over to the right. Starting at the bottom or reversing the order can change its orientation or fluency.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong direction idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -9250,7 +9426,9 @@
         "correct": "Direction route unlocked for s.",
         "repair": "Freeze the model into numbered static arrows. Choose the first movement, then reveal the next movement only.",
         "path_evidence": "The modelled s path is: curve left; turn back right and curve to the bottom. Starting at the bottom or reversing the order can change its orientation or fluency.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong direction idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -9344,7 +9522,9 @@
         "correct": "Direction route unlocked for t.",
         "repair": "Freeze the model into numbered static arrows. Choose the first movement, then reveal the next movement only.",
         "path_evidence": "The modelled t path is: move straight down; lift and cross near the middle. Starting at the bottom or reversing the order can change its orientation or fluency.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong direction idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -9438,7 +9618,9 @@
         "correct": "Direction route unlocked for u.",
         "repair": "Freeze the model into numbered static arrows. Choose the first movement, then reveal the next movement only.",
         "path_evidence": "The modelled u path is: move down; curve along the bottom and up; move down to finish. Starting at the bottom or reversing the order can change its orientation or fluency.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong direction idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -9532,7 +9714,9 @@
         "correct": "Direction route unlocked for v.",
         "repair": "Freeze the model into numbered static arrows. Choose the first movement, then reveal the next movement only.",
         "path_evidence": "The modelled v path is: slant down; slant up. Starting at the bottom or reversing the order can change its orientation or fluency.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong direction idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -9626,7 +9810,9 @@
         "correct": "Direction route unlocked for w.",
         "repair": "Freeze the model into numbered static arrows. Choose the first movement, then reveal the next movement only.",
         "path_evidence": "The modelled w path is: slant down and up; slant down and up again. Starting at the bottom or reversing the order can change its orientation or fluency.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong direction idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -9720,7 +9906,9 @@
         "correct": "Direction route unlocked for x.",
         "repair": "Freeze the model into numbered static arrows. Choose the first movement, then reveal the next movement only.",
         "path_evidence": "The modelled x path is: slant down right; lift; slant down left across the first line. Starting at the bottom or reversing the order can change its orientation or fluency.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong direction idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -9814,7 +10002,9 @@
         "correct": "Direction route unlocked for y.",
         "repair": "Freeze the model into numbered static arrows. Choose the first movement, then reveal the next movement only.",
         "path_evidence": "The modelled y path is: slant or curve down and up; move down below the line to finish. Starting at the bottom or reversing the order can change its orientation or fluency.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong direction idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -9908,7 +10098,9 @@
         "correct": "Direction route unlocked for z.",
         "repair": "Freeze the model into numbered static arrows. Choose the first movement, then reveal the next movement only.",
         "path_evidence": "The modelled z path is: move across; slant down left; move across to the right. Starting at the bottom or reversing the order can change its orientation or fluency.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong direction idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -10003,7 +10195,9 @@
         "correct": "b path distinguished from d using start and direction.",
         "repair": "Show one letter at a time. Place a start token, then compare the first movement only before adding later steps.",
         "path_evidence": "Lowercase b uses this modelled path: start at the top; move straight down; go back up to the middle; curve right and around. The d path is different. This is orientation practice, not a memory or speed test.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the letter reversal or orientation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -10098,7 +10292,9 @@
         "correct": "p path distinguished from q using start and direction.",
         "repair": "Show one letter at a time. Place a start token, then compare the first movement only before adding later steps.",
         "path_evidence": "Lowercase p uses this modelled path: start at the middle line; move down below the line; go back up; curve right and around. The q path is different. This is orientation practice, not a memory or speed test.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the letter reversal or orientation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -10193,7 +10389,9 @@
         "correct": "m path distinguished from n using start and direction.",
         "repair": "Show one letter at a time. Place a start token, then compare the first movement only before adding later steps.",
         "path_evidence": "Lowercase m uses this modelled path: start at the middle line; move straight down; go back up; curve over and down twice. The n path is different. This is orientation practice, not a memory or speed test.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the letter reversal or orientation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -10288,7 +10486,9 @@
         "correct": "u path distinguished from n using start and direction.",
         "repair": "Show one letter at a time. Place a start token, then compare the first movement only before adding later steps.",
         "path_evidence": "Lowercase u uses this modelled path: start at the middle line; move down; curve along the bottom and up; move down to finish. The n path is different. This is orientation practice, not a memory or speed test.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the letter reversal or orientation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -10383,7 +10583,9 @@
         "correct": "v path distinguished from w using start and direction.",
         "repair": "Show one letter at a time. Place a start token, then compare the first movement only before adding later steps.",
         "path_evidence": "Lowercase v uses this modelled path: start at the middle line; slant down; slant up. The w path is different. This is orientation practice, not a memory or speed test.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the letter reversal or orientation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -10478,7 +10680,9 @@
         "correct": "i path distinguished from j using start and direction.",
         "repair": "Show one letter at a time. Place a start token, then compare the first movement only before adding later steps.",
         "path_evidence": "Lowercase i uses this modelled path: start at the middle line; move straight down; lift and add a dot above. The j path is different. This is orientation practice, not a memory or speed test.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the letter reversal or orientation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -10573,7 +10777,9 @@
         "correct": "c path distinguished from o using start and direction.",
         "repair": "Show one letter at a time. Place a start token, then compare the first movement only before adding later steps.",
         "path_evidence": "Lowercase c uses this modelled path: start near top on the right; curve anticlockwise around; stop before closing. The o path is different. This is orientation practice, not a memory or speed test.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the letter reversal or orientation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -10668,7 +10874,9 @@
         "correct": "f path distinguished from t using start and direction.",
         "repair": "Show one letter at a time. Place a start token, then compare the first movement only before adding later steps.",
         "path_evidence": "Lowercase f uses this modelled path: start at the top; curve over and move down; lift and cross in the middle. The t path is different. This is orientation practice, not a memory or speed test.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the letter reversal or orientation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -10763,7 +10971,9 @@
         "correct": "g path distinguished from q using start and direction.",
         "repair": "Show one letter at a time. Place a start token, then compare the first movement only before adding later steps.",
         "path_evidence": "Lowercase g uses this modelled path: start near top on the right; curve anticlockwise to close the round part; move down below the line; curve left to finish. The q path is different. This is orientation practice, not a memory or speed test.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the letter reversal or orientation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -10858,7 +11068,9 @@
         "correct": "a linked to round-start by movement.",
         "repair": "Replay the first movement and compare two family cards at a time. Letter families are helpful practice groups, not a speed test.",
         "path_evidence": "a belongs to the round-start family in this pack because its modelled path begin with a round or curved movement.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the family by shape only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -10949,7 +11161,9 @@
         "correct": "b recognised using a movement clue.",
         "repair": "Remove one distractor, present letters separately and place the start dot before comparing their orientations.",
         "path_evidence": "This is lowercase b. It starts at the top and follows its own movement path, which helps distinguish its orientation from similar letters.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the letter reversal or orientation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -11038,7 +11252,9 @@
         "correct": "Start point recalled for c.",
         "repair": "Use the family card, baseline and middle line; reveal the start dot without requiring a trace.",
         "path_evidence": "Lowercase c starts near top on the right in this model before curve anticlockwise around.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -11132,7 +11348,9 @@
         "correct": "b linked to down-then-around by movement.",
         "repair": "Replay the first movement and compare two family cards at a time. Letter families are helpful practice groups, not a speed test.",
         "path_evidence": "b belongs to the down-then-around family in this pack because its modelled path begin with a down stroke and later add a round movement.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the family by shape only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -11223,7 +11441,9 @@
         "correct": "v recognised using a movement clue.",
         "repair": "Remove one distractor, present letters separately and place the start dot before comparing their orientations.",
         "path_evidence": "This is lowercase v. It starts at the middle line and follows its own movement path, which helps distinguish its orientation from similar letters.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the letter reversal or orientation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -11312,7 +11532,9 @@
         "correct": "Start point recalled for f.",
         "repair": "Use the family card, baseline and middle line; reveal the start dot without requiring a trace.",
         "path_evidence": "Lowercase f starts at the top in this model before curve over and move down.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -11407,7 +11629,9 @@
         "correct": "h linked to down-then-over by movement.",
         "repair": "Replay the first movement and compare two family cards at a time. Letter families are helpful practice groups, not a speed test.",
         "path_evidence": "h belongs to the down-then-over family in this pack because its modelled path begin down, return, then move over.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the family by shape only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -11498,7 +11722,9 @@
         "correct": "p recognised using a movement clue.",
         "repair": "Remove one distractor, present letters separately and place the start dot before comparing their orientations.",
         "path_evidence": "This is lowercase p. It starts at the middle line and follows its own movement path, which helps distinguish its orientation from similar letters.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the letter reversal or orientation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -11587,7 +11813,9 @@
         "correct": "Start point recalled for i.",
         "repair": "Use the family card, baseline and middle line; reveal the start dot without requiring a trace.",
         "path_evidence": "Lowercase i starts at the middle line in this model before move straight down.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -11681,7 +11909,9 @@
         "correct": "i linked to short-down by movement.",
         "repair": "Replay the first movement and compare two family cards at a time. Letter families are helpful practice groups, not a speed test.",
         "path_evidence": "i belongs to the short-down family in this pack because its modelled path use a short down stroke and a separate dot where shown.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the family by shape only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -11772,7 +12002,9 @@
         "correct": "v recognised using a movement clue.",
         "repair": "Remove one distractor, present letters separately and place the start dot before comparing their orientations.",
         "path_evidence": "This is lowercase v. It starts at the middle line and follows its own movement path, which helps distinguish its orientation from similar letters.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the letter reversal or orientation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -11861,7 +12093,9 @@
         "correct": "Start point recalled for l.",
         "repair": "Use the family card, baseline and middle line; reveal the start dot without requiring a trace.",
         "path_evidence": "Lowercase l starts at the top in this model before move straight down to the line.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -11956,7 +12190,9 @@
         "correct": "f linked to tall-down by movement.",
         "repair": "Replay the first movement and compare two family cards at a time. Letter families are helpful practice groups, not a speed test.",
         "path_evidence": "f belongs to the tall-down family in this pack because its modelled path begin high with a tall down movement.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the family by shape only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -12047,7 +12283,9 @@
         "correct": "p recognised using a movement clue.",
         "repair": "Remove one distractor, present letters separately and place the start dot before comparing their orientations.",
         "path_evidence": "This is lowercase p. It starts at the middle line and follows its own movement path, which helps distinguish its orientation from similar letters.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the letter reversal or orientation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -12136,7 +12374,9 @@
         "correct": "Start point recalled for o.",
         "repair": "Use the family card, baseline and middle line; reveal the start dot without requiring a trace.",
         "path_evidence": "Lowercase o starts near top on the right in this model before curve anticlockwise all the way around.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -12229,7 +12469,9 @@
         "correct": "k linked to down-and-diagonal by movement.",
         "repair": "Replay the first movement and compare two family cards at a time. Letter families are helpful practice groups, not a speed test.",
         "path_evidence": "k belongs to the down-and-diagonal family in this pack because its modelled path combine a down stroke with slanting strokes.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the family by shape only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -12320,7 +12562,9 @@
         "correct": "v recognised using a movement clue.",
         "repair": "Remove one distractor, present letters separately and place the start dot before comparing their orientations.",
         "path_evidence": "This is lowercase v. It starts at the middle line and follows its own movement path, which helps distinguish its orientation from similar letters.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the letter reversal or orientation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -12409,7 +12653,9 @@
         "correct": "Start point recalled for r.",
         "repair": "Use the family card, baseline and middle line; reveal the start dot without requiring a trace.",
         "path_evidence": "Lowercase r starts at the middle line in this model before move straight down.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -12502,7 +12748,9 @@
         "correct": "s linked to turning-curve by movement.",
         "repair": "Replay the first movement and compare two family cards at a time. Letter families are helpful practice groups, not a speed test.",
         "path_evidence": "s belongs to the turning-curve family in this pack because its modelled path use a curve that changes direction.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the family by shape only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -12593,7 +12841,9 @@
         "correct": "p recognised using a movement clue.",
         "repair": "Remove one distractor, present letters separately and place the start dot before comparing their orientations.",
         "path_evidence": "This is lowercase p. It starts at the middle line and follows its own movement path, which helps distinguish its orientation from similar letters.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the letter reversal or orientation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -12682,7 +12932,9 @@
         "correct": "Start point recalled for u.",
         "repair": "Use the family card, baseline and middle line; reveal the start dot without requiring a trace.",
         "path_evidence": "Lowercase u starts at the middle line in this model before move down.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -12776,7 +13028,9 @@
         "correct": "u linked to down-and-curve by movement.",
         "repair": "Replay the first movement and compare two family cards at a time. Letter families are helpful practice groups, not a speed test.",
         "path_evidence": "u belongs to the down-and-curve family in this pack because its modelled path move down and curve through the lower part.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the family by shape only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -12867,7 +13121,9 @@
         "correct": "w recognised using a movement clue.",
         "repair": "Remove one distractor, present letters separately and place the start dot before comparing their orientations.",
         "path_evidence": "This is lowercase w. It starts at the middle line and follows its own movement path, which helps distinguish its orientation from similar letters.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the letter reversal or orientation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -12956,7 +13212,9 @@
         "correct": "Start point recalled for x.",
         "repair": "Use the family card, baseline and middle line; reveal the start dot without requiring a trace.",
         "path_evidence": "Lowercase x starts at the middle line in this model before slant down right.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -13051,7 +13309,9 @@
         "correct": "v linked to diagonal by movement.",
         "repair": "Replay the first movement and compare two family cards at a time. Letter families are helpful practice groups, not a speed test.",
         "path_evidence": "v belongs to the diagonal family in this pack because its modelled path use one or more slanting strokes.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the family by shape only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -13142,7 +13402,9 @@
         "correct": "p recognised using a movement clue.",
         "repair": "Remove one distractor, present letters separately and place the start dot before comparing their orientations.",
         "path_evidence": "This is lowercase p. It starts at the middle line and follows its own movement path, which helps distinguish its orientation from similar letters.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the letter reversal or orientation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -13231,7 +13493,9 @@
         "correct": "Start point recalled for a.",
         "repair": "Use the family card, baseline and middle line; reveal the start dot without requiring a trace.",
         "path_evidence": "Lowercase a starts near top on the right in this model before curve anticlockwise to close the round part.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -13326,7 +13590,9 @@
         "correct": "a linked to round-start by movement.",
         "repair": "Replay the first movement and compare two family cards at a time. Letter families are helpful practice groups, not a speed test.",
         "path_evidence": "a belongs to the round-start family in this pack because its modelled path begin with a round or curved movement.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the family by shape only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -13417,7 +13683,9 @@
         "correct": "v recognised using a movement clue.",
         "repair": "Remove one distractor, present letters separately and place the start dot before comparing their orientations.",
         "path_evidence": "This is lowercase v. It starts at the middle line and follows its own movement path, which helps distinguish its orientation from similar letters.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the letter reversal or orientation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -13506,7 +13774,9 @@
         "correct": "Start point recalled for d.",
         "repair": "Use the family card, baseline and middle line; reveal the start dot without requiring a trace.",
         "path_evidence": "Lowercase d starts near top on the right in this model before curve anticlockwise to make a round part.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -13600,7 +13870,9 @@
         "correct": "b linked to down-then-around by movement.",
         "repair": "Replay the first movement and compare two family cards at a time. Letter families are helpful practice groups, not a speed test.",
         "path_evidence": "b belongs to the down-then-around family in this pack because its modelled path begin with a down stroke and later add a round movement.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the family by shape only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -13691,7 +13963,9 @@
         "correct": "p recognised using a movement clue.",
         "repair": "Remove one distractor, present letters separately and place the start dot before comparing their orientations.",
         "path_evidence": "This is lowercase p. It starts at the middle line and follows its own movement path, which helps distinguish its orientation from similar letters.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the letter reversal or orientation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -13780,7 +14054,9 @@
         "correct": "Start point recalled for g.",
         "repair": "Use the family card, baseline and middle line; reveal the start dot without requiring a trace.",
         "path_evidence": "Lowercase g starts near top on the right in this model before curve anticlockwise to close the round part.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -13875,7 +14151,9 @@
         "correct": "h linked to down-then-over by movement.",
         "repair": "Replay the first movement and compare two family cards at a time. Letter families are helpful practice groups, not a speed test.",
         "path_evidence": "h belongs to the down-then-over family in this pack because its modelled path begin down, return, then move over.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the family by shape only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -13966,7 +14244,9 @@
         "correct": "v recognised using a movement clue.",
         "repair": "Remove one distractor, present letters separately and place the start dot before comparing their orientations.",
         "path_evidence": "This is lowercase v. It starts at the middle line and follows its own movement path, which helps distinguish its orientation from similar letters.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the letter reversal or orientation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -14055,7 +14335,9 @@
         "correct": "Start point recalled for j.",
         "repair": "Use the family card, baseline and middle line; reveal the start dot without requiring a trace.",
         "path_evidence": "Lowercase j starts at the middle line in this model before move down below the line.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the wrong start point idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -14186,7 +14468,9 @@
         "correct": "Word bridge built: a recognised in apple and its path shown.",
         "repair": "Cover the other letters, keep only the target visible and choose trace, arrows, verbal steps, eye-gaze or a tactile letter card.",
         "path_evidence": "The target a appears in apple. Its displayed formation starts near top on the right and follows: curve anticlockwise to close the round part; move down to finish. Finding and forming the target letter transfers the skill without requiring full-word handwriting.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the word writing motor overload idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -14312,7 +14596,9 @@
         "correct": "Word bridge built: b recognised in bat and its path shown.",
         "repair": "Cover the other letters, keep only the target visible and choose trace, arrows, verbal steps, eye-gaze or a tactile letter card.",
         "path_evidence": "The target b appears in bat. Its displayed formation starts at the top and follows: move straight down; go back up to the middle; curve right and around. Finding and forming the target letter transfers the skill without requiring full-word handwriting.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the word writing motor overload idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -14435,7 +14721,9 @@
         "correct": "Word bridge built: c recognised in cat and its path shown.",
         "repair": "Cover the other letters, keep only the target visible and choose trace, arrows, verbal steps, eye-gaze or a tactile letter card.",
         "path_evidence": "The target c appears in cat. Its displayed formation starts near top on the right and follows: curve anticlockwise around; stop before closing. Finding and forming the target letter transfers the skill without requiring full-word handwriting.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the word writing motor overload idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -14561,7 +14849,9 @@
         "correct": "Word bridge built: d recognised in dog and its path shown.",
         "repair": "Cover the other letters, keep only the target visible and choose trace, arrows, verbal steps, eye-gaze or a tactile letter card.",
         "path_evidence": "The target d appears in dog. Its displayed formation starts near top on the right and follows: curve anticlockwise to make a round part; go up tall; move straight down. Finding and forming the target letter transfers the skill without requiring full-word handwriting.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the word writing motor overload idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -14684,7 +14974,9 @@
         "correct": "Word bridge built: e recognised in hen and its path shown.",
         "repair": "Cover the other letters, keep only the target visible and choose trace, arrows, verbal steps, eye-gaze or a tactile letter card.",
         "path_evidence": "The target e appears in hen. Its displayed formation starts in the middle and follows: move across; curve up and anticlockwise around. Finding and forming the target letter transfers the skill without requiring full-word handwriting.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the word writing motor overload idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -14807,7 +15099,9 @@
         "correct": "Word bridge built: f recognised in fan and its path shown.",
         "repair": "Cover the other letters, keep only the target visible and choose trace, arrows, verbal steps, eye-gaze or a tactile letter card.",
         "path_evidence": "The target f appears in fan. Its displayed formation starts at the top and follows: curve over and move down; lift and cross in the middle. Finding and forming the target letter transfers the skill without requiring full-word handwriting.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the word writing motor overload idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -14933,7 +15227,9 @@
         "correct": "Word bridge built: g recognised in gap and its path shown.",
         "repair": "Cover the other letters, keep only the target visible and choose trace, arrows, verbal steps, eye-gaze or a tactile letter card.",
         "path_evidence": "The target g appears in gap. Its displayed formation starts near top on the right and follows: curve anticlockwise to close the round part; move down below the line; curve left to finish. Finding and forming the target letter transfers the skill without requiring full-word handwriting.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the word writing motor overload idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -15059,7 +15355,9 @@
         "correct": "Word bridge built: h recognised in hat and its path shown.",
         "repair": "Cover the other letters, keep only the target visible and choose trace, arrows, verbal steps, eye-gaze or a tactile letter card.",
         "path_evidence": "The target h appears in hat. Its displayed formation starts at the top and follows: move straight down; go back up to the middle; curve over and down. Finding and forming the target letter transfers the skill without requiring full-word handwriting.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the word writing motor overload idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -15182,7 +15480,9 @@
         "correct": "Word bridge built: i recognised in sit and its path shown.",
         "repair": "Cover the other letters, keep only the target visible and choose trace, arrows, verbal steps, eye-gaze or a tactile letter card.",
         "path_evidence": "The target i appears in sit. Its displayed formation starts at the middle line and follows: move straight down; lift and add a dot above. Finding and forming the target letter transfers the skill without requiring full-word handwriting.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the word writing motor overload idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -15308,7 +15608,9 @@
         "correct": "Word bridge built: j recognised in jam and its path shown.",
         "repair": "Cover the other letters, keep only the target visible and choose trace, arrows, verbal steps, eye-gaze or a tactile letter card.",
         "path_evidence": "The target j appears in jam. Its displayed formation starts at the middle line and follows: move down below the line; curve left; lift and add a dot above. Finding and forming the target letter transfers the skill without requiring full-word handwriting.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the word writing motor overload idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -15434,7 +15736,9 @@
         "correct": "Word bridge built: k recognised in kit and its path shown.",
         "repair": "Cover the other letters, keep only the target visible and choose trace, arrows, verbal steps, eye-gaze or a tactile letter card.",
         "path_evidence": "The target k appears in kit. Its displayed formation starts at the top and follows: move straight down; go to the middle; slant in then slant out. Finding and forming the target letter transfers the skill without requiring full-word handwriting.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the word writing motor overload idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -15554,7 +15858,9 @@
         "correct": "Word bridge built: l recognised in leg and its path shown.",
         "repair": "Cover the other letters, keep only the target visible and choose trace, arrows, verbal steps, eye-gaze or a tactile letter card.",
         "path_evidence": "The target l appears in leg. Its displayed formation starts at the top and follows: move straight down to the line. Finding and forming the target letter transfers the skill without requiring full-word handwriting.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the word writing motor overload idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -15680,7 +15986,9 @@
         "correct": "Word bridge built: m recognised in map and its path shown.",
         "repair": "Cover the other letters, keep only the target visible and choose trace, arrows, verbal steps, eye-gaze or a tactile letter card.",
         "path_evidence": "The target m appears in map. Its displayed formation starts at the middle line and follows: move straight down; go back up; curve over and down twice. Finding and forming the target letter transfers the skill without requiring full-word handwriting.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the word writing motor overload idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -15806,7 +16114,9 @@
         "correct": "Word bridge built: n recognised in net and its path shown.",
         "repair": "Cover the other letters, keep only the target visible and choose trace, arrows, verbal steps, eye-gaze or a tactile letter card.",
         "path_evidence": "The target n appears in net. Its displayed formation starts at the middle line and follows: move straight down; go back up; curve over and down once. Finding and forming the target letter transfers the skill without requiring full-word handwriting.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the word writing motor overload idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -15929,7 +16239,9 @@
         "correct": "Word bridge built: o recognised in pot and its path shown.",
         "repair": "Cover the other letters, keep only the target visible and choose trace, arrows, verbal steps, eye-gaze or a tactile letter card.",
         "path_evidence": "The target o appears in pot. Its displayed formation starts near top on the right and follows: curve anticlockwise all the way around; close the shape. Finding and forming the target letter transfers the skill without requiring full-word handwriting.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the word writing motor overload idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -16055,7 +16367,9 @@
         "correct": "Word bridge built: p recognised in pen and its path shown.",
         "repair": "Cover the other letters, keep only the target visible and choose trace, arrows, verbal steps, eye-gaze or a tactile letter card.",
         "path_evidence": "The target p appears in pen. Its displayed formation starts at the middle line and follows: move down below the line; go back up; curve right and around. Finding and forming the target letter transfers the skill without requiring full-word handwriting.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the word writing motor overload idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -16189,7 +16503,9 @@
         "correct": "Word bridge built: q recognised in queen and its path shown.",
         "repair": "Cover the other letters, keep only the target visible and choose trace, arrows, verbal steps, eye-gaze or a tactile letter card.",
         "path_evidence": "The target q appears in queen. Its displayed formation starts near top on the right and follows: curve anticlockwise to close the round part; move down below the line; finish with a small right flick. Finding and forming the target letter transfers the skill without requiring full-word handwriting.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the word writing motor overload idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -16315,7 +16631,9 @@
         "correct": "Word bridge built: r recognised in rat and its path shown.",
         "repair": "Cover the other letters, keep only the target visible and choose trace, arrows, verbal steps, eye-gaze or a tactile letter card.",
         "path_evidence": "The target r appears in rat. Its displayed formation starts at the middle line and follows: move straight down; go back up; curve a little over to the right. Finding and forming the target letter transfers the skill without requiring full-word handwriting.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the word writing motor overload idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -16438,7 +16756,9 @@
         "correct": "Word bridge built: s recognised in sun and its path shown.",
         "repair": "Cover the other letters, keep only the target visible and choose trace, arrows, verbal steps, eye-gaze or a tactile letter card.",
         "path_evidence": "The target s appears in sun. Its displayed formation starts near the top and follows: curve left; turn back right and curve to the bottom. Finding and forming the target letter transfers the skill without requiring full-word handwriting.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the word writing motor overload idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -16561,7 +16881,9 @@
         "correct": "Word bridge built: t recognised in tap and its path shown.",
         "repair": "Cover the other letters, keep only the target visible and choose trace, arrows, verbal steps, eye-gaze or a tactile letter card.",
         "path_evidence": "The target t appears in tap. Its displayed formation starts near the top and follows: move straight down; lift and cross near the middle. Finding and forming the target letter transfers the skill without requiring full-word handwriting.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the word writing motor overload idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -16687,7 +17009,9 @@
         "correct": "Word bridge built: u recognised in cup and its path shown.",
         "repair": "Cover the other letters, keep only the target visible and choose trace, arrows, verbal steps, eye-gaze or a tactile letter card.",
         "path_evidence": "The target u appears in cup. Its displayed formation starts at the middle line and follows: move down; curve along the bottom and up; move down to finish. Finding and forming the target letter transfers the skill without requiring full-word handwriting.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the word writing motor overload idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -16810,7 +17134,9 @@
         "correct": "Word bridge built: v recognised in van and its path shown.",
         "repair": "Cover the other letters, keep only the target visible and choose trace, arrows, verbal steps, eye-gaze or a tactile letter card.",
         "path_evidence": "The target v appears in van. Its displayed formation starts at the middle line and follows: slant down; slant up. Finding and forming the target letter transfers the skill without requiring full-word handwriting.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the word writing motor overload idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -16933,7 +17259,9 @@
         "correct": "Word bridge built: w recognised in web and its path shown.",
         "repair": "Cover the other letters, keep only the target visible and choose trace, arrows, verbal steps, eye-gaze or a tactile letter card.",
         "path_evidence": "The target w appears in web. Its displayed formation starts at the middle line and follows: slant down and up; slant down and up again. Finding and forming the target letter transfers the skill without requiring full-word handwriting.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the word writing motor overload idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -17059,7 +17387,9 @@
         "correct": "Word bridge built: x recognised in fox and its path shown.",
         "repair": "Cover the other letters, keep only the target visible and choose trace, arrows, verbal steps, eye-gaze or a tactile letter card.",
         "path_evidence": "The target x appears in fox. Its displayed formation starts at the middle line and follows: slant down right; lift; slant down left across the first line. Finding and forming the target letter transfers the skill without requiring full-word handwriting.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the word writing motor overload idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -17182,7 +17512,9 @@
         "correct": "Word bridge built: y recognised in yes and its path shown.",
         "repair": "Cover the other letters, keep only the target visible and choose trace, arrows, verbal steps, eye-gaze or a tactile letter card.",
         "path_evidence": "The target y appears in yes. Its displayed formation starts at the middle line and follows: slant or curve down and up; move down below the line to finish. Finding and forming the target letter transfers the skill without requiring full-word handwriting.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the word writing motor overload idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -17308,7 +17640,9 @@
         "correct": "Word bridge built: z recognised in zip and its path shown.",
         "repair": "Cover the other letters, keep only the target visible and choose trace, arrows, verbal steps, eye-gaze or a tactile letter card.",
         "path_evidence": "The target z appears in zip. Its displayed formation starts at the middle line and follows: move across; slant down left; move across to the right. Finding and forming the target letter transfers the skill without requiring full-word handwriting.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the word writing motor overload idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -17439,7 +17773,9 @@
         "correct": "Word bridge built: a recognised in apple and its path shown.",
         "repair": "Cover the other letters, keep only the target visible and choose trace, arrows, verbal steps, eye-gaze or a tactile letter card.",
         "path_evidence": "The target a appears in apple. Its displayed formation starts near top on the right and follows: curve anticlockwise to close the round part; move down to finish. Finding and forming the target letter transfers the skill without requiring full-word handwriting.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the word writing motor overload idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -17565,7 +17901,9 @@
         "correct": "Word bridge built: b recognised in bat and its path shown.",
         "repair": "Cover the other letters, keep only the target visible and choose trace, arrows, verbal steps, eye-gaze or a tactile letter card.",
         "path_evidence": "The target b appears in bat. Its displayed formation starts at the top and follows: move straight down; go back up to the middle; curve right and around. Finding and forming the target letter transfers the skill without requiring full-word handwriting.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the word writing motor overload idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -17688,7 +18026,9 @@
         "correct": "Word bridge built: c recognised in cat and its path shown.",
         "repair": "Cover the other letters, keep only the target visible and choose trace, arrows, verbal steps, eye-gaze or a tactile letter card.",
         "path_evidence": "The target c appears in cat. Its displayed formation starts near top on the right and follows: curve anticlockwise around; stop before closing. Finding and forming the target letter transfers the skill without requiring full-word handwriting.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the word writing motor overload idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -17814,7 +18154,9 @@
         "correct": "Word bridge built: d recognised in dog and its path shown.",
         "repair": "Cover the other letters, keep only the target visible and choose trace, arrows, verbal steps, eye-gaze or a tactile letter card.",
         "path_evidence": "The target d appears in dog. Its displayed formation starts near top on the right and follows: curve anticlockwise to make a round part; go up tall; move straight down. Finding and forming the target letter transfers the skill without requiring full-word handwriting.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the word writing motor overload idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -17937,7 +18279,9 @@
         "correct": "Word bridge built: e recognised in hen and its path shown.",
         "repair": "Cover the other letters, keep only the target visible and choose trace, arrows, verbal steps, eye-gaze or a tactile letter card.",
         "path_evidence": "The target e appears in hen. Its displayed formation starts in the middle and follows: move across; curve up and anticlockwise around. Finding and forming the target letter transfers the skill without requiring full-word handwriting.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the word writing motor overload idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -18060,7 +18404,9 @@
         "correct": "Word bridge built: f recognised in fan and its path shown.",
         "repair": "Cover the other letters, keep only the target visible and choose trace, arrows, verbal steps, eye-gaze or a tactile letter card.",
         "path_evidence": "The target f appears in fan. Its displayed formation starts at the top and follows: curve over and move down; lift and cross in the middle. Finding and forming the target letter transfers the skill without requiring full-word handwriting.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the word writing motor overload idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -18186,7 +18532,9 @@
         "correct": "Word bridge built: g recognised in gap and its path shown.",
         "repair": "Cover the other letters, keep only the target visible and choose trace, arrows, verbal steps, eye-gaze or a tactile letter card.",
         "path_evidence": "The target g appears in gap. Its displayed formation starts near top on the right and follows: curve anticlockwise to close the round part; move down below the line; curve left to finish. Finding and forming the target letter transfers the skill without requiring full-word handwriting.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the word writing motor overload idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -18312,7 +18660,9 @@
         "correct": "Word bridge built: h recognised in hat and its path shown.",
         "repair": "Cover the other letters, keep only the target visible and choose trace, arrows, verbal steps, eye-gaze or a tactile letter card.",
         "path_evidence": "The target h appears in hat. Its displayed formation starts at the top and follows: move straight down; go back up to the middle; curve over and down. Finding and forming the target letter transfers the skill without requiring full-word handwriting.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the word writing motor overload idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -18435,7 +18785,9 @@
         "correct": "Word bridge built: i recognised in sit and its path shown.",
         "repair": "Cover the other letters, keep only the target visible and choose trace, arrows, verbal steps, eye-gaze or a tactile letter card.",
         "path_evidence": "The target i appears in sit. Its displayed formation starts at the middle line and follows: move straight down; lift and add a dot above. Finding and forming the target letter transfers the skill without requiring full-word handwriting.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the word writing motor overload idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -18561,7 +18913,9 @@
         "correct": "Word bridge built: j recognised in jam and its path shown.",
         "repair": "Cover the other letters, keep only the target visible and choose trace, arrows, verbal steps, eye-gaze or a tactile letter card.",
         "path_evidence": "The target j appears in jam. Its displayed formation starts at the middle line and follows: move down below the line; curve left; lift and add a dot above. Finding and forming the target letter transfers the skill without requiring full-word handwriting.",
-        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement."
+        "motor_affirmation": "Formation knowledge can be shown by tracing, choosing, pointing, speaking or arranging arrows; motor neatness is not the learning judgement.",
+        "misconception_check": "Check the word writing motor overload idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",

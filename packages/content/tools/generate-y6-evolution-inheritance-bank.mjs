@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -83,6 +84,7 @@ pack.qa.readiness_status = "draft";
 pack.qa.notes = "Year 6 evolution-and-inheritance pilot reaches 240 variants with four curated questions preserved semantically unchanged and 236 deterministic review candidates. Coverage follows a causal progression from within-species variation and careful inheritance evidence to environment-specific adaptation, differential survival/reproduction and population trait-frequency change across generations, then fossils and dated/ordered layers as incomplete evidence. Need-driven change, individual-evolves, exact-copy, every-useful-feature-is-adaptation and complete-fossil-record misconceptions are explicitly repaired. All four declared formats and five blueprints include patterned/labelled population tables, inheritance sorts, fossil investigations and causal explain choices, with simplified-count SEND, static, keyboard, switch and no-drag alternatives. Selected narration references require produced, human-reviewed ElevenLabs assets; browser TTS is prohibited. Independent science, teacher, SEND, accessibility, safeguarding, audio and renderer review remains required before promotion.";
 
 validateBank(pack, curated, candidates, curatedSnapshot);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`evolution-inheritance-bank curated=${curated.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
 console.log(`evolution-inheritance-bank formats=${summary(candidates, (variant) => variant.format)}`);

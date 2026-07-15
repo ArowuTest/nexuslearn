@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -85,6 +86,7 @@ pack.qa.readiness_status = "draft";
 pack.qa.notes = "Review-stage Year 2 animals-including-humans pack with a deterministic 240-variant pilot bank. Five curated variants are unchanged. Generated tasks cover named offspring and adults, growth and life-stage ordering, observable comparison across animal groups, survival needs, evidence-based enquiry, food variety and appropriate amounts, inclusive exercise, hygiene, misconception repair and transfer. Health content remains age appropriate, non-medical and free from body, family, food or circumstance judgement. Every generated task includes picture, sequence or evidence interactions, sensory-safe reduced-load SEND routes, alternative inputs, rich feedback and pressure-free nature/health missions without timers, streaks, lives or loss. Selected animal-name and short-context narration references ElevenLabs assets held for human listening review; browser TTS is prohibited. Independent science, safeguarding, accessibility, narration and renderer review remains required before promotion.";
 
 validateBank(pack, enrichedCurated, curatedSnapshot, enrichedGenerated);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`y2-animals-humans-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
 console.log(`y2-animals-humans-bank blueprints=${summary(pack.question_variants, (v) => v.body.variant_blueprint_id)}`);

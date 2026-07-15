@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -138,6 +139,7 @@ pack.version = "0.2.0";
 pack.qa.notes = "Year 7 cells reaches the 240-item pilot target with four preserved curated variants and 236 deterministic review candidates spanning animal and plant cells, organelles and functions, specialised cells, microscopy, scale, tissues and organs, model limitations and misconceptions. Every generated item includes described-image, static text, tactile-model, visual, audio-replay, keyboard, switch, eye-gaze, AAC, oral and partner-mediated routes; rich evidence and repair feedback; explicit prepared-slide, glass, stain and body-fluid safety boundaries; and private lab-mission progress without timers, lives, streak pressure, leaderboards or peer comparison. Independent science, teacher, SEND, accessibility, safeguarding, practical-safety, renderer and pilot review remain required before promotion.";
 
 validateBank(pack, curated, generated);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`cells-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
 console.log(`cells-bank blueprints=${summary(generated, (variant) => variant.body.variant_blueprint_id)}`);

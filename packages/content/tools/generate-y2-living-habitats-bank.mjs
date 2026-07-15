@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -92,6 +93,7 @@ pack.qa.readiness_status = "draft";
 pack.qa.notes = "Review-stage Year 2 living-things-and-habitats pack with a deterministic 220-variant pilot bank. Four curated variants are unchanged. Generated tasks cover evidence-based living/once-living/never-alive classification, age-appropriate boundary cases, habitats and microhabitats, how conditions meet basic needs, local observation and seasonal variation, plant-animal dependence, simple producer-consumer food chains, misconception repair and transfer. Food-chain arrows consistently mean food is eaten by eater. Every generated task includes picture sorting, habitat/evidence mapping, chain building or safe observation routes, sensory-safe reduced-load SEND supports, alternative inputs, rich feedback and pressure-free exploration without timers, streaks, lives or loss. Selected narration references ElevenLabs assets held for human listening review; browser TTS is prohibited. Independent science, fieldwork safety, accessibility, narration and renderer review remains required before promotion.";
 
 validateBank(pack, curated, curatedSnapshot, generated);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`y2-living-habitats-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
 console.log(`y2-living-habitats-bank blueprints=${summary(pack.question_variants, (v) => v.body.variant_blueprint_id)}`);

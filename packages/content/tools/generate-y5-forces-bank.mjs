@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -140,6 +141,7 @@ pack.qa.readiness_status = "draft";
 pack.qa.notes = "Third production-wave review bank reaches the 240-item pilot target with four preserved curated questions and 236 deterministic candidates covering gravity, air and water resistance, friction, levers/pulleys/gears, variables and fair tests, force diagrams/models, evidence, prediction, misconception repair and transfer. Generated candidates include SEND-accessible simulation, visual, text and concrete alternatives, supported non-drag interactions, rich corrective feedback and pressure-free investigation missions. Optional ElevenLabs references are limited to motion, force-model and mechanism comparisons, require human listening approval, and never use browser TTS. Human science, teacher, SEND, accessibility, safeguarding, audio and renderer review remains required before promotion.";
 
 validateBank(pack, curated, candidates);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`forces-bank curated=${curated.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
 console.log(`forces-bank strands=${summary(candidates, (variant) => variant.body.force_strand)}`);

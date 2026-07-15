@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -131,6 +132,7 @@ pack.qa.readiness_status = "draft";
 pack.qa.notes = "Cross-year review bank reaches the 260-item pilot target with five preserved curated variants and 255 deterministic candidates covering circuit symbols and diagrams, component effects, voltage and cell reasoning, series circuits, diagnosis, fair investigations, misconceptions and electrical safety. Every generated investigation is simulator-led, rejects mains and unknown power sources, and includes SEND multimodal routes, supported non-drag interactions, rich evidence feedback and mission-based progress without speed or loss pressure. Independent science, teacher, accessibility, safeguarding, local symbol-convention and renderer review remains required before promotion.";
 
 validateBank(pack, curated, candidates);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`electricity-bank curated=${curated.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
 console.log(`electricity-bank strands=${summary(candidates, (variant) => variant.body.science_strand)}`);

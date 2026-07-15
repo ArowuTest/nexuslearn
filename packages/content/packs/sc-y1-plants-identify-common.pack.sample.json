@@ -383,7 +383,9 @@
         "correct": "Plant card identified: daisy.",
         "repair": "Keep one correct observation, reveal one leaf, stem or trunk clue, then compare two plant cards again.",
         "evidence": "The reviewed card shows daisy: small white petals around a yellow centre. Often seen in short grass.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -460,7 +462,9 @@
         "correct": "Plant card identified: dandelion.",
         "repair": "Keep one correct observation, reveal one leaf, stem or trunk clue, then compare two plant cards again.",
         "evidence": "The reviewed card shows dandelion: yellow flower head and toothed leaves. Often grows without being planted.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -537,7 +541,9 @@
         "correct": "Plant card identified: buttercup.",
         "repair": "Keep one correct observation, reveal one leaf, stem or trunk clue, then compare two plant cards again.",
         "evidence": "The reviewed card shows buttercup: small shiny-looking yellow flowers. Often seen in grassy places.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -614,7 +620,9 @@
         "correct": "Plant card identified: white clover.",
         "repair": "Keep one correct observation, reveal one leaf, stem or trunk clue, then compare two plant cards again.",
         "evidence": "The reviewed card shows white clover: leaves in groups of three and round flower heads. Often grows in lawns and fields.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -691,7 +699,9 @@
         "correct": "Plant card identified: cow parsley.",
         "repair": "Keep one correct observation, reveal one leaf, stem or trunk clue, then compare two plant cards again.",
         "evidence": "The reviewed card shows cow parsley: clusters of tiny white flowers on tall stems. Often seen beside paths and hedges.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -768,7 +778,9 @@
         "correct": "Plant card identified: sunflower.",
         "repair": "Keep one correct observation, reveal one leaf, stem or trunk clue, then compare two plant cards again.",
         "evidence": "The reviewed card shows sunflower: large flower head on a tall sturdy stem. Shown planted in a labelled garden bed.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -845,7 +857,9 @@
         "correct": "Plant card identified: rose.",
         "repair": "Keep one correct observation, reveal one leaf, stem or trunk clue, then compare two plant cards again.",
         "evidence": "The reviewed card shows rose: layered flower petals and a woody thorny stem. Shown in a cared-for garden border.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -922,7 +936,9 @@
         "correct": "Plant card identified: tulip.",
         "repair": "Keep one correct observation, reveal one leaf, stem or trunk clue, then compare two plant cards again.",
         "evidence": "The reviewed card shows tulip: cup-shaped flower and long smooth-edged leaves. Shown planted in an ordered garden bed.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -999,7 +1015,9 @@
         "correct": "Plant card identified: daffodil.",
         "repair": "Keep one correct observation, reveal one leaf, stem or trunk clue, then compare two plant cards again.",
         "evidence": "The reviewed card shows daffodil: yellow trumpet-shaped flower and narrow leaves. Shown planted beside a garden path.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1076,7 +1094,9 @@
         "correct": "Plant card identified: lavender.",
         "repair": "Keep one correct observation, reveal one leaf, stem or trunk clue, then compare two plant cards again.",
         "evidence": "The reviewed card shows lavender: narrow grey-green leaves and purple flower spikes. Shown in a labelled herb garden.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1153,7 +1173,9 @@
         "correct": "Plant card identified: oak.",
         "repair": "Keep one correct observation, reveal one leaf, stem or trunk clue, then compare two plant cards again.",
         "evidence": "The reviewed card shows oak: lobed leaves, branching trunk and acorns in season. A broad deciduous tree.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1230,7 +1252,9 @@
         "correct": "Plant card identified: horse chestnut.",
         "repair": "Keep one correct observation, reveal one leaf, stem or trunk clue, then compare two plant cards again.",
         "evidence": "The reviewed card shows horse chestnut: large hand-shaped leaves and a branching trunk. A broad deciduous tree.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1307,7 +1331,9 @@
         "correct": "Plant card identified: silver birch.",
         "repair": "Keep one correct observation, reveal one leaf, stem or trunk clue, then compare two plant cards again.",
         "evidence": "The reviewed card shows silver birch: pale bark and small toothed leaves. A deciduous tree with pale bark.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1384,7 +1410,9 @@
         "correct": "Plant card identified: sycamore.",
         "repair": "Keep one correct observation, reveal one leaf, stem or trunk clue, then compare two plant cards again.",
         "evidence": "The reviewed card shows sycamore: broad five-lobed leaves and winged seeds in season. A broad deciduous tree.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1461,7 +1489,9 @@
         "correct": "Plant card identified: pine.",
         "repair": "Keep one correct observation, reveal one leaf, stem or trunk clue, then compare two plant cards again.",
         "evidence": "The reviewed card shows pine: needle-like leaves and cones. An evergreen tree.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1538,7 +1568,9 @@
         "correct": "Plant card identified: fir.",
         "repair": "Keep one correct observation, reveal one leaf, stem or trunk clue, then compare two plant cards again.",
         "evidence": "The reviewed card shows fir: flat needle-like leaves on branching twigs. An evergreen tree.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1615,7 +1647,9 @@
         "correct": "Plant card identified: holly.",
         "repair": "Keep one correct observation, reveal one leaf, stem or trunk clue, then compare two plant cards again.",
         "evidence": "The reviewed card shows holly: thick glossy leaves, often with spiny edges. An evergreen tree in this reviewed example.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1692,7 +1726,9 @@
         "correct": "Plant card identified: daisy.",
         "repair": "Keep one correct observation, reveal one leaf, stem or trunk clue, then compare two plant cards again.",
         "evidence": "The reviewed card shows daisy: small white petals around a yellow centre. Often seen in short grass.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -1769,7 +1805,9 @@
         "correct": "Plant card identified: dandelion.",
         "repair": "Keep one correct observation, reveal one leaf, stem or trunk clue, then compare two plant cards again.",
         "evidence": "The reviewed card shows dandelion: yellow flower head and toothed leaves. Often grows without being planted.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -1846,7 +1884,9 @@
         "correct": "Plant card identified: buttercup.",
         "repair": "Keep one correct observation, reveal one leaf, stem or trunk clue, then compare two plant cards again.",
         "evidence": "The reviewed card shows buttercup: small shiny-looking yellow flowers. Often seen in grassy places.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -1923,7 +1963,9 @@
         "correct": "Plant card identified: white clover.",
         "repair": "Keep one correct observation, reveal one leaf, stem or trunk clue, then compare two plant cards again.",
         "evidence": "The reviewed card shows white clover: leaves in groups of three and round flower heads. Often grows in lawns and fields.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2000,7 +2042,9 @@
         "correct": "Plant card identified: cow parsley.",
         "repair": "Keep one correct observation, reveal one leaf, stem or trunk clue, then compare two plant cards again.",
         "evidence": "The reviewed card shows cow parsley: clusters of tiny white flowers on tall stems. Often seen beside paths and hedges.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2077,7 +2121,9 @@
         "correct": "Plant card identified: sunflower.",
         "repair": "Keep one correct observation, reveal one leaf, stem or trunk clue, then compare two plant cards again.",
         "evidence": "The reviewed card shows sunflower: large flower head on a tall sturdy stem. Shown planted in a labelled garden bed.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2154,7 +2200,9 @@
         "correct": "Plant card identified: rose.",
         "repair": "Keep one correct observation, reveal one leaf, stem or trunk clue, then compare two plant cards again.",
         "evidence": "The reviewed card shows rose: layered flower petals and a woody thorny stem. Shown in a cared-for garden border.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2231,7 +2279,9 @@
         "correct": "Plant card identified: tulip.",
         "repair": "Keep one correct observation, reveal one leaf, stem or trunk clue, then compare two plant cards again.",
         "evidence": "The reviewed card shows tulip: cup-shaped flower and long smooth-edged leaves. Shown planted in an ordered garden bed.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2308,7 +2358,9 @@
         "correct": "Plant card identified: daffodil.",
         "repair": "Keep one correct observation, reveal one leaf, stem or trunk clue, then compare two plant cards again.",
         "evidence": "The reviewed card shows daffodil: yellow trumpet-shaped flower and narrow leaves. Shown planted beside a garden path.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2385,7 +2437,9 @@
         "correct": "Plant card identified: lavender.",
         "repair": "Keep one correct observation, reveal one leaf, stem or trunk clue, then compare two plant cards again.",
         "evidence": "The reviewed card shows lavender: narrow grey-green leaves and purple flower spikes. Shown in a labelled herb garden.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2462,7 +2516,9 @@
         "correct": "Plant card identified: oak.",
         "repair": "Keep one correct observation, reveal one leaf, stem or trunk clue, then compare two plant cards again.",
         "evidence": "The reviewed card shows oak: lobed leaves, branching trunk and acorns in season. A broad deciduous tree.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2539,7 +2595,9 @@
         "correct": "Plant card identified: horse chestnut.",
         "repair": "Keep one correct observation, reveal one leaf, stem or trunk clue, then compare two plant cards again.",
         "evidence": "The reviewed card shows horse chestnut: large hand-shaped leaves and a branching trunk. A broad deciduous tree.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2616,7 +2674,9 @@
         "correct": "Plant card identified: silver birch.",
         "repair": "Keep one correct observation, reveal one leaf, stem or trunk clue, then compare two plant cards again.",
         "evidence": "The reviewed card shows silver birch: pale bark and small toothed leaves. A deciduous tree with pale bark.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2693,7 +2753,9 @@
         "correct": "Plant card identified: sycamore.",
         "repair": "Keep one correct observation, reveal one leaf, stem or trunk clue, then compare two plant cards again.",
         "evidence": "The reviewed card shows sycamore: broad five-lobed leaves and winged seeds in season. A broad deciduous tree.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2770,7 +2832,9 @@
         "correct": "Plant card identified: pine.",
         "repair": "Keep one correct observation, reveal one leaf, stem or trunk clue, then compare two plant cards again.",
         "evidence": "The reviewed card shows pine: needle-like leaves and cones. An evergreen tree.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2847,7 +2911,9 @@
         "correct": "Plant card identified: fir.",
         "repair": "Keep one correct observation, reveal one leaf, stem or trunk clue, then compare two plant cards again.",
         "evidence": "The reviewed card shows fir: flat needle-like leaves on branching twigs. An evergreen tree.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2924,7 +2990,9 @@
         "correct": "Plant card identified: holly.",
         "repair": "Keep one correct observation, reveal one leaf, stem or trunk clue, then compare two plant cards again.",
         "evidence": "The reviewed card shows holly: thick glossy leaves, often with spiny edges. An evergreen tree in this reviewed example.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3001,7 +3069,9 @@
         "correct": "Plant card identified: daisy.",
         "repair": "Keep one correct observation, reveal one leaf, stem or trunk clue, then compare two plant cards again.",
         "evidence": "The reviewed card shows daisy: small white petals around a yellow centre. Often seen in short grass.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -3076,7 +3146,9 @@
         "correct": "Plant sorted using the stated rule: wild plant.",
         "repair": "Say the basket rule, inspect trunk/stem and context evidence, then sort without using preference or flower colour.",
         "evidence": "In this reviewed picture, buttercup is shown as a wild plant: often seen in grassy places. The same species can sometimes grow in a different place, so context matters.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower only category idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3151,7 +3223,9 @@
         "correct": "Plant sorted using the stated rule: garden plant.",
         "repair": "Say the basket rule, inspect trunk/stem and context evidence, then sort without using preference or flower colour.",
         "evidence": "In this reviewed picture, tulip is shown as a garden plant: shown planted in an ordered garden bed. The same species can sometimes grow in a different place, so context matters.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower only category idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3226,7 +3300,9 @@
         "correct": "Plant sorted using the stated rule: tree.",
         "repair": "Say the basket rule, inspect trunk/stem and context evidence, then sort without using preference or flower colour.",
         "evidence": "Silver birch is a tree, and a tree is a plant. The visible trunk and branches support the sort.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the trees not plants idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3301,7 +3377,9 @@
         "correct": "Plant sorted using the stated rule: wild plant.",
         "repair": "Say the basket rule, inspect trunk/stem and context evidence, then sort without using preference or flower colour.",
         "evidence": "In this reviewed picture, daisy is shown as a wild plant: often seen in short grass. The same species can sometimes grow in a different place, so context matters.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower only category idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3376,7 +3454,9 @@
         "correct": "Plant sorted using the stated rule: garden plant.",
         "repair": "Say the basket rule, inspect trunk/stem and context evidence, then sort without using preference or flower colour.",
         "evidence": "In this reviewed picture, sunflower is shown as a garden plant: shown planted in a labelled garden bed. The same species can sometimes grow in a different place, so context matters.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower only category idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3451,7 +3531,9 @@
         "correct": "Plant sorted using the stated rule: tree.",
         "repair": "Say the basket rule, inspect trunk/stem and context evidence, then sort without using preference or flower colour.",
         "evidence": "Oak is a tree, and a tree is a plant. The visible trunk and branches support the sort.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the trees not plants idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3526,7 +3608,9 @@
         "correct": "Plant sorted using the stated rule: tree.",
         "repair": "Say the basket rule, inspect trunk/stem and context evidence, then sort without using preference or flower colour.",
         "evidence": "Fir is a tree, and a tree is a plant. The visible trunk and branches support the sort.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the trees not plants idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3601,7 +3685,9 @@
         "correct": "Plant sorted using the stated rule: wild plant.",
         "repair": "Say the basket rule, inspect trunk/stem and context evidence, then sort without using preference or flower colour.",
         "evidence": "In this reviewed picture, white clover is shown as a wild plant: often grows in lawns and fields. The same species can sometimes grow in a different place, so context matters.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower only category idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3676,7 +3762,9 @@
         "correct": "Plant sorted using the stated rule: garden plant.",
         "repair": "Say the basket rule, inspect trunk/stem and context evidence, then sort without using preference or flower colour.",
         "evidence": "In this reviewed picture, daffodil is shown as a garden plant: shown planted beside a garden path. The same species can sometimes grow in a different place, so context matters.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower only category idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3751,7 +3839,9 @@
         "correct": "Plant sorted using the stated rule: tree.",
         "repair": "Say the basket rule, inspect trunk/stem and context evidence, then sort without using preference or flower colour.",
         "evidence": "Sycamore is a tree, and a tree is a plant. The visible trunk and branches support the sort.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the trees not plants idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3826,7 +3916,9 @@
         "correct": "Plant sorted using the stated rule: wild plant.",
         "repair": "Say the basket rule, inspect trunk/stem and context evidence, then sort without using preference or flower colour.",
         "evidence": "In this reviewed picture, dandelion is shown as a wild plant: often grows without being planted. The same species can sometimes grow in a different place, so context matters.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower only category idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3901,7 +3993,9 @@
         "correct": "Plant sorted using the stated rule: garden plant.",
         "repair": "Say the basket rule, inspect trunk/stem and context evidence, then sort without using preference or flower colour.",
         "evidence": "In this reviewed picture, rose is shown as a garden plant: shown in a cared-for garden border. The same species can sometimes grow in a different place, so context matters.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower only category idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3976,7 +4070,9 @@
         "correct": "Plant sorted using the stated rule: tree.",
         "repair": "Say the basket rule, inspect trunk/stem and context evidence, then sort without using preference or flower colour.",
         "evidence": "Horse chestnut is a tree, and a tree is a plant. The visible trunk and branches support the sort.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the trees not plants idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4051,7 +4147,9 @@
         "correct": "Plant sorted using the stated rule: tree.",
         "repair": "Say the basket rule, inspect trunk/stem and context evidence, then sort without using preference or flower colour.",
         "evidence": "Holly is a tree, and a tree is a plant. The visible trunk and branches support the sort.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the trees not plants idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4126,7 +4224,9 @@
         "correct": "Plant sorted using the stated rule: wild plant.",
         "repair": "Say the basket rule, inspect trunk/stem and context evidence, then sort without using preference or flower colour.",
         "evidence": "In this reviewed picture, cow parsley is shown as a wild plant: often seen beside paths and hedges. The same species can sometimes grow in a different place, so context matters.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower only category idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4201,7 +4301,9 @@
         "correct": "Plant sorted using the stated rule: garden plant.",
         "repair": "Say the basket rule, inspect trunk/stem and context evidence, then sort without using preference or flower colour.",
         "evidence": "In this reviewed picture, lavender is shown as a garden plant: shown in a labelled herb garden. The same species can sometimes grow in a different place, so context matters.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower only category idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4276,7 +4378,9 @@
         "correct": "Plant sorted using the stated rule: tree.",
         "repair": "Say the basket rule, inspect trunk/stem and context evidence, then sort without using preference or flower colour.",
         "evidence": "Pine is a tree, and a tree is a plant. The visible trunk and branches support the sort.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the trees not plants idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4351,7 +4455,9 @@
         "correct": "Plant sorted using the stated rule: wild plant.",
         "repair": "Say the basket rule, inspect trunk/stem and context evidence, then sort without using preference or flower colour.",
         "evidence": "In this reviewed picture, buttercup is shown as a wild plant: often seen in grassy places. The same species can sometimes grow in a different place, so context matters.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower only category idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4426,7 +4532,9 @@
         "correct": "Plant sorted using the stated rule: garden plant.",
         "repair": "Say the basket rule, inspect trunk/stem and context evidence, then sort without using preference or flower colour.",
         "evidence": "In this reviewed picture, tulip is shown as a garden plant: shown planted in an ordered garden bed. The same species can sometimes grow in a different place, so context matters.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower only category idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4501,7 +4609,9 @@
         "correct": "Plant sorted using the stated rule: tree.",
         "repair": "Say the basket rule, inspect trunk/stem and context evidence, then sort without using preference or flower colour.",
         "evidence": "Silver birch is a tree, and a tree is a plant. The visible trunk and branches support the sort.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the trees not plants idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4576,7 +4686,9 @@
         "correct": "Plant sorted using the stated rule: wild plant.",
         "repair": "Say the basket rule, inspect trunk/stem and context evidence, then sort without using preference or flower colour.",
         "evidence": "In this reviewed picture, daisy is shown as a wild plant: often seen in short grass. The same species can sometimes grow in a different place, so context matters.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower only category idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4651,7 +4763,9 @@
         "correct": "Plant sorted using the stated rule: garden plant.",
         "repair": "Say the basket rule, inspect trunk/stem and context evidence, then sort without using preference or flower colour.",
         "evidence": "In this reviewed picture, sunflower is shown as a garden plant: shown planted in a labelled garden bed. The same species can sometimes grow in a different place, so context matters.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower only category idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4726,7 +4840,9 @@
         "correct": "Plant sorted using the stated rule: tree.",
         "repair": "Say the basket rule, inspect trunk/stem and context evidence, then sort without using preference or flower colour.",
         "evidence": "Oak is a tree, and a tree is a plant. The visible trunk and branches support the sort.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the trees not plants idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4801,7 +4917,9 @@
         "correct": "Plant sorted using the stated rule: tree.",
         "repair": "Say the basket rule, inspect trunk/stem and context evidence, then sort without using preference or flower colour.",
         "evidence": "Fir is a tree, and a tree is a plant. The visible trunk and branches support the sort.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the trees not plants idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4876,7 +4994,9 @@
         "correct": "Plant sorted using the stated rule: wild plant.",
         "repair": "Say the basket rule, inspect trunk/stem and context evidence, then sort without using preference or flower colour.",
         "evidence": "In this reviewed picture, white clover is shown as a wild plant: often grows in lawns and fields. The same species can sometimes grow in a different place, so context matters.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower only category idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4951,7 +5071,9 @@
         "correct": "Plant sorted using the stated rule: garden plant.",
         "repair": "Say the basket rule, inspect trunk/stem and context evidence, then sort without using preference or flower colour.",
         "evidence": "In this reviewed picture, daffodil is shown as a garden plant: shown planted beside a garden path. The same species can sometimes grow in a different place, so context matters.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower only category idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5026,7 +5148,9 @@
         "correct": "Plant sorted using the stated rule: tree.",
         "repair": "Say the basket rule, inspect trunk/stem and context evidence, then sort without using preference or flower colour.",
         "evidence": "Sycamore is a tree, and a tree is a plant. The visible trunk and branches support the sort.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the trees not plants idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5101,7 +5225,9 @@
         "correct": "Plant sorted using the stated rule: wild plant.",
         "repair": "Say the basket rule, inspect trunk/stem and context evidence, then sort without using preference or flower colour.",
         "evidence": "In this reviewed picture, dandelion is shown as a wild plant: often grows without being planted. The same species can sometimes grow in a different place, so context matters.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower only category idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5176,7 +5302,9 @@
         "correct": "Plant sorted using the stated rule: garden plant.",
         "repair": "Say the basket rule, inspect trunk/stem and context evidence, then sort without using preference or flower colour.",
         "evidence": "In this reviewed picture, rose is shown as a garden plant: shown in a cared-for garden border. The same species can sometimes grow in a different place, so context matters.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower only category idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5251,7 +5379,9 @@
         "correct": "Plant sorted using the stated rule: tree.",
         "repair": "Say the basket rule, inspect trunk/stem and context evidence, then sort without using preference or flower colour.",
         "evidence": "Horse chestnut is a tree, and a tree is a plant. The visible trunk and branches support the sort.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the trees not plants idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5326,7 +5456,9 @@
         "correct": "Plant sorted using the stated rule: tree.",
         "repair": "Say the basket rule, inspect trunk/stem and context evidence, then sort without using preference or flower colour.",
         "evidence": "Holly is a tree, and a tree is a plant. The visible trunk and branches support the sort.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the trees not plants idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5401,7 +5533,9 @@
         "correct": "Plant sorted using the stated rule: wild plant.",
         "repair": "Say the basket rule, inspect trunk/stem and context evidence, then sort without using preference or flower colour.",
         "evidence": "In this reviewed picture, cow parsley is shown as a wild plant: often seen beside paths and hedges. The same species can sometimes grow in a different place, so context matters.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower only category idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5476,7 +5610,9 @@
         "correct": "Plant sorted using the stated rule: garden plant.",
         "repair": "Say the basket rule, inspect trunk/stem and context evidence, then sort without using preference or flower colour.",
         "evidence": "In this reviewed picture, lavender is shown as a garden plant: shown in a labelled herb garden. The same species can sometimes grow in a different place, so context matters.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower only category idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5551,7 +5687,9 @@
         "correct": "Plant sorted using the stated rule: tree.",
         "repair": "Say the basket rule, inspect trunk/stem and context evidence, then sort without using preference or flower colour.",
         "evidence": "Pine is a tree, and a tree is a plant. The visible trunk and branches support the sort.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the trees not plants idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5626,7 +5764,9 @@
         "correct": "Plant sorted using the stated rule: wild plant.",
         "repair": "Say the basket rule, inspect trunk/stem and context evidence, then sort without using preference or flower colour.",
         "evidence": "In this reviewed picture, buttercup is shown as a wild plant: often seen in grassy places. The same species can sometimes grow in a different place, so context matters.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower only category idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5704,7 +5844,9 @@
         "correct": "Season evidence linked to deciduous.",
         "repair": "Hide flower and fruit clues. Compare only leaves or needles in spring, summer, autumn and winter.",
         "evidence": "Oak usually loses many leaves in autumn and is often bare in winter.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the deciduous means dead idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5782,7 +5924,9 @@
         "correct": "Season evidence linked to deciduous.",
         "repair": "Hide flower and fruit clues. Compare only leaves or needles in spring, summer, autumn and winter.",
         "evidence": "Silver birch is deciduous and usually loses its leaves seasonally.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the deciduous means dead idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5860,7 +6004,9 @@
         "correct": "Season evidence linked to deciduous.",
         "repair": "Hide flower and fruit clues. Compare only leaves or needles in spring, summer, autumn and winter.",
         "evidence": "Horse chestnut is deciduous in the UK seasonal record.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the deciduous means dead idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5938,7 +6084,9 @@
         "correct": "Season evidence linked to deciduous.",
         "repair": "Hide flower and fruit clues. Compare only leaves or needles in spring, summer, autumn and winter.",
         "evidence": "Sycamore is deciduous and its visible leaf cover changes across the year.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the deciduous means dead idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6016,7 +6164,9 @@
         "correct": "Season evidence linked to evergreen.",
         "repair": "Hide flower and fruit clues. Compare only leaves or needles in spring, summer, autumn and winter.",
         "evidence": "Pine keeps green needles throughout the year, although individual old needles can still fall.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the evergreen flowers idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6094,7 +6244,9 @@
         "correct": "Season evidence linked to evergreen.",
         "repair": "Hide flower and fruit clues. Compare only leaves or needles in spring, summer, autumn and winter.",
         "evidence": "Fir is evergreen and remains green through the seasons.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the evergreen flowers idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6172,7 +6324,9 @@
         "correct": "Season evidence linked to evergreen.",
         "repair": "Hide flower and fruit clues. Compare only leaves or needles in spring, summer, autumn and winter.",
         "evidence": "This holly example is evergreen and keeps green leaves through the year.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the evergreen flowers idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6250,7 +6404,9 @@
         "correct": "Season claim supported with leaf or needle evidence.",
         "repair": "Place SUMMER and WINTER cards side by side, then describe only what is visible on the branches.",
         "evidence": "Many leaves are present in summer but branches are mostly bare in winter. Oak usually loses many leaves in autumn and is often bare in winter.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the single season proves tree type idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6328,7 +6484,9 @@
         "correct": "Season claim supported with leaf or needle evidence.",
         "repair": "Place SUMMER and WINTER cards side by side, then describe only what is visible on the branches.",
         "evidence": "Many leaves are present in summer but branches are mostly bare in winter. Silver birch is deciduous and usually loses its leaves seasonally.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the single season proves tree type idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6406,7 +6564,9 @@
         "correct": "Season claim supported with leaf or needle evidence.",
         "repair": "Place SUMMER and WINTER cards side by side, then describe only what is visible on the branches.",
         "evidence": "Many leaves are present in summer but branches are mostly bare in winter. Horse chestnut is deciduous in the UK seasonal record.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the single season proves tree type idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6484,7 +6644,9 @@
         "correct": "Season claim supported with leaf or needle evidence.",
         "repair": "Place SUMMER and WINTER cards side by side, then describe only what is visible on the branches.",
         "evidence": "Many leaves are present in summer but branches are mostly bare in winter. Sycamore is deciduous and its visible leaf cover changes across the year.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the single season proves tree type idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6562,7 +6724,9 @@
         "correct": "Season claim supported with leaf or needle evidence.",
         "repair": "Place SUMMER and WINTER cards side by side, then describe only what is visible on the branches.",
         "evidence": "Green leaves or needles are visible in every season panel. Pine keeps green needles throughout the year, although individual old needles can still fall.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the single season proves tree type idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6640,7 +6804,9 @@
         "correct": "Season claim supported with leaf or needle evidence.",
         "repair": "Place SUMMER and WINTER cards side by side, then describe only what is visible on the branches.",
         "evidence": "Green leaves or needles are visible in every season panel. Fir is evergreen and remains green through the seasons.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the single season proves tree type idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6718,7 +6884,9 @@
         "correct": "Season claim supported with leaf or needle evidence.",
         "repair": "Place SUMMER and WINTER cards side by side, then describe only what is visible on the branches.",
         "evidence": "Green leaves or needles are visible in every season panel. This holly example is evergreen and keeps green leaves through the year.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the single season proves tree type idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6797,7 +6965,9 @@
         "correct": "Seasonal idea repaired with careful plant language.",
         "repair": "Match the words evergreen or deciduous to the leaf record, then cross out statements about flower colour or death.",
         "evidence": "It is alive but usually loses many leaves for part of the year. Timing and leaf fall can vary with species, place and weather.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the deciduous means dead idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6876,7 +7046,9 @@
         "correct": "Seasonal idea repaired with careful plant language.",
         "repair": "Match the words evergreen or deciduous to the leaf record, then cross out statements about flower colour or death.",
         "evidence": "It is alive but usually loses many leaves for part of the year. Timing and leaf fall can vary with species, place and weather.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the deciduous means dead idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6955,7 +7127,9 @@
         "correct": "Seasonal idea repaired with careful plant language.",
         "repair": "Match the words evergreen or deciduous to the leaf record, then cross out statements about flower colour or death.",
         "evidence": "It is alive but usually loses many leaves for part of the year. Timing and leaf fall can vary with species, place and weather.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the deciduous means dead idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7034,7 +7208,9 @@
         "correct": "Seasonal idea repaired with careful plant language.",
         "repair": "Match the words evergreen or deciduous to the leaf record, then cross out statements about flower colour or death.",
         "evidence": "It is alive but usually loses many leaves for part of the year. Timing and leaf fall can vary with species, place and weather.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the deciduous means dead idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7113,7 +7289,9 @@
         "correct": "Seasonal idea repaired with careful plant language.",
         "repair": "Match the words evergreen or deciduous to the leaf record, then cross out statements about flower colour or death.",
         "evidence": "It keeps green leaves or needles through the year, while some old ones may still fall. Timing and leaf fall can vary with species, place and weather.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the evergreen flowers idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7192,7 +7370,9 @@
         "correct": "Seasonal idea repaired with careful plant language.",
         "repair": "Match the words evergreen or deciduous to the leaf record, then cross out statements about flower colour or death.",
         "evidence": "It keeps green leaves or needles through the year, while some old ones may still fall. Timing and leaf fall can vary with species, place and weather.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the evergreen flowers idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7271,7 +7451,9 @@
         "correct": "Seasonal idea repaired with careful plant language.",
         "repair": "Match the words evergreen or deciduous to the leaf record, then cross out statements about flower colour or death.",
         "evidence": "It keeps green leaves or needles through the year, while some old ones may still fall. Timing and leaf fall can vary with species, place and weather.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the evergreen flowers idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7349,7 +7531,9 @@
         "correct": "Season evidence linked to deciduous.",
         "repair": "Hide flower and fruit clues. Compare only leaves or needles in spring, summer, autumn and winter.",
         "evidence": "Oak usually loses many leaves in autumn and is often bare in winter.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the deciduous means dead idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7427,7 +7611,9 @@
         "correct": "Season evidence linked to deciduous.",
         "repair": "Hide flower and fruit clues. Compare only leaves or needles in spring, summer, autumn and winter.",
         "evidence": "Silver birch is deciduous and usually loses its leaves seasonally.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the deciduous means dead idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7505,7 +7691,9 @@
         "correct": "Season evidence linked to deciduous.",
         "repair": "Hide flower and fruit clues. Compare only leaves or needles in spring, summer, autumn and winter.",
         "evidence": "Horse chestnut is deciduous in the UK seasonal record.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the deciduous means dead idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7583,7 +7771,9 @@
         "correct": "Season evidence linked to deciduous.",
         "repair": "Hide flower and fruit clues. Compare only leaves or needles in spring, summer, autumn and winter.",
         "evidence": "Sycamore is deciduous and its visible leaf cover changes across the year.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the deciduous means dead idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7661,7 +7851,9 @@
         "correct": "Season evidence linked to evergreen.",
         "repair": "Hide flower and fruit clues. Compare only leaves or needles in spring, summer, autumn and winter.",
         "evidence": "Pine keeps green needles throughout the year, although individual old needles can still fall.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the evergreen flowers idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7739,7 +7931,9 @@
         "correct": "Season evidence linked to evergreen.",
         "repair": "Hide flower and fruit clues. Compare only leaves or needles in spring, summer, autumn and winter.",
         "evidence": "Fir is evergreen and remains green through the seasons.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the evergreen flowers idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7817,7 +8011,9 @@
         "correct": "Season evidence linked to evergreen.",
         "repair": "Hide flower and fruit clues. Compare only leaves or needles in spring, summer, autumn and winter.",
         "evidence": "This holly example is evergreen and keeps green leaves through the year.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the evergreen flowers idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7895,7 +8091,9 @@
         "correct": "Season claim supported with leaf or needle evidence.",
         "repair": "Place SUMMER and WINTER cards side by side, then describe only what is visible on the branches.",
         "evidence": "Many leaves are present in summer but branches are mostly bare in winter. Oak usually loses many leaves in autumn and is often bare in winter.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the single season proves tree type idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7973,7 +8171,9 @@
         "correct": "Season claim supported with leaf or needle evidence.",
         "repair": "Place SUMMER and WINTER cards side by side, then describe only what is visible on the branches.",
         "evidence": "Many leaves are present in summer but branches are mostly bare in winter. Silver birch is deciduous and usually loses its leaves seasonally.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the single season proves tree type idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8051,7 +8251,9 @@
         "correct": "Season claim supported with leaf or needle evidence.",
         "repair": "Place SUMMER and WINTER cards side by side, then describe only what is visible on the branches.",
         "evidence": "Many leaves are present in summer but branches are mostly bare in winter. Horse chestnut is deciduous in the UK seasonal record.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the single season proves tree type idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8129,7 +8331,9 @@
         "correct": "Season claim supported with leaf or needle evidence.",
         "repair": "Place SUMMER and WINTER cards side by side, then describe only what is visible on the branches.",
         "evidence": "Many leaves are present in summer but branches are mostly bare in winter. Sycamore is deciduous and its visible leaf cover changes across the year.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the single season proves tree type idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8207,7 +8411,9 @@
         "correct": "Season claim supported with leaf or needle evidence.",
         "repair": "Place SUMMER and WINTER cards side by side, then describe only what is visible on the branches.",
         "evidence": "Green leaves or needles are visible in every season panel. Pine keeps green needles throughout the year, although individual old needles can still fall.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the single season proves tree type idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8285,7 +8491,9 @@
         "correct": "Season claim supported with leaf or needle evidence.",
         "repair": "Place SUMMER and WINTER cards side by side, then describe only what is visible on the branches.",
         "evidence": "Green leaves or needles are visible in every season panel. Fir is evergreen and remains green through the seasons.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the single season proves tree type idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8363,7 +8571,9 @@
         "correct": "Season claim supported with leaf or needle evidence.",
         "repair": "Place SUMMER and WINTER cards side by side, then describe only what is visible on the branches.",
         "evidence": "Green leaves or needles are visible in every season panel. This holly example is evergreen and keeps green leaves through the year.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the single season proves tree type idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8443,7 +8653,9 @@
         "correct": "Plant part labelled: root.",
         "repair": "Use the whole-plant outline, reveal one part boundary and match one audio/text label at a time.",
         "evidence": "The marked structure is the root. This dandelion card also shows stem, leaves, flower.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower is whole plant idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -8517,7 +8729,9 @@
         "correct": "Visible plant evidence recorded without guessing.",
         "repair": "Use the sentence frame I can see __, then point to the matching part of the picture or model.",
         "evidence": "Clusters of tiny white flowers on tall stems is an observation from the reviewed image. It does not guess feelings or purpose.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the opinion or intention as observation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -8594,7 +8808,9 @@
         "correct": "Plant name retrieved: tulip.",
         "repair": "Show one clear leaf/trunk clue and one context clue, then compare only two named cards.",
         "evidence": "Tulip matches the observed clues: cup-shaped flower and long smooth-edged leaves; shown planted in an ordered garden bed.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -8674,7 +8890,9 @@
         "correct": "Plant part labelled: leaves.",
         "repair": "Use the whole-plant outline, reveal one part boundary and match one audio/text label at a time.",
         "evidence": "The marked structure is the leaves. This oak card also shows roots, trunk, branches.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower is whole plant idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -8748,7 +8966,9 @@
         "correct": "Visible plant evidence recorded without guessing.",
         "repair": "Use the sentence frame I can see __, then point to the matching part of the picture or model.",
         "evidence": "Broad five-lobed leaves and winged seeds in season is an observation from the reviewed image. It does not guess feelings or purpose.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the opinion or intention as observation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -8825,7 +9045,9 @@
         "correct": "Plant name retrieved: holly.",
         "repair": "Show one clear leaf/trunk clue and one context clue, then compare only two named cards.",
         "evidence": "Holly matches the observed clues: thick glossy leaves, often with spiny edges; an evergreen tree in this reviewed example.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -8905,7 +9127,9 @@
         "correct": "Plant part labelled: leaves.",
         "repair": "Use the whole-plant outline, reveal one part boundary and match one audio/text label at a time.",
         "evidence": "The marked structure is the leaves. This buttercup card also shows roots, stem, flower.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower is whole plant idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -8979,7 +9203,9 @@
         "correct": "Visible plant evidence recorded without guessing.",
         "repair": "Use the sentence frame I can see __, then point to the matching part of the picture or model.",
         "evidence": "Large flower head on a tall sturdy stem is an observation from the reviewed image. It does not guess feelings or purpose.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the opinion or intention as observation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -9056,7 +9282,9 @@
         "correct": "Plant name retrieved: daffodil.",
         "repair": "Show one clear leaf/trunk clue and one context clue, then compare only two named cards.",
         "evidence": "Daffodil matches the observed clues: yellow trumpet-shaped flower and narrow leaves; shown planted beside a garden path.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -9136,7 +9364,9 @@
         "correct": "Plant part labelled: trunk.",
         "repair": "Use the whole-plant outline, reveal one part boundary and match one audio/text label at a time.",
         "evidence": "The marked structure is the trunk. This horse chestnut card also shows roots, branches, leaves.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower is whole plant idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -9210,7 +9440,9 @@
         "correct": "Visible plant evidence recorded without guessing.",
         "repair": "Use the sentence frame I can see __, then point to the matching part of the picture or model.",
         "evidence": "Needle-like leaves and cones is an observation from the reviewed image. It does not guess feelings or purpose.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the opinion or intention as observation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -9287,7 +9519,9 @@
         "correct": "Plant name retrieved: daisy.",
         "repair": "Show one clear leaf/trunk clue and one context clue, then compare only two named cards.",
         "evidence": "Daisy matches the observed clues: small white petals around a yellow centre; often seen in short grass.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -9367,7 +9601,9 @@
         "correct": "Plant part labelled: roots.",
         "repair": "Use the whole-plant outline, reveal one part boundary and match one audio/text label at a time.",
         "evidence": "The marked structure is the roots. This white clover card also shows creeping stem, leaves, flowers.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower is whole plant idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -9441,7 +9677,9 @@
         "correct": "Visible plant evidence recorded without guessing.",
         "repair": "Use the sentence frame I can see __, then point to the matching part of the picture or model.",
         "evidence": "Layered flower petals and a woody thorny stem is an observation from the reviewed image. It does not guess feelings or purpose.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the opinion or intention as observation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -9518,7 +9756,9 @@
         "correct": "Plant name retrieved: lavender.",
         "repair": "Show one clear leaf/trunk clue and one context clue, then compare only two named cards.",
         "evidence": "Lavender matches the observed clues: narrow grey-green leaves and purple flower spikes; shown in a labelled herb garden.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -9598,7 +9838,9 @@
         "correct": "Plant part labelled: leaves.",
         "repair": "Use the whole-plant outline, reveal one part boundary and match one audio/text label at a time.",
         "evidence": "The marked structure is the leaves. This silver birch card also shows roots, trunk, branches.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower is whole plant idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -9672,7 +9914,9 @@
         "correct": "Visible plant evidence recorded without guessing.",
         "repair": "Use the sentence frame I can see __, then point to the matching part of the picture or model.",
         "evidence": "Flat needle-like leaves on branching twigs is an observation from the reviewed image. It does not guess feelings or purpose.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the opinion or intention as observation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -9749,7 +9993,9 @@
         "correct": "Plant name retrieved: dandelion.",
         "repair": "Show one clear leaf/trunk clue and one context clue, then compare only two named cards.",
         "evidence": "Dandelion matches the observed clues: yellow flower head and toothed leaves; often grows without being planted.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -9829,7 +10075,9 @@
         "correct": "Plant part labelled: leaves.",
         "repair": "Use the whole-plant outline, reveal one part boundary and match one audio/text label at a time.",
         "evidence": "The marked structure is the leaves. This cow parsley card also shows roots, stem, flowers.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower is whole plant idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -9903,7 +10151,9 @@
         "correct": "Visible plant evidence recorded without guessing.",
         "repair": "Use the sentence frame I can see __, then point to the matching part of the picture or model.",
         "evidence": "Cup-shaped flower and long smooth-edged leaves is an observation from the reviewed image. It does not guess feelings or purpose.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the opinion or intention as observation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -9980,7 +10230,9 @@
         "correct": "Plant name retrieved: oak.",
         "repair": "Show one clear leaf/trunk clue and one context clue, then compare only two named cards.",
         "evidence": "Oak matches the observed clues: lobed leaves, branching trunk and acorns in season; a broad deciduous tree.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -10060,7 +10312,9 @@
         "correct": "Plant part labelled: trunk.",
         "repair": "Use the whole-plant outline, reveal one part boundary and match one audio/text label at a time.",
         "evidence": "The marked structure is the trunk. This sycamore card also shows roots, branches, leaves.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower is whole plant idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -10134,7 +10388,9 @@
         "correct": "Visible plant evidence recorded without guessing.",
         "repair": "Use the sentence frame I can see __, then point to the matching part of the picture or model.",
         "evidence": "Thick glossy leaves, often with spiny edges is an observation from the reviewed image. It does not guess feelings or purpose.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the opinion or intention as observation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -10211,7 +10467,9 @@
         "correct": "Plant name retrieved: buttercup.",
         "repair": "Show one clear leaf/trunk clue and one context clue, then compare only two named cards.",
         "evidence": "Buttercup matches the observed clues: small shiny-looking yellow flowers; often seen in grassy places.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -10291,7 +10549,9 @@
         "correct": "Plant part labelled: roots.",
         "repair": "Use the whole-plant outline, reveal one part boundary and match one audio/text label at a time.",
         "evidence": "The marked structure is the roots. This sunflower card also shows stem, leaves, flower.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower is whole plant idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -10365,7 +10625,9 @@
         "correct": "Visible plant evidence recorded without guessing.",
         "repair": "Use the sentence frame I can see __, then point to the matching part of the picture or model.",
         "evidence": "Yellow trumpet-shaped flower and narrow leaves is an observation from the reviewed image. It does not guess feelings or purpose.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the opinion or intention as observation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -10442,7 +10704,9 @@
         "correct": "Plant name retrieved: horse chestnut.",
         "repair": "Show one clear leaf/trunk clue and one context clue, then compare only two named cards.",
         "evidence": "Horse chestnut matches the observed clues: large hand-shaped leaves and a branching trunk; a broad deciduous tree.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -10522,7 +10786,9 @@
         "correct": "Plant part labelled: needles.",
         "repair": "Use the whole-plant outline, reveal one part boundary and match one audio/text label at a time.",
         "evidence": "The marked structure is the needles. This pine card also shows roots, trunk, branches.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower is whole plant idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -10596,7 +10862,9 @@
         "correct": "Visible plant evidence recorded without guessing.",
         "repair": "Use the sentence frame I can see __, then point to the matching part of the picture or model.",
         "evidence": "Small white petals around a yellow centre is an observation from the reviewed image. It does not guess feelings or purpose.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the opinion or intention as observation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -10673,7 +10941,9 @@
         "correct": "Plant name retrieved: white clover.",
         "repair": "Show one clear leaf/trunk clue and one context clue, then compare only two named cards.",
         "evidence": "White clover matches the observed clues: leaves in groups of three and round flower heads; often grows in lawns and fields.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -10753,7 +11023,9 @@
         "correct": "Plant part labelled: leaves.",
         "repair": "Use the whole-plant outline, reveal one part boundary and match one audio/text label at a time.",
         "evidence": "The marked structure is the leaves. This rose card also shows roots, stem, flower.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower is whole plant idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -10827,7 +11099,9 @@
         "correct": "Visible plant evidence recorded without guessing.",
         "repair": "Use the sentence frame I can see __, then point to the matching part of the picture or model.",
         "evidence": "Narrow grey-green leaves and purple flower spikes is an observation from the reviewed image. It does not guess feelings or purpose.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the opinion or intention as observation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -10904,7 +11178,9 @@
         "correct": "Plant name retrieved: silver birch.",
         "repair": "Show one clear leaf/trunk clue and one context clue, then compare only two named cards.",
         "evidence": "Silver birch matches the observed clues: pale bark and small toothed leaves; a deciduous tree with pale bark.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -10984,7 +11260,9 @@
         "correct": "Plant part labelled: trunk.",
         "repair": "Use the whole-plant outline, reveal one part boundary and match one audio/text label at a time.",
         "evidence": "The marked structure is the trunk. This fir card also shows roots, branches, needles.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower is whole plant idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -11058,7 +11336,9 @@
         "correct": "Visible plant evidence recorded without guessing.",
         "repair": "Use the sentence frame I can see __, then point to the matching part of the picture or model.",
         "evidence": "Yellow flower head and toothed leaves is an observation from the reviewed image. It does not guess feelings or purpose.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the opinion or intention as observation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -11135,7 +11415,9 @@
         "correct": "Plant name retrieved: cow parsley.",
         "repair": "Show one clear leaf/trunk clue and one context clue, then compare only two named cards.",
         "evidence": "Cow parsley matches the observed clues: clusters of tiny white flowers on tall stems; often seen beside paths and hedges.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the name from flower colour only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -11208,7 +11490,9 @@
         "correct": "Explorer note begins with visible evidence.",
         "repair": "Hide the group labels, select one visible feature hotspot, then complete I can see __.",
         "evidence": "I can see clusters of tiny white flowers on tall stems. This is observable evidence that can support later naming or grouping.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the opinion or intention as observation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11281,7 +11565,9 @@
         "correct": "Group choice justified with an observable or context clue.",
         "repair": "Use the frame It goes in __ because I can see __, with one group and one clue at a time.",
         "evidence": "Tree, because I can see a trunk and branches. Broad wild/garden sorting uses the shown context and does not mean the species can only grow there.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the sort by preference idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11359,7 +11645,9 @@
         "correct": "Season type explained with evidence from several panels.",
         "repair": "Compare summer and winter first, then check spring and autumn before choosing.",
         "evidence": "Deciduous, because many leaves fall and winter branches are mostly bare. Horse chestnut is deciduous in the UK seasonal record.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the deciduous means dead idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11437,7 +11725,9 @@
         "correct": "Whole plant linked to several different parts.",
         "repair": "Build the plant from root/trunk or stem upward, adding one labelled part at a time.",
         "evidence": "A whole plant can include roots, stem, leaves, flower. The visible flower or leaf is not the entire plant.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower is whole plant idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11508,7 +11798,9 @@
         "correct": "Garden idea repaired with careful evidence language.",
         "repair": "Replace every/never with a claim about the pictured plant or season record, then add one observation.",
         "evidence": "Wild/garden sorting can describe the pictured growing context; some wild plants also grow in gardens.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the wild garden fixed boundary idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11581,7 +11873,9 @@
         "correct": "Explorer note begins with visible evidence.",
         "repair": "Hide the group labels, select one visible feature hotspot, then complete I can see __.",
         "evidence": "I can see large flower head on a tall sturdy stem. This is observable evidence that can support later naming or grouping.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the opinion or intention as observation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11654,7 +11948,9 @@
         "correct": "Group choice justified with an observable or context clue.",
         "repair": "Use the frame It goes in __ because I can see __, with one group and one clue at a time.",
         "evidence": "Tree, because I can see a trunk and branches. Broad wild/garden sorting uses the shown context and does not mean the species can only grow there.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the sort by preference idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11732,7 +12028,9 @@
         "correct": "Season type explained with evidence from several panels.",
         "repair": "Compare summer and winter first, then check spring and autumn before choosing.",
         "evidence": "Deciduous, because many leaves fall and winter branches are mostly bare. Oak usually loses many leaves in autumn and is often bare in winter.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the deciduous means dead idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11810,7 +12108,9 @@
         "correct": "Whole plant linked to several different parts.",
         "repair": "Build the plant from root/trunk or stem upward, adding one labelled part at a time.",
         "evidence": "A whole plant can include roots, woody stems, leaves, flowers. The visible flower or leaf is not the entire plant.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower is whole plant idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11881,7 +12181,9 @@
         "correct": "Garden idea repaired with careful evidence language.",
         "repair": "Replace every/never with a claim about the pictured plant or season record, then add one observation.",
         "evidence": "Wild/garden sorting can describe the pictured growing context; some wild plants also grow in gardens.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the wild garden fixed boundary idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11954,7 +12256,9 @@
         "correct": "Explorer note begins with visible evidence.",
         "repair": "Hide the group labels, select one visible feature hotspot, then complete I can see __.",
         "evidence": "I can see layered flower petals and a woody thorny stem. This is observable evidence that can support later naming or grouping.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the opinion or intention as observation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -12027,7 +12331,9 @@
         "correct": "Group choice justified with an observable or context clue.",
         "repair": "Use the frame It goes in __ because I can see __, with one group and one clue at a time.",
         "evidence": "Tree, because I can see a trunk and branches. Broad wild/garden sorting uses the shown context and does not mean the species can only grow there.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the sort by preference idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -12105,7 +12411,9 @@
         "correct": "Season type explained with evidence from several panels.",
         "repair": "Compare summer and winter first, then check spring and autumn before choosing.",
         "evidence": "Evergreen, because green leaves or needles remain in all four panels. Fir is evergreen and remains green through the seasons.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the evergreen flowers idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -12183,7 +12491,9 @@
         "correct": "Whole plant linked to several different parts.",
         "repair": "Build the plant from root/trunk or stem upward, adding one labelled part at a time.",
         "evidence": "A whole plant can include roots, trunk, branches, leaves. The visible flower or leaf is not the entire plant.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower is whole plant idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -12254,7 +12564,9 @@
         "correct": "Garden idea repaired with careful evidence language.",
         "repair": "Replace every/never with a claim about the pictured plant or season record, then add one observation.",
         "evidence": "Wild/garden sorting can describe the pictured growing context; some wild plants also grow in gardens.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the wild garden fixed boundary idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -12327,7 +12639,9 @@
         "correct": "Explorer note begins with visible evidence.",
         "repair": "Hide the group labels, select one visible feature hotspot, then complete I can see __.",
         "evidence": "I can see cup-shaped flower and long smooth-edged leaves. This is observable evidence that can support later naming or grouping.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the opinion or intention as observation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -12400,7 +12714,9 @@
         "correct": "Group choice justified with an observable or context clue.",
         "repair": "Use the frame It goes in __ because I can see __, with one group and one clue at a time.",
         "evidence": "Tree, because I can see a trunk and branches. Broad wild/garden sorting uses the shown context and does not mean the species can only grow there.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the sort by preference idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -12478,7 +12794,9 @@
         "correct": "Season type explained with evidence from several panels.",
         "repair": "Compare summer and winter first, then check spring and autumn before choosing.",
         "evidence": "Deciduous, because many leaves fall and winter branches are mostly bare. Sycamore is deciduous and its visible leaf cover changes across the year.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the deciduous means dead idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -12556,7 +12874,9 @@
         "correct": "Whole plant linked to several different parts.",
         "repair": "Build the plant from root/trunk or stem upward, adding one labelled part at a time.",
         "evidence": "A whole plant can include roots, trunk, branches, leaves. The visible flower or leaf is not the entire plant.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower is whole plant idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -12627,7 +12947,9 @@
         "correct": "Garden idea repaired with careful evidence language.",
         "repair": "Replace every/never with a claim about the pictured plant or season record, then add one observation.",
         "evidence": "Wild/garden sorting can describe the pictured growing context; some wild plants also grow in gardens.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the wild garden fixed boundary idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -12700,7 +13022,9 @@
         "correct": "Explorer note begins with visible evidence.",
         "repair": "Hide the group labels, select one visible feature hotspot, then complete I can see __.",
         "evidence": "I can see yellow trumpet-shaped flower and narrow leaves. This is observable evidence that can support later naming or grouping.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the opinion or intention as observation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -12773,7 +13097,9 @@
         "correct": "Group choice justified with an observable or context clue.",
         "repair": "Use the frame It goes in __ because I can see __, with one group and one clue at a time.",
         "evidence": "Tree, because I can see a trunk and branches. Broad wild/garden sorting uses the shown context and does not mean the species can only grow there.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the sort by preference idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -12851,7 +13177,9 @@
         "correct": "Season type explained with evidence from several panels.",
         "repair": "Compare summer and winter first, then check spring and autumn before choosing.",
         "evidence": "Deciduous, because many leaves fall and winter branches are mostly bare. Silver birch is deciduous and usually loses its leaves seasonally.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the deciduous means dead idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -12929,7 +13257,9 @@
         "correct": "Whole plant linked to several different parts.",
         "repair": "Build the plant from root/trunk or stem upward, adding one labelled part at a time.",
         "evidence": "A whole plant can include roots, trunk, branches, leaves. The visible flower or leaf is not the entire plant.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower is whole plant idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -13000,7 +13330,9 @@
         "correct": "Garden idea repaired with careful evidence language.",
         "repair": "Replace every/never with a claim about the pictured plant or season record, then add one observation.",
         "evidence": "Wild/garden sorting can describe the pictured growing context; some wild plants also grow in gardens.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the wild garden fixed boundary idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -13073,7 +13405,9 @@
         "correct": "Explorer note begins with visible evidence.",
         "repair": "Hide the group labels, select one visible feature hotspot, then complete I can see __.",
         "evidence": "I can see narrow grey-green leaves and purple flower spikes. This is observable evidence that can support later naming or grouping.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the opinion or intention as observation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -13146,7 +13480,9 @@
         "correct": "Group choice justified with an observable or context clue.",
         "repair": "Use the frame It goes in __ because I can see __, with one group and one clue at a time.",
         "evidence": "Tree, because I can see a trunk and branches. Broad wild/garden sorting uses the shown context and does not mean the species can only grow there.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the sort by preference idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -13224,7 +13560,9 @@
         "correct": "Season type explained with evidence from several panels.",
         "repair": "Compare summer and winter first, then check spring and autumn before choosing.",
         "evidence": "Evergreen, because green leaves or needles remain in all four panels. This holly example is evergreen and keeps green leaves through the year.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the evergreen flowers idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -13302,7 +13640,9 @@
         "correct": "Whole plant linked to several different parts.",
         "repair": "Build the plant from root/trunk or stem upward, adding one labelled part at a time.",
         "evidence": "A whole plant can include roots, trunk, branches, leaves. The visible flower or leaf is not the entire plant.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower is whole plant idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -13373,7 +13713,9 @@
         "correct": "Garden idea repaired with careful evidence language.",
         "repair": "Replace every/never with a claim about the pictured plant or season record, then add one observation.",
         "evidence": "Wild/garden sorting can describe the pictured growing context; some wild plants also grow in gardens.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the wild garden fixed boundary idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -13446,7 +13788,9 @@
         "correct": "Explorer note begins with visible evidence.",
         "repair": "Hide the group labels, select one visible feature hotspot, then complete I can see __.",
         "evidence": "I can see lobed leaves, branching trunk and acorns in season. This is observable evidence that can support later naming or grouping.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the opinion or intention as observation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -13519,7 +13863,9 @@
         "correct": "Group choice justified with an observable or context clue.",
         "repair": "Use the frame It goes in __ because I can see __, with one group and one clue at a time.",
         "evidence": "Wild plant, because often seen in short grass. Broad wild/garden sorting uses the shown context and does not mean the species can only grow there.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the sort by preference idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -13597,7 +13943,9 @@
         "correct": "Season type explained with evidence from several panels.",
         "repair": "Compare summer and winter first, then check spring and autumn before choosing.",
         "evidence": "Evergreen, because green leaves or needles remain in all four panels. Pine keeps green needles throughout the year, although individual old needles can still fall.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the evergreen flowers idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -13675,7 +14023,9 @@
         "correct": "Whole plant linked to several different parts.",
         "repair": "Build the plant from root/trunk or stem upward, adding one labelled part at a time.",
         "evidence": "A whole plant can include roots, trunk, branches, needles. The visible flower or leaf is not the entire plant.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the flower is whole plant idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -13746,7 +14096,9 @@
         "correct": "Garden idea repaired with careful evidence language.",
         "repair": "Replace every/never with a claim about the pictured plant or season record, then add one observation.",
         "evidence": "Wild/garden sorting can describe the pictured growing context; some wild plants also grow in gardens.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the wild garden fixed boundary idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -13819,7 +14171,9 @@
         "correct": "Explorer note begins with visible evidence.",
         "repair": "Hide the group labels, select one visible feature hotspot, then complete I can see __.",
         "evidence": "I can see large hand-shaped leaves and a branching trunk. This is observable evidence that can support later naming or grouping.",
-        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look."
+        "observation_praise": "A careful plant-part or seasonal observation remains useful even when the name or group needs another look.",
+        "misconception_check": "Check the opinion or intention as observation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",

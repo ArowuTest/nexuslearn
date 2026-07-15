@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -73,6 +74,7 @@ pack.qa.readiness_status = "draft";
 pack.qa.notes = "Review-stage Year 1 common-plants pack with a deterministic 180-item pilot bank. Three curated variants are preserved alongside candidates covering familiar UK wild and garden plants, common trees, plant parts, observation language, broad grouping, evergreen and deciduous seasonal evidence, and misconception repair. Wild/garden classifications are tied to the pictured context rather than treated as permanent boundaries, while seasonal claims use usually/many and acknowledge natural variation. Every generated item includes reviewed visual descriptions, optional tactile replicas, complete text routes, supported response modes, explicit evidence feedback and joyful untimed garden missions. Unknown, thorny or potentially harmful plants are never handled, smelled or tasted. Referenced narration is ElevenLabs-gated for human listening review with browser TTS prohibited. Independent botany, image, SEND, safeguarding, teacher and renderer review remains required before promotion.";
 
 validateBank(pack, curated, generated);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`y1-plants-identify-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
 console.log(`y1-plants-identify-bank blueprints=${summary(pack.question_variants, assignedBlueprint)}`);

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -140,6 +141,7 @@ pack.qa.readiness_status = "draft";
 pack.qa.notes = "Production-wave review bank reaches the 240-item pilot target with five preserved curated questions and 235 deterministic candidates covering audience and purpose, sentence length and structure, viewpoint and register, precise vocabulary, cohesion, paragraph control, tense and person consistency, meaning-preserving editing, punctuation and rhythm, and genre transfer. Generated candidates include SEND/dyslexia routes, chunking, model comparisons, supported non-drag interactions, rich formative feedback, and pressure-free publishing/story missions. Optional ElevenLabs references appear only where listening supports register, rhythm or sentence comparison, require human review, and never use browser TTS. Independent English, teacher, SEND, accessibility, safeguarding, audio and renderer review remains required before promotion.";
 
 validateBank(pack, curated, candidates);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`writing-control-bank curated=${curated.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
 console.log(`writing-control-bank strands=${summary(candidates, (variant) => variant.body.writing_strand)}`);

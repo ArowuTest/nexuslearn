@@ -442,7 +442,9 @@
         "correct": "Animal record found: dog. You used more than one visible feature.",
         "repair": "Keep one correct observation, reveal one body-part label, then compare the full animal shapes again.",
         "evidence": "The picture shows a dog. Its visible features include fur, four legs and paws.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the single striking feature idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -505,7 +507,9 @@
         "correct": "Animal record found: cat. You used more than one visible feature.",
         "repair": "Keep one correct observation, reveal one body-part label, then compare the full animal shapes again.",
         "evidence": "The picture shows a cat. Its visible features include fur, four legs and paws.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the single striking feature idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -568,7 +572,9 @@
         "correct": "Animal record found: rabbit. You used more than one visible feature.",
         "repair": "Keep one correct observation, reveal one body-part label, then compare the full animal shapes again.",
         "evidence": "The picture shows a rabbit. Its visible features include fur, four legs and long ears.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the single striking feature idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -631,7 +637,9 @@
         "correct": "Animal record found: cow. You used more than one visible feature.",
         "repair": "Keep one correct observation, reveal one body-part label, then compare the full animal shapes again.",
         "evidence": "The picture shows a cow. Its visible features include hair, four legs and hooves.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the single striking feature idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -694,7 +702,9 @@
         "correct": "Animal record found: human. You used more than one visible feature.",
         "repair": "Keep one correct observation, reveal one body-part label, then compare the full animal shapes again.",
         "evidence": "The picture shows a human. Its visible features include some body hair, two legs and hands.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the single striking feature idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -757,7 +767,9 @@
         "correct": "Animal record found: whale. You used more than one visible feature.",
         "repair": "Keep one correct observation, reveal one body-part label, then compare the full animal shapes again.",
         "evidence": "The picture shows a whale. Its visible features include smooth skin, flippers and tail flukes.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the single striking feature idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -820,7 +832,9 @@
         "correct": "Animal record found: robin. You used more than one visible feature.",
         "repair": "Keep one correct observation, reveal one body-part label, then compare the full animal shapes again.",
         "evidence": "The picture shows a robin. Its visible features include feathers, two legs and beak.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the single striking feature idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -883,7 +897,9 @@
         "correct": "Animal record found: duck. You used more than one visible feature.",
         "repair": "Keep one correct observation, reveal one body-part label, then compare the full animal shapes again.",
         "evidence": "The picture shows a duck. Its visible features include feathers, two legs and webbed feet.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the single striking feature idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -946,7 +962,9 @@
         "correct": "Animal record found: chicken. You used more than one visible feature.",
         "repair": "Keep one correct observation, reveal one body-part label, then compare the full animal shapes again.",
         "evidence": "The picture shows a chicken. Its visible features include feathers, two legs and beak.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the single striking feature idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1009,7 +1027,9 @@
         "correct": "Animal record found: owl. You used more than one visible feature.",
         "repair": "Keep one correct observation, reveal one body-part label, then compare the full animal shapes again.",
         "evidence": "The picture shows a owl. Its visible features include feathers, two legs and wings.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the single striking feature idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1072,7 +1092,9 @@
         "correct": "Animal record found: penguin. You used more than one visible feature.",
         "repair": "Keep one correct observation, reveal one body-part label, then compare the full animal shapes again.",
         "evidence": "The picture shows a penguin. Its visible features include feathers, two legs and flipper-shaped wings.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the single striking feature idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1135,7 +1157,9 @@
         "correct": "Animal record found: goldfish. You used more than one visible feature.",
         "repair": "Keep one correct observation, reveal one body-part label, then compare the full animal shapes again.",
         "evidence": "The picture shows a goldfish. Its visible features include scales, fins and gills.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the single striking feature idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1198,7 +1222,9 @@
         "correct": "Animal record found: salmon. You used more than one visible feature.",
         "repair": "Keep one correct observation, reveal one body-part label, then compare the full animal shapes again.",
         "evidence": "The picture shows a salmon. Its visible features include scales, fins and gills.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the single striking feature idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1261,7 +1287,9 @@
         "correct": "Animal record found: shark. You used more than one visible feature.",
         "repair": "Keep one correct observation, reveal one body-part label, then compare the full animal shapes again.",
         "evidence": "The picture shows a shark. Its visible features include rough skin, fins and gills.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the single striking feature idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1324,7 +1352,9 @@
         "correct": "Animal record found: frog. You used more than one visible feature.",
         "repair": "Keep one correct observation, reveal one body-part label, then compare the full animal shapes again.",
         "evidence": "The picture shows a frog. Its visible features include smooth moist skin, four legs as an adult and wide mouth.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the single striking feature idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1387,7 +1417,9 @@
         "correct": "Animal record found: toad. You used more than one visible feature.",
         "repair": "Keep one correct observation, reveal one body-part label, then compare the full animal shapes again.",
         "evidence": "The picture shows a toad. Its visible features include bumpy skin, four legs as an adult and wide mouth.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the single striking feature idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1450,7 +1482,9 @@
         "correct": "Animal record found: newt. You used more than one visible feature.",
         "repair": "Keep one correct observation, reveal one body-part label, then compare the full animal shapes again.",
         "evidence": "The picture shows a newt. Its visible features include smooth moist skin, four legs as an adult and long tail.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the single striking feature idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1513,7 +1547,9 @@
         "correct": "Animal record found: snake. You used more than one visible feature.",
         "repair": "Keep one correct observation, reveal one body-part label, then compare the full animal shapes again.",
         "evidence": "The picture shows a snake. Its visible features include dry scales, no legs and forked tongue.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the single striking feature idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1576,7 +1612,9 @@
         "correct": "Animal record found: lizard. You used more than one visible feature.",
         "repair": "Keep one correct observation, reveal one body-part label, then compare the full animal shapes again.",
         "evidence": "The picture shows a lizard. Its visible features include dry scales, four legs and long tail.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the single striking feature idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1639,7 +1677,9 @@
         "correct": "Animal record found: tortoise. You used more than one visible feature.",
         "repair": "Keep one correct observation, reveal one body-part label, then compare the full animal shapes again.",
         "evidence": "The picture shows a tortoise. Its visible features include dry scaly skin, four legs and hard shell.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the single striking feature idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1702,7 +1742,9 @@
         "correct": "Animal record found: crocodile. You used more than one visible feature.",
         "repair": "Keep one correct observation, reveal one body-part label, then compare the full animal shapes again.",
         "evidence": "The picture shows a crocodile. Its visible features include dry scales, four legs and long snout.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the single striking feature idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1767,7 +1809,9 @@
         "correct": "Body map updated: paws belongs on this dog model.",
         "repair": "Compare the blank marker with the raised-outline or audio-described model, then choose one label at a time.",
         "evidence": "The marked body part is paws. A dog also has fur and four legs.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all bodies like humans idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1832,7 +1876,9 @@
         "correct": "Body map updated: paws belongs on this cat model.",
         "repair": "Compare the blank marker with the raised-outline or audio-described model, then choose one label at a time.",
         "evidence": "The marked body part is paws. A cat also has fur and four legs.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all bodies like humans idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1897,7 +1943,9 @@
         "correct": "Body map updated: long ears belongs on this rabbit model.",
         "repair": "Compare the blank marker with the raised-outline or audio-described model, then choose one label at a time.",
         "evidence": "The marked body part is long ears. A rabbit also has fur and four legs.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all bodies like humans idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1962,7 +2010,9 @@
         "correct": "Body map updated: hooves belongs on this cow model.",
         "repair": "Compare the blank marker with the raised-outline or audio-described model, then choose one label at a time.",
         "evidence": "The marked body part is hooves. A cow also has hair and four legs.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all bodies like humans idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2027,7 +2077,9 @@
         "correct": "Body map updated: hands belongs on this human model.",
         "repair": "Compare the blank marker with the raised-outline or audio-described model, then choose one label at a time.",
         "evidence": "The marked body part is hands. A human also has some body hair and two legs.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all bodies like humans idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2092,7 +2144,9 @@
         "correct": "Body map updated: tail flukes belongs on this whale model.",
         "repair": "Compare the blank marker with the raised-outline or audio-described model, then choose one label at a time.",
         "evidence": "The marked body part is tail flukes. A whale also has smooth skin and flippers.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all bodies like humans idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2157,7 +2211,9 @@
         "correct": "Body map updated: beak belongs on this robin model.",
         "repair": "Compare the blank marker with the raised-outline or audio-described model, then choose one label at a time.",
         "evidence": "The marked body part is beak. A robin also has feathers and two legs.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all bodies like humans idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2222,7 +2278,9 @@
         "correct": "Body map updated: webbed feet belongs on this duck model.",
         "repair": "Compare the blank marker with the raised-outline or audio-described model, then choose one label at a time.",
         "evidence": "The marked body part is webbed feet. A duck also has feathers and two legs.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all bodies like humans idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2287,7 +2345,9 @@
         "correct": "Body map updated: beak belongs on this chicken model.",
         "repair": "Compare the blank marker with the raised-outline or audio-described model, then choose one label at a time.",
         "evidence": "The marked body part is beak. A chicken also has feathers and two legs.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all bodies like humans idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2350,7 +2410,9 @@
         "correct": "Body map updated: wings belongs on this owl model.",
         "repair": "Compare the blank marker with the raised-outline or audio-described model, then choose one label at a time.",
         "evidence": "The marked body part is wings. A owl also has feathers and two legs.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all bodies like humans idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2415,7 +2477,9 @@
         "correct": "Body map updated: flipper-shaped wings belongs on this penguin model.",
         "repair": "Compare the blank marker with the raised-outline or audio-described model, then choose one label at a time.",
         "evidence": "The marked body part is flipper-shaped wings. A penguin also has feathers and two legs.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all bodies like humans idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2480,7 +2544,9 @@
         "correct": "Body map updated: gills belongs on this goldfish model.",
         "repair": "Compare the blank marker with the raised-outline or audio-described model, then choose one label at a time.",
         "evidence": "The marked body part is gills. A goldfish also has scales and fins.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all bodies like humans idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2545,7 +2611,9 @@
         "correct": "Body map updated: gills belongs on this salmon model.",
         "repair": "Compare the blank marker with the raised-outline or audio-described model, then choose one label at a time.",
         "evidence": "The marked body part is gills. A salmon also has scales and fins.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all bodies like humans idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2610,7 +2678,9 @@
         "correct": "Body map updated: gills belongs on this shark model.",
         "repair": "Compare the blank marker with the raised-outline or audio-described model, then choose one label at a time.",
         "evidence": "The marked body part is gills. A shark also has rough skin and fins.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all bodies like humans idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2675,7 +2745,9 @@
         "correct": "Body map updated: wide mouth belongs on this frog model.",
         "repair": "Compare the blank marker with the raised-outline or audio-described model, then choose one label at a time.",
         "evidence": "The marked body part is wide mouth. A frog also has smooth moist skin and four legs as an adult.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all bodies like humans idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2740,7 +2812,9 @@
         "correct": "Body map updated: wide mouth belongs on this toad model.",
         "repair": "Compare the blank marker with the raised-outline or audio-described model, then choose one label at a time.",
         "evidence": "The marked body part is wide mouth. A toad also has bumpy skin and four legs as an adult.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all bodies like humans idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2805,7 +2879,9 @@
         "correct": "Body map updated: long tail belongs on this newt model.",
         "repair": "Compare the blank marker with the raised-outline or audio-described model, then choose one label at a time.",
         "evidence": "The marked body part is long tail. A newt also has smooth moist skin and four legs as an adult.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all bodies like humans idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2870,7 +2946,9 @@
         "correct": "Body map updated: forked tongue belongs on this snake model.",
         "repair": "Compare the blank marker with the raised-outline or audio-described model, then choose one label at a time.",
         "evidence": "The marked body part is forked tongue. A snake also has dry scales and no legs.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all bodies like humans idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2935,7 +3013,9 @@
         "correct": "Body map updated: long tail belongs on this lizard model.",
         "repair": "Compare the blank marker with the raised-outline or audio-described model, then choose one label at a time.",
         "evidence": "The marked body part is long tail. A lizard also has dry scales and four legs.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all bodies like humans idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -3003,7 +3083,9 @@
         "correct": "Group log complete: cow → mammal, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A cow is a mammal. Useful clues are hair or fur is visible on many familiar examples and mothers feed milk to their young; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the one feature decides every group idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3071,7 +3153,9 @@
         "correct": "Group log complete: chicken → bird, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A chicken is a bird. Useful clues are feathers and a beak; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the one feature decides every group idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -3139,7 +3223,9 @@
         "correct": "Group log complete: shark → fish, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A shark is a fish. Useful clues are fins and gills; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the one feature decides every group idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3207,7 +3293,9 @@
         "correct": "Group log complete: lizard → reptile, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A lizard is a reptile. Useful clues are dry scaly skin and a body shape that can differ from mammals and birds; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the one feature decides every group idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -3275,7 +3363,9 @@
         "correct": "Group log complete: rabbit → mammal, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A rabbit is a mammal. Useful clues are hair or fur is visible on many familiar examples and mothers feed milk to their young; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the one feature decides every group idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3343,7 +3433,9 @@
         "correct": "Group log complete: duck → bird, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A duck is a bird. Useful clues are feathers and a beak; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the one feature decides every group idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -3411,7 +3503,9 @@
         "correct": "Group log complete: salmon → fish, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A salmon is a fish. Useful clues are fins and gills; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the one feature decides every group idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3479,7 +3573,9 @@
         "correct": "Group log complete: snake → reptile, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A snake is a reptile. Useful clues are dry scaly skin and a body shape that can differ from mammals and birds; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the one feature decides every group idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -3547,7 +3643,9 @@
         "correct": "Group log complete: cat → mammal, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A cat is a mammal. Useful clues are hair or fur is visible on many familiar examples and mothers feed milk to their young; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the one feature decides every group idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3615,7 +3713,9 @@
         "correct": "Group log complete: robin → bird, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A robin is a bird. Useful clues are feathers and a beak; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the one feature decides every group idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -3683,7 +3783,9 @@
         "correct": "Group log complete: goldfish → fish, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A goldfish is a fish. Useful clues are fins and gills; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the one feature decides every group idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3751,7 +3853,9 @@
         "correct": "Group log complete: newt → amphibian, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A newt is a amphibian. Useful clues are smooth or bumpy skin and a life that can change greatly from young to adult; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the one feature decides every group idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -3819,7 +3923,9 @@
         "correct": "Group log complete: dog → mammal, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A dog is a mammal. Useful clues are hair or fur is visible on many familiar examples and mothers feed milk to their young; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the one feature decides every group idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3887,7 +3993,9 @@
         "correct": "Group log complete: whale → mammal, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A whale is a mammal. Useful clues are hair or fur is visible on many familiar examples and mothers feed milk to their young; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the habitat only grouping idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -3955,7 +4063,9 @@
         "correct": "Group log complete: penguin → bird, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A penguin is a bird. Useful clues are feathers and a beak; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the habitat only grouping idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4023,7 +4133,9 @@
         "correct": "Group log complete: toad → amphibian, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A toad is a amphibian. Useful clues are smooth or bumpy skin and a life that can change greatly from young to adult; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the one feature decides every group idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -4091,7 +4203,9 @@
         "correct": "Group log complete: crocodile → reptile, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A crocodile is a reptile. Useful clues are dry scaly skin and a body shape that can differ from mammals and birds; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the one feature decides every group idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4159,7 +4273,9 @@
         "correct": "Group log complete: human → mammal, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A human is a mammal. Useful clues are hair or fur is visible on many familiar examples and mothers feed milk to their young; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the one feature decides every group idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -4227,7 +4343,9 @@
         "correct": "Group log complete: owl → bird, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A owl is a bird. Useful clues are feathers and a beak; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the one feature decides every group idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4295,7 +4413,9 @@
         "correct": "Group log complete: frog → amphibian, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A frog is a amphibian. Useful clues are smooth or bumpy skin and a life that can change greatly from young to adult; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the one feature decides every group idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -4363,7 +4483,9 @@
         "correct": "Group log complete: tortoise → reptile, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A tortoise is a reptile. Useful clues are dry scaly skin and a body shape that can differ from mammals and birds; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the one feature decides every group idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4431,7 +4553,9 @@
         "correct": "Group log complete: cow → mammal, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A cow is a mammal. Useful clues are hair or fur is visible on many familiar examples and mothers feed milk to their young; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the one feature decides every group idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -4499,7 +4623,9 @@
         "correct": "Group log complete: chicken → bird, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A chicken is a bird. Useful clues are feathers and a beak; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the one feature decides every group idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4567,7 +4693,9 @@
         "correct": "Group log complete: shark → fish, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A shark is a fish. Useful clues are fins and gills; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the one feature decides every group idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -4635,7 +4763,9 @@
         "correct": "Group log complete: lizard → reptile, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A lizard is a reptile. Useful clues are dry scaly skin and a body shape that can differ from mammals and birds; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the one feature decides every group idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4703,7 +4833,9 @@
         "correct": "Group log complete: rabbit → mammal, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A rabbit is a mammal. Useful clues are hair or fur is visible on many familiar examples and mothers feed milk to their young; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the one feature decides every group idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -4771,7 +4903,9 @@
         "correct": "Group log complete: duck → bird, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A duck is a bird. Useful clues are feathers and a beak; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the one feature decides every group idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4839,7 +4973,9 @@
         "correct": "Group log complete: salmon → fish, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A salmon is a fish. Useful clues are fins and gills; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the one feature decides every group idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -4907,7 +5043,9 @@
         "correct": "Group log complete: snake → reptile, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A snake is a reptile. Useful clues are dry scaly skin and a body shape that can differ from mammals and birds; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the one feature decides every group idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4975,7 +5113,9 @@
         "correct": "Group log complete: cat → mammal, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A cat is a mammal. Useful clues are hair or fur is visible on many familiar examples and mothers feed milk to their young; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the one feature decides every group idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5043,7 +5183,9 @@
         "correct": "Group log complete: robin → bird, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A robin is a bird. Useful clues are feathers and a beak; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the one feature decides every group idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5111,7 +5253,9 @@
         "correct": "Group log complete: goldfish → fish, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A goldfish is a fish. Useful clues are fins and gills; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the one feature decides every group idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5179,7 +5323,9 @@
         "correct": "Group log complete: newt → amphibian, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A newt is a amphibian. Useful clues are smooth or bumpy skin and a life that can change greatly from young to adult; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the one feature decides every group idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5247,7 +5393,9 @@
         "correct": "Group log complete: dog → mammal, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A dog is a mammal. Useful clues are hair or fur is visible on many familiar examples and mothers feed milk to their young; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the one feature decides every group idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5315,7 +5463,9 @@
         "correct": "Group log complete: whale → mammal, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A whale is a mammal. Useful clues are hair or fur is visible on many familiar examples and mothers feed milk to their young; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the habitat only grouping idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5383,7 +5533,9 @@
         "correct": "Group log complete: penguin → bird, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A penguin is a bird. Useful clues are feathers and a beak; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the habitat only grouping idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5451,7 +5603,9 @@
         "correct": "Group log complete: toad → amphibian, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A toad is a amphibian. Useful clues are smooth or bumpy skin and a life that can change greatly from young to adult; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the one feature decides every group idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5519,7 +5673,9 @@
         "correct": "Group log complete: crocodile → reptile, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A crocodile is a reptile. Useful clues are dry scaly skin and a body shape that can differ from mammals and birds; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the one feature decides every group idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5587,7 +5743,9 @@
         "correct": "Group log complete: human → mammal, supported by body evidence.",
         "repair": "Return the card to OBSERVE. Reveal covering, breathing or body-shape clues one at a time before sorting again.",
         "evidence": "A human is a mammal. Useful clues are hair or fur is visible on many familiar examples and mothers feed milk to their young; habitat alone does not name the group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the one feature decides every group idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5656,7 +5814,9 @@
         "correct": "Comparison recorded with observable body evidence, not just size, colour or habitat.",
         "repair": "Use the SAME/DIFFERENT chart. Compare covering first, then limbs or fins, then one other feature.",
         "evidence": "dog: fur, four legs, paws. duck: feathers, two legs, webbed feet. They belong to different groups and have different visible body features.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all bodies like humans idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5725,7 +5885,9 @@
         "correct": "Comparison recorded with observable body evidence, not just size, colour or habitat.",
         "repair": "Use the SAME/DIFFERENT chart. Compare covering first, then limbs or fins, then one other feature.",
         "evidence": "goldfish: scales, fins, gills. whale: smooth skin, flippers, tail flukes. They belong to different groups and have different visible body features.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all bodies like humans idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5794,7 +5956,9 @@
         "correct": "Comparison recorded with observable body evidence, not just size, colour or habitat.",
         "repair": "Use the SAME/DIFFERENT chart. Compare covering first, then limbs or fins, then one other feature.",
         "evidence": "frog: smooth moist skin, four legs as an adult, wide mouth. lizard: dry scales, four legs, long tail. They belong to different groups and have different visible body features.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all bodies like humans idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5863,7 +6027,9 @@
         "correct": "Comparison recorded with observable body evidence, not just size, colour or habitat.",
         "repair": "Use the SAME/DIFFERENT chart. Compare covering first, then limbs or fins, then one other feature.",
         "evidence": "human: some body hair, two legs, hands. cat: fur, four legs, paws. Both are mammals, but their visible body shapes are not exactly the same.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all bodies like humans idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5932,7 +6098,9 @@
         "correct": "Comparison recorded with observable body evidence, not just size, colour or habitat.",
         "repair": "Use the SAME/DIFFERENT chart. Compare covering first, then limbs or fins, then one other feature.",
         "evidence": "robin: feathers, two legs, beak. penguin: feathers, two legs, flipper-shaped wings. Both are birds, but their visible body shapes are not exactly the same.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all bodies like humans idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6001,7 +6169,9 @@
         "correct": "Comparison recorded with observable body evidence, not just size, colour or habitat.",
         "repair": "Use the SAME/DIFFERENT chart. Compare covering first, then limbs or fins, then one other feature.",
         "evidence": "snake: dry scales, no legs, forked tongue. rabbit: fur, four legs, long ears. They belong to different groups and have different visible body features.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all bodies like humans idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6070,7 +6240,9 @@
         "correct": "Comparison recorded with observable body evidence, not just size, colour or habitat.",
         "repair": "Use the SAME/DIFFERENT chart. Compare covering first, then limbs or fins, then one other feature.",
         "evidence": "tortoise: dry scaly skin, four legs, hard shell. duck: feathers, two legs, webbed feet. They belong to different groups and have different visible body features.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all bodies like humans idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6139,7 +6311,9 @@
         "correct": "Comparison recorded with observable body evidence, not just size, colour or habitat.",
         "repair": "Use the SAME/DIFFERENT chart. Compare covering first, then limbs or fins, then one other feature.",
         "evidence": "shark: rough skin, fins, gills. salmon: scales, fins, gills. Both are fishs, but their visible body shapes are not exactly the same.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all bodies like humans idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6208,7 +6382,9 @@
         "correct": "Comparison recorded with observable body evidence, not just size, colour or habitat.",
         "repair": "Use the SAME/DIFFERENT chart. Compare covering first, then limbs or fins, then one other feature.",
         "evidence": "cow: hair, four legs, hooves. chicken: feathers, two legs, beak. They belong to different groups and have different visible body features.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all bodies like humans idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6277,7 +6453,9 @@
         "correct": "Comparison recorded with observable body evidence, not just size, colour or habitat.",
         "repair": "Use the SAME/DIFFERENT chart. Compare covering first, then limbs or fins, then one other feature.",
         "evidence": "newt: smooth moist skin, four legs as an adult, long tail. frog: smooth moist skin, four legs as an adult, wide mouth. Both are amphibians, but their visible body shapes are not exactly the same.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all bodies like humans idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6346,7 +6524,9 @@
         "correct": "Comparison recorded with observable body evidence, not just size, colour or habitat.",
         "repair": "Use the SAME/DIFFERENT chart. Compare covering first, then limbs or fins, then one other feature.",
         "evidence": "owl: feathers, two legs, wings. cat: fur, four legs, paws. They belong to different groups and have different visible body features.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all bodies like humans idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6415,7 +6595,9 @@
         "correct": "Comparison recorded with observable body evidence, not just size, colour or habitat.",
         "repair": "Use the SAME/DIFFERENT chart. Compare covering first, then limbs or fins, then one other feature.",
         "evidence": "crocodile: dry scales, four legs, long snout. goldfish: scales, fins, gills. They belong to different groups and have different visible body features.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all bodies like humans idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6484,7 +6666,9 @@
         "correct": "Comparison recorded with observable body evidence, not just size, colour or habitat.",
         "repair": "Use the SAME/DIFFERENT chart. Compare covering first, then limbs or fins, then one other feature.",
         "evidence": "whale: smooth skin, flippers, tail flukes. human: some body hair, two legs, hands. Both are mammals, but their visible body shapes are not exactly the same.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all bodies like humans idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6554,7 +6738,9 @@
         "correct": "Growth paths linked: each young animal matches its own kind of adult.",
         "repair": "Use one pair at a time. Match the animal name first, then notice changes in size or body shape.",
         "evidence": "A puppy can grow into an adult dog; a duckling can grow into an adult duck. They grow, but one kind does not grow into another kind.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the young animal is different kind idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6624,7 +6810,9 @@
         "correct": "Growth paths linked: each young animal matches its own kind of adult.",
         "repair": "Use one pair at a time. Match the animal name first, then notice changes in size or body shape.",
         "evidence": "A young goldfish can grow into an adult goldfish; a calf can grow into an adult whale. They grow, but one kind does not grow into another kind.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the young animal is different kind idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6694,7 +6882,9 @@
         "correct": "Growth paths linked: each young animal matches its own kind of adult.",
         "repair": "Use one pair at a time. Match the animal name first, then notice changes in size or body shape.",
         "evidence": "A tadpole can grow into an adult frog; a hatchling can grow into an adult lizard. They grow, but one kind does not grow into another kind.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the young animal is different kind idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6764,7 +6954,9 @@
         "correct": "Growth paths linked: each young animal matches its own kind of adult.",
         "repair": "Use one pair at a time. Match the animal name first, then notice changes in size or body shape.",
         "evidence": "A baby can grow into an adult human; a kitten can grow into an adult cat. They grow, but one kind does not grow into another kind.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the young animal is different kind idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6834,7 +7026,9 @@
         "correct": "Growth paths linked: each young animal matches its own kind of adult.",
         "repair": "Use one pair at a time. Match the animal name first, then notice changes in size or body shape.",
         "evidence": "A chick can grow into an adult robin; a chick can grow into an adult penguin. They grow, but one kind does not grow into another kind.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the young animal is different kind idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6904,7 +7098,9 @@
         "correct": "Growth paths linked: each young animal matches its own kind of adult.",
         "repair": "Use one pair at a time. Match the animal name first, then notice changes in size or body shape.",
         "evidence": "A hatchling can grow into an adult snake; a young rabbit can grow into an adult rabbit. They grow, but one kind does not grow into another kind.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the young animal is different kind idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6974,7 +7170,9 @@
         "correct": "Growth paths linked: each young animal matches its own kind of adult.",
         "repair": "Use one pair at a time. Match the animal name first, then notice changes in size or body shape.",
         "evidence": "A hatchling can grow into an adult tortoise; a duckling can grow into an adult duck. They grow, but one kind does not grow into another kind.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the young animal is different kind idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7044,7 +7242,9 @@
         "correct": "Growth paths linked: each young animal matches its own kind of adult.",
         "repair": "Use one pair at a time. Match the animal name first, then notice changes in size or body shape.",
         "evidence": "A shark pup can grow into an adult shark; a young salmon can grow into an adult salmon. They grow, but one kind does not grow into another kind.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the young animal is different kind idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7114,7 +7314,9 @@
         "correct": "Growth paths linked: each young animal matches its own kind of adult.",
         "repair": "Use one pair at a time. Match the animal name first, then notice changes in size or body shape.",
         "evidence": "A calf can grow into an adult cow; a chick can grow into an adult chicken. They grow, but one kind does not grow into another kind.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the young animal is different kind idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7184,7 +7386,9 @@
         "correct": "Growth paths linked: each young animal matches its own kind of adult.",
         "repair": "Use one pair at a time. Match the animal name first, then notice changes in size or body shape.",
         "evidence": "A newt larva can grow into an adult newt; a tadpole can grow into an adult frog. They grow, but one kind does not grow into another kind.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the young animal is different kind idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7254,7 +7458,9 @@
         "correct": "Growth paths linked: each young animal matches its own kind of adult.",
         "repair": "Use one pair at a time. Match the animal name first, then notice changes in size or body shape.",
         "evidence": "A owlet can grow into an adult owl; a kitten can grow into an adult cat. They grow, but one kind does not grow into another kind.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the young animal is different kind idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7324,7 +7530,9 @@
         "correct": "Growth paths linked: each young animal matches its own kind of adult.",
         "repair": "Use one pair at a time. Match the animal name first, then notice changes in size or body shape.",
         "evidence": "A hatchling can grow into an adult crocodile; a young goldfish can grow into an adult goldfish. They grow, but one kind does not grow into another kind.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the young animal is different kind idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7394,7 +7602,9 @@
         "correct": "Growth paths linked: each young animal matches its own kind of adult.",
         "repair": "Use one pair at a time. Match the animal name first, then notice changes in size or body shape.",
         "evidence": "A calf can grow into an adult whale; a baby can grow into an adult human. They grow, but one kind does not grow into another kind.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the young animal is different kind idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7461,7 +7671,9 @@
         "correct": "Shared need found. The exact food or suitable place can differ between animals.",
         "repair": "Sort NEEDS from LIKES. Use the water, suitable-food and air symbols before discussing different homes.",
         "evidence": "dogs and ducks both need water, suitable food and air. Their foods, bodies and suitable places can differ.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the pets only have needs idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7528,7 +7740,9 @@
         "correct": "Shared need found. The exact food or suitable place can differ between animals.",
         "repair": "Sort NEEDS from LIKES. Use the water, suitable-food and air symbols before discussing different homes.",
         "evidence": "goldfishs and whales both need water, suitable food and air. Their foods, bodies and suitable places can differ.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the pets only have needs idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7595,7 +7809,9 @@
         "correct": "Shared need found. The exact food or suitable place can differ between animals.",
         "repair": "Sort NEEDS from LIKES. Use the water, suitable-food and air symbols before discussing different homes.",
         "evidence": "frogs and lizards both need water, suitable food and air. Their foods, bodies and suitable places can differ.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the pets only have needs idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7662,7 +7878,9 @@
         "correct": "Shared need found. The exact food or suitable place can differ between animals.",
         "repair": "Sort NEEDS from LIKES. Use the water, suitable-food and air symbols before discussing different homes.",
         "evidence": "humans and cats both need water, suitable food and air. Their foods, bodies and suitable places can differ.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the pets only have needs idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7729,7 +7947,9 @@
         "correct": "Shared need found. The exact food or suitable place can differ between animals.",
         "repair": "Sort NEEDS from LIKES. Use the water, suitable-food and air symbols before discussing different homes.",
         "evidence": "robins and penguins both need water, suitable food and air. Their foods, bodies and suitable places can differ.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the pets only have needs idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7796,7 +8016,9 @@
         "correct": "Shared need found. The exact food or suitable place can differ between animals.",
         "repair": "Sort NEEDS from LIKES. Use the water, suitable-food and air symbols before discussing different homes.",
         "evidence": "snakes and rabbits both need water, suitable food and air. Their foods, bodies and suitable places can differ.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the pets only have needs idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7863,7 +8085,9 @@
         "correct": "Shared need found. The exact food or suitable place can differ between animals.",
         "repair": "Sort NEEDS from LIKES. Use the water, suitable-food and air symbols before discussing different homes.",
         "evidence": "tortoises and ducks both need water, suitable food and air. Their foods, bodies and suitable places can differ.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the pets only have needs idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7930,7 +8154,9 @@
         "correct": "Shared need found. The exact food or suitable place can differ between animals.",
         "repair": "Sort NEEDS from LIKES. Use the water, suitable-food and air symbols before discussing different homes.",
         "evidence": "sharks and salmons both need water, suitable food and air. Their foods, bodies and suitable places can differ.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the pets only have needs idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7997,7 +8223,9 @@
         "correct": "Shared need found. The exact food or suitable place can differ between animals.",
         "repair": "Sort NEEDS from LIKES. Use the water, suitable-food and air symbols before discussing different homes.",
         "evidence": "cows and chickens both need water, suitable food and air. Their foods, bodies and suitable places can differ.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the pets only have needs idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8064,7 +8292,9 @@
         "correct": "Shared need found. The exact food or suitable place can differ between animals.",
         "repair": "Sort NEEDS from LIKES. Use the water, suitable-food and air symbols before discussing different homes.",
         "evidence": "newts and frogs both need water, suitable food and air. Their foods, bodies and suitable places can differ.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the pets only have needs idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8131,7 +8361,9 @@
         "correct": "Shared need found. The exact food or suitable place can differ between animals.",
         "repair": "Sort NEEDS from LIKES. Use the water, suitable-food and air symbols before discussing different homes.",
         "evidence": "owls and cats both need water, suitable food and air. Their foods, bodies and suitable places can differ.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the pets only have needs idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8198,7 +8430,9 @@
         "correct": "Shared need found. The exact food or suitable place can differ between animals.",
         "repair": "Sort NEEDS from LIKES. Use the water, suitable-food and air symbols before discussing different homes.",
         "evidence": "crocodiles and goldfishs both need water, suitable food and air. Their foods, bodies and suitable places can differ.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the pets only have needs idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8265,7 +8499,9 @@
         "correct": "Shared need found. The exact food or suitable place can differ between animals.",
         "repair": "Sort NEEDS from LIKES. Use the water, suitable-food and air symbols before discussing different homes.",
         "evidence": "whales and humans both need water, suitable food and air. Their foods, bodies and suitable places can differ.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the pets only have needs idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8330,7 +8566,9 @@
         "correct": "Sense link made: eyes → sight.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "eyes are linked with sight. People may experience sight differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -8395,7 +8633,9 @@
         "correct": "Sense link made: ears → hearing.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "ears are linked with hearing. People may experience hearing differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -8460,7 +8700,9 @@
         "correct": "Sense link made: nose → smell.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "nose are linked with smell. People may experience smell differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -8525,7 +8767,9 @@
         "correct": "Sense link made: tongue → taste.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "tongue are linked with taste. People may experience taste differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -8590,7 +8834,9 @@
         "correct": "Sense link made: skin → touch.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "skin are linked with touch. People may experience touch differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -8655,7 +8901,9 @@
         "correct": "Sense link made: eyes → sight.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "eyes are linked with sight. People may experience sight differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -8720,7 +8968,9 @@
         "correct": "Sense link made: ears → hearing.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "ears are linked with hearing. People may experience hearing differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -8785,7 +9035,9 @@
         "correct": "Sense link made: nose → smell.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "nose are linked with smell. People may experience smell differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -8850,7 +9102,9 @@
         "correct": "Sense link made: tongue → taste.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "tongue are linked with taste. People may experience taste differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -8915,7 +9169,9 @@
         "correct": "Sense link made: skin → touch.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "skin are linked with touch. People may experience touch differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -8980,7 +9236,9 @@
         "correct": "Sense link made: eyes → sight.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "eyes are linked with sight. People may experience sight differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -9045,7 +9303,9 @@
         "correct": "Sense link made: ears → hearing.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "ears are linked with hearing. People may experience hearing differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -9110,7 +9370,9 @@
         "correct": "Sense link made: nose → smell.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "nose are linked with smell. People may experience smell differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -9175,7 +9437,9 @@
         "correct": "Sense link made: tongue → taste.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "tongue are linked with taste. People may experience taste differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -9240,7 +9504,9 @@
         "correct": "Sense link made: skin → touch.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "skin are linked with touch. People may experience touch differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -9305,7 +9571,9 @@
         "correct": "Sense link made: eyes → sight.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "eyes are linked with sight. People may experience sight differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -9370,7 +9638,9 @@
         "correct": "Sense link made: ears → hearing.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "ears are linked with hearing. People may experience hearing differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -9435,7 +9705,9 @@
         "correct": "Sense link made: nose → smell.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "nose are linked with smell. People may experience smell differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -9500,7 +9772,9 @@
         "correct": "Sense link made: tongue → taste.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "tongue are linked with taste. People may experience taste differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -9565,7 +9839,9 @@
         "correct": "Sense link made: skin → touch.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "skin are linked with touch. People may experience touch differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -9630,7 +9906,9 @@
         "correct": "Sense link made: eyes → sight.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "eyes are linked with sight. People may experience sight differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -9695,7 +9973,9 @@
         "correct": "Sense link made: ears → hearing.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "ears are linked with hearing. People may experience hearing differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -9760,7 +10040,9 @@
         "correct": "Sense link made: nose → smell.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "nose are linked with smell. People may experience smell differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -9825,7 +10107,9 @@
         "correct": "Sense link made: tongue → taste.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "tongue are linked with taste. People may experience taste differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -9890,7 +10174,9 @@
         "correct": "Sense link made: skin → touch.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "skin are linked with touch. People may experience touch differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -9955,7 +10241,9 @@
         "correct": "Sense link made: eyes → sight.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "eyes are linked with sight. People may experience sight differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -10020,7 +10308,9 @@
         "correct": "Sense link made: ears → hearing.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "ears are linked with hearing. People may experience hearing differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -10085,7 +10375,9 @@
         "correct": "Sense link made: nose → smell.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "nose are linked with smell. People may experience smell differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -10150,7 +10442,9 @@
         "correct": "Sense link made: tongue → taste.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "tongue are linked with taste. People may experience taste differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -10215,7 +10509,9 @@
         "correct": "Sense link made: skin → touch.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "skin are linked with touch. People may experience touch differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -10280,7 +10576,9 @@
         "correct": "Sense link made: eyes → sight.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "eyes are linked with sight. People may experience sight differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -10345,7 +10643,9 @@
         "correct": "Sense link made: ears → hearing.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "ears are linked with hearing. People may experience hearing differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -10410,7 +10710,9 @@
         "correct": "Sense link made: nose → smell.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "nose are linked with smell. People may experience smell differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -10475,7 +10777,9 @@
         "correct": "Sense link made: tongue → taste.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "tongue are linked with taste. People may experience taste differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -10540,7 +10844,9 @@
         "correct": "Sense link made: skin → touch.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "skin are linked with touch. People may experience touch differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -10605,7 +10911,9 @@
         "correct": "Sense link made: eyes → sight.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "eyes are linked with sight. People may experience sight differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -10670,7 +10978,9 @@
         "correct": "Sense link made: ears → hearing.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "ears are linked with hearing. People may experience hearing differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -10735,7 +11045,9 @@
         "correct": "Sense link made: nose → smell.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "nose are linked with smell. People may experience smell differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -10800,7 +11112,9 @@
         "correct": "Sense link made: tongue → taste.",
         "repair": "Hide the object picture, replay the sense word and match it to one body-part symbol.",
         "evidence": "tongue are linked with taste. People may experience taste differently or use helpful devices; no real sensory test is needed.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the sense linked to object idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -10863,7 +11177,9 @@
         "correct": "Revisit complete: cat is a mammal, with evidence.",
         "repair": "Reopen the feature card, choose one observable clue, then scan the audio-labelled group mats again.",
         "evidence": "cat belongs to the mammal group. hair or fur is visible on many familiar examples and mothers feed milk to their young support the choice.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the habitat only grouping idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -10926,7 +11242,9 @@
         "correct": "Basic-needs kit complete: water, suitable food and air.",
         "repair": "Sort each symbol into NEED or NOT A BASIC NEED, with audio labels and one choice shown at a time.",
         "evidence": "A whale, like other animals, needs water, suitable food and air. A suitable safe place also helps it live and grow.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the pets only have needs idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -10988,7 +11306,9 @@
         "correct": "Growth arrow placed: owlet → adult owl.",
         "repair": "Use the YOUNG and ADULT audio labels, match the animal kind, then place the forward arrow.",
         "evidence": "The forward growth sequence is owlet → adult owl. Animals grow; the adult does not change backwards into its own young stage.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the young animal is different kind idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -11046,7 +11366,9 @@
         "correct": "Explorer log updated: humans are mammals and animals.",
         "repair": "Place the human card inside ANIMALS first, then inside the audio-labelled MAMMALS group.",
         "evidence": "Humans are animals in the mammal group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the humans not animals idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -11111,7 +11433,9 @@
         "correct": "Covering comparison recorded from visible evidence.",
         "repair": "Reveal one animal at a time, name its covering, then join the two observations in one sentence.",
         "evidence": "snake has dry scales; shark has rough skin.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all animals same covering idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -11174,7 +11498,9 @@
         "correct": "Revisit complete: dog is a mammal, with evidence.",
         "repair": "Reopen the feature card, choose one observable clue, then scan the audio-labelled group mats again.",
         "evidence": "dog belongs to the mammal group. hair or fur is visible on many familiar examples and mothers feed milk to their young support the choice.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the habitat only grouping idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -11237,7 +11563,9 @@
         "correct": "Basic-needs kit complete: water, suitable food and air.",
         "repair": "Sort each symbol into NEED or NOT A BASIC NEED, with audio labels and one choice shown at a time.",
         "evidence": "A human, like other animals, needs water, suitable food and air. A suitable safe place also helps it live and grow.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the pets only have needs idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -11299,7 +11627,9 @@
         "correct": "Growth arrow placed: chick → adult chicken.",
         "repair": "Use the YOUNG and ADULT audio labels, match the animal kind, then place the forward arrow.",
         "evidence": "The forward growth sequence is chick → adult chicken. Animals grow; the adult does not change backwards into its own young stage.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the young animal is different kind idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -11357,7 +11687,9 @@
         "correct": "Explorer log updated: humans are mammals and animals.",
         "repair": "Place the human card inside ANIMALS first, then inside the audio-labelled MAMMALS group.",
         "evidence": "Humans are animals in the mammal group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the humans not animals idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -11422,7 +11754,9 @@
         "correct": "Covering comparison recorded from visible evidence.",
         "repair": "Reveal one animal at a time, name its covering, then join the two observations in one sentence.",
         "evidence": "newt has smooth moist skin; robin has feathers.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all animals same covering idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -11485,7 +11819,9 @@
         "correct": "Revisit complete: crocodile is a reptile, with evidence.",
         "repair": "Reopen the feature card, choose one observable clue, then scan the audio-labelled group mats again.",
         "evidence": "crocodile belongs to the reptile group. dry scaly skin and a body shape that can differ from mammals and birds support the choice.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the habitat only grouping idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -11548,7 +11884,9 @@
         "correct": "Basic-needs kit complete: water, suitable food and air.",
         "repair": "Sort each symbol into NEED or NOT A BASIC NEED, with audio labels and one choice shown at a time.",
         "evidence": "A cow, like other animals, needs water, suitable food and air. A suitable safe place also helps it live and grow.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the pets only have needs idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -11610,7 +11948,9 @@
         "correct": "Growth arrow placed: duckling → adult duck.",
         "repair": "Use the YOUNG and ADULT audio labels, match the animal kind, then place the forward arrow.",
         "evidence": "The forward growth sequence is duckling → adult duck. Animals grow; the adult does not change backwards into its own young stage.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the young animal is different kind idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -11668,7 +12008,9 @@
         "correct": "Explorer log updated: humans are mammals and animals.",
         "repair": "Place the human card inside ANIMALS first, then inside the audio-labelled MAMMALS group.",
         "evidence": "Humans are animals in the mammal group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the humans not animals idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -11733,7 +12075,9 @@
         "correct": "Covering comparison recorded from visible evidence.",
         "repair": "Reveal one animal at a time, name its covering, then join the two observations in one sentence.",
         "evidence": "toad has bumpy skin; crocodile has dry scales.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all animals same covering idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -11796,7 +12140,9 @@
         "correct": "Revisit complete: tortoise is a reptile, with evidence.",
         "repair": "Reopen the feature card, choose one observable clue, then scan the audio-labelled group mats again.",
         "evidence": "tortoise belongs to the reptile group. dry scaly skin and a body shape that can differ from mammals and birds support the choice.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the habitat only grouping idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -11859,7 +12205,9 @@
         "correct": "Basic-needs kit complete: water, suitable food and air.",
         "repair": "Sort each symbol into NEED or NOT A BASIC NEED, with audio labels and one choice shown at a time.",
         "evidence": "A rabbit, like other animals, needs water, suitable food and air. A suitable safe place also helps it live and grow.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the pets only have needs idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -11921,7 +12269,9 @@
         "correct": "Growth arrow placed: chick → adult robin.",
         "repair": "Use the YOUNG and ADULT audio labels, match the animal kind, then place the forward arrow.",
         "evidence": "The forward growth sequence is chick → adult robin. Animals grow; the adult does not change backwards into its own young stage.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the young animal is different kind idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -11979,7 +12329,9 @@
         "correct": "Explorer log updated: humans are mammals and animals.",
         "repair": "Place the human card inside ANIMALS first, then inside the audio-labelled MAMMALS group.",
         "evidence": "Humans are animals in the mammal group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the humans not animals idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -12044,7 +12396,9 @@
         "correct": "Covering comparison recorded from visible evidence.",
         "repair": "Reveal one animal at a time, name its covering, then join the two observations in one sentence.",
         "evidence": "frog has smooth moist skin; shark has rough skin.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all animals same covering idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -12107,7 +12461,9 @@
         "correct": "Revisit complete: lizard is a reptile, with evidence.",
         "repair": "Reopen the feature card, choose one observable clue, then scan the audio-labelled group mats again.",
         "evidence": "lizard belongs to the reptile group. dry scaly skin and a body shape that can differ from mammals and birds support the choice.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the habitat only grouping idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -12170,7 +12526,9 @@
         "correct": "Basic-needs kit complete: water, suitable food and air.",
         "repair": "Sort each symbol into NEED or NOT A BASIC NEED, with audio labels and one choice shown at a time.",
         "evidence": "A cat, like other animals, needs water, suitable food and air. A suitable safe place also helps it live and grow.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the pets only have needs idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -12232,7 +12590,9 @@
         "correct": "Growth arrow placed: calf → adult whale.",
         "repair": "Use the YOUNG and ADULT audio labels, match the animal kind, then place the forward arrow.",
         "evidence": "The forward growth sequence is calf → adult whale. Animals grow; the adult does not change backwards into its own young stage.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the young animal is different kind idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -12290,7 +12650,9 @@
         "correct": "Explorer log updated: humans are mammals and animals.",
         "repair": "Place the human card inside ANIMALS first, then inside the audio-labelled MAMMALS group.",
         "evidence": "Humans are animals in the mammal group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the humans not animals idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -12355,7 +12717,9 @@
         "correct": "Covering comparison recorded from visible evidence.",
         "repair": "Reveal one animal at a time, name its covering, then join the two observations in one sentence.",
         "evidence": "shark has rough skin; robin has feathers.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all animals same covering idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -12418,7 +12782,9 @@
         "correct": "Revisit complete: snake is a reptile, with evidence.",
         "repair": "Reopen the feature card, choose one observable clue, then scan the audio-labelled group mats again.",
         "evidence": "snake belongs to the reptile group. dry scaly skin and a body shape that can differ from mammals and birds support the choice.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the habitat only grouping idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -12481,7 +12847,9 @@
         "correct": "Basic-needs kit complete: water, suitable food and air.",
         "repair": "Sort each symbol into NEED or NOT A BASIC NEED, with audio labels and one choice shown at a time.",
         "evidence": "A dog, like other animals, needs water, suitable food and air. A suitable safe place also helps it live and grow.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the pets only have needs idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -12543,7 +12911,9 @@
         "correct": "Growth arrow placed: baby → adult human.",
         "repair": "Use the YOUNG and ADULT audio labels, match the animal kind, then place the forward arrow.",
         "evidence": "The forward growth sequence is baby → adult human. Animals grow; the adult does not change backwards into its own young stage.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the young animal is different kind idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -12601,7 +12971,9 @@
         "correct": "Explorer log updated: humans are mammals and animals.",
         "repair": "Place the human card inside ANIMALS first, then inside the audio-labelled MAMMALS group.",
         "evidence": "Humans are animals in the mammal group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the humans not animals idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -12666,7 +13038,9 @@
         "correct": "Covering comparison recorded from visible evidence.",
         "repair": "Reveal one animal at a time, name its covering, then join the two observations in one sentence.",
         "evidence": "salmon has scales; crocodile has dry scales.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all animals same covering idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -12729,7 +13103,9 @@
         "correct": "Revisit complete: newt is a amphibian, with evidence.",
         "repair": "Reopen the feature card, choose one observable clue, then scan the audio-labelled group mats again.",
         "evidence": "newt belongs to the amphibian group. smooth or bumpy skin and a life that can change greatly from young to adult support the choice.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the habitat only grouping idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -12792,7 +13168,9 @@
         "correct": "Basic-needs kit complete: water, suitable food and air.",
         "repair": "Sort each symbol into NEED or NOT A BASIC NEED, with audio labels and one choice shown at a time.",
         "evidence": "A crocodile, like other animals, needs water, suitable food and air. A suitable safe place also helps it live and grow.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the pets only have needs idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -12854,7 +13232,9 @@
         "correct": "Growth arrow placed: calf → adult cow.",
         "repair": "Use the YOUNG and ADULT audio labels, match the animal kind, then place the forward arrow.",
         "evidence": "The forward growth sequence is calf → adult cow. Animals grow; the adult does not change backwards into its own young stage.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the young animal is different kind idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -12912,7 +13292,9 @@
         "correct": "Explorer log updated: humans are mammals and animals.",
         "repair": "Place the human card inside ANIMALS first, then inside the audio-labelled MAMMALS group.",
         "evidence": "Humans are animals in the mammal group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the humans not animals idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -12977,7 +13359,9 @@
         "correct": "Covering comparison recorded from visible evidence.",
         "repair": "Reveal one animal at a time, name its covering, then join the two observations in one sentence.",
         "evidence": "goldfish has scales; shark has rough skin.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the all animals same covering idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -13040,7 +13424,9 @@
         "correct": "Revisit complete: toad is a amphibian, with evidence.",
         "repair": "Reopen the feature card, choose one observable clue, then scan the audio-labelled group mats again.",
         "evidence": "toad belongs to the amphibian group. smooth or bumpy skin and a life that can change greatly from young to adult support the choice.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the habitat only grouping idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -13103,7 +13489,9 @@
         "correct": "Basic-needs kit complete: water, suitable food and air.",
         "repair": "Sort each symbol into NEED or NOT A BASIC NEED, with audio labels and one choice shown at a time.",
         "evidence": "A tortoise, like other animals, needs water, suitable food and air. A suitable safe place also helps it live and grow.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the pets only have needs idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -13165,7 +13553,9 @@
         "correct": "Growth arrow placed: young rabbit → adult rabbit.",
         "repair": "Use the YOUNG and ADULT audio labels, match the animal kind, then place the forward arrow.",
         "evidence": "The forward growth sequence is young rabbit → adult rabbit. Animals grow; the adult does not change backwards into its own young stage.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the young animal is different kind idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -13223,7 +13613,9 @@
         "correct": "Explorer log updated: humans are mammals and animals.",
         "repair": "Place the human card inside ANIMALS first, then inside the audio-labelled MAMMALS group.",
         "evidence": "Humans are animals in the mammal group.",
-        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look."
+        "observation_praise": "A careful body-part or feature observation is useful even when the group choice needs another look.",
+        "misconception_check": "Check the humans not animals idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",

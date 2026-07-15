@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -49,6 +50,7 @@ pack.qa.readiness_status = "draft";
 pack.qa.notes = "Review-stage Year 2 number-bonds pack with a deterministic 220-variant pilot bank. Four curated variants are unchanged. Generated tasks develop fluent bonds within 20, complements, commutativity, inverse subtraction, missing parts, four-fact families, related multiples-of-ten facts and bonds to 100, bridging through ten, balanced equations, short contexts, misconception diagnosis, checking and spaced transfer. Every generated task offers ten-frame, part-whole and number-line routes, reduced-load SEND/dyscalculia supports, alternative inputs, rich corrective feedback and pressure-free missions without timers, streaks, lives or loss. Selected narrated contexts reference ElevenLabs assets held for human listening review; browser TTS is prohibited. Independent mathematics, accessibility, narration and renderer review remains required before promotion.";
 
 validateBank(pack, curated, curatedSnapshot, generated, curatedBlueprint);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`y2-number-bonds-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
 console.log(`y2-number-bonds-bank blueprints=${summary(pack.question_variants, (v) => v.body?.variant_blueprint_id ?? curatedBlueprint.get(v.id))}`);

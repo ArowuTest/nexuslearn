@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -54,6 +55,7 @@ pack.qa.readiness_status = "draft";
 pack.qa.notes = "Year 5 geometry-and-statistics pilot reaches 240 variants with four curated questions preserved unchanged and 236 deterministic review candidates. Generated coverage follows the pack's stated scope: angles and turns; regularity and polygon evidence; 3-D solids from labelled properties, views and verified nets; line-graph scale, comparison, sum, difference and multistep questions; and timetable routes and elapsed time. Concrete/visual models, graph-table equivalents, reduced-load and alternative-input routes, rich corrective feedback and pressure-free investigations are included. Selected narration references require produced, human-reviewed ElevenLabs assets; browser TTS is prohibited. Independent mathematics, teacher, SEND, accessibility, safeguarding, audio and renderer review remains required before promotion.";
 
 validateBank(pack, enrichedCurated, enrichedCandidates, curatedSnapshot);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`geometry-statistics-bank curated=${curated.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
 console.log(`geometry-statistics-bank formats=${summary(candidates, (variant) => variant.format)}`);

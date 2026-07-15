@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -62,6 +63,7 @@ pack.qa.readiness_status = "draft";
 pack.qa.notes = "Review-stage Year 3 rocks, fossils and soils pack with a deterministic 220-variant pilot bank. Four curated variants are unchanged. Generated tasks cover observable rock properties, consistent grouping rules, controlled absorption and comparative scratch tests, evidence-based suitability, simple fossil-formation sequences, fossils as evidence of past living things, soil formation and components, observation versus inference, fair comparisons, misconception repair and spaced transfer. Content deliberately avoids unsupported rock-cycle depth and avoids claiming that pictures alone identify named rocks. Every generated task includes property sorts/tests, evidence choices, fossil sequences or soil models, sensory-safe no-touch SEND routes, visual and alternative inputs, rich feedback and pressure-free geology missions without timers, streaks, lives or loss. Selected narration references ElevenLabs assets held for human listening review; browser TTS is prohibited. Independent science, specimen safety, accessibility, narration and renderer review remains required before promotion.";
 
 validateBank(pack, curated, curatedSnapshot, generated);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`y3-rocks-fossils-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
 console.log(`y3-rocks-fossils-bank blueprints=${summary(pack.question_variants, (v) => v.body.variant_blueprint_id)}`);

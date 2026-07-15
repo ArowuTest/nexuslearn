@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -98,6 +99,7 @@ pack.version = "0.2.0";
 pack.qa.notes = "Review-stage Year 1 seasonal-changes pack with a deterministic 220-item pilot bank. Four curated variants are preserved alongside candidates covering all four seasons, current weather, relative daylight, plant and tree changes, selected animal observations, same-place comparisons, evidence selection, misconception repair and simple longitudinal records. Generated claims distinguish a single day's weather from season, keep animal and plant findings tied to the observed sample, and use cautious language for natural variation. Every item offers visual, tactile-symbol, text and supported response routes without requiring outdoor or sensory exposure. Optional audio references are ElevenLabs-only, unavailable pending human listening review, and never fall back to browser TTS. Playful field missions remain untimed and reward noticing and comparing rather than speed. Independent science, geography/date context, image, SEND, safeguarding, narration and renderer review remains required before promotion.";
 
 validateBank(pack, curated, generated);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`y1-seasonal-changes-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
 console.log(`y1-seasonal-changes-bank blueprints=${summary(pack.question_variants, (variant) => variant.body.variant_blueprint_id)}`);

@@ -282,6 +282,13 @@
           "preserve_correct_work": true,
           "reduced_visual_load_supported": true,
           "uncertainty_and_context_supported": true
+        },
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-ma-y6-statistics",
+        "review_provenance": {
+          "kind": "curated",
+          "pack_id": "ma-y6-statistics",
+          "variant_id": "ma-y6-statistics-q-line-difference"
         }
       },
       "expected_answer": {
@@ -295,7 +302,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "conclusion_without_context",
-      "animation_hook": "graph-point-trace"
+      "animation_hook": "graph-point-trace",
+      "feedback": {
+        "correct": "Correct. The increase is 18 - 12 = 6 degrees C.",
+        "retry": "Try again calmly: Read the two values first. Subtract the earlier value from the later value. No progress is lost for checking or changing your answer.",
+        "repair": "Repair the conclusion without context route: Read the two values first. Then use the evidence to explain your choice.",
+        "misconception_check": "Check the conclusion without context idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "ma-y6-statistics-q-scale-interval",
@@ -330,6 +344,13 @@
           "preserve_correct_work": true,
           "reduced_visual_load_supported": true,
           "uncertainty_and_context_supported": true
+        },
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-ma-y6-statistics",
+        "review_provenance": {
+          "kind": "curated",
+          "pack_id": "ma-y6-statistics",
+          "variant_id": "ma-y6-statistics-q-scale-interval"
         }
       },
       "expected_answer": {
@@ -343,7 +364,14 @@
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "interval_as_one",
-      "animation_hook": "axis-scale-scan"
+      "animation_hook": "axis-scale-scan",
+      "feedback": {
+        "correct": "Correct. Halfway between 50 and 75 is 50 + 12.5 = 62.5.",
+        "retry": "Try again calmly: The gap from 50 to 75 is 25. Half of 25 is 12.5. No progress is lost for checking or changing your answer.",
+        "repair": "Repair the interval as one route: The gap from 50 to 75 is 25. Then use the evidence to explain your choice.",
+        "misconception_check": "Check the interval as one idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "ma-y6-statistics-q-pie-quarter",
@@ -380,6 +408,13 @@
           "preserve_correct_work": true,
           "reduced_visual_load_supported": true,
           "uncertainty_and_context_supported": true
+        },
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-ma-y6-statistics",
+        "review_provenance": {
+          "kind": "curated",
+          "pack_id": "ma-y6-statistics",
+          "variant_id": "ma-y6-statistics-q-pie-quarter"
         }
       },
       "expected_answer": {
@@ -393,7 +428,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "sector_without_total",
-      "animation_hook": "pie-sector-to-count"
+      "animation_hook": "pie-sector-to-count",
+      "feedback": {
+        "correct": "Correct. One quarter of 120 is 120 / 4 = 30, so 30 votes were for blue.",
+        "retry": "Try again calmly: Find one quarter of the total. 120 divided by 4 equals 30. No progress is lost for checking or changing your answer.",
+        "repair": "Repair the sector without total route: Find one quarter of the total. Then use the evidence to explain your choice.",
+        "misconception_check": "Check the sector without total idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "ma-y6-statistics-q-mean-fair-share",
@@ -434,6 +476,13 @@
           "preserve_correct_work": true,
           "reduced_visual_load_supported": true,
           "uncertainty_and_context_supported": true
+        },
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-ma-y6-statistics",
+        "review_provenance": {
+          "kind": "curated",
+          "pack_id": "ma-y6-statistics",
+          "variant_id": "ma-y6-statistics-q-mean-fair-share"
         }
       },
       "expected_answer": {
@@ -447,7 +496,14 @@
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "mean_as_procedure_only",
-      "animation_hook": "mean-stack-balance"
+      "animation_hook": "mean-stack-balance",
+      "feedback": {
+        "correct": "Correct. 6 + 8 + 10 + 12 = 36. Sharing 36 equally between 4 values gives a mean of 9.",
+        "retry": "Try again calmly: Add the four values. Share the total equally between four values. No progress is lost for checking or changing your answer.",
+        "repair": "Repair the mean as procedure only route: Add the four values. Then use the evidence to explain your choice.",
+        "misconception_check": "Check the mean as procedure only idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "ma-y6-statistics-q-data-claim",
@@ -496,6 +552,13 @@
           "preserve_correct_work": true,
           "reduced_visual_load_supported": true,
           "uncertainty_and_context_supported": true
+        },
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-ma-y6-statistics",
+        "review_provenance": {
+          "kind": "curated",
+          "pack_id": "ma-y6-statistics",
+          "variant_id": "ma-y6-statistics-q-data-claim"
         }
       },
       "expected_answer": {
@@ -509,7 +572,14 @@
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "conclusion_without_context",
-      "animation_hook": "data-detective-lens"
+      "animation_hook": "data-detective-lens",
+      "feedback": {
+        "correct": "Correct. The data shows 18 for football and 12 for dance, so football had 6 more pupils.",
+        "retry": "Try again calmly: Compare football and dance. 18 - 12 = 6. No progress is lost for checking or changing your answer.",
+        "repair": "Repair the conclusion without context route: Compare football and dance. Then use the evidence to explain your choice.",
+        "misconception_check": "Check the conclusion without context idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "ma-y6-statistics-bank-line-graph-scale-reads-001-graph-0",

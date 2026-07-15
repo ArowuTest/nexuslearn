@@ -157,7 +157,7 @@ function auditVariant(pack, variant) {
   if (!hasAccessibleRoute(body)) technicalIssues.push("missing_equivalent_access_route");
   if (pressureIsEnabled(body)) technicalIssues.push("pressure_or_loss_rule_enabled");
   if (audioIsExpected(body) && body.browser_tts_allowed !== false) technicalIssues.push("browser_tts_not_explicitly_prohibited");
-  if (!body.review_batch || !body.variant_blueprint_id) technicalIssues.push("missing_review_provenance");
+  if (!body.review_batch || (!body.variant_blueprint_id && !body.review_provenance)) technicalIssues.push("missing_review_provenance");
   if (prompt.length > (year <= 2 ? 130 : 220)) { technicalIssues.push("prompt_needs_readability_calibration"); risks.push("readability"); }
   if (body.audio_asset_id || body.audio_ref || body.audio_required === true || body.audio_asset_status === "required_before_pilot") {
     if (body.audio_asset_id && body.audio_provider !== "ElevenLabs") technicalIssues.push("audio_provider_not_elevenlabs");

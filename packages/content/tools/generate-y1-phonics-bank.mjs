@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -45,6 +46,7 @@ console.log(`phonics-bank authored=${authored.length} review_candidates=${candid
 console.log(`phonics-bank formats=${formatSummary(candidates)}`);
 console.log(`phonics-bank missing_feedback before=${beforeMissingFeedback} after=${afterMissingFeedback}`);
 console.log(`phonics-bank missing_route before=${beforeMissingRoute} after=${afterMissingRoute}`);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 if (write) {
   await writeFile(packPath, nextText, "utf8");

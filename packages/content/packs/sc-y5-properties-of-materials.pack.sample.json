@@ -267,7 +267,9 @@
           "Both materials are identical because both can be flat"
         ],
         "evidence_purpose": "multi_property_material_choice",
-        "variant_blueprint_id": "property-test-and-material-choice"
+        "variant_blueprint_id": "property-test-and-material-choice",
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-sc-y5-properties-of-materials"
       },
       "expected_answer": {
         "value": "Acrylic matches all three required properties in the stated tests"
@@ -280,7 +282,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "one_property_fits_all",
-      "animation_hook": "property-profile-match"
+      "animation_hook": "property-profile-match",
+      "feedback": {
+        "correct": "Correct. For this viewing panel, the acrylic is supported by evidence that it is transparent, waterproof and rigid; this does not make it best for every use.",
+        "retry": "Try again calmly: Match each requirement to a test result. Avoid a claim that goes beyond this purpose and these materials. No progress is lost for checking or changing your answer.",
+        "repair": "Repair the one property fits all route: Match each requirement to a test result. Then use the evidence to explain your choice.",
+        "misconception_check": "Check the one property fits all idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "sc-y5-properties-of-materials-q-dissolved-salt",
@@ -299,7 +308,9 @@
           "The water changed into salt"
         ],
         "evidence_purpose": "dissolving_conservation_and_recovery",
-        "variant_blueprint_id": "dissolving-solubility-and-recovery"
+        "variant_blueprint_id": "dissolving-solubility-and-recovery",
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-sc-y5-properties-of-materials"
       },
       "expected_answer": {
         "value": "The salt dissolved and remains in the solution"
@@ -312,7 +323,14 @@
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "dissolved_means_gone",
-      "animation_hook": "solute-dispersal-compare"
+      "animation_hook": "solute-dispersal-compare",
+      "feedback": {
+        "correct": "Correct. The unchanged mass and later recovery support the explanation that salt particles are dispersed through the solution rather than gone.",
+        "retry": "Try again calmly: Use the mass and recovery evidence. Not being visible does not mean the substance is absent. No progress is lost for checking or changing your answer.",
+        "repair": "Repair the dissolved means gone route: Use the mass and recovery evidence. Then use the evidence to explain your choice.",
+        "misconception_check": "Check the dissolved means gone idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "sc-y5-properties-of-materials-q-separate-mixture",
@@ -340,7 +358,9 @@
           "Add water and filter; the dissolved salt stays with the sand on the filter"
         ],
         "evidence_purpose": "multistage_property_based_separation",
-        "variant_blueprint_id": "single-and-multistage-separation"
+        "variant_blueprint_id": "single-and-multistage-separation",
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-sc-y5-properties-of-materials"
       },
       "expected_answer": {
         "value": "Use a magnet; add water; filter; evaporate the filtrate in a controlled model"
@@ -353,7 +373,14 @@
       "difficulty": 8,
       "status": "review",
       "misconception_tag": "equipment_without_property",
-      "animation_hook": "mixture-route-track"
+      "animation_hook": "mixture-route-track",
+      "feedback": {
+        "correct": "Correct. Magnetism separates iron; water dissolves salt but not sand; filtration retains sand; removing water from the filtrate recovers salt.",
+        "retry": "Try again calmly: Remove the magnetic component first. After salt dissolves, which solid is trapped by a filter? No progress is lost for checking or changing your answer.",
+        "repair": "Repair the equipment without property route: Remove the magnetic component first. Then use the evidence to explain your choice.",
+        "misconception_check": "Check the equipment without property idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "sc-y5-properties-of-materials-q-change-evidence",
@@ -372,7 +399,9 @@
           "Melting forms ash and burning forms liquid wax"
         ],
         "evidence_purpose": "recovery_and_new_material_distinction",
-        "variant_blueprint_id": "reversible-and-irreversible-evidence"
+        "variant_blueprint_id": "reversible-and-irreversible-evidence",
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-sc-y5-properties-of-materials"
       },
       "expected_answer": {
         "value": "Melting is reversible; burning is not usually reversible and forms new materials"
@@ -385,7 +414,14 @@
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "dramatic_means_irreversible",
-      "animation_hook": "two-way-one-way-change"
+      "animation_hook": "two-way-one-way-change",
+      "feedback": {
+        "correct": "Correct. Cooling can recover solid wax after melting, while burning produces smoke and ash with new properties and is not usually reversible.",
+        "retry": "Try again calmly: Ask whether the original material can be recovered. Look for evidence that new materials formed. No progress is lost for checking or changing your answer.",
+        "repair": "Repair the dramatic means irreversible route: Ask whether the original material can be recovered. Then use the evidence to explain your choice.",
+        "misconception_check": "Check the dramatic means irreversible idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "sc-y5-properties-of-materials-bank-property-001-cable-core",

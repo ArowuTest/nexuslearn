@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -124,6 +125,7 @@ pack.qa.readiness_status = "draft";
 pack.qa.notes = "Depth-wave review bank reaches the 240-item pilot target with five preserved curated questions and 235 deterministic candidates covering observable characteristics, classification-key navigation and construction, micro-organisms/plants/animals, vertebrate and invertebrate groups, evidence quality, ambiguity and misconception repair. Generated candidates provide SEND multimodal routes, keyboard/switch/oral and non-drag interactions, rich evidence-and-revision feedback, calm microorganism language and field-research missions without timers, lost lives or streak pressure. Human science, teacher, SEND, accessibility, safeguarding, organism-example and renderer review remains required before promotion.";
 
 validateBank(pack, curated, candidates);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`classification-bank curated=${curated.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
 console.log(`classification-bank strands=${summary(candidates, (variant) => variant.body.classification_strand)}`);

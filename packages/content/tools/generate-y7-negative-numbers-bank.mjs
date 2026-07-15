@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -100,6 +101,7 @@ pack.version = "0.2.0";
 pack.qa.notes = "Year 7 negative numbers reaches the 240-item pilot target with four preserved curated variants and 236 deterministic review candidates covering ordering, number lines, integer addition and subtraction, neutral contexts, directed change, distance, operation reasoning and misconceptions. Every generated item includes labelled visual, tactile/concrete, static text and spoken routes; keyboard, switch, eye-gaze, AAC, oral and partner-mediated interactions; rich strategy and misconception feedback; and private expedition progress without timers, speed scores, lives, streak pressure, leaderboards or peer comparison. Independent mathematics, teacher, SEND, accessibility, safeguarding, renderer and pilot review remain required before promotion.";
 
 validateBank(pack, enrichedCurated, enrichedGenerated);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`negative-numbers-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
 console.log(`negative-numbers-bank blueprints=${summary(generated, (variant) => variant.body.variant_blueprint_id)}`);

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -41,6 +42,7 @@ validateHardening(pack.question_variants, beforeCore, beforeBlueprints);
 const afterMissingFeedback = countMissingFeedback(pack.question_variants);
 const afterMissingRoute = countMissingRoute(pack.question_variants);
 
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`y3-forces-bank authored=${authored.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
 console.log(`y3-forces-bank formats=${summary(candidates, (variant) => variant.format)}`);

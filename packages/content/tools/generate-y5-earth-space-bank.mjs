@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -126,6 +127,7 @@ pack.version = "0.2.0";
 pack.qa.readiness_status = "draft";
 pack.qa.notes = "Review-stage Year 5 Earth and space bank reaches the 240-item pilot target with three preserved curated questions and deterministic candidates across every blueprint and renderer-supported format. Generated models explicitly distinguish representation from reality and require curriculum, teacher, accessibility and safeguarding review before promotion.";
 
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`earth-space-bank curated=${curated.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
 console.log(`earth-space-bank blueprints=${summary(candidates, (variant) => variant.body.variant_blueprint_id)}`);

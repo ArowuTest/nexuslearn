@@ -257,7 +257,8 @@
         "browser_tts_allowed": false,
         "response_mode": "tap_drag_keyboard_or_switch",
         "variant_blueprint_id": "heard-sound-pattern-sorts",
-        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory.",
+        "review_batch": "generated-review-en-y2-spelling-patterns"
       },
       "expected_answer": {
         "value": {
@@ -314,7 +315,8 @@
         "ssp_programme_mapping": "required_before_pilot",
         "response_mode": "tap_drag_keyboard_or_switch",
         "variant_blueprint_id": "segment-and-build-reviewed-words",
-        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory.",
+        "review_batch": "generated-review-en-y2-spelling-patterns"
       },
       "expected_answer": {
         "value": [
@@ -355,7 +357,8 @@
         ],
         "response_mode": "tap_keyboard_or_switch",
         "variant_blueprint_id": "year-two-suffix-transformations",
-        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory.",
+        "review_batch": "generated-review-en-y2-spelling-patterns"
       },
       "expected_answer": {
         "value": "happier",
@@ -392,7 +395,8 @@
         "browser_tts_allowed": false,
         "variant_blueprint_id": "same-phoneme-different-graphemes",
         "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
-        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory.",
+        "review_batch": "generated-review-en-y2-spelling-patterns"
       },
       "expected_answer": {
         "value": "Use the specialist-approved whole-word recording and check the graphemes"
@@ -526,7 +530,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "The /dʒ/ phoneme is written dge in badge and bridge, and g in giant and magic. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -645,7 +650,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "The words share /dʒ/ at the end but use reviewed spellings ge or dge. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -764,7 +770,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "The /s/ phoneme can be written c in city and race, or s in sip and mess. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -883,7 +890,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "At the start of knock and knee, kn writes /n/; name and nest use n. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -1002,7 +1010,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "At the start of gnat and gnaw, gn writes /n/; nail and net use n. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -1121,7 +1130,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "At the start of wrist and wrap, wr writes /r/; rain and red use r. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -1240,7 +1250,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "The final unstressed /əl/ sound is written le in table and little, and el in camel and tunnel. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -1359,7 +1370,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "The final unstressed /əl/ sound is written le or al in these reviewed words. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -1478,7 +1490,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "These reviewed words use ey or ee for their taught long or final /i/ spelling pattern. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -1597,7 +1610,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "The /aɪ/ phoneme is written y at the end of cry and fly, and igh in night and light. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -1716,7 +1730,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "The /ʌ/ phoneme is written o in mother and brother, and u in sun and cup. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -1835,7 +1850,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "The /ɜː/ phoneme is written or after w in word and work, and ir in bird and girl. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -1954,7 +1970,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "The /dʒ/ phoneme is written dge in badge and bridge, and g in giant and magic. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -2073,7 +2090,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "The words share /dʒ/ at the end but use reviewed spellings ge or dge. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -2192,7 +2210,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "The /s/ phoneme can be written c in city and race, or s in sip and mess. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -2311,7 +2330,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "At the start of knock and knee, kn writes /n/; name and nest use n. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -2430,7 +2450,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "At the start of gnat and gnaw, gn writes /n/; nail and net use n. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -2549,7 +2570,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "At the start of wrist and wrap, wr writes /r/; rain and red use r. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -2668,7 +2690,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "The final unstressed /əl/ sound is written le in table and little, and el in camel and tunnel. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -2787,7 +2810,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "The final unstressed /əl/ sound is written le or al in these reviewed words. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -2906,7 +2930,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "These reviewed words use ey or ee for their taught long or final /i/ spelling pattern. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -3025,7 +3050,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "The /aɪ/ phoneme is written y at the end of cry and fly, and igh in night and light. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -3144,7 +3170,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "The /ʌ/ phoneme is written o in mother and brother, and u in sun and cup. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -3263,7 +3290,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "The /ɜː/ phoneme is written or after w in word and work, and ir in bird and girl. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -3382,7 +3410,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "The /dʒ/ phoneme is written dge in badge and bridge, and g in giant and magic. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -3501,7 +3530,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "The words share /dʒ/ at the end but use reviewed spellings ge or dge. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -3620,7 +3650,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "The /s/ phoneme can be written c in city and race, or s in sip and mess. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -3739,7 +3770,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "At the start of knock and knee, kn writes /n/; name and nest use n. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -3858,7 +3890,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "At the start of gnat and gnaw, gn writes /n/; nail and net use n. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -3977,7 +4010,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "At the start of wrist and wrap, wr writes /r/; rain and red use r. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -4096,7 +4130,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "The final unstressed /əl/ sound is written le in table and little, and el in camel and tunnel. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -4215,7 +4250,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "The final unstressed /əl/ sound is written le or al in these reviewed words. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -4334,7 +4370,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "These reviewed words use ey or ee for their taught long or final /i/ spelling pattern. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -4453,7 +4490,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "The /aɪ/ phoneme is written y at the end of cry and fly, and igh in night and light. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -4572,7 +4610,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "The /ʌ/ phoneme is written o in mother and brother, and u in sun and cup. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -4691,7 +4730,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "The /ɜː/ phoneme is written or after w in word and work, and ir in bird and girl. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -4810,7 +4850,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "The /dʒ/ phoneme is written dge in badge and bridge, and g in giant and magic. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -4929,7 +4970,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "The words share /dʒ/ at the end but use reviewed spellings ge or dge. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -5048,7 +5090,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "The /s/ phoneme can be written c in city and race, or s in sip and mess. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -5167,7 +5210,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "At the start of knock and knee, kn writes /n/; name and nest use n. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -5286,7 +5330,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "At the start of gnat and gnaw, gn writes /n/; nail and net use n. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -5405,7 +5450,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "At the start of wrist and wrap, wr writes /r/; rain and red use r. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -5524,7 +5570,8 @@
         "correct": "Whole words sorted by visible grapheme evidence after listening.",
         "repair": "Keep the shared phoneme fixed, reveal one target grapheme at a time and move only one word card before checking.",
         "grapheme_evidence": "The final unstressed /əl/ sound is written le in table and little, and el in camel and tunnel. These are word-specific reviewed spellings, not a new universal pronunciation rule.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -5653,7 +5700,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "The words share /dʒ/ at the end but use reviewed spellings ge or dge. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -5782,7 +5830,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "The final unstressed /əl/ sound is written le in table and little, and el in camel and tunnel. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -5911,7 +5960,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "The /ɜː/ phoneme is written or after w in word and work, and ir in bird and girl. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -6040,7 +6090,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "At the start of gnat and gnaw, gn writes /n/; nail and net use n. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -6169,7 +6220,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "The /aɪ/ phoneme is written y at the end of cry and fly, and igh in night and light. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -6298,7 +6350,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "The /s/ phoneme can be written c in city and race, or s in sip and mess. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -6427,7 +6480,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "The final unstressed /əl/ sound is written le or al in these reviewed words. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -6556,7 +6610,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "The /dʒ/ phoneme is written dge in badge and bridge, and g in giant and magic. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -6685,7 +6740,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "At the start of wrist and wrap, wr writes /r/; rain and red use r. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -6814,7 +6870,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "The /ʌ/ phoneme is written o in mother and brother, and u in sun and cup. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -6943,7 +7000,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "At the start of knock and knee, kn writes /n/; name and nest use n. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -7072,7 +7130,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "These reviewed words use ey or ee for their taught long or final /i/ spelling pattern. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -7201,7 +7260,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "The words share /dʒ/ at the end but use reviewed spellings ge or dge. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -7330,7 +7390,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "The final unstressed /əl/ sound is written le in table and little, and el in camel and tunnel. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -7459,7 +7520,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "The /ɜː/ phoneme is written or after w in word and work, and ir in bird and girl. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -7588,7 +7650,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "At the start of gnat and gnaw, gn writes /n/; nail and net use n. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -7717,7 +7780,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "The /aɪ/ phoneme is written y at the end of cry and fly, and igh in night and light. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -7846,7 +7910,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "The /s/ phoneme can be written c in city and race, or s in sip and mess. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -7975,7 +8040,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "The final unstressed /əl/ sound is written le or al in these reviewed words. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -8104,7 +8170,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "The /dʒ/ phoneme is written dge in badge and bridge, and g in giant and magic. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -8233,7 +8300,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "At the start of wrist and wrap, wr writes /r/; rain and red use r. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -8362,7 +8430,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "The /ʌ/ phoneme is written o in mother and brother, and u in sun and cup. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -8491,7 +8560,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "At the start of knock and knee, kn writes /n/; name and nest use n. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -8620,7 +8690,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "These reviewed words use ey or ee for their taught long or final /i/ spelling pattern. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -8749,7 +8820,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "The words share /dʒ/ at the end but use reviewed spellings ge or dge. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -8878,7 +8950,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "The final unstressed /əl/ sound is written le in table and little, and el in camel and tunnel. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -9007,7 +9080,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "The /ɜː/ phoneme is written or after w in word and work, and ir in bird and girl. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -9136,7 +9210,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "At the start of gnat and gnaw, gn writes /n/; nail and net use n. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -9265,7 +9340,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "The /aɪ/ phoneme is written y at the end of cry and fly, and igh in night and light. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -9394,7 +9470,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "The /s/ phoneme can be written c in city and race, or s in sip and mess. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -9523,7 +9600,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "The final unstressed /əl/ sound is written le or al in these reviewed words. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -9652,7 +9730,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "The /dʒ/ phoneme is written dge in badge and bridge, and g in giant and magic. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -9781,7 +9860,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "At the start of wrist and wrap, wr writes /r/; rain and red use r. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -9910,7 +9990,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "The /ʌ/ phoneme is written o in mother and brother, and u in sun and cup. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -10039,7 +10120,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "At the start of knock and knee, kn writes /n/; name and nest use n. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -10168,7 +10250,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "These reviewed words use ey or ee for their taught long or final /i/ spelling pattern. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -10297,7 +10380,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "The words share /dʒ/ at the end but use reviewed spellings ge or dge. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -10426,7 +10510,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "The final unstressed /əl/ sound is written le in table and little, and el in camel and tunnel. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -10555,7 +10640,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "The /ɜː/ phoneme is written or after w in word and work, and ir in bird and girl. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -10684,7 +10770,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "At the start of gnat and gnaw, gn writes /n/; nail and net use n. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -10813,7 +10900,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "The /aɪ/ phoneme is written y at the end of cry and fly, and igh in night and light. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -10942,7 +11030,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "The /s/ phoneme can be written c in city and race, or s in sip and mess. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -11071,7 +11160,8 @@
         "correct": "Shared phoneme separated from its different word-specific graphemes.",
         "repair": "Place one word from each column side by side, replay both approved whole words and underline only the target graphemes.",
         "grapheme_evidence": "The final unstressed /əl/ sound is written le or al in these reviewed words. Learn the spelling with each word and the adopted SSP sequence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -11176,7 +11266,8 @@
         "correct": "Graphemes built in order for badge.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "badge is built as b | a | dge. The target grapheme dge writes /dʒ/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -11284,7 +11375,8 @@
         "correct": "Graphemes built in order for bridge.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "bridge is built as b | r | i | dge. The target grapheme dge writes /dʒ/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -11394,7 +11486,8 @@
         "correct": "Graphemes built in order for giant.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "giant is built as g | i | a | n | t. The target grapheme g writes /dʒ/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -11504,7 +11597,8 @@
         "correct": "Graphemes built in order for magic.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "magic is built as m | a | g | i | c. The target grapheme g writes /dʒ/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -11611,7 +11705,8 @@
         "correct": "Graphemes built in order for city.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "city is built as c | i | t | y. The target grapheme c writes /s/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -11715,7 +11810,8 @@
         "correct": "Graphemes built in order for race.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "race is built as r | a_e | c. The target grapheme c writes /s/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -11820,7 +11916,8 @@
         "correct": "Graphemes built in order for knock.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "knock is built as kn | o | ck. The target grapheme kn writes /n/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -11922,7 +12019,8 @@
         "correct": "Graphemes built in order for knee.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "knee is built as kn | ee. The target grapheme kn writes /n/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -12026,7 +12124,8 @@
         "correct": "Graphemes built in order for gnat.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "gnat is built as gn | a | t. The target grapheme gn writes /n/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -12128,7 +12227,8 @@
         "correct": "Graphemes built in order for gnaw.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "gnaw is built as gn | aw. The target grapheme gn writes /n/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -12235,7 +12335,8 @@
         "correct": "Graphemes built in order for wrist.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "wrist is built as wr | i | s | t. The target grapheme wr writes /r/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -12339,7 +12440,8 @@
         "correct": "Graphemes built in order for wrap.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "wrap is built as wr | a | p. The target grapheme wr writes /r/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -12446,7 +12548,8 @@
         "correct": "Graphemes built in order for table.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "table is built as t | a_e | b | le. The target grapheme le writes /əl/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -12554,7 +12657,8 @@
         "correct": "Graphemes built in order for little.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "little is built as l | i | tt | le. The target grapheme le writes /əl/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -12661,7 +12765,8 @@
         "correct": "Graphemes built in order for camel.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "camel is built as c | a | m | el. The target grapheme el writes /əl/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -12771,7 +12876,8 @@
         "correct": "Graphemes built in order for animal.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "animal is built as a | n | i | m | al. The target grapheme al writes /əl/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -12872,7 +12978,8 @@
         "correct": "Graphemes built in order for key.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "key is built as k | ey. The target grapheme ey writes final /iː/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -12982,7 +13089,8 @@
         "correct": "Graphemes built in order for donkey.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "donkey is built as d | o | n | k | ey. The target grapheme ey writes final /i/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -13086,7 +13194,8 @@
         "correct": "Graphemes built in order for cry.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "cry is built as c | r | y. The target grapheme y writes /aɪ/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -13190,7 +13299,8 @@
         "correct": "Graphemes built in order for fly.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "fly is built as f | l | y. The target grapheme y writes /aɪ/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -13297,7 +13407,8 @@
         "correct": "Graphemes built in order for mother.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "mother is built as m | o | th | er. The target grapheme o writes /ʌ/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -13407,7 +13518,8 @@
         "correct": "Graphemes built in order for brother.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "brother is built as b | r | o | th | er. The target grapheme o writes /ʌ/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -13511,7 +13623,8 @@
         "correct": "Graphemes built in order for word.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "word is built as w | or | d. The target grapheme or writes /ɜː/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -13615,7 +13728,8 @@
         "correct": "Graphemes built in order for work.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "work is built as w | or | k. The target grapheme or writes /ɜː/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -13720,7 +13834,8 @@
         "correct": "Graphemes built in order for badge.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "badge is built as b | a | dge. The target grapheme dge writes /dʒ/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 6,
       "status": "review",
@@ -13828,7 +13943,8 @@
         "correct": "Graphemes built in order for bridge.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "bridge is built as b | r | i | dge. The target grapheme dge writes /dʒ/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 6,
       "status": "review",
@@ -13938,7 +14054,8 @@
         "correct": "Graphemes built in order for giant.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "giant is built as g | i | a | n | t. The target grapheme g writes /dʒ/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 6,
       "status": "review",
@@ -14048,7 +14165,8 @@
         "correct": "Graphemes built in order for magic.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "magic is built as m | a | g | i | c. The target grapheme g writes /dʒ/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 6,
       "status": "review",
@@ -14155,7 +14273,8 @@
         "correct": "Graphemes built in order for city.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "city is built as c | i | t | y. The target grapheme c writes /s/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 6,
       "status": "review",
@@ -14259,7 +14378,8 @@
         "correct": "Graphemes built in order for race.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "race is built as r | a_e | c. The target grapheme c writes /s/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 6,
       "status": "review",
@@ -14364,7 +14484,8 @@
         "correct": "Graphemes built in order for knock.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "knock is built as kn | o | ck. The target grapheme kn writes /n/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 6,
       "status": "review",
@@ -14466,7 +14587,8 @@
         "correct": "Graphemes built in order for knee.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "knee is built as kn | ee. The target grapheme kn writes /n/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 6,
       "status": "review",
@@ -14570,7 +14692,8 @@
         "correct": "Graphemes built in order for gnat.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "gnat is built as gn | a | t. The target grapheme gn writes /n/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 6,
       "status": "review",
@@ -14672,7 +14795,8 @@
         "correct": "Graphemes built in order for gnaw.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "gnaw is built as gn | aw. The target grapheme gn writes /n/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 6,
       "status": "review",
@@ -14779,7 +14903,8 @@
         "correct": "Graphemes built in order for wrist.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "wrist is built as wr | i | s | t. The target grapheme wr writes /r/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 6,
       "status": "review",
@@ -14883,7 +15008,8 @@
         "correct": "Graphemes built in order for wrap.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "wrap is built as wr | a | p. The target grapheme wr writes /r/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 6,
       "status": "review",
@@ -14990,7 +15116,8 @@
         "correct": "Graphemes built in order for table.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "table is built as t | a_e | b | le. The target grapheme le writes /əl/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 6,
       "status": "review",
@@ -15098,7 +15225,8 @@
         "correct": "Graphemes built in order for little.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "little is built as l | i | tt | le. The target grapheme le writes /əl/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 6,
       "status": "review",
@@ -15205,7 +15333,8 @@
         "correct": "Graphemes built in order for camel.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "camel is built as c | a | m | el. The target grapheme el writes /əl/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 6,
       "status": "review",
@@ -15315,7 +15444,8 @@
         "correct": "Graphemes built in order for animal.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "animal is built as a | n | i | m | al. The target grapheme al writes /əl/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 6,
       "status": "review",
@@ -15416,7 +15546,8 @@
         "correct": "Graphemes built in order for key.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "key is built as k | ey. The target grapheme ey writes final /iː/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 6,
       "status": "review",
@@ -15526,7 +15657,8 @@
         "correct": "Graphemes built in order for donkey.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "donkey is built as d | o | n | k | ey. The target grapheme ey writes final /i/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 6,
       "status": "review",
@@ -15630,7 +15762,8 @@
         "correct": "Graphemes built in order for cry.",
         "repair": "Hide the picture, keep meaning confirmed, reveal one sound box at a time and compare each selected grapheme with the reviewed word card.",
         "grapheme_evidence": "cry is built as c | r | y. The target grapheme y writes /aɪ/ in this reviewed word.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 6,
       "status": "review",
@@ -15721,7 +15854,8 @@
         "correct": "Base change and suffix checked: enjoy → enjoyment.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Keep the base word, then add ment to make enjoyment. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -15812,7 +15946,8 @@
         "correct": "Base change and suffix checked: pay → payment.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Keep the final y after a vowel, then add ment to make payment. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -15903,7 +16038,8 @@
         "correct": "Base change and suffix checked: sad → sadness.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Keep the base word, then add ness to make sadness. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -15994,7 +16130,8 @@
         "correct": "Base change and suffix checked: happy → happiness.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Change consonant-plus-y to i, then add ness to make happiness. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -16085,7 +16222,8 @@
         "correct": "Base change and suffix checked: kind → kindness.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Keep the base word, then add ness to make kindness. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -16176,7 +16314,8 @@
         "correct": "Base change and suffix checked: help → helpful.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Keep the base word, then add ful to make helpful. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -16267,7 +16406,8 @@
         "correct": "Base change and suffix checked: play → playful.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Keep the final y after a vowel, then add ful to make playful. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -16358,7 +16498,8 @@
         "correct": "Base change and suffix checked: hope → hopeful.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Drop the final e, then add ful to make hopeful. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -16449,7 +16590,8 @@
         "correct": "Base change and suffix checked: care → careless.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Keep the final e, then add less to make careless. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -16540,7 +16682,8 @@
         "correct": "Base change and suffix checked: hope → hopeless.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Keep the final e, then add less to make hopeless. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -16631,7 +16774,8 @@
         "correct": "Base change and suffix checked: bad → badly.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Keep the base word, then add ly to make badly. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -16722,7 +16866,8 @@
         "correct": "Base change and suffix checked: happy → happily.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Change consonant-plus-y to i, then add ly to make happily. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -16813,7 +16958,8 @@
         "correct": "Base change and suffix checked: slow → slowly.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Keep the base word, then add ly to make slowly. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -16904,7 +17050,8 @@
         "correct": "Base change and suffix checked: fast → faster.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Keep the base word, then add er to make faster. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -16995,7 +17142,8 @@
         "correct": "Base change and suffix checked: fast → fastest.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Keep the base word, then add est to make fastest. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -17086,7 +17234,8 @@
         "correct": "Base change and suffix checked: big → bigger.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Double the final consonant after one short vowel, then add er to make bigger. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -17177,7 +17326,8 @@
         "correct": "Base change and suffix checked: big → biggest.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Double the final consonant after one short vowel, then add est to make biggest. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -17268,7 +17418,8 @@
         "correct": "Base change and suffix checked: nice → nicer.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Drop the final e, then add er to make nicer. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -17359,7 +17510,8 @@
         "correct": "Base change and suffix checked: nice → nicest.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Drop the final e, then add est to make nicest. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -17450,7 +17602,8 @@
         "correct": "Base change and suffix checked: run → running.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Double the final consonant after one short vowel, then add ing to make running. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -17541,7 +17694,8 @@
         "correct": "Base change and suffix checked: hike → hiking.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Drop the final e, then add ing to make hiking. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -17632,7 +17786,8 @@
         "correct": "Base change and suffix checked: copy → copied.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Change consonant-plus-y to i, then add ed to make copied. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -17723,7 +17878,8 @@
         "correct": "Base change and suffix checked: copy → copying.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Keep y before ing, then add ing to make copying. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -17814,7 +17970,8 @@
         "correct": "Base change and suffix checked: cry → cried.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Change y to i, then add ed to make cried. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -17905,7 +18062,8 @@
         "correct": "Base change and suffix checked: cry → crying.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Keep y before ing, then add ing to make crying. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -17996,7 +18154,8 @@
         "correct": "Base change and suffix checked: fly → flies.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Change consonant-plus-y to i, then add es to make flies. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -18087,7 +18246,8 @@
         "correct": "Base change and suffix checked: enjoy → enjoyment.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Keep the base word, then add ment to make enjoyment. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 6,
       "status": "review",
@@ -18178,7 +18338,8 @@
         "correct": "Base change and suffix checked: pay → payment.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Keep the final y after a vowel, then add ment to make payment. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 6,
       "status": "review",
@@ -18269,7 +18430,8 @@
         "correct": "Base change and suffix checked: sad → sadness.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Keep the base word, then add ness to make sadness. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 6,
       "status": "review",
@@ -18360,7 +18522,8 @@
         "correct": "Base change and suffix checked: happy → happiness.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Change consonant-plus-y to i, then add ness to make happiness. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 6,
       "status": "review",
@@ -18451,7 +18614,8 @@
         "correct": "Base change and suffix checked: kind → kindness.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Keep the base word, then add ness to make kindness. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 6,
       "status": "review",
@@ -18542,7 +18706,8 @@
         "correct": "Base change and suffix checked: help → helpful.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Keep the base word, then add ful to make helpful. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 6,
       "status": "review",
@@ -18633,7 +18798,8 @@
         "correct": "Base change and suffix checked: play → playful.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Keep the final y after a vowel, then add ful to make playful. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 6,
       "status": "review",
@@ -18724,7 +18890,8 @@
         "correct": "Base change and suffix checked: hope → hopeful.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Drop the final e, then add ful to make hopeful. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 6,
       "status": "review",
@@ -18815,7 +18982,8 @@
         "correct": "Base change and suffix checked: care → careless.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Keep the final e, then add less to make careless. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 6,
       "status": "review",
@@ -18906,7 +19074,8 @@
         "correct": "Base change and suffix checked: hope → hopeless.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Keep the final e, then add less to make hopeless. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 6,
       "status": "review",
@@ -18997,7 +19166,8 @@
         "correct": "Base change and suffix checked: bad → badly.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Keep the base word, then add ly to make badly. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 6,
       "status": "review",
@@ -19088,7 +19258,8 @@
         "correct": "Base change and suffix checked: happy → happily.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Change consonant-plus-y to i, then add ly to make happily. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 6,
       "status": "review",
@@ -19179,7 +19350,8 @@
         "correct": "Base change and suffix checked: slow → slowly.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Keep the base word, then add ly to make slowly. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 6,
       "status": "review",
@@ -19270,7 +19442,8 @@
         "correct": "Base change and suffix checked: fast → faster.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Keep the base word, then add er to make faster. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 6,
       "status": "review",
@@ -19361,7 +19534,8 @@
         "correct": "Base change and suffix checked: fast → fastest.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Keep the base word, then add est to make fastest. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 6,
       "status": "review",
@@ -19452,7 +19626,8 @@
         "correct": "Base change and suffix checked: big → bigger.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Double the final consonant after one short vowel, then add er to make bigger. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 6,
       "status": "review",
@@ -19543,7 +19718,8 @@
         "correct": "Base change and suffix checked: big → biggest.",
         "repair": "Keep the base and suffix on separate trays. Complete the keep, drop, change or double step before joining them.",
         "grapheme_evidence": "Double the final consonant after one short vowel, then add est to make biggest. The base word and suffix are checked as meaningful parts.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 6,
       "status": "review",
@@ -19632,7 +19808,8 @@
         "correct": "Common exception word checked letter by letter: because.",
         "repair": "Reveal the tricky chunk, cover it, rebuild it and compare every grapheme without a timer.",
         "grapheme_evidence": "because is a common exception word in this review set. Its memory chunks are be | cause; check every letter against the reviewed card.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the regularises exception word idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -19738,7 +19915,8 @@
         "correct": "Dictated target built and checked: badge.",
         "repair": "Replay the whole sentence, then the target word. Reveal one chunk boundary and rebuild without requiring handwriting or speech recording.",
         "grapheme_evidence": "The target is badge, built as b | a | dge. The sentence supplies meaning; the reviewed spelling card supplies final grapheme evidence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -19832,7 +20010,8 @@
         "correct": "Prefix and base joined: unkind.",
         "repair": "Place PREFIX before BASE on two labelled slots, read the meaning, then join the chunks without a motor-speed demand.",
         "grapheme_evidence": "un + kind = unkind, meaning not kind. The base stays unchanged in this task.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the prefix placed after base idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -19924,7 +20103,8 @@
         "correct": "Pattern retrieved and checked in wrap.",
         "repair": "Compare one known contrast word, reveal the target grapheme, then rebuild left to right using generous spacing.",
         "grapheme_evidence": "wrap uses wr for /r/ in this reviewed word. The visible grapheme, not a guessed pronunciation rule, decides the spelling.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -20014,7 +20194,8 @@
         "correct": "Morpheme map linked playful to play + ful.",
         "repair": "Return to separate BASE, CHANGE and SUFFIX panels and complete one transformation step at a time.",
         "grapheme_evidence": "Keep the final y after a vowel, then add ful to make playful. The spelling keeps a meaning link to play.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -20108,7 +20289,8 @@
         "correct": "Misconception repaired and knock checked grapheme by grapheme.",
         "repair": "Keep any correct chunks, reveal the decisive grapheme or base change and rebuild one position at a time.",
         "grapheme_evidence": "Use the reviewed word-specific graphemes kn and ck, then check every letter. The repaired build is kn | o | ck = knock.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -20197,7 +20379,8 @@
         "correct": "Common exception word checked letter by letter: every.",
         "repair": "Reveal the tricky chunk, cover it, rebuild it and compare every grapheme without a timer.",
         "grapheme_evidence": "every is a common exception word in this review set. Its memory chunks are eve | ry; check every letter against the reviewed card.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the regularises exception word idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -20299,7 +20482,8 @@
         "correct": "Dictated target built and checked: knee.",
         "repair": "Replay the whole sentence, then the target word. Reveal one chunk boundary and rebuild without requiring handwriting or speech recording.",
         "grapheme_evidence": "The target is knee, built as kn | ee. The sentence supplies meaning; the reviewed spelling card supplies final grapheme evidence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -20393,7 +20577,8 @@
         "correct": "Prefix and base joined: unhappy.",
         "repair": "Place PREFIX before BASE on two labelled slots, read the meaning, then join the chunks without a motor-speed demand.",
         "grapheme_evidence": "un + happy = unhappy, meaning not happy. The base stays unchanged in this task.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the prefix placed after base idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -20485,7 +20670,8 @@
         "correct": "Pattern retrieved and checked in race.",
         "repair": "Compare one known contrast word, reveal the target grapheme, then rebuild left to right using generous spacing.",
         "grapheme_evidence": "race uses c for /s/ in this reviewed word. The visible grapheme, not a guessed pronunciation rule, decides the spelling.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -20575,7 +20761,8 @@
         "correct": "Morpheme map linked copying to copy + ing.",
         "repair": "Return to separate BASE, CHANGE and SUFFIX panels and complete one transformation step at a time.",
         "grapheme_evidence": "Keep y before ing, then add ing to make copying. The spelling keeps a meaning link to copy.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -20676,7 +20863,8 @@
         "correct": "Misconception repaired and giant checked grapheme by grapheme.",
         "repair": "Keep any correct chunks, reveal the decisive grapheme or base change and rebuild one position at a time.",
         "grapheme_evidence": "The reviewed word giant uses g for /dʒ/; one phoneme can have different graphemes. The repaired build is g | i | a | n | t = giant.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -20765,7 +20953,8 @@
         "correct": "Common exception word checked letter by letter: could.",
         "repair": "Reveal the tricky chunk, cover it, rebuild it and compare every grapheme without a timer.",
         "grapheme_evidence": "could is a common exception word in this review set. Its memory chunks are c | ould; check every letter against the reviewed card.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the regularises exception word idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -20875,7 +21064,8 @@
         "correct": "Dictated target built and checked: wrist.",
         "repair": "Replay the whole sentence, then the target word. Reveal one chunk boundary and rebuild without requiring handwriting or speech recording.",
         "grapheme_evidence": "The target is wrist, built as wr | i | s | t. The sentence supplies meaning; the reviewed spelling card supplies final grapheme evidence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -20969,7 +21159,8 @@
         "correct": "Prefix and base joined: unfair.",
         "repair": "Place PREFIX before BASE on two labelled slots, read the meaning, then join the chunks without a motor-speed demand.",
         "grapheme_evidence": "un + fair = unfair, meaning not fair. The base stays unchanged in this task.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the prefix placed after base idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -21061,7 +21252,8 @@
         "correct": "Pattern retrieved and checked in work.",
         "repair": "Compare one known contrast word, reveal the target grapheme, then rebuild left to right using generous spacing.",
         "grapheme_evidence": "work uses or for /ɜː/ in this reviewed word. The visible grapheme, not a guessed pronunciation rule, decides the spelling.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -21151,7 +21343,8 @@
         "correct": "Morpheme map linked slowly to slow + ly.",
         "repair": "Return to separate BASE, CHANGE and SUFFIX panels and complete one transformation step at a time.",
         "grapheme_evidence": "Keep the base word, then add ly to make slowly. The spelling keeps a meaning link to slow.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -21240,7 +21433,8 @@
         "correct": "Misconception repaired and happier checked grapheme by grapheme.",
         "repair": "Keep any correct chunks, reveal the decisive grapheme or base change and rebuild one position at a time.",
         "grapheme_evidence": "Change consonant-plus-y to i before adding er: happi + er. The repaired build is happi | er = happier.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -21329,7 +21523,8 @@
         "correct": "Common exception word checked letter by letter: whole.",
         "repair": "Reveal the tricky chunk, cover it, rebuild it and compare every grapheme without a timer.",
         "grapheme_evidence": "whole is a common exception word in this review set. Its memory chunks are wh | ole; check every letter against the reviewed card.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the regularises exception word idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -21439,7 +21634,8 @@
         "correct": "Dictated target built and checked: city.",
         "repair": "Replay the whole sentence, then the target word. Reveal one chunk boundary and rebuild without requiring handwriting or speech recording.",
         "grapheme_evidence": "The target is city, built as c | i | t | y. The sentence supplies meaning; the reviewed spelling card supplies final grapheme evidence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -21533,7 +21729,8 @@
         "correct": "Prefix and base joined: undo.",
         "repair": "Place PREFIX before BASE on two labelled slots, read the meaning, then join the chunks without a motor-speed demand.",
         "grapheme_evidence": "un + do = undo, meaning reverse the action of doing. The base stays unchanged in this task.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the prefix placed after base idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -21631,7 +21828,8 @@
         "correct": "Pattern retrieved and checked in donkey.",
         "repair": "Compare one known contrast word, reveal the target grapheme, then rebuild left to right using generous spacing.",
         "grapheme_evidence": "donkey uses ey for final /i/ in this reviewed word. The visible grapheme, not a guessed pronunciation rule, decides the spelling.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -21721,7 +21919,8 @@
         "correct": "Morpheme map linked sadness to sad + ness.",
         "repair": "Return to separate BASE, CHANGE and SUFFIX panels and complete one transformation step at a time.",
         "grapheme_evidence": "Keep the base word, then add ness to make sadness. The spelling keeps a meaning link to sad.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -21810,7 +22009,8 @@
         "correct": "Misconception repaired and because checked grapheme by grapheme.",
         "repair": "Keep any correct chunks, reveal the decisive grapheme or base change and rebuild one position at a time.",
         "grapheme_evidence": "Build because from reviewed chunks and compare every grapheme, not its outline. The repaired build is be | cause = because.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the word shape guess idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -21899,7 +22099,8 @@
         "correct": "Common exception word checked letter by letter: many.",
         "repair": "Reveal the tricky chunk, cover it, rebuild it and compare every grapheme without a timer.",
         "grapheme_evidence": "many is a common exception word in this review set. Its memory chunks are ma | ny; check every letter against the reviewed card.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the regularises exception word idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -22001,7 +22202,8 @@
         "correct": "Dictated target built and checked: happiness.",
         "repair": "Replay the whole sentence, then the target word. Reveal one chunk boundary and rebuild without requiring handwriting or speech recording.",
         "grapheme_evidence": "The target is happiness, built as happi | ness. The sentence supplies meaning; the reviewed spelling card supplies final grapheme evidence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -22095,7 +22297,8 @@
         "correct": "Prefix and base joined: unpack.",
         "repair": "Place PREFIX before BASE on two labelled slots, read the meaning, then join the chunks without a motor-speed demand.",
         "grapheme_evidence": "un + pack = unpack, meaning take things out after packing. The base stays unchanged in this task.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the prefix placed after base idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -22187,7 +22390,8 @@
         "correct": "Pattern retrieved and checked in wrap.",
         "repair": "Compare one known contrast word, reveal the target grapheme, then rebuild left to right using generous spacing.",
         "grapheme_evidence": "wrap uses wr for /r/ in this reviewed word. The visible grapheme, not a guessed pronunciation rule, decides the spelling.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -22278,7 +22482,8 @@
         "correct": "Morpheme map linked nicest to nice + est.",
         "repair": "Return to separate BASE, CHANGE and SUFFIX panels and complete one transformation step at a time.",
         "grapheme_evidence": "Drop the final e, then add est to make nicest. The spelling keeps a meaning link to nice.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -22376,7 +22581,8 @@
         "correct": "Misconception repaired and wrist checked grapheme by grapheme.",
         "repair": "Keep any correct chunks, reveal the decisive grapheme or base change and rebuild one position at a time.",
         "grapheme_evidence": "The reviewed spelling wrist begins wr; hearing must be checked against word-specific graphemes. The repaired build is wr | i | s | t = wrist.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -22465,7 +22671,8 @@
         "correct": "Common exception word checked letter by letter: money.",
         "repair": "Reveal the tricky chunk, cover it, rebuild it and compare every grapheme without a timer.",
         "grapheme_evidence": "money is a common exception word in this review set. Its memory chunks are mo | ney; check every letter against the reviewed card.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the regularises exception word idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -22567,7 +22774,8 @@
         "correct": "Dictated target built and checked: careless.",
         "repair": "Replay the whole sentence, then the target word. Reveal one chunk boundary and rebuild without requiring handwriting or speech recording.",
         "grapheme_evidence": "The target is careless, built as care | less. The sentence supplies meaning; the reviewed spelling card supplies final grapheme evidence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -22661,7 +22869,8 @@
         "correct": "Prefix and base joined: unkind.",
         "repair": "Place PREFIX before BASE on two labelled slots, read the meaning, then join the chunks without a motor-speed demand.",
         "grapheme_evidence": "un + kind = unkind, meaning not kind. The base stays unchanged in this task.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the prefix placed after base idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -22753,7 +22962,8 @@
         "correct": "Pattern retrieved and checked in race.",
         "repair": "Compare one known contrast word, reveal the target grapheme, then rebuild left to right using generous spacing.",
         "grapheme_evidence": "race uses c for /s/ in this reviewed word. The visible grapheme, not a guessed pronunciation rule, decides the spelling.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -22843,7 +23053,8 @@
         "correct": "Morpheme map linked careless to care + less.",
         "repair": "Return to separate BASE, CHANGE and SUFFIX panels and complete one transformation step at a time.",
         "grapheme_evidence": "Keep the final e, then add less to make careless. The spelling keeps a meaning link to care.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -22937,7 +23148,8 @@
         "correct": "Misconception repaired and knock checked grapheme by grapheme.",
         "repair": "Keep any correct chunks, reveal the decisive grapheme or base change and rebuild one position at a time.",
         "grapheme_evidence": "Use the reviewed word-specific graphemes kn and ck, then check every letter. The repaired build is kn | o | ck = knock.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -23026,7 +23238,8 @@
         "correct": "Common exception word checked letter by letter: hour.",
         "repair": "Reveal the tricky chunk, cover it, rebuild it and compare every grapheme without a timer.",
         "grapheme_evidence": "hour is a common exception word in this review set. Its memory chunks are h | our; check every letter against the reviewed card.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the regularises exception word idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -23128,7 +23341,8 @@
         "correct": "Dictated target built and checked: because.",
         "repair": "Replay the whole sentence, then the target word. Reveal one chunk boundary and rebuild without requiring handwriting or speech recording.",
         "grapheme_evidence": "The target is because, built as be | cause. The sentence supplies meaning; the reviewed spelling card supplies final grapheme evidence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -23222,7 +23436,8 @@
         "correct": "Prefix and base joined: unhappy.",
         "repair": "Place PREFIX before BASE on two labelled slots, read the meaning, then join the chunks without a motor-speed demand.",
         "grapheme_evidence": "un + happy = unhappy, meaning not happy. The base stays unchanged in this task.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the prefix placed after base idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -23314,7 +23529,8 @@
         "correct": "Pattern retrieved and checked in work.",
         "repair": "Compare one known contrast word, reveal the target grapheme, then rebuild left to right using generous spacing.",
         "grapheme_evidence": "work uses or for /ɜː/ in this reviewed word. The visible grapheme, not a guessed pronunciation rule, decides the spelling.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -23404,7 +23620,8 @@
         "correct": "Morpheme map linked crying to cry + ing.",
         "repair": "Return to separate BASE, CHANGE and SUFFIX panels and complete one transformation step at a time.",
         "grapheme_evidence": "Keep y before ing, then add ing to make crying. The spelling keeps a meaning link to cry.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the suffix base change omitted idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -23505,7 +23722,8 @@
         "correct": "Misconception repaired and giant checked grapheme by grapheme.",
         "repair": "Keep any correct chunks, reveal the decisive grapheme or base change and rebuild one position at a time.",
         "grapheme_evidence": "The reviewed word giant uses g for /dʒ/; one phoneme can have different graphemes. The repaired build is g | i | a | n | t = giant.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the one sound one spelling idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -23594,7 +23812,8 @@
         "correct": "Common exception word checked letter by letter: people.",
         "repair": "Reveal the tricky chunk, cover it, rebuild it and compare every grapheme without a timer.",
         "grapheme_evidence": "people is a common exception word in this review set. Its memory chunks are peo | ple; check every letter against the reviewed card.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the regularises exception word idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -23700,7 +23919,8 @@
         "correct": "Dictated target built and checked: badge.",
         "repair": "Replay the whole sentence, then the target word. Reveal one chunk boundary and rebuild without requiring handwriting or speech recording.",
         "grapheme_evidence": "The target is badge, built as b | a | dge. The sentence supplies meaning; the reviewed spelling card supplies final grapheme evidence.",
-        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored."
+        "support_message": "Chunking, pointing, tile placement and adult-scribed responses carry equal evidence; speed and handwriting neatness are not scored.",
+        "misconception_check": "Check the sound only choice idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",

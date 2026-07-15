@@ -271,7 +271,8 @@
             "eye_gaze",
             "aac"
           ]
-        }
+        },
+        "review_batch": "generated-review-ma-y2-multiplication-foundations"
       },
       "expected_answer": {
         "value": 8,
@@ -326,7 +327,8 @@
             "eye_gaze",
             "aac"
           ]
-        }
+        },
+        "review_batch": "generated-review-ma-y2-multiplication-foundations"
       },
       "expected_answer": {
         "value": "5 x 3 = 15"
@@ -380,7 +382,8 @@
             "eye_gaze",
             "aac"
           ]
-        }
+        },
+        "review_batch": "generated-review-ma-y2-multiplication-foundations"
       },
       "expected_answer": {
         "value": 4,
@@ -416,7 +419,8 @@
         ],
         "response_mode": "tap_keyboard_switch_or_pair_reveal",
         "variant_blueprint_id": "spaced-tables-and-parity-retrieval",
-        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory.",
+        "review_batch": "generated-review-ma-y2-multiplication-foundations"
       },
       "expected_answer": {
         "value": "odd",
@@ -503,7 +507,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 2, and the total is 4.",
         "repair": "Keep the 2 group mats. Fill one group at a time until each has exactly 2.",
-        "strategy": "2 equal groups of 2 contain 4. The repeated addition is 2 + 2 = 4, so 2 × 2 = 4."
+        "strategy": "2 equal groups of 2 contain 4. The repeated addition is 2 + 2 = 4, so 2 × 2 = 4.",
+        "misconception_check": "Check the unequal groups counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -574,7 +580,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 2, and the total is 6.",
         "repair": "Keep the 3 group mats. Fill one group at a time until each has exactly 2.",
-        "strategy": "3 equal groups of 2 contain 6. The repeated addition is 2 + 2 + 2 = 6, so 3 × 2 = 6."
+        "strategy": "3 equal groups of 2 contain 6. The repeated addition is 2 + 2 + 2 = 6, so 3 × 2 = 6.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -645,7 +653,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 2, and the total is 8.",
         "repair": "Keep the 4 group mats. Fill one group at a time until each has exactly 2.",
-        "strategy": "4 equal groups of 2 contain 8. The repeated addition is 2 + 2 + 2 + 2 = 8, so 4 × 2 = 8."
+        "strategy": "4 equal groups of 2 contain 8. The repeated addition is 2 + 2 + 2 + 2 = 8, so 4 × 2 = 8.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -716,7 +726,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 2, and the total is 10.",
         "repair": "Keep the 5 group mats. Fill one group at a time until each has exactly 2.",
-        "strategy": "5 equal groups of 2 contain 10. The repeated addition is 2 + 2 + 2 + 2 + 2 = 10, so 5 × 2 = 10."
+        "strategy": "5 equal groups of 2 contain 10. The repeated addition is 2 + 2 + 2 + 2 + 2 = 10, so 5 × 2 = 10.",
+        "misconception_check": "Check the unequal groups counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -787,7 +799,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 2, and the total is 12.",
         "repair": "Keep the 6 group mats. Fill one group at a time until each has exactly 2.",
-        "strategy": "6 equal groups of 2 contain 12. The repeated addition is 2 + 2 + 2 + 2 + 2 + 2 = 12, so 6 × 2 = 12."
+        "strategy": "6 equal groups of 2 contain 12. The repeated addition is 2 + 2 + 2 + 2 + 2 + 2 = 12, so 6 × 2 = 12.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -858,7 +872,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 2, and the total is 14.",
         "repair": "Keep the 7 group mats. Fill one group at a time until each has exactly 2.",
-        "strategy": "7 equal groups of 2 contain 14. The repeated addition is 2 + 2 + 2 + 2 + 2 + 2 + 2 = 14, so 7 × 2 = 14."
+        "strategy": "7 equal groups of 2 contain 14. The repeated addition is 2 + 2 + 2 + 2 + 2 + 2 + 2 = 14, so 7 × 2 = 14.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -929,7 +945,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 2, and the total is 16.",
         "repair": "Keep the 8 group mats. Fill one group at a time until each has exactly 2.",
-        "strategy": "8 equal groups of 2 contain 16. The repeated addition is 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 = 16, so 8 × 2 = 16."
+        "strategy": "8 equal groups of 2 contain 16. The repeated addition is 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 = 16, so 8 × 2 = 16.",
+        "misconception_check": "Check the unequal groups counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -1000,7 +1018,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 2, and the total is 18.",
         "repair": "Keep the 9 group mats. Fill one group at a time until each has exactly 2.",
-        "strategy": "9 equal groups of 2 contain 18. The repeated addition is 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 = 18, so 9 × 2 = 18."
+        "strategy": "9 equal groups of 2 contain 18. The repeated addition is 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 = 18, so 9 × 2 = 18.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -1071,7 +1091,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 2, and the total is 20.",
         "repair": "Keep the 10 group mats. Fill one group at a time until each has exactly 2.",
-        "strategy": "10 equal groups of 2 contain 20. The repeated addition is 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 = 20, so 10 × 2 = 20."
+        "strategy": "10 equal groups of 2 contain 20. The repeated addition is 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 = 20, so 10 × 2 = 20.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -1142,7 +1164,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 5, and the total is 10.",
         "repair": "Keep the 2 group mats. Fill one group at a time until each has exactly 5.",
-        "strategy": "2 equal groups of 5 contain 10. The repeated addition is 5 + 5 = 10, so 2 × 5 = 10."
+        "strategy": "2 equal groups of 5 contain 10. The repeated addition is 5 + 5 = 10, so 2 × 5 = 10.",
+        "misconception_check": "Check the unequal groups counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1213,7 +1237,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 5, and the total is 15.",
         "repair": "Keep the 3 group mats. Fill one group at a time until each has exactly 5.",
-        "strategy": "3 equal groups of 5 contain 15. The repeated addition is 5 + 5 + 5 = 15, so 3 × 5 = 15."
+        "strategy": "3 equal groups of 5 contain 15. The repeated addition is 5 + 5 + 5 = 15, so 3 × 5 = 15.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1284,7 +1310,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 5, and the total is 20.",
         "repair": "Keep the 4 group mats. Fill one group at a time until each has exactly 5.",
-        "strategy": "4 equal groups of 5 contain 20. The repeated addition is 5 + 5 + 5 + 5 = 20, so 4 × 5 = 20."
+        "strategy": "4 equal groups of 5 contain 20. The repeated addition is 5 + 5 + 5 + 5 = 20, so 4 × 5 = 20.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -1355,7 +1383,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 5, and the total is 25.",
         "repair": "Keep the 5 group mats. Fill one group at a time until each has exactly 5.",
-        "strategy": "5 equal groups of 5 contain 25. The repeated addition is 5 + 5 + 5 + 5 + 5 = 25, so 5 × 5 = 25."
+        "strategy": "5 equal groups of 5 contain 25. The repeated addition is 5 + 5 + 5 + 5 + 5 = 25, so 5 × 5 = 25.",
+        "misconception_check": "Check the unequal groups counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -1426,7 +1456,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 5, and the total is 30.",
         "repair": "Keep the 6 group mats. Fill one group at a time until each has exactly 5.",
-        "strategy": "6 equal groups of 5 contain 30. The repeated addition is 5 + 5 + 5 + 5 + 5 + 5 = 30, so 6 × 5 = 30."
+        "strategy": "6 equal groups of 5 contain 30. The repeated addition is 5 + 5 + 5 + 5 + 5 + 5 = 30, so 6 × 5 = 30.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -1497,7 +1529,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 5, and the total is 35.",
         "repair": "Keep the 7 group mats. Fill one group at a time until each has exactly 5.",
-        "strategy": "7 equal groups of 5 contain 35. The repeated addition is 5 + 5 + 5 + 5 + 5 + 5 + 5 = 35, so 7 × 5 = 35."
+        "strategy": "7 equal groups of 5 contain 35. The repeated addition is 5 + 5 + 5 + 5 + 5 + 5 + 5 = 35, so 7 × 5 = 35.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -1568,7 +1602,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 5, and the total is 40.",
         "repair": "Keep the 8 group mats. Fill one group at a time until each has exactly 5.",
-        "strategy": "8 equal groups of 5 contain 40. The repeated addition is 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 = 40, so 8 × 5 = 40."
+        "strategy": "8 equal groups of 5 contain 40. The repeated addition is 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 = 40, so 8 × 5 = 40.",
+        "misconception_check": "Check the unequal groups counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -1639,7 +1675,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 5, and the total is 45.",
         "repair": "Keep the 9 group mats. Fill one group at a time until each has exactly 5.",
-        "strategy": "9 equal groups of 5 contain 45. The repeated addition is 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 = 45, so 9 × 5 = 45."
+        "strategy": "9 equal groups of 5 contain 45. The repeated addition is 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 = 45, so 9 × 5 = 45.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -1710,7 +1748,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 5, and the total is 50.",
         "repair": "Keep the 10 group mats. Fill one group at a time until each has exactly 5.",
-        "strategy": "10 equal groups of 5 contain 50. The repeated addition is 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 = 50, so 10 × 5 = 50."
+        "strategy": "10 equal groups of 5 contain 50. The repeated addition is 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 = 50, so 10 × 5 = 50.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -1781,7 +1821,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 10, and the total is 20.",
         "repair": "Keep the 2 group mats. Fill one group at a time until each has exactly 10.",
-        "strategy": "2 equal groups of 10 contain 20. The repeated addition is 10 + 10 = 20, so 2 × 10 = 20."
+        "strategy": "2 equal groups of 10 contain 20. The repeated addition is 10 + 10 = 20, so 2 × 10 = 20.",
+        "misconception_check": "Check the unequal groups counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1852,7 +1894,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 10, and the total is 30.",
         "repair": "Keep the 3 group mats. Fill one group at a time until each has exactly 10.",
-        "strategy": "3 equal groups of 10 contain 30. The repeated addition is 10 + 10 + 10 = 30, so 3 × 10 = 30."
+        "strategy": "3 equal groups of 10 contain 30. The repeated addition is 10 + 10 + 10 = 30, so 3 × 10 = 30.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1923,7 +1967,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 10, and the total is 40.",
         "repair": "Keep the 4 group mats. Fill one group at a time until each has exactly 10.",
-        "strategy": "4 equal groups of 10 contain 40. The repeated addition is 10 + 10 + 10 + 10 = 40, so 4 × 10 = 40."
+        "strategy": "4 equal groups of 10 contain 40. The repeated addition is 10 + 10 + 10 + 10 = 40, so 4 × 10 = 40.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -1994,7 +2040,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 10, and the total is 50.",
         "repair": "Keep the 5 group mats. Fill one group at a time until each has exactly 10.",
-        "strategy": "5 equal groups of 10 contain 50. The repeated addition is 10 + 10 + 10 + 10 + 10 = 50, so 5 × 10 = 50."
+        "strategy": "5 equal groups of 10 contain 50. The repeated addition is 10 + 10 + 10 + 10 + 10 = 50, so 5 × 10 = 50.",
+        "misconception_check": "Check the unequal groups counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2065,7 +2113,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 10, and the total is 60.",
         "repair": "Keep the 6 group mats. Fill one group at a time until each has exactly 10.",
-        "strategy": "6 equal groups of 10 contain 60. The repeated addition is 10 + 10 + 10 + 10 + 10 + 10 = 60, so 6 × 10 = 60."
+        "strategy": "6 equal groups of 10 contain 60. The repeated addition is 10 + 10 + 10 + 10 + 10 + 10 = 60, so 6 × 10 = 60.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2136,7 +2186,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 10, and the total is 70.",
         "repair": "Keep the 7 group mats. Fill one group at a time until each has exactly 10.",
-        "strategy": "7 equal groups of 10 contain 70. The repeated addition is 10 + 10 + 10 + 10 + 10 + 10 + 10 = 70, so 7 × 10 = 70."
+        "strategy": "7 equal groups of 10 contain 70. The repeated addition is 10 + 10 + 10 + 10 + 10 + 10 + 10 = 70, so 7 × 10 = 70.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2207,7 +2259,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 10, and the total is 80.",
         "repair": "Keep the 8 group mats. Fill one group at a time until each has exactly 10.",
-        "strategy": "8 equal groups of 10 contain 80. The repeated addition is 10 + 10 + 10 + 10 + 10 + 10 + 10 + 10 = 80, so 8 × 10 = 80."
+        "strategy": "8 equal groups of 10 contain 80. The repeated addition is 10 + 10 + 10 + 10 + 10 + 10 + 10 + 10 = 80, so 8 × 10 = 80.",
+        "misconception_check": "Check the unequal groups counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -2278,7 +2332,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 10, and the total is 90.",
         "repair": "Keep the 9 group mats. Fill one group at a time until each has exactly 10.",
-        "strategy": "9 equal groups of 10 contain 90. The repeated addition is 10 + 10 + 10 + 10 + 10 + 10 + 10 + 10 + 10 = 90, so 9 × 10 = 90."
+        "strategy": "9 equal groups of 10 contain 90. The repeated addition is 10 + 10 + 10 + 10 + 10 + 10 + 10 + 10 + 10 = 90, so 9 × 10 = 90.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -2349,7 +2405,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 10, and the total is 100.",
         "repair": "Keep the 10 group mats. Fill one group at a time until each has exactly 10.",
-        "strategy": "10 equal groups of 10 contain 100. The repeated addition is 10 + 10 + 10 + 10 + 10 + 10 + 10 + 10 + 10 + 10 = 100, so 10 × 10 = 100."
+        "strategy": "10 equal groups of 10 contain 100. The repeated addition is 10 + 10 + 10 + 10 + 10 + 10 + 10 + 10 + 10 + 10 = 100, so 10 × 10 = 100.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -2420,7 +2478,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 2, and the total is 4.",
         "repair": "Keep the 2 group mats. Fill one group at a time until each has exactly 2.",
-        "strategy": "2 equal groups of 2 contain 4. The repeated addition is 2 + 2 = 4, so 2 × 2 = 4."
+        "strategy": "2 equal groups of 2 contain 4. The repeated addition is 2 + 2 = 4, so 2 × 2 = 4.",
+        "misconception_check": "Check the unequal groups counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2491,7 +2551,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 2, and the total is 6.",
         "repair": "Keep the 3 group mats. Fill one group at a time until each has exactly 2.",
-        "strategy": "3 equal groups of 2 contain 6. The repeated addition is 2 + 2 + 2 = 6, so 3 × 2 = 6."
+        "strategy": "3 equal groups of 2 contain 6. The repeated addition is 2 + 2 + 2 = 6, so 3 × 2 = 6.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2562,7 +2624,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 2, and the total is 8.",
         "repair": "Keep the 4 group mats. Fill one group at a time until each has exactly 2.",
-        "strategy": "4 equal groups of 2 contain 8. The repeated addition is 2 + 2 + 2 + 2 = 8, so 4 × 2 = 8."
+        "strategy": "4 equal groups of 2 contain 8. The repeated addition is 2 + 2 + 2 + 2 = 8, so 4 × 2 = 8.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2633,7 +2697,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 2, and the total is 10.",
         "repair": "Keep the 5 group mats. Fill one group at a time until each has exactly 2.",
-        "strategy": "5 equal groups of 2 contain 10. The repeated addition is 2 + 2 + 2 + 2 + 2 = 10, so 5 × 2 = 10."
+        "strategy": "5 equal groups of 2 contain 10. The repeated addition is 2 + 2 + 2 + 2 + 2 = 10, so 5 × 2 = 10.",
+        "misconception_check": "Check the unequal groups counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2704,7 +2770,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 2, and the total is 12.",
         "repair": "Keep the 6 group mats. Fill one group at a time until each has exactly 2.",
-        "strategy": "6 equal groups of 2 contain 12. The repeated addition is 2 + 2 + 2 + 2 + 2 + 2 = 12, so 6 × 2 = 12."
+        "strategy": "6 equal groups of 2 contain 12. The repeated addition is 2 + 2 + 2 + 2 + 2 + 2 = 12, so 6 × 2 = 12.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2775,7 +2843,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 2, and the total is 14.",
         "repair": "Keep the 7 group mats. Fill one group at a time until each has exactly 2.",
-        "strategy": "7 equal groups of 2 contain 14. The repeated addition is 2 + 2 + 2 + 2 + 2 + 2 + 2 = 14, so 7 × 2 = 14."
+        "strategy": "7 equal groups of 2 contain 14. The repeated addition is 2 + 2 + 2 + 2 + 2 + 2 + 2 = 14, so 7 × 2 = 14.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2846,7 +2916,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 2, and the total is 16.",
         "repair": "Keep the 8 group mats. Fill one group at a time until each has exactly 2.",
-        "strategy": "8 equal groups of 2 contain 16. The repeated addition is 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 = 16, so 8 × 2 = 16."
+        "strategy": "8 equal groups of 2 contain 16. The repeated addition is 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 = 16, so 8 × 2 = 16.",
+        "misconception_check": "Check the unequal groups counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -2917,7 +2989,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 2, and the total is 18.",
         "repair": "Keep the 9 group mats. Fill one group at a time until each has exactly 2.",
-        "strategy": "9 equal groups of 2 contain 18. The repeated addition is 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 = 18, so 9 × 2 = 18."
+        "strategy": "9 equal groups of 2 contain 18. The repeated addition is 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 = 18, so 9 × 2 = 18.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -2988,7 +3062,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 2, and the total is 20.",
         "repair": "Keep the 10 group mats. Fill one group at a time until each has exactly 2.",
-        "strategy": "10 equal groups of 2 contain 20. The repeated addition is 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 = 20, so 10 × 2 = 20."
+        "strategy": "10 equal groups of 2 contain 20. The repeated addition is 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 = 20, so 10 × 2 = 20.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -3059,7 +3135,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 5, and the total is 10.",
         "repair": "Keep the 2 group mats. Fill one group at a time until each has exactly 5.",
-        "strategy": "2 equal groups of 5 contain 10. The repeated addition is 5 + 5 = 10, so 2 × 5 = 10."
+        "strategy": "2 equal groups of 5 contain 10. The repeated addition is 5 + 5 = 10, so 2 × 5 = 10.",
+        "misconception_check": "Check the unequal groups counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -3130,7 +3208,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 5, and the total is 15.",
         "repair": "Keep the 3 group mats. Fill one group at a time until each has exactly 5.",
-        "strategy": "3 equal groups of 5 contain 15. The repeated addition is 5 + 5 + 5 = 15, so 3 × 5 = 15."
+        "strategy": "3 equal groups of 5 contain 15. The repeated addition is 5 + 5 + 5 = 15, so 3 × 5 = 15.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -3201,7 +3281,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 5, and the total is 20.",
         "repair": "Keep the 4 group mats. Fill one group at a time until each has exactly 5.",
-        "strategy": "4 equal groups of 5 contain 20. The repeated addition is 5 + 5 + 5 + 5 = 20, so 4 × 5 = 20."
+        "strategy": "4 equal groups of 5 contain 20. The repeated addition is 5 + 5 + 5 + 5 = 20, so 4 × 5 = 20.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3272,7 +3354,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 5, and the total is 25.",
         "repair": "Keep the 5 group mats. Fill one group at a time until each has exactly 5.",
-        "strategy": "5 equal groups of 5 contain 25. The repeated addition is 5 + 5 + 5 + 5 + 5 = 25, so 5 × 5 = 25."
+        "strategy": "5 equal groups of 5 contain 25. The repeated addition is 5 + 5 + 5 + 5 + 5 = 25, so 5 × 5 = 25.",
+        "misconception_check": "Check the unequal groups counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3343,7 +3427,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 5, and the total is 30.",
         "repair": "Keep the 6 group mats. Fill one group at a time until each has exactly 5.",
-        "strategy": "6 equal groups of 5 contain 30. The repeated addition is 5 + 5 + 5 + 5 + 5 + 5 = 30, so 6 × 5 = 30."
+        "strategy": "6 equal groups of 5 contain 30. The repeated addition is 5 + 5 + 5 + 5 + 5 + 5 = 30, so 6 × 5 = 30.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3414,7 +3500,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 5, and the total is 35.",
         "repair": "Keep the 7 group mats. Fill one group at a time until each has exactly 5.",
-        "strategy": "7 equal groups of 5 contain 35. The repeated addition is 5 + 5 + 5 + 5 + 5 + 5 + 5 = 35, so 7 × 5 = 35."
+        "strategy": "7 equal groups of 5 contain 35. The repeated addition is 5 + 5 + 5 + 5 + 5 + 5 + 5 = 35, so 7 × 5 = 35.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3485,7 +3573,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 5, and the total is 40.",
         "repair": "Keep the 8 group mats. Fill one group at a time until each has exactly 5.",
-        "strategy": "8 equal groups of 5 contain 40. The repeated addition is 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 = 40, so 8 × 5 = 40."
+        "strategy": "8 equal groups of 5 contain 40. The repeated addition is 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 = 40, so 8 × 5 = 40.",
+        "misconception_check": "Check the unequal groups counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -3556,7 +3646,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 5, and the total is 45.",
         "repair": "Keep the 9 group mats. Fill one group at a time until each has exactly 5.",
-        "strategy": "9 equal groups of 5 contain 45. The repeated addition is 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 = 45, so 9 × 5 = 45."
+        "strategy": "9 equal groups of 5 contain 45. The repeated addition is 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 = 45, so 9 × 5 = 45.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -3627,7 +3719,9 @@
       "feedback": {
         "correct": "Equal-group check complete: every group has 5, and the total is 50.",
         "repair": "Keep the 10 group mats. Fill one group at a time until each has exactly 5.",
-        "strategy": "10 equal groups of 5 contain 50. The repeated addition is 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 = 50, so 10 × 5 = 50."
+        "strategy": "10 equal groups of 5 contain 50. The repeated addition is 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 = 50, so 10 × 5 = 50.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -3705,7 +3799,9 @@
       "feedback": {
         "correct": "Array link found: 2 × 2 and 2 × 2 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "2 × 2 and 2 × 2 both equal 4. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "2 × 2 and 2 × 2 both equal 4. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the array turn changes total idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3783,7 +3879,9 @@
       "feedback": {
         "correct": "Array link found: 3 × 2 and 2 × 3 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "3 × 2 and 2 × 3 both equal 6. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "3 × 2 and 2 × 3 both equal 6. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the commutativity applied to division idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3861,7 +3959,9 @@
       "feedback": {
         "correct": "Array link found: 4 × 2 and 2 × 4 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "4 × 2 and 2 × 4 both equal 8. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "4 × 2 and 2 × 4 both equal 8. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the commutativity applied to division idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3939,7 +4039,9 @@
       "feedback": {
         "correct": "Array link found: 5 × 2 and 2 × 5 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "5 × 2 and 2 × 5 both equal 10. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "5 × 2 and 2 × 5 both equal 10. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the array turn changes total idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -4017,7 +4119,9 @@
       "feedback": {
         "correct": "Array link found: 6 × 2 and 2 × 6 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "6 × 2 and 2 × 6 both equal 12. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "6 × 2 and 2 × 6 both equal 12. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the commutativity applied to division idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -4095,7 +4199,9 @@
       "feedback": {
         "correct": "Array link found: 7 × 2 and 2 × 7 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "7 × 2 and 2 × 7 both equal 14. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "7 × 2 and 2 × 7 both equal 14. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the commutativity applied to division idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -4173,7 +4279,9 @@
       "feedback": {
         "correct": "Array link found: 8 × 2 and 2 × 8 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "8 × 2 and 2 × 8 both equal 16. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "8 × 2 and 2 × 8 both equal 16. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the array turn changes total idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -4251,7 +4359,9 @@
       "feedback": {
         "correct": "Array link found: 9 × 2 and 2 × 9 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "9 × 2 and 2 × 9 both equal 18. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "9 × 2 and 2 × 9 both equal 18. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the commutativity applied to division idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -4329,7 +4439,9 @@
       "feedback": {
         "correct": "Array link found: 10 × 2 and 2 × 10 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "10 × 2 and 2 × 10 both equal 20. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "10 × 2 and 2 × 10 both equal 20. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the commutativity applied to division idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -4407,7 +4519,9 @@
       "feedback": {
         "correct": "Array link found: 2 × 5 and 5 × 2 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "2 × 5 and 5 × 2 both equal 10. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "2 × 5 and 5 × 2 both equal 10. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the array turn changes total idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4485,7 +4599,9 @@
       "feedback": {
         "correct": "Array link found: 3 × 5 and 5 × 3 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "3 × 5 and 5 × 3 both equal 15. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "3 × 5 and 5 × 3 both equal 15. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the commutativity applied to division idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4563,7 +4679,9 @@
       "feedback": {
         "correct": "Array link found: 4 × 5 and 5 × 4 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "4 × 5 and 5 × 4 both equal 20. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "4 × 5 and 5 × 4 both equal 20. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the commutativity applied to division idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4641,7 +4759,9 @@
       "feedback": {
         "correct": "Array link found: 5 × 5 and 5 × 5 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "5 × 5 and 5 × 5 both equal 25. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "5 × 5 and 5 × 5 both equal 25. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the array turn changes total idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -4719,7 +4839,9 @@
       "feedback": {
         "correct": "Array link found: 6 × 5 and 5 × 6 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "6 × 5 and 5 × 6 both equal 30. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "6 × 5 and 5 × 6 both equal 30. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the commutativity applied to division idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -4797,7 +4919,9 @@
       "feedback": {
         "correct": "Array link found: 7 × 5 and 5 × 7 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "7 × 5 and 5 × 7 both equal 35. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "7 × 5 and 5 × 7 both equal 35. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the commutativity applied to division idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -4875,7 +4999,9 @@
       "feedback": {
         "correct": "Array link found: 8 × 5 and 5 × 8 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "8 × 5 and 5 × 8 both equal 40. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "8 × 5 and 5 × 8 both equal 40. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the array turn changes total idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -4953,7 +5079,9 @@
       "feedback": {
         "correct": "Array link found: 9 × 5 and 5 × 9 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "9 × 5 and 5 × 9 both equal 45. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "9 × 5 and 5 × 9 both equal 45. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the commutativity applied to division idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5031,7 +5159,9 @@
       "feedback": {
         "correct": "Array link found: 10 × 5 and 5 × 10 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "10 × 5 and 5 × 10 both equal 50. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "10 × 5 and 5 × 10 both equal 50. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the commutativity applied to division idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -5109,7 +5239,9 @@
       "feedback": {
         "correct": "Array link found: 2 × 10 and 10 × 2 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "2 × 10 and 10 × 2 both equal 20. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "2 × 10 and 10 × 2 both equal 20. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the array turn changes total idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5187,7 +5319,9 @@
       "feedback": {
         "correct": "Array link found: 3 × 10 and 10 × 3 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "3 × 10 and 10 × 3 both equal 30. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "3 × 10 and 10 × 3 both equal 30. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the commutativity applied to division idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5265,7 +5399,9 @@
       "feedback": {
         "correct": "Array link found: 4 × 10 and 10 × 4 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "4 × 10 and 10 × 4 both equal 40. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "4 × 10 and 10 × 4 both equal 40. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the commutativity applied to division idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5343,7 +5479,9 @@
       "feedback": {
         "correct": "Array link found: 5 × 10 and 10 × 5 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "5 × 10 and 10 × 5 both equal 50. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "5 × 10 and 10 × 5 both equal 50. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the array turn changes total idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5421,7 +5559,9 @@
       "feedback": {
         "correct": "Array link found: 6 × 10 and 10 × 6 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "6 × 10 and 10 × 6 both equal 60. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "6 × 10 and 10 × 6 both equal 60. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the commutativity applied to division idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5499,7 +5639,9 @@
       "feedback": {
         "correct": "Array link found: 7 × 10 and 10 × 7 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "7 × 10 and 10 × 7 both equal 70. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "7 × 10 and 10 × 7 both equal 70. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the commutativity applied to division idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5577,7 +5719,9 @@
       "feedback": {
         "correct": "Array link found: 8 × 10 and 10 × 8 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "8 × 10 and 10 × 8 both equal 80. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "8 × 10 and 10 × 8 both equal 80. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the array turn changes total idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5655,7 +5799,9 @@
       "feedback": {
         "correct": "Array link found: 9 × 10 and 10 × 9 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "9 × 10 and 10 × 9 both equal 90. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "9 × 10 and 10 × 9 both equal 90. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the commutativity applied to division idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5733,7 +5879,9 @@
       "feedback": {
         "correct": "Array link found: 10 × 10 and 10 × 10 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "10 × 10 and 10 × 10 both equal 100. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "10 × 10 and 10 × 10 both equal 100. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the commutativity applied to division idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -5811,7 +5959,9 @@
       "feedback": {
         "correct": "Array link found: 2 × 2 and 2 × 2 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "2 × 2 and 2 × 2 both equal 4. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "2 × 2 and 2 × 2 both equal 4. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the array turn changes total idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5889,7 +6039,9 @@
       "feedback": {
         "correct": "Array link found: 3 × 2 and 2 × 3 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "3 × 2 and 2 × 3 both equal 6. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "3 × 2 and 2 × 3 both equal 6. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the commutativity applied to division idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5967,7 +6119,9 @@
       "feedback": {
         "correct": "Array link found: 4 × 2 and 2 × 4 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "4 × 2 and 2 × 4 both equal 8. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "4 × 2 and 2 × 4 both equal 8. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the commutativity applied to division idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -6045,7 +6199,9 @@
       "feedback": {
         "correct": "Array link found: 5 × 2 and 2 × 5 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "5 × 2 and 2 × 5 both equal 10. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "5 × 2 and 2 × 5 both equal 10. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the array turn changes total idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6123,7 +6279,9 @@
       "feedback": {
         "correct": "Array link found: 6 × 2 and 2 × 6 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "6 × 2 and 2 × 6 both equal 12. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "6 × 2 and 2 × 6 both equal 12. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the commutativity applied to division idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6201,7 +6359,9 @@
       "feedback": {
         "correct": "Array link found: 7 × 2 and 2 × 7 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "7 × 2 and 2 × 7 both equal 14. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "7 × 2 and 2 × 7 both equal 14. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the commutativity applied to division idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6279,7 +6439,9 @@
       "feedback": {
         "correct": "Array link found: 8 × 2 and 2 × 8 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "8 × 2 and 2 × 8 both equal 16. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "8 × 2 and 2 × 8 both equal 16. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the array turn changes total idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6357,7 +6519,9 @@
       "feedback": {
         "correct": "Array link found: 9 × 2 and 2 × 9 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "9 × 2 and 2 × 9 both equal 18. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "9 × 2 and 2 × 9 both equal 18. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the commutativity applied to division idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6435,7 +6599,9 @@
       "feedback": {
         "correct": "Array link found: 10 × 2 and 2 × 10 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "10 × 2 and 2 × 10 both equal 20. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "10 × 2 and 2 × 10 both equal 20. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the commutativity applied to division idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -6513,7 +6679,9 @@
       "feedback": {
         "correct": "Array link found: 2 × 5 and 5 × 2 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "2 × 5 and 5 × 2 both equal 10. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "2 × 5 and 5 × 2 both equal 10. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the array turn changes total idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -6591,7 +6759,9 @@
       "feedback": {
         "correct": "Array link found: 3 × 5 and 5 × 3 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "3 × 5 and 5 × 3 both equal 15. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "3 × 5 and 5 × 3 both equal 15. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the commutativity applied to division idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -6669,7 +6839,9 @@
       "feedback": {
         "correct": "Array link found: 4 × 5 and 5 × 4 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "4 × 5 and 5 × 4 both equal 20. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "4 × 5 and 5 × 4 both equal 20. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the commutativity applied to division idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -6747,7 +6919,9 @@
       "feedback": {
         "correct": "Array link found: 5 × 5 and 5 × 5 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "5 × 5 and 5 × 5 both equal 25. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "5 × 5 and 5 × 5 both equal 25. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the array turn changes total idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6825,7 +6999,9 @@
       "feedback": {
         "correct": "Array link found: 6 × 5 and 5 × 6 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "6 × 5 and 5 × 6 both equal 30. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "6 × 5 and 5 × 6 both equal 30. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the commutativity applied to division idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6903,7 +7079,9 @@
       "feedback": {
         "correct": "Array link found: 7 × 5 and 5 × 7 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "7 × 5 and 5 × 7 both equal 35. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "7 × 5 and 5 × 7 both equal 35. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the commutativity applied to division idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6981,7 +7159,9 @@
       "feedback": {
         "correct": "Array link found: 8 × 5 and 5 × 8 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "8 × 5 and 5 × 8 both equal 40. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "8 × 5 and 5 × 8 both equal 40. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the array turn changes total idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7059,7 +7239,9 @@
       "feedback": {
         "correct": "Array link found: 9 × 5 and 5 × 9 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "9 × 5 and 5 × 9 both equal 45. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "9 × 5 and 5 × 9 both equal 45. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the commutativity applied to division idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7137,7 +7319,9 @@
       "feedback": {
         "correct": "Array link found: 10 × 5 and 5 × 10 have the same total.",
         "repair": "Trace one row, then one column. After the turn those labels swap, but no dots are added or removed.",
-        "strategy": "10 × 5 and 5 × 10 both equal 50. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division."
+        "strategy": "10 × 5 and 5 × 10 both equal 50. Turning an array changes its view, not its number of dots. This commutative rule is for multiplication, not division.",
+        "misconception_check": "Check the commutativity applied to division idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -7191,7 +7375,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 2 × 2 = 4 all show 4.",
         "repair": "Point to each whole group while saying 2; do not add only the labels 2 and 2.",
-        "strategy": "2 groups of 2 means 2 + 2 = 4 = 4, so the matching statement is 2 × 2 = 4. Adding the two factors would describe a different calculation."
+        "strategy": "2 groups of 2 means 2 + 2 = 4 = 4, so the matching statement is 2 × 2 = 4. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7245,7 +7431,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 3 × 2 = 6 all show 6.",
         "repair": "Point to each whole group while saying 2; do not add only the labels 3 and 2.",
-        "strategy": "3 groups of 2 means 2 + 2 + 2 = 6 = 6, so the matching statement is 3 × 2 = 6. Adding the two factors would describe a different calculation."
+        "strategy": "3 groups of 2 means 2 + 2 + 2 = 6 = 6, so the matching statement is 3 × 2 = 6. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the repeated addition mismatch idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7299,7 +7487,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 4 × 2 = 8 all show 8.",
         "repair": "Point to each whole group while saying 2; do not add only the labels 4 and 2.",
-        "strategy": "4 groups of 2 means 2 + 2 + 2 + 2 = 8 = 8, so the matching statement is 4 × 2 = 8. Adding the two factors would describe a different calculation."
+        "strategy": "4 groups of 2 means 2 + 2 + 2 + 2 = 8 = 8, so the matching statement is 4 × 2 = 8. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7353,7 +7543,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 5 × 2 = 10 all show 10.",
         "repair": "Point to each whole group while saying 2; do not add only the labels 5 and 2.",
-        "strategy": "5 groups of 2 means 2 + 2 + 2 + 2 + 2 = 10 = 10, so the matching statement is 5 × 2 = 10. Adding the two factors would describe a different calculation."
+        "strategy": "5 groups of 2 means 2 + 2 + 2 + 2 + 2 = 10 = 10, so the matching statement is 5 × 2 = 10. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the repeated addition mismatch idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7407,7 +7599,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 6 × 2 = 12 all show 12.",
         "repair": "Point to each whole group while saying 2; do not add only the labels 6 and 2.",
-        "strategy": "6 groups of 2 means 2 + 2 + 2 + 2 + 2 + 2 = 12 = 12, so the matching statement is 6 × 2 = 12. Adding the two factors would describe a different calculation."
+        "strategy": "6 groups of 2 means 2 + 2 + 2 + 2 + 2 + 2 = 12 = 12, so the matching statement is 6 × 2 = 12. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -7461,7 +7655,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 7 × 2 = 14 all show 14.",
         "repair": "Point to each whole group while saying 2; do not add only the labels 7 and 2.",
-        "strategy": "7 groups of 2 means 2 + 2 + 2 + 2 + 2 + 2 + 2 = 14 = 14, so the matching statement is 7 × 2 = 14. Adding the two factors would describe a different calculation."
+        "strategy": "7 groups of 2 means 2 + 2 + 2 + 2 + 2 + 2 + 2 = 14 = 14, so the matching statement is 7 × 2 = 14. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the repeated addition mismatch idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -7515,7 +7711,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 8 × 2 = 16 all show 16.",
         "repair": "Point to each whole group while saying 2; do not add only the labels 8 and 2.",
-        "strategy": "8 groups of 2 means 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 = 16 = 16, so the matching statement is 8 × 2 = 16. Adding the two factors would describe a different calculation."
+        "strategy": "8 groups of 2 means 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 = 16 = 16, so the matching statement is 8 × 2 = 16. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -7569,7 +7767,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 9 × 2 = 18 all show 18.",
         "repair": "Point to each whole group while saying 2; do not add only the labels 9 and 2.",
-        "strategy": "9 groups of 2 means 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 = 18 = 18, so the matching statement is 9 × 2 = 18. Adding the two factors would describe a different calculation."
+        "strategy": "9 groups of 2 means 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 = 18 = 18, so the matching statement is 9 × 2 = 18. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the repeated addition mismatch idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -7623,7 +7823,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 10 × 2 = 20 all show 20.",
         "repair": "Point to each whole group while saying 2; do not add only the labels 10 and 2.",
-        "strategy": "10 groups of 2 means 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 = 20 = 20, so the matching statement is 10 × 2 = 20. Adding the two factors would describe a different calculation."
+        "strategy": "10 groups of 2 means 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 = 20 = 20, so the matching statement is 10 × 2 = 20. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -7677,7 +7879,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 2 × 5 = 10 all show 10.",
         "repair": "Point to each whole group while saying 5; do not add only the labels 2 and 5.",
-        "strategy": "2 groups of 5 means 5 + 5 = 10 = 10, so the matching statement is 2 × 5 = 10. Adding the two factors would describe a different calculation."
+        "strategy": "2 groups of 5 means 5 + 5 = 10 = 10, so the matching statement is 2 × 5 = 10. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the repeated addition mismatch idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7731,7 +7935,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 3 × 5 = 15 all show 15.",
         "repair": "Point to each whole group while saying 5; do not add only the labels 3 and 5.",
-        "strategy": "3 groups of 5 means 5 + 5 + 5 = 15 = 15, so the matching statement is 3 × 5 = 15. Adding the two factors would describe a different calculation."
+        "strategy": "3 groups of 5 means 5 + 5 + 5 = 15 = 15, so the matching statement is 3 × 5 = 15. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7785,7 +7991,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 4 × 5 = 20 all show 20.",
         "repair": "Point to each whole group while saying 5; do not add only the labels 4 and 5.",
-        "strategy": "4 groups of 5 means 5 + 5 + 5 + 5 = 20 = 20, so the matching statement is 4 × 5 = 20. Adding the two factors would describe a different calculation."
+        "strategy": "4 groups of 5 means 5 + 5 + 5 + 5 = 20 = 20, so the matching statement is 4 × 5 = 20. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the repeated addition mismatch idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7839,7 +8047,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 5 × 5 = 25 all show 25.",
         "repair": "Point to each whole group while saying 5; do not add only the labels 5 and 5.",
-        "strategy": "5 groups of 5 means 5 + 5 + 5 + 5 + 5 = 25 = 25, so the matching statement is 5 × 5 = 25. Adding the two factors would describe a different calculation."
+        "strategy": "5 groups of 5 means 5 + 5 + 5 + 5 + 5 = 25 = 25, so the matching statement is 5 × 5 = 25. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7893,7 +8103,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 6 × 5 = 30 all show 30.",
         "repair": "Point to each whole group while saying 5; do not add only the labels 6 and 5.",
-        "strategy": "6 groups of 5 means 5 + 5 + 5 + 5 + 5 + 5 = 30 = 30, so the matching statement is 6 × 5 = 30. Adding the two factors would describe a different calculation."
+        "strategy": "6 groups of 5 means 5 + 5 + 5 + 5 + 5 + 5 = 30 = 30, so the matching statement is 6 × 5 = 30. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the repeated addition mismatch idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -7947,7 +8159,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 7 × 5 = 35 all show 35.",
         "repair": "Point to each whole group while saying 5; do not add only the labels 7 and 5.",
-        "strategy": "7 groups of 5 means 5 + 5 + 5 + 5 + 5 + 5 + 5 = 35 = 35, so the matching statement is 7 × 5 = 35. Adding the two factors would describe a different calculation."
+        "strategy": "7 groups of 5 means 5 + 5 + 5 + 5 + 5 + 5 + 5 = 35 = 35, so the matching statement is 7 × 5 = 35. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -8001,7 +8215,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 8 × 5 = 40 all show 40.",
         "repair": "Point to each whole group while saying 5; do not add only the labels 8 and 5.",
-        "strategy": "8 groups of 5 means 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 = 40 = 40, so the matching statement is 8 × 5 = 40. Adding the two factors would describe a different calculation."
+        "strategy": "8 groups of 5 means 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 = 40 = 40, so the matching statement is 8 × 5 = 40. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the repeated addition mismatch idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -8055,7 +8271,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 9 × 5 = 45 all show 45.",
         "repair": "Point to each whole group while saying 5; do not add only the labels 9 and 5.",
-        "strategy": "9 groups of 5 means 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 = 45 = 45, so the matching statement is 9 × 5 = 45. Adding the two factors would describe a different calculation."
+        "strategy": "9 groups of 5 means 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 = 45 = 45, so the matching statement is 9 × 5 = 45. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -8109,7 +8327,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 10 × 5 = 50 all show 50.",
         "repair": "Point to each whole group while saying 5; do not add only the labels 10 and 5.",
-        "strategy": "10 groups of 5 means 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 = 50 = 50, so the matching statement is 10 × 5 = 50. Adding the two factors would describe a different calculation."
+        "strategy": "10 groups of 5 means 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 = 50 = 50, so the matching statement is 10 × 5 = 50. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the repeated addition mismatch idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -8163,7 +8383,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 2 × 10 = 20 all show 20.",
         "repair": "Point to each whole group while saying 10; do not add only the labels 2 and 10.",
-        "strategy": "2 groups of 10 means 10 + 10 = 20 = 20, so the matching statement is 2 × 10 = 20. Adding the two factors would describe a different calculation."
+        "strategy": "2 groups of 10 means 10 + 10 = 20 = 20, so the matching statement is 2 × 10 = 20. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8217,7 +8439,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 3 × 10 = 30 all show 30.",
         "repair": "Point to each whole group while saying 10; do not add only the labels 3 and 10.",
-        "strategy": "3 groups of 10 means 10 + 10 + 10 = 30 = 30, so the matching statement is 3 × 10 = 30. Adding the two factors would describe a different calculation."
+        "strategy": "3 groups of 10 means 10 + 10 + 10 = 30 = 30, so the matching statement is 3 × 10 = 30. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the repeated addition mismatch idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8271,7 +8495,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 4 × 10 = 40 all show 40.",
         "repair": "Point to each whole group while saying 10; do not add only the labels 4 and 10.",
-        "strategy": "4 groups of 10 means 10 + 10 + 10 + 10 = 40 = 40, so the matching statement is 4 × 10 = 40. Adding the two factors would describe a different calculation."
+        "strategy": "4 groups of 10 means 10 + 10 + 10 + 10 = 40 = 40, so the matching statement is 4 × 10 = 40. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8325,7 +8551,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 5 × 10 = 50 all show 50.",
         "repair": "Point to each whole group while saying 10; do not add only the labels 5 and 10.",
-        "strategy": "5 groups of 10 means 10 + 10 + 10 + 10 + 10 = 50 = 50, so the matching statement is 5 × 10 = 50. Adding the two factors would describe a different calculation."
+        "strategy": "5 groups of 10 means 10 + 10 + 10 + 10 + 10 = 50 = 50, so the matching statement is 5 × 10 = 50. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the repeated addition mismatch idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8379,7 +8607,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 6 × 10 = 60 all show 60.",
         "repair": "Point to each whole group while saying 10; do not add only the labels 6 and 10.",
-        "strategy": "6 groups of 10 means 10 + 10 + 10 + 10 + 10 + 10 = 60 = 60, so the matching statement is 6 × 10 = 60. Adding the two factors would describe a different calculation."
+        "strategy": "6 groups of 10 means 10 + 10 + 10 + 10 + 10 + 10 = 60 = 60, so the matching statement is 6 × 10 = 60. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -8433,7 +8663,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 7 × 10 = 70 all show 70.",
         "repair": "Point to each whole group while saying 10; do not add only the labels 7 and 10.",
-        "strategy": "7 groups of 10 means 10 + 10 + 10 + 10 + 10 + 10 + 10 = 70 = 70, so the matching statement is 7 × 10 = 70. Adding the two factors would describe a different calculation."
+        "strategy": "7 groups of 10 means 10 + 10 + 10 + 10 + 10 + 10 + 10 = 70 = 70, so the matching statement is 7 × 10 = 70. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the repeated addition mismatch idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -8487,7 +8719,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 8 × 10 = 80 all show 80.",
         "repair": "Point to each whole group while saying 10; do not add only the labels 8 and 10.",
-        "strategy": "8 groups of 10 means 10 + 10 + 10 + 10 + 10 + 10 + 10 + 10 = 80 = 80, so the matching statement is 8 × 10 = 80. Adding the two factors would describe a different calculation."
+        "strategy": "8 groups of 10 means 10 + 10 + 10 + 10 + 10 + 10 + 10 + 10 = 80 = 80, so the matching statement is 8 × 10 = 80. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -8541,7 +8775,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 9 × 10 = 90 all show 90.",
         "repair": "Point to each whole group while saying 10; do not add only the labels 9 and 10.",
-        "strategy": "9 groups of 10 means 10 + 10 + 10 + 10 + 10 + 10 + 10 + 10 + 10 = 90 = 90, so the matching statement is 9 × 10 = 90. Adding the two factors would describe a different calculation."
+        "strategy": "9 groups of 10 means 10 + 10 + 10 + 10 + 10 + 10 + 10 + 10 + 10 = 90 = 90, so the matching statement is 9 × 10 = 90. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the repeated addition mismatch idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -8595,7 +8831,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 10 × 10 = 100 all show 100.",
         "repair": "Point to each whole group while saying 10; do not add only the labels 10 and 10.",
-        "strategy": "10 groups of 10 means 10 + 10 + 10 + 10 + 10 + 10 + 10 + 10 + 10 + 10 = 100 = 100, so the matching statement is 10 × 10 = 100. Adding the two factors would describe a different calculation."
+        "strategy": "10 groups of 10 means 10 + 10 + 10 + 10 + 10 + 10 + 10 + 10 + 10 + 10 = 100 = 100, so the matching statement is 10 × 10 = 100. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -8649,7 +8887,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 2 × 2 = 4 all show 4.",
         "repair": "Point to each whole group while saying 2; do not add only the labels 2 and 2.",
-        "strategy": "2 groups of 2 means 2 + 2 = 4 = 4, so the matching statement is 2 × 2 = 4. Adding the two factors would describe a different calculation."
+        "strategy": "2 groups of 2 means 2 + 2 = 4 = 4, so the matching statement is 2 × 2 = 4. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the repeated addition mismatch idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8703,7 +8943,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 3 × 2 = 6 all show 6.",
         "repair": "Point to each whole group while saying 2; do not add only the labels 3 and 2.",
-        "strategy": "3 groups of 2 means 2 + 2 + 2 = 6 = 6, so the matching statement is 3 × 2 = 6. Adding the two factors would describe a different calculation."
+        "strategy": "3 groups of 2 means 2 + 2 + 2 = 6 = 6, so the matching statement is 3 × 2 = 6. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8757,7 +8999,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 4 × 2 = 8 all show 8.",
         "repair": "Point to each whole group while saying 2; do not add only the labels 4 and 2.",
-        "strategy": "4 groups of 2 means 2 + 2 + 2 + 2 = 8 = 8, so the matching statement is 4 × 2 = 8. Adding the two factors would describe a different calculation."
+        "strategy": "4 groups of 2 means 2 + 2 + 2 + 2 = 8 = 8, so the matching statement is 4 × 2 = 8. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the repeated addition mismatch idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8811,7 +9055,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 5 × 2 = 10 all show 10.",
         "repair": "Point to each whole group while saying 2; do not add only the labels 5 and 2.",
-        "strategy": "5 groups of 2 means 2 + 2 + 2 + 2 + 2 = 10 = 10, so the matching statement is 5 × 2 = 10. Adding the two factors would describe a different calculation."
+        "strategy": "5 groups of 2 means 2 + 2 + 2 + 2 + 2 = 10 = 10, so the matching statement is 5 × 2 = 10. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8865,7 +9111,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 6 × 2 = 12 all show 12.",
         "repair": "Point to each whole group while saying 2; do not add only the labels 6 and 2.",
-        "strategy": "6 groups of 2 means 2 + 2 + 2 + 2 + 2 + 2 = 12 = 12, so the matching statement is 6 × 2 = 12. Adding the two factors would describe a different calculation."
+        "strategy": "6 groups of 2 means 2 + 2 + 2 + 2 + 2 + 2 = 12 = 12, so the matching statement is 6 × 2 = 12. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the repeated addition mismatch idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -8919,7 +9167,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 7 × 2 = 14 all show 14.",
         "repair": "Point to each whole group while saying 2; do not add only the labels 7 and 2.",
-        "strategy": "7 groups of 2 means 2 + 2 + 2 + 2 + 2 + 2 + 2 = 14 = 14, so the matching statement is 7 × 2 = 14. Adding the two factors would describe a different calculation."
+        "strategy": "7 groups of 2 means 2 + 2 + 2 + 2 + 2 + 2 + 2 = 14 = 14, so the matching statement is 7 × 2 = 14. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -8973,7 +9223,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 8 × 2 = 16 all show 16.",
         "repair": "Point to each whole group while saying 2; do not add only the labels 8 and 2.",
-        "strategy": "8 groups of 2 means 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 = 16 = 16, so the matching statement is 8 × 2 = 16. Adding the two factors would describe a different calculation."
+        "strategy": "8 groups of 2 means 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 = 16 = 16, so the matching statement is 8 × 2 = 16. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the repeated addition mismatch idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -9027,7 +9279,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 9 × 2 = 18 all show 18.",
         "repair": "Point to each whole group while saying 2; do not add only the labels 9 and 2.",
-        "strategy": "9 groups of 2 means 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 = 18 = 18, so the matching statement is 9 × 2 = 18. Adding the two factors would describe a different calculation."
+        "strategy": "9 groups of 2 means 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 = 18 = 18, so the matching statement is 9 × 2 = 18. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -9081,7 +9335,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 10 × 2 = 20 all show 20.",
         "repair": "Point to each whole group while saying 2; do not add only the labels 10 and 2.",
-        "strategy": "10 groups of 2 means 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 = 20 = 20, so the matching statement is 10 × 2 = 20. Adding the two factors would describe a different calculation."
+        "strategy": "10 groups of 2 means 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 = 20 = 20, so the matching statement is 10 × 2 = 20. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the repeated addition mismatch idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -9135,7 +9391,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 2 × 5 = 10 all show 10.",
         "repair": "Point to each whole group while saying 5; do not add only the labels 2 and 5.",
-        "strategy": "2 groups of 5 means 5 + 5 = 10 = 10, so the matching statement is 2 × 5 = 10. Adding the two factors would describe a different calculation."
+        "strategy": "2 groups of 5 means 5 + 5 = 10 = 10, so the matching statement is 2 × 5 = 10. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -9189,7 +9447,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 3 × 5 = 15 all show 15.",
         "repair": "Point to each whole group while saying 5; do not add only the labels 3 and 5.",
-        "strategy": "3 groups of 5 means 5 + 5 + 5 = 15 = 15, so the matching statement is 3 × 5 = 15. Adding the two factors would describe a different calculation."
+        "strategy": "3 groups of 5 means 5 + 5 + 5 = 15 = 15, so the matching statement is 3 × 5 = 15. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the repeated addition mismatch idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -9243,7 +9503,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 4 × 5 = 20 all show 20.",
         "repair": "Point to each whole group while saying 5; do not add only the labels 4 and 5.",
-        "strategy": "4 groups of 5 means 5 + 5 + 5 + 5 = 20 = 20, so the matching statement is 4 × 5 = 20. Adding the two factors would describe a different calculation."
+        "strategy": "4 groups of 5 means 5 + 5 + 5 + 5 = 20 = 20, so the matching statement is 4 × 5 = 20. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -9297,7 +9559,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 5 × 5 = 25 all show 25.",
         "repair": "Point to each whole group while saying 5; do not add only the labels 5 and 5.",
-        "strategy": "5 groups of 5 means 5 + 5 + 5 + 5 + 5 = 25 = 25, so the matching statement is 5 × 5 = 25. Adding the two factors would describe a different calculation."
+        "strategy": "5 groups of 5 means 5 + 5 + 5 + 5 + 5 = 25 = 25, so the matching statement is 5 × 5 = 25. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the repeated addition mismatch idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -9351,7 +9615,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 6 × 5 = 30 all show 30.",
         "repair": "Point to each whole group while saying 5; do not add only the labels 6 and 5.",
-        "strategy": "6 groups of 5 means 5 + 5 + 5 + 5 + 5 + 5 = 30 = 30, so the matching statement is 6 × 5 = 30. Adding the two factors would describe a different calculation."
+        "strategy": "6 groups of 5 means 5 + 5 + 5 + 5 + 5 + 5 = 30 = 30, so the matching statement is 6 × 5 = 30. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -9405,7 +9671,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 7 × 5 = 35 all show 35.",
         "repair": "Point to each whole group while saying 5; do not add only the labels 7 and 5.",
-        "strategy": "7 groups of 5 means 5 + 5 + 5 + 5 + 5 + 5 + 5 = 35 = 35, so the matching statement is 7 × 5 = 35. Adding the two factors would describe a different calculation."
+        "strategy": "7 groups of 5 means 5 + 5 + 5 + 5 + 5 + 5 + 5 = 35 = 35, so the matching statement is 7 × 5 = 35. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the repeated addition mismatch idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -9459,7 +9727,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 8 × 5 = 40 all show 40.",
         "repair": "Point to each whole group while saying 5; do not add only the labels 8 and 5.",
-        "strategy": "8 groups of 5 means 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 = 40 = 40, so the matching statement is 8 × 5 = 40. Adding the two factors would describe a different calculation."
+        "strategy": "8 groups of 5 means 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 = 40 = 40, so the matching statement is 8 × 5 = 40. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -9513,7 +9783,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 9 × 5 = 45 all show 45.",
         "repair": "Point to each whole group while saying 5; do not add only the labels 9 and 5.",
-        "strategy": "9 groups of 5 means 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 = 45 = 45, so the matching statement is 9 × 5 = 45. Adding the two factors would describe a different calculation."
+        "strategy": "9 groups of 5 means 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 = 45 = 45, so the matching statement is 9 × 5 = 45. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the repeated addition mismatch idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -9567,7 +9839,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 10 × 5 = 50 all show 50.",
         "repair": "Point to each whole group while saying 5; do not add only the labels 10 and 5.",
-        "strategy": "10 groups of 5 means 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 = 50 = 50, so the matching statement is 10 × 5 = 50. Adding the two factors would describe a different calculation."
+        "strategy": "10 groups of 5 means 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 = 50 = 50, so the matching statement is 10 × 5 = 50. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -9621,7 +9895,9 @@
       "feedback": {
         "correct": "Representation matched: groups, repeated addition and 2 × 10 = 20 all show 20.",
         "repair": "Point to each whole group while saying 10; do not add only the labels 2 and 10.",
-        "strategy": "2 groups of 10 means 10 + 10 = 20 = 20, so the matching statement is 2 × 10 = 20. Adding the two factors would describe a different calculation."
+        "strategy": "2 groups of 10 means 10 + 10 = 20 = 20, so the matching statement is 2 × 10 = 20. Adding the two factors would describe a different calculation.",
+        "misconception_check": "Check the repeated addition mismatch idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -9693,7 +9969,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 10 using 5 × 2.",
         "repair": "The number of trays is known. Deal equally, then count what is in one tray.",
-        "strategy": "10 shared into 5 equal groups gives 2 in each. Check: 5 × 2 = 10."
+        "strategy": "10 shared into 5 equal groups gives 2 in each. Check: 5 × 2 = 10.",
+        "misconception_check": "Check the division role reversal idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -9765,7 +10043,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 12 using 6 × 2.",
         "repair": "The group size is known. Ring sets of 2, then count the rings.",
-        "strategy": "12 arranged in groups of 2 makes 6 groups. Check: 6 × 2 = 12."
+        "strategy": "12 arranged in groups of 2 makes 6 groups. Check: 6 × 2 = 12.",
+        "misconception_check": "Check the groups confused with group size idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -9837,7 +10117,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 14 using 7 × 2.",
         "repair": "The number of trays is known. Deal equally, then count what is in one tray.",
-        "strategy": "14 shared into 7 equal groups gives 2 in each. Check: 7 × 2 = 14."
+        "strategy": "14 shared into 7 equal groups gives 2 in each. Check: 7 × 2 = 14.",
+        "misconception_check": "Check the division role reversal idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -9909,7 +10191,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 16 using 8 × 2.",
         "repair": "The group size is known. Ring sets of 2, then count the rings.",
-        "strategy": "16 arranged in groups of 2 makes 8 groups. Check: 8 × 2 = 16."
+        "strategy": "16 arranged in groups of 2 makes 8 groups. Check: 8 × 2 = 16.",
+        "misconception_check": "Check the groups confused with group size idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -9981,7 +10265,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 18 using 9 × 2.",
         "repair": "The number of trays is known. Deal equally, then count what is in one tray.",
-        "strategy": "18 shared into 9 equal groups gives 2 in each. Check: 9 × 2 = 18."
+        "strategy": "18 shared into 9 equal groups gives 2 in each. Check: 9 × 2 = 18.",
+        "misconception_check": "Check the division role reversal idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10053,7 +10339,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 20 using 10 × 2.",
         "repair": "The group size is known. Ring sets of 2, then count the rings.",
-        "strategy": "20 arranged in groups of 2 makes 10 groups. Check: 10 × 2 = 20."
+        "strategy": "20 arranged in groups of 2 makes 10 groups. Check: 10 × 2 = 20.",
+        "misconception_check": "Check the groups confused with group size idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10125,7 +10413,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 10 using 2 × 5.",
         "repair": "The number of trays is known. Deal equally, then count what is in one tray.",
-        "strategy": "10 shared into 2 equal groups gives 5 in each. Check: 2 × 5 = 10."
+        "strategy": "10 shared into 2 equal groups gives 5 in each. Check: 2 × 5 = 10.",
+        "misconception_check": "Check the division role reversal idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10197,7 +10487,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 15 using 3 × 5.",
         "repair": "The group size is known. Ring sets of 5, then count the rings.",
-        "strategy": "15 arranged in groups of 5 makes 3 groups. Check: 3 × 5 = 15."
+        "strategy": "15 arranged in groups of 5 makes 3 groups. Check: 3 × 5 = 15.",
+        "misconception_check": "Check the groups confused with group size idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10269,7 +10561,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 20 using 4 × 5.",
         "repair": "The number of trays is known. Deal equally, then count what is in one tray.",
-        "strategy": "20 shared into 4 equal groups gives 5 in each. Check: 4 × 5 = 20."
+        "strategy": "20 shared into 4 equal groups gives 5 in each. Check: 4 × 5 = 20.",
+        "misconception_check": "Check the division role reversal idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10341,7 +10635,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 25 using 5 × 5.",
         "repair": "The group size is known. Ring sets of 5, then count the rings.",
-        "strategy": "25 arranged in groups of 5 makes 5 groups. Check: 5 × 5 = 25."
+        "strategy": "25 arranged in groups of 5 makes 5 groups. Check: 5 × 5 = 25.",
+        "misconception_check": "Check the groups confused with group size idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10413,7 +10709,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 30 using 6 × 5.",
         "repair": "The number of trays is known. Deal equally, then count what is in one tray.",
-        "strategy": "30 shared into 6 equal groups gives 5 in each. Check: 6 × 5 = 30."
+        "strategy": "30 shared into 6 equal groups gives 5 in each. Check: 6 × 5 = 30.",
+        "misconception_check": "Check the division role reversal idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10485,7 +10783,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 35 using 7 × 5.",
         "repair": "The group size is known. Ring sets of 5, then count the rings.",
-        "strategy": "35 arranged in groups of 5 makes 7 groups. Check: 7 × 5 = 35."
+        "strategy": "35 arranged in groups of 5 makes 7 groups. Check: 7 × 5 = 35.",
+        "misconception_check": "Check the groups confused with group size idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10557,7 +10857,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 40 using 8 × 5.",
         "repair": "The number of trays is known. Deal equally, then count what is in one tray.",
-        "strategy": "40 shared into 8 equal groups gives 5 in each. Check: 8 × 5 = 40."
+        "strategy": "40 shared into 8 equal groups gives 5 in each. Check: 8 × 5 = 40.",
+        "misconception_check": "Check the division role reversal idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10629,7 +10931,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 45 using 9 × 5.",
         "repair": "The group size is known. Ring sets of 5, then count the rings.",
-        "strategy": "45 arranged in groups of 5 makes 9 groups. Check: 9 × 5 = 45."
+        "strategy": "45 arranged in groups of 5 makes 9 groups. Check: 9 × 5 = 45.",
+        "misconception_check": "Check the groups confused with group size idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10701,7 +11005,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 50 using 10 × 5.",
         "repair": "The number of trays is known. Deal equally, then count what is in one tray.",
-        "strategy": "50 shared into 10 equal groups gives 5 in each. Check: 10 × 5 = 50."
+        "strategy": "50 shared into 10 equal groups gives 5 in each. Check: 10 × 5 = 50.",
+        "misconception_check": "Check the division role reversal idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10773,7 +11079,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 20 using 2 × 10.",
         "repair": "The group size is known. Ring sets of 10, then count the rings.",
-        "strategy": "20 arranged in groups of 10 makes 2 groups. Check: 2 × 10 = 20."
+        "strategy": "20 arranged in groups of 10 makes 2 groups. Check: 2 × 10 = 20.",
+        "misconception_check": "Check the groups confused with group size idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10845,7 +11153,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 30 using 3 × 10.",
         "repair": "The number of trays is known. Deal equally, then count what is in one tray.",
-        "strategy": "30 shared into 3 equal groups gives 10 in each. Check: 3 × 10 = 30."
+        "strategy": "30 shared into 3 equal groups gives 10 in each. Check: 3 × 10 = 30.",
+        "misconception_check": "Check the division role reversal idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10917,7 +11227,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 40 using 4 × 10.",
         "repair": "The group size is known. Ring sets of 10, then count the rings.",
-        "strategy": "40 arranged in groups of 10 makes 4 groups. Check: 4 × 10 = 40."
+        "strategy": "40 arranged in groups of 10 makes 4 groups. Check: 4 × 10 = 40.",
+        "misconception_check": "Check the groups confused with group size idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10989,7 +11301,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 50 using 5 × 10.",
         "repair": "The number of trays is known. Deal equally, then count what is in one tray.",
-        "strategy": "50 shared into 5 equal groups gives 10 in each. Check: 5 × 10 = 50."
+        "strategy": "50 shared into 5 equal groups gives 10 in each. Check: 5 × 10 = 50.",
+        "misconception_check": "Check the division role reversal idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11061,7 +11375,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 60 using 6 × 10.",
         "repair": "The group size is known. Ring sets of 10, then count the rings.",
-        "strategy": "60 arranged in groups of 10 makes 6 groups. Check: 6 × 10 = 60."
+        "strategy": "60 arranged in groups of 10 makes 6 groups. Check: 6 × 10 = 60.",
+        "misconception_check": "Check the groups confused with group size idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -11133,7 +11449,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 70 using 7 × 10.",
         "repair": "The number of trays is known. Deal equally, then count what is in one tray.",
-        "strategy": "70 shared into 7 equal groups gives 10 in each. Check: 7 × 10 = 70."
+        "strategy": "70 shared into 7 equal groups gives 10 in each. Check: 7 × 10 = 70.",
+        "misconception_check": "Check the division role reversal idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -11205,7 +11523,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 80 using 8 × 10.",
         "repair": "The group size is known. Ring sets of 10, then count the rings.",
-        "strategy": "80 arranged in groups of 10 makes 8 groups. Check: 8 × 10 = 80."
+        "strategy": "80 arranged in groups of 10 makes 8 groups. Check: 8 × 10 = 80.",
+        "misconception_check": "Check the groups confused with group size idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -11277,7 +11597,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 90 using 9 × 10.",
         "repair": "The number of trays is known. Deal equally, then count what is in one tray.",
-        "strategy": "90 shared into 9 equal groups gives 10 in each. Check: 9 × 10 = 90."
+        "strategy": "90 shared into 9 equal groups gives 10 in each. Check: 9 × 10 = 90.",
+        "misconception_check": "Check the division role reversal idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -11349,7 +11671,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 100 using 10 × 10.",
         "repair": "The group size is known. Ring sets of 10, then count the rings.",
-        "strategy": "100 arranged in groups of 10 makes 10 groups. Check: 10 × 10 = 100."
+        "strategy": "100 arranged in groups of 10 makes 10 groups. Check: 10 × 10 = 100.",
+        "misconception_check": "Check the groups confused with group size idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -11421,7 +11745,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 10 using 5 × 2.",
         "repair": "The number of trays is known. Deal equally, then count what is in one tray.",
-        "strategy": "10 shared into 5 equal groups gives 2 in each. Check: 5 × 2 = 10."
+        "strategy": "10 shared into 5 equal groups gives 2 in each. Check: 5 × 2 = 10.",
+        "misconception_check": "Check the division role reversal idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11493,7 +11819,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 12 using 6 × 2.",
         "repair": "The group size is known. Ring sets of 2, then count the rings.",
-        "strategy": "12 arranged in groups of 2 makes 6 groups. Check: 6 × 2 = 12."
+        "strategy": "12 arranged in groups of 2 makes 6 groups. Check: 6 × 2 = 12.",
+        "misconception_check": "Check the groups confused with group size idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11565,7 +11893,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 14 using 7 × 2.",
         "repair": "The number of trays is known. Deal equally, then count what is in one tray.",
-        "strategy": "14 shared into 7 equal groups gives 2 in each. Check: 7 × 2 = 14."
+        "strategy": "14 shared into 7 equal groups gives 2 in each. Check: 7 × 2 = 14.",
+        "misconception_check": "Check the division role reversal idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11637,7 +11967,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 16 using 8 × 2.",
         "repair": "The group size is known. Ring sets of 2, then count the rings.",
-        "strategy": "16 arranged in groups of 2 makes 8 groups. Check: 8 × 2 = 16."
+        "strategy": "16 arranged in groups of 2 makes 8 groups. Check: 8 × 2 = 16.",
+        "misconception_check": "Check the groups confused with group size idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11709,7 +12041,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 18 using 9 × 2.",
         "repair": "The number of trays is known. Deal equally, then count what is in one tray.",
-        "strategy": "18 shared into 9 equal groups gives 2 in each. Check: 9 × 2 = 18."
+        "strategy": "18 shared into 9 equal groups gives 2 in each. Check: 9 × 2 = 18.",
+        "misconception_check": "Check the division role reversal idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11781,7 +12115,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 20 using 10 × 2.",
         "repair": "The group size is known. Ring sets of 2, then count the rings.",
-        "strategy": "20 arranged in groups of 2 makes 10 groups. Check: 10 × 2 = 20."
+        "strategy": "20 arranged in groups of 2 makes 10 groups. Check: 10 × 2 = 20.",
+        "misconception_check": "Check the groups confused with group size idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11853,7 +12189,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 10 using 2 × 5.",
         "repair": "The number of trays is known. Deal equally, then count what is in one tray.",
-        "strategy": "10 shared into 2 equal groups gives 5 in each. Check: 2 × 5 = 10."
+        "strategy": "10 shared into 2 equal groups gives 5 in each. Check: 2 × 5 = 10.",
+        "misconception_check": "Check the division role reversal idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11925,7 +12263,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 15 using 3 × 5.",
         "repair": "The group size is known. Ring sets of 5, then count the rings.",
-        "strategy": "15 arranged in groups of 5 makes 3 groups. Check: 3 × 5 = 15."
+        "strategy": "15 arranged in groups of 5 makes 3 groups. Check: 3 × 5 = 15.",
+        "misconception_check": "Check the groups confused with group size idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11997,7 +12337,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 20 using 4 × 5.",
         "repair": "The number of trays is known. Deal equally, then count what is in one tray.",
-        "strategy": "20 shared into 4 equal groups gives 5 in each. Check: 4 × 5 = 20."
+        "strategy": "20 shared into 4 equal groups gives 5 in each. Check: 4 × 5 = 20.",
+        "misconception_check": "Check the division role reversal idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -12069,7 +12411,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 25 using 5 × 5.",
         "repair": "The group size is known. Ring sets of 5, then count the rings.",
-        "strategy": "25 arranged in groups of 5 makes 5 groups. Check: 5 × 5 = 25."
+        "strategy": "25 arranged in groups of 5 makes 5 groups. Check: 5 × 5 = 25.",
+        "misconception_check": "Check the groups confused with group size idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -12141,7 +12485,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 30 using 6 × 5.",
         "repair": "The number of trays is known. Deal equally, then count what is in one tray.",
-        "strategy": "30 shared into 6 equal groups gives 5 in each. Check: 6 × 5 = 30."
+        "strategy": "30 shared into 6 equal groups gives 5 in each. Check: 6 × 5 = 30.",
+        "misconception_check": "Check the division role reversal idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -12213,7 +12559,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 35 using 7 × 5.",
         "repair": "The group size is known. Ring sets of 5, then count the rings.",
-        "strategy": "35 arranged in groups of 5 makes 7 groups. Check: 7 × 5 = 35."
+        "strategy": "35 arranged in groups of 5 makes 7 groups. Check: 7 × 5 = 35.",
+        "misconception_check": "Check the groups confused with group size idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -12285,7 +12633,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 40 using 8 × 5.",
         "repair": "The number of trays is known. Deal equally, then count what is in one tray.",
-        "strategy": "40 shared into 8 equal groups gives 5 in each. Check: 8 × 5 = 40."
+        "strategy": "40 shared into 8 equal groups gives 5 in each. Check: 8 × 5 = 40.",
+        "misconception_check": "Check the division role reversal idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -12357,7 +12707,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 45 using 9 × 5.",
         "repair": "The group size is known. Ring sets of 5, then count the rings.",
-        "strategy": "45 arranged in groups of 5 makes 9 groups. Check: 9 × 5 = 45."
+        "strategy": "45 arranged in groups of 5 makes 9 groups. Check: 9 × 5 = 45.",
+        "misconception_check": "Check the groups confused with group size idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -12429,7 +12781,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 50 using 10 × 5.",
         "repair": "The number of trays is known. Deal equally, then count what is in one tray.",
-        "strategy": "50 shared into 10 equal groups gives 5 in each. Check: 10 × 5 = 50."
+        "strategy": "50 shared into 10 equal groups gives 5 in each. Check: 10 × 5 = 50.",
+        "misconception_check": "Check the division role reversal idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -12501,7 +12855,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 20 using 2 × 10.",
         "repair": "The group size is known. Ring sets of 10, then count the rings.",
-        "strategy": "20 arranged in groups of 10 makes 2 groups. Check: 2 × 10 = 20."
+        "strategy": "20 arranged in groups of 10 makes 2 groups. Check: 2 × 10 = 20.",
+        "misconception_check": "Check the groups confused with group size idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -12573,7 +12929,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 30 using 3 × 10.",
         "repair": "The number of trays is known. Deal equally, then count what is in one tray.",
-        "strategy": "30 shared into 3 equal groups gives 10 in each. Check: 3 × 10 = 30."
+        "strategy": "30 shared into 3 equal groups gives 10 in each. Check: 3 × 10 = 30.",
+        "misconception_check": "Check the division role reversal idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -12645,7 +13003,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 40 using 4 × 10.",
         "repair": "The group size is known. Ring sets of 10, then count the rings.",
-        "strategy": "40 arranged in groups of 10 makes 4 groups. Check: 4 × 10 = 40."
+        "strategy": "40 arranged in groups of 10 makes 4 groups. Check: 4 × 10 = 40.",
+        "misconception_check": "Check the groups confused with group size idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -12717,7 +13077,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 50 using 5 × 10.",
         "repair": "The number of trays is known. Deal equally, then count what is in one tray.",
-        "strategy": "50 shared into 5 equal groups gives 10 in each. Check: 5 × 10 = 50."
+        "strategy": "50 shared into 5 equal groups gives 10 in each. Check: 5 × 10 = 50.",
+        "misconception_check": "Check the division role reversal idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -12789,7 +13151,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 60 using 6 × 10.",
         "repair": "The group size is known. Ring sets of 10, then count the rings.",
-        "strategy": "60 arranged in groups of 10 makes 6 groups. Check: 6 × 10 = 60."
+        "strategy": "60 arranged in groups of 10 makes 6 groups. Check: 6 × 10 = 60.",
+        "misconception_check": "Check the groups confused with group size idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -12861,7 +13225,9 @@
       "feedback": {
         "correct": "Division check complete: the equal groups rebuild 70 using 7 × 10.",
         "repair": "The number of trays is known. Deal equally, then count what is in one tray.",
-        "strategy": "70 shared into 7 equal groups gives 10 in each. Check: 7 × 10 = 70."
+        "strategy": "70 shared into 7 equal groups gives 10 in each. Check: 7 × 10 = 70.",
+        "misconception_check": "Check the division role reversal idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -12918,7 +13284,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 2 groups of 2 total 4. Equal groups, arrays and repeated addition all confirm the fact.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "2 groups of 2 total 4. Equal groups, arrays and repeated addition all confirm the fact."
+        "strategy": "2 groups of 2 total 4. Equal groups, arrays and repeated addition all confirm the fact.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -12975,7 +13343,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 3 groups of 2 total 6. Equal groups, arrays and repeated addition all confirm the fact.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "3 groups of 2 total 6. Equal groups, arrays and repeated addition all confirm the fact."
+        "strategy": "3 groups of 2 total 6. Equal groups, arrays and repeated addition all confirm the fact.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -13032,7 +13402,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 4 groups of 2 total 8. Equal groups, arrays and repeated addition all confirm the fact.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "4 groups of 2 total 8. Equal groups, arrays and repeated addition all confirm the fact."
+        "strategy": "4 groups of 2 total 8. Equal groups, arrays and repeated addition all confirm the fact.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -13089,7 +13461,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 5 groups of 2 total 10. Equal groups, arrays and repeated addition all confirm the fact.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "5 groups of 2 total 10. Equal groups, arrays and repeated addition all confirm the fact."
+        "strategy": "5 groups of 2 total 10. Equal groups, arrays and repeated addition all confirm the fact.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -13146,7 +13520,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 6 groups of 2 total 12. Equal groups, arrays and repeated addition all confirm the fact.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "6 groups of 2 total 12. Equal groups, arrays and repeated addition all confirm the fact."
+        "strategy": "6 groups of 2 total 12. Equal groups, arrays and repeated addition all confirm the fact.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -13203,7 +13579,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 7 groups of 2 total 14. Equal groups, arrays and repeated addition all confirm the fact.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "7 groups of 2 total 14. Equal groups, arrays and repeated addition all confirm the fact."
+        "strategy": "7 groups of 2 total 14. Equal groups, arrays and repeated addition all confirm the fact.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -13260,7 +13638,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 8 groups of 2 total 16. Equal groups, arrays and repeated addition all confirm the fact.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "8 groups of 2 total 16. Equal groups, arrays and repeated addition all confirm the fact."
+        "strategy": "8 groups of 2 total 16. Equal groups, arrays and repeated addition all confirm the fact.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -13317,7 +13697,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 9 groups of 2 total 18. Equal groups, arrays and repeated addition all confirm the fact.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "9 groups of 2 total 18. Equal groups, arrays and repeated addition all confirm the fact."
+        "strategy": "9 groups of 2 total 18. Equal groups, arrays and repeated addition all confirm the fact.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -13374,7 +13756,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 10 groups of 2 total 20. Equal groups, arrays and repeated addition all confirm the fact.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "10 groups of 2 total 20. Equal groups, arrays and repeated addition all confirm the fact."
+        "strategy": "10 groups of 2 total 20. Equal groups, arrays and repeated addition all confirm the fact.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -13431,7 +13815,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 2 groups of 5 total 10. Equal groups, arrays and repeated addition all confirm the fact.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "2 groups of 5 total 10. Equal groups, arrays and repeated addition all confirm the fact."
+        "strategy": "2 groups of 5 total 10. Equal groups, arrays and repeated addition all confirm the fact.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -13488,7 +13874,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 3 groups of 5 total 15. Equal groups, arrays and repeated addition all confirm the fact.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "3 groups of 5 total 15. Equal groups, arrays and repeated addition all confirm the fact."
+        "strategy": "3 groups of 5 total 15. Equal groups, arrays and repeated addition all confirm the fact.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -13545,7 +13933,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 4 groups of 5 total 20. Equal groups, arrays and repeated addition all confirm the fact.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "4 groups of 5 total 20. Equal groups, arrays and repeated addition all confirm the fact."
+        "strategy": "4 groups of 5 total 20. Equal groups, arrays and repeated addition all confirm the fact.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -13602,7 +13992,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 5 groups of 5 total 25. Equal groups, arrays and repeated addition all confirm the fact.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "5 groups of 5 total 25. Equal groups, arrays and repeated addition all confirm the fact."
+        "strategy": "5 groups of 5 total 25. Equal groups, arrays and repeated addition all confirm the fact.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -13659,7 +14051,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 6 groups of 5 total 30. Equal groups, arrays and repeated addition all confirm the fact.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "6 groups of 5 total 30. Equal groups, arrays and repeated addition all confirm the fact."
+        "strategy": "6 groups of 5 total 30. Equal groups, arrays and repeated addition all confirm the fact.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -13716,7 +14110,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 7 groups of 5 total 35. Equal groups, arrays and repeated addition all confirm the fact.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "7 groups of 5 total 35. Equal groups, arrays and repeated addition all confirm the fact."
+        "strategy": "7 groups of 5 total 35. Equal groups, arrays and repeated addition all confirm the fact.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -13773,7 +14169,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 8 groups of 5 total 40. Equal groups, arrays and repeated addition all confirm the fact.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "8 groups of 5 total 40. Equal groups, arrays and repeated addition all confirm the fact."
+        "strategy": "8 groups of 5 total 40. Equal groups, arrays and repeated addition all confirm the fact.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -13830,7 +14228,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 9 groups of 5 total 45. Equal groups, arrays and repeated addition all confirm the fact.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "9 groups of 5 total 45. Equal groups, arrays and repeated addition all confirm the fact."
+        "strategy": "9 groups of 5 total 45. Equal groups, arrays and repeated addition all confirm the fact.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -13887,7 +14287,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 10 groups of 5 total 50. Equal groups, arrays and repeated addition all confirm the fact.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "10 groups of 5 total 50. Equal groups, arrays and repeated addition all confirm the fact."
+        "strategy": "10 groups of 5 total 50. Equal groups, arrays and repeated addition all confirm the fact.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -13944,7 +14346,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 2 groups of 10 total 20. Equal groups, arrays and repeated addition all confirm the fact.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "2 groups of 10 total 20. Equal groups, arrays and repeated addition all confirm the fact."
+        "strategy": "2 groups of 10 total 20. Equal groups, arrays and repeated addition all confirm the fact.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -14001,7 +14405,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 3 groups of 10 total 30. Equal groups, arrays and repeated addition all confirm the fact.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "3 groups of 10 total 30. Equal groups, arrays and repeated addition all confirm the fact."
+        "strategy": "3 groups of 10 total 30. Equal groups, arrays and repeated addition all confirm the fact.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -14058,7 +14464,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 4 groups of 10 total 40. Equal groups, arrays and repeated addition all confirm the fact.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "4 groups of 10 total 40. Equal groups, arrays and repeated addition all confirm the fact."
+        "strategy": "4 groups of 10 total 40. Equal groups, arrays and repeated addition all confirm the fact.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -14115,7 +14523,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 5 groups of 10 total 50. Equal groups, arrays and repeated addition all confirm the fact.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "5 groups of 10 total 50. Equal groups, arrays and repeated addition all confirm the fact."
+        "strategy": "5 groups of 10 total 50. Equal groups, arrays and repeated addition all confirm the fact.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -14172,7 +14582,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 6 groups of 10 total 60. Equal groups, arrays and repeated addition all confirm the fact.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "6 groups of 10 total 60. Equal groups, arrays and repeated addition all confirm the fact."
+        "strategy": "6 groups of 10 total 60. Equal groups, arrays and repeated addition all confirm the fact.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -14229,7 +14641,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 7 groups of 10 total 70. Equal groups, arrays and repeated addition all confirm the fact.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "7 groups of 10 total 70. Equal groups, arrays and repeated addition all confirm the fact."
+        "strategy": "7 groups of 10 total 70. Equal groups, arrays and repeated addition all confirm the fact.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -14286,7 +14700,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 8 groups of 10 total 80. Equal groups, arrays and repeated addition all confirm the fact.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "8 groups of 10 total 80. Equal groups, arrays and repeated addition all confirm the fact."
+        "strategy": "8 groups of 10 total 80. Equal groups, arrays and repeated addition all confirm the fact.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -14343,7 +14759,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 9 groups of 10 total 90. Equal groups, arrays and repeated addition all confirm the fact.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "9 groups of 10 total 90. Equal groups, arrays and repeated addition all confirm the fact."
+        "strategy": "9 groups of 10 total 90. Equal groups, arrays and repeated addition all confirm the fact.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -14400,7 +14818,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 10 groups of 10 total 100. Equal groups, arrays and repeated addition all confirm the fact.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "10 groups of 10 total 100. Equal groups, arrays and repeated addition all confirm the fact."
+        "strategy": "10 groups of 10 total 100. Equal groups, arrays and repeated addition all confirm the fact.",
+        "misconception_check": "Check the factors added idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -14457,7 +14877,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 2 × 2 = 4, so each group contains 2.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "2 × 2 = 4, so each group contains 2."
+        "strategy": "2 × 2 = 4, so each group contains 2.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -14514,7 +14936,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 3 × 2 = 6, so each group contains 2.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "3 × 2 = 6, so each group contains 2."
+        "strategy": "3 × 2 = 6, so each group contains 2.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -14571,7 +14995,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 4 × 2 = 8, so each group contains 2.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "4 × 2 = 8, so each group contains 2."
+        "strategy": "4 × 2 = 8, so each group contains 2.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -14628,7 +15054,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 5 × 2 = 10, so each group contains 2.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "5 × 2 = 10, so each group contains 2."
+        "strategy": "5 × 2 = 10, so each group contains 2.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -14685,7 +15113,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 6 × 2 = 12, so each group contains 2.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "6 × 2 = 12, so each group contains 2."
+        "strategy": "6 × 2 = 12, so each group contains 2.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -14742,7 +15172,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 7 × 2 = 14, so each group contains 2.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "7 × 2 = 14, so each group contains 2."
+        "strategy": "7 × 2 = 14, so each group contains 2.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -14799,7 +15231,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 8 × 2 = 16, so each group contains 2.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "8 × 2 = 16, so each group contains 2."
+        "strategy": "8 × 2 = 16, so each group contains 2.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -14856,7 +15290,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 9 × 2 = 18, so each group contains 2.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "9 × 2 = 18, so each group contains 2."
+        "strategy": "9 × 2 = 18, so each group contains 2.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -14913,7 +15349,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 10 × 2 = 20, so each group contains 2.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "10 × 2 = 20, so each group contains 2."
+        "strategy": "10 × 2 = 20, so each group contains 2.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -14970,7 +15408,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 2 × 5 = 10, so each group contains 5.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "2 × 5 = 10, so each group contains 5."
+        "strategy": "2 × 5 = 10, so each group contains 5.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -15027,7 +15467,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 3 × 5 = 15, so each group contains 5.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "3 × 5 = 15, so each group contains 5."
+        "strategy": "3 × 5 = 15, so each group contains 5.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -15084,7 +15526,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 4 × 5 = 20, so each group contains 5.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "4 × 5 = 20, so each group contains 5."
+        "strategy": "4 × 5 = 20, so each group contains 5.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -15141,7 +15585,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 5 × 5 = 25, so each group contains 5.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "5 × 5 = 25, so each group contains 5."
+        "strategy": "5 × 5 = 25, so each group contains 5.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -15198,7 +15644,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 6 × 5 = 30, so each group contains 5.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "6 × 5 = 30, so each group contains 5."
+        "strategy": "6 × 5 = 30, so each group contains 5.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -15255,7 +15703,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 7 × 5 = 35, so each group contains 5.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "7 × 5 = 35, so each group contains 5."
+        "strategy": "7 × 5 = 35, so each group contains 5.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -15312,7 +15762,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 8 × 5 = 40, so each group contains 5.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "8 × 5 = 40, so each group contains 5."
+        "strategy": "8 × 5 = 40, so each group contains 5.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -15369,7 +15821,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 9 × 5 = 45, so each group contains 5.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "9 × 5 = 45, so each group contains 5."
+        "strategy": "9 × 5 = 45, so each group contains 5.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -15426,7 +15880,9 @@
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 10 × 5 = 50, so each group contains 5.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
-        "strategy": "10 × 5 = 50, so each group contains 5."
+        "strategy": "10 × 5 = 50, so each group contains 5.",
+        "misconception_check": "Check the groups and group size swapped idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",

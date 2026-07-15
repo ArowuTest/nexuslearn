@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -51,6 +52,7 @@ pack.qa.readiness_status = "draft";
 pack.qa.notes = "Depth-wave review bank reaches the 240-item pilot target with three preserved curated questions and 237 deterministic candidates covering ratio language, equivalent ratios, scaling, recipes and maps, unitising, proportion, missing values, representations and misconception repair. Generated candidates include concrete-to-visual ratio scaffolds, keyboard/switch/oral and non-drag interactions, rich scale-factor/unit/check feedback and strategic mission progress earned through reasoning rather than speed. Human curriculum, teacher, SEND, accessibility, safeguarding and renderer review remains required before promotion.";
 
 validateBank(pack, enrichedCurated, enrichedCandidates);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`ratio-proportion-bank curated=${curated.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
 console.log(`ratio-proportion-bank strands=${summary(candidates, (variant) => variant.body.ratio_strand)}`);

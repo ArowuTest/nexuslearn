@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -56,6 +57,7 @@ console.log(`y2-materials-bank blueprints=${allocationSummary(curated, candidate
 console.log(`y2-materials-bank formats=${summary(pack.question_variants, (variant) => variant.format)}`);
 console.log(`y2-materials-bank bands=${summaryByAssignedBlueprint(curated, candidates, blueprintById)}`);
 
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 if (write) {
   await writeFile(packPath, nextText, "utf8");

@@ -268,6 +268,13 @@
             "eye_gaze",
             "aac"
           ]
+        },
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-ma-y6-reasoning",
+        "review_provenance": {
+          "kind": "curated",
+          "pack_id": "ma-y6-reasoning",
+          "variant_id": "ma-y6-reasoning-q-counterexample-multiple"
         }
       },
       "expected_answer": {
@@ -281,7 +288,14 @@
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "one_example_as_proof",
-      "animation_hook": "counterexample-gate-break"
+      "animation_hook": "counterexample-gate-break",
+      "feedback": {
+        "correct": "Correct. 12 is a multiple of 4 because 4 x 3 = 12, but it is not a multiple of 8. So the always claim is false.",
+        "retry": "Try again calmly: A counterexample must be a multiple of 4. It must not be a multiple of 8. No progress is lost for checking or changing your answer.",
+        "repair": "Repair the one example as proof route: A counterexample must be a multiple of 4. Then use the evidence to explain your choice.",
+        "misconception_check": "Check the one example as proof idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "ma-y6-reasoning-q-fraction-reason-chain",
@@ -312,6 +326,13 @@
             "eye_gaze",
             "aac"
           ]
+        },
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-ma-y6-reasoning",
+        "review_provenance": {
+          "kind": "curated",
+          "pack_id": "ma-y6-reasoning",
+          "variant_id": "ma-y6-reasoning-q-fraction-reason-chain"
         }
       },
       "expected_answer": {
@@ -325,7 +346,14 @@
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "unchecked_plausible_explanation",
-      "animation_hook": "reason-chain-build"
+      "animation_hook": "reason-chain-build",
+      "feedback": {
+        "correct": "Correct. Converting to twelfths gives 9/12 and 8/12. Since 9 twelfths is more than 8 twelfths, 3/4 is greater.",
+        "retry": "Try again calmly: Use a common denominator. Twelfths let you compare the same-sized parts. No progress is lost for checking or changing your answer.",
+        "repair": "Repair the unchecked plausible explanation route: Use a common denominator. Then use the evidence to explain your choice.",
+        "misconception_check": "Check the unchecked plausible explanation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "ma-y6-reasoning-q-always-sometimes",
@@ -338,7 +366,14 @@
           "Never true",
           "Not enough information"
         ],
-        "domain": "whole numbers"
+        "domain": "whole numbers",
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-ma-y6-reasoning",
+        "review_provenance": {
+          "kind": "curated",
+          "pack_id": "ma-y6-reasoning",
+          "variant_id": "ma-y6-reasoning-q-always-sometimes"
+        }
       },
       "expected_answer": {
         "value": "Always true"
@@ -351,7 +386,14 @@
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "pattern_as_rule",
-      "animation_hook": "claim-tester-gates"
+      "animation_hook": "claim-tester-gates",
+      "feedback": {
+        "correct": "Correct. A whole number multiplied by 10 gives a multiple of 10. Every multiple of 10 is even, so the claim is always true.",
+        "retry": "Try again calmly: Multiples of 10 end in 0. Numbers ending in 0 are even. No progress is lost for checking or changing your answer.",
+        "repair": "Repair the pattern as rule route: Multiples of 10 end in 0. Then use the evidence to explain your choice.",
+        "misconception_check": "Check the pattern as rule idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "ma-y6-reasoning-q-proof-sort-area",
@@ -382,6 +424,13 @@
             "eye_gaze",
             "aac"
           ]
+        },
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-ma-y6-reasoning",
+        "review_provenance": {
+          "kind": "curated",
+          "pack_id": "ma-y6-reasoning",
+          "variant_id": "ma-y6-reasoning-q-proof-sort-area"
         }
       },
       "expected_answer": {
@@ -395,7 +444,14 @@
       "difficulty": 8,
       "status": "review",
       "misconception_tag": "unchecked_plausible_explanation",
-      "animation_hook": "proof-strength-meter"
+      "animation_hook": "proof-strength-meter",
+      "feedback": {
+        "correct": "Correct. The two rectangles have the same area but different perimeters, so they are a counterexample to the always claim.",
+        "retry": "Try again calmly: Both rectangles have the same area. Compare their perimeters. No progress is lost for checking or changing your answer.",
+        "repair": "Repair the unchecked plausible explanation route: Both rectangles have the same area. Then use the evidence to explain your choice.",
+        "misconception_check": "Check the unchecked plausible explanation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "ma-y6-reasoning-q-answer-reason",
@@ -426,6 +482,13 @@
             "eye_gaze",
             "aac"
           ]
+        },
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-ma-y6-reasoning",
+        "review_provenance": {
+          "kind": "curated",
+          "pack_id": "ma-y6-reasoning",
+          "variant_id": "ma-y6-reasoning-q-answer-reason"
         }
       },
       "expected_answer": {
@@ -439,7 +502,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "answer_without_reason",
-      "animation_hook": "answer-reason-lock"
+      "animation_hook": "answer-reason-lock",
+      "feedback": {
+        "correct": "Correct. The digit sum is 15, and 15 is divisible by 3, so 4,218 is divisible by 3.",
+        "retry": "Try again calmly: Use the digit-sum test. Check whether the digit sum is a multiple of 3. No progress is lost for checking or changing your answer.",
+        "repair": "Repair the answer without reason route: Use the digit-sum test. Then use the evidence to explain your choice.",
+        "misconception_check": "Check the answer without reason idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "ma-y6-reasoning-bank-answer-reason-matches-001-answer-0",

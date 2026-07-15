@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -46,6 +47,7 @@ pack.qa.notes = "Review-stage Year 2 plants pack with a deterministic 220-item p
 
 validateBank(pack, curated, generated);
 
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`y2-plants-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
 console.log(`y2-plants-bank blueprints=${summary(pack.question_variants, (variant) => variant.body.variant_blueprint_id)}`);

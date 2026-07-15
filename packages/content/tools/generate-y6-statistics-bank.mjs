@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -46,6 +47,7 @@ pack.qa.readiness_status = "draft";
 pack.qa.notes = "Year 6 statistics pilot reaches 240 variants with five curated questions preserved semantically unchanged and 235 deterministic review candidates. All five declared interaction formats are used across non-unit line-graph scales, justified and unjustified interpolation, comparison/difference/change problems, exact pie fractions/percentages/angles/totals, means of three to six values, missing-value reasoning, fair-share interpretation, data-claim critique, representation choice and transfer. Generated items provide graph-table/text equivalents, keyboard/no-drag routes, high contrast, reduced-data and static reduced-motion alternatives with pressure-free data-detective missions. Selected graph narration references are produced, human-reviewed ElevenLabs sonified point summaries only; browser TTS is prohibited. Independent mathematics, teacher, SEND, accessibility, safeguarding, audio and renderer review remains required before promotion.";
 
 validateBank(pack, enrichedCurated, enrichedCandidates, curatedSnapshot);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`statistics-bank curated=${curated.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
 console.log(`statistics-bank formats=${summary(candidates, (variant) => variant.format)}`);

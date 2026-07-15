@@ -9,8 +9,8 @@
     "runtime_questions": 261,
     "missing_registry": 0,
     "runtime_failures": 0,
-    "ready_formats": 135,
-    "preview_only_formats": 115
+    "ready_formats": 168,
+    "preview_only_formats": 82
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -270,7 +270,7 @@
       "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "reversible and irreversible change evidence sorter with explanation prompts"
     },
     {
@@ -306,7 +306,7 @@
       "questions": 45,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "claim and evidence matcher with data highlights, because frames and audio-supported evidence review"
     },
     {
@@ -332,7 +332,7 @@
       "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "mathematical claim tester with example/counterexample cards, reasoning prompts and accessible selection"
     },
     {
@@ -381,7 +381,7 @@
       "questions": 46,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "clause linker with conjunction choices, punctuation cues and spoken replay"
     },
     {
@@ -539,7 +539,7 @@
       "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "scientific conclusion matcher linking recorded evidence to bounded claims with overclaim repair"
     },
     {
@@ -563,7 +563,7 @@
       "questions": 47,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "contact and non-contact force sorter with accessible motion examples"
     },
     {
@@ -623,7 +623,7 @@
       "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "data_detective_ready",
       "target_runtime": "data detective task with chart/table clues, source reliability prompts and accessible evidence capture"
     },
     {
@@ -707,7 +707,7 @@
       "questions": 49,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "energy_transfer_ready",
       "target_runtime": "energy transfer simulator with store/pathway controls, labelled arrows, safe contexts and reduced-motion snapshots"
     },
     {
@@ -1050,7 +1050,7 @@
       "questions": 49,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "force_model_ready",
       "target_runtime": "force-arrow model with magnitude, direction, contact/non-contact labels and keyboard-adjustable vectors"
     },
     {
@@ -1134,7 +1134,7 @@
       "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "introductory free-body-style force sorter with labelled arrows, misconception prompts and static alternatives"
     },
     {
@@ -1340,7 +1340,7 @@
       "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "investigation_planner_ready",
       "target_runtime": "KS3 investigation planner for question, variables, method, data and evaluation with accessible step cards"
     },
     {
@@ -1438,7 +1438,7 @@
       "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "linking-word choice panel with cohesion cues, spoken reread and paragraph-effect feedback"
     },
     {
@@ -1511,7 +1511,7 @@
       "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "mean average balancer with manipulable data values, total/share model and outlier misconception repair"
     },
     {
@@ -1573,7 +1573,7 @@
       "questions": 49,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "measure_compare_ready",
       "target_runtime": "measurement comparison workspace with unit badges, greater/less/equal symbols and spoken because frames"
     },
     {
@@ -1585,7 +1585,7 @@
       "questions": 55,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "measure_tool_ready",
       "target_runtime": "measurement tool and unit selector with attribute-first prompts, object cards and low-text audio support"
     },
     {
@@ -1646,7 +1646,7 @@
       "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "mixture separation planner linking material properties to methods"
     },
     {
@@ -1829,7 +1829,7 @@
       "questions": 46,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "odd/even pairing model using counters, two-column grouping and leftover highlighting"
     },
     {
@@ -1841,7 +1841,7 @@
       "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "offspring-to-adult matcher with observable-feature hints, audio labels and non-stereotyped animal imagery"
     },
     {
@@ -1877,7 +1877,7 @@
       "questions": 64,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "oral_segment_ready",
       "target_runtime": "SSP-reviewed spoken segmentation task with produced audio only"
     },
     {
@@ -2109,7 +2109,7 @@
       "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "pie chart builder with proportion segments, data table link and reduced-motion/static alternatives"
     },
     {
@@ -2121,7 +2121,7 @@
       "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "pitch and volume sorter with audio-safe examples, visual waveform labels and replay controls"
     },
     {
@@ -2193,7 +2193,7 @@
       "questions": 46,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "magnet pole predictor with attract/repel model and reduced-motion states"
     },
     {
@@ -2205,7 +2205,7 @@
       "questions": 52,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "polygon completion task on coordinate grids with vertex snapping, shape preview and accessible coordinate controls"
     },
     {
@@ -2279,7 +2279,7 @@
       "questions": 52,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "pronoun cohesion choice panel with visible referents, reread support and ambiguity repair prompts"
     },
     {
@@ -2340,7 +2340,7 @@
       "questions": 49,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "materials property test lab with prediction, observation and fair-test controls"
     },
     {
@@ -2575,7 +2575,7 @@
       "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "season observation scene with weather, daylight and plant-change evidence hotspots"
     },
     {
@@ -2832,7 +2832,7 @@
       "questions": 49,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "role_assignment_ready",
       "target_runtime": "energy store and pathway sorter with labelled system boundaries, transfer arrows and reduced-motion views"
     },
     {
@@ -2856,7 +2856,7 @@
       "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "base-word and suffix transformer with spelling-rule explanations"
     },
     {
@@ -2868,7 +2868,7 @@
       "questions": 46,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "surface friction test with fair-test controls and observation recording"
     },
     {
@@ -2953,7 +2953,7 @@
       "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "temperature observation table linked to state-change evidence"
     },
     {
@@ -3037,7 +3037,7 @@
       "questions": 52,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "time and cause linking-word selector with sentence preview, meaning checks and spoken rehearsal"
     },
     {
@@ -3087,7 +3087,7 @@
       "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "topic sentence selector with paragraph preview, evidence hints and spoken reread support"
     },
     {
@@ -3135,7 +3135,7 @@
       "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "vibration observation task with safe object examples, slow-motion option and observation recording"
     },
     {

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -113,6 +114,7 @@ pack.version = "0.2.0";
 pack.qa.notes = "Year 7 energy reaches the 240-item pilot target with four preserved curated variants and 236 deterministic review candidates spanning stores and transfers, conservation, pathways, efficiency, heating, work, evidence, diagrams and misconceptions. Every generated item includes visual, static text, spoken and tactile routes; keyboard, switch, eye-gaze, AAC, oral and partner-mediated interactions; rich repair feedback; safe simulator or teacher-managed investigation boundaries; and private engineering missions without timers, lives, streak pressure, leaderboards or peer comparison. Independent physics, teacher, SEND, accessibility, safeguarding, practical-safety, renderer and pilot review remain required before promotion.";
 validateBank(pack, curated, generated);
 
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`energy-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
 console.log(`energy-bank blueprints=${summary(generated, (variant) => variant.body.variant_blueprint_id)}`);

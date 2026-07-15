@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -117,6 +118,7 @@ pack.version = "0.2.0";
 pack.qa.notes = "Review-stage Year 1 listening-comprehension pack with a deterministic 240-item pilot bank. Four curated variants are preserved alongside short stories, information, poems and directions covering attention, literal recall, sequencing, vocabulary in context, following directions and clue-supported comprehension. Every generated audio reference follows the ElevenLabs produced-audio policy: browser TTS is prohibited, runtime fallback is disabled, and assets remain unavailable pending explicit human listening approval. Replay, chunking, visual cues and transcripts are controlled auditory-processing accommodations and are excluded from accuracy scoring. Generated candidates require curriculum, teacher, cultural-accessibility, safeguarding, renderer and human listening review before promotion.";
 
 validateBank(pack, curated, generated);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`y1-listening-comprehension-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
 console.log(`y1-listening-comprehension-bank blueprints=${summary(pack.question_variants, (variant) => variant.body.variant_blueprint_id)}`);

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -105,6 +106,7 @@ pack.qa.readiness_status = "draft";
 pack.qa.notes = "Year 5 relative-clause pilot bank reaches 240 variants with four curated questions preserved unchanged and 236 deterministic review candidates. Coverage includes meaning-matched relative links, antecedent clarity, embedded and end-position clauses, carefully bounded restrictive/non-restrictive punctuation, relative that and safe implied-pronoun decisions, ambiguity repair and genre transfer. Every generated item has dyslexia/SEND chunking, non-drag alternative inputs, rich evidence-led feedback and pressure-free publishing missions. Selected narration references require produced, human-reviewed ElevenLabs assets; browser TTS is prohibited. Independent English, teacher, SEND, accessibility, safeguarding, audio and renderer review remains required before promotion.";
 
 validateBank(pack, enrichedCurated, enrichedCandidates, curatedSnapshot);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`relative-clauses-bank curated=${curated.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
 console.log(`relative-clauses-bank formats=${summary(candidates, (variant) => variant.format)}`);

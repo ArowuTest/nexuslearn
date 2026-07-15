@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -47,6 +48,7 @@ pack.qa.readiness_status = "draft";
 pack.qa.notes = "Cross-year review bank reaches the 240-item pilot target with three preserved curated questions and 237 deterministic candidates spanning operation choice, step order, estimation, inverse checking, multi-step contexts, hidden information, efficient calculation and misconception repair. Every generated candidate includes a visual KNOW-GOAL-PLAN-SOLVE-CHECK route, SEND scaffolds, keyboard/switch/oral and non-drag interactions, layered feedback and strategic mission progress earned through planning and checking rather than speed. Human curriculum, teacher, SEND, accessibility, safeguarding and renderer review remains required before promotion.";
 
 validateBank(pack, curated, candidates);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`arithmetic-multistep-bank curated=${curated.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
 console.log(`arithmetic-multistep-bank strands=${summary(candidates, (variant) => variant.body.maths_strand)}`);

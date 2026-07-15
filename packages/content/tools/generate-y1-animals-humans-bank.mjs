@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -66,6 +67,7 @@ pack.version = "0.2.0";
 pack.qa.notes = "Review-stage Year 1 animals-including-humans pack with a deterministic 200-item pilot bank. Four curated variants are preserved alongside candidates covering familiar animal identification, body parts and coverings, the five broad vertebrate groups, human senses, simple shared animal needs, growth from young to adult, evidence-based comparisons and misconception repair. Every generated item includes clear visual descriptions, tactile or object alternatives, supported response routes, explicit evidence feedback, unlimited thinking time and low-pressure explorer missions rewarded for observing and explaining rather than speed. Species, image, inclusion, safeguarding, teacher and renderer review remains required before promotion.";
 
 validateBank(pack, curated, generated);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`y1-animals-humans-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
 console.log(`y1-animals-humans-bank blueprints=${summary(pack.question_variants, (variant) => variant.body.variant_blueprint_id)}`);

@@ -226,7 +226,14 @@
       "body": {
         "prompt": "Highlight the phrase that best creates a threatening mood.",
         "text": "The corridor swallowed the last of the light, leaving the doorway like a black mouth.",
-        "target_mood": "threatening"
+        "target_mood": "threatening",
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-en-y7-literature-evidence-inference",
+        "review_provenance": {
+          "kind": "curated",
+          "pack_id": "en-y7-literature-evidence-inference",
+          "variant_id": "en-y7-literature-evidence-inference-q-tense-word"
+        }
       },
       "expected_answer": {
         "value": [
@@ -242,7 +249,14 @@
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "retelling_not_inference",
-      "animation_hook": "mood-word-highlight"
+      "animation_hook": "mood-word-highlight",
+      "feedback": {
+        "correct": "Correct. 'Swallowed the last of the light' and 'black mouth' create a threatening mood.",
+        "retry": "Try again calmly: Look for words that make the place feel dangerous. Which image makes the corridor seem alive? No progress is lost for checking or changing your answer.",
+        "repair": "Repair the retelling not inference route: Look for words that make the place feel dangerous. Then use the evidence to explain your choice.",
+        "misconception_check": "Check the retelling not inference idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "en-y7-literature-evidence-inference-q-relevant-quote",
@@ -274,7 +288,14 @@
       "format": "short-response",
       "body": {
         "prompt": "Explain how the phrase 'the silence pressed against the windows' creates mood.",
-        "sentence_stem": "The phrase creates a ... mood because..."
+        "sentence_stem": "The phrase creates a ... mood because...",
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-en-y7-literature-evidence-inference",
+        "review_provenance": {
+          "kind": "curated",
+          "pack_id": "en-y7-literature-evidence-inference",
+          "variant_id": "en-y7-literature-evidence-inference-q-analysis-effect"
+        }
       },
       "expected_answer": {
         "rubric": [
@@ -291,7 +312,14 @@
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "claim_without_effect",
-      "animation_hook": "analysis-bridge-test"
+      "animation_hook": "analysis-bridge-test",
+      "feedback": {
+        "correct": "Correct. A strong answer explains that 'pressed' makes the silence feel heavy or oppressive.",
+        "retry": "Try again calmly: What feeling does 'pressed' suggest? Explain how the phrase affects the reader. No progress is lost for checking or changing your answer.",
+        "repair": "Repair the claim without effect route: What feeling does 'pressed' suggest? Then use the evidence to explain your choice.",
+        "misconception_check": "Check the claim without effect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "en-y7-literature-inference-bank-mood-001-archive",

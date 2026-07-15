@@ -436,7 +436,9 @@
       "explanation": "This choice keeps every word and punctuation mark from the model: The small boat rocked on the pond.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again."
+        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -513,7 +515,9 @@
       "explanation": "This choice keeps every word and punctuation mark from the model: After lunch, Mina fed the rabbit.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again."
+        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -590,7 +594,9 @@
       "explanation": "This choice keeps every word and punctuation mark from the model: Can you see the swings in the park?",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again."
+        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -667,7 +673,9 @@
       "explanation": "This choice keeps every word and punctuation mark from the model: Watch out for the deep puddle!",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again."
+        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -744,7 +752,9 @@
       "explanation": "This choice keeps every word and punctuation mark from the model: When the rain stopped, the children ran outside.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again."
+        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -821,7 +831,9 @@
       "explanation": "This choice keeps every word and punctuation mark from the model: Dad put the warm bread on the table.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again."
+        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -899,7 +911,9 @@
       "explanation": "This choice keeps every word and punctuation mark from the model: At night, the brown owl flew over the field.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again."
+        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -976,7 +990,9 @@
       "explanation": "This choice keeps every word and punctuation mark from the model: The little frog jumped over the wet log.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again."
+        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1053,7 +1069,9 @@
       "explanation": "This choice keeps every word and punctuation mark from the model: We went to the park because the sun was shining.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again."
+        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1130,7 +1148,9 @@
       "explanation": "This choice keeps every word and punctuation mark from the model: First, Sam packed a drink and a map.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again."
+        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1207,7 +1227,9 @@
       "explanation": "This choice keeps every word and punctuation mark from the model: The red bus waited beside the school gate.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again."
+        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1285,7 +1307,9 @@
       "explanation": "This choice keeps every word and punctuation mark from the model: The sleepy puppy curled up on its soft bed.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again."
+        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1362,7 +1386,9 @@
       "explanation": "This choice keeps every word and punctuation mark from the model: Where is my blue scarf?",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again."
+        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1439,7 +1465,9 @@
       "explanation": "This choice keeps every word and punctuation mark from the model: What a huge sandcastle!",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again."
+        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1516,7 +1544,9 @@
       "explanation": "This choice keeps every word and punctuation mark from the model: Before bed, Asha chose a short story.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again."
+        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1593,7 +1623,9 @@
       "explanation": "This choice keeps every word and punctuation mark from the model: The bright moon shone through the window.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again."
+        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1670,7 +1702,9 @@
       "explanation": "This choice keeps every word and punctuation mark from the model: Ravi opened the gate and waved to his friend.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again."
+        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1748,7 +1782,9 @@
       "explanation": "This choice keeps every word and punctuation mark from the model: The old train puffed slowly up the hill.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again."
+        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1825,7 +1861,9 @@
       "explanation": "This choice keeps every word and punctuation mark from the model: On Saturday, our family visited the museum.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again."
+        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1903,7 +1941,9 @@
       "explanation": "This choice keeps every word and punctuation mark from the model: Please put the red book back on the shelf.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again."
+        "repair": "Slow the highlight, replay one chunk and point to each word before choosing again.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1980,7 +2020,9 @@
       "explanation": "The reread shows that the answer is on the pond.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it."
+        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it.",
+        "misconception_check": "Check the meaning lost while decoding idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2057,7 +2099,9 @@
       "explanation": "The reread shows that the answer is after lunch.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it."
+        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it.",
+        "misconception_check": "Check the meaning lost while decoding idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2134,7 +2178,9 @@
       "explanation": "The reread shows that the answer is the swings.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it."
+        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it.",
+        "misconception_check": "Check the meaning lost while decoding idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2211,7 +2257,9 @@
       "explanation": "The reread shows that the answer is watch out for the puddle.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it."
+        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it.",
+        "misconception_check": "Check the meaning lost while decoding idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2288,7 +2336,9 @@
       "explanation": "The reread shows that the answer is the children ran outside.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it."
+        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it.",
+        "misconception_check": "Check the meaning lost while decoding idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2365,7 +2415,9 @@
       "explanation": "The reread shows that the answer is on the table.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it."
+        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it.",
+        "misconception_check": "Check the meaning lost while decoding idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2443,7 +2495,9 @@
       "explanation": "The reread shows that the answer is at night.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it."
+        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it.",
+        "misconception_check": "Check the meaning lost while decoding idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2520,7 +2574,9 @@
       "explanation": "The reread shows that the answer is the wet log.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it."
+        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it.",
+        "misconception_check": "Check the meaning lost while decoding idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2597,7 +2653,9 @@
       "explanation": "The reread shows that the answer is the sun was shining.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it."
+        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it.",
+        "misconception_check": "Check the meaning lost while decoding idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2674,7 +2732,9 @@
       "explanation": "The reread shows that the answer is a drink and a map.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it."
+        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it.",
+        "misconception_check": "Check the meaning lost while decoding idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2751,7 +2811,9 @@
       "explanation": "The reread shows that the answer is beside the school gate.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it."
+        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it.",
+        "misconception_check": "Check the meaning lost while decoding idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2829,7 +2891,9 @@
       "explanation": "The reread shows that the answer is on its soft bed.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it."
+        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it.",
+        "misconception_check": "Check the meaning lost while decoding idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2906,7 +2970,9 @@
       "explanation": "The reread shows that the answer is a blue scarf.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it."
+        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it.",
+        "misconception_check": "Check the meaning lost while decoding idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2983,7 +3049,9 @@
       "explanation": "The reread shows that the answer is a huge sandcastle.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it."
+        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it.",
+        "misconception_check": "Check the meaning lost while decoding idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3060,7 +3128,9 @@
       "explanation": "The reread shows that the answer is a short story.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it."
+        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it.",
+        "misconception_check": "Check the meaning lost while decoding idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3137,7 +3207,9 @@
       "explanation": "The reread shows that the answer is through the window.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it."
+        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it.",
+        "misconception_check": "Check the meaning lost while decoding idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3214,7 +3286,9 @@
       "explanation": "The reread shows that the answer is he waved to his friend.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it."
+        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it.",
+        "misconception_check": "Check the meaning lost while decoding idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3292,7 +3366,9 @@
       "explanation": "The reread shows that the answer is slowly.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it."
+        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it.",
+        "misconception_check": "Check the meaning lost while decoding idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3369,7 +3445,9 @@
       "explanation": "The reread shows that the answer is on Saturday.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it."
+        "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it.",
+        "misconception_check": "Check the meaning lost while decoding idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3445,7 +3523,9 @@
       "explanation": "The small boat / rocked on the pond. groups the sentence into meaningful reading chunks.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer."
+        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer.",
+        "misconception_check": "Check the word by word reading idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3521,7 +3601,9 @@
       "explanation": "After lunch, / Mina fed the rabbit. groups the sentence into meaningful reading chunks.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer."
+        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer.",
+        "misconception_check": "Check the word by word reading idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3597,7 +3679,9 @@
       "explanation": "Can you see / the swings in the park? groups the sentence into meaningful reading chunks.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer."
+        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer.",
+        "misconception_check": "Check the word by word reading idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3673,7 +3757,9 @@
       "explanation": "Watch out / for the deep puddle! groups the sentence into meaningful reading chunks.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer."
+        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer.",
+        "misconception_check": "Check the word by word reading idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3749,7 +3835,9 @@
       "explanation": "When the rain stopped, / the children ran outside. groups the sentence into meaningful reading chunks.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer."
+        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer.",
+        "misconception_check": "Check the word by word reading idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3825,7 +3913,9 @@
       "explanation": "Dad put the warm bread / on the table. groups the sentence into meaningful reading chunks.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer."
+        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer.",
+        "misconception_check": "Check the word by word reading idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3902,7 +3992,9 @@
       "explanation": "At night, / the brown owl flew / over the field. groups the sentence into meaningful reading chunks.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer."
+        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer.",
+        "misconception_check": "Check the word by word reading idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3978,7 +4070,9 @@
       "explanation": "The little frog / jumped over the wet log. groups the sentence into meaningful reading chunks.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer."
+        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer.",
+        "misconception_check": "Check the word by word reading idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4054,7 +4148,9 @@
       "explanation": "We went to the park / because the sun was shining. groups the sentence into meaningful reading chunks.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer."
+        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer.",
+        "misconception_check": "Check the word by word reading idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4130,7 +4226,9 @@
       "explanation": "First, / Sam packed a drink and a map. groups the sentence into meaningful reading chunks.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer."
+        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer.",
+        "misconception_check": "Check the word by word reading idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4206,7 +4304,9 @@
       "explanation": "The red bus / waited beside the school gate. groups the sentence into meaningful reading chunks.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer."
+        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer.",
+        "misconception_check": "Check the word by word reading idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4283,7 +4383,9 @@
       "explanation": "The sleepy puppy / curled up / on its soft bed. groups the sentence into meaningful reading chunks.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer."
+        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer.",
+        "misconception_check": "Check the word by word reading idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4359,7 +4461,9 @@
       "explanation": "Where is / my blue scarf? groups the sentence into meaningful reading chunks.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer."
+        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer.",
+        "misconception_check": "Check the word by word reading idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4435,7 +4539,9 @@
       "explanation": "What a huge / sandcastle! groups the sentence into meaningful reading chunks.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer."
+        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer.",
+        "misconception_check": "Check the word by word reading idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4511,7 +4617,9 @@
       "explanation": "Before bed, / Asha chose a short story. groups the sentence into meaningful reading chunks.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer."
+        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer.",
+        "misconception_check": "Check the word by word reading idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4587,7 +4695,9 @@
       "explanation": "The bright moon / shone through the window. groups the sentence into meaningful reading chunks.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer."
+        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer.",
+        "misconception_check": "Check the word by word reading idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4663,7 +4773,9 @@
       "explanation": "Ravi opened the gate / and waved to his friend. groups the sentence into meaningful reading chunks.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer."
+        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer.",
+        "misconception_check": "Check the word by word reading idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4740,7 +4852,9 @@
       "explanation": "The old train / puffed slowly / up the hill. groups the sentence into meaningful reading chunks.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer."
+        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer.",
+        "misconception_check": "Check the word by word reading idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4816,7 +4930,9 @@
       "explanation": "On Saturday, / our family visited the museum. groups the sentence into meaningful reading chunks.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer."
+        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer.",
+        "misconception_check": "Check the word by word reading idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4893,7 +5009,9 @@
       "explanation": "Please put / the red book / back on the shelf. groups the sentence into meaningful reading chunks.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer."
+        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer.",
+        "misconception_check": "Check the word by word reading idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4969,7 +5087,9 @@
       "explanation": "When the bell rang, / everyone walked into class. groups the sentence into meaningful reading chunks.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer."
+        "repair": "Show one bordered chunk at a time, rehearse it, then join the chunks without a timer.",
+        "misconception_check": "Check the word by word reading idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5045,7 +5165,9 @@
       "explanation": "Use a calm statement voice and stop at the full stop.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read."
+        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read.",
+        "misconception_check": "Check the ignores punctuation expression idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5121,7 +5243,9 @@
       "explanation": "Make a short pause at the comma, then finish the statement.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read."
+        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read.",
+        "misconception_check": "Check the ignores punctuation expression idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5197,7 +5321,9 @@
       "explanation": "Use a questioning voice and notice the question mark.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read."
+        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read.",
+        "misconception_check": "Check the ignores punctuation expression idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5273,7 +5399,9 @@
       "explanation": "Use a clear warning voice and notice the exclamation mark.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read."
+        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read.",
+        "misconception_check": "Check the ignores punctuation expression idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5349,7 +5477,9 @@
       "explanation": "Pause at the comma and keep the rest of the sentence together.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read."
+        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read.",
+        "misconception_check": "Check the ignores punctuation expression idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5425,7 +5555,9 @@
       "explanation": "Use a calm statement voice and stop at the full stop.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read."
+        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read.",
+        "misconception_check": "Check the ignores punctuation expression idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5502,7 +5634,9 @@
       "explanation": "Pause at the comma and group the action with where it happened.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read."
+        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read.",
+        "misconception_check": "Check the ignores punctuation expression idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5578,7 +5712,9 @@
       "explanation": "Keep the action words together and stop at the full stop.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read."
+        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read.",
+        "misconception_check": "Check the ignores punctuation expression idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5654,7 +5790,9 @@
       "explanation": "Join the reason smoothly to the first part of the sentence.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read."
+        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read.",
+        "misconception_check": "Check the ignores punctuation expression idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5730,7 +5868,9 @@
       "explanation": "Pause after First, then read the list smoothly.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read."
+        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read.",
+        "misconception_check": "Check the ignores punctuation expression idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5806,7 +5946,9 @@
       "explanation": "Keep the place phrase together and stop at the full stop.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read."
+        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read.",
+        "misconception_check": "Check the ignores punctuation expression idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5883,7 +6025,9 @@
       "explanation": "Group who, what happened and where into smooth chunks.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read."
+        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read.",
+        "misconception_check": "Check the ignores punctuation expression idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5959,7 +6103,9 @@
       "explanation": "Use a questioning voice and notice the question mark.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read."
+        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read.",
+        "misconception_check": "Check the ignores punctuation expression idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6035,7 +6181,9 @@
       "explanation": "Use an amazed voice without rushing the words.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read."
+        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read.",
+        "misconception_check": "Check the ignores punctuation expression idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6111,7 +6259,9 @@
       "explanation": "Pause at the comma, then read the action as one chunk.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read."
+        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read.",
+        "misconception_check": "Check the ignores punctuation expression idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6187,7 +6337,9 @@
       "explanation": "Keep the place phrase together and stop at the full stop.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read."
+        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read.",
+        "misconception_check": "Check the ignores punctuation expression idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6263,7 +6415,9 @@
       "explanation": "Join the two actions smoothly around and.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read."
+        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read.",
+        "misconception_check": "Check the ignores punctuation expression idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6340,7 +6494,9 @@
       "explanation": "Use the chunks to make the movement sound steady.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read."
+        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read.",
+        "misconception_check": "Check the ignores punctuation expression idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6416,7 +6572,9 @@
       "explanation": "Pause after the opening time phrase.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read."
+        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read.",
+        "misconception_check": "Check the ignores punctuation expression idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6493,7 +6651,9 @@
       "explanation": "Read the request clearly and keep the place words together.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read."
+        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read.",
+        "misconception_check": "Check the ignores punctuation expression idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6569,7 +6729,9 @@
       "explanation": "Pause at the comma and read the second chunk smoothly.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read."
+        "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read.",
+        "misconception_check": "Check the ignores punctuation expression idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6647,7 +6809,9 @@
       "explanation": "Small was skipped. Putting it back restores the full sentence.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task."
+        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6725,7 +6889,9 @@
       "explanation": "Lunch was skipped. Putting it back restores the full sentence.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task."
+        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6803,7 +6969,9 @@
       "explanation": "Swings was skipped. Putting it back restores the full sentence.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task."
+        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6881,7 +7049,9 @@
       "explanation": "Deep was skipped. Putting it back restores the full sentence.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task."
+        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6959,7 +7129,9 @@
       "explanation": "Stopped was skipped. Putting it back restores the full sentence.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task."
+        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7037,7 +7209,9 @@
       "explanation": "Warm was skipped. Putting it back restores the full sentence.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task."
+        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7116,7 +7290,9 @@
       "explanation": "Brown was skipped. Putting it back restores the full sentence.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task."
+        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7194,7 +7370,9 @@
       "explanation": "Over was skipped. Putting it back restores the full sentence.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task."
+        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7272,7 +7450,9 @@
       "explanation": "Because was skipped. Putting it back restores the full sentence.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task."
+        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7350,7 +7530,9 @@
       "explanation": "Map was skipped. Putting it back restores the full sentence.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task."
+        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7428,7 +7610,9 @@
       "explanation": "Beside was skipped. Putting it back restores the full sentence.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task."
+        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7507,7 +7691,9 @@
       "explanation": "Sleepy was skipped. Putting it back restores the full sentence.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task."
+        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7585,7 +7771,9 @@
       "explanation": "Blue was skipped. Putting it back restores the full sentence.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task."
+        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7663,7 +7851,9 @@
       "explanation": "Huge was skipped. Putting it back restores the full sentence.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task."
+        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7741,7 +7931,9 @@
       "explanation": "Short was skipped. Putting it back restores the full sentence.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task."
+        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7819,7 +8011,9 @@
       "explanation": "Through was skipped. Putting it back restores the full sentence.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task."
+        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7897,7 +8091,9 @@
       "explanation": "Waved was skipped. Putting it back restores the full sentence.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task."
+        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7976,7 +8172,9 @@
       "explanation": "Slowly was skipped. Putting it back restores the full sentence.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task."
+        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8054,7 +8252,9 @@
       "explanation": "Saturday was skipped. Putting it back restores the full sentence.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task."
+        "repair": "Use a static word window to compare each chunk and restore the missing word without restarting the whole task.",
+        "misconception_check": "Check the speed over accuracy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8132,7 +8332,9 @@
       "explanation": ". is the printed end mark and should guide the reread.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Reveal the end mark in a fixed high-contrast box, name its job and reread only the final chunk."
+        "repair": "Reveal the end mark in a fixed high-contrast box, name its job and reread only the final chunk.",
+        "misconception_check": "Check the ignores punctuation expression idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -8210,7 +8412,9 @@
       "explanation": "Lunch matches the printed sentence; school changes its meaning.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Magnify the changed word, compare its letters and reread the complete phrase after repair."
+        "repair": "Magnify the changed word, compare its letters and reread the complete phrase after repair.",
+        "misconception_check": "Check the guesses familiar word idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -8288,7 +8492,9 @@
       "explanation": "? is the printed end mark and should guide the reread.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Reveal the end mark in a fixed high-contrast box, name its job and reread only the final chunk."
+        "repair": "Reveal the end mark in a fixed high-contrast box, name its job and reread only the final chunk.",
+        "misconception_check": "Check the ignores punctuation expression idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -8366,7 +8572,9 @@
       "explanation": "Deep matches the printed sentence; blue changes its meaning.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Magnify the changed word, compare its letters and reread the complete phrase after repair."
+        "repair": "Magnify the changed word, compare its letters and reread the complete phrase after repair.",
+        "misconception_check": "Check the guesses familiar word idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -8444,7 +8652,9 @@
       "explanation": ". is the printed end mark and should guide the reread.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Reveal the end mark in a fixed high-contrast box, name its job and reread only the final chunk."
+        "repair": "Reveal the end mark in a fixed high-contrast box, name its job and reread only the final chunk.",
+        "misconception_check": "Check the ignores punctuation expression idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -8522,7 +8732,9 @@
       "explanation": "Warm matches the printed sentence; cold changes its meaning.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Magnify the changed word, compare its letters and reread the complete phrase after repair."
+        "repair": "Magnify the changed word, compare its letters and reread the complete phrase after repair.",
+        "misconception_check": "Check the guesses familiar word idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -8601,7 +8813,9 @@
       "explanation": ". is the printed end mark and should guide the reread.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Reveal the end mark in a fixed high-contrast box, name its job and reread only the final chunk."
+        "repair": "Reveal the end mark in a fixed high-contrast box, name its job and reread only the final chunk.",
+        "misconception_check": "Check the ignores punctuation expression idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -8679,7 +8893,9 @@
       "explanation": "Over matches the printed sentence; under changes its meaning.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Magnify the changed word, compare its letters and reread the complete phrase after repair."
+        "repair": "Magnify the changed word, compare its letters and reread the complete phrase after repair.",
+        "misconception_check": "Check the guesses familiar word idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -8757,7 +8973,9 @@
       "explanation": ". is the printed end mark and should guide the reread.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Reveal the end mark in a fixed high-contrast box, name its job and reread only the final chunk."
+        "repair": "Reveal the end mark in a fixed high-contrast box, name its job and reread only the final chunk.",
+        "misconception_check": "Check the ignores punctuation expression idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -8835,7 +9053,9 @@
       "explanation": "Map matches the printed sentence; coat changes its meaning.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Magnify the changed word, compare its letters and reread the complete phrase after repair."
+        "repair": "Magnify the changed word, compare its letters and reread the complete phrase after repair.",
+        "misconception_check": "Check the guesses familiar word idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -8913,7 +9133,9 @@
       "explanation": ". is the printed end mark and should guide the reread.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Reveal the end mark in a fixed high-contrast box, name its job and reread only the final chunk."
+        "repair": "Reveal the end mark in a fixed high-contrast box, name its job and reread only the final chunk.",
+        "misconception_check": "Check the ignores punctuation expression idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -8992,7 +9214,9 @@
       "explanation": "Sleepy matches the printed sentence; noisy changes its meaning.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Magnify the changed word, compare its letters and reread the complete phrase after repair."
+        "repair": "Magnify the changed word, compare its letters and reread the complete phrase after repair.",
+        "misconception_check": "Check the guesses familiar word idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -9070,7 +9294,9 @@
       "explanation": "? is the printed end mark and should guide the reread.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Reveal the end mark in a fixed high-contrast box, name its job and reread only the final chunk."
+        "repair": "Reveal the end mark in a fixed high-contrast box, name its job and reread only the final chunk.",
+        "misconception_check": "Check the ignores punctuation expression idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -9148,7 +9374,9 @@
       "explanation": "Huge matches the printed sentence; tiny changes its meaning.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Magnify the changed word, compare its letters and reread the complete phrase after repair."
+        "repair": "Magnify the changed word, compare its letters and reread the complete phrase after repair.",
+        "misconception_check": "Check the guesses familiar word idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -9226,7 +9454,9 @@
       "explanation": ". is the printed end mark and should guide the reread.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Reveal the end mark in a fixed high-contrast box, name its job and reread only the final chunk."
+        "repair": "Reveal the end mark in a fixed high-contrast box, name its job and reread only the final chunk.",
+        "misconception_check": "Check the ignores punctuation expression idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -9304,7 +9534,9 @@
       "explanation": "Through matches the printed sentence; under changes its meaning.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Magnify the changed word, compare its letters and reread the complete phrase after repair."
+        "repair": "Magnify the changed word, compare its letters and reread the complete phrase after repair.",
+        "misconception_check": "Check the guesses familiar word idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -9382,7 +9614,9 @@
       "explanation": ". is the printed end mark and should guide the reread.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Reveal the end mark in a fixed high-contrast box, name its job and reread only the final chunk."
+        "repair": "Reveal the end mark in a fixed high-contrast box, name its job and reread only the final chunk.",
+        "misconception_check": "Check the ignores punctuation expression idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -9461,7 +9695,9 @@
       "explanation": "Slowly matches the printed sentence; quickly changes its meaning.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Magnify the changed word, compare its letters and reread the complete phrase after repair."
+        "repair": "Magnify the changed word, compare its letters and reread the complete phrase after repair.",
+        "misconception_check": "Check the guesses familiar word idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -9539,7 +9775,9 @@
       "explanation": ". is the printed end mark and should guide the reread.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Reveal the end mark in a fixed high-contrast box, name its job and reread only the final chunk."
+        "repair": "Reveal the end mark in a fixed high-contrast box, name its job and reread only the final chunk.",
+        "misconception_check": "Check the ignores punctuation expression idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -9610,7 +9848,9 @@
       "explanation": "Rereading is a normal strategy for checking words, phrasing and meaning.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Show first read and reread as two equal practice steps and remove all scores or racing language."
+        "repair": "Show first read and reread as two equal practice steps and remove all scores or racing language.",
+        "misconception_check": "Check the reread as failure idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -9681,7 +9921,9 @@
       "explanation": "Rereading is a normal strategy for checking words, phrasing and meaning.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Show first read and reread as two equal practice steps and remove all scores or racing language."
+        "repair": "Show first read and reread as two equal practice steps and remove all scores or racing language.",
+        "misconception_check": "Check the reread as failure idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -9752,7 +9994,9 @@
       "explanation": "Rereading is a normal strategy for checking words, phrasing and meaning.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Show first read and reread as two equal practice steps and remove all scores or racing language."
+        "repair": "Show first read and reread as two equal practice steps and remove all scores or racing language.",
+        "misconception_check": "Check the reread as failure idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -9823,7 +10067,9 @@
       "explanation": "Rereading is a normal strategy for checking words, phrasing and meaning.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Show first read and reread as two equal practice steps and remove all scores or racing language."
+        "repair": "Show first read and reread as two equal practice steps and remove all scores or racing language.",
+        "misconception_check": "Check the reread as failure idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -9894,7 +10140,9 @@
       "explanation": "Rereading is a normal strategy for checking words, phrasing and meaning.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Show first read and reread as two equal practice steps and remove all scores or racing language."
+        "repair": "Show first read and reread as two equal practice steps and remove all scores or racing language.",
+        "misconception_check": "Check the reread as failure idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -9965,7 +10213,9 @@
       "explanation": "Rereading is a normal strategy for checking words, phrasing and meaning.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Show first read and reread as two equal practice steps and remove all scores or racing language."
+        "repair": "Show first read and reread as two equal practice steps and remove all scores or racing language.",
+        "misconception_check": "Check the reread as failure idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -10036,7 +10286,9 @@
       "explanation": "Rereading is a normal strategy for checking words, phrasing and meaning.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Show first read and reread as two equal practice steps and remove all scores or racing language."
+        "repair": "Show first read and reread as two equal practice steps and remove all scores or racing language.",
+        "misconception_check": "Check the reread as failure idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -10107,7 +10359,9 @@
       "explanation": "Rereading is a normal strategy for checking words, phrasing and meaning.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Show first read and reread as two equal practice steps and remove all scores or racing language."
+        "repair": "Show first read and reread as two equal practice steps and remove all scores or racing language.",
+        "misconception_check": "Check the reread as failure idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -10178,7 +10432,9 @@
       "explanation": "Rereading is a normal strategy for checking words, phrasing and meaning.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Show first read and reread as two equal practice steps and remove all scores or racing language."
+        "repair": "Show first read and reread as two equal practice steps and remove all scores or racing language.",
+        "misconception_check": "Check the reread as failure idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -10249,7 +10505,9 @@
       "explanation": "Rereading is a normal strategy for checking words, phrasing and meaning.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Show first read and reread as two equal practice steps and remove all scores or racing language."
+        "repair": "Show first read and reread as two equal practice steps and remove all scores or racing language.",
+        "misconception_check": "Check the reread as failure idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -10320,7 +10578,9 @@
       "explanation": "Rereading is a normal strategy for checking words, phrasing and meaning.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Show first read and reread as two equal practice steps and remove all scores or racing language."
+        "repair": "Show first read and reread as two equal practice steps and remove all scores or racing language.",
+        "misconception_check": "Check the reread as failure idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -10391,7 +10651,9 @@
       "explanation": "Rereading is a normal strategy for checking words, phrasing and meaning.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Show first read and reread as two equal practice steps and remove all scores or racing language."
+        "repair": "Show first read and reread as two equal practice steps and remove all scores or racing language.",
+        "misconception_check": "Check the reread as failure idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -10462,7 +10724,9 @@
       "explanation": "Rereading is a normal strategy for checking words, phrasing and meaning.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Show first read and reread as two equal practice steps and remove all scores or racing language."
+        "repair": "Show first read and reread as two equal practice steps and remove all scores or racing language.",
+        "misconception_check": "Check the reread as failure idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -10533,7 +10797,9 @@
       "explanation": "Rereading is a normal strategy for checking words, phrasing and meaning.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Show first read and reread as two equal practice steps and remove all scores or racing language."
+        "repair": "Show first read and reread as two equal practice steps and remove all scores or racing language.",
+        "misconception_check": "Check the reread as failure idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -10604,7 +10870,9 @@
       "explanation": "Rereading is a normal strategy for checking words, phrasing and meaning.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Show first read and reread as two equal practice steps and remove all scores or racing language."
+        "repair": "Show first read and reread as two equal practice steps and remove all scores or racing language.",
+        "misconception_check": "Check the reread as failure idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -10675,7 +10943,9 @@
       "explanation": "Check every word, then group the words into smooth meaning chunks. A single focus makes self-monitoring manageable.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Offer one calm focus card—words, chunks, punctuation or meaning—and let the learner choose without judgement."
+        "repair": "Offer one calm focus card—words, chunks, punctuation or meaning—and let the learner choose without judgement.",
+        "misconception_check": "Check the reread as failure idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10746,7 +11016,9 @@
       "explanation": "Pause briefly at the comma and keep each phrase together. A single focus makes self-monitoring manageable.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Offer one calm focus card—words, chunks, punctuation or meaning—and let the learner choose without judgement."
+        "repair": "Offer one calm focus card—words, chunks, punctuation or meaning—and let the learner choose without judgement.",
+        "misconception_check": "Check the reread as failure idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10817,7 +11089,9 @@
       "explanation": "Notice the question mark and use a questioning voice. A single focus makes self-monitoring manageable.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Offer one calm focus card—words, chunks, punctuation or meaning—and let the learner choose without judgement."
+        "repair": "Offer one calm focus card—words, chunks, punctuation or meaning—and let the learner choose without judgement.",
+        "misconception_check": "Check the reread as failure idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10888,7 +11162,9 @@
       "explanation": "Notice the exclamation mark and match the feeling or warning. A single focus makes self-monitoring manageable.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Offer one calm focus card—words, chunks, punctuation or meaning—and let the learner choose without judgement."
+        "repair": "Offer one calm focus card—words, chunks, punctuation or meaning—and let the learner choose without judgement.",
+        "misconception_check": "Check the reread as failure idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10959,7 +11235,9 @@
       "explanation": "Pause briefly at the comma and keep each phrase together. A single focus makes self-monitoring manageable.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Offer one calm focus card—words, chunks, punctuation or meaning—and let the learner choose without judgement."
+        "repair": "Offer one calm focus card—words, chunks, punctuation or meaning—and let the learner choose without judgement.",
+        "misconception_check": "Check the reread as failure idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11030,7 +11308,9 @@
       "explanation": "Check every word, then group the words into smooth meaning chunks. A single focus makes self-monitoring manageable.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Offer one calm focus card—words, chunks, punctuation or meaning—and let the learner choose without judgement."
+        "repair": "Offer one calm focus card—words, chunks, punctuation or meaning—and let the learner choose without judgement.",
+        "misconception_check": "Check the reread as failure idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11101,7 +11381,9 @@
       "explanation": "Pause briefly at the comma and keep each phrase together. A single focus makes self-monitoring manageable.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Offer one calm focus card—words, chunks, punctuation or meaning—and let the learner choose without judgement."
+        "repair": "Offer one calm focus card—words, chunks, punctuation or meaning—and let the learner choose without judgement.",
+        "misconception_check": "Check the reread as failure idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11172,7 +11454,9 @@
       "explanation": "Check every word, then group the words into smooth meaning chunks. A single focus makes self-monitoring manageable.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Offer one calm focus card—words, chunks, punctuation or meaning—and let the learner choose without judgement."
+        "repair": "Offer one calm focus card—words, chunks, punctuation or meaning—and let the learner choose without judgement.",
+        "misconception_check": "Check the reread as failure idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11243,7 +11527,9 @@
       "explanation": "Check every word, then group the words into smooth meaning chunks. A single focus makes self-monitoring manageable.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Offer one calm focus card—words, chunks, punctuation or meaning—and let the learner choose without judgement."
+        "repair": "Offer one calm focus card—words, chunks, punctuation or meaning—and let the learner choose without judgement.",
+        "misconception_check": "Check the reread as failure idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11314,7 +11600,9 @@
       "explanation": "Pause briefly at the comma and keep each phrase together. A single focus makes self-monitoring manageable.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Offer one calm focus card—words, chunks, punctuation or meaning—and let the learner choose without judgement."
+        "repair": "Offer one calm focus card—words, chunks, punctuation or meaning—and let the learner choose without judgement.",
+        "misconception_check": "Check the reread as failure idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11385,7 +11673,9 @@
       "explanation": "Check every word, then group the words into smooth meaning chunks. A single focus makes self-monitoring manageable.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Offer one calm focus card—words, chunks, punctuation or meaning—and let the learner choose without judgement."
+        "repair": "Offer one calm focus card—words, chunks, punctuation or meaning—and let the learner choose without judgement.",
+        "misconception_check": "Check the reread as failure idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11456,7 +11746,9 @@
       "explanation": "Check every word, then group the words into smooth meaning chunks. A single focus makes self-monitoring manageable.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Offer one calm focus card—words, chunks, punctuation or meaning—and let the learner choose without judgement."
+        "repair": "Offer one calm focus card—words, chunks, punctuation or meaning—and let the learner choose without judgement.",
+        "misconception_check": "Check the reread as failure idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11527,7 +11819,9 @@
       "explanation": "Notice the question mark and use a questioning voice. A single focus makes self-monitoring manageable.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Offer one calm focus card—words, chunks, punctuation or meaning—and let the learner choose without judgement."
+        "repair": "Offer one calm focus card—words, chunks, punctuation or meaning—and let the learner choose without judgement.",
+        "misconception_check": "Check the reread as failure idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11598,7 +11892,9 @@
       "explanation": "Notice the exclamation mark and match the feeling or warning. A single focus makes self-monitoring manageable.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Offer one calm focus card—words, chunks, punctuation or meaning—and let the learner choose without judgement."
+        "repair": "Offer one calm focus card—words, chunks, punctuation or meaning—and let the learner choose without judgement.",
+        "misconception_check": "Check the reread as failure idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11674,7 +11970,9 @@
       "explanation": "The small boat / rocked on the pond. preserves the familiar meaning groups.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Restore the previous phrase borders and fade them only after a comfortable reread."
+        "repair": "Restore the previous phrase borders and fade them only after a comfortable reread.",
+        "misconception_check": "Check the word by word reading idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -11750,7 +12048,9 @@
       "explanation": "After lunch, / Mina fed the rabbit. preserves the familiar meaning groups.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Restore the previous phrase borders and fade them only after a comfortable reread."
+        "repair": "Restore the previous phrase borders and fade them only after a comfortable reread.",
+        "misconception_check": "Check the word by word reading idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -11826,7 +12126,9 @@
       "explanation": "Can you see / the swings in the park? preserves the familiar meaning groups.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Restore the previous phrase borders and fade them only after a comfortable reread."
+        "repair": "Restore the previous phrase borders and fade them only after a comfortable reread.",
+        "misconception_check": "Check the word by word reading idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -11902,7 +12204,9 @@
       "explanation": "Watch out / for the deep puddle! preserves the familiar meaning groups.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Restore the previous phrase borders and fade them only after a comfortable reread."
+        "repair": "Restore the previous phrase borders and fade them only after a comfortable reread.",
+        "misconception_check": "Check the word by word reading idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -11978,7 +12282,9 @@
       "explanation": "When the rain stopped, / the children ran outside. preserves the familiar meaning groups.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Restore the previous phrase borders and fade them only after a comfortable reread."
+        "repair": "Restore the previous phrase borders and fade them only after a comfortable reread.",
+        "misconception_check": "Check the word by word reading idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -12054,7 +12360,9 @@
       "explanation": "Dad put the warm bread / on the table. preserves the familiar meaning groups.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Restore the previous phrase borders and fade them only after a comfortable reread."
+        "repair": "Restore the previous phrase borders and fade them only after a comfortable reread.",
+        "misconception_check": "Check the word by word reading idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -12131,7 +12439,9 @@
       "explanation": "At night, / the brown owl flew / over the field. preserves the familiar meaning groups.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Restore the previous phrase borders and fade them only after a comfortable reread."
+        "repair": "Restore the previous phrase borders and fade them only after a comfortable reread.",
+        "misconception_check": "Check the word by word reading idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -12207,7 +12517,9 @@
       "explanation": "The little frog / jumped over the wet log. preserves the familiar meaning groups.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Restore the previous phrase borders and fade them only after a comfortable reread."
+        "repair": "Restore the previous phrase borders and fade them only after a comfortable reread.",
+        "misconception_check": "Check the word by word reading idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -12283,7 +12595,9 @@
       "explanation": "We went to the park / because the sun was shining. preserves the familiar meaning groups.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Restore the previous phrase borders and fade them only after a comfortable reread."
+        "repair": "Restore the previous phrase borders and fade them only after a comfortable reread.",
+        "misconception_check": "Check the word by word reading idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -12359,7 +12673,9 @@
       "explanation": "First, / Sam packed a drink and a map. preserves the familiar meaning groups.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Restore the previous phrase borders and fade them only after a comfortable reread."
+        "repair": "Restore the previous phrase borders and fade them only after a comfortable reread.",
+        "misconception_check": "Check the word by word reading idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -12435,7 +12751,9 @@
       "explanation": "The red bus / waited beside the school gate. preserves the familiar meaning groups.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Restore the previous phrase borders and fade them only after a comfortable reread."
+        "repair": "Restore the previous phrase borders and fade them only after a comfortable reread.",
+        "misconception_check": "Check the word by word reading idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -12512,7 +12830,9 @@
       "explanation": "The sleepy puppy / curled up / on its soft bed. preserves the familiar meaning groups.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Restore the previous phrase borders and fade them only after a comfortable reread."
+        "repair": "Restore the previous phrase borders and fade them only after a comfortable reread.",
+        "misconception_check": "Check the word by word reading idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -12588,7 +12908,9 @@
       "explanation": "Where is / my blue scarf? preserves the familiar meaning groups.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Restore the previous phrase borders and fade them only after a comfortable reread."
+        "repair": "Restore the previous phrase borders and fade them only after a comfortable reread.",
+        "misconception_check": "Check the word by word reading idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -12664,7 +12986,9 @@
       "explanation": "What a huge / sandcastle! preserves the familiar meaning groups.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Restore the previous phrase borders and fade them only after a comfortable reread."
+        "repair": "Restore the previous phrase borders and fade them only after a comfortable reread.",
+        "misconception_check": "Check the word by word reading idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -12740,7 +13064,9 @@
       "explanation": "Before bed, / Asha chose a short story. preserves the familiar meaning groups.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Restore the previous phrase borders and fade them only after a comfortable reread."
+        "repair": "Restore the previous phrase borders and fade them only after a comfortable reread.",
+        "misconception_check": "Check the word by word reading idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -12816,7 +13142,9 @@
       "explanation": "The sentence says on the pond.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation."
+        "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation.",
+        "misconception_check": "Check the meaning lost while decoding idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -12892,7 +13220,9 @@
       "explanation": "The sentence says after lunch.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation."
+        "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation.",
+        "misconception_check": "Check the meaning lost while decoding idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -12968,7 +13298,9 @@
       "explanation": "The sentence says the swings.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation."
+        "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation.",
+        "misconception_check": "Check the meaning lost while decoding idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -13044,7 +13376,9 @@
       "explanation": "The sentence says watch out for the puddle.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation."
+        "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation.",
+        "misconception_check": "Check the meaning lost while decoding idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -13120,7 +13454,9 @@
       "explanation": "The sentence says the children ran outside.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation."
+        "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation.",
+        "misconception_check": "Check the meaning lost while decoding idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -13196,7 +13532,9 @@
       "explanation": "The sentence says on the table.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation."
+        "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation.",
+        "misconception_check": "Check the meaning lost while decoding idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -13273,7 +13611,9 @@
       "explanation": "The sentence says at night.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation."
+        "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation.",
+        "misconception_check": "Check the meaning lost while decoding idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -13349,7 +13689,9 @@
       "explanation": "The sentence says the wet log.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation."
+        "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation.",
+        "misconception_check": "Check the meaning lost while decoding idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -13425,7 +13767,9 @@
       "explanation": "The sentence says the sun was shining.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation."
+        "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation.",
+        "misconception_check": "Check the meaning lost while decoding idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -13501,7 +13845,9 @@
       "explanation": "The sentence says a drink and a map.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation."
+        "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation.",
+        "misconception_check": "Check the meaning lost while decoding idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -13577,7 +13923,9 @@
       "explanation": "The sentence says beside the school gate.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation."
+        "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation.",
+        "misconception_check": "Check the meaning lost while decoding idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -13654,7 +14002,9 @@
       "explanation": "The sentence says on its soft bed.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation."
+        "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation.",
+        "misconception_check": "Check the meaning lost while decoding idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -13730,7 +14080,9 @@
       "explanation": "The sentence says a blue scarf.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation."
+        "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation.",
+        "misconception_check": "Check the meaning lost while decoding idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -13806,7 +14158,9 @@
       "explanation": "The sentence says a huge sandcastle.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
-        "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation."
+        "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation.",
+        "misconception_check": "Check the meaning lost while decoding idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",

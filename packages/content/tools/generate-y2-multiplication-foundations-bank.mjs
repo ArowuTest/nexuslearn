@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -44,6 +45,7 @@ pack.version = "0.2.0";
 pack.qa.notes = "Review-stage Year 2 multiplication-foundations pack with a deterministic 230-item pilot bank. Four curated variants are preserved alongside candidates spanning equal groups, arrays, repeated addition, 2/5/10 facts, commutativity, sharing, grouping, inverse checks, odd/even pairing and misconception repair. Every generated item includes concrete and visual alternatives, SEND sentence and interaction scaffolds, strategy feedback, unlimited thinking time and low-pressure progress based on completed reasoning rather than speed or streaks. Independent mathematics, teacher, accessibility and renderer review remains required before promotion.";
 
 validateBank(pack, enrichedCurated, enrichedGenerated);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`y2-multiplication-foundations-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
 console.log(`y2-multiplication-foundations-bank blueprints=${summary(pack.question_variants, (variant) => variant.body.variant_blueprint_id)}`);

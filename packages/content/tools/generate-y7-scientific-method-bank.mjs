@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -43,6 +44,7 @@ pack.version = "0.2.0";
 pack.qa = { ...pack.qa, readiness_status: "draft", notes: "Expanded deterministic Year 7 scientific-method pilot bank; generated variants require curriculum, teacher and accessibility review." };
 validateBank(pack, enrichedCurated, enrichedGenerated);
 if (JSON.stringify(enrichedCurated.map(removeScienceContract)) !== curatedSnapshot) throw new Error("Curated variants changed during generation.");
+enrichPackForReview(pack);
 const output = `${JSON.stringify(pack, null, 2)}\n`;
 if (write) { await writeFile(packPath, output, "utf8"); console.log(`Wrote ${relative(packPath)} with ${pack.question_variants.length} variants.`); }
 else if (check) { if (sourceText !== output) throw new Error(`${relative(packPath)} is not deterministic; run --write.`); console.log(`Check passed: ${relative(packPath)} is deterministic.`); }

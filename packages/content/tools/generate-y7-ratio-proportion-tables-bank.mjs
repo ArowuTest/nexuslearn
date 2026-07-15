@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -53,6 +54,7 @@ pack.qa = { ...pack.qa, readiness_status: "draft", notes: "Expanded deterministi
 validate(pack, enrichedCurated, enrichedGenerated);
 if (JSON.stringify(enrichedCurated.map(removeRatioContract)) !== curatedSnapshot) throw new Error("Curated variants changed during generation.");
 
+enrichPackForReview(pack);
 const output = `${JSON.stringify(pack, null, 2)}\n`;
 if (write) {
   await writeFile(packPath, output, "utf8");

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -84,6 +85,7 @@ pack.version = "0.2.0";
 pack.qa.notes = "Review-stage Year 1 everyday-materials pack with a deterministic 220-item pilot bank. Four curated variants are preserved alongside candidates covering object/material language, representative samples of wood, plastic, glass, metal, water and rock, simple property contrasts, rule-based grouping, evidence from sensory-safe modelled tests, and early suitability reasoning. Generated items avoid hidden-composition claims and treat each property conclusion as evidence about the tested sample rather than every example of a material. Every item includes visual, tactile-tool and text routes, opt-out from direct sensory contact, supported interaction, explicit evidence feedback and untimed joyful maker missions. Referenced narration remains unavailable pending ElevenLabs human listening review with browser TTS prohibited. Independent science, sample-image, SEND, safeguarding, teacher and renderer review remains required before promotion.";
 
 validateBank(pack, curated, generated);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`y1-everyday-materials-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
 console.log(`y1-everyday-materials-bank blueprints=${summary(pack.question_variants, (variant) => variant.body.variant_blueprint_id)}`);

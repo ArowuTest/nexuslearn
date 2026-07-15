@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -137,6 +138,7 @@ pack.qa.readiness_status = "draft";
 pack.qa.notes = "Depth-wave review bank reaches the 240-item pilot target with three preserved curated questions and 237 deterministic candidates covering paragraph links, reference chains, adverbials, tense consistency and deliberate shifts, repetition/substitution, grammatical ellipsis, sequencing and meaning-preserving editing. Generated candidates include SEND/dyslexia scaffolds, supported non-drag interactions, rich relationship/reference/meaning feedback, pressure-free publishing missions and optional ElevenLabs references requiring human listening approval; browser TTS is prohibited. Independent English, teacher, SEND, accessibility, safeguarding, audio and renderer review remains required before promotion.";
 
 validateBank(pack, curated, candidates);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`writing-cohesion-bank curated=${curated.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
 console.log(`writing-cohesion-bank strands=${summary(candidates, (variant) => variant.body.cohesion_strand)}`);

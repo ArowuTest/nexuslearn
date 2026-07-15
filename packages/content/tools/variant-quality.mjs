@@ -77,8 +77,8 @@ function inspectPack(pack) {
     validateArithmetic(variant, errors);
     validatePhonics(variant, errors);
     validateParticleScience(pack, variant, errors);
-    if (variant.status === "review" && variant.body?.review_batch && !variant.body?.variant_blueprint_id) {
-      errors.push(`${variant.id} has review provenance but no variant_blueprint_id`);
+    if (variant.status === "review" && variant.body?.review_batch && !variant.body?.variant_blueprint_id && !variant.body?.review_provenance) {
+      errors.push(`${variant.id} has review provenance but no variant_blueprint_id or curated provenance`);
     }
     if ((variant.hints ?? []).some((hint, index, hints) => hints.indexOf(hint) !== index)) {
       errors.push(`${variant.id} repeats an identical hint`);

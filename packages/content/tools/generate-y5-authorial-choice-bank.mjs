@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -121,6 +122,7 @@ pack.question_variants = [...authored, ...candidates];
 pack.version = "0.2.0";
 pack.qa.notes = "Review-stage Year 5 reading bank now reaches the 240-item pilot target with four preserved curated questions and deterministic candidates across every blueprint and format. Generated candidates require human curriculum, teacher, accessibility and safeguarding review for extract quality, interpretive plausibility, cultural assumptions, narration and alternative evidence-based responses before promotion.";
 
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`authorial-choice-bank authored=${authored.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
 console.log(`authorial-choice-bank blueprints=${summary(candidates, (variant) => variant.body.variant_blueprint_id)}`);

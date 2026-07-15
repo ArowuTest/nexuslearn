@@ -409,7 +409,9 @@
         "correct": "Treasure conserved: 0 and 3 make 3.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "0 and 3 are the two parts. Together they make the whole 3: 0 + 3 = 3. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -479,7 +481,9 @@
         "correct": "Treasure conserved: 1 and 2 make 3.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "1 and 2 are the two parts. Together they make the whole 3: 1 + 2 = 3. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -549,7 +553,9 @@
         "correct": "Treasure conserved: 2 and 1 make 3.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "2 and 1 are the two parts. Together they make the whole 3: 2 + 1 = 3. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -619,7 +625,9 @@
         "correct": "Treasure conserved: 3 and 0 make 3.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "3 and 0 are the two parts. Together they make the whole 3: 3 + 0 = 3. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -689,7 +697,9 @@
         "correct": "Treasure conserved: 0 and 4 make 4.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "0 and 4 are the two parts. Together they make the whole 4: 0 + 4 = 4. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -759,7 +769,9 @@
         "correct": "Treasure conserved: 1 and 3 make 4.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "1 and 3 are the two parts. Together they make the whole 4: 1 + 3 = 4. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -829,7 +841,9 @@
         "correct": "Treasure conserved: 2 and 2 make 4.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "2 and 2 are the two parts. Together they make the whole 4: 2 + 2 = 4. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -899,7 +913,9 @@
         "correct": "Treasure conserved: 3 and 1 make 4.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "3 and 1 are the two parts. Together they make the whole 4: 3 + 1 = 4. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -969,7 +985,9 @@
         "correct": "Treasure conserved: 4 and 0 make 4.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "4 and 0 are the two parts. Together they make the whole 4: 4 + 0 = 4. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1039,7 +1057,9 @@
         "correct": "Treasure conserved: 0 and 5 make 5.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "0 and 5 are the two parts. Together they make the whole 5: 0 + 5 = 5. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1109,7 +1129,9 @@
         "correct": "Treasure conserved: 1 and 4 make 5.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "1 and 4 are the two parts. Together they make the whole 5: 1 + 4 = 5. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1179,7 +1201,9 @@
         "correct": "Treasure conserved: 2 and 3 make 5.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "2 and 3 are the two parts. Together they make the whole 5: 2 + 3 = 5. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1249,7 +1273,9 @@
         "correct": "Treasure conserved: 3 and 2 make 5.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "3 and 2 are the two parts. Together they make the whole 5: 3 + 2 = 5. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1319,7 +1345,9 @@
         "correct": "Treasure conserved: 4 and 1 make 5.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "4 and 1 are the two parts. Together they make the whole 5: 4 + 1 = 5. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1389,7 +1417,9 @@
         "correct": "Treasure conserved: 5 and 0 make 5.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "5 and 0 are the two parts. Together they make the whole 5: 5 + 0 = 5. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1459,7 +1489,9 @@
         "correct": "Treasure conserved: 0 and 3 make 3.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "0 and 3 are the two parts. Together they make the whole 3: 0 + 3 = 3. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1529,7 +1561,9 @@
         "correct": "Treasure conserved: 1 and 2 make 3.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "1 and 2 are the two parts. Together they make the whole 3: 1 + 2 = 3. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1599,7 +1633,9 @@
         "correct": "Treasure conserved: 2 and 1 make 3.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "2 and 1 are the two parts. Together they make the whole 3: 2 + 1 = 3. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1669,7 +1705,9 @@
         "correct": "Treasure conserved: 3 and 0 make 3.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "3 and 0 are the two parts. Together they make the whole 3: 3 + 0 = 3. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1739,7 +1777,9 @@
         "correct": "Treasure conserved: 0 and 4 make 4.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "0 and 4 are the two parts. Together they make the whole 4: 0 + 4 = 4. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1809,7 +1849,9 @@
         "correct": "Treasure conserved: 1 and 3 make 4.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "1 and 3 are the two parts. Together they make the whole 4: 1 + 3 = 4. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1879,7 +1921,9 @@
         "correct": "Treasure conserved: 2 and 2 make 4.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "2 and 2 are the two parts. Together they make the whole 4: 2 + 2 = 4. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1949,7 +1993,9 @@
         "correct": "Treasure conserved: 3 and 1 make 4.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "3 and 1 are the two parts. Together they make the whole 4: 3 + 1 = 4. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2019,7 +2065,9 @@
         "correct": "Treasure conserved: 4 and 0 make 4.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "4 and 0 are the two parts. Together they make the whole 4: 4 + 0 = 4. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2089,7 +2137,9 @@
         "correct": "Treasure conserved: 0 and 5 make 5.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "0 and 5 are the two parts. Together they make the whole 5: 0 + 5 = 5. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2159,7 +2209,9 @@
         "correct": "Treasure conserved: 1 and 4 make 5.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "1 and 4 are the two parts. Together they make the whole 5: 1 + 4 = 5. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2229,7 +2281,9 @@
         "correct": "Treasure conserved: 2 and 3 make 5.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "2 and 3 are the two parts. Together they make the whole 5: 2 + 3 = 5. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2299,7 +2353,9 @@
         "correct": "Treasure conserved: 3 and 2 make 5.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "3 and 2 are the two parts. Together they make the whole 5: 3 + 2 = 5. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2369,7 +2425,9 @@
         "correct": "Treasure conserved: 4 and 1 make 5.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "4 and 1 are the two parts. Together they make the whole 5: 4 + 1 = 5. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2439,7 +2497,9 @@
         "correct": "Treasure conserved: 5 and 0 make 5.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "5 and 0 are the two parts. Together they make the whole 5: 5 + 0 = 5. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2509,7 +2569,9 @@
         "correct": "Treasure conserved: 0 and 3 make 3.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "0 and 3 are the two parts. Together they make the whole 3: 0 + 3 = 3. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2579,7 +2641,9 @@
         "correct": "Treasure conserved: 1 and 2 make 3.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "1 and 2 are the two parts. Together they make the whole 3: 1 + 2 = 3. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2649,7 +2713,9 @@
         "correct": "Treasure conserved: 2 and 1 make 3.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "2 and 1 are the two parts. Together they make the whole 3: 2 + 1 = 3. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2719,7 +2785,9 @@
         "correct": "Treasure conserved: 3 and 0 make 3.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "3 and 0 are the two parts. Together they make the whole 3: 3 + 0 = 3. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2789,7 +2857,9 @@
         "correct": "Treasure conserved: 0 and 4 make 4.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "0 and 4 are the two parts. Together they make the whole 4: 0 + 4 = 4. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2859,7 +2929,9 @@
         "correct": "Treasure conserved: 1 and 3 make 4.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "1 and 3 are the two parts. Together they make the whole 4: 1 + 3 = 4. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2929,7 +3001,9 @@
         "correct": "Treasure conserved: 2 and 2 make 4.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "2 and 2 are the two parts. Together they make the whole 4: 2 + 2 = 4. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2999,7 +3073,9 @@
         "correct": "Treasure conserved: 3 and 1 make 4.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "3 and 1 are the two parts. Together they make the whole 4: 3 + 1 = 4. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -3069,7 +3145,9 @@
         "correct": "Treasure conserved: 4 and 0 make 4.",
         "repair": "Return every counter to the WHOLE tray, count once, then move each counter into exactly one part pot.",
         "bond_evidence": "4 and 0 are the two parts. Together they make the whole 4: 4 + 0 = 4. No object is lost or counted twice.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the objects lost or double counted idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -3150,7 +3228,9 @@
         "correct": "Vault complete: 0 + 10 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "0 and 10 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3234,7 +3314,9 @@
         "correct": "Vault complete: 1 + 9 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "1 and 9 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3318,7 +3400,9 @@
         "correct": "Vault complete: 2 + 8 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "2 and 8 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3402,7 +3486,9 @@
         "correct": "Vault complete: 3 + 7 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "3 and 7 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3486,7 +3572,9 @@
         "correct": "Vault complete: 4 + 6 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "4 and 6 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3570,7 +3658,9 @@
         "correct": "Vault complete: 5 + 5 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "5 and 5 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the parts must be different idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3654,7 +3744,9 @@
         "correct": "Vault complete: 6 + 4 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "6 and 4 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3738,7 +3830,9 @@
         "correct": "Vault complete: 7 + 3 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "7 and 3 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3822,7 +3916,9 @@
         "correct": "Vault complete: 8 + 2 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "8 and 2 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3906,7 +4002,9 @@
         "correct": "Vault complete: 9 + 1 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "9 and 1 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3987,7 +4085,9 @@
         "correct": "Vault complete: 10 + 0 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "10 and 0 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4068,7 +4168,9 @@
         "correct": "Vault complete: 0 + 10 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "0 and 10 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4152,7 +4254,9 @@
         "correct": "Vault complete: 1 + 9 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "1 and 9 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4236,7 +4340,9 @@
         "correct": "Vault complete: 2 + 8 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "2 and 8 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4320,7 +4426,9 @@
         "correct": "Vault complete: 3 + 7 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "3 and 7 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4404,7 +4512,9 @@
         "correct": "Vault complete: 4 + 6 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "4 and 6 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4488,7 +4598,9 @@
         "correct": "Vault complete: 5 + 5 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "5 and 5 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the parts must be different idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4572,7 +4684,9 @@
         "correct": "Vault complete: 6 + 4 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "6 and 4 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4656,7 +4770,9 @@
         "correct": "Vault complete: 7 + 3 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "7 and 3 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4740,7 +4856,9 @@
         "correct": "Vault complete: 8 + 2 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "8 and 2 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4824,7 +4942,9 @@
         "correct": "Vault complete: 9 + 1 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "9 and 1 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4905,7 +5025,9 @@
         "correct": "Vault complete: 10 + 0 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "10 and 0 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4986,7 +5108,9 @@
         "correct": "Vault complete: 0 + 10 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "0 and 10 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5070,7 +5194,9 @@
         "correct": "Vault complete: 1 + 9 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "1 and 9 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5154,7 +5280,9 @@
         "correct": "Vault complete: 2 + 8 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "2 and 8 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5238,7 +5366,9 @@
         "correct": "Vault complete: 3 + 7 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "3 and 7 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5322,7 +5452,9 @@
         "correct": "Vault complete: 4 + 6 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "4 and 6 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5406,7 +5538,9 @@
         "correct": "Vault complete: 5 + 5 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "5 and 5 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the parts must be different idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5490,7 +5624,9 @@
         "correct": "Vault complete: 6 + 4 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "6 and 4 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5574,7 +5710,9 @@
         "correct": "Vault complete: 7 + 3 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "7 and 3 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5658,7 +5796,9 @@
         "correct": "Vault complete: 8 + 2 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "8 and 2 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5742,7 +5882,9 @@
         "correct": "Vault complete: 9 + 1 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "9 and 1 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5823,7 +5965,9 @@
         "correct": "Vault complete: 10 + 0 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "10 and 0 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5904,7 +6048,9 @@
         "correct": "Vault complete: 0 + 10 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "0 and 10 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -5988,7 +6134,9 @@
         "correct": "Vault complete: 1 + 9 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "1 and 9 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -6072,7 +6220,9 @@
         "correct": "Vault complete: 2 + 8 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "2 and 8 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -6156,7 +6306,9 @@
         "correct": "Vault complete: 3 + 7 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "3 and 7 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -6240,7 +6392,9 @@
         "correct": "Vault complete: 4 + 6 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "4 and 6 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -6324,7 +6478,9 @@
         "correct": "Vault complete: 5 + 5 = 10.",
         "repair": "Touch or hear each empty frame cell once, then check that filled plus empty accounts for all ten spaces.",
         "bond_evidence": "5 and 5 make 10. When the filled part goes up by one, the empty part goes down by one, so the whole stays 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the parts must be different idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -6397,7 +6553,9 @@
         "correct": "Chest balanced: 10 and 1 make 11.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "10 and 1 make 11: 10 + 1 = 11. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6470,7 +6628,9 @@
         "correct": "Chest balanced: 10 and 2 make 12.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "10 and 2 make 12: 10 + 2 = 12. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6543,7 +6703,9 @@
         "correct": "Chest balanced: 10 and 3 make 13.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "10 and 3 make 13: 10 + 3 = 13. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6616,7 +6778,9 @@
         "correct": "Chest balanced: 10 and 4 make 14.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "10 and 4 make 14: 10 + 4 = 14. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6689,7 +6853,9 @@
         "correct": "Chest balanced: 10 and 5 make 15.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "10 and 5 make 15: 10 + 5 = 15. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6762,7 +6928,9 @@
         "correct": "Chest balanced: 10 and 6 make 16.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "10 and 6 make 16: 10 + 6 = 16. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6835,7 +7003,9 @@
         "correct": "Chest balanced: 10 and 7 make 17.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "10 and 7 make 17: 10 + 7 = 17. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6908,7 +7078,9 @@
         "correct": "Chest balanced: 10 and 8 make 18.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "10 and 8 make 18: 10 + 8 = 18. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6981,7 +7153,9 @@
         "correct": "Chest balanced: 10 and 9 make 19.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "10 and 9 make 19: 10 + 9 = 19. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7054,7 +7228,9 @@
         "correct": "Chest balanced: 10 and 10 make 20.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "10 and 10 make 20: 10 + 10 = 20. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7127,7 +7303,9 @@
         "correct": "Chest balanced: 1 and 10 make 11.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "1 and 10 make 11: 1 + 10 = 11. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7200,7 +7378,9 @@
         "correct": "Chest balanced: 2 and 10 make 12.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "2 and 10 make 12: 2 + 10 = 12. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7273,7 +7453,9 @@
         "correct": "Chest balanced: 3 and 10 make 13.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "3 and 10 make 13: 3 + 10 = 13. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7346,7 +7528,9 @@
         "correct": "Chest balanced: 4 and 10 make 14.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "4 and 10 make 14: 4 + 10 = 14. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7419,7 +7603,9 @@
         "correct": "Chest balanced: 5 and 10 make 15.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "5 and 10 make 15: 5 + 10 = 15. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7492,7 +7678,9 @@
         "correct": "Chest balanced: 6 and 10 make 16.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "6 and 10 make 16: 6 + 10 = 16. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7565,7 +7753,9 @@
         "correct": "Chest balanced: 7 and 10 make 17.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "7 and 10 make 17: 7 + 10 = 17. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7638,7 +7828,9 @@
         "correct": "Chest balanced: 8 and 10 make 18.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "8 and 10 make 18: 8 + 10 = 18. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7711,7 +7903,9 @@
         "correct": "Chest balanced: 9 and 10 make 19.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "9 and 10 make 19: 9 + 10 = 19. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7784,7 +7978,9 @@
         "correct": "Chest balanced: 10 and 10 make 20.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "10 and 10 make 20: 10 + 10 = 20. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7857,7 +8053,9 @@
         "correct": "Chest balanced: 5 and 6 make 11.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "5 and 6 make 11: 5 + 6 = 11. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7930,7 +8128,9 @@
         "correct": "Chest balanced: 6 and 6 make 12.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "6 and 6 make 12: 6 + 6 = 12. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8003,7 +8203,9 @@
         "correct": "Chest balanced: 6 and 7 make 13.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "6 and 7 make 13: 6 + 7 = 13. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8076,7 +8278,9 @@
         "correct": "Chest balanced: 7 and 7 make 14.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "7 and 7 make 14: 7 + 7 = 14. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8149,7 +8353,9 @@
         "correct": "Chest balanced: 7 and 8 make 15.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "7 and 8 make 15: 7 + 8 = 15. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8222,7 +8428,9 @@
         "correct": "Chest balanced: 8 and 8 make 16.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "8 and 8 make 16: 8 + 8 = 16. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8295,7 +8503,9 @@
         "correct": "Chest balanced: 8 and 9 make 17.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "8 and 9 make 17: 8 + 9 = 17. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8368,7 +8578,9 @@
         "correct": "Chest balanced: 9 and 9 make 18.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "9 and 9 make 18: 9 + 9 = 18. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8441,7 +8653,9 @@
         "correct": "Chest balanced: 9 and 10 make 19.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "9 and 10 make 19: 9 + 10 = 19. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8514,7 +8728,9 @@
         "correct": "Chest balanced: 10 and 10 make 20.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "10 and 10 make 20: 10 + 10 = 20. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8587,7 +8803,9 @@
         "correct": "Chest balanced: 6 and 5 make 11.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "6 and 5 make 11: 6 + 5 = 11. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8660,7 +8878,9 @@
         "correct": "Chest balanced: 7 and 5 make 12.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "7 and 5 make 12: 7 + 5 = 12. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8733,7 +8953,9 @@
         "correct": "Chest balanced: 8 and 5 make 13.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "8 and 5 make 13: 8 + 5 = 13. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8806,7 +9028,9 @@
         "correct": "Chest balanced: 9 and 5 make 14.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "9 and 5 make 14: 9 + 5 = 14. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8879,7 +9103,9 @@
         "correct": "Chest balanced: 10 and 5 make 15.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "10 and 5 make 15: 10 + 5 = 15. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -8952,7 +9178,9 @@
         "correct": "Chest balanced: 11 and 5 make 16.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "11 and 5 make 16: 11 + 5 = 16. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -9025,7 +9253,9 @@
         "correct": "Chest balanced: 12 and 5 make 17.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "12 and 5 make 17: 12 + 5 = 17. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -9098,7 +9328,9 @@
         "correct": "Chest balanced: 13 and 5 make 18.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "13 and 5 make 18: 13 + 5 = 18. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -9171,7 +9403,9 @@
         "correct": "Chest balanced: 14 and 5 make 19.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "14 and 5 make 19: 14 + 5 = 19. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -9244,7 +9478,9 @@
         "correct": "Chest balanced: 15 and 5 make 20.",
         "repair": "Build the whole on a twenty-frame, cover the known part and count only the uncovered counters.",
         "bond_evidence": "15 and 5 make 20: 15 + 5 = 20. The full ten and extra ones stay visible; no column method is needed.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -9317,7 +9553,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 5 and parts 3 and 2. Its linked facts include 3 + 2 = 5, 2 + 3 = 5, 5 − 3 = 2 and 5 − 2 = 3.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the facts seen as unrelated idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -9390,7 +9628,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 6 and parts 4 and 2. Its linked facts include 4 + 2 = 6, 2 + 4 = 6, 6 − 4 = 2 and 6 − 2 = 4.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the turnaround changes whole idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -9463,7 +9703,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 7 and parts 4 and 3. Its linked facts include 4 + 3 = 7, 3 + 4 = 7, 7 − 4 = 3 and 7 − 3 = 4.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the facts seen as unrelated idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -9535,7 +9777,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 8 and parts 3 and 5. Its linked facts include 3 + 5 = 8, 5 + 3 = 8, 8 − 3 = 5 and 8 − 5 = 3.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the facts seen as unrelated idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -9608,7 +9852,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 9 and parts 1 and 8. Its linked facts include 1 + 8 = 9, 8 + 1 = 9, 9 − 1 = 8 and 9 − 8 = 1.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the facts seen as unrelated idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -9681,7 +9927,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 9 and parts 8 and 1. Its linked facts include 8 + 1 = 9, 1 + 8 = 9, 9 − 8 = 1 and 9 − 1 = 8.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the turnaround changes whole idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -9753,7 +10001,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 10 and parts 5 and 5. Its linked facts include 5 + 5 = 10, 5 + 5 = 10, 10 − 5 = 5 and 10 − 5 = 5.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the facts seen as unrelated idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -9825,7 +10075,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 11 and parts 1 and 10. Its linked facts include 1 + 10 = 11, 10 + 1 = 11, 11 − 1 = 10 and 11 − 10 = 1.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the facts seen as unrelated idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -9898,7 +10150,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 11 and parts 8 and 3. Its linked facts include 8 + 3 = 11, 3 + 8 = 11, 11 − 8 = 3 and 11 − 3 = 8.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the facts seen as unrelated idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -9971,7 +10225,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 12 and parts 3 and 9. Its linked facts include 3 + 9 = 12, 9 + 3 = 12, 12 − 3 = 9 and 12 − 9 = 3.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the turnaround changes whole idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10044,7 +10300,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 12 and parts 10 and 2. Its linked facts include 10 + 2 = 12, 2 + 10 = 12, 12 − 10 = 2 and 12 − 2 = 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the facts seen as unrelated idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10116,7 +10374,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 13 and parts 4 and 9. Its linked facts include 4 + 9 = 13, 9 + 4 = 13, 13 − 4 = 9 and 13 − 9 = 4.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the facts seen as unrelated idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10189,7 +10449,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 13 and parts 11 and 2. Its linked facts include 11 + 2 = 13, 2 + 11 = 13, 13 − 11 = 2 and 13 − 2 = 11.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the facts seen as unrelated idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10262,7 +10524,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 14 and parts 4 and 10. Its linked facts include 4 + 10 = 14, 10 + 4 = 14, 14 − 4 = 10 and 14 − 10 = 4.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the turnaround changes whole idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10335,7 +10599,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 14 and parts 11 and 3. Its linked facts include 11 + 3 = 14, 3 + 11 = 14, 14 − 11 = 3 and 14 − 3 = 11.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the facts seen as unrelated idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10407,7 +10673,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 15 and parts 3 and 12. Its linked facts include 3 + 12 = 15, 12 + 3 = 15, 15 − 3 = 12 and 15 − 12 = 3.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the facts seen as unrelated idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10480,7 +10748,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 15 and parts 10 and 5. Its linked facts include 10 + 5 = 15, 5 + 10 = 15, 15 − 10 = 5 and 15 − 5 = 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the facts seen as unrelated idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10553,7 +10823,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 16 and parts 1 and 15. Its linked facts include 1 + 15 = 16, 15 + 1 = 16, 16 − 1 = 15 and 16 − 15 = 1.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the turnaround changes whole idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10625,7 +10897,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 16 and parts 8 and 8. Its linked facts include 8 + 8 = 16, 8 + 8 = 16, 16 − 8 = 8 and 16 − 8 = 8.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the facts seen as unrelated idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10697,7 +10971,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 16 and parts 15 and 1. Its linked facts include 15 + 1 = 16, 1 + 15 = 16, 16 − 15 = 1 and 16 − 1 = 15.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the facts seen as unrelated idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10770,7 +11046,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 17 and parts 5 and 12. Its linked facts include 5 + 12 = 17, 12 + 5 = 17, 17 − 5 = 12 and 17 − 12 = 5.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the facts seen as unrelated idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10843,7 +11121,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 17 and parts 12 and 5. Its linked facts include 12 + 5 = 17, 5 + 12 = 17, 17 − 12 = 5 and 17 − 5 = 12.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the turnaround changes whole idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10916,7 +11196,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 18 and parts 1 and 17. Its linked facts include 1 + 17 = 18, 17 + 1 = 18, 18 − 1 = 17 and 18 − 17 = 1.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the facts seen as unrelated idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10988,7 +11270,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 18 and parts 8 and 10. Its linked facts include 8 + 10 = 18, 10 + 8 = 18, 18 − 8 = 10 and 18 − 10 = 8.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the facts seen as unrelated idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11061,7 +11345,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 18 and parts 15 and 3. Its linked facts include 15 + 3 = 18, 3 + 15 = 18, 18 − 15 = 3 and 18 − 3 = 15.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the facts seen as unrelated idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11134,7 +11420,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 19 and parts 3 and 16. Its linked facts include 3 + 16 = 19, 16 + 3 = 19, 19 − 3 = 16 and 19 − 16 = 3.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the turnaround changes whole idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11207,7 +11495,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 19 and parts 10 and 9. Its linked facts include 10 + 9 = 19, 9 + 10 = 19, 19 − 10 = 9 and 19 − 9 = 10.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the facts seen as unrelated idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11279,7 +11569,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 19 and parts 17 and 2. Its linked facts include 17 + 2 = 19, 2 + 17 = 19, 19 − 17 = 2 and 19 − 2 = 17.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the facts seen as unrelated idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11352,7 +11644,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 20 and parts 4 and 16. Its linked facts include 4 + 16 = 20, 16 + 4 = 20, 20 − 4 = 16 and 20 − 16 = 4.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the facts seen as unrelated idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11425,7 +11719,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 20 and parts 11 and 9. Its linked facts include 11 + 9 = 20, 9 + 11 = 20, 20 − 11 = 9 and 20 − 9 = 11.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the turnaround changes whole idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11498,7 +11794,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 20 and parts 18 and 2. Its linked facts include 18 + 2 = 20, 2 + 18 = 20, 20 − 18 = 2 and 20 − 2 = 18.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the facts seen as unrelated idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11570,7 +11868,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 5 and parts 4 and 1. Its linked facts include 4 + 1 = 5, 1 + 4 = 5, 5 − 4 = 1 and 5 − 1 = 4.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the facts seen as unrelated idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11643,7 +11943,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 6 and parts 5 and 1. Its linked facts include 5 + 1 = 6, 1 + 5 = 6, 6 − 5 = 1 and 6 − 1 = 5.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the facts seen as unrelated idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11716,7 +12018,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 7 and parts 5 and 2. Its linked facts include 5 + 2 = 7, 2 + 5 = 7, 7 − 5 = 2 and 7 − 2 = 5.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the turnaround changes whole idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11788,7 +12092,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 8 and parts 4 and 4. Its linked facts include 4 + 4 = 8, 4 + 4 = 8, 8 − 4 = 4 and 8 − 4 = 4.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the facts seen as unrelated idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11860,7 +12166,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 9 and parts 2 and 7. Its linked facts include 2 + 7 = 9, 7 + 2 = 9, 9 − 2 = 7 and 9 − 7 = 2.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the facts seen as unrelated idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11932,7 +12240,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 9 and parts 9 and 0. Its linked facts include 9 + 0 = 9, 0 + 9 = 9, 9 − 9 = 0 and 9 − 0 = 9.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the facts seen as unrelated idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -12005,7 +12315,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 10 and parts 6 and 4. Its linked facts include 6 + 4 = 10, 4 + 6 = 10, 10 − 6 = 4 and 10 − 4 = 6.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the turnaround changes whole idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -12078,7 +12390,9 @@
         "correct": "Fact key matched to one whole and its two parts.",
         "repair": "Place WHOLE and PART labels on the model, then build each equation with spoken symbol cards before choosing.",
         "bond_evidence": "The same model has whole 11 and parts 2 and 9. Its linked facts include 2 + 9 = 11, 9 + 2 = 11, 11 − 2 = 9 and 11 − 9 = 2.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the facts seen as unrelated idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -12147,7 +12461,9 @@
         "correct": "Map clue solved: 1 and 3 make 4.",
         "repair": "Choose one representation, build the whole, cover the known part and count the uncovered part without any timer.",
         "bond_evidence": "1 and 3 make 4. The missing part is 3, checked by 4 − 1 = 3.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -12216,7 +12532,9 @@
         "correct": "Map clue solved: 1 and 5 make 6.",
         "repair": "Choose one representation, build the whole, cover the known part and count the uncovered part without any timer.",
         "bond_evidence": "1 and 5 make 6. The missing part is 5, checked by 6 − 1 = 5.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -12285,7 +12603,9 @@
         "correct": "Map clue solved: 5 and 2 make 7.",
         "repair": "Choose one representation, build the whole, cover the known part and count the uncovered part without any timer.",
         "bond_evidence": "5 and 2 make 7. The missing part is 2, checked by 7 − 5 = 2.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -12365,7 +12685,9 @@
         "correct": "Systematic pattern found for whole 20.",
         "repair": "Move exactly one counter from the second part to the first between rows, then recount the unchanged whole.",
         "bond_evidence": "The rows are 0 + 20 = 20; 1 + 19 = 20; 2 + 18 = 20. One part increases as the other decreases, preserving the whole.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the pattern changes whole idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -12440,7 +12762,9 @@
         "correct": "Three representations linked to the same number bond.",
         "repair": "Match each part across the models with number labels, then check the whole remains the same.",
         "bond_evidence": "Each representation shows parts 0 and 10 making whole 10. Changing the model does not change the bond.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the representation changes quantity idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -12509,7 +12833,9 @@
         "correct": "Map clue solved: 0 and 11 make 11.",
         "repair": "Choose one representation, build the whole, cover the known part and count the uncovered part without any timer.",
         "bond_evidence": "0 and 11 make 11. The missing part is 11, checked by 11 − 0 = 11.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -12578,7 +12904,9 @@
         "correct": "Map clue solved: 11 and 0 make 11.",
         "repair": "Choose one representation, build the whole, cover the known part and count the uncovered part without any timer.",
         "bond_evidence": "11 and 0 make 11. The missing part is 0, checked by 11 − 11 = 0.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -12647,7 +12975,9 @@
         "correct": "Map clue solved: 10 and 2 make 12.",
         "repair": "Choose one representation, build the whole, cover the known part and count the uncovered part without any timer.",
         "bond_evidence": "10 and 2 make 12. The missing part is 2, checked by 12 − 10 = 2.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -12727,7 +13057,9 @@
         "correct": "Systematic pattern found for whole 10.",
         "repair": "Move exactly one counter from the second part to the first between rows, then recount the unchanged whole.",
         "bond_evidence": "The rows are 2 + 8 = 10; 3 + 7 = 10; 4 + 6 = 10. One part increases as the other decreases, preserving the whole.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the pattern changes whole idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -12802,7 +13134,9 @@
         "correct": "Three representations linked to the same number bond.",
         "repair": "Match each part across the models with number labels, then check the whole remains the same.",
         "bond_evidence": "Each representation shows parts 5 and 9 making whole 14. Changing the model does not change the bond.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the representation changes quantity idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -12871,7 +13205,9 @@
         "correct": "Map clue solved: 1 and 14 make 15.",
         "repair": "Choose one representation, build the whole, cover the known part and count the uncovered part without any timer.",
         "bond_evidence": "1 and 14 make 15. The missing part is 14, checked by 15 − 1 = 14.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -12940,7 +13276,9 @@
         "correct": "Map clue solved: 12 and 3 make 15.",
         "repair": "Choose one representation, build the whole, cover the known part and count the uncovered part without any timer.",
         "bond_evidence": "12 and 3 make 15. The missing part is 3, checked by 15 − 12 = 3.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -13009,7 +13347,9 @@
         "correct": "Map clue solved: 7 and 9 make 16.",
         "repair": "Choose one representation, build the whole, cover the known part and count the uncovered part without any timer.",
         "bond_evidence": "7 and 9 make 16. The missing part is 9, checked by 16 − 7 = 9.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -13089,7 +13429,9 @@
         "correct": "Systematic pattern found for whole 20.",
         "repair": "Move exactly one counter from the second part to the first between rows, then recount the unchanged whole.",
         "bond_evidence": "The rows are 4 + 16 = 20; 5 + 15 = 20; 6 + 14 = 20. One part increases as the other decreases, preserving the whole.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the pattern changes whole idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -13164,7 +13506,9 @@
         "correct": "Three representations linked to the same number bond.",
         "repair": "Match each part across the models with number labels, then check the whole remains the same.",
         "bond_evidence": "Each representation shows parts 12 and 5 making whole 17. Changing the model does not change the bond.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the representation changes quantity idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -13233,7 +13577,9 @@
         "correct": "Map clue solved: 5 and 13 make 18.",
         "repair": "Choose one representation, build the whole, cover the known part and count the uncovered part without any timer.",
         "bond_evidence": "5 and 13 make 18. The missing part is 13, checked by 18 − 5 = 13.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -13302,7 +13648,9 @@
         "correct": "Map clue solved: 16 and 2 make 18.",
         "repair": "Choose one representation, build the whole, cover the known part and count the uncovered part without any timer.",
         "bond_evidence": "16 and 2 make 18. The missing part is 2, checked by 18 − 16 = 2.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -13371,7 +13719,9 @@
         "correct": "Map clue solved: 8 and 11 make 19.",
         "repair": "Choose one representation, build the whole, cover the known part and count the uncovered part without any timer.",
         "bond_evidence": "8 and 11 make 19. The missing part is 11, checked by 19 − 8 = 11.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -13451,7 +13801,9 @@
         "correct": "Systematic pattern found for whole 10.",
         "repair": "Move exactly one counter from the second part to the first between rows, then recount the unchanged whole.",
         "bond_evidence": "The rows are 6 + 4 = 10; 7 + 3 = 10; 8 + 2 = 10. One part increases as the other decreases, preserving the whole.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the pattern changes whole idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -13526,7 +13878,9 @@
         "correct": "Three representations linked to the same number bond.",
         "repair": "Match each part across the models with number labels, then check the whole remains the same.",
         "bond_evidence": "Each representation shows parts 10 and 10 making whole 20. Changing the model does not change the bond.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the representation changes quantity idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -13595,7 +13949,9 @@
         "correct": "Map clue solved: 0 and 3 make 3.",
         "repair": "Choose one representation, build the whole, cover the known part and count the uncovered part without any timer.",
         "bond_evidence": "0 and 3 make 3. The missing part is 3, checked by 3 − 0 = 3.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -13664,7 +14020,9 @@
         "correct": "Map clue solved: 2 and 3 make 5.",
         "repair": "Choose one representation, build the whole, cover the known part and count the uncovered part without any timer.",
         "bond_evidence": "2 and 3 make 5. The missing part is 3, checked by 5 − 2 = 3.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -13733,7 +14091,9 @@
         "correct": "Map clue solved: 0 and 7 make 7.",
         "repair": "Choose one representation, build the whole, cover the known part and count the uncovered part without any timer.",
         "bond_evidence": "0 and 7 make 7. The missing part is 7, checked by 7 − 0 = 7.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -13813,7 +14173,9 @@
         "correct": "Systematic pattern found for whole 20.",
         "repair": "Move exactly one counter from the second part to the first between rows, then recount the unchanged whole.",
         "bond_evidence": "The rows are 8 + 12 = 20; 9 + 11 = 20; 10 + 10 = 20. One part increases as the other decreases, preserving the whole.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the pattern changes whole idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -13888,7 +14250,9 @@
         "correct": "Three representations linked to the same number bond.",
         "repair": "Match each part across the models with number labels, then check the whole remains the same.",
         "bond_evidence": "Each representation shows parts 5 and 4 making whole 9. Changing the model does not change the bond.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the representation changes quantity idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -13957,7 +14321,9 @@
         "correct": "Map clue solved: 6 and 4 make 10.",
         "repair": "Choose one representation, build the whole, cover the known part and count the uncovered part without any timer.",
         "bond_evidence": "6 and 4 make 10. The missing part is 4, checked by 10 − 6 = 4.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -14026,7 +14392,9 @@
         "correct": "Map clue solved: 6 and 5 make 11.",
         "repair": "Choose one representation, build the whole, cover the known part and count the uncovered part without any timer.",
         "bond_evidence": "6 and 5 make 11. The missing part is 5, checked by 11 − 6 = 5.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -14095,7 +14463,9 @@
         "correct": "Map clue solved: 5 and 7 make 12.",
         "repair": "Choose one representation, build the whole, cover the known part and count the uncovered part without any timer.",
         "bond_evidence": "5 and 7 make 12. The missing part is 7, checked by 12 − 5 = 7.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -14175,7 +14545,9 @@
         "correct": "Systematic pattern found for whole 10.",
         "repair": "Move exactly one counter from the second part to the first between rows, then recount the unchanged whole.",
         "bond_evidence": "The rows are 2 + 8 = 10; 3 + 7 = 10; 4 + 6 = 10. One part increases as the other decreases, preserving the whole.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the pattern changes whole idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -14250,7 +14622,9 @@
         "correct": "Three representations linked to the same number bond.",
         "repair": "Match each part across the models with number labels, then check the whole remains the same.",
         "bond_evidence": "Each representation shows parts 0 and 14 making whole 14. Changing the model does not change the bond.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the representation changes quantity idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -14319,7 +14693,9 @@
         "correct": "Map clue solved: 11 and 3 make 14.",
         "repair": "Choose one representation, build the whole, cover the known part and count the uncovered part without any timer.",
         "bond_evidence": "11 and 3 make 14. The missing part is 3, checked by 14 − 11 = 3.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -14388,7 +14764,9 @@
         "correct": "Map clue solved: 7 and 8 make 15.",
         "repair": "Choose one representation, build the whole, cover the known part and count the uncovered part without any timer.",
         "bond_evidence": "7 and 8 make 15. The missing part is 8, checked by 15 − 7 = 8.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -14457,7 +14835,9 @@
         "correct": "Map clue solved: 2 and 14 make 16.",
         "repair": "Choose one representation, build the whole, cover the known part and count the uncovered part without any timer.",
         "bond_evidence": "2 and 14 make 16. The missing part is 14, checked by 16 − 2 = 14.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -14537,7 +14917,9 @@
         "correct": "Systematic pattern found for whole 20.",
         "repair": "Move exactly one counter from the second part to the first between rows, then recount the unchanged whole.",
         "bond_evidence": "The rows are 12 + 8 = 20; 13 + 7 = 20; 14 + 6 = 20. One part increases as the other decreases, preserving the whole.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the pattern changes whole idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -14612,7 +14994,9 @@
         "correct": "Three representations linked to the same number bond.",
         "repair": "Match each part across the models with number labels, then check the whole remains the same.",
         "bond_evidence": "Each representation shows parts 7 and 10 making whole 17. Changing the model does not change the bond.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the representation changes quantity idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -14681,7 +15065,9 @@
         "correct": "Map clue solved: 0 and 18 make 18.",
         "repair": "Choose one representation, build the whole, cover the known part and count the uncovered part without any timer.",
         "bond_evidence": "0 and 18 make 18. The missing part is 18, checked by 18 − 0 = 18.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -14750,7 +15136,9 @@
         "correct": "Map clue solved: 11 and 7 make 18.",
         "repair": "Choose one representation, build the whole, cover the known part and count the uncovered part without any timer.",
         "bond_evidence": "11 and 7 make 18. The missing part is 7, checked by 18 − 11 = 7.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -14819,7 +15207,9 @@
         "correct": "Map clue solved: 3 and 16 make 19.",
         "repair": "Choose one representation, build the whole, cover the known part and count the uncovered part without any timer.",
         "bond_evidence": "3 and 16 make 19. The missing part is 16, checked by 19 − 3 = 16.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the missing part guess idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -14899,7 +15289,9 @@
         "correct": "Systematic pattern found for whole 10.",
         "repair": "Move exactly one counter from the second part to the first between rows, then recount the unchanged whole.",
         "bond_evidence": "The rows are 6 + 4 = 10; 7 + 3 = 10; 8 + 2 = 10. One part increases as the other decreases, preserving the whole.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the pattern changes whole idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -14974,7 +15366,9 @@
         "correct": "Three representations linked to the same number bond.",
         "repair": "Match each part across the models with number labels, then check the whole remains the same.",
         "bond_evidence": "Each representation shows parts 5 and 15 making whole 20. Changing the model does not change the bond.",
-        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence."
+        "strategy_praise": "Building, seeing, touching, pointing, saying or using a known fact are equally valued; speed is not evidence.",
+        "misconception_check": "Check the representation changes quantity idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",

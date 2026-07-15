@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -100,6 +101,7 @@ pack.qa.readiness_status = "draft";
 pack.qa.notes = "Review-stage Year 3 paragraph-grouping pack with a deterministic 220-variant pilot bank. Three curated variants are unchanged. Generated tasks cover grouping related ideas, paragraph focus and purpose, broad topic sentences, supporting-detail order, genuine focus/time/place/speaker shifts, split/merge editing, basic cohesion and sequence, planning, drafting and editing across narrative, instructions, explanation, recount and information writing, misconception repair and spaced transfer. Every generated task includes sentence-card, paragraph-builder, boundary-editor or planning-map interactions, dyslexia/SEND chunking, visual and alternative-input routes, rich corrective feedback and pressure-free publishing missions without timers, streaks, lives or loss. Selected passage narration references ElevenLabs assets held for human listening review; browser TTS is prohibited. Independent English, accessibility, narration and renderer review remains required before promotion.";
 
 validateBank(pack, curated, curatedSnapshot, generated, curatedBlueprint);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`y3-paragraph-grouping-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
 console.log(`y3-paragraph-grouping-bank blueprints=${summary(pack.question_variants, (v) => v.body?.variant_blueprint_id ?? curatedBlueprint.get(v.id))}`);

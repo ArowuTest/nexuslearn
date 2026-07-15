@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -99,6 +100,7 @@ pack.version = "0.2.0";
 pack.qa.notes = "Review-stage Year 1 shape-and-measures pack with a deterministic 240-item pilot bank. Five curated variants are preserved alongside candidates covering common 2-D and 3-D shape recognition and properties, varied orientation, referenced position, quarter and half turns, fair direct comparison and equal non-standard units for length, height, mass and capacity, plus event order, duration and time language. Generated candidates include concrete, tactile, visual, verbal and non-drag motor routes; feedback repairs appearance, alignment, unit-gap, capacity-height, size-mass and viewer-reference misconceptions. Joyful builder missions remain untimed and reward observing, comparing and checking rather than speed. Referenced audio is ElevenLabs-gated for human listening review with browser TTS prohibited. Independent mathematics, SEND, coin-image, narration and renderer review remains required before promotion.";
 
 validateBank(pack, curated, generated);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`y1-shape-measures-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
 console.log(`y1-shape-measures-bank blueprints=${summary(pack.question_variants, (variant) => variant.body.variant_blueprint_id)}`);

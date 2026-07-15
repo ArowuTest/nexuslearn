@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -79,6 +80,7 @@ pack.qa.readiness_status = "draft";
 pack.qa.notes = "Review-stage Year 2 sentence-punctuation pack with a deterministic 180-item pilot bank. Three curated variants are preserved alongside candidates covering sentence boundaries, capital starts, full stops, question marks, exclamation marks, statement/question/command/exclamation recognition and construction, word order, proofreading, short story transfer, dictation/application and misconception repair. Exclamation tasks use the Year 2 What/How clause pattern rather than treating every excited utterance as the sentence type. Generated tasks provide word and clause chunking, line focus, static sentence paths, symbol-supported function cues, non-drag interactions and rich boundary-specific feedback without timers or public speed measures. Audio is referenced only for listening and dictation tasks, uses ElevenLabs assets blocked pending human review, and never falls back to browser TTS. Independent English, SEND, narration, safeguarding and renderer review remains required before promotion.";
 
 validateBank(pack, curated, generated);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`y2-sentence-punctuation-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
 console.log(`y2-sentence-punctuation-bank blueprints=${summary(pack.question_variants, assignedBlueprint)}`);

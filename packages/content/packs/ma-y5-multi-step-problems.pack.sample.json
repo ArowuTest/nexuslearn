@@ -267,7 +267,9 @@
           "timed": false,
           "preserve_correct_work": true,
           "valid_alternative_routes": true
-        }
+        },
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-ma-y5-multi-step-problems"
       },
       "expected_answer": {
         "value": 19485,
@@ -285,7 +287,14 @@
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "stops_after_one_step",
-      "animation_hook": "stock-change-chain"
+      "animation_hook": "stock-change-chain",
+      "feedback": {
+        "correct": "Correct. 18,750 + 2,680 = 21,430, then 21,430 - 1,945 = 19,485 books.",
+        "retry": "Try again calmly: First find the number after the delivery. Then subtract the damaged books from that intermediate total. No progress is lost for checking or changing your answer.",
+        "repair": "Repair the stops after one step route: First find the number after the delivery. Then use the evidence to explain your choice.",
+        "misconception_check": "Check the stops after one step idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "ma-y5-multi-step-problems-q-fundraising-map",
@@ -326,7 +335,9 @@
           "timed": false,
           "preserve_correct_work": true,
           "valid_alternative_routes": true
-        }
+        },
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-ma-y5-multi-step-problems"
       },
       "expected_answer": {
         "value": 3285,
@@ -344,7 +355,14 @@
       "difficulty": 8,
       "status": "review",
       "misconception_tag": "number_order_operation",
-      "animation_hook": "dependency-map-build"
+      "animation_hook": "dependency-map-build",
+      "feedback": {
+        "correct": "Correct. Year 6 raised £2,335; together the years raised £4,210; after £925 was spent, £3,285 remained.",
+        "retry": "Try again calmly: Find Year 6's amount before finding the combined amount. The question asks what remains after spending. No progress is lost for checking or changing your answer.",
+        "repair": "Repair the number order operation route: Find Year 6's amount before finding the combined amount. Then use the evidence to explain your choice.",
+        "misconception_check": "Check the number order operation idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "ma-y5-multi-step-problems-q-keyword-trap",
@@ -381,7 +399,9 @@
           "timed": false,
           "preserve_correct_work": true,
           "valid_alternative_routes": true
-        }
+        },
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-ma-y5-multi-step-problems"
       },
       "expected_answer": {
         "value": "Subtract to find the missing amount, then subtract the amount used from the full tank",
@@ -396,7 +416,14 @@
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "keyword_operation_choice",
-      "animation_hook": "relationship-over-keyword"
+      "animation_hook": "relationship-over-keyword",
+      "feedback": {
+        "correct": "Correct. 12,500 - 3,850 = 8,650 litres are needed. Once full, 12,500 - 2,400 = 10,100 litres remain.",
+        "retry": "Try again calmly: The first question asks for the gap between current and full. After filling, the tank starts the second step at 12,500 litres. No progress is lost for checking or changing your answer.",
+        "repair": "Repair the keyword operation choice route: The first question asks for the gap between current and full. Then use the evidence to explain your choice.",
+        "misconception_check": "Check the keyword operation choice idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "ma-y5-multi-step-problems-q-first-error",
@@ -437,7 +464,9 @@
           "timed": false,
           "preserve_correct_work": true,
           "valid_alternative_routes": true
-        }
+        },
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-ma-y5-multi-step-problems"
       },
       "expected_answer": {
         "value": "first operation",
@@ -451,7 +480,14 @@
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "unchecked_intermediate_result",
-      "animation_hook": "first-chain-error-freeze"
+      "animation_hook": "first-chain-error-freeze",
+      "feedback": {
+        "correct": "Correct. The first step should add the two groups of sold tickets. The correct chain gives 7,900 tickets remaining sold.",
+        "retry": "Try again calmly: The morning and afternoon tickets are both parts of the sold total. Refunds are removed only after the two sales totals are combined. No progress is lost for checking or changing your answer.",
+        "repair": "Repair the unchecked intermediate result route: The morning and afternoon tickets are both parts of the sold total. Then use the evidence to explain your choice.",
+        "misconception_check": "Check the unchecked intermediate result idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "ma-y5-multi-step-problems-bank-identify-final-and-intermediate-001-plan-0",

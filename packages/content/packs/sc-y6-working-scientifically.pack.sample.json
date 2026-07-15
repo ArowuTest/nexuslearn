@@ -255,7 +255,14 @@
           "Bulb type, wires and switch all at once",
           "The brightness meter after each trial",
           "The conclusion sentence"
-        ]
+        ],
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-sc-y6-working-scientifically",
+        "review_provenance": {
+          "kind": "curated",
+          "pack_id": "sc-y6-working-scientifically",
+          "variant_id": "sc-y6-working-scientifically-q-variables"
+        }
       },
       "expected_answer": {
         "value": "Number of suitable cells"
@@ -268,7 +275,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "changes_everything",
-      "animation_hook": "variable-cards-lock"
+      "animation_hook": "variable-cards-lock",
+      "feedback": {
+        "correct": "Correct. The number of suitable cells is the variable changed; brightness is measured and other important parts are controlled.",
+        "retry": "Try again calmly: The variable changed is the thing you deliberately alter. Keep the bulb, wires and switch the same. No progress is lost for checking or changing your answer.",
+        "repair": "Repair the changes everything route: The variable changed is the thing you deliberately alter. Then use the evidence to explain your choice.",
+        "misconception_check": "Check the changes everything idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "sc-y6-working-scientifically-q-recording",
@@ -280,7 +294,14 @@
           "It proves the prediction was correct without evidence.",
           "It makes the investigation fair by itself.",
           "It means repeated measurements are never needed."
-        ]
+        ],
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-sc-y6-working-scientifically",
+        "review_provenance": {
+          "kind": "curated",
+          "pack_id": "sc-y6-working-scientifically",
+          "variant_id": "sc-y6-working-scientifically-q-recording"
+        }
       },
       "expected_answer": {
         "value": "It organises the measurements so patterns and errors are easier to check."
@@ -293,7 +314,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "table_as_fairness",
-      "animation_hook": "data-format-bridge"
+      "animation_hook": "data-format-bridge",
+      "feedback": {
+        "correct": "Correct. A results table helps organise measurements and makes it easier to check patterns, anomalies and graph choices.",
+        "retry": "Try again calmly: A table records evidence clearly. A table does not make a method fair by itself. No progress is lost for checking or changing your answer.",
+        "repair": "Repair the table as fairness route: A table records evidence clearly. Then use the evidence to explain your choice.",
+        "misconception_check": "Check the table as fairness idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "sc-y6-working-scientifically-q-conclusion",
@@ -305,7 +333,14 @@
           "Fertiliser always makes every plant grow exactly 5 cm.",
           "The result proves all plants need fertiliser.",
           "The plant without fertiliser did not grow at all."
-        ]
+        ],
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-sc-y6-working-scientifically",
+        "review_provenance": {
+          "kind": "curated",
+          "pack_id": "sc-y6-working-scientifically",
+          "variant_id": "sc-y6-working-scientifically-q-conclusion"
+        }
       },
       "expected_answer": {
         "value": "In this test, the plant with fertiliser grew more, so fertiliser may have helped growth."
@@ -318,7 +353,14 @@
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "unsupported_conclusion",
-      "animation_hook": "evidence-row-highlight"
+      "animation_hook": "evidence-row-highlight",
+      "feedback": {
+        "correct": "Correct. The careful conclusion uses the results from this test and avoids claiming more than the evidence supports.",
+        "retry": "Try again calmly: Use the numbers and avoid overclaiming. The evidence comes from this test. No progress is lost for checking or changing your answer.",
+        "repair": "Repair the unsupported conclusion route: Use the numbers and avoid overclaiming. Then use the evidence to explain your choice.",
+        "misconception_check": "Check the unsupported conclusion idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "sc-y6-working-scientifically-q-graph-choice",
@@ -330,7 +372,14 @@
           "A random picture of the playground",
           "A classification key",
           "A bar chart with no axis labels"
-        ]
+        ],
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-sc-y6-working-scientifically",
+        "review_provenance": {
+          "kind": "curated",
+          "pack_id": "sc-y6-working-scientifically",
+          "variant_id": "sc-y6-working-scientifically-q-graph-choice"
+        }
       },
       "expected_answer": {
         "value": "A line graph with time on the x-axis"
@@ -343,7 +392,14 @@
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "impressive_graph_choice",
-      "animation_hook": "data-format-bridge"
+      "animation_hook": "data-format-bridge",
+      "feedback": {
+        "correct": "Correct. A line graph can show change over time when the axes are labelled clearly.",
+        "retry": "Try again calmly: The data changes over time. Graph labels help people understand the evidence. No progress is lost for checking or changing your answer.",
+        "repair": "Repair the impressive graph choice route: The data changes over time. Then use the evidence to explain your choice.",
+        "misconception_check": "Check the impressive graph choice idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "sc-y6-working-scientifically-q-reliability",
@@ -355,7 +411,14 @@
           "Delete every result.",
           "Change all the variables at once.",
           "Ignore the results and keep the prediction."
-        ]
+        ],
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-sc-y6-working-scientifically",
+        "review_provenance": {
+          "kind": "curated",
+          "pack_id": "sc-y6-working-scientifically",
+          "variant_id": "sc-y6-working-scientifically-q-reliability"
+        }
       },
       "expected_answer": {
         "value": "Repeat the measurement and check the method before changing the conclusion."
@@ -368,7 +431,14 @@
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "one_result_as_proof",
-      "animation_hook": "companion-method-repair"
+      "animation_hook": "companion-method-repair",
+      "feedback": {
+        "correct": "Correct. Repeating the measurement and checking the method helps decide whether the result is reliable or anomalous.",
+        "retry": "Try again calmly: Surprising results need careful checking. Repeats and method checks can improve reliability. No progress is lost for checking or changing your answer.",
+        "repair": "Repair the one result as proof route: Surprising results need careful checking. Then use the evidence to explain your choice.",
+        "misconception_check": "Check the one result as proof idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "sc-y6-working-scientifically-bank-enquiry-001-cells-brightness",

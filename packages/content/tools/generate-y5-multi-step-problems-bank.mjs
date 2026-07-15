@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -48,6 +49,7 @@ pack.qa.readiness_status = "draft";
 pack.qa.notes = "Year 5 multi-step-problems pilot reaches 240 variants with four curated questions preserved unchanged and 236 deterministic review candidates. The bank prioritises additive multi-step planning and extends secure/stretch transfer to bounded multiplication and division steps, as anticipated by the pack progression. Coverage includes final/intermediate targets, operation sequencing, hidden and irrelevant information, missing information, change and comparison structures, estimation, inverse checking, first-error diagnosis, alternative valid routes and reasonableness. Step planners, bar models, calculation chains and evidence choices include dyscalculia/SEND, reduced-load and alternative-input routes with pressure-free investigation missions. Selected narration references require produced, human-reviewed ElevenLabs assets; browser TTS is prohibited. Independent mathematics, teacher, SEND, accessibility, safeguarding, audio and renderer review remains required before promotion.";
 
 validateBank(pack, enrichedCurated, enrichedCandidates, curatedSnapshot);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`multi-step-bank curated=${curated.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
 console.log(`multi-step-bank formats=${summary(candidates, (variant) => variant.format)}`);

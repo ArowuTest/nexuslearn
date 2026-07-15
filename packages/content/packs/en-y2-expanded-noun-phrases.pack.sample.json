@@ -268,7 +268,8 @@
             "eye_gaze",
             "aac"
           ]
-        }
+        },
+        "review_batch": "generated-review-en-y2-expanded-noun-phrases"
       },
       "expected_answer": {
         "value": "frog"
@@ -321,7 +322,8 @@
             "eye_gaze",
             "aac"
           ]
-        }
+        },
+        "review_batch": "generated-review-en-y2-expanded-noun-phrases"
       },
       "expected_answer": {
         "value": "the blue bag with silver stars"
@@ -373,7 +375,8 @@
             "eye_gaze",
             "aac"
           ]
-        }
+        },
+        "review_batch": "generated-review-en-y2-expanded-noun-phrases"
       },
       "expected_answer": {
         "value": "the small, spotted dog",
@@ -426,7 +429,8 @@
             "eye_gaze",
             "aac"
           ]
-        }
+        },
+        "review_batch": "generated-review-en-y2-expanded-noun-phrases"
       },
       "expected_answer": {
         "value": "The shiny red bike rolled down the hill."
@@ -502,7 +506,9 @@
       "explanation": "Frog is the noun because it names who or what the phrase is about.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Lock frog into the noun slot, then point each detail back to it."
+        "repair": "Lock frog into the noun slot, then point each detail back to it.",
+        "misconception_check": "Check the detail called noun idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -563,7 +569,9 @@
       "explanation": "Kite is the noun because it names who or what the phrase is about.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Lock kite into the noun slot, then point each detail back to it."
+        "repair": "Lock kite into the noun slot, then point each detail back to it.",
+        "misconception_check": "Check the detail called noun idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -624,7 +632,9 @@
       "explanation": "Train is the noun because it names who or what the phrase is about.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Lock train into the noun slot, then point each detail back to it."
+        "repair": "Lock train into the noun slot, then point each detail back to it.",
+        "misconception_check": "Check the detail called noun idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -685,7 +695,9 @@
       "explanation": "Scarf is the noun because it names who or what the phrase is about.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Lock scarf into the noun slot, then point each detail back to it."
+        "repair": "Lock scarf into the noun slot, then point each detail back to it.",
+        "misconception_check": "Check the detail called noun idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -746,7 +758,9 @@
       "explanation": "Tree is the noun because it names who or what the phrase is about.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Lock tree into the noun slot, then point each detail back to it."
+        "repair": "Lock tree into the noun slot, then point each detail back to it.",
+        "misconception_check": "Check the detail called noun idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -807,7 +821,9 @@
       "explanation": "Bridge is the noun because it names who or what the phrase is about.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Lock bridge into the noun slot, then point each detail back to it."
+        "repair": "Lock bridge into the noun slot, then point each detail back to it.",
+        "misconception_check": "Check the detail called noun idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -868,7 +884,9 @@
       "explanation": "Coin is the noun because it names who or what the phrase is about.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Lock coin into the noun slot, then point each detail back to it."
+        "repair": "Lock coin into the noun slot, then point each detail back to it.",
+        "misconception_check": "Check the detail called noun idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -929,7 +947,9 @@
       "explanation": "Boat is the noun because it names who or what the phrase is about.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Lock boat into the noun slot, then point each detail back to it."
+        "repair": "Lock boat into the noun slot, then point each detail back to it.",
+        "misconception_check": "Check the detail called noun idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -990,7 +1010,9 @@
       "explanation": "Path is the noun because it names who or what the phrase is about.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Lock path into the noun slot, then point each detail back to it."
+        "repair": "Lock path into the noun slot, then point each detail back to it.",
+        "misconception_check": "Check the detail called noun idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1050,7 +1072,9 @@
       "explanation": "Raincoat is the noun because it names who or what the phrase is about.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Lock raincoat into the noun slot, then point each detail back to it."
+        "repair": "Lock raincoat into the noun slot, then point each detail back to it.",
+        "misconception_check": "Check the detail called noun idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1111,7 +1135,9 @@
       "explanation": "Dog is the noun because it names who or what the phrase is about.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Lock dog into the noun slot, then point each detail back to it."
+        "repair": "Lock dog into the noun slot, then point each detail back to it.",
+        "misconception_check": "Check the detail called noun idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1172,7 +1198,9 @@
       "explanation": "Pond is the noun because it names who or what the phrase is about.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Lock pond into the noun slot, then point each detail back to it."
+        "repair": "Lock pond into the noun slot, then point each detail back to it.",
+        "misconception_check": "Check the detail called noun idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1233,7 +1261,9 @@
       "explanation": "Towel is the noun because it names who or what the phrase is about.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Lock towel into the noun slot, then point each detail back to it."
+        "repair": "Lock towel into the noun slot, then point each detail back to it.",
+        "misconception_check": "Check the detail called noun idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1294,7 +1324,9 @@
       "explanation": "Bus is the noun because it names who or what the phrase is about.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Lock bus into the noun slot, then point each detail back to it."
+        "repair": "Lock bus into the noun slot, then point each detail back to it.",
+        "misconception_check": "Check the detail called noun idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1355,7 +1387,9 @@
       "explanation": "Sky is the noun because it names who or what the phrase is about.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Lock sky into the noun slot, then point each detail back to it."
+        "repair": "Lock sky into the noun slot, then point each detail back to it.",
+        "misconception_check": "Check the detail called noun idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1416,7 +1450,9 @@
       "explanation": "Jar is the noun because it names who or what the phrase is about.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Lock jar into the noun slot, then point each detail back to it."
+        "repair": "Lock jar into the noun slot, then point each detail back to it.",
+        "misconception_check": "Check the detail called noun idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1477,7 +1513,9 @@
       "explanation": "Snail is the noun because it names who or what the phrase is about.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Lock snail into the noun slot, then point each detail back to it."
+        "repair": "Lock snail into the noun slot, then point each detail back to it.",
+        "misconception_check": "Check the detail called noun idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1538,7 +1576,9 @@
       "explanation": "Loaf is the noun because it names who or what the phrase is about.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Lock loaf into the noun slot, then point each detail back to it."
+        "repair": "Lock loaf into the noun slot, then point each detail back to it.",
+        "misconception_check": "Check the detail called noun idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1599,7 +1639,9 @@
       "explanation": "Corner is the noun because it names who or what the phrase is about.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Lock corner into the noun slot, then point each detail back to it."
+        "repair": "Lock corner into the noun slot, then point each detail back to it.",
+        "misconception_check": "Check the detail called noun idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1660,7 +1702,9 @@
       "explanation": "Box is the noun because it names who or what the phrase is about.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Lock box into the noun slot, then point each detail back to it."
+        "repair": "Lock box into the noun slot, then point each detail back to it.",
+        "misconception_check": "Check the detail called noun idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1719,7 +1763,9 @@
       "explanation": "This is a complete sentence because it includes the noun phrase, a verb and an end mark.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Highlight the verb that completes the sentence."
+        "repair": "Highlight the verb that completes the sentence.",
+        "misconception_check": "Check the detail called noun idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -1778,7 +1824,9 @@
       "explanation": "This is a noun phrase. It names something but does not yet tell what happens.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the phrase in the who-or-what slot and leave the verb slot visibly empty."
+        "repair": "Place the phrase in the who-or-what slot and leave the verb slot visibly empty.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -1837,7 +1885,9 @@
       "explanation": "This is a complete sentence because it includes the noun phrase, a verb and an end mark.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Highlight the verb that completes the sentence."
+        "repair": "Highlight the verb that completes the sentence.",
+        "misconception_check": "Check the detail called noun idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -1896,7 +1946,9 @@
       "explanation": "This is a noun phrase. It names something but does not yet tell what happens.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the phrase in the who-or-what slot and leave the verb slot visibly empty."
+        "repair": "Place the phrase in the who-or-what slot and leave the verb slot visibly empty.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -1955,7 +2007,9 @@
       "explanation": "This is a complete sentence because it includes the noun phrase, a verb and an end mark.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Highlight the verb that completes the sentence."
+        "repair": "Highlight the verb that completes the sentence.",
+        "misconception_check": "Check the detail called noun idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2014,7 +2068,9 @@
       "explanation": "This is a noun phrase. It names something but does not yet tell what happens.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the phrase in the who-or-what slot and leave the verb slot visibly empty."
+        "repair": "Place the phrase in the who-or-what slot and leave the verb slot visibly empty.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2073,7 +2129,9 @@
       "explanation": "This is a complete sentence because it includes the noun phrase, a verb and an end mark.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Highlight the verb that completes the sentence."
+        "repair": "Highlight the verb that completes the sentence.",
+        "misconception_check": "Check the detail called noun idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2132,7 +2190,9 @@
       "explanation": "This is a noun phrase. It names something but does not yet tell what happens.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the phrase in the who-or-what slot and leave the verb slot visibly empty."
+        "repair": "Place the phrase in the who-or-what slot and leave the verb slot visibly empty.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2191,7 +2251,9 @@
       "explanation": "This is a complete sentence because it includes the noun phrase, a verb and an end mark.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Highlight the verb that completes the sentence."
+        "repair": "Highlight the verb that completes the sentence.",
+        "misconception_check": "Check the detail called noun idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2250,7 +2312,9 @@
       "explanation": "This is a noun phrase. It names something but does not yet tell what happens.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the phrase in the who-or-what slot and leave the verb slot visibly empty."
+        "repair": "Place the phrase in the who-or-what slot and leave the verb slot visibly empty.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2309,7 +2373,9 @@
       "explanation": "This is a complete sentence because it includes the noun phrase, a verb and an end mark.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Highlight the verb that completes the sentence."
+        "repair": "Highlight the verb that completes the sentence.",
+        "misconception_check": "Check the detail called noun idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2368,7 +2434,9 @@
       "explanation": "This is a noun phrase. It names something but does not yet tell what happens.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the phrase in the who-or-what slot and leave the verb slot visibly empty."
+        "repair": "Place the phrase in the who-or-what slot and leave the verb slot visibly empty.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2427,7 +2495,9 @@
       "explanation": "This is a complete sentence because it includes the noun phrase, a verb and an end mark.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Highlight the verb that completes the sentence."
+        "repair": "Highlight the verb that completes the sentence.",
+        "misconception_check": "Check the detail called noun idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2486,7 +2556,9 @@
       "explanation": "This is a noun phrase. It names something but does not yet tell what happens.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the phrase in the who-or-what slot and leave the verb slot visibly empty."
+        "repair": "Place the phrase in the who-or-what slot and leave the verb slot visibly empty.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2545,7 +2617,9 @@
       "explanation": "This is a complete sentence because it includes the noun phrase, a verb and an end mark.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Highlight the verb that completes the sentence."
+        "repair": "Highlight the verb that completes the sentence.",
+        "misconception_check": "Check the detail called noun idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2604,7 +2678,9 @@
       "explanation": "This is a noun phrase. It names something but does not yet tell what happens.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the phrase in the who-or-what slot and leave the verb slot visibly empty."
+        "repair": "Place the phrase in the who-or-what slot and leave the verb slot visibly empty.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2663,7 +2739,9 @@
       "explanation": "This is a complete sentence because it includes the noun phrase, a verb and an end mark.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Highlight the verb that completes the sentence."
+        "repair": "Highlight the verb that completes the sentence.",
+        "misconception_check": "Check the detail called noun idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2722,7 +2800,9 @@
       "explanation": "This is a noun phrase. It names something but does not yet tell what happens.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the phrase in the who-or-what slot and leave the verb slot visibly empty."
+        "repair": "Place the phrase in the who-or-what slot and leave the verb slot visibly empty.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2781,7 +2861,9 @@
       "explanation": "This is a complete sentence because it includes the noun phrase, a verb and an end mark.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Highlight the verb that completes the sentence."
+        "repair": "Highlight the verb that completes the sentence.",
+        "misconception_check": "Check the detail called noun idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2840,7 +2922,9 @@
       "explanation": "This is a noun phrase. It names something but does not yet tell what happens.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the phrase in the who-or-what slot and leave the verb slot visibly empty."
+        "repair": "Place the phrase in the who-or-what slot and leave the verb slot visibly empty.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2917,7 +3001,9 @@
       "explanation": "The lunchbox with a silver rocket is useful because it helps the reader find the one with a silver rocket.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -2993,7 +3079,9 @@
       "explanation": "The cat with white paws is useful because it helps the reader identify the cat with white paws.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3067,7 +3155,9 @@
       "explanation": "The rusty key is useful because it helps the reader find the old key in the drawer.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3141,7 +3231,9 @@
       "explanation": "The yellow coat is useful because it helps the reader choose the coat that can be spotted quickly.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3215,7 +3307,9 @@
       "explanation": "The spiral shell is useful because it helps the reader identify the shell with a spiral pattern.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3292,7 +3386,9 @@
       "explanation": "The map with a torn corner is useful because it helps the reader find the map with a torn corner.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3369,7 +3465,9 @@
       "explanation": "The cup with a blue stripe is useful because it helps the reader choose the cup with a blue stripe.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3446,7 +3544,9 @@
       "explanation": "The book with a dinosaur cover is useful because it helps the reader find the book with a dinosaur cover.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3522,7 +3622,9 @@
       "explanation": "The door with number seven is useful because it helps the reader tell the visitor which door to use.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3599,7 +3701,9 @@
       "explanation": "The tree with a hollow trunk is useful because it helps the reader identify the tree with a hollow trunk.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3676,7 +3780,9 @@
       "explanation": "The bird with a red chest is useful because it helps the reader identify the bird with a red chest.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3752,7 +3858,9 @@
       "explanation": "The sock with green spots is useful because it helps the reader find the sock with green spots.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3826,7 +3934,9 @@
       "explanation": "The sharp pencil is useful because it helps the reader choose a pencil ready for neat drawing.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3900,7 +4010,9 @@
       "explanation": "The muddy path is useful because it helps the reader warn which path is muddy.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -3976,7 +4088,9 @@
       "explanation": "The chair by the window is useful because it helps the reader show which chair is beside the window.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4052,7 +4166,9 @@
       "explanation": "The parcel with blue ribbon is useful because it helps the reader find the parcel tied with blue ribbon.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4126,7 +4242,9 @@
       "explanation": "The diamond-shaped kite is useful because it helps the reader identify the kite by its shape.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4202,7 +4320,9 @@
       "explanation": "The rabbit with floppy ears is useful because it helps the reader identify the rabbit with floppy ears.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4278,7 +4398,9 @@
       "explanation": "The hat with a feather is useful because it helps the reader find the hat with a feather.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4355,7 +4477,9 @@
       "explanation": "The house with a red door is useful because it helps the reader identify the house with a red door.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4431,7 +4555,9 @@
       "explanation": "The ball with yellow stars is useful because it helps the reader find the ball with yellow stars.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4507,7 +4633,9 @@
       "explanation": "The bench beside the pond is useful because it helps the reader show which bench is beside the pond.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4584,7 +4712,9 @@
       "explanation": "The tile with a small crack is useful because it helps the reader find the tile with a small crack.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 3,
       "status": "review",
@@ -4661,7 +4791,9 @@
       "explanation": "The lunchbox with a silver rocket is useful because it helps the reader find the one with a silver rocket.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -4737,7 +4869,9 @@
       "explanation": "The cat with white paws is useful because it helps the reader identify the cat with white paws.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -4811,7 +4945,9 @@
       "explanation": "The rusty key is useful because it helps the reader find the old key in the drawer.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -4885,7 +5021,9 @@
       "explanation": "The yellow coat is useful because it helps the reader choose the coat that can be spotted quickly.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -4959,7 +5097,9 @@
       "explanation": "The spiral shell is useful because it helps the reader identify the shell with a spiral pattern.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5036,7 +5176,9 @@
       "explanation": "The map with a torn corner is useful because it helps the reader find the map with a torn corner.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5113,7 +5255,9 @@
       "explanation": "The cup with a blue stripe is useful because it helps the reader choose the cup with a blue stripe.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5190,7 +5334,9 @@
       "explanation": "The book with a dinosaur cover is useful because it helps the reader find the book with a dinosaur cover.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5266,7 +5412,9 @@
       "explanation": "The door with number seven is useful because it helps the reader tell the visitor which door to use.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5343,7 +5491,9 @@
       "explanation": "The tree with a hollow trunk is useful because it helps the reader identify the tree with a hollow trunk.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5420,7 +5570,9 @@
       "explanation": "The bird with a red chest is useful because it helps the reader identify the bird with a red chest.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5496,7 +5648,9 @@
       "explanation": "The sock with green spots is useful because it helps the reader find the sock with green spots.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5570,7 +5724,9 @@
       "explanation": "The sharp pencil is useful because it helps the reader choose a pencil ready for neat drawing.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5644,7 +5800,9 @@
       "explanation": "The muddy path is useful because it helps the reader warn which path is muddy.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5720,7 +5878,9 @@
       "explanation": "The chair by the window is useful because it helps the reader show which chair is beside the window.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5796,7 +5956,9 @@
       "explanation": "The parcel with blue ribbon is useful because it helps the reader find the parcel tied with blue ribbon.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5870,7 +6032,9 @@
       "explanation": "The diamond-shaped kite is useful because it helps the reader identify the kite by its shape.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5946,7 +6110,9 @@
       "explanation": "The rabbit with floppy ears is useful because it helps the reader identify the rabbit with floppy ears.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6022,7 +6188,9 @@
       "explanation": "The hat with a feather is useful because it helps the reader find the hat with a feather.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6099,7 +6267,9 @@
       "explanation": "The house with a red door is useful because it helps the reader identify the house with a red door.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6175,7 +6345,9 @@
       "explanation": "The ball with yellow stars is useful because it helps the reader find the ball with yellow stars.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6251,7 +6423,9 @@
       "explanation": "The bench beside the pond is useful because it helps the reader show which bench is beside the pond.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6328,7 +6502,9 @@
       "explanation": "The tile with a small crack is useful because it helps the reader find the tile with a small crack.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader."
+        "repair": "Remove praise words and unrelated words, then keep the detail that helps this reader.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6406,7 +6582,9 @@
       "explanation": "The small, spotted dog uses two useful listed details before the noun.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -6484,7 +6662,9 @@
       "explanation": "The cold, sparkling stream uses two useful listed details before the noun.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -6562,7 +6742,9 @@
       "explanation": "The soft, stripy scarf uses two useful listed details before the noun.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -6640,7 +6822,9 @@
       "explanation": "The tall, shady tree uses two useful listed details before the noun.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -6718,7 +6902,9 @@
       "explanation": "The tiny, silver key uses two useful listed details before the noun.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -6796,7 +6982,9 @@
       "explanation": "The bright, noisy parrot uses two useful listed details before the noun.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -6874,7 +7062,9 @@
       "explanation": "The smooth, round pebble uses two useful listed details before the noun.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -6952,7 +7142,9 @@
       "explanation": "The long, winding path uses two useful listed details before the noun.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -7030,7 +7222,9 @@
       "explanation": "The warm, woolly jumper uses two useful listed details before the noun.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -7108,7 +7302,9 @@
       "explanation": "The large, empty box uses two useful listed details before the noun.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -7186,7 +7382,9 @@
       "explanation": "The crisp, red apple uses two useful listed details before the noun.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -7264,7 +7462,9 @@
       "explanation": "The dark, stormy sky uses two useful listed details before the noun.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -7344,7 +7544,9 @@
       "explanation": "The red kite with a torn tail uses one detail before the noun and a specifying phrase after it, so no list comma is needed.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -7424,7 +7626,9 @@
       "explanation": "The wooden boat with a blue sail uses one detail before the noun and a specifying phrase after it, so no list comma is needed.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -7503,7 +7707,9 @@
       "explanation": "The sleepy cat on the cushion uses one detail before the noun and a specifying phrase after it, so no list comma is needed.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -7583,7 +7789,9 @@
       "explanation": "The metal box with a tiny lock uses one detail before the noun and a specifying phrase after it, so no list comma is needed.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -7662,7 +7870,9 @@
       "explanation": "The muddy boots by the door uses one detail before the noun and a specifying phrase after it, so no list comma is needed.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -7741,7 +7951,9 @@
       "explanation": "The yellow bus with two decks uses one detail before the noun and a specifying phrase after it, so no list comma is needed.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -7820,7 +8032,9 @@
       "explanation": "The old bridge over the stream uses one detail before the noun and a specifying phrase after it, so no list comma is needed.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -7899,7 +8113,9 @@
       "explanation": "The green frog beside the pond uses one detail before the noun and a specifying phrase after it, so no list comma is needed.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -7977,7 +8193,9 @@
       "explanation": "The thick book about space uses one detail before the noun and a specifying phrase after it, so no list comma is needed.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -8056,7 +8274,9 @@
       "explanation": "The striped towel on the sand uses one detail before the noun and a specifying phrase after it, so no list comma is needed.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -8135,7 +8355,9 @@
       "explanation": "The round badge with a star uses one detail before the noun and a specifying phrase after it, so no list comma is needed.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -8213,7 +8435,9 @@
       "explanation": "The small, spotted dog uses two useful listed details before the noun.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -8291,7 +8515,9 @@
       "explanation": "The cold, sparkling stream uses two useful listed details before the noun.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -8369,7 +8595,9 @@
       "explanation": "The soft, stripy scarf uses two useful listed details before the noun.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -8447,7 +8675,9 @@
       "explanation": "The tall, shady tree uses two useful listed details before the noun.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -8525,7 +8755,9 @@
       "explanation": "The tiny, silver key uses two useful listed details before the noun.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -8603,7 +8835,9 @@
       "explanation": "The bright, noisy parrot uses two useful listed details before the noun.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -8681,7 +8915,9 @@
       "explanation": "The smooth, round pebble uses two useful listed details before the noun.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -8759,7 +8995,9 @@
       "explanation": "The long, winding path uses two useful listed details before the noun.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -8837,7 +9075,9 @@
       "explanation": "The warm, woolly jumper uses two useful listed details before the noun.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -8915,7 +9155,9 @@
       "explanation": "The large, empty box uses two useful listed details before the noun.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -8993,7 +9235,9 @@
       "explanation": "The crisp, red apple uses two useful listed details before the noun.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -9071,7 +9315,9 @@
       "explanation": "The dark, stormy sky uses two useful listed details before the noun.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -9151,7 +9397,9 @@
       "explanation": "The red kite with a torn tail uses one detail before the noun and a specifying phrase after it, so no list comma is needed.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -9231,7 +9479,9 @@
       "explanation": "The wooden boat with a blue sail uses one detail before the noun and a specifying phrase after it, so no list comma is needed.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -9310,7 +9560,9 @@
       "explanation": "The sleepy cat on the cushion uses one detail before the noun and a specifying phrase after it, so no list comma is needed.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -9390,7 +9642,9 @@
       "explanation": "The metal box with a tiny lock uses one detail before the noun and a specifying phrase after it, so no list comma is needed.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -9469,7 +9723,9 @@
       "explanation": "The muddy boots by the door uses one detail before the noun and a specifying phrase after it, so no list comma is needed.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -9548,7 +9804,9 @@
       "explanation": "The yellow bus with two decks uses one detail before the noun and a specifying phrase after it, so no list comma is needed.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -9627,7 +9885,9 @@
       "explanation": "The old bridge over the stream uses one detail before the noun and a specifying phrase after it, so no list comma is needed.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -9706,7 +9966,9 @@
       "explanation": "The green frog beside the pond uses one detail before the noun and a specifying phrase after it, so no list comma is needed.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -9784,7 +10046,9 @@
       "explanation": "The thick book about space uses one detail before the noun and a specifying phrase after it, so no list comma is needed.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -9863,7 +10127,9 @@
       "explanation": "The striped towel on the sand uses one detail before the noun and a specifying phrase after it, so no list comma is needed.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -9942,7 +10208,9 @@
       "explanation": "The round badge with a star uses one detail before the noun and a specifying phrase after it, so no list comma is needed.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list."
+        "repair": "Remove every comma, rebuild the natural word order, then add punctuation only if the reviewed details form a list.",
+        "misconception_check": "Check the comma everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -10016,7 +10284,9 @@
       "explanation": "The bag with a silver rocket keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -10090,7 +10360,9 @@
       "explanation": "The cat with white paws keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -10164,7 +10436,9 @@
       "explanation": "The rusty key keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -10238,7 +10512,9 @@
       "explanation": "The yellow coat keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -10312,7 +10588,9 @@
       "explanation": "The shell with a spiral pattern keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -10386,7 +10664,9 @@
       "explanation": "The map with a torn corner keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -10460,7 +10740,9 @@
       "explanation": "The cup with a blue stripe keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -10534,7 +10816,9 @@
       "explanation": "The book with a dinosaur cover keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -10608,7 +10892,9 @@
       "explanation": "The door with number seven keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -10682,7 +10968,9 @@
       "explanation": "The tree with a hollow trunk keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -10756,7 +11044,9 @@
       "explanation": "The bird with a red chest keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -10830,7 +11120,9 @@
       "explanation": "The sock with green spots keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -10904,7 +11196,9 @@
       "explanation": "The sharp pencil keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -10978,7 +11272,9 @@
       "explanation": "The muddy path keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -11052,7 +11348,9 @@
       "explanation": "The chair by the window keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -11126,7 +11424,9 @@
       "explanation": "The parcel with blue ribbon keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -11200,7 +11500,9 @@
       "explanation": "The diamond-shaped kite keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -11274,7 +11576,9 @@
       "explanation": "The rabbit with floppy ears keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -11348,7 +11652,9 @@
       "explanation": "The hat with a feather keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -11422,7 +11728,9 @@
       "explanation": "The house with a red door keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -11496,7 +11804,9 @@
       "explanation": "The ball with yellow stars keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -11570,7 +11880,9 @@
       "explanation": "The bench beside the pond keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -11644,7 +11956,9 @@
       "explanation": "The tile with a small crack keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -11718,7 +12032,9 @@
       "explanation": "The bag with a silver rocket keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -11792,7 +12108,9 @@
       "explanation": "The cat with white paws keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -11866,7 +12184,9 @@
       "explanation": "The rusty key keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -11940,7 +12260,9 @@
       "explanation": "The yellow coat keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -12014,7 +12336,9 @@
       "explanation": "The shell with a spiral pattern keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -12088,7 +12412,9 @@
       "explanation": "The map with a torn corner keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -12162,7 +12488,9 @@
       "explanation": "The cup with a blue stripe keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -12236,7 +12564,9 @@
       "explanation": "The book with a dinosaur cover keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -12310,7 +12640,9 @@
       "explanation": "The door with number seven keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -12384,7 +12716,9 @@
       "explanation": "The tree with a hollow trunk keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -12458,7 +12792,9 @@
       "explanation": "The bird with a red chest keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -12532,7 +12868,9 @@
       "explanation": "The sock with green spots keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -12606,7 +12944,9 @@
       "explanation": "The sharp pencil keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -12680,7 +13020,9 @@
       "explanation": "The muddy path keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -12754,7 +13096,9 @@
       "explanation": "The chair by the window keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -12828,7 +13172,9 @@
       "explanation": "The parcel with blue ribbon keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -12902,7 +13248,9 @@
       "explanation": "The diamond-shaped kite keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -12976,7 +13324,9 @@
       "explanation": "The rabbit with floppy ears keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -13050,7 +13400,9 @@
       "explanation": "The hat with a feather keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -13124,7 +13476,9 @@
       "explanation": "The house with a red door keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -13198,7 +13552,9 @@
       "explanation": "The ball with yellow stars keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -13272,7 +13628,9 @@
       "explanation": "The bench beside the pond keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -13346,7 +13704,9 @@
       "explanation": "The tile with a small crack keeps the identifying detail and removes repeated or unrelated words.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains."
+        "repair": "Sort every added word by its job, then read the shorter revision aloud to check that the meaning remains.",
+        "misconception_check": "Check the adjective pile idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -13421,7 +13781,9 @@
       "explanation": "The small, spotted dog raced across the field. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -13496,7 +13858,9 @@
       "explanation": "The bright red kite climbed above the trees. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -13571,7 +13935,9 @@
       "explanation": "The small wooden boat rocked on the pond. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -13646,7 +14012,9 @@
       "explanation": "The long, muddy path led us home. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -13721,7 +14089,9 @@
       "explanation": "The tiny, silver key opened the box. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -13796,7 +14166,9 @@
       "explanation": "The warm, woolly jumper dried by the fire. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -13871,7 +14243,9 @@
       "explanation": "The ball with yellow stars bounced over the line. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -13946,7 +14320,9 @@
       "explanation": "The house with a red door stood near the park. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -14021,7 +14397,9 @@
       "explanation": "The book with a dinosaur cover belongs on this shelf. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -14096,7 +14474,9 @@
       "explanation": "The green frog beside the pond caught a fly. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -14171,7 +14551,9 @@
       "explanation": "The striped towel on the sand blew away. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -14246,7 +14628,9 @@
       "explanation": "The dark, stormy sky warned us about the rain. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -14321,7 +14705,9 @@
       "explanation": "The shell with a spiral pattern gleamed in the sun. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -14396,7 +14782,9 @@
       "explanation": "The tree with a hollow trunk sheltered a beetle. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -14471,7 +14859,9 @@
       "explanation": "The wooden boat with a blue sail crossed the lake. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -14546,7 +14936,9 @@
       "explanation": "The yellow coat hung beside the door. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -14621,7 +15013,9 @@
       "explanation": "The chair by the window creaked softly. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -14696,7 +15090,9 @@
       "explanation": "The parcel with blue ribbon arrived today. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -14771,7 +15167,9 @@
       "explanation": "The smooth, round pebble fitted in my palm. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -14846,7 +15244,9 @@
       "explanation": "The small, spotted dog raced across the field. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -14921,7 +15321,9 @@
       "explanation": "The bright red kite climbed above the trees. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -14996,7 +15398,9 @@
       "explanation": "The small wooden boat rocked on the pond. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -15071,7 +15475,9 @@
       "explanation": "The long, muddy path led us home. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -15146,7 +15552,9 @@
       "explanation": "The tiny, silver key opened the box. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -15221,7 +15629,9 @@
       "explanation": "The warm, woolly jumper dried by the fire. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -15296,7 +15706,9 @@
       "explanation": "The ball with yellow stars bounced over the line. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -15371,7 +15783,9 @@
       "explanation": "The house with a red door stood near the park. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -15446,7 +15860,9 @@
       "explanation": "The book with a dinosaur cover belongs on this shelf. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -15521,7 +15937,9 @@
       "explanation": "The green frog beside the pond caught a fly. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -15596,7 +16014,9 @@
       "explanation": "The striped towel on the sand blew away. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -15671,7 +16091,9 @@
       "explanation": "The dark, stormy sky warned us about the rain. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -15746,7 +16168,9 @@
       "explanation": "The shell with a spiral pattern gleamed in the sun. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -15821,7 +16245,9 @@
       "explanation": "The tree with a hollow trunk sheltered a beetle. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -15896,7 +16322,9 @@
       "explanation": "The wooden boat with a blue sail crossed the lake. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -15971,7 +16399,9 @@
       "explanation": "The yellow coat hung beside the door. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -16046,7 +16476,9 @@
       "explanation": "The chair by the window creaked softly. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -16121,7 +16553,9 @@
       "explanation": "The parcel with blue ribbon arrived today. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",
@@ -16196,7 +16630,9 @@
       "explanation": "The smooth, round pebble fitted in my palm. is complete because the expanded noun phrase sits inside a sentence with a verb and punctuation.",
       "feedback": {
         "correct": "Clear choice: the words do the reader's job.",
-        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation."
+        "repair": "Place the noun phrase in the who-or-what slot, add the verb part, then rehearse the whole sentence before checking punctuation.",
+        "misconception_check": "Check the phrase replaces sentence idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 6,
       "status": "review",

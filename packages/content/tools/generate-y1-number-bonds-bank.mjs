@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -45,6 +46,7 @@ pack.version = "0.2.0";
 pack.qa.notes = "Review-stage Year 1 number-bonds pack with a deterministic 200-item pilot bank. Three curated variants are preserved alongside candidates covering conserved part-whole splits to 5, complements and all systematic bonds to 10, flexible bonds within 20, missing parts, one-up/one-down patterns, turnaround addition facts and related subtraction checks. Generated items offer counters, tactile pots, frames, bead strings, number tracks, verbal routes and supported interactions. Feedback separates parts from wholes and repairs guessing, double-counting and unrelated-fact misconceptions. Joyful treasure missions reward building and checking without timers, speed bonuses, streak loss or precision-only demands. Independent mathematics, SEND, narration and renderer review remains required before promotion.";
 
 validateBank(pack, curated, generated);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`y1-number-bonds-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
 console.log(`y1-number-bonds-bank blueprints=${summary(pack.question_variants, (variant) => variant.body.variant_blueprint_id)}`);

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -41,6 +42,7 @@ pack.version = "0.2.0";
 pack.qa.notes = "Year 7 particle flagship reaches the 240-item pilot target with three preserved curated variants, the complete established generated bank, and deterministic mission candidates spanning particle models, state changes, conservation, diffusion, temperature and energy, evidence, misconceptions and model limitations. Every generated model preserves particle count and particle size and provides supported SEND interactions, static and reduced-motion alternatives, and rich low-pressure feedback; review candidates still require independent science-teacher, accessibility, safeguarding and simulation-usability review before promotion.";
 console.log(`particle-bank authored=${authored.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
 console.log(`particle-bank formats=${formatSummary(candidates)}`);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 if (write) {
   await writeFile(packPath, nextText, "utf8");

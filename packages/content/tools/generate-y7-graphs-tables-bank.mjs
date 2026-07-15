@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -104,6 +105,7 @@ pack.version = "0.2.0";
 pack.qa.notes = "Year 7 graphs and tables reaches the 260-item pilot target with five preserved curated variants and 255 deterministic review candidates covering table and chart reading and construction, axes and scales, bar and line representations, frequency and grouped data, comparisons and trends, interpolation cautions, misleading displays, missing data, representation choice, multistep reasoning and transfer. Every generated item includes complete visual descriptions, SEND reduced-load scaffolds, supported non-drag interactions, rich feedback, optional human-reviewed ElevenLabs references with browser TTS prohibited, and private data-investigation missions without speed or social pressure. Independent mathematics, teacher, SEND, accessibility, safeguarding, audio, renderer and pilot review remain required before promotion.";
 validateBank(pack, enrichedCurated, enrichedGenerated);
 
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`graphs-tables-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
 console.log(`graphs-tables-bank blueprints=${summary(generated, (v) => v.body.variant_blueprint_id)}`);

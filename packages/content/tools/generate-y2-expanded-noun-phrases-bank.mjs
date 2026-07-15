@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -59,6 +60,7 @@ console.log(`y2-enp-bank formats=${summary(pack.question_variants, (variant) => 
 console.log(`y2-enp-bank bands=${bandSummary(curated, candidates, blueprintById)}`);
 console.log(`y2-enp-bank interactions=${summary(candidates, (variant) => variant.body.interaction_mode)}`);
 
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 if (write) {
   await writeFile(packPath, nextText, "utf8");

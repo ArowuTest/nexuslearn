@@ -259,7 +259,14 @@
           "The cubs must be exact copies of one parent.",
           "The cubs changed species because they look different.",
           "Every difference was learned after birth."
-        ]
+        ],
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-sc-y6-evolution-and-inheritance",
+        "review_provenance": {
+          "kind": "curated",
+          "pack_id": "sc-y6-evolution-and-inheritance",
+          "variant_id": "sc-y6-evolution-and-inheritance-q-offspring"
+        }
       },
       "expected_answer": {
         "value": "The cubs are the same kind as their parents but show normal variation."
@@ -272,7 +279,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "offspring_exact_copy",
-      "animation_hook": "population-variation-scan"
+      "animation_hook": "population-variation-scan",
+      "feedback": {
+        "correct": "Correct. The cubs inherit species characteristics from their parents while also showing variation in features such as shade and size.",
+        "retry": "Try again calmly: Offspring of the same kind share characteristics. Individuals within a species are not usually identical. No progress is lost for checking or changing your answer.",
+        "repair": "Repair the offspring exact copy route: Offspring of the same kind share characteristics. Then use the evidence to explain your choice.",
+        "misconception_check": "Check the offspring exact copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "sc-y6-evolution-and-inheritance-q-drought",
@@ -289,7 +303,14 @@
           "shallow_root": 60,
           "deep_root": 40
         },
-        "environment": "repeated drought"
+        "environment": "repeated drought",
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-sc-y6-evolution-and-inheritance",
+        "review_provenance": {
+          "kind": "curated",
+          "pack_id": "sc-y6-evolution-and-inheritance",
+          "variant_id": "sc-y6-evolution-and-inheritance-q-drought"
+        }
       },
       "expected_answer": {
         "value": "Deep-root variation is likely to become more common in the population."
@@ -302,7 +323,14 @@
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "need_driven_change",
-      "animation_hook": "population-generation-run"
+      "animation_hook": "population-generation-run",
+      "feedback": {
+        "correct": "Correct. If deeper roots give an inherited survival and reproductive advantage during drought, that variation can become more common across generations.",
+        "retry": "Try again calmly: The variation exists before the drought. Which plants are more likely to survive and pass on the inherited variation? No progress is lost for checking or changing your answer.",
+        "repair": "Repair the need driven change route: The variation exists before the drought. Then use the evidence to explain your choice.",
+        "misconception_check": "Check the need driven change idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "sc-y6-evolution-and-inheritance-q-fossil-claim",
@@ -318,7 +346,14 @@
         "evidence": [
           "older layer: form A",
           "younger layer: related form B"
-        ]
+        ],
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-sc-y6-evolution-and-inheritance",
+        "review_provenance": {
+          "kind": "curated",
+          "pack_id": "sc-y6-evolution-and-inheritance",
+          "variant_id": "sc-y6-evolution-and-inheritance-q-fossil-claim"
+        }
       },
       "expected_answer": {
         "value": "Related organisms with different chamber forms lived at different times."
@@ -331,7 +366,14 @@
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "fossil_record_complete",
-      "animation_hook": "fossil-layer-evidence-link"
+      "animation_hook": "fossil-layer-evidence-link",
+      "feedback": {
+        "correct": "Correct. The layer order supports the cautious claim that related forms lived at different times; it does not make the fossil record complete.",
+        "retry": "Try again calmly: Use only what the fossils and layers support. Avoid claims about a complete record or changes after burial. No progress is lost for checking or changing your answer.",
+        "repair": "Repair the fossil record complete route: Use only what the fossils and layers support. Then use the evidence to explain your choice.",
+        "misconception_check": "Check the fossil record complete idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "sc-y6-evolution-and-inheritance-q-adaptation",
@@ -343,7 +385,14 @@
           "Every predator decides to turn pale when snow falls.",
           "Pale fur is always helpful in every environment.",
           "The snow teaches each predator's fur to change permanently."
-        ]
+        ],
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-sc-y6-evolution-and-inheritance",
+        "review_provenance": {
+          "kind": "curated",
+          "pack_id": "sc-y6-evolution-and-inheritance",
+          "variant_id": "sc-y6-evolution-and-inheritance-q-adaptation"
+        }
       },
       "expected_answer": {
         "value": "If fur colour is inherited, pale individuals may be less visible, catch more prey and leave more offspring."
@@ -356,7 +405,14 @@
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "feature_useful_everywhere",
-      "animation_hook": "selection-chain-build"
+      "animation_hook": "selection-chain-build",
+      "feedback": {
+        "correct": "Correct. Pale fur can be an adaptation on snow when inherited camouflage improves hunting success and reproductive success; the advantage depends on the environment.",
+        "retry": "Try again calmly: An adaptation is inherited and useful in a particular environment. Link the feature to survival or reproduction. No progress is lost for checking or changing your answer.",
+        "repair": "Repair the feature useful everywhere route: An adaptation is inherited and useful in a particular environment. Then use the evidence to explain your choice.",
+        "misconception_check": "Check the feature useful everywhere idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "sc-y6-evolution-and-inheritance-bank-inheritance-001-fox-cubs",

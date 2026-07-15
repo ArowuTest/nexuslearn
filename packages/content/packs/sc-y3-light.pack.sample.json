@@ -249,7 +249,8 @@
         "evidence_purpose": "seeing_model",
         "variant_blueprint_id": "source-object-eye-paths",
         "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
-        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory.",
+        "review_batch": "generated-review-sc-y3-light"
       },
       "expected_answer": {
         "value": "lamp to map to eye"
@@ -299,7 +300,8 @@
         "evidence_purpose": "reflection_comparison",
         "variant_blueprint_id": "surface-reflection-evidence",
         "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
-        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory.",
+        "review_batch": "generated-review-sc-y3-light"
       },
       "expected_answer": {
         "value": "All three reflect some light, but the observed amount and direction differ"
@@ -341,7 +343,8 @@
         "evidence_purpose": "shadow_size_pattern",
         "variant_blueprint_id": "shadow-formation-and-size-patterns",
         "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
-        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory.",
+        "review_batch": "generated-review-sc-y3-light"
       },
       "expected_answer": {
         "value": "The shadow becomes larger"
@@ -378,7 +381,8 @@
         "evidence_purpose": "sun_safety",
         "variant_blueprint_id": "safe-light-spaced-retrieval",
         "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
-        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory.",
+        "review_batch": "generated-review-sc-y3-light"
       },
       "expected_answer": {
         "value": "Measure a stick's shadow without looking at the Sun"
@@ -482,7 +486,9 @@
       "explanation": "Light travels from the switched-on desk lamp to the book. Some reflects from the book and enters Asha's eye.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -571,7 +577,9 @@
       "explanation": "With the stated source off and no other light, there is no complete source-book-eye path, so the object cannot be seen in this model.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -660,7 +668,9 @@
       "explanation": "The seeing path is completed when reflected light from the book enters Asha's eye. The object does not need to produce light.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -749,7 +759,9 @@
       "explanation": "Eyes are receivers in this model. Light from the switched-on desk lamp reaches the object, reflects, and then enters the eye.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -838,7 +850,9 @@
       "explanation": "Light travels from the switched-on virtual torch to the map. Some reflects from the map and enters Ben's eye.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -927,7 +941,9 @@
       "explanation": "With the stated source off and no other light, there is no complete source-map-eye path, so the object cannot be seen in this model.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1016,7 +1032,9 @@
       "explanation": "The seeing path is completed when reflected light from the map enters Ben's eye. The object does not need to produce light.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1105,7 +1123,9 @@
       "explanation": "Eyes are receivers in this model. Light from the switched-on virtual torch reaches the object, reflects, and then enters the eye.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -1194,7 +1214,9 @@
       "explanation": "Light travels from the daylight through a window to the poster. Some reflects from the poster and enters Cleo's eye.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1283,7 +1305,9 @@
       "explanation": "With the stated source off and no other light, there is no complete source-poster-eye path, so the object cannot be seen in this model.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1372,7 +1396,9 @@
       "explanation": "The seeing path is completed when reflected light from the poster enters Cleo's eye. The object does not need to produce light.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1461,7 +1487,9 @@
       "explanation": "Eyes are receivers in this model. Light from the daylight through a window reaches the object, reflects, and then enters the eye.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -1550,7 +1578,9 @@
       "explanation": "Light travels from the switched-on ceiling light to the shell. Some reflects from the shell and enters Dev's eye.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1639,7 +1669,9 @@
       "explanation": "With the stated source off and no other light, there is no complete source-shell-eye path, so the object cannot be seen in this model.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1728,7 +1760,9 @@
       "explanation": "The seeing path is completed when reflected light from the shell enters Dev's eye. The object does not need to produce light.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1817,7 +1851,9 @@
       "explanation": "Eyes are receivers in this model. Light from the switched-on ceiling light reaches the object, reflects, and then enters the eye.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -1906,7 +1942,9 @@
       "explanation": "Light travels from the switched-on electric lantern to the sign. Some reflects from the sign and enters Eloise's eye.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -1995,7 +2033,9 @@
       "explanation": "With the stated source off and no other light, there is no complete source-sign-eye path, so the object cannot be seen in this model.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2084,7 +2124,9 @@
       "explanation": "The seeing path is completed when reflected light from the sign enters Eloise's eye. The object does not need to produce light.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2173,7 +2215,9 @@
       "explanation": "Eyes are receivers in this model. Light from the switched-on electric lantern reaches the object, reflects, and then enters the eye.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -2262,7 +2306,9 @@
       "explanation": "Light travels from the lit tablet screen to the instruction card. Some reflects from the instruction card and enters Farah's eye.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2351,7 +2397,9 @@
       "explanation": "With the stated source off and no other light, there is no complete source-instruction card-eye path, so the object cannot be seen in this model.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2440,7 +2488,9 @@
       "explanation": "The seeing path is completed when reflected light from the instruction card enters Farah's eye. The object does not need to produce light.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2529,7 +2579,9 @@
       "explanation": "Eyes are receivers in this model. Light from the lit tablet screen reaches the object, reflects, and then enters the eye.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -2618,7 +2670,9 @@
       "explanation": "Light travels from the switched-on light box to the leaf. Some reflects from the leaf and enters Gus's eye.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2707,7 +2761,9 @@
       "explanation": "With the stated source off and no other light, there is no complete source-leaf-eye path, so the object cannot be seen in this model.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2796,7 +2852,9 @@
       "explanation": "The seeing path is completed when reflected light from the leaf enters Gus's eye. The object does not need to produce light.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -2885,7 +2943,9 @@
       "explanation": "Eyes are receivers in this model. Light from the switched-on light box reaches the object, reflects, and then enters the eye.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -2974,7 +3034,9 @@
       "explanation": "Light travels from the switched-on floor lamp to the model bridge. Some reflects from the model bridge and enters Hana's eye.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -3063,7 +3125,9 @@
       "explanation": "With the stated source off and no other light, there is no complete source-model bridge-eye path, so the object cannot be seen in this model.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -3152,7 +3216,9 @@
       "explanation": "The seeing path is completed when reflected light from the model bridge enters Hana's eye. The object does not need to produce light.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -3241,7 +3307,9 @@
       "explanation": "Eyes are receivers in this model. Light from the switched-on floor lamp reaches the object, reflects, and then enters the eye.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -3330,7 +3398,9 @@
       "explanation": "Light travels from the switched-on display light to the coin. Some reflects from the coin and enters Idris's eye.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -3419,7 +3489,9 @@
       "explanation": "With the stated source off and no other light, there is no complete source-coin-eye path, so the object cannot be seen in this model.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -3508,7 +3580,9 @@
       "explanation": "The seeing path is completed when reflected light from the coin enters Idris's eye. The object does not need to produce light.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -3597,7 +3671,9 @@
       "explanation": "Eyes are receivers in this model. Light from the switched-on display light reaches the object, reflects, and then enters the eye.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -3686,7 +3762,9 @@
       "explanation": "Light travels from the switched-on wall light to the clock. Some reflects from the clock and enters Jaya's eye.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -3775,7 +3853,9 @@
       "explanation": "With the stated source off and no other light, there is no complete source-clock-eye path, so the object cannot be seen in this model.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -3864,7 +3944,9 @@
       "explanation": "The seeing path is completed when reflected light from the clock enters Jaya's eye. The object does not need to produce light.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -3953,7 +4035,9 @@
       "explanation": "Eyes are receivers in this model. Light from the switched-on wall light reaches the object, reflects, and then enters the eye.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -4042,7 +4126,9 @@
       "explanation": "Light travels from the switched-on cabinet light to the fossil. Some reflects from the fossil and enters Kofi's eye.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -4131,7 +4217,9 @@
       "explanation": "With the stated source off and no other light, there is no complete source-fossil-eye path, so the object cannot be seen in this model.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -4220,7 +4308,9 @@
       "explanation": "The seeing path is completed when reflected light from the fossil enters Kofi's eye. The object does not need to produce light.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 2,
       "status": "review",
@@ -4303,7 +4393,9 @@
       "explanation": "The Sun gives out its own light, so it is classified as a light source.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -4386,7 +4478,9 @@
       "explanation": "Gives out its own light. That evidence distinguishes a source from an object that reflects light.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -4469,7 +4563,9 @@
       "explanation": "Darkness is the absence of enough light for seeing; it is not a material that moves into the room.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer."
+        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer.",
+        "misconception_check": "Check the darkness as substance idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -4552,7 +4648,9 @@
       "explanation": "The Sun gives out light, and seeing occurs when light reaches the eye.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the source and sensor fixed, then compare only the stated observations."
+        "repair": "Keep the source and sensor fixed, then compare only the stated observations.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -4635,7 +4733,9 @@
       "explanation": "A switched-on lamp uses electrical energy to give out light, so it is classified as a light source.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -4718,7 +4818,9 @@
       "explanation": "Uses electrical energy to give out light. That evidence distinguishes a source from an object that reflects light.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -4801,7 +4903,9 @@
       "explanation": "Darkness is the absence of enough light for seeing; it is not a material that moves into the room.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer."
+        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer.",
+        "misconception_check": "Check the darkness as substance idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -4884,7 +4988,9 @@
       "explanation": "A switched-on lamp gives out light, and seeing occurs when light reaches the eye.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the source and sensor fixed, then compare only the stated observations."
+        "repair": "Keep the source and sensor fixed, then compare only the stated observations.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -4967,7 +5073,9 @@
       "explanation": "A lit display screen gives out light when switched on, so it is classified as a light source.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5050,7 +5158,9 @@
       "explanation": "Gives out light when switched on. That evidence distinguishes a source from an object that reflects light.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5133,7 +5243,9 @@
       "explanation": "Darkness is the absence of enough light for seeing; it is not a material that moves into the room.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer."
+        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer.",
+        "misconception_check": "Check the darkness as substance idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5216,7 +5328,9 @@
       "explanation": "A lit display screen gives out light, and seeing occurs when light reaches the eye.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the source and sensor fixed, then compare only the stated observations."
+        "repair": "Keep the source and sensor fixed, then compare only the stated observations.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -5299,7 +5413,9 @@
       "explanation": "A switched-on electric lantern gives out its own light when switched on, so it is classified as a light source.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5382,7 +5498,9 @@
       "explanation": "Gives out its own light when switched on. That evidence distinguishes a source from an object that reflects light.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5465,7 +5583,9 @@
       "explanation": "Darkness is the absence of enough light for seeing; it is not a material that moves into the room.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer."
+        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer.",
+        "misconception_check": "Check the darkness as substance idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5548,7 +5668,9 @@
       "explanation": "A switched-on electric lantern gives out light, and seeing occurs when light reaches the eye.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the source and sensor fixed, then compare only the stated observations."
+        "repair": "Keep the source and sensor fixed, then compare only the stated observations.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -5631,7 +5753,9 @@
       "explanation": "The Moon is seen because it reflects light from the Sun, so it is classified as a reflector or illuminated object.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5714,7 +5838,9 @@
       "explanation": "Is seen because it reflects light from the Sun. That evidence distinguishes a source from an object that reflects light.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5797,7 +5923,9 @@
       "explanation": "Darkness is the absence of enough light for seeing; it is not a material that moves into the room.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer."
+        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer.",
+        "misconception_check": "Check the darkness as substance idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -5880,7 +6008,9 @@
       "explanation": "The Moon does not make its own light; reflected light from another source reaches the eye.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the source and sensor fixed, then compare only the stated observations."
+        "repair": "Keep the source and sensor fixed, then compare only the stated observations.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -5963,7 +6093,9 @@
       "explanation": "A mirror reflects light that reaches its surface, so it is classified as a reflector or illuminated object.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6046,7 +6178,9 @@
       "explanation": "Reflects light that reaches its surface. That evidence distinguishes a source from an object that reflects light.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6129,7 +6263,9 @@
       "explanation": "Darkness is the absence of enough light for seeing; it is not a material that moves into the room.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer."
+        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer.",
+        "misconception_check": "Check the darkness as substance idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6212,7 +6348,9 @@
       "explanation": "A mirror does not make its own light; reflected light from another source reaches the eye.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the source and sensor fixed, then compare only the stated observations."
+        "repair": "Keep the source and sensor fixed, then compare only the stated observations.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -6295,7 +6433,9 @@
       "explanation": "White card reflects some light into the eye, so it is classified as a reflector or illuminated object.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6378,7 +6518,9 @@
       "explanation": "Reflects some light into the eye. That evidence distinguishes a source from an object that reflects light.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6461,7 +6603,9 @@
       "explanation": "Darkness is the absence of enough light for seeing; it is not a material that moves into the room.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer."
+        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer.",
+        "misconception_check": "Check the darkness as substance idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6544,7 +6688,9 @@
       "explanation": "White card does not make its own light; reflected light from another source reaches the eye.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the source and sensor fixed, then compare only the stated observations."
+        "repair": "Keep the source and sensor fixed, then compare only the stated observations.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -6627,7 +6773,9 @@
       "explanation": "A reflective road sign returns light from another source, so it is classified as a reflector or illuminated object.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6710,7 +6858,9 @@
       "explanation": "Returns light from another source. That evidence distinguishes a source from an object that reflects light.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6793,7 +6943,9 @@
       "explanation": "Darkness is the absence of enough light for seeing; it is not a material that moves into the room.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer."
+        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer.",
+        "misconception_check": "Check the darkness as substance idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -6876,7 +7028,9 @@
       "explanation": "A reflective road sign does not make its own light; reflected light from another source reaches the eye.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the source and sensor fixed, then compare only the stated observations."
+        "repair": "Keep the source and sensor fixed, then compare only the stated observations.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -6959,7 +7113,9 @@
       "explanation": "A bicycle reflector reflects light from lamps, so it is classified as a reflector or illuminated object.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7042,7 +7198,9 @@
       "explanation": "Reflects light from lamps. That evidence distinguishes a source from an object that reflects light.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7125,7 +7283,9 @@
       "explanation": "Darkness is the absence of enough light for seeing; it is not a material that moves into the room.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer."
+        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer.",
+        "misconception_check": "Check the darkness as substance idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7208,7 +7368,9 @@
       "explanation": "A bicycle reflector does not make its own light; reflected light from another source reaches the eye.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the source and sensor fixed, then compare only the stated observations."
+        "repair": "Keep the source and sensor fixed, then compare only the stated observations.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -7291,7 +7453,9 @@
       "explanation": "A book is visible when light reflects from it, so it is classified as a reflector or illuminated object.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7374,7 +7538,9 @@
       "explanation": "Is visible when light reflects from it. That evidence distinguishes a source from an object that reflects light.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7457,7 +7623,9 @@
       "explanation": "Darkness is the absence of enough light for seeing; it is not a material that moves into the room.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer."
+        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer.",
+        "misconception_check": "Check the darkness as substance idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7540,7 +7708,9 @@
       "explanation": "A book does not make its own light; reflected light from another source reaches the eye.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the source and sensor fixed, then compare only the stated observations."
+        "repair": "Keep the source and sensor fixed, then compare only the stated observations.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -7623,7 +7793,9 @@
       "explanation": "A sheet of foil reflects light but does not make its own, so it is classified as a reflector or illuminated object.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7706,7 +7878,9 @@
       "explanation": "Reflects light but does not make its own. That evidence distinguishes a source from an object that reflects light.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7789,7 +7963,9 @@
       "explanation": "Darkness is the absence of enough light for seeing; it is not a material that moves into the room.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer."
+        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer.",
+        "misconception_check": "Check the darkness as substance idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 4,
       "status": "review",
@@ -7872,7 +8048,9 @@
       "explanation": "A sheet of foil does not make its own light; reflected light from another source reaches the eye.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the source and sensor fixed, then compare only the stated observations."
+        "repair": "Keep the source and sensor fixed, then compare only the stated observations.",
+        "misconception_check": "Check the eyes emit light idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -7974,7 +8152,9 @@
       "explanation": "The observations are strong and directed, moderate and spread and low. They support a relative comparison for this setup, not a claim that only shiny surfaces reflect.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer."
+        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -8076,7 +8256,9 @@
       "explanation": "Changing only the surface means differences in the recorded observation can be linked to the tested surface in this model.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the source and sensor fixed, then compare only the stated observations."
+        "repair": "Keep the source and sensor fixed, then compare only the stated observations.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -8178,7 +8360,9 @@
       "explanation": "White card gives a moderate and spread observation, showing that ordinary non-mirror surfaces can reflect some light.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer."
+        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -8280,7 +8464,9 @@
       "explanation": "The paired sensor descriptions directly compare the two surfaces under the same virtual conditions.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the source and sensor fixed, then compare only the stated observations."
+        "repair": "Keep the source and sensor fixed, then compare only the stated observations.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -8382,7 +8568,9 @@
       "explanation": "The observations are strong and directed, moderate and spread and low. They support a relative comparison for this setup, not a claim that only shiny surfaces reflect.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer."
+        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -8484,7 +8672,9 @@
       "explanation": "Changing only the surface means differences in the recorded observation can be linked to the tested surface in this model.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the source and sensor fixed, then compare only the stated observations."
+        "repair": "Keep the source and sensor fixed, then compare only the stated observations.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -8586,7 +8776,9 @@
       "explanation": "Cream paper gives a moderate and spread observation, showing that ordinary non-mirror surfaces can reflect some light.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer."
+        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -8688,7 +8880,9 @@
       "explanation": "The paired sensor descriptions directly compare the two surfaces under the same virtual conditions.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the source and sensor fixed, then compare only the stated observations."
+        "repair": "Keep the source and sensor fixed, then compare only the stated observations.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -8790,7 +8984,9 @@
       "explanation": "The observations are high, moderate and low. They support a relative comparison for this setup, not a claim that only shiny surfaces reflect.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer."
+        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -8892,7 +9088,9 @@
       "explanation": "Changing only the surface means differences in the recorded observation can be linked to the tested surface in this model.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the source and sensor fixed, then compare only the stated observations."
+        "repair": "Keep the source and sensor fixed, then compare only the stated observations.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -8994,7 +9192,9 @@
       "explanation": "Pale cork gives a moderate observation, showing that ordinary non-mirror surfaces can reflect some light.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer."
+        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -9096,7 +9296,9 @@
       "explanation": "The paired sensor descriptions directly compare the two surfaces under the same virtual conditions.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the source and sensor fixed, then compare only the stated observations."
+        "repair": "Keep the source and sensor fixed, then compare only the stated observations.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -9198,7 +9400,9 @@
       "explanation": "The observations are high and directed, moderate and spread and low. They support a relative comparison for this setup, not a claim that only shiny surfaces reflect.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer."
+        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -9300,7 +9504,9 @@
       "explanation": "Changing only the surface means differences in the recorded observation can be linked to the tested surface in this model.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the source and sensor fixed, then compare only the stated observations."
+        "repair": "Keep the source and sensor fixed, then compare only the stated observations.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -9402,7 +9608,9 @@
       "explanation": "Light wood gives a moderate and spread observation, showing that ordinary non-mirror surfaces can reflect some light.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer."
+        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -9504,7 +9712,9 @@
       "explanation": "The paired sensor descriptions directly compare the two surfaces under the same virtual conditions.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the source and sensor fixed, then compare only the stated observations."
+        "repair": "Keep the source and sensor fixed, then compare only the stated observations.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -9606,7 +9816,9 @@
       "explanation": "The observations are high, moderate and low. They support a relative comparison for this setup, not a claim that only shiny surfaces reflect.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer."
+        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -9708,7 +9920,9 @@
       "explanation": "Changing only the surface means differences in the recorded observation can be linked to the tested surface in this model.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the source and sensor fixed, then compare only the stated observations."
+        "repair": "Keep the source and sensor fixed, then compare only the stated observations.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -9810,7 +10024,9 @@
       "explanation": "Yellow card gives a moderate observation, showing that ordinary non-mirror surfaces can reflect some light.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer."
+        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -9912,7 +10128,9 @@
       "explanation": "The paired sensor descriptions directly compare the two surfaces under the same virtual conditions.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the source and sensor fixed, then compare only the stated observations."
+        "repair": "Keep the source and sensor fixed, then compare only the stated observations.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -10014,7 +10232,9 @@
       "explanation": "The observations are strong and directed, moderate and spread and low. They support a relative comparison for this setup, not a claim that only shiny surfaces reflect.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer."
+        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10116,7 +10336,9 @@
       "explanation": "Changing only the surface means differences in the recorded observation can be linked to the tested surface in this model.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the source and sensor fixed, then compare only the stated observations."
+        "repair": "Keep the source and sensor fixed, then compare only the stated observations.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10218,7 +10440,9 @@
       "explanation": "Plain paper gives a moderate and spread observation, showing that ordinary non-mirror surfaces can reflect some light.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer."
+        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10320,7 +10544,9 @@
       "explanation": "The paired sensor descriptions directly compare the two surfaces under the same virtual conditions.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the source and sensor fixed, then compare only the stated observations."
+        "repair": "Keep the source and sensor fixed, then compare only the stated observations.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -10422,7 +10648,9 @@
       "explanation": "The observations are high and directed, moderate and spread and low. They support a relative comparison for this setup, not a claim that only shiny surfaces reflect.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer."
+        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10524,7 +10752,9 @@
       "explanation": "Changing only the surface means differences in the recorded observation can be linked to the tested surface in this model.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the source and sensor fixed, then compare only the stated observations."
+        "repair": "Keep the source and sensor fixed, then compare only the stated observations.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10626,7 +10856,9 @@
       "explanation": "Painted wall gives a moderate and spread observation, showing that ordinary non-mirror surfaces can reflect some light.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer."
+        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10728,7 +10960,9 @@
       "explanation": "The paired sensor descriptions directly compare the two surfaces under the same virtual conditions.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the source and sensor fixed, then compare only the stated observations."
+        "repair": "Keep the source and sensor fixed, then compare only the stated observations.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -10830,7 +11064,9 @@
       "explanation": "The observations are high, moderate and low. They support a relative comparison for this setup, not a claim that only shiny surfaces reflect.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer."
+        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -10932,7 +11168,9 @@
       "explanation": "Changing only the surface means differences in the recorded observation can be linked to the tested surface in this model.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the source and sensor fixed, then compare only the stated observations."
+        "repair": "Keep the source and sensor fixed, then compare only the stated observations.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11034,7 +11272,9 @@
       "explanation": "Matte board gives a moderate observation, showing that ordinary non-mirror surfaces can reflect some light.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer."
+        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11136,7 +11376,9 @@
       "explanation": "The paired sensor descriptions directly compare the two surfaces under the same virtual conditions.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the source and sensor fixed, then compare only the stated observations."
+        "repair": "Keep the source and sensor fixed, then compare only the stated observations.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -11238,7 +11480,9 @@
       "explanation": "The observations are strong and directed, moderate and spread and low. They support a relative comparison for this setup, not a claim that only shiny surfaces reflect.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer."
+        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11340,7 +11584,9 @@
       "explanation": "Changing only the surface means differences in the recorded observation can be linked to the tested surface in this model.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the source and sensor fixed, then compare only the stated observations."
+        "repair": "Keep the source and sensor fixed, then compare only the stated observations.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11442,7 +11688,9 @@
       "explanation": "Blue card gives a moderate and spread observation, showing that ordinary non-mirror surfaces can reflect some light.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer."
+        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11544,7 +11792,9 @@
       "explanation": "The paired sensor descriptions directly compare the two surfaces under the same virtual conditions.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the source and sensor fixed, then compare only the stated observations."
+        "repair": "Keep the source and sensor fixed, then compare only the stated observations.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -11646,7 +11896,9 @@
       "explanation": "The observations are high, moderate and spread and low. They support a relative comparison for this setup, not a claim that only shiny surfaces reflect.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer."
+        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11748,7 +12000,9 @@
       "explanation": "Changing only the surface means differences in the recorded observation can be linked to the tested surface in this model.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the source and sensor fixed, then compare only the stated observations."
+        "repair": "Keep the source and sensor fixed, then compare only the stated observations.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11850,7 +12104,9 @@
       "explanation": "Recycled paper gives a moderate and spread observation, showing that ordinary non-mirror surfaces can reflect some light.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer."
+        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -11952,7 +12208,9 @@
       "explanation": "The paired sensor descriptions directly compare the two surfaces under the same virtual conditions.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the source and sensor fixed, then compare only the stated observations."
+        "repair": "Keep the source and sensor fixed, then compare only the stated observations.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -12054,7 +12312,9 @@
       "explanation": "The observations are high, moderate and low. They support a relative comparison for this setup, not a claim that only shiny surfaces reflect.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer."
+        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -12156,7 +12416,9 @@
       "explanation": "Changing only the surface means differences in the recorded observation can be linked to the tested surface in this model.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the source and sensor fixed, then compare only the stated observations."
+        "repair": "Keep the source and sensor fixed, then compare only the stated observations.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -12258,7 +12520,9 @@
       "explanation": "Pale fabric gives a moderate observation, showing that ordinary non-mirror surfaces can reflect some light.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer."
+        "repair": "Keep the correct science word, reread one evidence line and choose again without a timer.",
+        "misconception_check": "Check the only mirrors reflect idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -12363,7 +12627,9 @@
       "explanation": "The switched-on lamp supplies light, the opaque card owl blocks part of it, and the screen receives the darker region called a shadow.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -12468,7 +12734,9 @@
       "explanation": "The opaque card owl blocks the most light and therefore makes the clearest shadow in this comparison.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -12573,7 +12841,9 @@
       "explanation": "The measured shadow changes from 12 cm to 8 cm while the card owl remains 4 cm wide. The position changed, not the object.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 8,
       "status": "review",
@@ -12678,7 +12948,9 @@
       "explanation": "Changing one distance while controlling the other parts makes the before-and-after shadow measurements a fair comparison.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 8,
       "status": "review",
@@ -12783,7 +13055,9 @@
       "explanation": "The switched-on lamp supplies light, the opaque wooden tree blocks part of it, and the screen receives the darker region called a shadow.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -12888,7 +13162,9 @@
       "explanation": "The opaque wooden tree blocks the most light and therefore makes the clearest shadow in this comparison.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -12993,7 +13269,9 @@
       "explanation": "The measured shadow changes from 15 cm to 7.5 cm while the wooden tree remains 5 cm wide. The position changed, not the object.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 8,
       "status": "review",
@@ -13098,7 +13376,9 @@
       "explanation": "Changing one distance while controlling the other parts makes the before-and-after shadow measurements a fair comparison.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 8,
       "status": "review",
@@ -13203,7 +13483,9 @@
       "explanation": "The switched-on lamp supplies light, the opaque card boat blocks part of it, and the screen receives the darker region called a shadow.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -13308,7 +13590,9 @@
       "explanation": "The opaque card boat blocks the most light and therefore makes the clearest shadow in this comparison.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -13413,7 +13697,9 @@
       "explanation": "The measured shadow changes from 18 cm to 12 cm while the card boat remains 6 cm wide. The position changed, not the object.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 8,
       "status": "review",
@@ -13518,7 +13804,9 @@
       "explanation": "Changing one distance while controlling the other parts makes the before-and-after shadow measurements a fair comparison.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 8,
       "status": "review",
@@ -13623,7 +13911,9 @@
       "explanation": "The switched-on lamp supplies light, the opaque wooden tower blocks part of it, and the screen receives the darker region called a shadow.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -13728,7 +14018,9 @@
       "explanation": "The opaque wooden tower blocks the most light and therefore makes the clearest shadow in this comparison.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -13833,7 +14125,9 @@
       "explanation": "The measured shadow changes from 16 cm to 8 cm while the wooden tower remains 4 cm wide. The position changed, not the object.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 8,
       "status": "review",
@@ -13938,7 +14232,9 @@
       "explanation": "Changing one distance while controlling the other parts makes the before-and-after shadow measurements a fair comparison.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 8,
       "status": "review",
@@ -14043,7 +14339,9 @@
       "explanation": "The switched-on lamp supplies light, the opaque card rabbit blocks part of it, and the screen receives the darker region called a shadow.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -14148,7 +14446,9 @@
       "explanation": "The opaque card rabbit blocks the most light and therefore makes the clearest shadow in this comparison.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -14253,7 +14553,9 @@
       "explanation": "The measured shadow changes from 15 cm to 10 cm while the card rabbit remains 5 cm wide. The position changed, not the object.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 8,
       "status": "review",
@@ -14358,7 +14660,9 @@
       "explanation": "Changing one distance while controlling the other parts makes the before-and-after shadow measurements a fair comparison.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 8,
       "status": "review",
@@ -14463,7 +14767,9 @@
       "explanation": "The switched-on lamp supplies light, the opaque opaque leaf shape blocks part of it, and the screen receives the darker region called a shadow.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -14568,7 +14874,9 @@
       "explanation": "The opaque opaque leaf shape blocks the most light and therefore makes the clearest shadow in this comparison.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -14673,7 +14981,9 @@
       "explanation": "The measured shadow changes from 18 cm to 12 cm while the opaque leaf shape remains 6 cm wide. The position changed, not the object.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 8,
       "status": "review",
@@ -14778,7 +15088,9 @@
       "explanation": "Changing one distance while controlling the other parts makes the before-and-after shadow measurements a fair comparison.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 8,
       "status": "review",
@@ -14883,7 +15195,9 @@
       "explanation": "The switched-on lamp supplies light, the opaque card bridge blocks part of it, and the screen receives the darker region called a shadow.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -14988,7 +15302,9 @@
       "explanation": "The opaque card bridge blocks the most light and therefore makes the clearest shadow in this comparison.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -15093,7 +15409,9 @@
       "explanation": "The measured shadow changes from 32 cm to 16 cm while the card bridge remains 8 cm wide. The position changed, not the object.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 8,
       "status": "review",
@@ -15198,7 +15516,9 @@
       "explanation": "Changing one distance while controlling the other parts makes the before-and-after shadow measurements a fair comparison.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 8,
       "status": "review",
@@ -15303,7 +15623,9 @@
       "explanation": "The switched-on lamp supplies light, the opaque wooden shell shape blocks part of it, and the screen receives the darker region called a shadow.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -15408,7 +15730,9 @@
       "explanation": "The opaque wooden shell shape blocks the most light and therefore makes the clearest shadow in this comparison.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -15513,7 +15837,9 @@
       "explanation": "The measured shadow changes from 17.5 cm to 10 cm while the wooden shell shape remains 5 cm wide. The position changed, not the object.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 8,
       "status": "review",
@@ -15618,7 +15944,9 @@
       "explanation": "Changing one distance while controlling the other parts makes the before-and-after shadow measurements a fair comparison.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 8,
       "status": "review",
@@ -15723,7 +16051,9 @@
       "explanation": "The switched-on lamp supplies light, the opaque card castle blocks part of it, and the screen receives the darker region called a shadow.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -15828,7 +16158,9 @@
       "explanation": "The opaque card castle blocks the most light and therefore makes the clearest shadow in this comparison.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -15933,7 +16265,9 @@
       "explanation": "The measured shadow changes from 28 cm to 14 cm while the card castle remains 7 cm wide. The position changed, not the object.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 8,
       "status": "review",
@@ -16038,7 +16372,9 @@
       "explanation": "Changing one distance while controlling the other parts makes the before-and-after shadow measurements a fair comparison.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 8,
       "status": "review",
@@ -16143,7 +16479,9 @@
       "explanation": "The switched-on lamp supplies light, the opaque opaque bird shape blocks part of it, and the screen receives the darker region called a shadow.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -16248,7 +16586,9 @@
       "explanation": "The opaque opaque bird shape blocks the most light and therefore makes the clearest shadow in this comparison.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -16353,7 +16693,9 @@
       "explanation": "The measured shadow changes from 16 cm to 8 cm while the opaque bird shape remains 4 cm wide. The position changed, not the object.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 8,
       "status": "review",
@@ -16458,7 +16800,9 @@
       "explanation": "Changing one distance while controlling the other parts makes the before-and-after shadow measurements a fair comparison.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 8,
       "status": "review",
@@ -16563,7 +16907,9 @@
       "explanation": "The switched-on lamp supplies light, the opaque wooden train shape blocks part of it, and the screen receives the darker region called a shadow.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -16668,7 +17014,9 @@
       "explanation": "The opaque wooden train shape blocks the most light and therefore makes the clearest shadow in this comparison.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 7,
       "status": "review",
@@ -16773,7 +17121,9 @@
       "explanation": "The measured shadow changes from 18 cm to 12 cm while the wooden train shape remains 6 cm wide. The position changed, not the object.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table."
+        "repair": "Label source, blocker and screen, then compare one changed variable in the before-and-after table.",
+        "misconception_check": "Check the shadow dark copy idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 8,
       "status": "review",
@@ -16858,7 +17208,9 @@
       "explanation": "Measure a stick's shadow while facing the ground and away from the Sun. A shadow can be measured without viewing the Sun.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes."
+        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes.",
+        "misconception_check": "Check the unsafe sun viewing idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -16943,7 +17295,9 @@
       "explanation": "Look directly at the Sun is unsafe. Measure a stick's shadow while facing the ground and away from the Sun is the safer alternative because it does not require direct bright-light viewing.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the unsafe sun viewing idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -17028,7 +17382,9 @@
       "explanation": "A shadow can be measured without viewing the Sun. Eye safety is part of the method, not an optional extra.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes."
+        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes.",
+        "misconception_check": "Check the unsafe sun viewing idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -17113,7 +17469,9 @@
       "explanation": "A shadow can be measured without viewing the Sun. The added boundary protects eyes during every review or investigation.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes."
+        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes.",
+        "misconception_check": "Check the mixed light misconception idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -17198,7 +17556,9 @@
       "explanation": "Use a teacher-provided table of shadow lengths. Recorded shadow data avoids direct Sun viewing.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes."
+        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes.",
+        "misconception_check": "Check the unsafe sun viewing idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -17283,7 +17643,9 @@
       "explanation": "Try to check the Sun through sunglasses is unsafe. Use a teacher-provided table of shadow lengths is the safer alternative because it does not require direct bright-light viewing.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the unsafe sun viewing idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -17368,7 +17730,9 @@
       "explanation": "Recorded shadow data avoids direct Sun viewing. Eye safety is part of the method, not an optional extra.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes."
+        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes.",
+        "misconception_check": "Check the unsafe sun viewing idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -17453,7 +17817,9 @@
       "explanation": "Recorded shadow data avoids direct Sun viewing. The added boundary protects eyes during every review or investigation.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes."
+        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes.",
+        "misconception_check": "Check the mixed light misconception idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -17538,7 +17904,9 @@
       "explanation": "Use the virtual light-path model. The virtual model shows the path without exposing eyes to bright light.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes."
+        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes.",
+        "misconception_check": "Check the unsafe sun viewing idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -17623,7 +17991,9 @@
       "explanation": "Shine a bright lamp towards someone's face is unsafe. Use the virtual light-path model is the safer alternative because it does not require direct bright-light viewing.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the unsafe sun viewing idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -17708,7 +18078,9 @@
       "explanation": "The virtual model shows the path without exposing eyes to bright light. Eye safety is part of the method, not an optional extra.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes."
+        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes.",
+        "misconception_check": "Check the unsafe sun viewing idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -17793,7 +18165,9 @@
       "explanation": "The virtual model shows the path without exposing eyes to bright light. The added boundary protects eyes during every review or investigation.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes."
+        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes.",
+        "misconception_check": "Check the mixed light misconception idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -17878,7 +18252,9 @@
       "explanation": "Switch the classroom lamp off before an adult moves the setup. Switching off the source prevents accidental bright-light viewing.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes."
+        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes.",
+        "misconception_check": "Check the unsafe sun viewing idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -17963,7 +18339,9 @@
       "explanation": "Move a bright lamp while staring into it is unsafe. Switch the classroom lamp off before an adult moves the setup is the safer alternative because it does not require direct bright-light viewing.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the unsafe sun viewing idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -18048,7 +18426,9 @@
       "explanation": "Switching off the source prevents accidental bright-light viewing. Eye safety is part of the method, not an optional extra.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes."
+        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes.",
+        "misconception_check": "Check the unsafe sun viewing idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -18133,7 +18513,9 @@
       "explanation": "Switching off the source prevents accidental bright-light viewing. The added boundary protects eyes during every review or investigation.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes."
+        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes.",
+        "misconception_check": "Check the mixed light misconception idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -18218,7 +18600,9 @@
       "explanation": "Observe the shadow on a screen with the lamp kept below face level. The screen provides evidence without putting eyes in the beam.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes."
+        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes.",
+        "misconception_check": "Check the unsafe sun viewing idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -18303,7 +18687,9 @@
       "explanation": "Place an eye in the beam to test whether light arrives is unsafe. Observe the shadow on a screen with the lamp kept below face level is the safer alternative because it does not require direct bright-light viewing.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the unsafe sun viewing idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -18388,7 +18774,9 @@
       "explanation": "The screen provides evidence without putting eyes in the beam. Eye safety is part of the method, not an optional extra.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes."
+        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes.",
+        "misconception_check": "Check the unsafe sun viewing idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -18473,7 +18861,9 @@
       "explanation": "The screen provides evidence without putting eyes in the beam. The added boundary protects eyes during every review or investigation.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes."
+        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes.",
+        "misconception_check": "Check the mixed light misconception idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -18558,7 +18948,9 @@
       "explanation": "Study a teacher-selected photograph of a safe shadow investigation. A prepared image can be studied without aiming an optical device at the Sun.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes."
+        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes.",
+        "misconception_check": "Check the unsafe sun viewing idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -18643,7 +19035,9 @@
       "explanation": "Point a camera at the Sun and use its viewfinder is unsafe. Study a teacher-selected photograph of a safe shadow investigation is the safer alternative because it does not require direct bright-light viewing.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the unsafe sun viewing idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -18728,7 +19122,9 @@
       "explanation": "A prepared image can be studied without aiming an optical device at the Sun. Eye safety is part of the method, not an optional extra.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes."
+        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes.",
+        "misconception_check": "Check the unsafe sun viewing idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -18813,7 +19209,9 @@
       "explanation": "A prepared image can be studied without aiming an optical device at the Sun. The added boundary protects eyes during every review or investigation.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes."
+        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes.",
+        "misconception_check": "Check the mixed light misconception idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -18898,7 +19296,9 @@
       "explanation": "Move into shade and compare how easy objects are to see. Visibility can be compared without direct Sun viewing.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes."
+        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes.",
+        "misconception_check": "Check the unsafe sun viewing idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -18983,7 +19383,9 @@
       "explanation": "Look at the Sun to decide how bright it is is unsafe. Move into shade and compare how easy objects are to see is the safer alternative because it does not require direct bright-light viewing.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the unsafe sun viewing idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -19068,7 +19470,9 @@
       "explanation": "Visibility can be compared without direct Sun viewing. Eye safety is part of the method, not an optional extra.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes."
+        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes.",
+        "misconception_check": "Check the unsafe sun viewing idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -19153,7 +19557,9 @@
       "explanation": "Visibility can be compared without direct Sun viewing. The added boundary protects eyes during every review or investigation.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes."
+        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes.",
+        "misconception_check": "Check the mixed light misconception idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -19238,7 +19644,9 @@
       "explanation": "Read the value on a virtual reflected-light bar. A virtual reading provides evidence without a hazardous beam.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes."
+        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes.",
+        "misconception_check": "Check the unsafe sun viewing idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -19323,7 +19731,9 @@
       "explanation": "Aim reflected sunlight towards a person's eyes is unsafe. Read the value on a virtual reflected-light bar is the safer alternative because it does not require direct bright-light viewing.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the unsafe sun viewing idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -19408,7 +19818,9 @@
       "explanation": "A virtual reading provides evidence without a hazardous beam. Eye safety is part of the method, not an optional extra.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes."
+        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes.",
+        "misconception_check": "Check the unsafe sun viewing idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -19493,7 +19905,9 @@
       "explanation": "A virtual reading provides evidence without a hazardous beam. The added boundary protects eyes during every review or investigation.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes."
+        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes.",
+        "misconception_check": "Check the mixed light misconception idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -19578,7 +19992,9 @@
       "explanation": "Compare labelled before-and-after shadow diagrams. Diagrams show the pattern without unsafe improvised filters.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes."
+        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes.",
+        "misconception_check": "Check the unsafe sun viewing idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -19663,7 +20079,9 @@
       "explanation": "Use dark plastic as a homemade Sun filter is unsafe. Compare labelled before-and-after shadow diagrams is the safer alternative because it does not require direct bright-light viewing.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the unsafe sun viewing idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -19748,7 +20166,9 @@
       "explanation": "Diagrams show the pattern without unsafe improvised filters. Eye safety is part of the method, not an optional extra.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes."
+        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes.",
+        "misconception_check": "Check the unsafe sun viewing idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -19833,7 +20253,9 @@
       "explanation": "Diagrams show the pattern without unsafe improvised filters. The added boundary protects eyes during every review or investigation.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes."
+        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes.",
+        "misconception_check": "Check the mixed light misconception idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -19918,7 +20340,9 @@
       "explanation": "Ask an adult to check that an electric lamp is cool, stable and aimed at the screen. An adult safety check reduces heat, stability and beam risks.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes."
+        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes.",
+        "misconception_check": "Check the unsafe sun viewing idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -20003,7 +20427,9 @@
       "explanation": "Touch or reposition an unchecked bright lamp is unsafe. Ask an adult to check that an electric lamp is cool, stable and aimed at the screen is the safer alternative because it does not require direct bright-light viewing.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the unsafe sun viewing idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -20088,7 +20514,9 @@
       "explanation": "An adult safety check reduces heat, stability and beam risks. Eye safety is part of the method, not an optional extra.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes."
+        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes.",
+        "misconception_check": "Check the unsafe sun viewing idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -20173,7 +20601,9 @@
       "explanation": "An adult safety check reduces heat, stability and beam risks. The added boundary protects eyes during every review or investigation.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes."
+        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes.",
+        "misconception_check": "Check the mixed light misconception idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -20258,7 +20688,9 @@
       "explanation": "Notice daylight on the floor while keeping eyes away from the Sun. Indirect daylight observations do not require looking at the Sun.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes."
+        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes.",
+        "misconception_check": "Check the unsafe sun viewing idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -20343,7 +20775,9 @@
       "explanation": "Stare through the window at the Sun is unsafe. Notice daylight on the floor while keeping eyes away from the Sun is the safer alternative because it does not require direct bright-light viewing.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Use numbered source-object-eye cards and finish every light path at the eye."
+        "repair": "Use numbered source-object-eye cards and finish every light path at the eye.",
+        "misconception_check": "Check the unsafe sun viewing idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",
@@ -20428,7 +20862,9 @@
       "explanation": "Indirect daylight observations do not require looking at the Sun. Eye safety is part of the method, not an optional extra.",
       "feedback": {
         "correct": "Your choice matches the light evidence and keeps the investigation safe.",
-        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes."
+        "repair": "Remove the unsafe action and choose indirect evidence that keeps every bright source away from eyes.",
+        "misconception_check": "Check the unsafe sun viewing idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
       },
       "difficulty": 5,
       "status": "review",

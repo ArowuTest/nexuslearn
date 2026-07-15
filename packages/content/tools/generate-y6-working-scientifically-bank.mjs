@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -83,6 +84,7 @@ pack.qa.readiness_status = "draft";
 pack.qa.notes = "Year 6 working-scientifically pilot reaches 260 variants with five curated questions preserved semantically unchanged and 255 deterministic review candidates, balanced 51 per blueprint. Coverage spans enquiry-type selection, investigable questions and predictions, variables only where appropriate, safe ordered methods, equipment precision, structured observations, repeats/anomalies, tables and bar/line/scatter representations, labelled units and text equivalents, summaries, conclusions, limitations, reliability, improvements and support/refute/insufficient judgements across biology, materials, physics/electricity and environmental contexts. Generated items explicitly reject every-enquiry-is-a-fair-test, repeats-prove-truth, delete-anomalies and correlation-causes misconceptions. All four formats provide direct select, keyboard/switch/no-drag, row-by-row tables, simplified subsets, speech-to-text placeholders with adult review and static low-sensory routes. Selected optional narration/sonification references require produced, human-reviewed ElevenLabs assets; browser TTS is prohibited. Independent science, teacher, SEND, accessibility, safeguarding, audio and renderer review remains required before promotion.";
 
 validateBank(pack, curated, candidates, curatedSnapshot);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`working-scientifically-bank curated=${curated.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
 console.log(`working-scientifically-bank formats=${summary(candidates, (variant) => variant.format)}`);

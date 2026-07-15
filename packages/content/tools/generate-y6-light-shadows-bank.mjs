@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -84,6 +85,7 @@ pack.qa.readiness_status = "draft";
 pack.qa.notes = "Year 6 light-and-shadows pilot reaches 240 variants with three curated questions preserved semantically unchanged and 237 deterministic review candidates. Coverage stays within KS2 geometric optics: straight-line ray models; source-object-screen geometry; evidence-bounded transparent/translucent/opaque classification; shadow formation, outline, relative size and sharpness; controlled source/object/screen changes; fair comparisons and cautious claims. Light-bends-around-object, shadow-as-object, independent-shadow, every-material-same-shadow and unfair-test misconceptions are explicitly repaired. All three declared formats and five blueprints include high-contrast patterned labels, diagram list equivalents, keyboard/switch/no-drag, static no-flicker and reduced-clutter routes with pressure-free ray-lab missions. Selected audio descriptions require produced, human-reviewed ElevenLabs assets; browser TTS is prohibited. Independent science, teacher, SEND, accessibility, safeguarding, audio and renderer review remains required before promotion.";
 
 validateBank(pack, curated, candidates, curatedSnapshot);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`light-shadows-bank curated=${curated.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
 console.log(`light-shadows-bank formats=${summary(candidates, (variant) => variant.format)}`);

@@ -309,7 +309,9 @@
           ],
           "drag_required": false,
           "preserve_correct_places": true
-        }
+        },
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-ma-y3-place-value-to-1000"
       },
       "expected_answer": {
         "value": {
@@ -419,7 +421,8 @@
           ],
           "drag_required": false,
           "preserve_correct_places": true
-        }
+        },
+        "review_batch": "generated-review-ma-y3-place-value-to-1000"
       },
       "expected_answer": {
         "value": "400 + 6"
@@ -530,7 +533,8 @@
           ],
           "drag_required": false,
           "preserve_correct_places": true
-        }
+        },
+        "review_batch": "generated-review-ma-y3-place-value-to-1000"
       },
       "expected_answer": {
         "value": 590,
@@ -638,7 +642,8 @@
           ],
           "drag_required": false,
           "preserve_correct_places": true
-        }
+        },
+        "review_batch": "generated-review-ma-y3-place-value-to-1000"
       },
       "expected_answer": {
         "value": 408,

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -52,6 +53,7 @@ pack.version = "0.2.0";
 pack.qa.notes = "Year 5 reading inference and evidence reaches the 220-item pilot target with three preserved curated variants and 217 deterministic multi-genre review candidates. Coverage includes clue retrieval, feelings, motives, viewpoint, vocabulary implications, prediction, evidence sufficiency and precision, competing interpretations, overclaim repair, quote-and-explain and transfer. Every generated item uses original age-appropriate extracts, dyslexia/SEND chunking, supported evidence highlighting, rich feedback, optional human-reviewed ElevenLabs references with browser TTS prohibited, and private detective/story missions without timers, lives, streak pressure, leaderboards or peer comparison. Independent English, teacher, SEND, accessibility, safeguarding, audio, renderer and pilot review remain required before promotion.";
 validateBank(pack, curated, generated);
 
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`inference-evidence-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
 console.log(`inference-evidence-bank blueprints=${summary(generated, (v) => v.body.variant_blueprint_id)}`);

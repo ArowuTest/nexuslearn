@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -50,6 +51,7 @@ pack.qa.readiness_status = "draft";
 pack.qa.notes = "Depth-wave review bank reaches the 240-item pilot target with four preserved curated questions and 236 deterministic candidates covering variables, unknowns, sequences, simple formulae, substitution, equivalence, function machines and misconception repair as a supported bridge to KS3. Generated candidates include concrete-to-pictorial-to-symbolic scaffolds, keyboard/switch/oral and non-drag routes, rich representation/calculation/check feedback and strategic codebreaker missions with no timers, lost lives or streak pressure. Human curriculum, teacher, SEND, accessibility, safeguarding and renderer review remains required before promotion.";
 
 validateBank(pack, enrichedCurated, enrichedCandidates);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`algebra-readiness-bank curated=${curated.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
 console.log(`algebra-readiness-bank strands=${summary(candidates, (variant) => variant.body.algebra_strand)}`);

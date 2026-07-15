@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -51,6 +52,7 @@ pack.qa.readiness_status = "draft";
 pack.qa.notes = "Review-stage Year 2 two-digit addition and subtraction pack with a deterministic 240-variant pilot bank. Four curated variants are unchanged. Generated tasks cover place-value partitioning; adding and subtracting ones, tens and two-digit numbers; concrete exchange across ten; efficient mental and written representations; inverse fact families; missing-number equations; comparison and one/two-step contexts; estimation, reasonableness, misconception diagnosis and spaced transfer. Every generated task includes base-ten, number-line and part-whole routes, reduced-load SEND/dyscalculia supports, alternative inputs, rich corrective feedback and pressure-free exploration without timers, streaks, lives or loss. Selected narrated contexts reference ElevenLabs assets held for human listening review; browser TTS is prohibited. Independent mathematics, accessibility, narration and renderer review remains required before promotion.";
 
 validateBank(pack, enrichedCurated, curatedSnapshot, enrichedGenerated, curatedBlueprint);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`y2-add-subtract-two-digit-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
 console.log(`y2-add-subtract-two-digit-bank blueprints=${summary(pack.question_variants, (v) => v.body?.variant_blueprint_id ?? curatedBlueprint.get(v.id))}`);

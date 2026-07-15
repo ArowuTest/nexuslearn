@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -117,6 +118,7 @@ pack.adaptive_support.audio_first = "Optional prompt, sentence and glossary play
 pack.qa.notes = "Year 7 disciplinary vocabulary reaches the 260-item pilot target with five preserved curated variants and 255 deterministic review candidates covering morphology, context, polysemy, subject-specific meanings, register, precise use, word families, etymology and misconceptions across disciplines. Every generated item includes SEND scaffolds, supported non-drag routes, rich feedback, optional human-reviewed ElevenLabs references with browser TTS prohibited, and private knowledge missions without timers, lives, streak pressure, leaderboards or peer comparison. Independent English, disciplinary, teacher, SEND, accessibility, safeguarding, audio, renderer and pilot review remain required before promotion.";
 validateBank(pack, curated, generated);
 
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`disciplinary-vocabulary-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
 console.log(`disciplinary-vocabulary-bank blueprints=${summary(generated, (v) => v.body.variant_blueprint_id)}`);

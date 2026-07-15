@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -37,6 +38,7 @@ pack.qa.readiness_status = "draft";
 pack.qa.notes = "Year 6 reasoning pilot reaches 240 variants with five curated questions preserved semantically unchanged and 235 deterministic review candidates. All five declared interaction formats are used across answer-reason matching, domain-explicit always/sometimes/never claims, counterexamples, reason chains, proof-strength critique and retrieval. Number, fractions, ratio, geometry and algebra are interleaved within Year 6 scope. Generated items distinguish examples from proof, validate counterexamples, require precise domains and repair plausible but weak explanations. Reduced-card, sentence-stem, dyscalculia/SEND, colour-independent static and alternative-input routes support pressure-free claim-lab missions. Selected narration references require produced, human-reviewed ElevenLabs assets; browser TTS is prohibited. Independent mathematics, teacher, SEND, accessibility, safeguarding, audio and renderer review remains required before promotion.";
 
 validateBank(pack, enrichedCurated, enrichedCandidates, curatedSnapshot);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`reasoning-bank curated=${curated.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
 console.log(`reasoning-bank formats=${summary(candidates, (variant) => variant.format)}`);

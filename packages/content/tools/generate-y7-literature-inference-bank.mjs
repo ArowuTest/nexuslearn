@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
@@ -157,6 +158,7 @@ pack.qa.readiness_status = 'draft';
 pack.qa.notes = 'Year 7 literary inference pilot reaches 220 variants with three curated questions preserved semantically and structurally unchanged and 217 deterministic review candidates. All generated micro-extracts are original NexusLearn text with explicit rights metadata across prose, poetry and drama-like writing. Coverage includes precise evidence, explicit and inferred meaning, mood, character, theme, imagery, structure, writer effect, evidence sufficiency, overclaiming, competing defensible interpretations and discriminating additional evidence. Auto-marked items use exact-span links; all 43 short responses require complete rubrics and teacher/adult moderation. SEND routes, pressure-free retrieval and optional reviewed ElevenLabs readings are included; browser TTS is prohibited.';
 
 validateBank(pack, curated, candidates, curatedSnapshot);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`literature-inference-bank curated=${curated.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
 console.log(`literature-inference-bank formats=${summary(candidates, (variant) => variant.format)}`);

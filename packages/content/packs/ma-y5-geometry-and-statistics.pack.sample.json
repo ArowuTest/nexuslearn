@@ -270,7 +270,9 @@
           "timed": false,
           "preserve_correct_work": true,
           "reduced_load_supported": true
-        }
+        },
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-ma-y5-geometry-and-statistics"
       },
       "expected_answer": {
         "value": 52,
@@ -284,7 +286,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "angle_arm_length",
-      "animation_hook": "straight-angle-complete"
+      "animation_hook": "straight-angle-complete",
+      "feedback": {
+        "correct": "Correct. 180 - 128 = 52, so the missing angle is 52 degrees.",
+        "retry": "Try again calmly: Angles on a straight line total 180 degrees. Subtract 128 from 180. No progress is lost for checking or changing your answer.",
+        "repair": "Repair the angle arm length route: Angles on a straight line total 180 degrees. Then use the evidence to explain your choice.",
+        "misconception_check": "Check the angle arm length idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "ma-y5-geometry-and-statistics-q-regular-polygon",
@@ -326,7 +335,9 @@
           "timed": false,
           "preserve_correct_work": true,
           "reduced_load_supported": true
-        }
+        },
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-ma-y5-geometry-and-statistics"
       },
       "expected_answer": {
         "value": "No, because a regular polygon needs equal sides and equal angles"
@@ -339,7 +350,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "regular_means_symmetric",
-      "animation_hook": "property-evidence-lock"
+      "animation_hook": "property-evidence-lock",
+      "feedback": {
+        "correct": "Correct. The pentagon is irregular because regular polygons require all sides and all angles to be equal.",
+        "retry": "Try again calmly: Check both parts of the definition of regular. What is known about the angles? No progress is lost for checking or changing your answer.",
+        "repair": "Repair the regular means symmetric route: Check both parts of the definition of regular. Then use the evidence to explain your choice.",
+        "misconception_check": "Check the regular means symmetric idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "ma-y5-geometry-and-statistics-q-line-graph",
@@ -382,7 +400,9 @@
           "timed": false,
           "preserve_correct_work": true,
           "reduced_load_supported": true
-        }
+        },
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-ma-y5-geometry-and-statistics"
       },
       "expected_answer": {
         "value": 14,
@@ -396,7 +416,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "interval_equals_one",
-      "animation_hook": "graph-difference-span"
+      "animation_hook": "graph-difference-span",
+      "feedback": {
+        "correct": "Correct. Thursday's 32 litres is 14 litres greater than Monday's 18 litres.",
+        "retry": "Try again calmly: Read each value using the scale of 2 litres per interval. Find 32 - 18. No progress is lost for checking or changing your answer.",
+        "repair": "Repair the interval equals one route: Read each value using the scale of 2 litres per interval. Then use the evidence to explain your choice.",
+        "misconception_check": "Check the interval equals one idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "ma-y5-geometry-and-statistics-q-timetable",
@@ -430,7 +457,9 @@
           "timed": false,
           "preserve_correct_work": true,
           "reduced_load_supported": true
-        }
+        },
+        "supported_interaction": "Use labelled touch or keyboard controls. Equivalent routes include single-switch scanning, eye-gaze dwell selection, AAC, pointing, partner or adult-supported response; fine dragging, handwriting and speech are never required.",
+        "review_batch": "generated-review-ma-y5-geometry-and-statistics"
       },
       "expected_answer": {
         "value": 47,
@@ -444,7 +473,14 @@
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "time_as_decimal",
-      "animation_hook": "clock-line-bridge-hour"
+      "animation_hook": "clock-line-bridge-hour",
+      "feedback": {
+        "correct": "Correct. From 13:48 to 14:00 is 12 minutes, and from 14:00 to 14:35 is 35 minutes; 12 + 35 = 47 minutes.",
+        "retry": "Try again calmly: Count 12 minutes to 14:00. Then count 35 more minutes. No progress is lost for checking or changing your answer.",
+        "repair": "Repair the time as decimal route: Count 12 minutes to 14:00. Then use the evidence to explain your choice.",
+        "misconception_check": "Check the time as decimal idea against the task evidence.",
+        "support_message": "Touch, keyboard, switch, eye-gaze, AAC, pointing and adult-supported routes are valid; speed, speech and fine-motor precision are not scored."
+      }
     },
     {
       "id": "ma-y5-geometry-and-statistics-bank-angle-estimate-draw-calculate-001-angle-0",

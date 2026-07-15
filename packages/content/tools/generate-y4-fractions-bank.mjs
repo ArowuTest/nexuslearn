@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -85,6 +86,7 @@ console.log(`y4-fractions-bank formats=${summary(pack.question_variants, (varian
 console.log(`y4-fractions-bank bands=${summary(candidates, (variant) => variant.body.difficulty_band)}`);
 console.log(`y4-fractions-bank strands=${summary(candidates, (variant) => variant.body.strand)}`);
 
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 if (write) {
   await writeFile(packPath, nextText, "utf8");

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -128,6 +129,7 @@ pack.qa.readiness_status = "draft";
 pack.qa.notes = "Wave-six review bank reaches the 240-item pilot target with four preserved curated questions and 236 deterministic candidates covering paragraph links, reference chains, pronouns and determiners, adverbials, repetition and substitution, sequencing, and meaning-preserving cohesion editing. SEND/dyslexia scaffolds, supported non-drag interactions, rich repair feedback, low-pressure reader-route progress and optional ElevenLabs references are included. Audio requires human listening approval and browser TTS is prohibited; independent English, teacher, SEND, accessibility, safeguarding, audio and renderer review remains required before promotion.";
 
 validateBank(pack, curated, candidates);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`cohesion-bank curated=${curated.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
 console.log(`cohesion-bank strands=${summary(candidates, (variant) => variant.body.cohesion_strand)}`);

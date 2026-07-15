@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -70,6 +71,7 @@ console.log(`y4-electricity-circuits-bank blueprints=${summary(pack.question_var
 console.log(`y4-electricity-circuits-bank formats=${summary(pack.question_variants, (v) => v.format)}`);
 console.log(`y4-electricity-circuits-bank concepts=${summary(generated, (v) => v.body.concept_focus)}`);
 console.log(`y4-electricity-circuits-bank audio=${summary(generated, (v) => v.body.audio_required ? "reviewed_reference" : "not_needed")}`);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 if (write) {
   await writeFile(packPath, nextText, "utf8");

@@ -233,7 +233,13 @@
           "end_mark"
         ],
         "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
-        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory.",
+        "review_batch": "generated-review-en-y2-writing-sentence-punctuation",
+        "review_provenance": {
+          "kind": "curated",
+          "pack_id": "en-y2-writing-sentence-punctuation",
+          "variant_id": "en-y2-writing-sentence-punctuation-q-build-dog"
+        }
       },
       "expected_answer": {
         "value": [
@@ -303,7 +309,13 @@
           "end_mark"
         ],
         "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
-        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory.",
+        "review_batch": "generated-review-en-y2-writing-sentence-punctuation",
+        "review_provenance": {
+          "kind": "curated",
+          "pack_id": "en-y2-writing-sentence-punctuation",
+          "variant_id": "en-y2-writing-sentence-punctuation-q-edit-cat"
+        }
       },
       "expected_answer": {
         "value": "My cat is sleeping."
@@ -410,7 +422,8 @@
         "correct": "Statement built from capital start to full-stop end gate.",
         "repair": "Keep any correct word sequence, mark WHO/WHAT then WHAT HAPPENS, and add the capital and full stop only at the boundaries.",
         "boundary_evidence": "The dog runs. begins with a capital letter, keeps a clear word order and ends with a full stop because it is a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 2,
       "status": "review",
@@ -505,7 +518,8 @@
         "correct": "Statement built from capital start to full-stop end gate.",
         "repair": "Keep any correct word sequence, mark WHO/WHAT then WHAT HAPPENS, and add the capital and full stop only at the boundaries.",
         "boundary_evidence": "Mina opens the gate. begins with a capital letter, keeps a clear word order and ends with a full stop because it is a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 2,
       "status": "review",
@@ -609,7 +623,8 @@
         "correct": "Statement built from capital start to full-stop end gate.",
         "repair": "Keep any correct word sequence, mark WHO/WHAT then WHAT HAPPENS, and add the capital and full stop only at the boundaries.",
         "boundary_evidence": "A red kite floats above the park. begins with a capital letter, keeps a clear word order and ends with a full stop because it is a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the word order scrambled idea against the task evidence."
       },
       "difficulty": 2,
       "status": "review",
@@ -712,7 +727,8 @@
         "correct": "Statement built from capital start to full-stop end gate.",
         "repair": "Keep any correct word sequence, mark WHO/WHAT then WHAT HAPPENS, and add the capital and full stop only at the boundaries.",
         "boundary_evidence": "The small frog jumps into the pond. begins with a capital letter, keeps a clear word order and ends with a full stop because it is a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 2,
       "status": "review",
@@ -810,7 +826,8 @@
         "correct": "Statement built from capital start to full-stop end gate.",
         "repair": "Keep any correct word sequence, mark WHO/WHAT then WHAT HAPPENS, and add the capital and full stop only at the boundaries.",
         "boundary_evidence": "Our class planted three seeds. begins with a capital letter, keeps a clear word order and ends with a full stop because it is a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 2,
       "status": "review",
@@ -910,7 +927,8 @@
         "correct": "Statement built from capital start to full-stop end gate.",
         "repair": "Keep any correct word sequence, mark WHO/WHAT then WHAT HAPPENS, and add the capital and full stop only at the boundaries.",
         "boundary_evidence": "The moon shines above the roof. begins with a capital letter, keeps a clear word order and ends with a full stop because it is a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the word order scrambled idea against the task evidence."
       },
       "difficulty": 2,
       "status": "review",
@@ -1010,7 +1028,8 @@
         "correct": "Statement built from capital start to full-stop end gate.",
         "repair": "Keep any correct word sequence, mark WHO/WHAT then WHAT HAPPENS, and add the capital and full stop only at the boundaries.",
         "boundary_evidence": "The train stops beside the station. begins with a capital letter, keeps a clear word order and ends with a full stop because it is a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 2,
       "status": "review",
@@ -1114,7 +1133,8 @@
         "correct": "Statement built from capital start to full-stop end gate.",
         "repair": "Keep any correct word sequence, mark WHO/WHAT then WHAT HAPPENS, and add the capital and full stop only at the boundaries.",
         "boundary_evidence": "A fox rests near the fallen log. begins with a capital letter, keeps a clear word order and ends with a full stop because it is a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 2,
       "status": "review",
@@ -1212,7 +1232,8 @@
         "correct": "Statement built from capital start to full-stop end gate.",
         "repair": "Keep any correct word sequence, mark WHO/WHAT then WHAT HAPPENS, and add the capital and full stop only at the boundaries.",
         "boundary_evidence": "Soft rain taps the window. begins with a capital letter, keeps a clear word order and ends with a full stop because it is a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the word order scrambled idea against the task evidence."
       },
       "difficulty": 2,
       "status": "review",
@@ -1315,7 +1336,8 @@
         "correct": "Statement built from capital start to full-stop end gate.",
         "repair": "Keep any correct word sequence, mark WHO/WHAT then WHAT HAPPENS, and add the capital and full stop only at the boundaries.",
         "boundary_evidence": "The paper boat drifts under the bridge. begins with a capital letter, keeps a clear word order and ends with a full stop because it is a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 2,
       "status": "review",
@@ -1413,7 +1435,8 @@
         "correct": "Statement built from capital start to full-stop end gate.",
         "repair": "Keep any correct word sequence, mark WHO/WHAT then WHAT HAPPENS, and add the capital and full stop only at the boundaries.",
         "boundary_evidence": "The library opens after lunch. begins with a capital letter, keeps a clear word order and ends with a full stop because it is a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 2,
       "status": "review",
@@ -1514,7 +1537,8 @@
         "correct": "Statement built from capital start to full-stop end gate.",
         "repair": "Keep any correct word sequence, mark WHO/WHAT then WHAT HAPPENS, and add the capital and full stop only at the boundaries.",
         "boundary_evidence": "Three bees visit the purple flowers. begins with a capital letter, keeps a clear word order and ends with a full stop because it is a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the word order scrambled idea against the task evidence."
       },
       "difficulty": 2,
       "status": "review",
@@ -1618,7 +1642,8 @@
         "correct": "Statement built from capital start to full-stop end gate.",
         "repair": "Keep any correct word sequence, mark WHO/WHAT then WHAT HAPPENS, and add the capital and full stop only at the boundaries.",
         "boundary_evidence": "My cat is sleeping on the chair. begins with a capital letter, keeps a clear word order and ends with a full stop because it is a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 2,
       "status": "review",
@@ -1718,7 +1743,8 @@
         "correct": "Statement built from capital start to full-stop end gate.",
         "repair": "Keep any correct word sequence, mark WHO/WHAT then WHAT HAPPENS, and add the capital and full stop only at the boundaries.",
         "boundary_evidence": "The children follow the winding path. begins with a capital letter, keeps a clear word order and ends with a full stop because it is a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 2,
       "status": "review",
@@ -1810,7 +1836,8 @@
         "correct": "Statement built from capital start to full-stop end gate.",
         "repair": "Keep any correct word sequence, mark WHO/WHAT then WHAT HAPPENS, and add the capital and full stop only at the boundaries.",
         "boundary_evidence": "The dog runs. begins with a capital letter, keeps a clear word order and ends with a full stop because it is a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the word order scrambled idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -1905,7 +1932,8 @@
         "correct": "Statement built from capital start to full-stop end gate.",
         "repair": "Keep any correct word sequence, mark WHO/WHAT then WHAT HAPPENS, and add the capital and full stop only at the boundaries.",
         "boundary_evidence": "Mina opens the gate. begins with a capital letter, keeps a clear word order and ends with a full stop because it is a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -2009,7 +2037,8 @@
         "correct": "Statement built from capital start to full-stop end gate.",
         "repair": "Keep any correct word sequence, mark WHO/WHAT then WHAT HAPPENS, and add the capital and full stop only at the boundaries.",
         "boundary_evidence": "A red kite floats above the park. begins with a capital letter, keeps a clear word order and ends with a full stop because it is a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -2112,7 +2141,8 @@
         "correct": "Statement built from capital start to full-stop end gate.",
         "repair": "Keep any correct word sequence, mark WHO/WHAT then WHAT HAPPENS, and add the capital and full stop only at the boundaries.",
         "boundary_evidence": "The small frog jumps into the pond. begins with a capital letter, keeps a clear word order and ends with a full stop because it is a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the word order scrambled idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -2210,7 +2240,8 @@
         "correct": "Statement built from capital start to full-stop end gate.",
         "repair": "Keep any correct word sequence, mark WHO/WHAT then WHAT HAPPENS, and add the capital and full stop only at the boundaries.",
         "boundary_evidence": "Our class planted three seeds. begins with a capital letter, keeps a clear word order and ends with a full stop because it is a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -2310,7 +2341,8 @@
         "correct": "Statement built from capital start to full-stop end gate.",
         "repair": "Keep any correct word sequence, mark WHO/WHAT then WHAT HAPPENS, and add the capital and full stop only at the boundaries.",
         "boundary_evidence": "The moon shines above the roof. begins with a capital letter, keeps a clear word order and ends with a full stop because it is a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -2410,7 +2442,8 @@
         "correct": "Statement built from capital start to full-stop end gate.",
         "repair": "Keep any correct word sequence, mark WHO/WHAT then WHAT HAPPENS, and add the capital and full stop only at the boundaries.",
         "boundary_evidence": "The train stops beside the station. begins with a capital letter, keeps a clear word order and ends with a full stop because it is a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the word order scrambled idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -2514,7 +2547,8 @@
         "correct": "Statement built from capital start to full-stop end gate.",
         "repair": "Keep any correct word sequence, mark WHO/WHAT then WHAT HAPPENS, and add the capital and full stop only at the boundaries.",
         "boundary_evidence": "A fox rests near the fallen log. begins with a capital letter, keeps a clear word order and ends with a full stop because it is a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -2612,7 +2646,8 @@
         "correct": "Statement built from capital start to full-stop end gate.",
         "repair": "Keep any correct word sequence, mark WHO/WHAT then WHAT HAPPENS, and add the capital and full stop only at the boundaries.",
         "boundary_evidence": "Soft rain taps the window. begins with a capital letter, keeps a clear word order and ends with a full stop because it is a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -2715,7 +2750,8 @@
         "correct": "Statement built from capital start to full-stop end gate.",
         "repair": "Keep any correct word sequence, mark WHO/WHAT then WHAT HAPPENS, and add the capital and full stop only at the boundaries.",
         "boundary_evidence": "The paper boat drifts under the bridge. begins with a capital letter, keeps a clear word order and ends with a full stop because it is a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the word order scrambled idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -2813,7 +2849,8 @@
         "correct": "Statement built from capital start to full-stop end gate.",
         "repair": "Keep any correct word sequence, mark WHO/WHAT then WHAT HAPPENS, and add the capital and full stop only at the boundaries.",
         "boundary_evidence": "The library opens after lunch. begins with a capital letter, keeps a clear word order and ends with a full stop because it is a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -2914,7 +2951,8 @@
         "correct": "Statement built from capital start to full-stop end gate.",
         "repair": "Keep any correct word sequence, mark WHO/WHAT then WHAT HAPPENS, and add the capital and full stop only at the boundaries.",
         "boundary_evidence": "Three bees visit the purple flowers. begins with a capital letter, keeps a clear word order and ends with a full stop because it is a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -3018,7 +3056,8 @@
         "correct": "Statement built from capital start to full-stop end gate.",
         "repair": "Keep any correct word sequence, mark WHO/WHAT then WHAT HAPPENS, and add the capital and full stop only at the boundaries.",
         "boundary_evidence": "My cat is sleeping on the chair. begins with a capital letter, keeps a clear word order and ends with a full stop because it is a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the word order scrambled idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -3118,7 +3157,8 @@
         "correct": "Statement built from capital start to full-stop end gate.",
         "repair": "Keep any correct word sequence, mark WHO/WHAT then WHAT HAPPENS, and add the capital and full stop only at the boundaries.",
         "boundary_evidence": "The children follow the winding path. begins with a capital letter, keeps a clear word order and ends with a full stop because it is a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -3210,7 +3250,8 @@
         "correct": "Statement built from capital start to full-stop end gate.",
         "repair": "Keep any correct word sequence, mark WHO/WHAT then WHAT HAPPENS, and add the capital and full stop only at the boundaries.",
         "boundary_evidence": "The dog runs. begins with a capital letter, keeps a clear word order and ends with a full stop because it is a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -3305,7 +3346,8 @@
         "correct": "Statement built from capital start to full-stop end gate.",
         "repair": "Keep any correct word sequence, mark WHO/WHAT then WHAT HAPPENS, and add the capital and full stop only at the boundaries.",
         "boundary_evidence": "Mina opens the gate. begins with a capital letter, keeps a clear word order and ends with a full stop because it is a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the word order scrambled idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -3409,7 +3451,8 @@
         "correct": "Statement built from capital start to full-stop end gate.",
         "repair": "Keep any correct word sequence, mark WHO/WHAT then WHAT HAPPENS, and add the capital and full stop only at the boundaries.",
         "boundary_evidence": "A red kite floats above the park. begins with a capital letter, keeps a clear word order and ends with a full stop because it is a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -3512,7 +3555,8 @@
         "correct": "Statement built from capital start to full-stop end gate.",
         "repair": "Keep any correct word sequence, mark WHO/WHAT then WHAT HAPPENS, and add the capital and full stop only at the boundaries.",
         "boundary_evidence": "The small frog jumps into the pond. begins with a capital letter, keeps a clear word order and ends with a full stop because it is a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -3610,7 +3654,8 @@
         "correct": "Statement built from capital start to full-stop end gate.",
         "repair": "Keep any correct word sequence, mark WHO/WHAT then WHAT HAPPENS, and add the capital and full stop only at the boundaries.",
         "boundary_evidence": "Our class planted three seeds. begins with a capital letter, keeps a clear word order and ends with a full stop because it is a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the word order scrambled idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -3710,7 +3755,8 @@
         "correct": "Statement built from capital start to full-stop end gate.",
         "repair": "Keep any correct word sequence, mark WHO/WHAT then WHAT HAPPENS, and add the capital and full stop only at the boundaries.",
         "boundary_evidence": "The moon shines above the roof. begins with a capital letter, keeps a clear word order and ends with a full stop because it is a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -3810,7 +3856,8 @@
         "correct": "Statement built from capital start to full-stop end gate.",
         "repair": "Keep any correct word sequence, mark WHO/WHAT then WHAT HAPPENS, and add the capital and full stop only at the boundaries.",
         "boundary_evidence": "The train stops beside the station. begins with a capital letter, keeps a clear word order and ends with a full stop because it is a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -3894,7 +3941,8 @@
         "correct": "Question meaning matched to a question mark.",
         "repair": "Highlight the asking word or verb, replay the reviewed sentence if available, and compare only question mark versus full stop.",
         "boundary_evidence": "Where is my red hat? asks something, so it ends with a question mark. The asking meaning is decisive; reviewed audio is optional support.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the full stop for question idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -3978,7 +4026,8 @@
         "correct": "Question meaning matched to a question mark.",
         "repair": "Highlight the asking word or verb, replay the reviewed sentence if available, and compare only question mark versus full stop.",
         "boundary_evidence": "Can you see the moon? asks something, so it ends with a question mark. The asking meaning is decisive; reviewed audio is optional support.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the full stop for question idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -4062,7 +4111,8 @@
         "correct": "Question meaning matched to a question mark.",
         "repair": "Highlight the asking word or verb, replay the reviewed sentence if available, and compare only question mark versus full stop.",
         "boundary_evidence": "Why is the gate open? asks something, so it ends with a question mark. The asking meaning is decisive; reviewed audio is optional support.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the full stop for question idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -4146,7 +4196,8 @@
         "correct": "Question meaning matched to a question mark.",
         "repair": "Highlight the asking word or verb, replay the reviewed sentence if available, and compare only question mark versus full stop.",
         "boundary_evidence": "When does lunch begin? asks something, so it ends with a question mark. The asking meaning is decisive; reviewed audio is optional support.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the full stop for question idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -4230,7 +4281,8 @@
         "correct": "Question meaning matched to a question mark.",
         "repair": "Highlight the asking word or verb, replay the reviewed sentence if available, and compare only question mark versus full stop.",
         "boundary_evidence": "How did the snail cross the path? asks something, so it ends with a question mark. The asking meaning is decisive; reviewed audio is optional support.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the full stop for question idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -4314,7 +4366,8 @@
         "correct": "Question meaning matched to a question mark.",
         "repair": "Highlight the asking word or verb, replay the reviewed sentence if available, and compare only question mark versus full stop.",
         "boundary_evidence": "Who left this blue bag? asks something, so it ends with a question mark. The asking meaning is decisive; reviewed audio is optional support.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the full stop for question idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -4398,7 +4451,8 @@
         "correct": "Question meaning matched to a question mark.",
         "repair": "Highlight the asking word or verb, replay the reviewed sentence if available, and compare only question mark versus full stop.",
         "boundary_evidence": "What is inside the box? asks something, so it ends with a question mark. The asking meaning is decisive; reviewed audio is optional support.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the full stop for question idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -4482,7 +4536,8 @@
         "correct": "Question meaning matched to a question mark.",
         "repair": "Highlight the asking word or verb, replay the reviewed sentence if available, and compare only question mark versus full stop.",
         "boundary_evidence": "Which book belongs on this shelf? asks something, so it ends with a question mark. The asking meaning is decisive; reviewed audio is optional support.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the full stop for question idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -4566,7 +4621,8 @@
         "correct": "Question meaning matched to a question mark.",
         "repair": "Highlight the asking word or verb, replay the reviewed sentence if available, and compare only question mark versus full stop.",
         "boundary_evidence": "Where will the bus stop? asks something, so it ends with a question mark. The asking meaning is decisive; reviewed audio is optional support.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the full stop for question idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -4650,7 +4706,8 @@
         "correct": "Question meaning matched to a question mark.",
         "repair": "Highlight the asking word or verb, replay the reviewed sentence if available, and compare only question mark versus full stop.",
         "boundary_evidence": "Did the rain fill the pond? asks something, so it ends with a question mark. The asking meaning is decisive; reviewed audio is optional support.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the full stop for question idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -4734,7 +4791,8 @@
         "correct": "Question meaning matched to a question mark.",
         "repair": "Highlight the asking word or verb, replay the reviewed sentence if available, and compare only question mark versus full stop.",
         "boundary_evidence": "Could you help me find the map? asks something, so it ends with a question mark. The asking meaning is decisive; reviewed audio is optional support.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the full stop for question idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -4818,7 +4876,8 @@
         "correct": "Question meaning matched to a question mark.",
         "repair": "Highlight the asking word or verb, replay the reviewed sentence if available, and compare only question mark versus full stop.",
         "boundary_evidence": "How many shells did Arun collect? asks something, so it ends with a question mark. The asking meaning is decisive; reviewed audio is optional support.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the full stop for question idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -4902,7 +4961,8 @@
         "correct": "Question meaning matched to a question mark.",
         "repair": "Highlight the asking word or verb, replay the reviewed sentence if available, and compare only question mark versus full stop.",
         "boundary_evidence": "Where is my red hat? asks something, so it ends with a question mark. The asking meaning is decisive; reviewed audio is optional support.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the full stop for question idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -4986,7 +5046,8 @@
         "correct": "Question meaning matched to a question mark.",
         "repair": "Highlight the asking word or verb, replay the reviewed sentence if available, and compare only question mark versus full stop.",
         "boundary_evidence": "Can you see the moon? asks something, so it ends with a question mark. The asking meaning is decisive; reviewed audio is optional support.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the full stop for question idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -5070,7 +5131,8 @@
         "correct": "Question meaning matched to a question mark.",
         "repair": "Highlight the asking word or verb, replay the reviewed sentence if available, and compare only question mark versus full stop.",
         "boundary_evidence": "Why is the gate open? asks something, so it ends with a question mark. The asking meaning is decisive; reviewed audio is optional support.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the full stop for question idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -5154,7 +5216,8 @@
         "correct": "Question meaning matched to a question mark.",
         "repair": "Highlight the asking word or verb, replay the reviewed sentence if available, and compare only question mark versus full stop.",
         "boundary_evidence": "When does lunch begin? asks something, so it ends with a question mark. The asking meaning is decisive; reviewed audio is optional support.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the full stop for question idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -5238,7 +5301,8 @@
         "correct": "Question meaning matched to a question mark.",
         "repair": "Highlight the asking word or verb, replay the reviewed sentence if available, and compare only question mark versus full stop.",
         "boundary_evidence": "How did the snail cross the path? asks something, so it ends with a question mark. The asking meaning is decisive; reviewed audio is optional support.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the full stop for question idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -5322,7 +5386,8 @@
         "correct": "Question meaning matched to a question mark.",
         "repair": "Highlight the asking word or verb, replay the reviewed sentence if available, and compare only question mark versus full stop.",
         "boundary_evidence": "Who left this blue bag? asks something, so it ends with a question mark. The asking meaning is decisive; reviewed audio is optional support.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the full stop for question idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -5406,7 +5471,8 @@
         "correct": "Question meaning matched to a question mark.",
         "repair": "Highlight the asking word or verb, replay the reviewed sentence if available, and compare only question mark versus full stop.",
         "boundary_evidence": "What is inside the box? asks something, so it ends with a question mark. The asking meaning is decisive; reviewed audio is optional support.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the full stop for question idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -5490,7 +5556,8 @@
         "correct": "Question meaning matched to a question mark.",
         "repair": "Highlight the asking word or verb, replay the reviewed sentence if available, and compare only question mark versus full stop.",
         "boundary_evidence": "Which book belongs on this shelf? asks something, so it ends with a question mark. The asking meaning is decisive; reviewed audio is optional support.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the full stop for question idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -5574,7 +5641,8 @@
         "correct": "Question meaning matched to a question mark.",
         "repair": "Highlight the asking word or verb, replay the reviewed sentence if available, and compare only question mark versus full stop.",
         "boundary_evidence": "Where will the bus stop? asks something, so it ends with a question mark. The asking meaning is decisive; reviewed audio is optional support.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the full stop for question idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -5658,7 +5726,8 @@
         "correct": "Question meaning matched to a question mark.",
         "repair": "Highlight the asking word or verb, replay the reviewed sentence if available, and compare only question mark versus full stop.",
         "boundary_evidence": "Did the rain fill the pond? asks something, so it ends with a question mark. The asking meaning is decisive; reviewed audio is optional support.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the full stop for question idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -5742,7 +5811,8 @@
         "correct": "Question meaning matched to a question mark.",
         "repair": "Highlight the asking word or verb, replay the reviewed sentence if available, and compare only question mark versus full stop.",
         "boundary_evidence": "Could you help me find the map? asks something, so it ends with a question mark. The asking meaning is decisive; reviewed audio is optional support.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the full stop for question idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -5826,7 +5896,8 @@
         "correct": "Question meaning matched to a question mark.",
         "repair": "Highlight the asking word or verb, replay the reviewed sentence if available, and compare only question mark versus full stop.",
         "boundary_evidence": "How many shells did Arun collect? asks something, so it ends with a question mark. The asking meaning is decisive; reviewed audio is optional support.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the full stop for question idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -5910,7 +5981,8 @@
         "correct": "Question meaning matched to a question mark.",
         "repair": "Highlight the asking word or verb, replay the reviewed sentence if available, and compare only question mark versus full stop.",
         "boundary_evidence": "Where is my red hat? asks something, so it ends with a question mark. The asking meaning is decisive; reviewed audio is optional support.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the full stop for question idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -5994,7 +6066,8 @@
         "correct": "Question meaning matched to a question mark.",
         "repair": "Highlight the asking word or verb, replay the reviewed sentence if available, and compare only question mark versus full stop.",
         "boundary_evidence": "Can you see the moon? asks something, so it ends with a question mark. The asking meaning is decisive; reviewed audio is optional support.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the full stop for question idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -6078,7 +6151,8 @@
         "correct": "Question meaning matched to a question mark.",
         "repair": "Highlight the asking word or verb, replay the reviewed sentence if available, and compare only question mark versus full stop.",
         "boundary_evidence": "Why is the gate open? asks something, so it ends with a question mark. The asking meaning is decisive; reviewed audio is optional support.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the full stop for question idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -6162,7 +6236,8 @@
         "correct": "Question meaning matched to a question mark.",
         "repair": "Highlight the asking word or verb, replay the reviewed sentence if available, and compare only question mark versus full stop.",
         "boundary_evidence": "When does lunch begin? asks something, so it ends with a question mark. The asking meaning is decisive; reviewed audio is optional support.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the full stop for question idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -6246,7 +6321,8 @@
         "correct": "Question meaning matched to a question mark.",
         "repair": "Highlight the asking word or verb, replay the reviewed sentence if available, and compare only question mark versus full stop.",
         "boundary_evidence": "How did the snail cross the path? asks something, so it ends with a question mark. The asking meaning is decisive; reviewed audio is optional support.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the full stop for question idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -6330,7 +6406,8 @@
         "correct": "Question meaning matched to a question mark.",
         "repair": "Highlight the asking word or verb, replay the reviewed sentence if available, and compare only question mark versus full stop.",
         "boundary_evidence": "Who left this blue bag? asks something, so it ends with a question mark. The asking meaning is decisive; reviewed audio is optional support.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the full stop for question idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -6414,7 +6491,8 @@
         "correct": "Question meaning matched to a question mark.",
         "repair": "Highlight the asking word or verb, replay the reviewed sentence if available, and compare only question mark versus full stop.",
         "boundary_evidence": "What is inside the box? asks something, so it ends with a question mark. The asking meaning is decisive; reviewed audio is optional support.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the full stop for question idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -6498,7 +6576,8 @@
         "correct": "Question meaning matched to a question mark.",
         "repair": "Highlight the asking word or verb, replay the reviewed sentence if available, and compare only question mark versus full stop.",
         "boundary_evidence": "Which book belongs on this shelf? asks something, so it ends with a question mark. The asking meaning is decisive; reviewed audio is optional support.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the full stop for question idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -6582,7 +6661,8 @@
         "correct": "Question meaning matched to a question mark.",
         "repair": "Highlight the asking word or verb, replay the reviewed sentence if available, and compare only question mark versus full stop.",
         "boundary_evidence": "Where will the bus stop? asks something, so it ends with a question mark. The asking meaning is decisive; reviewed audio is optional support.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the full stop for question idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -6666,7 +6746,8 @@
         "correct": "Question meaning matched to a question mark.",
         "repair": "Highlight the asking word or verb, replay the reviewed sentence if available, and compare only question mark versus full stop.",
         "boundary_evidence": "Did the rain fill the pond? asks something, so it ends with a question mark. The asking meaning is decisive; reviewed audio is optional support.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the full stop for question idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -6750,7 +6831,8 @@
         "correct": "Question meaning matched to a question mark.",
         "repair": "Highlight the asking word or verb, replay the reviewed sentence if available, and compare only question mark versus full stop.",
         "boundary_evidence": "Could you help me find the map? asks something, so it ends with a question mark. The asking meaning is decisive; reviewed audio is optional support.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the full stop for question idea against the task evidence."
       },
       "difficulty": 3,
       "status": "review",
@@ -6836,7 +6918,8 @@
         "correct": "Sentence repaired: A red kite floats above the park.",
         "repair": "Use three passes: read the complete idea, repair word order, then inspect only the start and end gates.",
         "boundary_evidence": "A red kite floats above the park. is the repaired statement. It starts with a capital and ends with a full stop.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -6921,7 +7004,8 @@
         "correct": "Sentence repaired: A fox rests near the fallen log.",
         "repair": "Use three passes: read the complete idea, repair word order, then inspect only the start and end gates.",
         "boundary_evidence": "A fox rests near the fallen log. is the repaired statement. It starts with a capital and ends with a full stop.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -7007,7 +7091,8 @@
         "correct": "Sentence repaired: My cat is sleeping on the chair.",
         "repair": "Use three passes: read the complete idea, repair word order, then inspect only the start and end gates.",
         "boundary_evidence": "My cat is sleeping on the chair. is the repaired statement. It starts with a capital and ends with a full stop.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the punctuation after every word idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -7091,7 +7176,8 @@
         "correct": "Sentence repaired: When does lunch begin?",
         "repair": "Use three passes: read the complete idea, repair word order, then inspect only the start and end gates.",
         "boundary_evidence": "When does lunch begin? is the repaired question. It starts with a capital and ends with a question mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the word order scrambled idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -7175,7 +7261,8 @@
         "correct": "Sentence repaired: Where will the bus stop?",
         "repair": "Use three passes: read the complete idea, repair word order, then inspect only the start and end gates.",
         "boundary_evidence": "Where will the bus stop? is the repaired question. It starts with a capital and ends with a question mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -7257,7 +7344,8 @@
         "correct": "Sentence repaired: Please pass the brush.",
         "repair": "Use three passes: read the complete idea, repair word order, then inspect only the start and end gates.",
         "boundary_evidence": "Please pass the brush. is the repaired command. It starts with a capital and ends with a full stop.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -7341,7 +7429,8 @@
         "correct": "Sentence repaired: Wash your hands before lunch.",
         "repair": "Use three passes: read the complete idea, repair word order, then inspect only the start and end gates.",
         "boundary_evidence": "Wash your hands before lunch. is the repaired command. It starts with a capital and ends with a full stop.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the punctuation after every word idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -7427,7 +7516,8 @@
         "correct": "Sentence repaired: What a huge pumpkin that is!",
         "repair": "Use three passes: read the complete idea, repair word order, then inspect only the start and end gates.",
         "boundary_evidence": "What a huge pumpkin that is! is the repaired exclamation. It starts with a capital and ends with an exclamation mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the word order scrambled idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -7512,7 +7602,8 @@
         "correct": "Sentence repaired: What a tiny seed that is!",
         "repair": "Use three passes: read the complete idea, repair word order, then inspect only the start and end gates.",
         "boundary_evidence": "What a tiny seed that is! is the repaired exclamation. It starts with a capital and ends with an exclamation mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -7597,7 +7688,8 @@
         "correct": "Sentence repaired: The small frog jumps into the pond.",
         "repair": "Use three passes: read the complete idea, repair word order, then inspect only the start and end gates.",
         "boundary_evidence": "The small frog jumps into the pond. is the repaired statement. It starts with a capital and ends with a full stop.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -7681,7 +7773,8 @@
         "correct": "Sentence repaired: Soft rain taps the window.",
         "repair": "Use three passes: read the complete idea, repair word order, then inspect only the start and end gates.",
         "boundary_evidence": "Soft rain taps the window. is the repaired statement. It starts with a capital and ends with a full stop.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the punctuation after every word idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -7767,7 +7860,8 @@
         "correct": "Sentence repaired: The children follow the winding path.",
         "repair": "Use three passes: read the complete idea, repair word order, then inspect only the start and end gates.",
         "boundary_evidence": "The children follow the winding path. is the repaired statement. It starts with a capital and ends with a full stop.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the word order scrambled idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -7853,7 +7947,8 @@
         "correct": "Sentence repaired: How did the snail cross the path?",
         "repair": "Use three passes: read the complete idea, repair word order, then inspect only the start and end gates.",
         "boundary_evidence": "How did the snail cross the path? is the repaired question. It starts with a capital and ends with a question mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -7937,7 +8032,8 @@
         "correct": "Sentence repaired: Did the rain fill the pond?",
         "repair": "Use three passes: read the complete idea, repair word order, then inspect only the start and end gates.",
         "boundary_evidence": "Did the rain fill the pond? is the repaired question. It starts with a capital and ends with a question mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -8022,7 +8118,8 @@
         "correct": "Sentence repaired: Put the book on the shelf.",
         "repair": "Use three passes: read the complete idea, repair word order, then inspect only the start and end gates.",
         "boundary_evidence": "Put the book on the shelf. is the repaired command. It starts with a capital and ends with a full stop.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the punctuation after every word idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -8108,7 +8205,8 @@
         "correct": "Sentence repaired: Circle the noun in the sentence.",
         "repair": "Use three passes: read the complete idea, repair word order, then inspect only the start and end gates.",
         "boundary_evidence": "Circle the noun in the sentence. is the repaired command. It starts with a capital and ends with a full stop.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the word order scrambled idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -8192,7 +8290,8 @@
         "correct": "Sentence repaired: How softly the snow falls!",
         "repair": "Use three passes: read the complete idea, repair word order, then inspect only the start and end gates.",
         "boundary_evidence": "How softly the snow falls! is the repaired exclamation. It starts with a capital and ends with an exclamation mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -8275,7 +8374,8 @@
         "correct": "Sentence repaired: How quietly the owl flies!",
         "repair": "Use three passes: read the complete idea, repair word order, then inspect only the start and end gates.",
         "boundary_evidence": "How quietly the owl flies! is the repaired exclamation. It starts with a capital and ends with an exclamation mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -8359,7 +8459,8 @@
         "correct": "Sentence repaired: Our class planted three seeds.",
         "repair": "Use three passes: read the complete idea, repair word order, then inspect only the start and end gates.",
         "boundary_evidence": "Our class planted three seeds. is the repaired statement. It starts with a capital and ends with a full stop.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the punctuation after every word idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -8446,7 +8547,8 @@
         "correct": "Sentence repaired: The paper boat drifts under the bridge.",
         "repair": "Use three passes: read the complete idea, repair word order, then inspect only the start and end gates.",
         "boundary_evidence": "The paper boat drifts under the bridge. is the repaired statement. It starts with a capital and ends with a full stop.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the word order scrambled idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -8530,7 +8632,8 @@
         "correct": "Sentence repaired: Where is my red hat?",
         "repair": "Use three passes: read the complete idea, repair word order, then inspect only the start and end gates.",
         "boundary_evidence": "Where is my red hat? is the repaired question. It starts with a capital and ends with a question mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -8613,7 +8716,8 @@
         "correct": "Sentence repaired: Who left this blue bag?",
         "repair": "Use three passes: read the complete idea, repair word order, then inspect only the start and end gates.",
         "boundary_evidence": "Who left this blue bag? is the repaired question. It starts with a capital and ends with a question mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -8699,7 +8803,8 @@
         "correct": "Sentence repaired: Could you help me find the map?",
         "repair": "Use three passes: read the complete idea, repair word order, then inspect only the start and end gates.",
         "boundary_evidence": "Could you help me find the map? is the repaired question. It starts with a capital and ends with a question mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the punctuation after every word idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -8784,7 +8889,8 @@
         "correct": "Sentence repaired: Walk carefully to the line.",
         "repair": "Use three passes: read the complete idea, repair word order, then inspect only the start and end gates.",
         "boundary_evidence": "Walk carefully to the line. is the repaired command. It starts with a capital and ends with a full stop.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the word order scrambled idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -8868,7 +8974,8 @@
         "correct": "Sentence repaired: Open the small green box.",
         "repair": "Use three passes: read the complete idea, repair word order, then inspect only the start and end gates.",
         "boundary_evidence": "Open the small green box. is the repaired command. It starts with a capital and ends with a full stop.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -8951,7 +9058,8 @@
         "correct": "Sentence repaired: How quickly the rabbit runs!",
         "repair": "Use three passes: read the complete idea, repair word order, then inspect only the start and end gates.",
         "boundary_evidence": "How quickly the rabbit runs! is the repaired exclamation. It starts with a capital and ends with an exclamation mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -9033,7 +9141,8 @@
         "correct": "Sentence repaired: The dog runs.",
         "repair": "Use three passes: read the complete idea, repair word order, then inspect only the start and end gates.",
         "boundary_evidence": "The dog runs. is the repaired statement. It starts with a capital and ends with a full stop.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the punctuation after every word idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -9119,7 +9228,8 @@
         "correct": "Sentence repaired: The moon shines above the roof.",
         "repair": "Use three passes: read the complete idea, repair word order, then inspect only the start and end gates.",
         "boundary_evidence": "The moon shines above the roof. is the repaired statement. It starts with a capital and ends with a full stop.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the word order scrambled idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -9203,7 +9313,8 @@
         "correct": "Sentence repaired: The library opens after lunch.",
         "repair": "Use three passes: read the complete idea, repair word order, then inspect only the start and end gates.",
         "boundary_evidence": "The library opens after lunch. is the repaired statement. It starts with a capital and ends with a full stop.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -9286,7 +9397,8 @@
         "correct": "Sentence repaired: Can you see the moon?",
         "repair": "Use three passes: read the complete idea, repair word order, then inspect only the start and end gates.",
         "boundary_evidence": "Can you see the moon? is the repaired question. It starts with a capital and ends with a question mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -9370,7 +9482,8 @@
         "correct": "Sentence repaired: What is inside the box?",
         "repair": "Use three passes: read the complete idea, repair word order, then inspect only the start and end gates.",
         "boundary_evidence": "What is inside the box? is the repaired question. It starts with a capital and ends with a question mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the punctuation after every word idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -9456,7 +9569,8 @@
         "correct": "Sentence repaired: How many shells did Arun collect?",
         "repair": "Use three passes: read the complete idea, repair word order, then inspect only the start and end gates.",
         "boundary_evidence": "How many shells did Arun collect? is the repaired question. It starts with a capital and ends with a question mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the word order scrambled idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -9540,7 +9654,8 @@
         "correct": "Sentence repaired: Mix the flour and water.",
         "repair": "Use three passes: read the complete idea, repair word order, then inspect only the start and end gates.",
         "boundary_evidence": "Mix the flour and water. is the repaired command. It starts with a capital and ends with a full stop.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -9624,7 +9739,8 @@
         "correct": "Sentence repaired: Write your name on the label.",
         "repair": "Use three passes: read the complete idea, repair word order, then inspect only the start and end gates.",
         "boundary_evidence": "Write your name on the label. is the repaired command. It starts with a capital and ends with a full stop.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -9709,7 +9825,8 @@
         "correct": "Sentence repaired: What an enormous tower you built!",
         "repair": "Use three passes: read the complete idea, repair word order, then inspect only the start and end gates.",
         "boundary_evidence": "What an enormous tower you built! is the repaired exclamation. It starts with a capital and ends with an exclamation mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the punctuation after every word idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -9794,7 +9911,8 @@
         "correct": "Two complete sentence paths repaired in the storybook extract.",
         "repair": "Cover the second idea, repair the first sentence fully, then uncover and repair the second without a timer.",
         "boundary_evidence": "The corrected extract is Mina opens the gate. Where is my red hat? Each complete idea has its own capital start and suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the run on sentences idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -9879,7 +9997,8 @@
         "correct": "Two complete sentence paths repaired in the storybook extract.",
         "repair": "Cover the second idea, repair the first sentence fully, then uncover and repair the second without a timer.",
         "boundary_evidence": "The corrected extract is The small frog jumps into the pond. Put the book on the shelf. Each complete idea has its own capital start and suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the run on sentences idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -9964,7 +10083,8 @@
         "correct": "Two complete sentence paths repaired in the storybook extract.",
         "repair": "Cover the second idea, repair the first sentence fully, then uncover and repair the second without a timer.",
         "boundary_evidence": "The corrected extract is What is inside the box? The dog runs. Each complete idea has its own capital start and suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the punctuation after every word idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -10049,7 +10169,8 @@
         "correct": "Two complete sentence paths repaired in the storybook extract.",
         "repair": "Cover the second idea, repair the first sentence fully, then uncover and repair the second without a timer.",
         "boundary_evidence": "The corrected extract is Wash your hands before lunch. Our class planted three seeds. Each complete idea has its own capital start and suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the run on sentences idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -10134,7 +10255,8 @@
         "correct": "Two complete sentence paths repaired in the storybook extract.",
         "repair": "Cover the second idea, repair the first sentence fully, then uncover and repair the second without a timer.",
         "boundary_evidence": "The corrected extract is What a bright star it is! The moon shines above the roof. Each complete idea has its own capital start and suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the run on sentences idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -10219,7 +10341,8 @@
         "correct": "Two complete sentence paths repaired in the storybook extract.",
         "repair": "Cover the second idea, repair the first sentence fully, then uncover and repair the second without a timer.",
         "boundary_evidence": "The corrected extract is Soft rain taps the window. How softly the snow falls! Each complete idea has its own capital start and suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the punctuation after every word idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -10304,7 +10427,8 @@
         "correct": "Two complete sentence paths repaired in the storybook extract.",
         "repair": "Cover the second idea, repair the first sentence fully, then uncover and repair the second without a timer.",
         "boundary_evidence": "The corrected extract is Did the rain fill the pond? Close the door. Each complete idea has its own capital start and suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the run on sentences idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -10389,7 +10513,8 @@
         "correct": "Two complete sentence paths repaired in the storybook extract.",
         "repair": "Cover the second idea, repair the first sentence fully, then uncover and repair the second without a timer.",
         "boundary_evidence": "The corrected extract is Mix the flour and water. When does lunch begin? Each complete idea has its own capital start and suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the run on sentences idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -10474,7 +10599,8 @@
         "correct": "Two complete sentence paths repaired in the storybook extract.",
         "repair": "Cover the second idea, repair the first sentence fully, then uncover and repair the second without a timer.",
         "boundary_evidence": "The corrected extract is Three bees visit the purple flowers. Who left this blue bag? Each complete idea has its own capital start and suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the punctuation after every word idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -10559,7 +10685,8 @@
         "correct": "Two complete sentence paths repaired in the storybook extract.",
         "repair": "Cover the second idea, repair the first sentence fully, then uncover and repair the second without a timer.",
         "boundary_evidence": "The corrected extract is What an enormous tower you built! Take one card from the pile. Each complete idea has its own capital start and suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the run on sentences idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -10644,7 +10771,8 @@
         "correct": "Two complete sentence paths repaired in the storybook extract.",
         "repair": "Cover the second idea, repair the first sentence fully, then uncover and repair the second without a timer.",
         "boundary_evidence": "The corrected extract is My cat is sleeping on the chair. Could you help me find the map? Each complete idea has its own capital start and suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the run on sentences idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -10729,7 +10857,8 @@
         "correct": "Two complete sentence paths repaired in the storybook extract.",
         "repair": "Cover the second idea, repair the first sentence fully, then uncover and repair the second without a timer.",
         "boundary_evidence": "The corrected extract is Open the small green box. What a tiny seed that is! Each complete idea has its own capital start and suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the punctuation after every word idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -10814,7 +10943,8 @@
         "correct": "Two complete sentence paths repaired in the storybook extract.",
         "repair": "Cover the second idea, repair the first sentence fully, then uncover and repair the second without a timer.",
         "boundary_evidence": "The corrected extract is Mina opens the gate. Where is my red hat? Each complete idea has its own capital start and suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the run on sentences idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -10899,7 +11029,8 @@
         "correct": "Two complete sentence paths repaired in the storybook extract.",
         "repair": "Cover the second idea, repair the first sentence fully, then uncover and repair the second without a timer.",
         "boundary_evidence": "The corrected extract is The small frog jumps into the pond. Put the book on the shelf. Each complete idea has its own capital start and suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the run on sentences idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -10984,7 +11115,8 @@
         "correct": "Two complete sentence paths repaired in the storybook extract.",
         "repair": "Cover the second idea, repair the first sentence fully, then uncover and repair the second without a timer.",
         "boundary_evidence": "The corrected extract is What is inside the box? The dog runs. Each complete idea has its own capital start and suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the punctuation after every word idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -11069,7 +11201,8 @@
         "correct": "Two complete sentence paths repaired in the storybook extract.",
         "repair": "Cover the second idea, repair the first sentence fully, then uncover and repair the second without a timer.",
         "boundary_evidence": "The corrected extract is Wash your hands before lunch. Our class planted three seeds. Each complete idea has its own capital start and suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the run on sentences idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -11154,7 +11287,8 @@
         "correct": "Two complete sentence paths repaired in the storybook extract.",
         "repair": "Cover the second idea, repair the first sentence fully, then uncover and repair the second without a timer.",
         "boundary_evidence": "The corrected extract is What a bright star it is! The moon shines above the roof. Each complete idea has its own capital start and suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the run on sentences idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -11239,7 +11373,8 @@
         "correct": "Two complete sentence paths repaired in the storybook extract.",
         "repair": "Cover the second idea, repair the first sentence fully, then uncover and repair the second without a timer.",
         "boundary_evidence": "The corrected extract is Soft rain taps the window. How softly the snow falls! Each complete idea has its own capital start and suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the punctuation after every word idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -11324,7 +11459,8 @@
         "correct": "Two complete sentence paths repaired in the storybook extract.",
         "repair": "Cover the second idea, repair the first sentence fully, then uncover and repair the second without a timer.",
         "boundary_evidence": "The corrected extract is Did the rain fill the pond? Close the door. Each complete idea has its own capital start and suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the run on sentences idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -11409,7 +11545,8 @@
         "correct": "Two complete sentence paths repaired in the storybook extract.",
         "repair": "Cover the second idea, repair the first sentence fully, then uncover and repair the second without a timer.",
         "boundary_evidence": "The corrected extract is Mix the flour and water. When does lunch begin? Each complete idea has its own capital start and suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the run on sentences idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -11494,7 +11631,8 @@
         "correct": "Two complete sentence paths repaired in the storybook extract.",
         "repair": "Cover the second idea, repair the first sentence fully, then uncover and repair the second without a timer.",
         "boundary_evidence": "The corrected extract is Three bees visit the purple flowers. Who left this blue bag? Each complete idea has its own capital start and suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the punctuation after every word idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -11579,7 +11717,8 @@
         "correct": "Two complete sentence paths repaired in the storybook extract.",
         "repair": "Cover the second idea, repair the first sentence fully, then uncover and repair the second without a timer.",
         "boundary_evidence": "The corrected extract is What an enormous tower you built! Take one card from the pile. Each complete idea has its own capital start and suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the run on sentences idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -11664,7 +11803,8 @@
         "correct": "Two complete sentence paths repaired in the storybook extract.",
         "repair": "Cover the second idea, repair the first sentence fully, then uncover and repair the second without a timer.",
         "boundary_evidence": "The corrected extract is My cat is sleeping on the chair. Could you help me find the map? Each complete idea has its own capital start and suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the run on sentences idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -11749,7 +11889,8 @@
         "correct": "Two complete sentence paths repaired in the storybook extract.",
         "repair": "Cover the second idea, repair the first sentence fully, then uncover and repair the second without a timer.",
         "boundary_evidence": "The corrected extract is Open the small green box. What a tiny seed that is! Each complete idea has its own capital start and suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the punctuation after every word idea against the task evidence."
       },
       "difficulty": 5,
       "status": "review",
@@ -11834,7 +11975,8 @@
         "correct": "Two complete sentence paths repaired in the storybook extract.",
         "repair": "Cover the second idea, repair the first sentence fully, then uncover and repair the second without a timer.",
         "boundary_evidence": "The corrected extract is Mina opens the gate. Where is my red hat? Each complete idea has its own capital start and suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the run on sentences idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -11919,7 +12061,8 @@
         "correct": "Two complete sentence paths repaired in the storybook extract.",
         "repair": "Cover the second idea, repair the first sentence fully, then uncover and repair the second without a timer.",
         "boundary_evidence": "The corrected extract is The small frog jumps into the pond. Put the book on the shelf. Each complete idea has its own capital start and suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the run on sentences idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -12004,7 +12147,8 @@
         "correct": "Two complete sentence paths repaired in the storybook extract.",
         "repair": "Cover the second idea, repair the first sentence fully, then uncover and repair the second without a timer.",
         "boundary_evidence": "The corrected extract is What is inside the box? The dog runs. Each complete idea has its own capital start and suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the punctuation after every word idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -12089,7 +12233,8 @@
         "correct": "Two complete sentence paths repaired in the storybook extract.",
         "repair": "Cover the second idea, repair the first sentence fully, then uncover and repair the second without a timer.",
         "boundary_evidence": "The corrected extract is Wash your hands before lunch. Our class planted three seeds. Each complete idea has its own capital start and suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the run on sentences idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -12174,7 +12319,8 @@
         "correct": "Two complete sentence paths repaired in the storybook extract.",
         "repair": "Cover the second idea, repair the first sentence fully, then uncover and repair the second without a timer.",
         "boundary_evidence": "The corrected extract is What a bright star it is! The moon shines above the roof. Each complete idea has its own capital start and suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the run on sentences idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -12259,7 +12405,8 @@
         "correct": "Two complete sentence paths repaired in the storybook extract.",
         "repair": "Cover the second idea, repair the first sentence fully, then uncover and repair the second without a timer.",
         "boundary_evidence": "The corrected extract is Soft rain taps the window. How softly the snow falls! Each complete idea has its own capital start and suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the punctuation after every word idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -12344,7 +12491,8 @@
         "correct": "Two complete sentence paths repaired in the storybook extract.",
         "repair": "Cover the second idea, repair the first sentence fully, then uncover and repair the second without a timer.",
         "boundary_evidence": "The corrected extract is Did the rain fill the pond? Close the door. Each complete idea has its own capital start and suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the run on sentences idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -12429,7 +12577,8 @@
         "correct": "Two complete sentence paths repaired in the storybook extract.",
         "repair": "Cover the second idea, repair the first sentence fully, then uncover and repair the second without a timer.",
         "boundary_evidence": "The corrected extract is Mix the flour and water. When does lunch begin? Each complete idea has its own capital start and suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the run on sentences idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -12514,7 +12663,8 @@
         "correct": "Two complete sentence paths repaired in the storybook extract.",
         "repair": "Cover the second idea, repair the first sentence fully, then uncover and repair the second without a timer.",
         "boundary_evidence": "The corrected extract is Three bees visit the purple flowers. Who left this blue bag? Each complete idea has its own capital start and suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the punctuation after every word idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -12599,7 +12749,8 @@
         "correct": "Two complete sentence paths repaired in the storybook extract.",
         "repair": "Cover the second idea, repair the first sentence fully, then uncover and repair the second without a timer.",
         "boundary_evidence": "The corrected extract is What an enormous tower you built! Take one card from the pile. Each complete idea has its own capital start and suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the run on sentences idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -12684,7 +12835,8 @@
         "correct": "Two complete sentence paths repaired in the storybook extract.",
         "repair": "Cover the second idea, repair the first sentence fully, then uncover and repair the second without a timer.",
         "boundary_evidence": "The corrected extract is My cat is sleeping on the chair. Could you help me find the map? Each complete idea has its own capital start and suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the run on sentences idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -12769,7 +12921,8 @@
         "correct": "Two complete sentence paths repaired in the storybook extract.",
         "repair": "Cover the second idea, repair the first sentence fully, then uncover and repair the second without a timer.",
         "boundary_evidence": "The corrected extract is Open the small green box. What a tiny seed that is! Each complete idea has its own capital start and suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the punctuation after every word idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -12841,7 +12994,8 @@
         "correct": "Sentence function recognised: statement.",
         "repair": "Use one static cue card for tells, asks, directs or exclaims, then reread the whole clause.",
         "boundary_evidence": "The small frog jumps into the pond. is a statement. It tells something.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the end mark alone names function idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -12917,7 +13071,8 @@
         "correct": "Complete statement selected and checked.",
         "repair": "Compare only two static choices, highlight the function cue and inspect the start and end boundaries.",
         "boundary_evidence": "Mina opens the gate. is a complete statement with a capital start, coherent order and suitable ending.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the function and mark mismatch idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -13001,7 +13156,8 @@
         "correct": "Dictated sentence matched word for word and boundary for boundary.",
         "repair": "Replay by phrase, keep the printed chunks static and compare one difference at a time; no handwriting or microphone is required.",
         "boundary_evidence": "Three bees visit the purple flowers. matches the reviewed dictation and has the correct boundaries for a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the dictation boundary omitted idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -13070,7 +13226,8 @@
         "correct": "Word order and sentence boundaries checked together.",
         "repair": "Place WHO/WHAT and WHAT HAPPENS chunks first, then add boundary marks after the meaning is complete.",
         "boundary_evidence": "Three bees visit the purple flowers. puts the words in a clear order and closes the statement correctly.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the word order scrambled idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -13136,7 +13293,8 @@
         "correct": "Punctuation misconception repaired with a boundary or function rule.",
         "repair": "Use a static start gate, function card and end gate to test the claim on one sentence.",
         "boundary_evidence": "A complete written sentence needs a capital start and a suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -13205,7 +13363,8 @@
         "correct": "Sentence punctuation transferred into the class-book context.",
         "repair": "Use the same three-step check: complete idea, capital start, function-matched end mark.",
         "boundary_evidence": "Can you see the moon? transfers the sentence-boundary and function rules into a new writing context.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the boundary rule not transferred idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -13277,7 +13436,8 @@
         "correct": "Sentence function recognised: statement.",
         "repair": "Use one static cue card for tells, asks, directs or exclaims, then reread the whole clause.",
         "boundary_evidence": "Mina opens the gate. is a statement. It tells something.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the end mark alone names function idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -13353,7 +13513,8 @@
         "correct": "Complete question selected and checked.",
         "repair": "Compare only two static choices, highlight the function cue and inspect the start and end boundaries.",
         "boundary_evidence": "Which book belongs on this shelf? is a complete question with a capital start, coherent order and suitable ending.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the function and mark mismatch idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -13437,7 +13598,8 @@
         "correct": "Dictated sentence matched word for word and boundary for boundary.",
         "repair": "Replay by phrase, keep the printed chunks static and compare one difference at a time; no handwriting or microphone is required.",
         "boundary_evidence": "How colourful the garden looks! matches the reviewed dictation and has the correct boundaries for a exclamation.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the dictation boundary omitted idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -13506,7 +13668,8 @@
         "correct": "Word order and sentence boundaries checked together.",
         "repair": "Place WHO/WHAT and WHAT HAPPENS chunks first, then add boundary marks after the meaning is complete.",
         "boundary_evidence": "The moon shines above the roof. puts the words in a clear order and closes the statement correctly.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the word order scrambled idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -13572,7 +13735,8 @@
         "correct": "Punctuation misconception repaired with a boundary or function rule.",
         "repair": "Use a static start gate, function card and end gate to test the claim on one sentence.",
         "boundary_evidence": "Questions need question marks, while statements and most commands use full stops; Year 2 exclamations use exclamation marks.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the full stop for question idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -13641,7 +13805,8 @@
         "correct": "Sentence punctuation transferred into the class-book context.",
         "repair": "Use the same three-step check: complete idea, capital start, function-matched end mark.",
         "boundary_evidence": "What a huge pumpkin that is! transfers the sentence-boundary and function rules into a new writing context.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the boundary rule not transferred idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -13714,7 +13879,8 @@
         "correct": "Sentence function recognised: exclamation.",
         "repair": "Use one static cue card for tells, asks, directs or exclaims, then reread the whole clause.",
         "boundary_evidence": "How quietly the owl flies! is a exclamation. It begins What or How and expresses the exclamation as a full clause.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the end mark alone names function idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -13791,7 +13957,8 @@
         "correct": "Complete command selected and checked.",
         "repair": "Compare only two static choices, highlight the function cue and inspect the start and end boundaries.",
         "boundary_evidence": "Walk carefully to the line. is a complete command with a capital start, coherent order and suitable ending.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the function and mark mismatch idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -13875,7 +14042,8 @@
         "correct": "Dictated sentence matched word for word and boundary for boundary.",
         "repair": "Replay by phrase, keep the printed chunks static and compare one difference at a time; no handwriting or microphone is required.",
         "boundary_evidence": "Please pass the brush. matches the reviewed dictation and has the correct boundaries for a command.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the dictation boundary omitted idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -13944,7 +14112,8 @@
         "correct": "Word order and sentence boundaries checked together.",
         "repair": "Place WHO/WHAT and WHAT HAPPENS chunks first, then add boundary marks after the meaning is complete.",
         "boundary_evidence": "Write your name on the label. puts the words in a clear order and closes the command correctly.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the word order scrambled idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -14010,7 +14179,8 @@
         "correct": "Punctuation misconception repaired with a boundary or function rule.",
         "repair": "Use a static start gate, function card and end gate to test the claim on one sentence.",
         "boundary_evidence": "Keep the words together as one complete idea and place the end mark at its boundary.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the punctuation after every word idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -14079,7 +14249,8 @@
         "correct": "Sentence punctuation transferred into the class-book context.",
         "repair": "Use the same three-step check: complete idea, capital start, function-matched end mark.",
         "boundary_evidence": "Can you see the moon? transfers the sentence-boundary and function rules into a new writing context.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the boundary rule not transferred idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -14152,7 +14323,8 @@
         "correct": "Sentence function recognised: exclamation.",
         "repair": "Use one static cue card for tells, asks, directs or exclaims, then reread the whole clause.",
         "boundary_evidence": "How colourful the garden looks! is a exclamation. It begins What or How and expresses the exclamation as a full clause.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the end mark alone names function idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -14229,7 +14401,8 @@
         "correct": "Complete exclamation selected and checked.",
         "repair": "Compare only two static choices, highlight the function cue and inspect the start and end boundaries.",
         "boundary_evidence": "How quickly the rabbit runs! is a complete exclamation with a capital start, coherent order and suitable ending.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the function and mark mismatch idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -14313,7 +14486,8 @@
         "correct": "Dictated sentence matched word for word and boundary for boundary.",
         "repair": "Replay by phrase, keep the printed chunks static and compare one difference at a time; no handwriting or microphone is required.",
         "boundary_evidence": "The children follow the winding path. matches the reviewed dictation and has the correct boundaries for a statement.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the dictation boundary omitted idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -14382,7 +14556,8 @@
         "correct": "Word order and sentence boundaries checked together.",
         "repair": "Place WHO/WHAT and WHAT HAPPENS chunks first, then add boundary marks after the meaning is complete.",
         "boundary_evidence": "Walk carefully to the line. puts the words in a clear order and closes the command correctly.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the word order scrambled idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -14448,7 +14623,8 @@
         "correct": "Punctuation misconception repaired with a boundary or function rule.",
         "repair": "Use a static start gate, function card and end gate to test the claim on one sentence.",
         "boundary_evidence": "In these Year 2 tasks, an exclamation begins What or How and contains a full clause.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the exclamation definition confusion idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -14517,7 +14693,8 @@
         "correct": "Sentence punctuation transferred into the class-book context.",
         "repair": "Use the same three-step check: complete idea, capital start, function-matched end mark.",
         "boundary_evidence": "What a huge pumpkin that is! transfers the sentence-boundary and function rules into a new writing context.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the boundary rule not transferred idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -14590,7 +14767,8 @@
         "correct": "Sentence function recognised: exclamation.",
         "repair": "Use one static cue card for tells, asks, directs or exclaims, then reread the whole clause.",
         "boundary_evidence": "How quickly the rabbit runs! is a exclamation. It begins What or How and expresses the exclamation as a full clause.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the end mark alone names function idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -14666,7 +14844,8 @@
         "correct": "Complete statement selected and checked.",
         "repair": "Compare only two static choices, highlight the function cue and inspect the start and end boundaries.",
         "boundary_evidence": "Three bees visit the purple flowers. is a complete statement with a capital start, coherent order and suitable ending.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the function and mark mismatch idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -14750,7 +14929,8 @@
         "correct": "Dictated sentence matched word for word and boundary for boundary.",
         "repair": "Replay by phrase, keep the printed chunks static and compare one difference at a time; no handwriting or microphone is required.",
         "boundary_evidence": "How quietly the owl flies! matches the reviewed dictation and has the correct boundaries for a exclamation.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the dictation boundary omitted idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -14819,7 +14999,8 @@
         "correct": "Word order and sentence boundaries checked together.",
         "repair": "Place WHO/WHAT and WHAT HAPPENS chunks first, then add boundary marks after the meaning is complete.",
         "boundary_evidence": "Three bees visit the purple flowers. puts the words in a clear order and closes the statement correctly.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the word order scrambled idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -14885,7 +15066,8 @@
         "correct": "Punctuation misconception repaired with a boundary or function rule.",
         "repair": "Use a static start gate, function card and end gate to test the claim on one sentence.",
         "boundary_evidence": "Use the asking meaning and sentence structure; audio intonation is support, not the only evidence.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the intonation only question idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -14954,7 +15136,8 @@
         "correct": "Sentence punctuation transferred into the class-book context.",
         "repair": "Use the same three-step check: complete idea, capital start, function-matched end mark.",
         "boundary_evidence": "Can you see the moon? transfers the sentence-boundary and function rules into a new writing context.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the boundary rule not transferred idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -15027,7 +15210,8 @@
         "correct": "Sentence function recognised: exclamation.",
         "repair": "Use one static cue card for tells, asks, directs or exclaims, then reread the whole clause.",
         "boundary_evidence": "What a huge pumpkin that is! is a exclamation. It begins What or How and expresses the exclamation as a full clause.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the end mark alone names function idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -15103,7 +15287,8 @@
         "correct": "Complete question selected and checked.",
         "repair": "Compare only two static choices, highlight the function cue and inspect the start and end boundaries.",
         "boundary_evidence": "Which book belongs on this shelf? is a complete question with a capital start, coherent order and suitable ending.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the function and mark mismatch idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -15187,7 +15372,8 @@
         "correct": "Dictated sentence matched word for word and boundary for boundary.",
         "repair": "Replay by phrase, keep the printed chunks static and compare one difference at a time; no handwriting or microphone is required.",
         "boundary_evidence": "Walk carefully to the line. matches the reviewed dictation and has the correct boundaries for a command.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the dictation boundary omitted idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -15256,7 +15442,8 @@
         "correct": "Word order and sentence boundaries checked together.",
         "repair": "Place WHO/WHAT and WHAT HAPPENS chunks first, then add boundary marks after the meaning is complete.",
         "boundary_evidence": "The moon shines above the roof. puts the words in a clear order and closes the statement correctly.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the word order scrambled idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -15322,7 +15509,8 @@
         "correct": "Punctuation misconception repaired with a boundary or function rule.",
         "repair": "Use a static start gate, function card and end gate to test the claim on one sentence.",
         "boundary_evidence": "A complete written sentence needs a capital start and a suitable end mark.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the missing end mark idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",
@@ -15391,7 +15579,8 @@
         "correct": "Sentence punctuation transferred into the class-book context.",
         "repair": "Use the same three-step check: complete idea, capital start, function-matched end mark.",
         "boundary_evidence": "What a huge pumpkin that is! transfers the sentence-boundary and function rules into a new writing context.",
-        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored."
+        "support_message": "Chunking, pointing, tile order and adult-scribed edits carry equal evidence; speed, handwriting and speech production are not scored.",
+        "misconception_check": "Check the boundary rule not transferred idea against the task evidence."
       },
       "difficulty": 4,
       "status": "review",

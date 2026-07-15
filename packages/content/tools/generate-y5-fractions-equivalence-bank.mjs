@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -47,6 +48,7 @@ pack.version = "0.2.0";
 pack.qa.readiness_status = "draft";
 pack.qa.notes = "Wave-five review bank reaches the 240-item pilot target with three preserved curated questions and 237 deterministic candidates spanning equivalence, simplifying, common denominators, improper and mixed representations, number lines, visual models, comparison and misconception reasoning. Generated candidates include SEND scaffolds, supported non-drag interactions, manipulative and static alternatives, rich feedback and untimed low-pressure progress; human curriculum, teacher, accessibility and safeguarding review remains required before promotion.";
 
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`fractions-equivalence-bank curated=${curated.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
 console.log(`fractions-equivalence-bank strands=${summary(candidates, (variant) => variant.body.strand)}`);

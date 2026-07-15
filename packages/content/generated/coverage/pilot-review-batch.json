@@ -4,7 +4,7 @@
   "generated_by": "packages/content/tools/pilot-review-batch.mjs",
   "source_report": "variant-production-queue.json",
   "batch_id": "phase3-balanced-y1-y2-y3-y4-y5-y6-y7",
-  "generated_at": "2026-07-11T01:37:58.369Z",
+  "generated_at": "2026-07-15T20:24:37.190Z",
   "totals": {
     "packs": 7,
     "review_candidates": 1817,

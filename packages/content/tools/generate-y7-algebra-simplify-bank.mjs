@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -97,6 +98,7 @@ pack.version = "0.2.0";
 pack.qa.notes = "Year 7 simplifying expressions reaches the 220-item pilot target with four preserved curated variants and 216 deterministic review candidates. The depth bank covers variable, term and coefficient meaning; collecting like terms; substitution; forming expressions; equivalence; distributive reasoning; and misconception diagnosis. Every generated item offers concrete and symbolic scaffolds, static text alternatives, keyboard, switch, eye-gaze, AAC, oral and partner-mediated routes, rich strategy feedback, and private puzzle-mission progress without timers, streak loss, lives, leaderboards or peer comparison. Independent mathematics, teacher, SEND, accessibility, safeguarding, renderer and pilot review remain required before promotion.";
 
 validateBank(pack, curated, generated);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`algebra-simplify-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
 console.log(`algebra-simplify-bank blueprints=${summary(generated, (variant) => variant.body.variant_blueprint_id)}`);

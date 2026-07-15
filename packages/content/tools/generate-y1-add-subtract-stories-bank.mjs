@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -56,6 +57,7 @@ pack.version = "0.2.0";
 pack.qa.notes = "Review-stage Year 1 addition-and-subtraction story pack with a deterministic 220-item pilot bank. Four curated variants are preserved alongside story structures for combining, joining change, separating change, comparison, missing parts, missing starts, inverse checking and representation matching within 0 to 20. Generated candidates include concrete and visual models, narration and SEND response routes, explicit strategy and misconception feedback, unlimited thinking time, and fantastic mission progress rewarded for modelling and checking rather than speed or streaks. Independent mathematics, teacher, accessibility, narration and renderer review remains required before promotion.";
 
 validateBank(pack, curated, generated);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`y1-add-subtract-stories-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
 console.log(`y1-add-subtract-stories-bank blueprints=${summary(pack.question_variants, (variant) => variant.body.variant_blueprint_id)}`);

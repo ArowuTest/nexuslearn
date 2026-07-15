@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -50,6 +51,7 @@ pack.qa.readiness_status = "draft";
 pack.qa.notes = "Review-stage Year 1 counting and place-value pack with a deterministic 220-variant pilot bank. Three curated variants are unchanged. Generated tasks cover stable forward and backward counting from varied starts, one more and less, one-to-one object counting and conservation, numeral-word-quantity links, tens and ones, comparison and ordering, number-line placement, missing numbers, counting in twos/fives/tens, estimation with exact checking, misconception repair and spaced transfer. Every generated task offers concrete, low-visual-load, dyscalculia/SEND and alternative-input routes with rich corrective feedback and no timers, streaks, lives, loss or speed scoring. Optional narrated items reference ElevenLabs assets held for human listening review; browser TTS is prohibited. Independent mathematics, SEND, narration and renderer review remains required before promotion.";
 
 validateBank(pack, curated, curatedSnapshot, generated, curatedBlueprint);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`y1-number-counting-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
 console.log(`y1-number-counting-bank blueprints=${summary(pack.question_variants, (v) => v.body?.variant_blueprint_id ?? curatedBlueprint.get(v.id))}`);

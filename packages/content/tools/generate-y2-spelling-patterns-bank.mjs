@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -132,6 +133,7 @@ pack.version = "0.2.0";
 pack.qa.notes = "Review-stage Year 2 spelling-patterns pack with a deterministic 220-item pilot bank. Four curated variants are preserved alongside candidates covering the pack's statutory grapheme contrasts, reviewed word building, common exception words, suffix transformations, prior-taught un- prefix application, morphology, short dictation/application, misconception repair and spaced retrieval. Listening is referenced only where a whole word, shared phoneme or dictated sentence is pedagogically necessary. Those references are ElevenLabs-only, blocked pending SSP-specialist human listening review, and never use browser TTS or ungated pure-phoneme clips. Every generated task includes grapheme/morpheme chunking, dyslexia-friendly visual and phonological supports, non-drag interaction routes, rich corrective feedback and untimed word-workshop missions. SSP sequence mapping, pronunciation, dialect, morphology, teacher, SEND and renderer review remains required before promotion.";
 
 validateBank(pack, curated, generated);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`y2-spelling-patterns-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
 console.log(`y2-spelling-patterns-bank blueprints=${summary(pack.question_variants, (variant) => variant.body.variant_blueprint_id)}`);

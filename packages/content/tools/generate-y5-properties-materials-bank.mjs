@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { enrichPackForReview } from "./review-enrichment.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -94,6 +95,7 @@ pack.qa.readiness_status = "draft";
 pack.qa.notes = "Year 5 properties-of-materials pilot reaches 240 variants with four curated questions preserved unchanged and 236 deterministic review candidates. Coverage includes evidence-bounded comparison of hardness, solubility, transparency, thermal/electrical conductivity and magnetism; multi-property suitability; fair tests; dissolving and recovery; sieving, filtering, magnetism, decanting and controlled evaporation; reversible and irreversible changes; evidence interpretation, misconceptions and transfer. Every generated item includes sensory-safe/no-touch, reduced-load and alternative-input routes, rich corrective feedback and pressure-free lab missions. Selected narration references require produced, human-reviewed ElevenLabs assets; browser TTS is prohibited. Independent science, teacher, SEND, accessibility, safeguarding, audio and renderer review remains required before promotion.";
 
 validateBank(pack, curated, candidates, curatedSnapshot);
+enrichPackForReview(pack);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`properties-materials-bank curated=${curated.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
 console.log(`properties-materials-bank formats=${summary(candidates, (variant) => variant.format)}`);

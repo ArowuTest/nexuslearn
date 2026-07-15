@@ -6,7 +6,7 @@
     "packs": 87,
     "variants": 20406,
     "runtime_variants": 261,
-    "review_candidates": 19898,
+    "review_candidates": 20145,
     "review_readability_calibrations": 30,
     "errors": 0,
     "warnings": 0
@@ -155,7 +155,7 @@
       "subject": "Mathematics",
       "total_variants": 223,
       "runtime_variants": 3,
-      "review_candidates": 216,
+      "review_candidates": 220,
       "review_readability_calibrations": 2,
       "pilot_target": 220,
       "formats": {
@@ -231,7 +231,7 @@
       "subject": "Mathematics",
       "total_variants": 221,
       "runtime_variants": 3,
-      "review_candidates": 217,
+      "review_candidates": 218,
       "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
@@ -276,7 +276,7 @@
       "subject": "Mathematics",
       "total_variants": 243,
       "runtime_variants": 3,
-      "review_candidates": 235,
+      "review_candidates": 240,
       "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
@@ -355,7 +355,7 @@
       "subject": "Science",
       "total_variants": 223,
       "runtime_variants": 3,
-      "review_candidates": 216,
+      "review_candidates": 220,
       "review_readability_calibrations": 1,
       "pilot_target": 220,
       "formats": {
@@ -433,7 +433,7 @@
       "subject": "Science",
       "total_variants": 223,
       "runtime_variants": 3,
-      "review_candidates": 216,
+      "review_candidates": 220,
       "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
@@ -473,7 +473,7 @@
       "subject": "English",
       "total_variants": 223,
       "runtime_variants": 3,
-      "review_candidates": 216,
+      "review_candidates": 220,
       "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
@@ -536,7 +536,7 @@
       "subject": "English",
       "total_variants": 223,
       "runtime_variants": 3,
-      "review_candidates": 216,
+      "review_candidates": 220,
       "review_readability_calibrations": 2,
       "pilot_target": 220,
       "formats": {
@@ -573,7 +573,7 @@
       "subject": "English",
       "total_variants": 182,
       "runtime_variants": 3,
-      "review_candidates": 177,
+      "review_candidates": 179,
       "review_readability_calibrations": 0,
       "pilot_target": 180,
       "formats": {
@@ -611,7 +611,7 @@
       "subject": "Mathematics",
       "total_variants": 263,
       "runtime_variants": 3,
-      "review_candidates": 255,
+      "review_candidates": 260,
       "review_readability_calibrations": 0,
       "pilot_target": 260,
       "formats": {
@@ -648,7 +648,7 @@
       "subject": "Mathematics",
       "total_variants": 233,
       "runtime_variants": 3,
-      "review_candidates": 226,
+      "review_candidates": 230,
       "review_readability_calibrations": 0,
       "pilot_target": 230,
       "formats": {
@@ -734,7 +734,7 @@
       "subject": "Mathematics",
       "total_variants": 223,
       "runtime_variants": 3,
-      "review_candidates": 216,
+      "review_candidates": 220,
       "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
@@ -772,7 +772,7 @@
       "subject": "Science",
       "total_variants": 243,
       "runtime_variants": 3,
-      "review_candidates": 235,
+      "review_candidates": 240,
       "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
@@ -821,7 +821,7 @@
       "subject": "Science",
       "total_variants": 223,
       "runtime_variants": 3,
-      "review_candidates": 216,
+      "review_candidates": 220,
       "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
@@ -893,7 +893,7 @@
       "subject": "Science",
       "total_variants": 223,
       "runtime_variants": 3,
-      "review_candidates": 215,
+      "review_candidates": 220,
       "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
@@ -938,7 +938,7 @@
       "subject": "English",
       "total_variants": 233,
       "runtime_variants": 3,
-      "review_candidates": 226,
+      "review_candidates": 230,
       "review_readability_calibrations": 0,
       "pilot_target": 230,
       "formats": {
@@ -971,7 +971,7 @@
       "subject": "English",
       "total_variants": 223,
       "runtime_variants": 3,
-      "review_candidates": 216,
+      "review_candidates": 220,
       "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
@@ -1005,7 +1005,7 @@
       "subject": "English",
       "total_variants": 223,
       "runtime_variants": 3,
-      "review_candidates": 215,
+      "review_candidates": 220,
       "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
@@ -1088,7 +1088,7 @@
       "subject": "Mathematics",
       "total_variants": 223,
       "runtime_variants": 3,
-      "review_candidates": 216,
+      "review_candidates": 220,
       "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
@@ -1142,7 +1142,7 @@
       "subject": "Mathematics",
       "total_variants": 202,
       "runtime_variants": 3,
-      "review_candidates": 197,
+      "review_candidates": 199,
       "review_readability_calibrations": 0,
       "pilot_target": 200,
       "formats": {
@@ -1207,7 +1207,7 @@
       "subject": "Mathematics",
       "total_variants": 223,
       "runtime_variants": 3,
-      "review_candidates": 216,
+      "review_candidates": 220,
       "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
@@ -1240,7 +1240,7 @@
       "subject": "Science",
       "total_variants": 233,
       "runtime_variants": 3,
-      "review_candidates": 226,
+      "review_candidates": 230,
       "review_readability_calibrations": 0,
       "pilot_target": 230,
       "formats": {
@@ -1274,7 +1274,7 @@
       "subject": "Science",
       "total_variants": 223,
       "runtime_variants": 3,
-      "review_candidates": 216,
+      "review_candidates": 220,
       "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
@@ -1355,7 +1355,7 @@
       "subject": "Science",
       "total_variants": 223,
       "runtime_variants": 3,
-      "review_candidates": 216,
+      "review_candidates": 220,
       "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
@@ -1400,7 +1400,7 @@
       "subject": "English",
       "total_variants": 263,
       "runtime_variants": 3,
-      "review_candidates": 255,
+      "review_candidates": 260,
       "review_readability_calibrations": 0,
       "pilot_target": 260,
       "formats": {
@@ -1442,7 +1442,7 @@
       "subject": "English",
       "total_variants": 243,
       "runtime_variants": 3,
-      "review_candidates": 235,
+      "review_candidates": 240,
       "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
@@ -1480,7 +1480,7 @@
       "subject": "English",
       "total_variants": 223,
       "runtime_variants": 3,
-      "review_candidates": 216,
+      "review_candidates": 220,
       "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
@@ -1514,7 +1514,7 @@
       "subject": "English",
       "total_variants": 222,
       "runtime_variants": 3,
-      "review_candidates": 217,
+      "review_candidates": 219,
       "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
@@ -1551,7 +1551,7 @@
       "subject": "Mathematics",
       "total_variants": 263,
       "runtime_variants": 3,
-      "review_candidates": 255,
+      "review_candidates": 260,
       "review_readability_calibrations": 0,
       "pilot_target": 260,
       "formats": {
@@ -1587,7 +1587,7 @@
       "subject": "Mathematics",
       "total_variants": 263,
       "runtime_variants": 3,
-      "review_candidates": 255,
+      "review_candidates": 260,
       "review_readability_calibrations": 0,
       "pilot_target": 260,
       "formats": {
@@ -1698,7 +1698,7 @@
       "subject": "Mathematics",
       "total_variants": 243,
       "runtime_variants": 3,
-      "review_candidates": 236,
+      "review_candidates": 240,
       "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
@@ -1738,7 +1738,7 @@
       "subject": "Science",
       "total_variants": 241,
       "runtime_variants": 3,
-      "review_candidates": 237,
+      "review_candidates": 238,
       "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
@@ -1776,7 +1776,7 @@
       "subject": "Science",
       "total_variants": 243,
       "runtime_variants": 3,
-      "review_candidates": 235,
+      "review_candidates": 240,
       "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
@@ -1820,7 +1820,7 @@
       "subject": "Science",
       "total_variants": 243,
       "runtime_variants": 3,
-      "review_candidates": 235,
+      "review_candidates": 240,
       "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
@@ -1856,7 +1856,7 @@
       "subject": "Science",
       "total_variants": 243,
       "runtime_variants": 3,
-      "review_candidates": 236,
+      "review_candidates": 240,
       "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
@@ -1940,7 +1940,7 @@
       "subject": "English",
       "total_variants": 243,
       "runtime_variants": 3,
-      "review_candidates": 236,
+      "review_candidates": 240,
       "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
@@ -1980,7 +1980,7 @@
       "subject": "English",
       "total_variants": 222,
       "runtime_variants": 3,
-      "review_candidates": 217,
+      "review_candidates": 219,
       "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
@@ -2014,7 +2014,7 @@
       "subject": "English",
       "total_variants": 243,
       "runtime_variants": 3,
-      "review_candidates": 236,
+      "review_candidates": 240,
       "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
@@ -2053,7 +2053,7 @@
       "subject": "Mathematics",
       "total_variants": 243,
       "runtime_variants": 3,
-      "review_candidates": 236,
+      "review_candidates": 240,
       "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
@@ -2086,7 +2086,7 @@
       "subject": "Mathematics",
       "total_variants": 243,
       "runtime_variants": 3,
-      "review_candidates": 236,
+      "review_candidates": 240,
       "review_readability_calibrations": 1,
       "pilot_target": 240,
       "formats": {
@@ -2242,7 +2242,7 @@
       "subject": "Science",
       "total_variants": 243,
       "runtime_variants": 3,
-      "review_candidates": 236,
+      "review_candidates": 240,
       "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
@@ -2332,7 +2332,7 @@
       "subject": "Science",
       "total_variants": 243,
       "runtime_variants": 3,
-      "review_candidates": 236,
+      "review_candidates": 240,
       "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
@@ -2369,7 +2369,7 @@
       "subject": "English",
       "total_variants": 243,
       "runtime_variants": 3,
-      "review_candidates": 236,
+      "review_candidates": 240,
       "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
@@ -2409,7 +2409,7 @@
       "subject": "English",
       "total_variants": 243,
       "runtime_variants": 3,
-      "review_candidates": 237,
+      "review_candidates": 240,
       "review_readability_calibrations": 3,
       "pilot_target": 240,
       "formats": {
@@ -2487,7 +2487,7 @@
       "subject": "English",
       "total_variants": 243,
       "runtime_variants": 3,
-      "review_candidates": 235,
+      "review_candidates": 240,
       "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
@@ -2529,7 +2529,7 @@
       "subject": "Mathematics",
       "total_variants": 243,
       "runtime_variants": 3,
-      "review_candidates": 236,
+      "review_candidates": 240,
       "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
@@ -2599,7 +2599,7 @@
       "subject": "Mathematics",
       "total_variants": 242,
       "runtime_variants": 3,
-      "review_candidates": 237,
+      "review_candidates": 239,
       "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
@@ -2635,7 +2635,7 @@
       "subject": "Mathematics",
       "total_variants": 243,
       "runtime_variants": 3,
-      "review_candidates": 235,
+      "review_candidates": 240,
       "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
@@ -2670,7 +2670,7 @@
       "subject": "Mathematics",
       "total_variants": 243,
       "runtime_variants": 3,
-      "review_candidates": 235,
+      "review_candidates": 240,
       "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
@@ -2713,7 +2713,7 @@
       "subject": "Science",
       "total_variants": 243,
       "runtime_variants": 3,
-      "review_candidates": 235,
+      "review_candidates": 240,
       "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
@@ -2751,7 +2751,7 @@
       "subject": "Science",
       "total_variants": 263,
       "runtime_variants": 3,
-      "review_candidates": 255,
+      "review_candidates": 260,
       "review_readability_calibrations": 0,
       "pilot_target": 260,
       "formats": {
@@ -2793,7 +2793,7 @@
       "subject": "Science",
       "total_variants": 243,
       "runtime_variants": 3,
-      "review_candidates": 236,
+      "review_candidates": 240,
       "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
@@ -2863,7 +2863,7 @@
       "subject": "Science",
       "total_variants": 263,
       "runtime_variants": 3,
-      "review_candidates": 255,
+      "review_candidates": 260,
       "review_readability_calibrations": 0,
       "pilot_target": 260,
       "formats": {
@@ -2901,7 +2901,7 @@
       "subject": "English",
       "total_variants": 243,
       "runtime_variants": 3,
-      "review_candidates": 236,
+      "review_candidates": 240,
       "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
@@ -2948,7 +2948,7 @@
       "subject": "English",
       "total_variants": 263,
       "runtime_variants": 3,
-      "review_candidates": 255,
+      "review_candidates": 260,
       "review_readability_calibrations": 0,
       "pilot_target": 260,
       "formats": {
@@ -2988,7 +2988,7 @@
       "subject": "English",
       "total_variants": 222,
       "runtime_variants": 3,
-      "review_candidates": 217,
+      "review_candidates": 219,
       "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
@@ -3020,7 +3020,7 @@
       "subject": "Mathematics",
       "total_variants": 222,
       "runtime_variants": 3,
-      "review_candidates": 217,
+      "review_candidates": 219,
       "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
@@ -3070,7 +3070,7 @@
       "subject": "Mathematics",
       "total_variants": 263,
       "runtime_variants": 3,
-      "review_candidates": 255,
+      "review_candidates": 260,
       "review_readability_calibrations": 0,
       "pilot_target": 260,
       "formats": {
@@ -3122,7 +3122,7 @@
       "subject": "Mathematics",
       "total_variants": 243,
       "runtime_variants": 3,
-      "review_candidates": 236,
+      "review_candidates": 240,
       "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
@@ -3207,7 +3207,7 @@
       "subject": "Science",
       "total_variants": 243,
       "runtime_variants": 3,
-      "review_candidates": 236,
+      "review_candidates": 240,
       "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
@@ -3272,7 +3272,7 @@
       "subject": "Science",
       "total_variants": 243,
       "runtime_variants": 3,
-      "review_candidates": 236,
+      "review_candidates": 240,
       "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
@@ -3328,7 +3328,7 @@
       "subject": "Science",
       "total_variants": 243,
       "runtime_variants": 3,
-      "review_candidates": 236,
+      "review_candidates": 240,
       "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
@@ -3435,7 +3435,7 @@
       "subject": "Science",
       "total_variants": 243,
       "runtime_variants": 3,
-      "review_candidates": 235,
+      "review_candidates": 240,
       "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
