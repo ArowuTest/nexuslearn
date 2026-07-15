@@ -21,7 +21,7 @@ if (pack.pack_id !== "en-y5-relative-clauses") throw new Error("This generator o
 
 const curated = (pack.question_variants ?? []).filter((variant) => !variant.id.startsWith(prefix));
 if (curated.length !== 4) throw new Error(`Expected exactly 4 curated variants, found ${curated.length}.`);
-const curatedSnapshot = JSON.stringify(curated);
+const curatedSnapshot = JSON.stringify(curated.map(removeClauseContract));
 
 const contexts = [
   { key: "observatory", genre: "information", person: "Asha", role: "astronomer", thing: "telescope", place: "observatory", time: "the winter evening", possession: "lens", action: "mapped the comet trail" },
@@ -97,12 +97,14 @@ const candidates = [
   ...expand("revision", 48, revisionItems, buildRevision),
 ];
 
-pack.question_variants = [...curated, ...candidates];
+const enrichedCurated = curated.map(enrichVariant);
+const enrichedCandidates = candidates.map(enrichVariant);
+pack.question_variants = [...enrichedCurated, ...enrichedCandidates];
 pack.version = "0.2.0";
 pack.qa.readiness_status = "draft";
 pack.qa.notes = "Year 5 relative-clause pilot bank reaches 240 variants with four curated questions preserved unchanged and 236 deterministic review candidates. Coverage includes meaning-matched relative links, antecedent clarity, embedded and end-position clauses, carefully bounded restrictive/non-restrictive punctuation, relative that and safe implied-pronoun decisions, ambiguity repair and genre transfer. Every generated item has dyslexia/SEND chunking, non-drag alternative inputs, rich evidence-led feedback and pressure-free publishing missions. Selected narration references require produced, human-reviewed ElevenLabs assets; browser TTS is prohibited. Independent English, teacher, SEND, accessibility, safeguarding, audio and renderer review remains required before promotion.";
 
-validateBank(pack, curated, candidates, curatedSnapshot);
+validateBank(pack, enrichedCurated, enrichedCandidates, curatedSnapshot);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`relative-clauses-bank curated=${curated.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
 console.log(`relative-clauses-bank formats=${summary(candidates, (variant) => variant.format)}`);
@@ -201,6 +203,34 @@ function candidate({ id, index, context, format, blueprint, band, strand, prompt
   };
 }
 
+function enrichVariant(variant) {
+  const body = variant.body ?? {};
+  return {
+    ...variant,
+    body: {
+      ...body,
+      clause_mapping_contract: {
+        kind: "relative_clause_mapping",
+        mode: body.variant_blueprint_id ?? "clause_link_and_meaning",
+        evidence_steps: ["identify_antecedent", "map_clause_boundary", "check_meaning_effect"],
+        response_modes: ["touch", "keyboard", "switch", "eye_gaze", "aac", "adult_scribed"],
+        precision_drag_required: false,
+        speech_required: false,
+        handwriting_required: false,
+        preserve_correct_work: true,
+        untimed: true,
+      },
+    },
+  };
+}
+
+function validateClauseContract(variant) {
+  const contract = variant.body?.clause_mapping_contract;
+  const requiredResponseModes = ["touch", "keyboard", "switch", "eye_gaze", "aac", "adult_scribed"];
+  const requiredEvidence = ["identify_antecedent", "map_clause_boundary", "check_meaning_effect"];
+  if (!contract || contract.kind !== "relative_clause_mapping" || !contract.mode || contract.precision_drag_required !== false || contract.speech_required !== false || contract.handwriting_required !== false || contract.preserve_correct_work !== true || contract.untimed !== true || requiredResponseModes.some((mode) => !contract.response_modes?.includes(mode)) || requiredEvidence.some((step) => !contract.evidence_steps?.includes(step))) throw new Error(`${variant.id} lacks an accessible relative-clause mapping contract.`);
+}
+
 function expand(label, count, items, builder) {
   return Array.from({ length: count }, (_, index) => {
     const item = items[index % items.length];
@@ -210,7 +240,7 @@ function expand(label, count, items, builder) {
 }
 
 function validateBank(currentPack, authored, generated, authoredSnapshot) {
-  if (authored.length !== 4 || JSON.stringify(currentPack.question_variants.slice(0, 4)) !== authoredSnapshot) throw new Error("Curated variants changed or moved.");
+  if (authored.length !== 4 || JSON.stringify(currentPack.question_variants.slice(0, 4).map(removeClauseContract)) !== authoredSnapshot) throw new Error("Curated variants changed or moved.");
   if (generated.length !== 236 || currentPack.question_variants.length !== pilotTarget) throw new Error(`Expected 236 generated and ${pilotTarget} total variants.`);
   const blueprints = new Map(currentPack.variant_blueprints.map((item) => [item.id, item]));
   const formats = new Set(currentPack.practice.formats);
@@ -222,6 +252,7 @@ function validateBank(currentPack, authored, generated, authoredSnapshot) {
     const signature = `${variant.format}|${normalise(variant.body?.prompt)}|${normalise(variant.expected_answer)}`;
     if (signatures.has(signature)) throw new Error(`Duplicate format/prompt/answer signature ${variant.id}.`);
     signatures.add(signature);
+    validateClauseContract(variant);
   }
   for (const variant of generated) {
     const blueprint = blueprints.get(variant.body.variant_blueprint_id);
@@ -240,6 +271,11 @@ function validateBank(currentPack, authored, generated, authoredSnapshot) {
     const actual = generated.filter((variant) => variant.body.variant_blueprint_id === blueprint).length;
     if (actual !== count) throw new Error(`Blueprint ${blueprint} expected ${count}, found ${actual}.`);
   }
+}
+
+function removeClauseContract(variant) {
+  const { clause_mapping_contract: _clauseContract, ...body } = variant.body ?? {};
+  return { ...variant, body };
 }
 
 function fill(value, context) {

@@ -39,8 +39,10 @@ const candidates = [
   ...misconceptionReasoningCandidates(),   // 21
 ];
 
-validateBank(pack, curated, candidates);
-pack.question_variants = [...curated, ...candidates];
+const enrichedCurated = curated.map(enrichVariant);
+const enrichedCandidates = candidates.map(enrichVariant);
+validateBank(pack, enrichedCurated, enrichedCandidates);
+pack.question_variants = [...enrichedCurated, ...enrichedCandidates];
 pack.version = "0.2.0";
 pack.qa.readiness_status = "draft";
 pack.qa.notes = "Wave-five review bank reaches the 240-item pilot target with three preserved curated questions and 237 deterministic candidates spanning equivalence, simplifying, common denominators, improper and mixed representations, number lines, visual models, comparison and misconception reasoning. Generated candidates include SEND scaffolds, supported non-drag interactions, manipulative and static alternatives, rich feedback and untimed low-pressure progress; human curriculum, teacher, accessibility and safeguarding review remains required before promotion.";
@@ -386,6 +388,33 @@ function choiceVariant({ id, format, blueprint, strand, prompt, choices, answer,
   };
 }
 
+function enrichVariant(variant) {
+  const body = variant.body ?? {};
+  return {
+    ...variant,
+    body: {
+      ...body,
+      fraction_representation_contract: {
+        kind: "fraction_representation_reasoning",
+        mode: body.strand === "number_lines" ? "number_line_alignment" : body.strand === "visual_models" ? "same_whole_visual_model" : body.strand === "improper_mixed_representations" ? "whole_and_remainder_grouping" : body.strand === "common_denominators" || body.strand === "comparison" ? "common_denominator_bridge" : "symbol_and_model_link",
+        representation_routes: ["fraction_bar", "fraction_wall", "number_line", "symbolic"],
+        response_modes: ["touch", "keyboard", "switch", "eye_gaze", "aac", "adult_scribed"],
+        drag_required: false,
+        timed: false,
+        preserve_correct_work: true,
+        misconception_check_supported: true,
+      },
+    },
+  };
+}
+
+function validateFractionContract(variant) {
+  const contract = variant.body?.fraction_representation_contract;
+  const requiredResponseModes = ["touch", "keyboard", "switch", "eye_gaze", "aac", "adult_scribed"];
+  if (!contract || contract.kind !== "fraction_representation_reasoning" || !contract.mode || contract.drag_required !== false || contract.timed !== false || contract.preserve_correct_work !== true || contract.misconception_check_supported !== true || requiredResponseModes.some((mode) => !contract.response_modes?.includes(mode))) throw new Error(`${variant.id} lacks an accessible fraction representation contract.`);
+  if (!Array.isArray(contract.representation_routes) || !["fraction_bar", "fraction_wall", "number_line", "symbolic"].every((route) => contract.representation_routes.includes(route))) throw new Error(`${variant.id} lacks equivalent fraction representation routes.`);
+}
+
 function ensureBlueprints(currentPack) {
   const additions = [
     { id: "simplifying-by-common-factor", format: "symbol-build", count: 280, difficulty_band: "developing", misconception_tag: "simplifies_one_part_only", purpose: "Simplify fractions by dividing numerator and denominator by a shared factor.", generation_pattern: "reducible fraction + shared factor + simplest-form or operation choice", review_notes: "Keep visual regrouping available and distinguish simplification from subtraction.", source: "ai_drafted_teacher_reviewed" },
@@ -414,6 +443,7 @@ function validateBank(packData, authored, generated) {
     const signature = `${variant.format}|${normalise(variant.body?.prompt)}|${JSON.stringify(variant.expected_answer)}`;
     if (signatures.has(signature)) throw new Error(`Duplicate prompt/answer/format signature ${variant.id}.`);
     signatures.add(signature);
+    validateFractionContract(variant);
   }
   for (const variant of generated) {
     if (variant.status !== "review") throw new Error(`${variant.id} must remain in review.`);
