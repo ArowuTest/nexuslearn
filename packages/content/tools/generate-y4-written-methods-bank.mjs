@@ -38,7 +38,7 @@ const originalText = await readFile(packPath, "utf8");
 const pack = JSON.parse(originalText);
 if (pack.pack_id !== "ma-y4-written-methods") throw new Error("This generator only supports ma-y4-written-methods.");
 const curated = (pack.question_variants ?? []).filter((variant) => !variant.id.startsWith(prefix));
-const curatedSnapshot = JSON.stringify(curated);
+const curatedSnapshot = JSON.stringify(curated.map(removeWrittenContract));
 if (curated.length !== 4) throw new Error(`Expected 4 curated variants, found ${curated.length}.`);
 for (const variant of curated) if (!curatedBlueprint.has(variant.id)) throw new Error(`Unmapped curated variant ${variant.id}.`);
 const curatedCounts = countBy(curated, (variant) => curatedBlueprint.get(variant.id));
@@ -51,11 +51,13 @@ const generated = [
   ...diagnosisCandidates(targets["diagnose-and-repair-written-methods"]),
   ...methodCandidates(targets["estimate-choose-check"]),
 ];
-pack.question_variants = [...curated, ...generated];
+const enrichedCurated = curated.map(enrichVariant);
+const enrichedGenerated = generated.map(enrichVariant);
+pack.question_variants = [...enrichedCurated, ...enrichedGenerated];
 pack.version = "0.2.0";
 pack.qa.readiness_status = "draft";
 pack.qa.notes = "Deterministic Year 4 written-methods pilot bank with 240 variants: four curated variants remain unchanged and 236 review candidates deepen place-value alignment, meaningful addition exchanges, subtraction renaming, inverse checks, estimates, missing digits, first-error diagnosis, method choice and multistep transfer. Curriculum-aligned short multiplication and division appear only as representation and method-choice links using partial products or equal grouping. Every generated task provides concrete, visual, reduced-load and alternative-input SEND/dyscalculia routes, rich corrective feedback and pressure-free workshop missions. Selected narration uses ElevenLabs references requiring human listening review; browser TTS is prohibited. Independent mathematics, teacher, accessibility, safeguarding and renderer review remains required before promotion.";
-validateBank(pack, curated, curatedSnapshot, generated);
+validateBank(pack, enrichedCurated, curatedSnapshot, enrichedGenerated);
 
 console.log(`y4-written-methods-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
 console.log(`y4-written-methods-bank blueprints=${summary(pack.question_variants, (v) => v.body?.variant_blueprint_id ?? curatedBlueprint.get(v.id))}`);
@@ -354,11 +356,47 @@ function repairFor(tag) {
   return repairs[tag] ?? "Return to the place-value model, preserve correct evidence and repair only the first invalid step.";
 }
 
+function enrichVariant(variant) {
+  const body = variant.body ?? {};
+  const responseModes = ["touch", "keyboard", "switch", "eye_gaze", "aac", "adult_scribed"];
+  const modeByFormat = {
+    "place-value-layout": "place_value_alignment",
+    "column-calculate": "written_calculation",
+    "error-analysis": "first_error_diagnosis",
+    "method-choice": "method_evidence_choice",
+  };
+  return {
+    ...variant,
+    body: {
+      ...body,
+      written_methods_contract: {
+        kind: "place_value_written_method",
+        mode: modeByFormat[variant.format] ?? "authored_choice",
+        operation_key: body.operation !== undefined ? "operation" : null,
+        operands_key: body.operands !== undefined ? "operands" : null,
+        exchange_trace_key: body.exchange_trace !== undefined ? "exchange_trace" : null,
+        rename_trace_key: body.rename_trace !== undefined ? "rename_trace" : null,
+        choices_key: body.choices !== undefined ? "choices" : null,
+        alternatives_key: body.alternatives_accepted !== undefined ? "alternatives_accepted" : null,
+        chosen_strategy_key: body.chosen_strategy !== undefined ? "chosen_strategy" : null,
+        estimate_key: body.estimate !== undefined ? "estimate" : null,
+        reasonableness_key: body.reasonableness_statement !== undefined ? "reasonableness_statement" : null,
+        response_modes: responseModes,
+        drag_required: false,
+        exchange_preserves_quantity: true,
+        inverse_check_supported: true,
+        pressure_policy: "no_timer_no_speed_score_no_lives_no_streak_loss",
+      },
+    },
+  };
+}
+
 function validateBank(currentPack, preserved, snapshot, generatedVariants) {
-  if (preserved.length !== 4 || JSON.stringify(preserved) !== snapshot) throw new Error("Curated preservation failed.");
+  if (preserved.length !== 4 || JSON.stringify(preserved.map(removeWrittenContract)) !== snapshot) throw new Error("Curated preservation failed.");
   if (generatedVariants.length !== 236 || currentPack.question_variants.length !== 240 || currentPack.practice.variant_targets.pilot !== 240) throw new Error("Pilot must contain 4 curated and 236 generated variants.");
   const ids = currentPack.question_variants.map((v) => v.id); if (new Set(ids).size !== ids.length) throw new Error("Duplicate IDs found.");
   const signatures = new Set();
+  for (const variant of [...preserved, ...generatedVariants]) validateWrittenContract(variant);
   for (const v of generatedVariants) { const sig = `${v.format}|${v.body.prompt}|${JSON.stringify(v.expected_answer.value)}`; if (signatures.has(sig)) throw new Error(`Duplicate generated signature ${v.id}.`); signatures.add(sig); }
   const counts = countBy(currentPack.question_variants, (v) => v.body?.variant_blueprint_id ?? curatedBlueprint.get(v.id));
   for (const [id, target] of Object.entries(allocation)) if (counts[id] !== target) throw new Error(`${id}: expected ${target}, found ${counts[id] ?? 0}.`);
@@ -373,6 +411,22 @@ function validateBank(currentPack, preserved, snapshot, generatedVariants) {
     if (b.audio_required) { if (b.audio_provider !== "ElevenLabs" || b.audio_asset_status !== "required_human_listening_review" || !b.human_listening_approval_required || b.browser_tts_allowed !== false || b.browser_tts_fallback !== "prohibited") throw new Error(`Audio policy failed in ${v.id}.`); }
     else if (b.audio_asset_id || b.audio_provider) throw new Error(`Unexpected audio reference in ${v.id}.`);
   }
+}
+
+function validateWrittenContract(variant) {
+  const contract = variant.body?.written_methods_contract;
+  const requiredResponseModes = ["touch", "keyboard", "switch", "eye_gaze", "aac", "adult_scribed"];
+  if (!contract || contract.drag_required !== false || contract.exchange_preserves_quantity !== true || contract.inverse_check_supported !== true || contract.pressure_policy !== "no_timer_no_speed_score_no_lives_no_streak_loss" || requiredResponseModes.some((mode) => !contract.response_modes?.includes(mode))) throw new Error(`${variant.id} lacks an accessible written-method contract.`);
+  if (!["place_value_alignment", "written_calculation", "first_error_diagnosis", "method_evidence_choice", "authored_choice"].includes(contract.mode)) throw new Error(`${variant.id} has an unknown written-method mode.`);
+  if (contract.mode === "written_calculation" && !contract.operation_key && !contract.exchange_trace_key && !contract.rename_trace_key) throw new Error(`${variant.id} lacks calculation or exchange semantics.`);
+  if (contract.mode === "first_error_diagnosis" && !Array.isArray(variant.body?.choices)) throw new Error(`${variant.id} lacks accessible error choices.`);
+  const hasMethodEvidence = ["choices", "alternatives_accepted", "chosen_strategy", "reasonableness_statement", "estimate", "partial_products", "recombine", "partition", "operands", "operation", "context", "quantities", "step_planner", "estimate_each_step", "inverse_check_final_step", "scope", "number_line_jumps"].some((key) => variant.body?.[key] !== undefined);
+  if (contract.mode === "method_evidence_choice" && !hasMethodEvidence) throw new Error(`${variant.id} lacks an accessible method route.`);
+}
+
+function removeWrittenContract(variant) {
+  const { written_methods_contract: _writtenMethodsContract, ...body } = variant.body ?? {};
+  return { ...variant, body };
 }
 
 function placeDigits(n) { return [...String(n).padStart(4, " ")]; }
