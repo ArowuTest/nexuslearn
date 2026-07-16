@@ -27,6 +27,11 @@ const pack = JSON.parse(originalText);
 if (pack.pack_id !== "ma-y2-measures") {
   throw new Error("This generator only supports the Year 2 measures pack.");
 }
+for (const variant of pack.question_variants ?? []) {
+  if (typeof variant.explanation === "string" && variant.explanation.includes(" The expected response is ")) {
+    variant.explanation = variant.explanation.split(" The expected response is ")[0];
+  }
+}
 
 const beforeVariants = structuredClone(pack.question_variants ?? []);
 const beforeCore = coreSnapshot(beforeVariants);
@@ -508,6 +513,7 @@ function validateHardening(variants, beforeCoreSnapshot, beforeBlueprintCounts) 
 function coreSnapshot(variants) { return variants.map(stripEnrichment); }
 function stripEnrichment(variant) {
   const copy = structuredClone(variant); delete copy.feedback;
+  if (typeof copy.explanation === "string") copy.explanation = copy.explanation.split(" The expected response is ")[0];
   if (copy.format === "measure-tool-select") delete copy.body.choices;
   if (copy.format === "measure-tool-select" && copy.expected_answer) delete copy.expected_answer.value;
   for (const key of ["builder_contract", "interaction_route", "accessible_response_route", "representation_access", "dyscalculia_support", "reduced_load_route", "no_mandatory_dragging", "no_mandatory_handwriting", "no_mandatory_speech", "microphone_required", "handwriting_required", "retry_without_penalty", "no_timer", "speed_score_allowed", "preserve_correct_work", "undo_available", "pressure_rules", "audio_required", "audio_route", "audio_policy", "audio_provider", "audio_production_policy", "human_listening_approval_required", "browser_tts_allowed", "browser_tts_fallback"]) delete copy.body[key];

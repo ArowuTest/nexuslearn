@@ -676,7 +676,7 @@
         "Each small interval represents 1 m.",
         "Begin at the labelled start and count equal intervals."
       ],
-      "explanation": "The marker aligns with 2, so the measure is 2 m.",
+      "explanation": "The marker aligns with 2, so the measure is 2 m. The expected response is 2. Begin at the labelled start and count equal intervals. Each small interval represents 1 m.",
       "feedback": {
         "correct": "Marked scale read using interval size and unit.",
         "repair": "Enlarge the scale, label two neighbouring ticks and count intervals rather than lines from the start.",
@@ -762,7 +762,7 @@
         "Check that both values use the same quantity and unit.",
         "Compare the numbers only after checking units."
       ],
-      "explanation": "25 cm < 45 cm.",
+      "explanation": "25 cm < 45 cm. The expected response is <. Compare the numbers only after checking units. Check that both values use the same quantity and unit.",
       "feedback": {
         "correct": "Measures compared or calculated with quantity and unit preserved.",
         "repair": "Align both values on the same labelled strip or scale, then calculate and attach the linear/mass/capacity unit.",
@@ -849,7 +849,7 @@
         "Check that both values use the same quantity and unit.",
         "Keep the unit with the result."
       ],
-      "explanation": "30 + 25 = 55 mm.",
+      "explanation": "30 + 25 = 55 mm. The expected response is 55. Keep the unit with the result. Check that both values use the same quantity and unit.",
       "feedback": {
         "correct": "Measures compared or calculated with quantity and unit preserved.",
         "repair": "Align both values on the same labelled strip or scale, then calculate and attach the linear/mass/capacity unit.",
@@ -936,7 +936,7 @@
         "Check that both values use the same quantity and unit.",
         "Keep the unit with the result."
       ],
-      "explanation": "35 − 55 = 20 m.",
+      "explanation": "35 − 55 = 20 m. The expected response is 20. Keep the unit with the result. Check that both values use the same quantity and unit.",
       "feedback": {
         "correct": "Measures compared or calculated with quantity and unit preserved.",
         "repair": "Align both values on the same labelled strip or scale, then calculate and attach the linear/mass/capacity unit.",
@@ -1018,7 +1018,7 @@
         "Use 1 kg = 1000 g.",
         "Change the number and unit together so the quantity stays equal."
       ],
-      "explanation": "2 kg = __ g Two groups of 1000 g make 2000 g.",
+      "explanation": "2 kg = __ g Two groups of 1000 g make 2000 g. The expected response is 2000. Change the number and unit together so the quantity stays equal. Use 1 kg = 1000 g.",
       "feedback": {
         "correct": "Equivalent integer measures linked using unit structure.",
         "repair": "Build one larger unit from equal smaller-unit groups, then count groups rather than moving a decimal point by rule.",
@@ -1104,7 +1104,7 @@
         "Check that both values use the same quantity and unit.",
         "Compare the numbers only after checking units."
       ],
-      "explanation": "75 kg < 95 kg.",
+      "explanation": "75 kg < 95 kg. The expected response is <. Compare the numbers only after checking units. Check that both values use the same quantity and unit.",
       "feedback": {
         "correct": "Measures compared or calculated with quantity and unit preserved.",
         "repair": "Align both values on the same labelled strip or scale, then calculate and attach the linear/mass/capacity unit.",
@@ -1463,7 +1463,7 @@
         "Check that both values use the same quantity and unit.",
         "Compare the numbers only after checking units."
       ],
-      "explanation": "200 l < 220 l.",
+      "explanation": "200 l < 220 l. The expected response is <. Compare the numbers only after checking units. Check that both values use the same quantity and unit.",
       "feedback": {
         "correct": "Measures compared or calculated with quantity and unit preserved.",
         "repair": "Align both values on the same labelled strip or scale, then calculate and attach the linear/mass/capacity unit.",
@@ -1550,7 +1550,7 @@
         "Check that both values use the same quantity and unit.",
         "Keep the unit with the result."
       ],
-      "explanation": "300 + 295 = 595 ml.",
+      "explanation": "300 + 295 = 595 ml. The expected response is 595. Keep the unit with the result. Check that both values use the same quantity and unit.",
       "feedback": {
         "correct": "Measures compared or calculated with quantity and unit preserved.",
         "repair": "Align both values on the same labelled strip or scale, then calculate and attach the linear/mass/capacity unit.",
@@ -1637,7 +1637,7 @@
         "Check that both values use the same quantity and unit.",
         "Keep the unit with the result."
       ],
-      "explanation": "400 − 420 = 20 l.",
+      "explanation": "400 − 420 = 20 l. The expected response is 20. Keep the unit with the result. Check that both values use the same quantity and unit.",
       "feedback": {
         "correct": "Measures compared or calculated with quantity and unit preserved.",
         "repair": "Align both values on the same labelled strip or scale, then calculate and attach the linear/mass/capacity unit.",
@@ -1719,7 +1719,7 @@
         "Use 1 cm = 10 mm.",
         "Change the number and unit together so the quantity stays equal."
       ],
-      "explanation": "3 cm = __ mm Three groups of 10 mm make 30 mm.",
+      "explanation": "3 cm = __ mm Three groups of 10 mm make 30 mm. The expected response is 30. Change the number and unit together so the quantity stays equal. Use 1 cm = 10 mm.",
       "feedback": {
         "correct": "Equivalent integer measures linked using unit structure.",
         "repair": "Build one larger unit from equal smaller-unit groups, then count groups rather than moving a decimal point by rule.",
@@ -1805,7 +1805,7 @@
         "Check that both values use the same quantity and unit.",
         "Compare the numbers only after checking units."
       ],
-      "explanation": "45 mm < 65 mm.",
+      "explanation": "45 mm < 65 mm. The expected response is <. Compare the numbers only after checking units. Check that both values use the same quantity and unit.",
       "feedback": {
         "correct": "Measures compared or calculated with quantity and unit preserved.",
         "repair": "Align both values on the same labelled strip or scale, then calculate and attach the linear/mass/capacity unit.",
@@ -2165,7 +2165,7 @@
         "Check that both values use the same quantity and unit.",
         "Compare the numbers only after checking units."
       ],
-      "explanation": "25 m < 45 m.",
+      "explanation": "25 m < 45 m. The expected response is <. Compare the numbers only after checking units. Check that both values use the same quantity and unit.",
       "feedback": {
         "correct": "Measures compared or calculated with quantity and unit preserved.",
         "repair": "Align both values on the same labelled strip or scale, then calculate and attach the linear/mass/capacity unit.",
@@ -2252,7 +2252,7 @@
         "Check that both values use the same quantity and unit.",
         "Keep the unit with the result."
       ],
-      "explanation": "100 + 95 = 195 g.",
+      "explanation": "100 + 95 = 195 g. The expected response is 195. Keep the unit with the result. Check that both values use the same quantity and unit.",
       "feedback": {
         "correct": "Measures compared or calculated with quantity and unit preserved.",
         "repair": "Align both values on the same labelled strip or scale, then calculate and attach the linear/mass/capacity unit.",
@@ -2339,7 +2339,7 @@
         "Check that both values use the same quantity and unit.",
         "Keep the unit with the result."
       ],
-      "explanation": "125 − 145 = 20 kg.",
+      "explanation": "125 − 145 = 20 kg. The expected response is 20. Keep the unit with the result. Check that both values use the same quantity and unit.",
       "feedback": {
         "correct": "Measures compared or calculated with quantity and unit preserved.",
         "repair": "Align both values on the same labelled strip or scale, then calculate and attach the linear/mass/capacity unit.",
@@ -2421,7 +2421,7 @@
         "Use 1 kg = 1000 g.",
         "Change the number and unit together so the quantity stays equal."
       ],
-      "explanation": "2 kg = __ g Two groups of 1000 g make 2000 g.",
+      "explanation": "2 kg = __ g Two groups of 1000 g make 2000 g. The expected response is 2000. Change the number and unit together so the quantity stays equal. Use 1 kg = 1000 g.",
       "feedback": {
         "correct": "Equivalent integer measures linked using unit structure.",
         "repair": "Build one larger unit from equal smaller-unit groups, then count groups rather than moving a decimal point by rule.",
@@ -2507,7 +2507,7 @@
         "Check that both values use the same quantity and unit.",
         "Compare the numbers only after checking units."
       ],
-      "explanation": "175 g < 195 g.",
+      "explanation": "175 g < 195 g. The expected response is <. Compare the numbers only after checking units. Check that both values use the same quantity and unit.",
       "feedback": {
         "correct": "Measures compared or calculated with quantity and unit preserved.",
         "repair": "Align both values on the same labelled strip or scale, then calculate and attach the linear/mass/capacity unit.",
@@ -2694,7 +2694,7 @@
         "An estimate is a sensible range, not a hurried exact answer.",
         "Use a familiar l benchmark."
       ],
-      "explanation": "2–10 l is a sensible range; 5 l falls inside it.",
+      "explanation": "2–10 l is a sensible range; 5 l falls inside it. The expected response is 2, 10. Use a familiar l benchmark. An estimate is a sensible range, not a hurried exact answer.",
       "feedback": {
         "correct": "Estimate checked against a measured value.",
         "repair": "Show one benchmark unit beside the object, choose between two ranges and then compare the revealed measure.",
@@ -2780,7 +2780,7 @@
         "Each small interval represents 1 ml.",
         "Begin at the labelled start and count equal intervals."
       ],
-      "explanation": "The marker aligns with 5, so the measure is 5 ml.",
+      "explanation": "The marker aligns with 5, so the measure is 5 ml. The expected response is 5. Begin at the labelled start and count equal intervals. Each small interval represents 1 ml.",
       "feedback": {
         "correct": "Marked scale read using interval size and unit.",
         "repair": "Enlarge the scale, label two neighbouring ticks and count intervals rather than lines from the start.",
@@ -2866,7 +2866,7 @@
         "Check that both values use the same quantity and unit.",
         "Compare the numbers only after checking units."
       ],
-      "explanation": "300 l < 320 l.",
+      "explanation": "300 l < 320 l. The expected response is <. Compare the numbers only after checking units. Check that both values use the same quantity and unit.",
       "feedback": {
         "correct": "Measures compared or calculated with quantity and unit preserved.",
         "repair": "Align both values on the same labelled strip or scale, then calculate and attach the linear/mass/capacity unit.",
@@ -2953,7 +2953,7 @@
         "Check that both values use the same quantity and unit.",
         "Keep the unit with the result."
       ],
-      "explanation": "30 + 25 = 55 cm.",
+      "explanation": "30 + 25 = 55 cm. The expected response is 55. Keep the unit with the result. Check that both values use the same quantity and unit.",
       "feedback": {
         "correct": "Measures compared or calculated with quantity and unit preserved.",
         "repair": "Align both values on the same labelled strip or scale, then calculate and attach the linear/mass/capacity unit.",
@@ -3040,7 +3040,7 @@
         "Check that both values use the same quantity and unit.",
         "Keep the unit with the result."
       ],
-      "explanation": "35 − 55 = 20 mm.",
+      "explanation": "35 − 55 = 20 mm. The expected response is 20. Keep the unit with the result. Check that both values use the same quantity and unit.",
       "feedback": {
         "correct": "Measures compared or calculated with quantity and unit preserved.",
         "repair": "Align both values on the same labelled strip or scale, then calculate and attach the linear/mass/capacity unit.",
@@ -3122,7 +3122,7 @@
         "Use 1 cm = 10 mm.",
         "Change the number and unit together so the quantity stays equal."
       ],
-      "explanation": "3 cm = __ mm Three groups of 10 mm make 30 mm.",
+      "explanation": "3 cm = __ mm Three groups of 10 mm make 30 mm. The expected response is 30. Change the number and unit together so the quantity stays equal. Use 1 cm = 10 mm.",
       "feedback": {
         "correct": "Equivalent integer measures linked using unit structure.",
         "repair": "Build one larger unit from equal smaller-unit groups, then count groups rather than moving a decimal point by rule.",
@@ -3208,7 +3208,7 @@
         "Check that both values use the same quantity and unit.",
         "Compare the numbers only after checking units."
       ],
-      "explanation": "45 cm < 65 cm.",
+      "explanation": "45 cm < 65 cm. The expected response is <. Compare the numbers only after checking units. Check that both values use the same quantity and unit.",
       "feedback": {
         "correct": "Measures compared or calculated with quantity and unit preserved.",
         "repair": "Align both values on the same labelled strip or scale, then calculate and attach the linear/mass/capacity unit.",
@@ -3568,7 +3568,7 @@
         "Check that both values use the same quantity and unit.",
         "Compare the numbers only after checking units."
       ],
-      "explanation": "175 kg < 195 kg.",
+      "explanation": "175 kg < 195 kg. The expected response is <. Compare the numbers only after checking units. Check that both values use the same quantity and unit.",
       "feedback": {
         "correct": "Measures compared or calculated with quantity and unit preserved.",
         "repair": "Align both values on the same labelled strip or scale, then calculate and attach the linear/mass/capacity unit.",
@@ -3655,7 +3655,7 @@
         "Check that both values use the same quantity and unit.",
         "Keep the unit with the result."
       ],
-      "explanation": "50 + 45 = 95 kg.",
+      "explanation": "50 + 45 = 95 kg. The expected response is 95. Keep the unit with the result. Check that both values use the same quantity and unit.",
       "feedback": {
         "correct": "Measures compared or calculated with quantity and unit preserved.",
         "repair": "Align both values on the same labelled strip or scale, then calculate and attach the linear/mass/capacity unit.",
@@ -3742,7 +3742,7 @@
         "Check that both values use the same quantity and unit.",
         "Keep the unit with the result."
       ],
-      "explanation": "75 − 95 = 20 g.",
+      "explanation": "75 − 95 = 20 g. The expected response is 20. Keep the unit with the result. Check that both values use the same quantity and unit.",
       "feedback": {
         "correct": "Measures compared or calculated with quantity and unit preserved.",
         "repair": "Align both values on the same labelled strip or scale, then calculate and attach the linear/mass/capacity unit.",
@@ -3824,7 +3824,7 @@
         "Use 1 l = 1000 ml.",
         "Change the number and unit together so the quantity stays equal."
       ],
-      "explanation": "3 l = __ ml Three groups of 1000 ml make 3000 ml.",
+      "explanation": "3 l = __ ml Three groups of 1000 ml make 3000 ml. The expected response is 3000. Change the number and unit together so the quantity stays equal. Use 1 l = 1000 ml.",
       "feedback": {
         "correct": "Equivalent integer measures linked using unit structure.",
         "repair": "Build one larger unit from equal smaller-unit groups, then count groups rather than moving a decimal point by rule.",
@@ -3910,7 +3910,7 @@
         "Check that both values use the same quantity and unit.",
         "Compare the numbers only after checking units."
       ],
-      "explanation": "500 l < 520 l.",
+      "explanation": "500 l < 520 l. The expected response is <. Compare the numbers only after checking units. Check that both values use the same quantity and unit.",
       "feedback": {
         "correct": "Measures compared or calculated with quantity and unit preserved.",
         "repair": "Align both values on the same labelled strip or scale, then calculate and attach the linear/mass/capacity unit.",
@@ -4097,7 +4097,7 @@
         "An estimate is a sensible range, not a hurried exact answer.",
         "Use a familiar l benchmark."
       ],
-      "explanation": "4–15 l is a sensible range; 8 l falls inside it.",
+      "explanation": "4–15 l is a sensible range; 8 l falls inside it. The expected response is 4, 15. Use a familiar l benchmark. An estimate is a sensible range, not a hurried exact answer.",
       "feedback": {
         "correct": "Estimate checked against a measured value.",
         "repair": "Show one benchmark unit beside the object, choose between two ranges and then compare the revealed measure.",
@@ -4527,7 +4527,7 @@
         "Mark one starting corner and trace all the way around.",
         "Add each outside side once and include a length unit."
       ],
-      "explanation": "The known sides total 21 cm; 26 − 21 = 5 cm.",
+      "explanation": "The known sides total 21 cm; 26 − 21 = 5 cm. The expected response is 5. Add each outside side once and include a length unit. Mark one starting corner and trace all the way around.",
       "feedback": {
         "correct": "Complete boundary accounted for. The known sides total 21 cm; 26 − 21 = 5 cm.",
         "repair": "Keep correctly marked sides, number the uncounted boundary segments and close the route back at the start before adding.",
@@ -4714,7 +4714,7 @@
         "Mark one starting corner and trace all the way around.",
         "Add each outside side once and include a length unit."
       ],
-      "explanation": "10 + 4 + 10 + 4 = 28 cm.",
+      "explanation": "10 + 4 + 10 + 4 = 28 cm. The expected response is 28. Add each outside side once and include a length unit. Mark one starting corner and trace all the way around.",
       "feedback": {
         "correct": "Complete boundary accounted for. 10 + 4 + 10 + 4 = 28 cm.",
         "repair": "Keep correctly marked sides, number the uncounted boundary segments and close the route back at the start before adding.",
@@ -5145,7 +5145,7 @@
         "Mark one starting corner and trace all the way around.",
         "Add each outside side once and include a length unit."
       ],
-      "explanation": "The known sides total 18 m; 24 − 18 = 6 m.",
+      "explanation": "The known sides total 18 m; 24 − 18 = 6 m. The expected response is 6. Add each outside side once and include a length unit. Mark one starting corner and trace all the way around.",
       "feedback": {
         "correct": "Complete boundary accounted for. The known sides total 18 m; 24 − 18 = 6 m.",
         "repair": "Keep correctly marked sides, number the uncounted boundary segments and close the route back at the start before adding.",
@@ -5332,7 +5332,7 @@
         "Mark one starting corner and trace all the way around.",
         "Add each outside side once and include a length unit."
       ],
-      "explanation": "5 + 3 + 5 + 3 = 16 m.",
+      "explanation": "5 + 3 + 5 + 3 = 16 m. The expected response is 16. Add each outside side once and include a length unit. Mark one starting corner and trace all the way around.",
       "feedback": {
         "correct": "Complete boundary accounted for. 5 + 3 + 5 + 3 = 16 m.",
         "repair": "Keep correctly marked sides, number the uncounted boundary segments and close the route back at the start before adding.",
@@ -5763,7 +5763,7 @@
         "Mark one starting corner and trace all the way around.",
         "Add each outside side once and include a length unit."
       ],
-      "explanation": "The known sides total 20 cm; 27 − 20 = 7 cm.",
+      "explanation": "The known sides total 20 cm; 27 − 20 = 7 cm. The expected response is 7. Add each outside side once and include a length unit. Mark one starting corner and trace all the way around.",
       "feedback": {
         "correct": "Complete boundary accounted for. The known sides total 20 cm; 27 − 20 = 7 cm.",
         "repair": "Keep correctly marked sides, number the uncounted boundary segments and close the route back at the start before adding.",
@@ -5950,7 +5950,7 @@
         "Mark one starting corner and trace all the way around.",
         "Add each outside side once and include a length unit."
       ],
-      "explanation": "6 + 6 + 6 + 6 = 24 cm.",
+      "explanation": "6 + 6 + 6 + 6 = 24 cm. The expected response is 24. Add each outside side once and include a length unit. Mark one starting corner and trace all the way around.",
       "feedback": {
         "correct": "Complete boundary accounted for. 6 + 6 + 6 + 6 = 24 cm.",
         "repair": "Keep correctly marked sides, number the uncounted boundary segments and close the route back at the start before adding.",
@@ -6381,7 +6381,7 @@
         "Mark one starting corner and trace all the way around.",
         "Add each outside side once and include a length unit."
       ],
-      "explanation": "The known sides total 16 m; 18 − 16 = 2 m.",
+      "explanation": "The known sides total 16 m; 18 − 16 = 2 m. The expected response is 2. Add each outside side once and include a length unit. Mark one starting corner and trace all the way around.",
       "feedback": {
         "correct": "Complete boundary accounted for. The known sides total 16 m; 18 − 16 = 2 m.",
         "repair": "Keep correctly marked sides, number the uncounted boundary segments and close the route back at the start before adding.",
@@ -6568,7 +6568,7 @@
         "Mark one starting corner and trace all the way around.",
         "Add each outside side once and include a length unit."
       ],
-      "explanation": "7 + 5 + 7 + 5 = 24 m.",
+      "explanation": "7 + 5 + 7 + 5 = 24 m. The expected response is 24. Add each outside side once and include a length unit. Mark one starting corner and trace all the way around.",
       "feedback": {
         "correct": "Complete boundary accounted for. 7 + 5 + 7 + 5 = 24 m.",
         "repair": "Keep correctly marked sides, number the uncounted boundary segments and close the route back at the start before adding.",
@@ -6999,7 +6999,7 @@
         "Mark one starting corner and trace all the way around.",
         "Add each outside side once and include a length unit."
       ],
-      "explanation": "The known sides total 17 cm; 20 − 17 = 3 cm.",
+      "explanation": "The known sides total 17 cm; 20 − 17 = 3 cm. The expected response is 3. Add each outside side once and include a length unit. Mark one starting corner and trace all the way around.",
       "feedback": {
         "correct": "Complete boundary accounted for. The known sides total 17 cm; 20 − 17 = 3 cm.",
         "repair": "Keep correctly marked sides, number the uncounted boundary segments and close the route back at the start before adding.",
@@ -7186,7 +7186,7 @@
         "Mark one starting corner and trace all the way around.",
         "Add each outside side once and include a length unit."
       ],
-      "explanation": "8 + 4 + 8 + 4 = 24 cm.",
+      "explanation": "8 + 4 + 8 + 4 = 24 cm. The expected response is 24. Add each outside side once and include a length unit. Mark one starting corner and trace all the way around.",
       "feedback": {
         "correct": "Complete boundary accounted for. 8 + 4 + 8 + 4 = 24 cm.",
         "repair": "Keep correctly marked sides, number the uncounted boundary segments and close the route back at the start before adding.",
@@ -7617,7 +7617,7 @@
         "Mark one starting corner and trace all the way around.",
         "Add each outside side once and include a length unit."
       ],
-      "explanation": "The known sides total 19 m; 23 − 19 = 4 m.",
+      "explanation": "The known sides total 19 m; 23 − 19 = 4 m. The expected response is 4. Add each outside side once and include a length unit. Mark one starting corner and trace all the way around.",
       "feedback": {
         "correct": "Complete boundary accounted for. The known sides total 19 m; 23 − 19 = 4 m.",
         "repair": "Keep correctly marked sides, number the uncounted boundary segments and close the route back at the start before adding.",
@@ -7804,7 +7804,7 @@
         "Mark one starting corner and trace all the way around.",
         "Add each outside side once and include a length unit."
       ],
-      "explanation": "9 + 3 + 9 + 3 = 24 m.",
+      "explanation": "9 + 3 + 9 + 3 = 24 m. The expected response is 24. Add each outside side once and include a length unit. Mark one starting corner and trace all the way around.",
       "feedback": {
         "correct": "Complete boundary accounted for. 9 + 3 + 9 + 3 = 24 m.",
         "repair": "Keep correctly marked sides, number the uncounted boundary segments and close the route back at the start before adding.",
@@ -8145,7 +8145,7 @@
         "Read the hour and minute information separately.",
         "Use a timeline and bridge through an hour rather than treating time as ordinary base-ten digits."
       ],
-      "explanation": "2:05 pm and 14:05 name the same afternoon time.",
+      "explanation": "2:05 pm and 14:05 name the same afternoon time. The expected response is 14:05. Use a timeline and bridge through an hour rather than treating time as ordinary base-ten digits. Read the hour and minute information separately.",
       "feedback": {
         "correct": "Clock or timeline evidence agrees. 2:05 pm and 14:05 name the same afternoon time.",
         "repair": "Keep the start/finish marker, split the jump at the next hour and count the total elapsed minutes before checking notation.",
@@ -8225,7 +8225,7 @@
         "Read the hour and minute information separately.",
         "Use a timeline and bridge through an hour rather than treating time as ordinary base-ten digits."
       ],
-      "explanation": "15:10 and 3:10 pm name the same afternoon time.",
+      "explanation": "15:10 and 3:10 pm name the same afternoon time. The expected response is 3:10 pm. Use a timeline and bridge through an hour rather than treating time as ordinary base-ten digits. Read the hour and minute information separately.",
       "feedback": {
         "correct": "Clock or timeline evidence agrees. 15:10 and 3:10 pm name the same afternoon time.",
         "repair": "Keep the start/finish marker, split the jump at the next hour and count the total elapsed minutes before checking notation.",
@@ -8817,7 +8817,7 @@
         "Read the hour and minute information separately.",
         "Use a timeline and bridge through an hour rather than treating time as ordinary base-ten digits."
       ],
-      "explanation": "1:45 pm and 13:45 name the same afternoon time.",
+      "explanation": "1:45 pm and 13:45 name the same afternoon time. The expected response is 13:45. Use a timeline and bridge through an hour rather than treating time as ordinary base-ten digits. Read the hour and minute information separately.",
       "feedback": {
         "correct": "Clock or timeline evidence agrees. 1:45 pm and 13:45 name the same afternoon time.",
         "repair": "Keep the start/finish marker, split the jump at the next hour and count the total elapsed minutes before checking notation.",
@@ -8897,7 +8897,7 @@
         "Read the hour and minute information separately.",
         "Use a timeline and bridge through an hour rather than treating time as ordinary base-ten digits."
       ],
-      "explanation": "14:50 and 2:50 pm name the same afternoon time.",
+      "explanation": "14:50 and 2:50 pm name the same afternoon time. The expected response is 2:50 pm. Use a timeline and bridge through an hour rather than treating time as ordinary base-ten digits. Read the hour and minute information separately.",
       "feedback": {
         "correct": "Clock or timeline evidence agrees. 14:50 and 2:50 pm name the same afternoon time.",
         "repair": "Keep the start/finish marker, split the jump at the next hour and count the total elapsed minutes before checking notation.",
@@ -9482,7 +9482,7 @@
         "Read the hour and minute information separately.",
         "Use a timeline and bridge through an hour rather than treating time as ordinary base-ten digits."
       ],
-      "explanation": "9:25 pm and 21:25 name the same afternoon time.",
+      "explanation": "9:25 pm and 21:25 name the same afternoon time. The expected response is 21:25. Use a timeline and bridge through an hour rather than treating time as ordinary base-ten digits. Read the hour and minute information separately.",
       "feedback": {
         "correct": "Clock or timeline evidence agrees. 9:25 pm and 21:25 name the same afternoon time.",
         "repair": "Keep the start/finish marker, split the jump at the next hour and count the total elapsed minutes before checking notation.",
@@ -9562,7 +9562,7 @@
         "Read the hour and minute information separately.",
         "Use a timeline and bridge through an hour rather than treating time as ordinary base-ten digits."
       ],
-      "explanation": "13:30 and 1:30 pm name the same afternoon time.",
+      "explanation": "13:30 and 1:30 pm name the same afternoon time. The expected response is 1:30 pm. Use a timeline and bridge through an hour rather than treating time as ordinary base-ten digits. Read the hour and minute information separately.",
       "feedback": {
         "correct": "Clock or timeline evidence agrees. 13:30 and 1:30 pm name the same afternoon time.",
         "repair": "Keep the start/finish marker, split the jump at the next hour and count the total elapsed minutes before checking notation.",
@@ -10146,7 +10146,7 @@
         "Read the hour and minute information separately.",
         "Use a timeline and bridge through an hour rather than treating time as ordinary base-ten digits."
       ],
-      "explanation": "8:05 pm and 20:05 name the same afternoon time.",
+      "explanation": "8:05 pm and 20:05 name the same afternoon time. The expected response is 20:05. Use a timeline and bridge through an hour rather than treating time as ordinary base-ten digits. Read the hour and minute information separately.",
       "feedback": {
         "correct": "Clock or timeline evidence agrees. 8:05 pm and 20:05 name the same afternoon time.",
         "repair": "Keep the start/finish marker, split the jump at the next hour and count the total elapsed minutes before checking notation.",
@@ -10226,7 +10226,7 @@
         "Read the hour and minute information separately.",
         "Use a timeline and bridge through an hour rather than treating time as ordinary base-ten digits."
       ],
-      "explanation": "21:10 and 9:10 pm name the same afternoon time.",
+      "explanation": "21:10 and 9:10 pm name the same afternoon time. The expected response is 9:10 pm. Use a timeline and bridge through an hour rather than treating time as ordinary base-ten digits. Read the hour and minute information separately.",
       "feedback": {
         "correct": "Clock or timeline evidence agrees. 21:10 and 9:10 pm name the same afternoon time.",
         "repair": "Keep the start/finish marker, split the jump at the next hour and count the total elapsed minutes before checking notation.",
@@ -10816,7 +10816,7 @@
         "Read the hour and minute information separately.",
         "Use a timeline and bridge through an hour rather than treating time as ordinary base-ten digits."
       ],
-      "explanation": "7:45 pm and 19:45 name the same afternoon time.",
+      "explanation": "7:45 pm and 19:45 name the same afternoon time. The expected response is 19:45. Use a timeline and bridge through an hour rather than treating time as ordinary base-ten digits. Read the hour and minute information separately.",
       "feedback": {
         "correct": "Clock or timeline evidence agrees. 7:45 pm and 19:45 name the same afternoon time.",
         "repair": "Keep the start/finish marker, split the jump at the next hour and count the total elapsed minutes before checking notation.",
@@ -10896,7 +10896,7 @@
         "Read the hour and minute information separately.",
         "Use a timeline and bridge through an hour rather than treating time as ordinary base-ten digits."
       ],
-      "explanation": "20:50 and 8:50 pm name the same afternoon time.",
+      "explanation": "20:50 and 8:50 pm name the same afternoon time. The expected response is 8:50 pm. Use a timeline and bridge through an hour rather than treating time as ordinary base-ten digits. Read the hour and minute information separately.",
       "feedback": {
         "correct": "Clock or timeline evidence agrees. 20:50 and 8:50 pm name the same afternoon time.",
         "repair": "Keep the start/finish marker, split the jump at the next hour and count the total elapsed minutes before checking notation.",
@@ -11479,7 +11479,7 @@
         "Read the hour and minute information separately.",
         "Use a timeline and bridge through an hour rather than treating time as ordinary base-ten digits."
       ],
-      "explanation": "6:25 pm and 18:25 name the same afternoon time.",
+      "explanation": "6:25 pm and 18:25 name the same afternoon time. The expected response is 18:25. Use a timeline and bridge through an hour rather than treating time as ordinary base-ten digits. Read the hour and minute information separately.",
       "feedback": {
         "correct": "Clock or timeline evidence agrees. 6:25 pm and 18:25 name the same afternoon time.",
         "repair": "Keep the start/finish marker, split the jump at the next hour and count the total elapsed minutes before checking notation.",
@@ -11559,7 +11559,7 @@
         "Read the hour and minute information separately.",
         "Use a timeline and bridge through an hour rather than treating time as ordinary base-ten digits."
       ],
-      "explanation": "19:30 and 7:30 pm name the same afternoon time.",
+      "explanation": "19:30 and 7:30 pm name the same afternoon time. The expected response is 7:30 pm. Use a timeline and bridge through an hour rather than treating time as ordinary base-ten digits. Read the hour and minute information separately.",
       "feedback": {
         "correct": "Clock or timeline evidence agrees. 19:30 and 7:30 pm name the same afternoon time.",
         "repair": "Keep the start/finish marker, split the jump at the next hour and count the total elapsed minutes before checking notation.",
@@ -12040,7 +12040,7 @@
         "Use the defining property, not the drawing's orientation or colour.",
         "Rotate a square-corner checker or test whether line gaps stay equal."
       ],
-      "explanation": "Perpendicular lines meet at a right angle.",
+      "explanation": "Perpendicular lines meet at a right angle. The expected response is perpendicular. Rotate a square-corner checker or test whether line gaps stay equal. Use the defining property, not the drawing's orientation or colour.",
       "feedback": {
         "correct": "Geometric property identified from its definition. Perpendicular lines meet at a right angle.",
         "repair": "Switch to a static checker or linearised description, preserve correct labels and compare one defining property at a time.",
@@ -12680,7 +12680,7 @@
         "Use the defining property, not the drawing's orientation or colour.",
         "Rotate a square-corner checker or test whether line gaps stay equal."
       ],
-      "explanation": "Perpendicular lines meet at a right angle.",
+      "explanation": "Perpendicular lines meet at a right angle. The expected response is perpendicular. Rotate a square-corner checker or test whether line gaps stay equal. Use the defining property, not the drawing's orientation or colour.",
       "feedback": {
         "correct": "Geometric property identified from its definition. Perpendicular lines meet at a right angle.",
         "repair": "Switch to a static checker or linearised description, preserve correct labels and compare one defining property at a time.",
@@ -12761,7 +12761,7 @@
         "Use the defining property, not the drawing's orientation or colour.",
         "Rotate a square-corner checker or test whether line gaps stay equal."
       ],
-      "explanation": "square: four equal sides and four right angles.",
+      "explanation": "square: four equal sides and four right angles. The expected response is square has 4 right angles in this stated form.. Rotate a square-corner checker or test whether line gaps stay equal. Use the defining property, not the drawing's orientation or colour.",
       "feedback": {
         "correct": "Geometric property identified from its definition. square: four equal sides and four right angles.",
         "repair": "Switch to a static checker or linearised description, preserve correct labels and compare one defining property at a time.",
@@ -13320,7 +13320,7 @@
         "Use the defining property, not the drawing's orientation or colour.",
         "Rotate a square-corner checker or test whether line gaps stay equal."
       ],
-      "explanation": "Perpendicular lines meet at a right angle.",
+      "explanation": "Perpendicular lines meet at a right angle. The expected response is perpendicular. Rotate a square-corner checker or test whether line gaps stay equal. Use the defining property, not the drawing's orientation or colour.",
       "feedback": {
         "correct": "Geometric property identified from its definition. Perpendicular lines meet at a right angle.",
         "repair": "Switch to a static checker or linearised description, preserve correct labels and compare one defining property at a time.",
@@ -13401,7 +13401,7 @@
         "Use the defining property, not the drawing's orientation or colour.",
         "Rotate a square-corner checker or test whether line gaps stay equal."
       ],
-      "explanation": "pentagon: five straight sides and five vertices.",
+      "explanation": "pentagon: five straight sides and five vertices. The expected response is pentagon is identified by five straight sides and five vertices; right angles must be checked from the specific drawing.. Rotate a square-corner checker or test whether line gaps stay equal. Use the defining property, not the drawing's orientation or colour.",
       "feedback": {
         "correct": "Geometric property identified from its definition. pentagon: five straight sides and five vertices.",
         "repair": "Switch to a static checker or linearised description, preserve correct labels and compare one defining property at a time.",
@@ -13960,7 +13960,7 @@
         "Use the defining property, not the drawing's orientation or colour.",
         "Rotate a square-corner checker or test whether line gaps stay equal."
       ],
-      "explanation": "Perpendicular lines meet at a right angle.",
+      "explanation": "Perpendicular lines meet at a right angle. The expected response is perpendicular. Rotate a square-corner checker or test whether line gaps stay equal. Use the defining property, not the drawing's orientation or colour.",
       "feedback": {
         "correct": "Geometric property identified from its definition. Perpendicular lines meet at a right angle.",
         "repair": "Switch to a static checker or linearised description, preserve correct labels and compare one defining property at a time.",
@@ -14600,7 +14600,7 @@
         "Use the defining property, not the drawing's orientation or colour.",
         "Rotate a square-corner checker or test whether line gaps stay equal."
       ],
-      "explanation": "Perpendicular lines meet at a right angle.",
+      "explanation": "Perpendicular lines meet at a right angle. The expected response is perpendicular. Rotate a square-corner checker or test whether line gaps stay equal. Use the defining property, not the drawing's orientation or colour.",
       "feedback": {
         "correct": "Geometric property identified from its definition. Perpendicular lines meet at a right angle.",
         "repair": "Switch to a static checker or linearised description, preserve correct labels and compare one defining property at a time.",
@@ -14681,7 +14681,7 @@
         "Use the defining property, not the drawing's orientation or colour.",
         "Rotate a square-corner checker or test whether line gaps stay equal."
       ],
-      "explanation": "square: four equal sides and four right angles.",
+      "explanation": "square: four equal sides and four right angles. The expected response is square has 4 right angles in this stated form.. Rotate a square-corner checker or test whether line gaps stay equal. Use the defining property, not the drawing's orientation or colour.",
       "feedback": {
         "correct": "Geometric property identified from its definition. square: four equal sides and four right angles.",
         "repair": "Switch to a static checker or linearised description, preserve correct labels and compare one defining property at a time.",
@@ -15422,7 +15422,7 @@
         "Name the quantity or property before choosing a method.",
         "Use a benchmark, complete trace, timeline or defining-property check."
       ],
-      "explanation": "8 + 6 + 8 + 6 = 28 cm.",
+      "explanation": "8 + 6 + 8 + 6 = 28 cm. The expected response is 28. Use a benchmark, complete trace, timeline or defining-property check. Name the quantity or property before choosing a method.",
       "feedback": {
         "correct": "Spaced measure/geometry evidence retained. 8 + 6 + 8 + 6 = 28 cm.",
         "repair": "Return to one concrete or linearised representation, keep correct intermediate evidence and retry without speed scoring.",
@@ -16086,7 +16086,7 @@
         "Name the quantity or property before choosing a method.",
         "Use a benchmark, complete trace, timeline or defining-property check."
       ],
-      "explanation": "4 + 4 + 4 + 4 = 16 cm.",
+      "explanation": "4 + 4 + 4 + 4 = 16 cm. The expected response is 16. Use a benchmark, complete trace, timeline or defining-property check. Name the quantity or property before choosing a method.",
       "feedback": {
         "correct": "Spaced measure/geometry evidence retained. 4 + 4 + 4 + 4 = 16 cm.",
         "repair": "Return to one concrete or linearised representation, keep correct intermediate evidence and retry without speed scoring.",
@@ -16750,7 +16750,7 @@
         "Name the quantity or property before choosing a method.",
         "Use a benchmark, complete trace, timeline or defining-property check."
       ],
-      "explanation": "6 + 2 + 6 + 2 = 16 cm.",
+      "explanation": "6 + 2 + 6 + 2 = 16 cm. The expected response is 16. Use a benchmark, complete trace, timeline or defining-property check. Name the quantity or property before choosing a method.",
       "feedback": {
         "correct": "Spaced measure/geometry evidence retained. 6 + 2 + 6 + 2 = 16 cm.",
         "repair": "Return to one concrete or linearised representation, keep correct intermediate evidence and retry without speed scoring.",
@@ -17414,7 +17414,7 @@
         "Name the quantity or property before choosing a method.",
         "Use a benchmark, complete trace, timeline or defining-property check."
       ],
-      "explanation": "8 + 5 + 8 + 5 = 26 cm.",
+      "explanation": "8 + 5 + 8 + 5 = 26 cm. The expected response is 26. Use a benchmark, complete trace, timeline or defining-property check. Name the quantity or property before choosing a method.",
       "feedback": {
         "correct": "Spaced measure/geometry evidence retained. 8 + 5 + 8 + 5 = 26 cm.",
         "repair": "Return to one concrete or linearised representation, keep correct intermediate evidence and retry without speed scoring.",
@@ -18078,7 +18078,7 @@
         "Name the quantity or property before choosing a method.",
         "Use a benchmark, complete trace, timeline or defining-property check."
       ],
-      "explanation": "4 + 3 + 4 + 3 = 14 cm.",
+      "explanation": "4 + 3 + 4 + 3 = 14 cm. The expected response is 14. Use a benchmark, complete trace, timeline or defining-property check. Name the quantity or property before choosing a method.",
       "feedback": {
         "correct": "Spaced measure/geometry evidence retained. 4 + 3 + 4 + 3 = 14 cm.",
         "repair": "Return to one concrete or linearised representation, keep correct intermediate evidence and retry without speed scoring.",

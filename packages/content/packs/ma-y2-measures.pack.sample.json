@@ -11223,7 +11223,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "12 cm = 12 cm.",
+      "explanation": "12 cm = 12 cm. The expected response is =. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -11310,7 +11310,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "3 m = 3 m.",
+      "explanation": "3 m = 3 m. The expected response is =. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -11397,7 +11397,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "100 g = 100 g.",
+      "explanation": "100 g = 100 g. The expected response is =. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -11484,7 +11484,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "2 kg = 2 kg.",
+      "explanation": "2 kg = 2 kg. The expected response is =. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -11571,7 +11571,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "200 ml = 200 ml.",
+      "explanation": "200 ml = 200 ml. The expected response is =. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -11658,7 +11658,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "1 l = 1 l.",
+      "explanation": "1 l = 1 l. The expected response is =. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -11745,7 +11745,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "4 degrees Celsius = 4 degrees Celsius.",
+      "explanation": "4 degrees Celsius = 4 degrees Celsius. The expected response is =. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -11832,7 +11832,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "10 minutes = 10 minutes.",
+      "explanation": "10 minutes = 10 minutes. The expected response is =. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -11919,7 +11919,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "14 cm < 16 cm.",
+      "explanation": "14 cm < 16 cm. The expected response is <. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -12006,7 +12006,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "4 m < 5 m.",
+      "explanation": "4 m < 5 m. The expected response is <. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -12093,7 +12093,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "150 g < 200 g.",
+      "explanation": "150 g < 200 g. The expected response is <. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -12180,7 +12180,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "3 kg < 4 kg.",
+      "explanation": "3 kg < 4 kg. The expected response is <. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -12267,7 +12267,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "250 ml < 300 ml.",
+      "explanation": "250 ml < 300 ml. The expected response is <. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -12354,7 +12354,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "2 l < 3 l.",
+      "explanation": "2 l < 3 l. The expected response is <. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -12441,7 +12441,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "6 degrees Celsius < 8 degrees Celsius.",
+      "explanation": "6 degrees Celsius < 8 degrees Celsius. The expected response is <. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -12528,7 +12528,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "15 minutes < 20 minutes.",
+      "explanation": "15 minutes < 20 minutes. The expected response is <. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -12615,7 +12615,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "22 cm > 20 cm.",
+      "explanation": "22 cm > 20 cm. The expected response is >. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -12702,7 +12702,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "8 m > 7 m.",
+      "explanation": "8 m > 7 m. The expected response is >. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -12789,7 +12789,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "350 g > 300 g.",
+      "explanation": "350 g > 300 g. The expected response is >. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -12876,7 +12876,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "7 kg > 6 kg.",
+      "explanation": "7 kg > 6 kg. The expected response is >. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -12963,7 +12963,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "450 ml > 400 ml.",
+      "explanation": "450 ml > 400 ml. The expected response is >. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -13050,7 +13050,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "6 l > 5 l.",
+      "explanation": "6 l > 5 l. The expected response is >. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -13137,7 +13137,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "14 degrees Celsius > 12 degrees Celsius.",
+      "explanation": "14 degrees Celsius > 12 degrees Celsius. The expected response is >. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -13224,7 +13224,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "35 minutes > 30 minutes.",
+      "explanation": "35 minutes > 30 minutes. The expected response is >. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -13311,7 +13311,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "24 cm = 24 cm.",
+      "explanation": "24 cm = 24 cm. The expected response is =. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -13398,7 +13398,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "9 m = 9 m.",
+      "explanation": "9 m = 9 m. The expected response is =. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -13485,7 +13485,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "400 g = 400 g.",
+      "explanation": "400 g = 400 g. The expected response is =. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -13572,7 +13572,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "8 kg = 8 kg.",
+      "explanation": "8 kg = 8 kg. The expected response is =. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -13659,7 +13659,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "500 ml = 500 ml.",
+      "explanation": "500 ml = 500 ml. The expected response is =. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -13746,7 +13746,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "7 l = 7 l.",
+      "explanation": "7 l = 7 l. The expected response is =. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -13833,7 +13833,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "16 degrees Celsius = 16 degrees Celsius.",
+      "explanation": "16 degrees Celsius = 16 degrees Celsius. The expected response is =. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -13920,7 +13920,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "40 minutes = 40 minutes.",
+      "explanation": "40 minutes = 40 minutes. The expected response is =. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -14007,7 +14007,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "26 cm < 28 cm.",
+      "explanation": "26 cm < 28 cm. The expected response is <. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -14094,7 +14094,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "10 m < 11 m.",
+      "explanation": "10 m < 11 m. The expected response is <. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -14181,7 +14181,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "450 g < 500 g.",
+      "explanation": "450 g < 500 g. The expected response is <. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -14268,7 +14268,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "9 kg < 10 kg.",
+      "explanation": "9 kg < 10 kg. The expected response is <. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -14355,7 +14355,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "550 ml < 600 ml.",
+      "explanation": "550 ml < 600 ml. The expected response is <. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -14442,7 +14442,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "8 l < 9 l.",
+      "explanation": "8 l < 9 l. The expected response is <. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -14529,7 +14529,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "18 degrees Celsius < 20 degrees Celsius.",
+      "explanation": "18 degrees Celsius < 20 degrees Celsius. The expected response is <. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -14616,7 +14616,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "45 minutes < 50 minutes.",
+      "explanation": "45 minutes < 50 minutes. The expected response is <. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -14703,7 +14703,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "34 cm > 32 cm.",
+      "explanation": "34 cm > 32 cm. The expected response is >. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -14790,7 +14790,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "14 m > 13 m.",
+      "explanation": "14 m > 13 m. The expected response is >. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -14877,7 +14877,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "650 g > 600 g.",
+      "explanation": "650 g > 600 g. The expected response is >. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -14964,7 +14964,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "13 kg > 12 kg.",
+      "explanation": "13 kg > 12 kg. The expected response is >. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -15051,7 +15051,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "750 ml > 700 ml.",
+      "explanation": "750 ml > 700 ml. The expected response is >. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -15138,7 +15138,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "12 l > 11 l.",
+      "explanation": "12 l > 11 l. The expected response is >. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -15225,7 +15225,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "26 degrees Celsius > 24 degrees Celsius.",
+      "explanation": "26 degrees Celsius > 24 degrees Celsius. The expected response is >. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -15312,7 +15312,7 @@
         "Check that both records use the same unit.",
         "Compare the number values, then say the symbol aloud."
       ],
-      "explanation": "65 minutes > 60 minutes.",
+      "explanation": "65 minutes > 60 minutes. The expected response is >. Compare the number values, then say the symbol aloud. Check that both records use the same unit.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "appearance_over_recorded_measure",
@@ -15424,7 +15424,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "5p totals 5p exactly.",
+      "explanation": "5p totals 5p exactly. The expected response is 5p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -15537,7 +15537,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "10p totals 10p exactly.",
+      "explanation": "10p totals 10p exactly. The expected response is 10p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -15653,7 +15653,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "10p + 5p totals 15p exactly.",
+      "explanation": "10p + 5p totals 15p exactly. The expected response is 10p, 5p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -15767,7 +15767,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "20p totals 20p exactly.",
+      "explanation": "20p totals 20p exactly. The expected response is 20p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -15883,7 +15883,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "20p + 5p totals 25p exactly.",
+      "explanation": "20p + 5p totals 25p exactly. The expected response is 20p, 5p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -16000,7 +16000,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "20p + 10p totals 30p exactly.",
+      "explanation": "20p + 10p totals 30p exactly. The expected response is 20p, 10p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -16120,7 +16120,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "20p + 10p + 5p totals 35p exactly.",
+      "explanation": "20p + 10p + 5p totals 35p exactly. The expected response is 20p, 10p, 5p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -16238,7 +16238,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "20p + 20p totals 40p exactly.",
+      "explanation": "20p + 20p totals 40p exactly. The expected response is 20p, 20p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -16358,7 +16358,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "20p + 20p + 5p totals 45p exactly.",
+      "explanation": "20p + 20p + 5p totals 45p exactly. The expected response is 20p, 20p, 5p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -16473,7 +16473,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "50p totals 50p exactly.",
+      "explanation": "50p totals 50p exactly. The expected response is 50p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -16589,7 +16589,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "50p + 5p totals 55p exactly.",
+      "explanation": "50p + 5p totals 55p exactly. The expected response is 50p, 5p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -16706,7 +16706,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "50p + 10p totals 60p exactly.",
+      "explanation": "50p + 10p totals 60p exactly. The expected response is 50p, 10p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -16826,7 +16826,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "50p + 10p + 5p totals 65p exactly.",
+      "explanation": "50p + 10p + 5p totals 65p exactly. The expected response is 50p, 10p, 5p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -16944,7 +16944,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "50p + 20p totals 70p exactly.",
+      "explanation": "50p + 20p totals 70p exactly. The expected response is 50p, 20p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -17064,7 +17064,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "50p + 20p + 5p totals 75p exactly.",
+      "explanation": "50p + 20p + 5p totals 75p exactly. The expected response is 50p, 20p, 5p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -17185,7 +17185,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "50p + 20p + 10p totals 80p exactly.",
+      "explanation": "50p + 20p + 10p totals 80p exactly. The expected response is 50p, 20p, 10p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -17309,7 +17309,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "50p + 20p + 10p + 5p totals 85p exactly.",
+      "explanation": "50p + 20p + 10p + 5p totals 85p exactly. The expected response is 50p, 20p, 10p, 5p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -17431,7 +17431,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "50p + 20p + 20p totals 90p exactly.",
+      "explanation": "50p + 20p + 20p totals 90p exactly. The expected response is 50p, 20p, 20p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -17555,7 +17555,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "50p + 20p + 20p + 5p totals 95p exactly.",
+      "explanation": "50p + 20p + 20p + 5p totals 95p exactly. The expected response is 50p, 20p, 20p, 5p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -17671,7 +17671,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "£1 totals £1 exactly.",
+      "explanation": "£1 totals £1 exactly. The expected response is £1. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -17787,7 +17787,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "£1 + 5p totals £1.05 exactly.",
+      "explanation": "£1 + 5p totals £1.05 exactly. The expected response is £1, 5p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -17904,7 +17904,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "£1 + 10p totals £1.10 exactly.",
+      "explanation": "£1 + 10p totals £1.10 exactly. The expected response is £1, 10p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -18024,7 +18024,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "£1 + 10p + 5p totals £1.15 exactly.",
+      "explanation": "£1 + 10p + 5p totals £1.15 exactly. The expected response is £1, 10p, 5p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -18142,7 +18142,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "£1 + 20p totals £1.20 exactly.",
+      "explanation": "£1 + 20p totals £1.20 exactly. The expected response is £1, 20p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -18262,7 +18262,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "£1 + 20p + 5p totals £1.25 exactly.",
+      "explanation": "£1 + 20p + 5p totals £1.25 exactly. The expected response is £1, 20p, 5p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -18383,7 +18383,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "£1 + 20p + 10p totals £1.30 exactly.",
+      "explanation": "£1 + 20p + 10p totals £1.30 exactly. The expected response is £1, 20p, 10p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -18507,7 +18507,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "£1 + 20p + 10p + 5p totals £1.35 exactly.",
+      "explanation": "£1 + 20p + 10p + 5p totals £1.35 exactly. The expected response is £1, 20p, 10p, 5p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -18629,7 +18629,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "£1 + 20p + 20p totals £1.40 exactly.",
+      "explanation": "£1 + 20p + 20p totals £1.40 exactly. The expected response is £1, 20p, 20p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -18753,7 +18753,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "£1 + 20p + 20p + 5p totals £1.45 exactly.",
+      "explanation": "£1 + 20p + 20p + 5p totals £1.45 exactly. The expected response is £1, 20p, 20p, 5p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -18872,7 +18872,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "£1 + 50p totals £1.50 exactly.",
+      "explanation": "£1 + 50p totals £1.50 exactly. The expected response is £1, 50p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -18992,7 +18992,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "£1 + 50p + 5p totals £1.55 exactly.",
+      "explanation": "£1 + 50p + 5p totals £1.55 exactly. The expected response is £1, 50p, 5p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -19113,7 +19113,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "£1 + 50p + 10p totals £1.60 exactly.",
+      "explanation": "£1 + 50p + 10p totals £1.60 exactly. The expected response is £1, 50p, 10p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -19237,7 +19237,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "£1 + 50p + 10p + 5p totals £1.65 exactly.",
+      "explanation": "£1 + 50p + 10p + 5p totals £1.65 exactly. The expected response is £1, 50p, 10p, 5p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -19359,7 +19359,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "£1 + 50p + 20p totals £1.70 exactly.",
+      "explanation": "£1 + 50p + 20p totals £1.70 exactly. The expected response is £1, 50p, 20p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -19483,7 +19483,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "£1 + 50p + 20p + 5p totals £1.75 exactly.",
+      "explanation": "£1 + 50p + 20p + 5p totals £1.75 exactly. The expected response is £1, 50p, 20p, 5p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -19608,7 +19608,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "£1 + 50p + 20p + 10p totals £1.80 exactly.",
+      "explanation": "£1 + 50p + 20p + 10p totals £1.80 exactly. The expected response is £1, 50p, 20p, 10p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -19736,7 +19736,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "£1 + 50p + 20p + 10p + 5p totals £1.85 exactly.",
+      "explanation": "£1 + 50p + 20p + 10p + 5p totals £1.85 exactly. The expected response is £1, 50p, 20p, 10p, 5p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -19862,7 +19862,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "£1 + 50p + 20p + 20p totals £1.90 exactly.",
+      "explanation": "£1 + 50p + 20p + 20p totals £1.90 exactly. The expected response is £1, 50p, 20p, 20p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -19990,7 +19990,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "£1 + 50p + 20p + 20p + 5p totals £1.95 exactly.",
+      "explanation": "£1 + 50p + 20p + 20p + 5p totals £1.95 exactly. The expected response is £1, 50p, 20p, 20p, 5p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -20107,7 +20107,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "£2 totals £2 exactly.",
+      "explanation": "£2 totals £2 exactly. The expected response is £2. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -20223,7 +20223,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "£2 + 5p totals £2.05 exactly.",
+      "explanation": "£2 + 5p totals £2.05 exactly. The expected response is £2, 5p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -20340,7 +20340,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "£2 + 10p totals £2.10 exactly.",
+      "explanation": "£2 + 10p totals £2.10 exactly. The expected response is £2, 10p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -20460,7 +20460,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "£2 + 10p + 5p totals £2.15 exactly.",
+      "explanation": "£2 + 10p + 5p totals £2.15 exactly. The expected response is £2, 10p, 5p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -20578,7 +20578,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "£2 + 20p totals £2.20 exactly.",
+      "explanation": "£2 + 20p totals £2.20 exactly. The expected response is £2, 20p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -20698,7 +20698,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "£2 + 20p + 5p totals £2.25 exactly.",
+      "explanation": "£2 + 20p + 5p totals £2.25 exactly. The expected response is £2, 20p, 5p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -20819,7 +20819,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "£2 + 20p + 10p totals £2.30 exactly.",
+      "explanation": "£2 + 20p + 10p totals £2.30 exactly. The expected response is £2, 20p, 10p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -20943,7 +20943,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "£2 + 20p + 10p + 5p totals £2.35 exactly.",
+      "explanation": "£2 + 20p + 10p + 5p totals £2.35 exactly. The expected response is £2, 20p, 10p, 5p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "coin_count_over_value",
@@ -21065,7 +21065,7 @@
         "Read each coin value instead of counting the coins.",
         "Use the running total to check each set."
       ],
-      "explanation": "£2 + 20p + 20p totals £2.40 exactly.",
+      "explanation": "£2 + 20p + 20p totals £2.40 exactly. The expected response is £2, 20p, 20p. Use the running total to check each set. Read each coin value instead of counting the coins.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "coin_count_over_value",

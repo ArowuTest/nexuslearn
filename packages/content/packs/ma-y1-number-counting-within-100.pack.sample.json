@@ -254,7 +254,7 @@
         "Start at 27 and count on.",
         "After 29 the next number is 30."
       ],
-      "explanation": "Counting on from 27 gives 28, 29, 30.",
+      "explanation": "Counting on from 27 gives 28, 29, 30. The expected response is 28, 29, 30. After 29 the next number is 30. Start at 27 and count on.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "restart_at_one",
@@ -15353,7 +15353,7 @@
         "Least is the smallest quantity.",
         "Use tens first, then ones, or place every label on a number line."
       ],
-      "explanation": "57 < 64 < 68 is least to greatest.",
+      "explanation": "57 < 64 < 68 is least to greatest. The expected response is 57, 64, 68. Use tens first, then ones, or place every label on a number line. Least is the smallest quantity.",
       "feedback": {
         "correct": "Three quantities ordered using place-value evidence.",
         "repair": "Build only the tens for all three first, then add ones to break any tie.",
@@ -16014,7 +16014,7 @@
         "Least is the smallest quantity.",
         "Use tens first, then ones, or place every label on a number line."
       ],
-      "explanation": "52 < 59 < 63 is least to greatest.",
+      "explanation": "52 < 59 < 63 is least to greatest. The expected response is 52, 59, 63. Use tens first, then ones, or place every label on a number line. Least is the smallest quantity.",
       "feedback": {
         "correct": "Three quantities ordered using place-value evidence.",
         "repair": "Build only the tens for all three first, then add ones to break any tie.",
@@ -16674,7 +16674,7 @@
         "Least is the smallest quantity.",
         "Use tens first, then ones, or place every label on a number line."
       ],
-      "explanation": "47 < 54 < 58 is least to greatest.",
+      "explanation": "47 < 54 < 58 is least to greatest. The expected response is 47, 54, 58. Use tens first, then ones, or place every label on a number line. Least is the smallest quantity.",
       "feedback": {
         "correct": "Three quantities ordered using place-value evidence.",
         "repair": "Build only the tens for all three first, then add ones to break any tie.",
@@ -17334,7 +17334,7 @@
         "Least is the smallest quantity.",
         "Use tens first, then ones, or place every label on a number line."
       ],
-      "explanation": "42 < 49 < 53 is least to greatest.",
+      "explanation": "42 < 49 < 53 is least to greatest. The expected response is 42, 49, 53. Use tens first, then ones, or place every label on a number line. Least is the smallest quantity.",
       "feedback": {
         "correct": "Three quantities ordered using place-value evidence.",
         "repair": "Build only the tens for all three first, then add ones to break any tie.",
@@ -17995,7 +17995,7 @@
         "Least is the smallest quantity.",
         "Use tens first, then ones, or place every label on a number line."
       ],
-      "explanation": "37 < 44 < 48 is least to greatest.",
+      "explanation": "37 < 44 < 48 is least to greatest. The expected response is 37, 44, 48. Use tens first, then ones, or place every label on a number line. Least is the smallest quantity.",
       "feedback": {
         "correct": "Three quantities ordered using place-value evidence.",
         "repair": "Build only the tens for all three first, then add ones to break any tie.",

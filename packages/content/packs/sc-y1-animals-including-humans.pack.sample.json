@@ -11361,7 +11361,7 @@
         "Humans are living animals.",
         "The broad group for humans is mammals."
       ],
-      "explanation": "Humans are animals in the mammal group.",
+      "explanation": "Humans are animals in the mammal group. The expected response is Humans are animals in the mammal group.. The broad group for humans is mammals. Humans are living animals.",
       "feedback": {
         "correct": "Explorer log updated: humans are mammals and animals.",
         "repair": "Place the human card inside ANIMALS first, then inside the audio-labelled MAMMALS group.",
@@ -11682,7 +11682,7 @@
         "Humans are living animals.",
         "The broad group for humans is mammals."
       ],
-      "explanation": "Humans are animals in the mammal group.",
+      "explanation": "Humans are animals in the mammal group. The expected response is Humans are animals in the mammal group.. The broad group for humans is mammals. Humans are living animals.",
       "feedback": {
         "correct": "Explorer log updated: humans are mammals and animals.",
         "repair": "Place the human card inside ANIMALS first, then inside the audio-labelled MAMMALS group.",
@@ -12003,7 +12003,7 @@
         "Humans are living animals.",
         "The broad group for humans is mammals."
       ],
-      "explanation": "Humans are animals in the mammal group.",
+      "explanation": "Humans are animals in the mammal group. The expected response is Humans are animals in the mammal group.. The broad group for humans is mammals. Humans are living animals.",
       "feedback": {
         "correct": "Explorer log updated: humans are mammals and animals.",
         "repair": "Place the human card inside ANIMALS first, then inside the audio-labelled MAMMALS group.",
@@ -12324,7 +12324,7 @@
         "Humans are living animals.",
         "The broad group for humans is mammals."
       ],
-      "explanation": "Humans are animals in the mammal group.",
+      "explanation": "Humans are animals in the mammal group. The expected response is Humans are animals in the mammal group.. The broad group for humans is mammals. Humans are living animals.",
       "feedback": {
         "correct": "Explorer log updated: humans are mammals and animals.",
         "repair": "Place the human card inside ANIMALS first, then inside the audio-labelled MAMMALS group.",
@@ -12645,7 +12645,7 @@
         "Humans are living animals.",
         "The broad group for humans is mammals."
       ],
-      "explanation": "Humans are animals in the mammal group.",
+      "explanation": "Humans are animals in the mammal group. The expected response is Humans are animals in the mammal group.. The broad group for humans is mammals. Humans are living animals.",
       "feedback": {
         "correct": "Explorer log updated: humans are mammals and animals.",
         "repair": "Place the human card inside ANIMALS first, then inside the audio-labelled MAMMALS group.",
@@ -12966,7 +12966,7 @@
         "Humans are living animals.",
         "The broad group for humans is mammals."
       ],
-      "explanation": "Humans are animals in the mammal group.",
+      "explanation": "Humans are animals in the mammal group. The expected response is Humans are animals in the mammal group.. The broad group for humans is mammals. Humans are living animals.",
       "feedback": {
         "correct": "Explorer log updated: humans are mammals and animals.",
         "repair": "Place the human card inside ANIMALS first, then inside the audio-labelled MAMMALS group.",
@@ -13287,7 +13287,7 @@
         "Humans are living animals.",
         "The broad group for humans is mammals."
       ],
-      "explanation": "Humans are animals in the mammal group.",
+      "explanation": "Humans are animals in the mammal group. The expected response is Humans are animals in the mammal group.. The broad group for humans is mammals. Humans are living animals.",
       "feedback": {
         "correct": "Explorer log updated: humans are mammals and animals.",
         "repair": "Place the human card inside ANIMALS first, then inside the audio-labelled MAMMALS group.",
@@ -13608,7 +13608,7 @@
         "Humans are living animals.",
         "The broad group for humans is mammals."
       ],
-      "explanation": "Humans are animals in the mammal group.",
+      "explanation": "Humans are animals in the mammal group. The expected response is Humans are animals in the mammal group.. The broad group for humans is mammals. Humans are living animals.",
       "feedback": {
         "correct": "Explorer log updated: humans are mammals and animals.",
         "repair": "Place the human card inside ANIMALS first, then inside the audio-labelled MAMMALS group.",

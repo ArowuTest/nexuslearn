@@ -23169,7 +23169,7 @@
         "Touch the frames before and after the gap.",
         "The missing sound is in frame 1."
       ],
-      "explanation": "/tʃ/ completes /tʃ/ – /eə/ for chair.",
+      "explanation": "/tʃ/ completes /tʃ/ – /eə/ for chair. The expected response is /tʃ/. The missing sound is in frame 1. Touch the frames before and after the gap.",
       "feedback": {
         "correct": "Missing phoneme restored without moving correct frames.",
         "repair": "Preserve every correct frame, outline the gap and compare only two phoneme cards.",
@@ -24320,7 +24320,7 @@
         "Touch the frames before and after the gap.",
         "The missing sound is in frame 1."
       ],
-      "explanation": "/i/ completes /i/ – /n/ for in.",
+      "explanation": "/i/ completes /i/ – /n/ for in. The expected response is /i/. The missing sound is in frame 1. Touch the frames before and after the gap.",
       "feedback": {
         "correct": "Missing phoneme restored without moving correct frames.",
         "repair": "Preserve every correct frame, outline the gap and compare only two phoneme cards.",
@@ -25470,7 +25470,7 @@
         "Touch the frames before and after the gap.",
         "The missing sound is in frame 1."
       ],
-      "explanation": "/i/ completes /i/ – /t/ for it.",
+      "explanation": "/i/ completes /i/ – /t/ for it. The expected response is /i/. The missing sound is in frame 1. Touch the frames before and after the gap.",
       "feedback": {
         "correct": "Missing phoneme restored without moving correct frames.",
         "repair": "Preserve every correct frame, outline the gap and compare only two phoneme cards.",
@@ -26621,7 +26621,7 @@
         "Touch the frames before and after the gap.",
         "The missing sound is in frame 1."
       ],
-      "explanation": "/f/ completes /f/ – /eə/ for fair.",
+      "explanation": "/f/ completes /f/ – /eə/ for fair. The expected response is /f/. The missing sound is in frame 1. Touch the frames before and after the gap.",
       "feedback": {
         "correct": "Missing phoneme restored without moving correct frames.",
         "repair": "Preserve every correct frame, outline the gap and compare only two phoneme cards.",

@@ -855,7 +855,7 @@
         "Name the value of the active column or quantity before operating on its digit.",
         "Estimate, use a concrete/visual model if useful, then check with magnitude or the inverse."
       ],
-      "explanation": "The 1 is in the ones column, so its value is 1.",
+      "explanation": "The 1 is in the ones column, so its value is 1. The expected response is 1. Estimate, use a concrete/visual model if useful, then check with magnitude or the inverse. Name the value of the active column or quantity before operating on its digit.",
       "feedback": {
         "correct": "Workshop station restored through digit value. The 1 is in the ones column, so its value is 1.",
         "repair": "Return both ones digits to the labelled ones column, rebuild leftwards and only then calculate.",
@@ -1159,18 +1159,18 @@
       "animation_hook": "digits-align-by-place"
     },
     {
-      "id": "ma-y4-written-methods-bank-align-repair_edge_alignment-7491-82-6",
+      "id": "ma-y4-written-methods-bank-align-repair_edge_alignment-7091-82-6",
       "format": "place-value-layout",
       "body": {
-        "prompt": "Layout inspector 6: choose the layout that preserves every place value for 7,491 and 82.",
+        "prompt": "Layout inspector 6: choose the layout that preserves every place value for 7,091 and 82.",
         "numbers": [
-          7491,
+          7091,
           82
         ],
         "correct_grid": [
           [
             "7",
-            "4",
+            "0",
             "9",
             "1"
           ],
@@ -1184,7 +1184,7 @@
         "tempting_edge_aligned_grid": [
           [
             "7",
-            "4",
+            "0",
             "9",
             "1"
           ],
@@ -1276,7 +1276,7 @@
         "value": [
           [
             "7",
-            "4",
+            "0",
             "9",
             "1"
           ],
@@ -2747,18 +2747,18 @@
       "animation_hook": "digits-align-by-place"
     },
     {
-      "id": "ma-y4-written-methods-bank-align-compare_layouts-7491-82-18",
+      "id": "ma-y4-written-methods-bank-align-compare_layouts-7091-82-18",
       "format": "place-value-layout",
       "body": {
-        "prompt": "Layout inspector 18: choose the layout that preserves every place value for 7,491 and 82.",
+        "prompt": "Layout inspector 18: choose the layout that preserves every place value for 7,091 and 82.",
         "numbers": [
-          7491,
+          7091,
           82
         ],
         "correct_grid": [
           [
             "7",
-            "4",
+            "0",
             "9",
             "1"
           ],
@@ -2772,7 +2772,7 @@
         "tempting_edge_aligned_grid": [
           [
             "7",
-            "4",
+            "0",
             "9",
             "1"
           ],
@@ -2864,7 +2864,7 @@
         "value": [
           [
             "7",
-            "4",
+            "0",
             "9",
             "1"
           ],
@@ -3672,7 +3672,7 @@
         "Name the value of the active column or quantity before operating on its digit.",
         "Estimate, use a concrete/visual model if useful, then check with magnitude or the inverse."
       ],
-      "explanation": "The 2 is in the ones column, so its value is 2.",
+      "explanation": "The 2 is in the ones column, so its value is 2. The expected response is 2. Estimate, use a concrete/visual model if useful, then check with magnitude or the inverse. Name the value of the active column or quantity before operating on its digit.",
       "feedback": {
         "correct": "Workshop station restored through digit value. The 2 is in the ones column, so its value is 2.",
         "repair": "Return both ones digits to the labelled ones column, rebuild leftwards and only then calculate.",
@@ -4403,19 +4403,19 @@
       "animation_hook": "digits-align-by-place"
     },
     {
-      "id": "ma-y4-written-methods-bank-align-zero_placeholder-7491-82-30",
+      "id": "ma-y4-written-methods-bank-align-zero_placeholder-7091-82-30",
       "format": "place-value-layout",
       "body": {
-        "prompt": "Workbench 30: in 7,491, what place does the zero hold?",
-        "number": 7491,
+        "prompt": "Workbench 30: in 7,091, what place does the zero hold?",
+        "number": 7091,
         "choices": [
-          null,
+          "hundreds",
           "ones",
           "tens"
         ],
         "place_value_chart": [
           "7",
-          "4",
+          "0",
           "9",
           "1"
         ],
@@ -4492,16 +4492,18 @@
         },
         "browser_tts_allowed": false
       },
-      "expected_answer": {},
+      "expected_answer": {
+        "value": "hundreds"
+      },
       "hints": [
         "Name the value of the active column or quantity before operating on its digit.",
         "Estimate, use a concrete/visual model if useful, then check with magnitude or the inverse."
       ],
-      "explanation": "The zero is a placeholder in the undefined column; it keeps every other digit at its correct value.",
+      "explanation": "The zero is a placeholder in the hundreds column; it keeps every other digit at its correct value.",
       "feedback": {
-        "correct": "Workshop station restored through zero placeholder. The zero is a placeholder in the undefined column; it keeps every other digit at its correct value.",
+        "correct": "Workshop station restored through zero placeholder. The zero is a placeholder in the hundreds column; it keeps every other digit at its correct value.",
         "repair": "Return both ones digits to the labelled ones column, rebuild leftwards and only then calculate.",
-        "mathematical_evidence": "The zero is a placeholder in the undefined column; it keeps every other digit at its correct value.",
+        "mathematical_evidence": "The zero is a placeholder in the hundreds column; it keeps every other digit at its correct value.",
         "strategy_message": "Mental, written, concrete, visual, pointing, AAC and adult-scribed routes are equally valid when the mathematical reasoning is shown; speed and handwriting are never scored.",
         "retry": "Keep correct columns and models, inspect the first uncertain place-value step, then retry without losing progress.",
         "misconception_check": "Check the edge alignment idea against the task evidence.",
@@ -4605,7 +4607,7 @@
         "Name the value of the active column or quantity before operating on its digit.",
         "Estimate, use a concrete/visual model if useful, then check with magnitude or the inverse."
       ],
-      "explanation": "The 5 is in the tens column, so its value is 50.",
+      "explanation": "The 5 is in the tens column, so its value is 50. The expected response is 50. Estimate, use a concrete/visual model if useful, then check with magnitude or the inverse. Name the value of the active column or quantity before operating on its digit.",
       "feedback": {
         "correct": "Workshop station restored through digit value. The 5 is in the tens column, so its value is 50.",
         "repair": "Return both ones digits to the labelled ones column, rebuild leftwards and only then calculate.",
@@ -6000,12 +6002,12 @@
       "animation_hook": "digits-align-by-place"
     },
     {
-      "id": "ma-y4-written-methods-bank-align-alignment_transfer-7491-82-42",
+      "id": "ma-y4-written-methods-bank-align-alignment_transfer-7091-82-42",
       "format": "place-value-layout",
       "body": {
-        "prompt": "Alignment bay 42: place 7,491 and 82 for subtraction before calculating.",
+        "prompt": "Alignment bay 42: place 7,091 and 82 for subtraction before calculating.",
         "numbers": [
-          7491,
+          7091,
           82
         ],
         "operation": "subtraction",
@@ -6018,7 +6020,7 @@
         "expected_grid": [
           [
             "7",
-            "4",
+            "0",
             "9",
             "1"
           ],
@@ -6106,7 +6108,7 @@
         "value": [
           [
             "7",
-            "4",
+            "0",
             "9",
             "1"
           ],
@@ -6122,11 +6124,11 @@
         "Name the value of the active column or quantity before operating on its digit.",
         "Estimate, use a concrete/visual model if useful, then check with magnitude or the inverse."
       ],
-      "explanation": "The grid represents values, not printed edges: [\"7\",\"4\",\"9\",\"1\"] and [\" \",\" \",\"8\",\"2\"].",
+      "explanation": "The grid represents values, not printed edges: [\"7\",\"0\",\"9\",\"1\"] and [\" \",\" \",\"8\",\"2\"].",
       "feedback": {
-        "correct": "Workshop station restored through alignment transfer. The grid represents values, not printed edges: [\"7\",\"4\",\"9\",\"1\"] and [\" \",\" \",\"8\",\"2\"].",
+        "correct": "Workshop station restored through alignment transfer. The grid represents values, not printed edges: [\"7\",\"0\",\"9\",\"1\"] and [\" \",\" \",\"8\",\"2\"].",
         "repair": "Return both ones digits to the labelled ones column, rebuild leftwards and only then calculate.",
-        "mathematical_evidence": "The grid represents values, not printed edges: [\"7\",\"4\",\"9\",\"1\"] and [\" \",\" \",\"8\",\"2\"].",
+        "mathematical_evidence": "The grid represents values, not printed edges: [\"7\",\"0\",\"9\",\"1\"] and [\" \",\" \",\"8\",\"2\"].",
         "strategy_message": "Mental, written, concrete, visual, pointing, AAC and adult-scribed routes are equally valid when the mathematical reasoning is shown; speed and handwriting are never scored.",
         "retry": "Keep correct columns and models, inspect the first uncertain place-value step, then retry without losing progress.",
         "misconception_check": "Check the edge alignment idea against the task evidence.",

@@ -14873,7 +14873,7 @@
         "Build 2 equal groups.",
         "Check 2 × __ = 4."
       ],
-      "explanation": "2 × 2 = 4, so each group contains 2.",
+      "explanation": "2 × 2 = 4, so each group contains 2. The expected response is 2. Check 2 × __ = 4. Build 2 equal groups.",
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 2 × 2 = 4, so each group contains 2.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
@@ -14932,7 +14932,7 @@
         "Build 3 equal groups.",
         "Check 3 × __ = 6."
       ],
-      "explanation": "3 × 2 = 6, so each group contains 2.",
+      "explanation": "3 × 2 = 6, so each group contains 2. The expected response is 2. Check 3 × __ = 6. Build 3 equal groups.",
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 3 × 2 = 6, so each group contains 2.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
@@ -14991,7 +14991,7 @@
         "Build 4 equal groups.",
         "Check 4 × __ = 8."
       ],
-      "explanation": "4 × 2 = 8, so each group contains 2.",
+      "explanation": "4 × 2 = 8, so each group contains 2. The expected response is 2. Check 4 × __ = 8. Build 4 equal groups.",
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 4 × 2 = 8, so each group contains 2.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
@@ -15050,7 +15050,7 @@
         "Build 5 equal groups.",
         "Check 5 × __ = 10."
       ],
-      "explanation": "5 × 2 = 10, so each group contains 2.",
+      "explanation": "5 × 2 = 10, so each group contains 2. The expected response is 2. Check 5 × __ = 10. Build 5 equal groups.",
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 5 × 2 = 10, so each group contains 2.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
@@ -15109,7 +15109,7 @@
         "Build 6 equal groups.",
         "Check 6 × __ = 12."
       ],
-      "explanation": "6 × 2 = 12, so each group contains 2.",
+      "explanation": "6 × 2 = 12, so each group contains 2. The expected response is 2. Check 6 × __ = 12. Build 6 equal groups.",
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 6 × 2 = 12, so each group contains 2.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
@@ -15168,7 +15168,7 @@
         "Build 7 equal groups.",
         "Check 7 × __ = 14."
       ],
-      "explanation": "7 × 2 = 14, so each group contains 2.",
+      "explanation": "7 × 2 = 14, so each group contains 2. The expected response is 2. Check 7 × __ = 14. Build 7 equal groups.",
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 7 × 2 = 14, so each group contains 2.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
@@ -15227,7 +15227,7 @@
         "Build 8 equal groups.",
         "Check 8 × __ = 16."
       ],
-      "explanation": "8 × 2 = 16, so each group contains 2.",
+      "explanation": "8 × 2 = 16, so each group contains 2. The expected response is 2. Check 8 × __ = 16. Build 8 equal groups.",
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 8 × 2 = 16, so each group contains 2.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
@@ -15286,7 +15286,7 @@
         "Build 9 equal groups.",
         "Check 9 × __ = 18."
       ],
-      "explanation": "9 × 2 = 18, so each group contains 2.",
+      "explanation": "9 × 2 = 18, so each group contains 2. The expected response is 2. Check 9 × __ = 18. Build 9 equal groups.",
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 9 × 2 = 18, so each group contains 2.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
@@ -15345,7 +15345,7 @@
         "Build 10 equal groups.",
         "Check 10 × __ = 20."
       ],
-      "explanation": "10 × 2 = 20, so each group contains 2.",
+      "explanation": "10 × 2 = 20, so each group contains 2. The expected response is 2. Check 10 × __ = 20. Build 10 equal groups.",
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 10 × 2 = 20, so each group contains 2.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
@@ -15404,7 +15404,7 @@
         "Build 2 equal groups.",
         "Check 2 × __ = 10."
       ],
-      "explanation": "2 × 5 = 10, so each group contains 5.",
+      "explanation": "2 × 5 = 10, so each group contains 5. The expected response is 5. Check 2 × __ = 10. Build 2 equal groups.",
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 2 × 5 = 10, so each group contains 5.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
@@ -15463,7 +15463,7 @@
         "Build 3 equal groups.",
         "Check 3 × __ = 15."
       ],
-      "explanation": "3 × 5 = 15, so each group contains 5.",
+      "explanation": "3 × 5 = 15, so each group contains 5. The expected response is 5. Check 3 × __ = 15. Build 3 equal groups.",
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 3 × 5 = 15, so each group contains 5.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
@@ -15522,7 +15522,7 @@
         "Build 4 equal groups.",
         "Check 4 × __ = 20."
       ],
-      "explanation": "4 × 5 = 20, so each group contains 5.",
+      "explanation": "4 × 5 = 20, so each group contains 5. The expected response is 5. Check 4 × __ = 20. Build 4 equal groups.",
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 4 × 5 = 20, so each group contains 5.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
@@ -15581,7 +15581,7 @@
         "Build 5 equal groups.",
         "Check 5 × __ = 25."
       ],
-      "explanation": "5 × 5 = 25, so each group contains 5.",
+      "explanation": "5 × 5 = 25, so each group contains 5. The expected response is 5. Check 5 × __ = 25. Build 5 equal groups.",
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 5 × 5 = 25, so each group contains 5.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
@@ -15640,7 +15640,7 @@
         "Build 6 equal groups.",
         "Check 6 × __ = 30."
       ],
-      "explanation": "6 × 5 = 30, so each group contains 5.",
+      "explanation": "6 × 5 = 30, so each group contains 5. The expected response is 5. Check 6 × __ = 30. Build 6 equal groups.",
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 6 × 5 = 30, so each group contains 5.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
@@ -15699,7 +15699,7 @@
         "Build 7 equal groups.",
         "Check 7 × __ = 35."
       ],
-      "explanation": "7 × 5 = 35, so each group contains 5.",
+      "explanation": "7 × 5 = 35, so each group contains 5. The expected response is 5. Check 7 × __ = 35. Build 7 equal groups.",
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 7 × 5 = 35, so each group contains 5.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
@@ -15758,7 +15758,7 @@
         "Build 8 equal groups.",
         "Check 8 × __ = 40."
       ],
-      "explanation": "8 × 5 = 40, so each group contains 5.",
+      "explanation": "8 × 5 = 40, so each group contains 5. The expected response is 5. Check 8 × __ = 40. Build 8 equal groups.",
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 8 × 5 = 40, so each group contains 5.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
@@ -15817,7 +15817,7 @@
         "Build 9 equal groups.",
         "Check 9 × __ = 45."
       ],
-      "explanation": "9 × 5 = 45, so each group contains 5.",
+      "explanation": "9 × 5 = 45, so each group contains 5. The expected response is 5. Check 9 × __ = 45. Build 9 equal groups.",
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 9 × 5 = 45, so each group contains 5.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",
@@ -15876,7 +15876,7 @@
         "Build 10 equal groups.",
         "Check 10 × __ = 50."
       ],
-      "explanation": "10 × 5 = 50, so each group contains 5.",
+      "explanation": "10 × 5 = 50, so each group contains 5. The expected response is 5. Check 10 × __ = 50. Build 10 equal groups.",
       "feedback": {
         "correct": "Practice marker earned for using or checking a strategy; no speed score is recorded. 10 × 5 = 50, so each group contains 5.",
         "repair": "Choose one strategy card: build groups, view an array, skip-count, or use a known related fact.",

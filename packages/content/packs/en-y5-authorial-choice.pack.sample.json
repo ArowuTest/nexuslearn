@@ -7727,7 +7727,7 @@
       "id": "en-y5-authorial-choice-bank-viewpoint-missing-label-arts-centre",
       "format": "evidence-explain",
       "body": {
-        "prompt": "Read: 'The narration stays with Mina, who finds an empty hook in the community arts centre but does not know who removed the label.' Which claim best explains how the viewpoint controls information without inventing facts?",
+        "prompt": "Which claim best explains how the viewpoint controls what the reader knows?",
         "passage": "The narration stays with Mina, who finds an empty hook in the community arts centre but does not know who removed the label.",
         "evidence": [
           "the hook is empty",
@@ -7829,7 +7829,7 @@
       "id": "en-y5-authorial-choice-bank-viewpoint-two-plans-arts-centre",
       "format": "evidence-explain",
       "body": {
-        "prompt": "Read: 'Mina explains a plan for the community arts centre, but the narration does not reveal the note another character is holding.' Which claim best explains how the viewpoint controls information without inventing facts?",
+        "prompt": "Which claim best explains how the viewpoint controls what the reader knows?",
         "passage": "Mina explains a plan for the community arts centre, but the narration does not reveal the note another character is holding.",
         "evidence": [
           "one plan is explained",
@@ -8033,7 +8033,7 @@
       "id": "en-y5-authorial-choice-bank-viewpoint-closed-door-arts-centre",
       "format": "evidence-explain",
       "body": {
-        "prompt": "Read: 'The account follows Mina waiting outside a closed room in the community arts centre; only muffled voices reach the corridor.' Which claim best explains how the viewpoint controls information without inventing facts?",
+        "prompt": "Which claim best explains how the viewpoint controls what the reader knows?",
         "passage": "The account follows Mina waiting outside a closed room in the community arts centre; only muffled voices reach the corridor.",
         "evidence": [
           "the door stays closed",
@@ -8135,7 +8135,7 @@
       "id": "en-y5-authorial-choice-bank-viewpoint-object-narrator-arts-centre",
       "format": "evidence-explain",
       "body": {
-        "prompt": "Read: 'The sketchbook narrates what it sees from one shelf in the community arts centre, but it cannot follow people into other rooms.' Which claim best explains how the viewpoint controls information without inventing facts?",
+        "prompt": "Which claim best explains how the viewpoint controls what the reader knows?",
         "passage": "The sketchbook narrates what it sees from one shelf in the community arts centre, but it cannot follow people into other rooms.",
         "evidence": [
           "the narrator stays on one shelf",

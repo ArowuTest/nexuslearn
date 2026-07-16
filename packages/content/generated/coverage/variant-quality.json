@@ -7,7 +7,7 @@
     "variants": 20406,
     "runtime_variants": 261,
     "review_candidates": 20145,
-    "review_readability_calibrations": 30,
+    "review_readability_calibrations": 0,
     "errors": 0,
     "warnings": 0
   },
@@ -156,7 +156,7 @@
       "total_variants": 223,
       "runtime_variants": 3,
       "review_candidates": 220,
-      "review_readability_calibrations": 2,
+      "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
         "story-mat": 44,
@@ -185,10 +185,7 @@
       },
       "errors": [],
       "warnings": [],
-      "review_readability_calibrations_detail": [
-        "ma-y1-add-subtract-stories-bank-mixed-4-20-0-10 review prompt should be chunked or shortened before promotion",
-        "ma-y1-add-subtract-stories-bank-mixed-4-19-2-20 review prompt should be chunked or shortened before promotion"
-      ]
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "ma-y1-number-bonds",
@@ -356,7 +353,7 @@
       "total_variants": 223,
       "runtime_variants": 3,
       "review_candidates": 220,
-      "review_readability_calibrations": 1,
+      "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
         "object-material-match": 44,
@@ -389,9 +386,7 @@
       },
       "errors": [],
       "warnings": [],
-      "review_readability_calibrations_detail": [
-        "sc-y1-everyday-materials-bank-suit-cushion-13 review prompt should be chunked or shortened before promotion"
-      ]
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "sc-y1-plants-identify-common",
@@ -537,7 +532,7 @@
       "total_variants": 223,
       "runtime_variants": 3,
       "review_candidates": 220,
-      "review_readability_calibrations": 2,
+      "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
         "pattern-sort": 88,
@@ -562,10 +557,7 @@
       },
       "errors": [],
       "warnings": [],
-      "review_readability_calibrations_detail": [
-        "en-y2-spelling-patterns-bank-review-repair-knock-6 review prompt should be chunked or shortened before promotion",
-        "en-y2-spelling-patterns-bank-review-repair-knock-36 review prompt should be chunked or shortened before promotion"
-      ]
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "en-y2-writing-sentence-punctuation",
@@ -1902,7 +1894,7 @@
       "total_variants": 243,
       "runtime_variants": 3,
       "review_candidates": 240,
-      "review_readability_calibrations": 4,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "phrase-highlight": 49,
@@ -1927,12 +1919,7 @@
       },
       "errors": [],
       "warnings": [],
-      "review_readability_calibrations_detail": [
-        "en-y5-authorial-choice-bank-viewpoint-missing-label-arts-centre review prompt should be chunked or shortened before promotion",
-        "en-y5-authorial-choice-bank-viewpoint-two-plans-arts-centre review prompt should be chunked or shortened before promotion",
-        "en-y5-authorial-choice-bank-viewpoint-closed-door-arts-centre review prompt should be chunked or shortened before promotion",
-        "en-y5-authorial-choice-bank-viewpoint-object-narrator-arts-centre review prompt should be chunked or shortened before promotion"
-      ]
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "en-y5-cohesion",
@@ -2087,7 +2074,7 @@
       "total_variants": 243,
       "runtime_variants": 3,
       "review_candidates": 240,
-      "review_readability_calibrations": 1,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "calculation-chain": 48,
@@ -2115,9 +2102,7 @@
       },
       "errors": [],
       "warnings": [],
-      "review_readability_calibrations_detail": [
-        "ma-y5-multi-step-problems-q-first-error review prompt should be chunked or shortened before promotion"
-      ]
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "ma-y5-number-decimals-percentages",
@@ -2191,7 +2176,7 @@
       "total_variants": 240,
       "runtime_variants": 3,
       "review_candidates": 237,
-      "review_readability_calibrations": 10,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "orbit-simulation": 101,
@@ -2223,18 +2208,7 @@
       },
       "errors": [],
       "warnings": [],
-      "review_readability_calibrations_detail": [
-        "sc-y5-earth-space-models-bank-relative-motion-planets-sun-5 review prompt should be chunked or shortened before promotion",
-        "sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-1 review prompt should be chunked or shortened before promotion",
-        "sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-2 review prompt should be chunked or shortened before promotion",
-        "sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-3 review prompt should be chunked or shortened before promotion",
-        "sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-4 review prompt should be chunked or shortened before promotion",
-        "sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-5 review prompt should be chunked or shortened before promotion",
-        "sc-y5-earth-space-models-bank-moon-light-sun-moon-compare-2 review prompt should be chunked or shortened before promotion",
-        "sc-y5-earth-space-models-bank-moon-light-sun-moon-compare-3 review prompt should be chunked or shortened before promotion",
-        "sc-y5-earth-space-models-bank-moon-light-sun-moon-compare-4 review prompt should be chunked or shortened before promotion",
-        "sc-y5-earth-space-models-bank-moon-light-sun-moon-compare-5 review prompt should be chunked or shortened before promotion"
-      ]
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "sc-y5-forces",
@@ -2280,7 +2254,7 @@
       "total_variants": 243,
       "runtime_variants": 3,
       "review_candidates": 240,
-      "review_readability_calibrations": 7,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "time-line": 102,
@@ -2316,15 +2290,7 @@
       },
       "errors": [],
       "warnings": [],
-      "review_readability_calibrations_detail": [
-        "sc-y5-life-cycles-bank-plant-full-sequence-3 review prompt should be chunked or shortened before promotion",
-        "sc-y5-life-cycles-bank-plant-full-sequence-4 review prompt should be chunked or shortened before promotion",
-        "sc-y5-life-cycles-bank-plant-full-sequence-5 review prompt should be chunked or shortened before promotion",
-        "sc-y5-life-cycles-bank-evidence-secondary-source-19 review prompt should be chunked or shortened before promotion",
-        "sc-y5-life-cycles-bank-evidence-secondary-source-29 review prompt should be chunked or shortened before promotion",
-        "sc-y5-life-cycles-bank-evidence-runner-record-37 review prompt should be chunked or shortened before promotion",
-        "sc-y5-life-cycles-bank-evidence-secondary-source-39 review prompt should be chunked or shortened before promotion"
-      ]
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "sc-y5-properties-of-materials",
@@ -2410,7 +2376,7 @@
       "total_variants": 243,
       "runtime_variants": 3,
       "review_candidates": 240,
-      "review_readability_calibrations": 3,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "evidence-highlight": 103,
@@ -2437,11 +2403,7 @@
       },
       "errors": [],
       "warnings": [],
-      "review_readability_calibrations_detail": [
-        "en-y6-reading-inference-bank-sufficiency-park-archive review prompt should be chunked or shortened before promotion",
-        "en-y6-reading-inference-bank-sufficiency-park-newsroom review prompt should be chunked or shortened before promotion",
-        "en-y6-reading-inference-bank-sufficiency-park-library review prompt should be chunked or shortened before promotion"
-      ]
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "en-y6-writing-cohesion-devices",

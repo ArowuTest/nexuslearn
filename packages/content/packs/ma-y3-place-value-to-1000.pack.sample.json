@@ -17597,7 +17597,7 @@
         "Remove one ten; the ones stay fixed.",
         "Only the tens digit changes here."
       ],
-      "explanation": "195 - 10 = 185. The tens digit changes.",
+      "explanation": "195 - 10 = 185. The tens digit changes. The expected response is 185; the tens digit changes. Only the tens digit changes here. Remove one ten; the ones stay fixed.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "wrong_place_changes",
@@ -17861,7 +17861,7 @@
         "Add one hundred.",
         "Only the hundreds digit changes here."
       ],
-      "explanation": "195 + 100 = 295. The hundreds digit changes.",
+      "explanation": "195 + 100 = 295. The hundreds digit changes. The expected response is 295; the hundreds digit changes. Only the hundreds digit changes here. Add one hundred.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "wrong_place_changes",
@@ -17992,7 +17992,7 @@
         "Remove one hundred.",
         "Only the hundreds digit changes here."
       ],
-      "explanation": "205 - 100 = 105. The hundreds digit changes.",
+      "explanation": "205 - 100 = 105. The hundreds digit changes. The expected response is 105; the hundreds digit changes. Only the hundreds digit changes here. Remove one hundred.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "wrong_place_changes",
@@ -18256,7 +18256,7 @@
         "Add one ten; the ones stay fixed.",
         "Only the tens digit changes here."
       ],
-      "explanation": "205 + 10 = 215. The tens digit changes.",
+      "explanation": "205 + 10 = 215. The tens digit changes. The expected response is 215; the tens digit changes. Only the tens digit changes here. Add one ten; the ones stay fixed.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "wrong_place_changes",
@@ -18387,7 +18387,7 @@
         "Add one hundred.",
         "Only the hundreds digit changes here."
       ],
-      "explanation": "205 + 100 = 305. The hundreds digit changes.",
+      "explanation": "205 + 100 = 305. The hundreds digit changes. The expected response is 305; the hundreds digit changes. Only the hundreds digit changes here. Add one hundred.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "wrong_place_changes",
@@ -18518,7 +18518,7 @@
         "Remove one hundred.",
         "Only the hundreds digit changes here."
       ],
-      "explanation": "289 - 100 = 189. The hundreds digit changes.",
+      "explanation": "289 - 100 = 189. The hundreds digit changes. The expected response is 189; the hundreds digit changes. Only the hundreds digit changes here. Remove one hundred.",
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "wrong_place_changes",
@@ -18649,7 +18649,7 @@
         "Remove one ten; the ones stay fixed.",
         "Only the tens digit changes here."
       ],
-      "explanation": "289 - 10 = 279. The tens digit changes.",
+      "explanation": "289 - 10 = 279. The tens digit changes. The expected response is 279; the tens digit changes. Only the tens digit changes here. Remove one ten; the ones stay fixed.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "wrong_place_changes",
@@ -18780,7 +18780,7 @@
         "Add one ten; the ones stay fixed.",
         "Only the tens digit changes here."
       ],
-      "explanation": "289 + 10 = 299. The tens digit changes.",
+      "explanation": "289 + 10 = 299. The tens digit changes. The expected response is 299; the tens digit changes. Only the tens digit changes here. Add one ten; the ones stay fixed.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "wrong_place_changes",
@@ -18911,7 +18911,7 @@
         "Add one hundred.",
         "Only the hundreds digit changes here."
       ],
-      "explanation": "289 + 100 = 389. The hundreds digit changes.",
+      "explanation": "289 + 100 = 389. The hundreds digit changes. The expected response is 389; the hundreds digit changes. Only the hundreds digit changes here. Add one hundred.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "wrong_place_changes",
@@ -19042,7 +19042,7 @@
         "Remove one hundred.",
         "Only the hundreds digit changes here."
       ],
-      "explanation": "310 - 100 = 210. The hundreds digit changes.",
+      "explanation": "310 - 100 = 210. The hundreds digit changes. The expected response is 210; the hundreds digit changes. Only the hundreds digit changes here. Remove one hundred.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "wrong_place_changes",
@@ -19173,7 +19173,7 @@
         "Remove one ten; the ones stay fixed.",
         "Only the tens digit changes here."
       ],
-      "explanation": "310 - 10 = 300. The tens digit changes.",
+      "explanation": "310 - 10 = 300. The tens digit changes. The expected response is 300; the tens digit changes. Only the tens digit changes here. Remove one ten; the ones stay fixed.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "wrong_place_changes",
@@ -19304,7 +19304,7 @@
         "Add one ten; the ones stay fixed.",
         "Only the tens digit changes here."
       ],
-      "explanation": "310 + 10 = 320. The tens digit changes.",
+      "explanation": "310 + 10 = 320. The tens digit changes. The expected response is 320; the tens digit changes. Only the tens digit changes here. Add one ten; the ones stay fixed.",
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "wrong_place_changes",
@@ -19435,7 +19435,7 @@
         "Add one hundred.",
         "Only the hundreds digit changes here."
       ],
-      "explanation": "310 + 100 = 410. The hundreds digit changes.",
+      "explanation": "310 + 100 = 410. The hundreds digit changes. The expected response is 410; the hundreds digit changes. Only the hundreds digit changes here. Add one hundred.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "wrong_place_changes",
@@ -19566,7 +19566,7 @@
         "Remove one hundred.",
         "Only the hundreds digit changes here."
       ],
-      "explanation": "395 - 100 = 295. The hundreds digit changes.",
+      "explanation": "395 - 100 = 295. The hundreds digit changes. The expected response is 295; the hundreds digit changes. Only the hundreds digit changes here. Remove one hundred.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "wrong_place_changes",
@@ -19697,7 +19697,7 @@
         "Remove one ten; the ones stay fixed.",
         "Only the tens digit changes here."
       ],
-      "explanation": "395 - 10 = 385. The tens digit changes.",
+      "explanation": "395 - 10 = 385. The tens digit changes. The expected response is 385; the tens digit changes. Only the tens digit changes here. Remove one ten; the ones stay fixed.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "wrong_place_changes",
@@ -19961,7 +19961,7 @@
         "Add one hundred.",
         "Only the hundreds digit changes here."
       ],
-      "explanation": "395 + 100 = 495. The hundreds digit changes.",
+      "explanation": "395 + 100 = 495. The hundreds digit changes. The expected response is 495; the hundreds digit changes. Only the hundreds digit changes here. Add one hundred.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "wrong_place_changes",
@@ -20092,7 +20092,7 @@
         "Remove one hundred.",
         "Only the hundreds digit changes here."
       ],
-      "explanation": "405 - 100 = 305. The hundreds digit changes.",
+      "explanation": "405 - 100 = 305. The hundreds digit changes. The expected response is 305; the hundreds digit changes. Only the hundreds digit changes here. Remove one hundred.",
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "wrong_place_changes",
@@ -20356,7 +20356,7 @@
         "Add one ten; the ones stay fixed.",
         "Only the tens digit changes here."
       ],
-      "explanation": "405 + 10 = 415. The tens digit changes.",
+      "explanation": "405 + 10 = 415. The tens digit changes. The expected response is 415; the tens digit changes. Only the tens digit changes here. Add one ten; the ones stay fixed.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "wrong_place_changes",
@@ -20487,7 +20487,7 @@
         "Add one hundred.",
         "Only the hundreds digit changes here."
       ],
-      "explanation": "405 + 100 = 505. The hundreds digit changes.",
+      "explanation": "405 + 100 = 505. The hundreds digit changes. The expected response is 505; the hundreds digit changes. Only the hundreds digit changes here. Add one hundred.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "wrong_place_changes",
@@ -20618,7 +20618,7 @@
         "Remove one hundred.",
         "Only the hundreds digit changes here."
       ],
-      "explanation": "589 - 100 = 489. The hundreds digit changes.",
+      "explanation": "589 - 100 = 489. The hundreds digit changes. The expected response is 489; the hundreds digit changes. Only the hundreds digit changes here. Remove one hundred.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "wrong_place_changes",
@@ -20749,7 +20749,7 @@
         "Remove one ten; the ones stay fixed.",
         "Only the tens digit changes here."
       ],
-      "explanation": "589 - 10 = 579. The tens digit changes.",
+      "explanation": "589 - 10 = 579. The tens digit changes. The expected response is 579; the tens digit changes. Only the tens digit changes here. Remove one ten; the ones stay fixed.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "wrong_place_changes",
@@ -20880,7 +20880,7 @@
         "Add one ten; the ones stay fixed.",
         "Only the tens digit changes here."
       ],
-      "explanation": "589 + 10 = 599. The tens digit changes.",
+      "explanation": "589 + 10 = 599. The tens digit changes. The expected response is 599; the tens digit changes. Only the tens digit changes here. Add one ten; the ones stay fixed.",
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "wrong_place_changes",
@@ -21011,7 +21011,7 @@
         "Add one hundred.",
         "Only the hundreds digit changes here."
       ],
-      "explanation": "589 + 100 = 689. The hundreds digit changes.",
+      "explanation": "589 + 100 = 689. The hundreds digit changes. The expected response is 689; the hundreds digit changes. Only the hundreds digit changes here. Add one hundred.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "wrong_place_changes",
@@ -21142,7 +21142,7 @@
         "Remove one hundred.",
         "Only the hundreds digit changes here."
       ],
-      "explanation": "610 - 100 = 510. The hundreds digit changes.",
+      "explanation": "610 - 100 = 510. The hundreds digit changes. The expected response is 510; the hundreds digit changes. Only the hundreds digit changes here. Remove one hundred.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "wrong_place_changes",
@@ -21273,7 +21273,7 @@
         "Remove one ten; the ones stay fixed.",
         "Only the tens digit changes here."
       ],
-      "explanation": "610 - 10 = 600. The tens digit changes.",
+      "explanation": "610 - 10 = 600. The tens digit changes. The expected response is 600; the tens digit changes. Only the tens digit changes here. Remove one ten; the ones stay fixed.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "wrong_place_changes",
@@ -21404,7 +21404,7 @@
         "Add one ten; the ones stay fixed.",
         "Only the tens digit changes here."
       ],
-      "explanation": "610 + 10 = 620. The tens digit changes.",
+      "explanation": "610 + 10 = 620. The tens digit changes. The expected response is 620; the tens digit changes. Only the tens digit changes here. Add one ten; the ones stay fixed.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "wrong_place_changes",
@@ -21535,7 +21535,7 @@
         "Add one hundred.",
         "Only the hundreds digit changes here."
       ],
-      "explanation": "610 + 100 = 710. The hundreds digit changes.",
+      "explanation": "610 + 100 = 710. The hundreds digit changes. The expected response is 710; the hundreds digit changes. Only the hundreds digit changes here. Add one hundred.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "wrong_place_changes",
@@ -21666,7 +21666,7 @@
         "Remove one hundred.",
         "Only the hundreds digit changes here."
       ],
-      "explanation": "795 - 100 = 695. The hundreds digit changes.",
+      "explanation": "795 - 100 = 695. The hundreds digit changes. The expected response is 695; the hundreds digit changes. Only the hundreds digit changes here. Remove one hundred.",
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "wrong_place_changes",
@@ -21797,7 +21797,7 @@
         "Remove one ten; the ones stay fixed.",
         "Only the tens digit changes here."
       ],
-      "explanation": "795 - 10 = 785. The tens digit changes.",
+      "explanation": "795 - 10 = 785. The tens digit changes. The expected response is 785; the tens digit changes. Only the tens digit changes here. Remove one ten; the ones stay fixed.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "wrong_place_changes",
@@ -22061,7 +22061,7 @@
         "Add one hundred.",
         "Only the hundreds digit changes here."
       ],
-      "explanation": "795 + 100 = 895. The hundreds digit changes.",
+      "explanation": "795 + 100 = 895. The hundreds digit changes. The expected response is 895; the hundreds digit changes. Only the hundreds digit changes here. Add one hundred.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "wrong_place_changes",
@@ -22192,7 +22192,7 @@
         "Remove one hundred.",
         "Only the hundreds digit changes here."
       ],
-      "explanation": "805 - 100 = 705. The hundreds digit changes.",
+      "explanation": "805 - 100 = 705. The hundreds digit changes. The expected response is 705; the hundreds digit changes. Only the hundreds digit changes here. Remove one hundred.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "wrong_place_changes",
@@ -22456,7 +22456,7 @@
         "Add one ten; the ones stay fixed.",
         "Only the tens digit changes here."
       ],
-      "explanation": "805 + 10 = 815. The tens digit changes.",
+      "explanation": "805 + 10 = 815. The tens digit changes. The expected response is 815; the tens digit changes. Only the tens digit changes here. Add one ten; the ones stay fixed.",
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "wrong_place_changes",
@@ -22587,7 +22587,7 @@
         "Add one hundred.",
         "Only the hundreds digit changes here."
       ],
-      "explanation": "805 + 100 = 905. The hundreds digit changes.",
+      "explanation": "805 + 100 = 905. The hundreds digit changes. The expected response is 905; the hundreds digit changes. Only the hundreds digit changes here. Add one hundred.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "wrong_place_changes",
@@ -22718,7 +22718,7 @@
         "Remove one hundred.",
         "Only the hundreds digit changes here."
       ],
-      "explanation": "890 - 100 = 790. The hundreds digit changes.",
+      "explanation": "890 - 100 = 790. The hundreds digit changes. The expected response is 790; the hundreds digit changes. Only the hundreds digit changes here. Remove one hundred.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "wrong_place_changes",
@@ -22849,7 +22849,7 @@
         "Remove one ten; the ones stay fixed.",
         "Only the tens digit changes here."
       ],
-      "explanation": "890 - 10 = 880. The tens digit changes.",
+      "explanation": "890 - 10 = 880. The tens digit changes. The expected response is 880; the tens digit changes. Only the tens digit changes here. Remove one ten; the ones stay fixed.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "wrong_place_changes",
@@ -23113,7 +23113,7 @@
         "Add one hundred.",
         "Only the hundreds digit changes here."
       ],
-      "explanation": "890 + 100 = 990. The hundreds digit changes.",
+      "explanation": "890 + 100 = 990. The hundreds digit changes. The expected response is 990; the hundreds digit changes. Only the hundreds digit changes here. Add one hundred.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "wrong_place_changes",

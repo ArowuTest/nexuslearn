@@ -7964,7 +7964,7 @@
       "id": "sc-y5-earth-space-models-bank-relative-motion-planets-sun-5",
       "format": "orbit-simulation",
       "body": {
-        "prompt": "Relative-motion investigation 30 uses high-contrast static-and-play controls. Evidence: Several planet markers follow different-sized paths with the Sun marker at the shared centre. Which interpretation is scientifically useful?",
+        "prompt": "Which model explanation matches the planet-motion evidence?",
         "observation": "Several planet markers follow different-sized paths with the Sun marker at the shared centre",
         "controls": [
           "play one step",
@@ -8972,7 +8972,7 @@
       "id": "sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-1",
       "format": "orbit-simulation",
       "body": {
-        "prompt": "Relative-motion investigation 46 uses top-down model controls. Evidence: From Earth, the Sun seems to travel around the sky, but a wider model shows Earth turning and orbiting. Which interpretation is scientifically useful?",
+        "prompt": "In the expected moving-viewpoint model, which explanation matches the evidence?",
         "observation": "From Earth, the Sun seems to travel around the sky, but a wider model shows Earth turning and orbiting",
         "controls": [
           "play one step",
@@ -9035,7 +9035,7 @@
       "id": "sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-2",
       "format": "orbit-simulation",
       "body": {
-        "prompt": "Relative-motion investigation 47 uses side-view model controls. Evidence: From Earth, the Sun seems to travel around the sky, but a wider model shows Earth turning and orbiting. Which interpretation is scientifically useful?",
+        "prompt": "At the secure moving-viewpoint checkpoint, which explanation matches the evidence?",
         "observation": "From Earth, the Sun seems to travel around the sky, but a wider model shows Earth turning and orbiting",
         "controls": [
           "play one step",
@@ -9098,7 +9098,7 @@
       "id": "sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-3",
       "format": "orbit-simulation",
       "body": {
-        "prompt": "Relative-motion investigation 48 uses numbered freeze-frame controls. Evidence: From Earth, the Sun seems to travel around the sky, but a wider model shows Earth turning and orbiting. Which interpretation is scientifically useful?",
+        "prompt": "At the stretch moving-viewpoint checkpoint, which explanation matches the evidence?",
         "observation": "From Earth, the Sun seems to travel around the sky, but a wider model shows Earth turning and orbiting",
         "controls": [
           "play one step",
@@ -9161,7 +9161,7 @@
       "id": "sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-4",
       "format": "orbit-simulation",
       "body": {
-        "prompt": "Relative-motion investigation 49 uses audio-described step controls. Evidence: From Earth, the Sun seems to travel around the sky, but a wider model shows Earth turning and orbiting. Which interpretation is scientifically useful?",
+        "prompt": "In the introductory moving-viewpoint model, which explanation matches the evidence?",
         "observation": "From Earth, the Sun seems to travel around the sky, but a wider model shows Earth turning and orbiting",
         "controls": [
           "play one step",
@@ -9224,7 +9224,7 @@
       "id": "sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-5",
       "format": "orbit-simulation",
       "body": {
-        "prompt": "Relative-motion investigation 50 uses high-contrast static-and-play controls. Evidence: From Earth, the Sun seems to travel around the sky, but a wider model shows Earth turning and orbiting. Which interpretation is scientifically useful?",
+        "prompt": "In the developing moving-viewpoint model, which explanation matches the evidence?",
         "observation": "From Earth, the Sun seems to travel around the sky, but a wider model shows Earth turning and orbiting",
         "controls": [
           "play one step",
@@ -10847,7 +10847,7 @@
       "id": "sc-y5-earth-space-models-bank-moon-light-sun-moon-compare-2",
       "format": "explain-choice",
       "body": {
-        "prompt": "Moonlight evidence card 27 uses side-view model controls. A source sensor detects light leaving the Sun model, while the Moon model is bright only when source light reaches it. Which explanation follows from the evidence?",
+        "prompt": "At the stretch checkpoint, which explanation matches the Sun–Moon light evidence?",
         "evidence": "A source sensor detects light leaving the Sun model, while the Moon model is bright only when source light reaches it",
         "light_path": [
           "Sun or model lamp",
@@ -10907,7 +10907,7 @@
       "id": "sc-y5-earth-space-models-bank-moon-light-sun-moon-compare-3",
       "format": "explain-choice",
       "body": {
-        "prompt": "Moonlight evidence card 28 uses numbered freeze-frame controls. A source sensor detects light leaving the Sun model, while the Moon model is bright only when source light reaches it. Which explanation follows from the evidence?",
+        "prompt": "At the introductory checkpoint, which explanation matches the Sun–Moon light evidence?",
         "evidence": "A source sensor detects light leaving the Sun model, while the Moon model is bright only when source light reaches it",
         "light_path": [
           "Sun or model lamp",
@@ -10967,7 +10967,7 @@
       "id": "sc-y5-earth-space-models-bank-moon-light-sun-moon-compare-4",
       "format": "explain-choice",
       "body": {
-        "prompt": "Moonlight evidence card 29 uses audio-described step controls. A source sensor detects light leaving the Sun model, while the Moon model is bright only when source light reaches it. Which explanation follows from the evidence?",
+        "prompt": "At the developing checkpoint, which explanation matches the Sun–Moon light evidence?",
         "evidence": "A source sensor detects light leaving the Sun model, while the Moon model is bright only when source light reaches it",
         "light_path": [
           "Sun or model lamp",
@@ -11027,7 +11027,7 @@
       "id": "sc-y5-earth-space-models-bank-moon-light-sun-moon-compare-5",
       "format": "explain-choice",
       "body": {
-        "prompt": "Moonlight evidence card 30 uses high-contrast static-and-play controls. A source sensor detects light leaving the Sun model, while the Moon model is bright only when source light reaches it. Which explanation follows from the evidence?",
+        "prompt": "At the expected checkpoint, which explanation matches the Sun–Moon light evidence?",
         "evidence": "A source sensor detects light leaving the Sun model, while the Moon model is bright only when source light reaches it",
         "light_path": [
           "Sun or model lamp",

@@ -26,6 +26,11 @@ const phonemes = {
 const originalText = await readFile(packPath, "utf8");
 const pack = JSON.parse(originalText);
 if (pack.pack_id !== "en-y1-phonics-blend-cvc-words") throw new Error("This generator only supports the Year 1 phonics blending flagship.");
+for (const variant of pack.question_variants ?? []) {
+  if (typeof variant.explanation === "string" && variant.explanation.includes(" The expected response is ")) {
+    variant.explanation = variant.explanation.split(" The expected response is ")[0];
+  }
+}
 const beforeVariants = structuredClone(pack.question_variants ?? []);
 const beforeCore = coreSnapshot(beforeVariants);
 const beforeBlueprints = blueprintCounts(beforeVariants);
@@ -232,6 +237,7 @@ function coreSnapshot(variants) { return variants.map(stripEnrichment); }
 
 function stripEnrichment(variant) {
   const copy = structuredClone(variant);
+  if (typeof copy.explanation === "string") copy.explanation = copy.explanation.split(" The expected response is ")[0];
   delete copy.feedback;
   for (const key of ["interaction_route", "supported_response_route", "phoneme_frame_route", "visual_access_route", "processing_support_route", "no_mandatory_speech", "no_mandatory_handwriting", "microphone_required", "handwriting_required", "retry_without_penalty", "no_timer", "speed_score_allowed", "preserve_correct_work", "undo_available", "pressure_rules", "audio_provider", "audio_production_policy", "human_listening_approval_required", "browser_tts_allowed", "browser_tts_fallback", "unavailable_audio_state"]) delete copy.body[key];
   return copy;

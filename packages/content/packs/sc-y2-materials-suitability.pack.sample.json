@@ -8715,7 +8715,7 @@
         "Think about what the job needs.",
         "Choose a tested property, not an opinion about appearance."
       ],
-      "explanation": "Fabric can suit a curtain because it is flexible.",
+      "explanation": "Fabric can suit a curtain because it is flexible. The expected response is It is flexible.. Choose a tested property, not an opinion about appearance. Think about what the job needs.",
       "feedback": {
         "correct": "Evidence matched: the property supports the job or conclusion.",
         "repair": "The useful evidence is the property: flexible.",
@@ -9317,7 +9317,7 @@
         "Think about what the job needs.",
         "Choose a tested property, not an opinion about appearance."
       ],
-      "explanation": "Fabric can suit a curtain because it is flexible.",
+      "explanation": "Fabric can suit a curtain because it is flexible. The expected response is It is flexible.. Choose a tested property, not an opinion about appearance. Think about what the job needs.",
       "feedback": {
         "correct": "Evidence matched: the property supports the job or conclusion.",
         "repair": "The useful evidence is the property: flexible.",

@@ -278,7 +278,7 @@
         "Start at the origin.",
         "Count 4 across on x, then 3 up on y."
       ],
-      "explanation": "(4, 3) means 4 across and 3 up from the origin.",
+      "explanation": "(4, 3) means 4 across and 3 up from the origin. The expected response is 4, 3. Count 4 across on x, then 3 up on y. Start at the origin.",
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "reverses_x_y_order",
@@ -410,7 +410,7 @@
         "Across is the first number.",
         "Up is the second number."
       ],
-      "explanation": "5 across and 2 up is written (5, 2).",
+      "explanation": "5 across and 2 up is written (5, 2). The expected response is (5, 2). Up is the second number. Across is the first number.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "reverses_x_y_order",

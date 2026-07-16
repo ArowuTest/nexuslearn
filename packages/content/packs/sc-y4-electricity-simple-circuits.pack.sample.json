@@ -2362,7 +2362,7 @@
         "Trace the path from one cell terminal through every component and back to the other terminal.",
         "Use the observed switch state, connection or test result; do not guess from appearance."
       ],
-      "explanation": "The switch opens or closes the conducting path.",
+      "explanation": "The switch opens or closes the conducting path. The expected response is switch. Use the observed switch state, connection or test result; do not guess from appearance. Trace the path from one cell terminal through every component and back to the other terminal.",
       "feedback": {
         "correct": "Circuit evidence secured through name from job. The switch opens or closes the conducting path.",
         "repair": "Match the component's labelled symbol to one observable circuit job, then check it in a complete path.",
@@ -18832,7 +18832,7 @@
         "Trace the path from one cell terminal through every component and back to the other terminal.",
         "Use the observed switch state, connection or test result; do not guess from appearance."
       ],
-      "explanation": "The test evidence supports conductor.",
+      "explanation": "The test evidence supports conductor. The expected response is conductor. Use the observed switch state, connection or test result; do not guess from appearance. Trace the path from one cell terminal through every component and back to the other terminal.",
       "feedback": {
         "correct": "Circuit evidence secured through material retrieval. The test evidence supports conductor.",
         "repair": "Confirm the tester with a known conductor, insert the material and classify from the recorded output rather than appearance.",
@@ -19567,7 +19567,7 @@
         "Trace the path from one cell terminal through every component and back to the other terminal.",
         "Use the observed switch state, connection or test result; do not guess from appearance."
       ],
-      "explanation": "The test evidence supports conductor.",
+      "explanation": "The test evidence supports conductor. The expected response is conductor. Use the observed switch state, connection or test result; do not guess from appearance. Trace the path from one cell terminal through every component and back to the other terminal.",
       "feedback": {
         "correct": "Circuit evidence secured through material retrieval. The test evidence supports conductor.",
         "repair": "Confirm the tester with a known conductor, insert the material and classify from the recorded output rather than appearance.",
@@ -20309,7 +20309,7 @@
         "Trace the path from one cell terminal through every component and back to the other terminal.",
         "Use the observed switch state, connection or test result; do not guess from appearance."
       ],
-      "explanation": "The test evidence supports insulator.",
+      "explanation": "The test evidence supports insulator. The expected response is insulator. Use the observed switch state, connection or test result; do not guess from appearance. Trace the path from one cell terminal through every component and back to the other terminal.",
       "feedback": {
         "correct": "Circuit evidence secured through material retrieval. The test evidence supports insulator.",
         "repair": "Confirm the tester with a known conductor, insert the material and classify from the recorded output rather than appearance.",
@@ -21044,7 +21044,7 @@
         "Trace the path from one cell terminal through every component and back to the other terminal.",
         "Use the observed switch state, connection or test result; do not guess from appearance."
       ],
-      "explanation": "The test evidence supports insulator.",
+      "explanation": "The test evidence supports insulator. The expected response is insulator. Use the observed switch state, connection or test result; do not guess from appearance. Trace the path from one cell terminal through every component and back to the other terminal.",
       "feedback": {
         "correct": "Circuit evidence secured through material retrieval. The test evidence supports insulator.",
         "repair": "Confirm the tester with a known conductor, insert the material and classify from the recorded output rather than appearance.",
@@ -21786,7 +21786,7 @@
         "Trace the path from one cell terminal through every component and back to the other terminal.",
         "Use the observed switch state, connection or test result; do not guess from appearance."
       ],
-      "explanation": "The test evidence supports insulator.",
+      "explanation": "The test evidence supports insulator. The expected response is insulator. Use the observed switch state, connection or test result; do not guess from appearance. Trace the path from one cell terminal through every component and back to the other terminal.",
       "feedback": {
         "correct": "Circuit evidence secured through material retrieval. The test evidence supports insulator.",
         "repair": "Confirm the tester with a known conductor, insert the material and classify from the recorded output rather than appearance.",
@@ -22521,7 +22521,7 @@
         "Trace the path from one cell terminal through every component and back to the other terminal.",
         "Use the observed switch state, connection or test result; do not guess from appearance."
       ],
-      "explanation": "The test evidence supports conductor.",
+      "explanation": "The test evidence supports conductor. The expected response is conductor. Use the observed switch state, connection or test result; do not guess from appearance. Trace the path from one cell terminal through every component and back to the other terminal.",
       "feedback": {
         "correct": "Circuit evidence secured through material retrieval. The test evidence supports conductor.",
         "repair": "Confirm the tester with a known conductor, insert the material and classify from the recorded output rather than appearance.",

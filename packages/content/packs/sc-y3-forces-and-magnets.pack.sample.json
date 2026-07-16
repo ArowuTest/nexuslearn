@@ -685,7 +685,7 @@
         "Look for the objects touching during the force.",
         "The action is a push."
       ],
-      "explanation": "The objects touch, so this is a contact push.",
+      "explanation": "The objects touch, so this is a contact push. The expected response is A contact push. The action is a push. Look for the objects touching during the force.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "force_used_up",
@@ -889,7 +889,7 @@
         "Look for the objects touching during the force.",
         "The action is a push."
       ],
-      "explanation": "The objects touch, so this is a contact push.",
+      "explanation": "The objects touch, so this is a contact push. The expected response is A contact push. The action is a push. Look for the objects touching during the force.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "force_used_up",
@@ -1093,7 +1093,7 @@
         "Look for the objects touching during the force.",
         "The action is a push."
       ],
-      "explanation": "The objects touch, so this is a contact push.",
+      "explanation": "The objects touch, so this is a contact push. The expected response is A contact push. The action is a push. Look for the objects touching during the force.",
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "force_used_up",
@@ -1297,7 +1297,7 @@
         "Look for the objects touching during the force.",
         "The action is a push."
       ],
-      "explanation": "The objects touch, so this is a contact push.",
+      "explanation": "The objects touch, so this is a contact push. The expected response is A contact push. The action is a push. Look for the objects touching during the force.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "force_used_up",
@@ -1501,7 +1501,7 @@
         "Look for the objects touching during the force.",
         "The action is a push."
       ],
-      "explanation": "The objects touch, so this is a contact push.",
+      "explanation": "The objects touch, so this is a contact push. The expected response is A contact push. The action is a push. Look for the objects touching during the force.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "force_used_up",
@@ -1705,7 +1705,7 @@
         "Look for the objects touching during the force.",
         "The action is a push."
       ],
-      "explanation": "The objects touch, so this is a contact push.",
+      "explanation": "The objects touch, so this is a contact push. The expected response is A contact push. The action is a push. Look for the objects touching during the force.",
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "force_used_up",
@@ -1909,7 +1909,7 @@
         "Look for the objects touching during the force.",
         "The action is a push."
       ],
-      "explanation": "The objects touch, so this is a contact push.",
+      "explanation": "The objects touch, so this is a contact push. The expected response is A contact push. The action is a push. Look for the objects touching during the force.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "force_used_up",
@@ -2113,7 +2113,7 @@
         "Look for the objects touching during the force.",
         "The action is a pull."
       ],
-      "explanation": "The objects touch, so this is a contact pull.",
+      "explanation": "The objects touch, so this is a contact pull. The expected response is A contact pull. The action is a pull. Look for the objects touching during the force.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "force_used_up",
@@ -2317,7 +2317,7 @@
         "Look for the objects touching during the force.",
         "The action is a pull."
       ],
-      "explanation": "The objects touch, so this is a contact pull.",
+      "explanation": "The objects touch, so this is a contact pull. The expected response is A contact pull. The action is a pull. Look for the objects touching during the force.",
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "force_used_up",
@@ -2521,7 +2521,7 @@
         "Look for the objects touching during the force.",
         "The action is a pull."
       ],
-      "explanation": "The objects touch, so this is a contact pull.",
+      "explanation": "The objects touch, so this is a contact pull. The expected response is A contact pull. The action is a pull. Look for the objects touching during the force.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "force_used_up",
@@ -2725,7 +2725,7 @@
         "Look for the objects touching during the force.",
         "The action is a pull."
       ],
-      "explanation": "The objects touch, so this is a contact pull.",
+      "explanation": "The objects touch, so this is a contact pull. The expected response is A contact pull. The action is a pull. Look for the objects touching during the force.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "force_used_up",
@@ -2929,7 +2929,7 @@
         "Look for the objects touching during the force.",
         "The action is a push."
       ],
-      "explanation": "The objects touch, so this is a contact push.",
+      "explanation": "The objects touch, so this is a contact push. The expected response is A contact push. The action is a push. Look for the objects touching during the force.",
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "force_used_up",
@@ -3133,7 +3133,7 @@
         "Look for the objects touching during the force.",
         "The action is a push."
       ],
-      "explanation": "The objects touch, so this is a contact push.",
+      "explanation": "The objects touch, so this is a contact push. The expected response is A contact push. The action is a push. Look for the objects touching during the force.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "force_used_up",
@@ -3337,7 +3337,7 @@
         "Look for the objects touching during the force.",
         "The action is a pull."
       ],
-      "explanation": "The objects touch, so this is a contact pull.",
+      "explanation": "The objects touch, so this is a contact pull. The expected response is A contact pull. The action is a pull. Look for the objects touching during the force.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "force_used_up",
@@ -3541,7 +3541,7 @@
         "Look for the objects touching during the force.",
         "The action is a push."
       ],
-      "explanation": "The objects touch, so this is a contact push.",
+      "explanation": "The objects touch, so this is a contact push. The expected response is A contact push. The action is a push. Look for the objects touching during the force.",
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "force_used_up",
@@ -4770,7 +4770,7 @@
         "Look for the objects touching during the force.",
         "The action is a push."
       ],
-      "explanation": "The objects touch, so this is a contact push.",
+      "explanation": "The objects touch, so this is a contact push. The expected response is A contact push. The action is a push. Look for the objects touching during the force.",
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "force_used_up",
@@ -4974,7 +4974,7 @@
         "Look for the objects touching during the force.",
         "The action is a pull."
       ],
-      "explanation": "The objects touch, so this is a contact pull.",
+      "explanation": "The objects touch, so this is a contact pull. The expected response is A contact pull. The action is a pull. Look for the objects touching during the force.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "force_used_up",
@@ -5178,7 +5178,7 @@
         "Look for the objects touching during the force.",
         "The action is a push."
       ],
-      "explanation": "The objects touch, so this is a contact push.",
+      "explanation": "The objects touch, so this is a contact push. The expected response is A contact push. The action is a push. Look for the objects touching during the force.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "force_used_up",
@@ -15669,7 +15669,7 @@
         "Read both facing pole letters.",
         "Matching poles repel."
       ],
-      "explanation": "N and N are matching poles, so the magnets repel.",
+      "explanation": "N and N are matching poles, so the magnets repel. The expected response is They repel. Matching poles repel. Read both facing pole letters.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "magnets_always_attract",
@@ -15782,7 +15782,7 @@
         "Use the new facing poles after the turn.",
         "The new poles are different."
       ],
-      "explanation": "After the turn, N faces S. These poles attract.",
+      "explanation": "After the turn, N faces S. These poles attract. The expected response is They attract. The new poles are different. Use the new facing poles after the turn.",
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "magnets_always_attract",
@@ -16008,7 +16008,7 @@
         "Read both facing pole letters.",
         "Matching poles repel."
       ],
-      "explanation": "S and S are matching poles, so the magnets repel.",
+      "explanation": "S and S are matching poles, so the magnets repel. The expected response is They repel. Matching poles repel. Read both facing pole letters.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "magnets_always_attract",
@@ -16121,7 +16121,7 @@
         "Use the new facing poles after the turn.",
         "The new poles are different."
       ],
-      "explanation": "After the turn, S faces N. These poles attract.",
+      "explanation": "After the turn, S faces N. These poles attract. The expected response is They attract. The new poles are different. Use the new facing poles after the turn.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "magnets_always_attract",
@@ -16460,7 +16460,7 @@
         "Use the new facing poles after the turn.",
         "The new poles match."
       ],
-      "explanation": "After the turn, N faces N. These poles repel.",
+      "explanation": "After the turn, N faces N. These poles repel. The expected response is They repel. The new poles match. Use the new facing poles after the turn.",
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "magnets_always_attract",
@@ -16799,7 +16799,7 @@
         "Use the new facing poles after the turn.",
         "The new poles match."
       ],
-      "explanation": "After the turn, S faces S. These poles repel.",
+      "explanation": "After the turn, S faces S. These poles repel. The expected response is They repel. The new poles match. Use the new facing poles after the turn.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "magnets_always_attract",
@@ -17025,7 +17025,7 @@
         "Read both facing pole letters.",
         "Matching poles repel."
       ],
-      "explanation": "N and N are matching poles, so the magnets repel.",
+      "explanation": "N and N are matching poles, so the magnets repel. The expected response is They repel. Matching poles repel. Read both facing pole letters.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "magnets_always_attract",
@@ -17138,7 +17138,7 @@
         "Use the new facing poles after the turn.",
         "The new poles are different."
       ],
-      "explanation": "After the turn, N faces S. These poles attract.",
+      "explanation": "After the turn, N faces S. These poles attract. The expected response is They attract. The new poles are different. Use the new facing poles after the turn.",
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "magnets_always_attract",
@@ -17364,7 +17364,7 @@
         "Read both facing pole letters.",
         "Matching poles repel."
       ],
-      "explanation": "S and S are matching poles, so the magnets repel.",
+      "explanation": "S and S are matching poles, so the magnets repel. The expected response is They repel. Matching poles repel. Read both facing pole letters.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "magnets_always_attract",
@@ -17477,7 +17477,7 @@
         "Use the new facing poles after the turn.",
         "The new poles are different."
       ],
-      "explanation": "After the turn, S faces N. These poles attract.",
+      "explanation": "After the turn, S faces N. These poles attract. The expected response is They attract. The new poles are different. Use the new facing poles after the turn.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "magnets_always_attract",
@@ -17816,7 +17816,7 @@
         "Use the new facing poles after the turn.",
         "The new poles match."
       ],
-      "explanation": "After the turn, N faces N. These poles repel.",
+      "explanation": "After the turn, N faces N. These poles repel. The expected response is They repel. The new poles match. Use the new facing poles after the turn.",
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "magnets_always_attract",
@@ -18155,7 +18155,7 @@
         "Use the new facing poles after the turn.",
         "The new poles match."
       ],
-      "explanation": "After the turn, S faces S. These poles repel.",
+      "explanation": "After the turn, S faces S. These poles repel. The expected response is They repel. The new poles match. Use the new facing poles after the turn.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "magnets_always_attract",
@@ -18381,7 +18381,7 @@
         "Read both facing pole letters.",
         "Matching poles repel."
       ],
-      "explanation": "N and N are matching poles, so the magnets repel.",
+      "explanation": "N and N are matching poles, so the magnets repel. The expected response is They repel. Matching poles repel. Read both facing pole letters.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "magnets_always_attract",
@@ -18494,7 +18494,7 @@
         "Use the new facing poles after the turn.",
         "The new poles are different."
       ],
-      "explanation": "After the turn, N faces S. These poles attract.",
+      "explanation": "After the turn, N faces S. These poles attract. The expected response is They attract. The new poles are different. Use the new facing poles after the turn.",
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "magnets_always_attract",
@@ -18720,7 +18720,7 @@
         "Read both facing pole letters.",
         "Matching poles repel."
       ],
-      "explanation": "S and S are matching poles, so the magnets repel.",
+      "explanation": "S and S are matching poles, so the magnets repel. The expected response is They repel. Matching poles repel. Read both facing pole letters.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "magnets_always_attract",
@@ -18833,7 +18833,7 @@
         "Use the new facing poles after the turn.",
         "The new poles are different."
       ],
-      "explanation": "After the turn, S faces N. These poles attract.",
+      "explanation": "After the turn, S faces N. These poles attract. The expected response is They attract. The new poles are different. Use the new facing poles after the turn.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "magnets_always_attract",
@@ -19172,7 +19172,7 @@
         "Use the new facing poles after the turn.",
         "The new poles match."
       ],
-      "explanation": "After the turn, N faces N. These poles repel.",
+      "explanation": "After the turn, N faces N. These poles repel. The expected response is They repel. The new poles match. Use the new facing poles after the turn.",
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "magnets_always_attract",
@@ -19511,7 +19511,7 @@
         "Use the new facing poles after the turn.",
         "The new poles match."
       ],
-      "explanation": "After the turn, S faces S. These poles repel.",
+      "explanation": "After the turn, S faces S. These poles repel. The expected response is They repel. The new poles match. Use the new facing poles after the turn.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "magnets_always_attract",
@@ -19737,7 +19737,7 @@
         "Read both facing pole letters.",
         "Matching poles repel."
       ],
-      "explanation": "N and N are matching poles, so the magnets repel.",
+      "explanation": "N and N are matching poles, so the magnets repel. The expected response is They repel. Matching poles repel. Read both facing pole letters.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "magnets_always_attract",
@@ -19850,7 +19850,7 @@
         "Use the new facing poles after the turn.",
         "The new poles are different."
       ],
-      "explanation": "After the turn, N faces S. These poles attract.",
+      "explanation": "After the turn, N faces S. These poles attract. The expected response is They attract. The new poles are different. Use the new facing poles after the turn.",
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "magnets_always_attract",
@@ -20076,7 +20076,7 @@
         "Read both facing pole letters.",
         "Matching poles repel."
       ],
-      "explanation": "S and S are matching poles, so the magnets repel.",
+      "explanation": "S and S are matching poles, so the magnets repel. The expected response is They repel. Matching poles repel. Read both facing pole letters.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "magnets_always_attract",
@@ -20189,7 +20189,7 @@
         "Use the new facing poles after the turn.",
         "The new poles are different."
       ],
-      "explanation": "After the turn, S faces N. These poles attract.",
+      "explanation": "After the turn, S faces N. These poles attract. The expected response is They attract. The new poles are different. Use the new facing poles after the turn.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "magnets_always_attract",
@@ -20528,7 +20528,7 @@
         "Use the new facing poles after the turn.",
         "The new poles match."
       ],
-      "explanation": "After the turn, N faces N. These poles repel.",
+      "explanation": "After the turn, N faces N. These poles repel. The expected response is They repel. The new poles match. Use the new facing poles after the turn.",
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "magnets_always_attract",

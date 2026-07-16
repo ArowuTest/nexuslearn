@@ -1726,7 +1726,7 @@
         "A 2-D shape is flat.",
         "Do not decide from colour."
       ],
-      "explanation": "A circle is 2-D: a flat round shape.",
+      "explanation": "A circle is 2-D: a flat round shape. The expected response is 2-D. Do not decide from colour. A 2-D shape is flat.",
       "feedback": {
         "correct": "circle sorted as 2-D.",
         "repair": "Compare a raised flat outline with a solid model, or use the full text descriptions without requiring touch.",
@@ -3562,7 +3562,7 @@
         "A 2-D shape is flat.",
         "Do not decide from colour."
       ],
-      "explanation": "A circle is 2-D: a flat round shape.",
+      "explanation": "A circle is 2-D: a flat round shape. The expected response is 2-D. Do not decide from colour. A 2-D shape is flat.",
       "feedback": {
         "correct": "circle sorted as 2-D.",
         "repair": "Compare a raised flat outline with a solid model, or use the full text descriptions without requiring touch.",
@@ -11692,7 +11692,7 @@
         "Use the recorded order or duration, not picture size.",
         "Tomorrow is the day after today."
       ],
-      "explanation": "Tomorrow is the day after today.",
+      "explanation": "Tomorrow is the day after today. The expected response is Tomorrow is the day after today.. Tomorrow is the day after today. Use the recorded order or duration, not picture size.",
       "feedback": {
         "correct": "Time-language evidence matched without speed scoring.",
         "repair": "Replay one event or phrase at a time and place numbered cards or choose a static order; keep correct cards in place.",
@@ -11766,7 +11766,7 @@
         "Use the recorded order or duration, not picture size.",
         "Yesterday is the day before today."
       ],
-      "explanation": "Yesterday is the day before today.",
+      "explanation": "Yesterday is the day before today. The expected response is Yesterday is the day before today.. Yesterday is the day before today. Use the recorded order or duration, not picture size.",
       "feedback": {
         "correct": "Time-language evidence matched without speed scoring.",
         "repair": "Replay one event or phrase at a time and place numbered cards or choose a static order; keep correct cards in place.",
@@ -12687,7 +12687,7 @@
         "Use the recorded order or duration, not picture size.",
         "Tomorrow is the day after today."
       ],
-      "explanation": "Tomorrow is the day after today.",
+      "explanation": "Tomorrow is the day after today. The expected response is Tomorrow is the day after today.. Tomorrow is the day after today. Use the recorded order or duration, not picture size.",
       "feedback": {
         "correct": "Time-language evidence matched without speed scoring.",
         "repair": "Replay one event or phrase at a time and place numbered cards or choose a static order; keep correct cards in place.",
@@ -12761,7 +12761,7 @@
         "Use the recorded order or duration, not picture size.",
         "Yesterday is the day before today."
       ],
-      "explanation": "Yesterday is the day before today.",
+      "explanation": "Yesterday is the day before today. The expected response is Yesterday is the day before today.. Yesterday is the day before today. Use the recorded order or duration, not picture size.",
       "feedback": {
         "correct": "Time-language evidence matched without speed scoring.",
         "repair": "Replay one event or phrase at a time and place numbered cards or choose a static order; keep correct cards in place.",
@@ -13682,7 +13682,7 @@
         "Use the recorded order or duration, not picture size.",
         "Tomorrow is the day after today."
       ],
-      "explanation": "Tomorrow is the day after today.",
+      "explanation": "Tomorrow is the day after today. The expected response is Tomorrow is the day after today.. Tomorrow is the day after today. Use the recorded order or duration, not picture size.",
       "feedback": {
         "correct": "Time-language evidence matched without speed scoring.",
         "repair": "Replay one event or phrase at a time and place numbered cards or choose a static order; keep correct cards in place.",
@@ -13756,7 +13756,7 @@
         "Use the recorded order or duration, not picture size.",
         "Yesterday is the day before today."
       ],
-      "explanation": "Yesterday is the day before today.",
+      "explanation": "Yesterday is the day before today. The expected response is Yesterday is the day before today.. Yesterday is the day before today. Use the recorded order or duration, not picture size.",
       "feedback": {
         "correct": "Time-language evidence matched without speed scoring.",
         "repair": "Replay one event or phrase at a time and place numbered cards or choose a static order; keep correct cards in place.",
@@ -15347,7 +15347,7 @@
         "Replay the order or duration clue.",
         "Do not use picture size or position as time evidence."
       ],
-      "explanation": "Yesterday is the day before today.",
+      "explanation": "Yesterday is the day before today. The expected response is Yesterday is the day before today.. Do not use picture size or position as time evidence. Replay the order or duration clue.",
       "feedback": {
         "correct": "Time explanation matched to the spoken record.",
         "repair": "Replay in chunks and use BEFORE/AFTER or QUICKER/LONGER symbol cards.",
@@ -16158,7 +16158,7 @@
         "Replay the order or duration clue.",
         "Do not use picture size or position as time evidence."
       ],
-      "explanation": "Yesterday is the day before today.",
+      "explanation": "Yesterday is the day before today. The expected response is Yesterday is the day before today.. Do not use picture size or position as time evidence. Replay the order or duration clue.",
       "feedback": {
         "correct": "Time explanation matched to the spoken record.",
         "repair": "Replay in chunks and use BEFORE/AFTER or QUICKER/LONGER symbol cards.",
@@ -16969,7 +16969,7 @@
         "Replay the order or duration clue.",
         "Do not use picture size or position as time evidence."
       ],
-      "explanation": "Yesterday is the day before today.",
+      "explanation": "Yesterday is the day before today. The expected response is Yesterday is the day before today.. Do not use picture size or position as time evidence. Replay the order or duration clue.",
       "feedback": {
         "correct": "Time explanation matched to the spoken record.",
         "repair": "Replay in chunks and use BEFORE/AFTER or QUICKER/LONGER symbol cards.",
@@ -17780,7 +17780,7 @@
         "Replay the order or duration clue.",
         "Do not use picture size or position as time evidence."
       ],
-      "explanation": "Yesterday is the day before today.",
+      "explanation": "Yesterday is the day before today. The expected response is Yesterday is the day before today.. Do not use picture size or position as time evidence. Replay the order or duration clue.",
       "feedback": {
         "correct": "Time explanation matched to the spoken record.",
         "repair": "Replay in chunks and use BEFORE/AFTER or QUICKER/LONGER symbol cards.",

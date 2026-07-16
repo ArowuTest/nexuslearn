@@ -14994,7 +14994,7 @@
       "id": "sc-y1-everyday-materials-bank-suit-cushion-13",
       "format": "evidence-tap",
       "body": {
-        "prompt": "Maker mission 13: choose a material for a model cushion filling. It must feel soft when gently pressed. Which choice uses evidence?",
+        "prompt": "Which material choice uses evidence for soft cushion filling?",
         "design_object": "a model cushion filling",
         "design_need": "feel soft when gently pressed",
         "choices": [

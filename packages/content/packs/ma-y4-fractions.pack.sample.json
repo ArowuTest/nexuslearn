@@ -419,7 +419,7 @@
         "The whole has 100 equal squares.",
         "37 shaded squares means 37 hundredths."
       ],
-      "explanation": "37 out of 100 equal parts is 37/100.",
+      "explanation": "37 out of 100 equal parts is 37/100. The expected response is 37/100. 37 shaded squares means 37 hundredths. The whole has 100 equal squares.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "tenths_hundredths_confusion",
@@ -6800,7 +6800,7 @@
         "The denominator was multiplied by 2.",
         "Multiply the numerator by the same factor."
       ],
-      "explanation": "2 × 2 = 4, so 1 × 2 = 2. Therefore 1/2 = 2/4.",
+      "explanation": "2 × 2 = 4, so 1 × 2 = 2. Therefore 1/2 = 2/4. The expected response is 2. Multiply the numerator by the same factor. The denominator was multiplied by 2.",
       "feedback": {
         "correct": "Mission evidence secured: equivalent missing numerator.",
         "repair": "Align equal-length bars and multiply or divide numerator and denominator by the same factor.",
@@ -7162,7 +7162,7 @@
         "The denominator was multiplied by 3.",
         "Multiply the numerator by the same factor."
       ],
-      "explanation": "2 × 3 = 6, so 1 × 3 = 3. Therefore 1/2 = 3/6.",
+      "explanation": "2 × 3 = 6, so 1 × 3 = 3. Therefore 1/2 = 3/6. The expected response is 3. Multiply the numerator by the same factor. The denominator was multiplied by 3.",
       "feedback": {
         "correct": "Mission evidence secured: equivalent missing numerator.",
         "repair": "Align equal-length bars and multiply or divide numerator and denominator by the same factor.",
@@ -7524,7 +7524,7 @@
         "The denominator was multiplied by 4.",
         "Multiply the numerator by the same factor."
       ],
-      "explanation": "2 × 4 = 8, so 1 × 4 = 4. Therefore 1/2 = 4/8.",
+      "explanation": "2 × 4 = 8, so 1 × 4 = 4. Therefore 1/2 = 4/8. The expected response is 4. Multiply the numerator by the same factor. The denominator was multiplied by 4.",
       "feedback": {
         "correct": "Mission evidence secured: equivalent missing numerator.",
         "repair": "Align equal-length bars and multiply or divide numerator and denominator by the same factor.",
@@ -7886,7 +7886,7 @@
         "The denominator was multiplied by 5.",
         "Multiply the numerator by the same factor."
       ],
-      "explanation": "2 × 5 = 10, so 1 × 5 = 5. Therefore 1/2 = 5/10.",
+      "explanation": "2 × 5 = 10, so 1 × 5 = 5. Therefore 1/2 = 5/10. The expected response is 5. Multiply the numerator by the same factor. The denominator was multiplied by 5.",
       "feedback": {
         "correct": "Mission evidence secured: equivalent missing numerator.",
         "repair": "Align equal-length bars and multiply or divide numerator and denominator by the same factor.",
@@ -8248,7 +8248,7 @@
         "The denominator was multiplied by 6.",
         "Multiply the numerator by the same factor."
       ],
-      "explanation": "2 × 6 = 12, so 1 × 6 = 6. Therefore 1/2 = 6/12.",
+      "explanation": "2 × 6 = 12, so 1 × 6 = 6. Therefore 1/2 = 6/12. The expected response is 6. Multiply the numerator by the same factor. The denominator was multiplied by 6.",
       "feedback": {
         "correct": "Mission evidence secured: equivalent missing numerator.",
         "repair": "Align equal-length bars and multiply or divide numerator and denominator by the same factor.",
@@ -8610,7 +8610,7 @@
         "The denominator was multiplied by 2.",
         "Multiply the numerator by the same factor."
       ],
-      "explanation": "3 × 2 = 6, so 1 × 2 = 2. Therefore 1/3 = 2/6.",
+      "explanation": "3 × 2 = 6, so 1 × 2 = 2. Therefore 1/3 = 2/6. The expected response is 2. Multiply the numerator by the same factor. The denominator was multiplied by 2.",
       "feedback": {
         "correct": "Mission evidence secured: equivalent missing numerator.",
         "repair": "Align equal-length bars and multiply or divide numerator and denominator by the same factor.",
@@ -8972,7 +8972,7 @@
         "The denominator was multiplied by 3.",
         "Multiply the numerator by the same factor."
       ],
-      "explanation": "3 × 3 = 9, so 1 × 3 = 3. Therefore 1/3 = 3/9.",
+      "explanation": "3 × 3 = 9, so 1 × 3 = 3. Therefore 1/3 = 3/9. The expected response is 3. Multiply the numerator by the same factor. The denominator was multiplied by 3.",
       "feedback": {
         "correct": "Mission evidence secured: equivalent missing numerator.",
         "repair": "Align equal-length bars and multiply or divide numerator and denominator by the same factor.",
@@ -9334,7 +9334,7 @@
         "The denominator was multiplied by 4.",
         "Multiply the numerator by the same factor."
       ],
-      "explanation": "3 × 4 = 12, so 1 × 4 = 4. Therefore 1/3 = 4/12.",
+      "explanation": "3 × 4 = 12, so 1 × 4 = 4. Therefore 1/3 = 4/12. The expected response is 4. Multiply the numerator by the same factor. The denominator was multiplied by 4.",
       "feedback": {
         "correct": "Mission evidence secured: equivalent missing numerator.",
         "repair": "Align equal-length bars and multiply or divide numerator and denominator by the same factor.",
@@ -9696,7 +9696,7 @@
         "The denominator was multiplied by 2.",
         "Multiply the numerator by the same factor."
       ],
-      "explanation": "3 × 2 = 6, so 2 × 2 = 4. Therefore 2/3 = 4/6.",
+      "explanation": "3 × 2 = 6, so 2 × 2 = 4. Therefore 2/3 = 4/6. The expected response is 4. Multiply the numerator by the same factor. The denominator was multiplied by 2.",
       "feedback": {
         "correct": "Mission evidence secured: equivalent missing numerator.",
         "repair": "Align equal-length bars and multiply or divide numerator and denominator by the same factor.",
@@ -10058,7 +10058,7 @@
         "The denominator was multiplied by 3.",
         "Multiply the numerator by the same factor."
       ],
-      "explanation": "3 × 3 = 9, so 2 × 3 = 6. Therefore 2/3 = 6/9.",
+      "explanation": "3 × 3 = 9, so 2 × 3 = 6. Therefore 2/3 = 6/9. The expected response is 6. Multiply the numerator by the same factor. The denominator was multiplied by 3.",
       "feedback": {
         "correct": "Mission evidence secured: equivalent missing numerator.",
         "repair": "Align equal-length bars and multiply or divide numerator and denominator by the same factor.",
@@ -10420,7 +10420,7 @@
         "The denominator was multiplied by 4.",
         "Multiply the numerator by the same factor."
       ],
-      "explanation": "3 × 4 = 12, so 2 × 4 = 8. Therefore 2/3 = 8/12.",
+      "explanation": "3 × 4 = 12, so 2 × 4 = 8. Therefore 2/3 = 8/12. The expected response is 8. Multiply the numerator by the same factor. The denominator was multiplied by 4.",
       "feedback": {
         "correct": "Mission evidence secured: equivalent missing numerator.",
         "repair": "Align equal-length bars and multiply or divide numerator and denominator by the same factor.",
@@ -10782,7 +10782,7 @@
         "The denominator was multiplied by 2.",
         "Multiply the numerator by the same factor."
       ],
-      "explanation": "4 × 2 = 8, so 1 × 2 = 2. Therefore 1/4 = 2/8.",
+      "explanation": "4 × 2 = 8, so 1 × 2 = 2. Therefore 1/4 = 2/8. The expected response is 2. Multiply the numerator by the same factor. The denominator was multiplied by 2.",
       "feedback": {
         "correct": "Mission evidence secured: equivalent missing numerator.",
         "repair": "Align equal-length bars and multiply or divide numerator and denominator by the same factor.",
@@ -11144,7 +11144,7 @@
         "The denominator was multiplied by 3.",
         "Multiply the numerator by the same factor."
       ],
-      "explanation": "4 × 3 = 12, so 1 × 3 = 3. Therefore 1/4 = 3/12.",
+      "explanation": "4 × 3 = 12, so 1 × 3 = 3. Therefore 1/4 = 3/12. The expected response is 3. Multiply the numerator by the same factor. The denominator was multiplied by 3.",
       "feedback": {
         "correct": "Mission evidence secured: equivalent missing numerator.",
         "repair": "Align equal-length bars and multiply or divide numerator and denominator by the same factor.",
@@ -11506,7 +11506,7 @@
         "The denominator was multiplied by 2.",
         "Multiply the numerator by the same factor."
       ],
-      "explanation": "4 × 2 = 8, so 3 × 2 = 6. Therefore 3/4 = 6/8.",
+      "explanation": "4 × 2 = 8, so 3 × 2 = 6. Therefore 3/4 = 6/8. The expected response is 6. Multiply the numerator by the same factor. The denominator was multiplied by 2.",
       "feedback": {
         "correct": "Mission evidence secured: equivalent missing numerator.",
         "repair": "Align equal-length bars and multiply or divide numerator and denominator by the same factor.",
@@ -11868,7 +11868,7 @@
         "The denominator was multiplied by 3.",
         "Multiply the numerator by the same factor."
       ],
-      "explanation": "4 × 3 = 12, so 3 × 3 = 9. Therefore 3/4 = 9/12.",
+      "explanation": "4 × 3 = 12, so 3 × 3 = 9. Therefore 3/4 = 9/12. The expected response is 9. Multiply the numerator by the same factor. The denominator was multiplied by 3.",
       "feedback": {
         "correct": "Mission evidence secured: equivalent missing numerator.",
         "repair": "Align equal-length bars and multiply or divide numerator and denominator by the same factor.",
@@ -12230,7 +12230,7 @@
         "The denominator was multiplied by 2.",
         "Multiply the numerator by the same factor."
       ],
-      "explanation": "5 × 2 = 10, so 1 × 2 = 2. Therefore 1/5 = 2/10.",
+      "explanation": "5 × 2 = 10, so 1 × 2 = 2. Therefore 1/5 = 2/10. The expected response is 2. Multiply the numerator by the same factor. The denominator was multiplied by 2.",
       "feedback": {
         "correct": "Mission evidence secured: equivalent missing numerator.",
         "repair": "Align equal-length bars and multiply or divide numerator and denominator by the same factor.",
@@ -12592,7 +12592,7 @@
         "The denominator was multiplied by 2.",
         "Multiply the numerator by the same factor."
       ],
-      "explanation": "5 × 2 = 10, so 2 × 2 = 4. Therefore 2/5 = 4/10.",
+      "explanation": "5 × 2 = 10, so 2 × 2 = 4. Therefore 2/5 = 4/10. The expected response is 4. Multiply the numerator by the same factor. The denominator was multiplied by 2.",
       "feedback": {
         "correct": "Mission evidence secured: equivalent missing numerator.",
         "repair": "Align equal-length bars and multiply or divide numerator and denominator by the same factor.",
@@ -19338,7 +19338,7 @@
         "The whole grid contains 100 equal cells.",
         "Count 0 full rows of ten and 4 extra cells."
       ],
-      "explanation": "4 marked cells out of 100 equal cells is 4/100.",
+      "explanation": "4 marked cells out of 100 equal cells is 4/100. The expected response is 4/100. Count 0 full rows of ten and 4 extra cells. The whole grid contains 100 equal cells.",
       "feedback": {
         "correct": "Mission evidence secured: hundred square fraction count.",
         "repair": "Count complete rows of ten hundredths, then the remaining single cells.",
@@ -19740,7 +19740,7 @@
         "The whole grid contains 100 equal cells.",
         "Count 0 full rows of ten and 7 extra cells."
       ],
-      "explanation": "7 marked cells out of 100 equal cells is 7/100.",
+      "explanation": "7 marked cells out of 100 equal cells is 7/100. The expected response is 7/100. Count 0 full rows of ten and 7 extra cells. The whole grid contains 100 equal cells.",
       "feedback": {
         "correct": "Mission evidence secured: hundred square fraction count.",
         "repair": "Count complete rows of ten hundredths, then the remaining single cells.",
@@ -20142,7 +20142,7 @@
         "The whole grid contains 100 equal cells.",
         "Count 1 full rows of ten and 0 extra cells."
       ],
-      "explanation": "10 marked cells out of 100 equal cells is 10/100.",
+      "explanation": "10 marked cells out of 100 equal cells is 10/100. The expected response is 10/100. Count 1 full rows of ten and 0 extra cells. The whole grid contains 100 equal cells.",
       "feedback": {
         "correct": "Mission evidence secured: hundred square fraction count.",
         "repair": "Count complete rows of ten hundredths, then the remaining single cells.",
@@ -20544,7 +20544,7 @@
         "The whole grid contains 100 equal cells.",
         "Count 1 full rows of ten and 2 extra cells."
       ],
-      "explanation": "12 marked cells out of 100 equal cells is 12/100.",
+      "explanation": "12 marked cells out of 100 equal cells is 12/100. The expected response is 12/100. Count 1 full rows of ten and 2 extra cells. The whole grid contains 100 equal cells.",
       "feedback": {
         "correct": "Mission evidence secured: hundred square fraction count.",
         "repair": "Count complete rows of ten hundredths, then the remaining single cells.",
@@ -20946,7 +20946,7 @@
         "The whole grid contains 100 equal cells.",
         "Count 1 full rows of ten and 9 extra cells."
       ],
-      "explanation": "19 marked cells out of 100 equal cells is 19/100.",
+      "explanation": "19 marked cells out of 100 equal cells is 19/100. The expected response is 19/100. Count 1 full rows of ten and 9 extra cells. The whole grid contains 100 equal cells.",
       "feedback": {
         "correct": "Mission evidence secured: hundred square fraction count.",
         "repair": "Count complete rows of ten hundredths, then the remaining single cells.",
@@ -21348,7 +21348,7 @@
         "The whole grid contains 100 equal cells.",
         "Count 2 full rows of ten and 0 extra cells."
       ],
-      "explanation": "20 marked cells out of 100 equal cells is 20/100.",
+      "explanation": "20 marked cells out of 100 equal cells is 20/100. The expected response is 20/100. Count 2 full rows of ten and 0 extra cells. The whole grid contains 100 equal cells.",
       "feedback": {
         "correct": "Mission evidence secured: hundred square fraction count.",
         "repair": "Count complete rows of ten hundredths, then the remaining single cells.",
@@ -21750,7 +21750,7 @@
         "The whole grid contains 100 equal cells.",
         "Count 2 full rows of ten and 7 extra cells."
       ],
-      "explanation": "27 marked cells out of 100 equal cells is 27/100.",
+      "explanation": "27 marked cells out of 100 equal cells is 27/100. The expected response is 27/100. Count 2 full rows of ten and 7 extra cells. The whole grid contains 100 equal cells.",
       "feedback": {
         "correct": "Mission evidence secured: hundred square fraction count.",
         "repair": "Count complete rows of ten hundredths, then the remaining single cells.",
@@ -22152,7 +22152,7 @@
         "The whole grid contains 100 equal cells.",
         "Count 3 full rows of ten and 0 extra cells."
       ],
-      "explanation": "30 marked cells out of 100 equal cells is 30/100.",
+      "explanation": "30 marked cells out of 100 equal cells is 30/100. The expected response is 30/100. Count 3 full rows of ten and 0 extra cells. The whole grid contains 100 equal cells.",
       "feedback": {
         "correct": "Mission evidence secured: hundred square fraction count.",
         "repair": "Count complete rows of ten hundredths, then the remaining single cells.",
@@ -22554,7 +22554,7 @@
         "The whole grid contains 100 equal cells.",
         "Count 3 full rows of ten and 6 extra cells."
       ],
-      "explanation": "36 marked cells out of 100 equal cells is 36/100.",
+      "explanation": "36 marked cells out of 100 equal cells is 36/100. The expected response is 36/100. Count 3 full rows of ten and 6 extra cells. The whole grid contains 100 equal cells.",
       "feedback": {
         "correct": "Mission evidence secured: hundred square fraction count.",
         "repair": "Count complete rows of ten hundredths, then the remaining single cells.",
@@ -22956,7 +22956,7 @@
         "The whole grid contains 100 equal cells.",
         "Count 4 full rows of ten and 5 extra cells."
       ],
-      "explanation": "45 marked cells out of 100 equal cells is 45/100.",
+      "explanation": "45 marked cells out of 100 equal cells is 45/100. The expected response is 45/100. Count 4 full rows of ten and 5 extra cells. The whole grid contains 100 equal cells.",
       "feedback": {
         "correct": "Mission evidence secured: hundred square fraction count.",
         "repair": "Count complete rows of ten hundredths, then the remaining single cells.",
@@ -23358,7 +23358,7 @@
         "The whole grid contains 100 equal cells.",
         "Count 5 full rows of ten and 0 extra cells."
       ],
-      "explanation": "50 marked cells out of 100 equal cells is 50/100.",
+      "explanation": "50 marked cells out of 100 equal cells is 50/100. The expected response is 50/100. Count 5 full rows of ten and 0 extra cells. The whole grid contains 100 equal cells.",
       "feedback": {
         "correct": "Mission evidence secured: hundred square fraction count.",
         "repair": "Count complete rows of ten hundredths, then the remaining single cells.",
@@ -23760,7 +23760,7 @@
         "The whole grid contains 100 equal cells.",
         "Count 5 full rows of ten and 8 extra cells."
       ],
-      "explanation": "58 marked cells out of 100 equal cells is 58/100.",
+      "explanation": "58 marked cells out of 100 equal cells is 58/100. The expected response is 58/100. Count 5 full rows of ten and 8 extra cells. The whole grid contains 100 equal cells.",
       "feedback": {
         "correct": "Mission evidence secured: hundred square fraction count.",
         "repair": "Count complete rows of ten hundredths, then the remaining single cells.",
@@ -24162,7 +24162,7 @@
         "The whole grid contains 100 equal cells.",
         "Count 6 full rows of ten and 4 extra cells."
       ],
-      "explanation": "64 marked cells out of 100 equal cells is 64/100.",
+      "explanation": "64 marked cells out of 100 equal cells is 64/100. The expected response is 64/100. Count 6 full rows of ten and 4 extra cells. The whole grid contains 100 equal cells.",
       "feedback": {
         "correct": "Mission evidence secured: hundred square fraction count.",
         "repair": "Count complete rows of ten hundredths, then the remaining single cells.",
@@ -24564,7 +24564,7 @@
         "The whole grid contains 100 equal cells.",
         "Count 7 full rows of ten and 0 extra cells."
       ],
-      "explanation": "70 marked cells out of 100 equal cells is 70/100.",
+      "explanation": "70 marked cells out of 100 equal cells is 70/100. The expected response is 70/100. Count 7 full rows of ten and 0 extra cells. The whole grid contains 100 equal cells.",
       "feedback": {
         "correct": "Mission evidence secured: hundred square fraction count.",
         "repair": "Count complete rows of ten hundredths, then the remaining single cells.",
@@ -24966,7 +24966,7 @@
         "The whole grid contains 100 equal cells.",
         "Count 8 full rows of ten and 3 extra cells."
       ],
-      "explanation": "83 marked cells out of 100 equal cells is 83/100.",
+      "explanation": "83 marked cells out of 100 equal cells is 83/100. The expected response is 83/100. Count 8 full rows of ten and 3 extra cells. The whole grid contains 100 equal cells.",
       "feedback": {
         "correct": "Mission evidence secured: hundred square fraction count.",
         "repair": "Count complete rows of ten hundredths, then the remaining single cells.",
@@ -25368,7 +25368,7 @@
         "The whole grid contains 100 equal cells.",
         "Count 9 full rows of ten and 0 extra cells."
       ],
-      "explanation": "90 marked cells out of 100 equal cells is 90/100.",
+      "explanation": "90 marked cells out of 100 equal cells is 90/100. The expected response is 90/100. Count 9 full rows of ten and 0 extra cells. The whole grid contains 100 equal cells.",
       "feedback": {
         "correct": "Mission evidence secured: hundred square fraction count.",
         "repair": "Count complete rows of ten hundredths, then the remaining single cells.",
@@ -25770,7 +25770,7 @@
         "The whole grid contains 100 equal cells.",
         "Count 9 full rows of ten and 6 extra cells."
       ],
-      "explanation": "96 marked cells out of 100 equal cells is 96/100.",
+      "explanation": "96 marked cells out of 100 equal cells is 96/100. The expected response is 96/100. Count 9 full rows of ten and 6 extra cells. The whole grid contains 100 equal cells.",
       "feedback": {
         "correct": "Mission evidence secured: hundred square fraction count.",
         "repair": "Count complete rows of ten hundredths, then the remaining single cells.",

@@ -485,7 +485,7 @@
         "Start with m.",
         "Listen for the last sound."
       ],
-      "explanation": "The word map is built from m-a-p.",
+      "explanation": "The word map is built from m-a-p. The expected response is m, a, p. Listen for the last sound. Start with m.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "sound_order_gap",
@@ -677,7 +677,7 @@
         "Replay the sounds.",
         "Listen carefully for a in the middle."
       ],
-      "explanation": "b-a-t makes bat; the middle sound is a.",
+      "explanation": "b-a-t makes bat; the middle sound is a. The expected response is bat. Listen carefully for a in the middle. Replay the sounds.",
       "difficulty": 1,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -875,7 +875,7 @@
         "Replay the sounds.",
         "Listen carefully for a in the middle."
       ],
-      "explanation": "c-a-t makes cat; the middle sound is a.",
+      "explanation": "c-a-t makes cat; the middle sound is a. The expected response is cat. Listen carefully for a in the middle. Replay the sounds.",
       "difficulty": 1,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -1168,7 +1168,7 @@
         "Replay the sounds.",
         "Listen carefully for a in the middle."
       ],
-      "explanation": "d-a-d makes dad; the middle sound is a.",
+      "explanation": "d-a-d makes dad; the middle sound is a. The expected response is dad. Listen carefully for a in the middle. Replay the sounds.",
       "difficulty": 1,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -1461,7 +1461,7 @@
         "Replay the sounds.",
         "Listen carefully for a in the middle."
       ],
-      "explanation": "f-a-n makes fan; the middle sound is a.",
+      "explanation": "f-a-n makes fan; the middle sound is a. The expected response is fan. Listen carefully for a in the middle. Replay the sounds.",
       "difficulty": 1,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -1754,7 +1754,7 @@
         "Replay the sounds.",
         "Listen carefully for a in the middle."
       ],
-      "explanation": "f-a-t makes fat; the middle sound is a.",
+      "explanation": "f-a-t makes fat; the middle sound is a. The expected response is fat. Listen carefully for a in the middle. Replay the sounds.",
       "difficulty": 1,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -2047,7 +2047,7 @@
         "Replay the sounds.",
         "Listen carefully for a in the middle."
       ],
-      "explanation": "g-a-p makes gap; the middle sound is a.",
+      "explanation": "g-a-p makes gap; the middle sound is a. The expected response is gap. Listen carefully for a in the middle. Replay the sounds.",
       "difficulty": 1,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -2340,7 +2340,7 @@
         "Replay the sounds.",
         "Listen carefully for a in the middle."
       ],
-      "explanation": "g-a-s makes gas; the middle sound is a.",
+      "explanation": "g-a-s makes gas; the middle sound is a. The expected response is gas. Listen carefully for a in the middle. Replay the sounds.",
       "difficulty": 1,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -2633,7 +2633,7 @@
         "Replay the sounds.",
         "Listen carefully for a in the middle."
       ],
-      "explanation": "h-a-m makes ham; the middle sound is a.",
+      "explanation": "h-a-m makes ham; the middle sound is a. The expected response is ham. Listen carefully for a in the middle. Replay the sounds.",
       "difficulty": 1,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -2926,7 +2926,7 @@
         "Replay the sounds.",
         "Listen carefully for a in the middle."
       ],
-      "explanation": "h-a-t makes hat; the middle sound is a.",
+      "explanation": "h-a-t makes hat; the middle sound is a. The expected response is hat. Listen carefully for a in the middle. Replay the sounds.",
       "difficulty": 1,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -3219,7 +3219,7 @@
         "Replay the sounds.",
         "Listen carefully for a in the middle."
       ],
-      "explanation": "j-a-m makes jam; the middle sound is a.",
+      "explanation": "j-a-m makes jam; the middle sound is a. The expected response is jam. Listen carefully for a in the middle. Replay the sounds.",
       "difficulty": 1,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -3512,7 +3512,7 @@
         "Replay the sounds.",
         "Listen carefully for a in the middle."
       ],
-      "explanation": "l-a-p makes lap; the middle sound is a.",
+      "explanation": "l-a-p makes lap; the middle sound is a. The expected response is lap. Listen carefully for a in the middle. Replay the sounds.",
       "difficulty": 1,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -3805,7 +3805,7 @@
         "Replay the sounds.",
         "Listen carefully for a in the middle."
       ],
-      "explanation": "m-a-n makes man; the middle sound is a.",
+      "explanation": "m-a-n makes man; the middle sound is a. The expected response is man. Listen carefully for a in the middle. Replay the sounds.",
       "difficulty": 1,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -4098,7 +4098,7 @@
         "Replay the sounds.",
         "Listen carefully for a in the middle."
       ],
-      "explanation": "m-a-p makes map; the middle sound is a.",
+      "explanation": "m-a-p makes map; the middle sound is a. The expected response is map. Listen carefully for a in the middle. Replay the sounds.",
       "difficulty": 1,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -4290,7 +4290,7 @@
         "Replay the sounds.",
         "Listen carefully for a in the middle."
       ],
-      "explanation": "m-a-t makes mat; the middle sound is a.",
+      "explanation": "m-a-t makes mat; the middle sound is a. The expected response is mat. Listen carefully for a in the middle. Replay the sounds.",
       "difficulty": 1,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -4583,7 +4583,7 @@
         "Replay the sounds.",
         "Listen carefully for a in the middle."
       ],
-      "explanation": "n-a-p makes nap; the middle sound is a.",
+      "explanation": "n-a-p makes nap; the middle sound is a. The expected response is nap. Listen carefully for a in the middle. Replay the sounds.",
       "difficulty": 1,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -4876,7 +4876,7 @@
         "Replay the sounds.",
         "Listen carefully for a in the middle."
       ],
-      "explanation": "p-a-n makes pan; the middle sound is a.",
+      "explanation": "p-a-n makes pan; the middle sound is a. The expected response is pan. Listen carefully for a in the middle. Replay the sounds.",
       "difficulty": 1,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -5169,7 +5169,7 @@
         "Replay the sounds.",
         "Listen carefully for a in the middle."
       ],
-      "explanation": "p-a-t makes pat; the middle sound is a.",
+      "explanation": "p-a-t makes pat; the middle sound is a. The expected response is pat. Listen carefully for a in the middle. Replay the sounds.",
       "difficulty": 1,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -5462,7 +5462,7 @@
         "Replay the sounds.",
         "Listen carefully for a in the middle."
       ],
-      "explanation": "r-a-g makes rag; the middle sound is a.",
+      "explanation": "r-a-g makes rag; the middle sound is a. The expected response is rag. Listen carefully for a in the middle. Replay the sounds.",
       "difficulty": 1,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -5755,7 +5755,7 @@
         "Replay the sounds.",
         "Listen carefully for a in the middle."
       ],
-      "explanation": "r-a-m makes ram; the middle sound is a.",
+      "explanation": "r-a-m makes ram; the middle sound is a. The expected response is ram. Listen carefully for a in the middle. Replay the sounds.",
       "difficulty": 1,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -6048,7 +6048,7 @@
         "Replay the sounds.",
         "Listen carefully for a in the middle."
       ],
-      "explanation": "r-a-n makes ran; the middle sound is a.",
+      "explanation": "r-a-n makes ran; the middle sound is a. The expected response is ran. Listen carefully for a in the middle. Replay the sounds.",
       "difficulty": 1,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -6341,7 +6341,7 @@
         "Replay the sounds.",
         "Listen carefully for a in the middle."
       ],
-      "explanation": "r-a-t makes rat; the middle sound is a.",
+      "explanation": "r-a-t makes rat; the middle sound is a. The expected response is rat. Listen carefully for a in the middle. Replay the sounds.",
       "difficulty": 1,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -6634,7 +6634,7 @@
         "Replay the sounds.",
         "Listen carefully for a in the middle."
       ],
-      "explanation": "s-a-d makes sad; the middle sound is a.",
+      "explanation": "s-a-d makes sad; the middle sound is a. The expected response is sad. Listen carefully for a in the middle. Replay the sounds.",
       "difficulty": 1,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -6927,7 +6927,7 @@
         "Replay the sounds.",
         "Listen carefully for a in the middle."
       ],
-      "explanation": "s-a-t makes sat; the middle sound is a.",
+      "explanation": "s-a-t makes sat; the middle sound is a. The expected response is sat. Listen carefully for a in the middle. Replay the sounds.",
       "difficulty": 1,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -7220,7 +7220,7 @@
         "Replay the sounds.",
         "Listen carefully for a in the middle."
       ],
-      "explanation": "t-a-p makes tap; the middle sound is a.",
+      "explanation": "t-a-p makes tap; the middle sound is a. The expected response is tap. Listen carefully for a in the middle. Replay the sounds.",
       "difficulty": 1,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -7513,7 +7513,7 @@
         "Replay the sounds.",
         "Listen carefully for a in the middle."
       ],
-      "explanation": "v-a-n makes van; the middle sound is a.",
+      "explanation": "v-a-n makes van; the middle sound is a. The expected response is van. Listen carefully for a in the middle. Replay the sounds.",
       "difficulty": 1,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -7806,7 +7806,7 @@
         "Replay the sounds.",
         "Listen carefully for e in the middle."
       ],
-      "explanation": "b-e-d makes bed; the middle sound is e.",
+      "explanation": "b-e-d makes bed; the middle sound is e. The expected response is bed. Listen carefully for e in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -8099,7 +8099,7 @@
         "Replay the sounds.",
         "Listen carefully for e in the middle."
       ],
-      "explanation": "b-e-g makes beg; the middle sound is e.",
+      "explanation": "b-e-g makes beg; the middle sound is e. The expected response is beg. Listen carefully for e in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -8392,7 +8392,7 @@
         "Replay the sounds.",
         "Listen carefully for e in the middle."
       ],
-      "explanation": "d-e-n makes den; the middle sound is e.",
+      "explanation": "d-e-n makes den; the middle sound is e. The expected response is den. Listen carefully for e in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -8685,7 +8685,7 @@
         "Replay the sounds.",
         "Listen carefully for e in the middle."
       ],
-      "explanation": "f-e-d makes fed; the middle sound is e.",
+      "explanation": "f-e-d makes fed; the middle sound is e. The expected response is fed. Listen carefully for e in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -8978,7 +8978,7 @@
         "Replay the sounds.",
         "Listen carefully for e in the middle."
       ],
-      "explanation": "g-e-t makes get; the middle sound is e.",
+      "explanation": "g-e-t makes get; the middle sound is e. The expected response is get. Listen carefully for e in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -9271,7 +9271,7 @@
         "Replay the sounds.",
         "Listen carefully for e in the middle."
       ],
-      "explanation": "h-e-n makes hen; the middle sound is e.",
+      "explanation": "h-e-n makes hen; the middle sound is e. The expected response is hen. Listen carefully for e in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -9564,7 +9564,7 @@
         "Replay the sounds.",
         "Listen carefully for e in the middle."
       ],
-      "explanation": "j-e-t makes jet; the middle sound is e.",
+      "explanation": "j-e-t makes jet; the middle sound is e. The expected response is jet. Listen carefully for e in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -9857,7 +9857,7 @@
         "Replay the sounds.",
         "Listen carefully for e in the middle."
       ],
-      "explanation": "l-e-g makes leg; the middle sound is e.",
+      "explanation": "l-e-g makes leg; the middle sound is e. The expected response is leg. Listen carefully for e in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -10150,7 +10150,7 @@
         "Replay the sounds.",
         "Listen carefully for e in the middle."
       ],
-      "explanation": "m-e-n makes men; the middle sound is e.",
+      "explanation": "m-e-n makes men; the middle sound is e. The expected response is men. Listen carefully for e in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -10443,7 +10443,7 @@
         "Replay the sounds.",
         "Listen carefully for e in the middle."
       ],
-      "explanation": "m-e-t makes met; the middle sound is e.",
+      "explanation": "m-e-t makes met; the middle sound is e. The expected response is met. Listen carefully for e in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -10736,7 +10736,7 @@
         "Replay the sounds.",
         "Listen carefully for e in the middle."
       ],
-      "explanation": "n-e-t makes net; the middle sound is e.",
+      "explanation": "n-e-t makes net; the middle sound is e. The expected response is net. Listen carefully for e in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -11029,7 +11029,7 @@
         "Replay the sounds.",
         "Listen carefully for e in the middle."
       ],
-      "explanation": "p-e-g makes peg; the middle sound is e.",
+      "explanation": "p-e-g makes peg; the middle sound is e. The expected response is peg. Listen carefully for e in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -11322,7 +11322,7 @@
         "Replay the sounds.",
         "Listen carefully for e in the middle."
       ],
-      "explanation": "p-e-n makes pen; the middle sound is e.",
+      "explanation": "p-e-n makes pen; the middle sound is e. The expected response is pen. Listen carefully for e in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -11615,7 +11615,7 @@
         "Replay the sounds.",
         "Listen carefully for e in the middle."
       ],
-      "explanation": "p-e-t makes pet; the middle sound is e.",
+      "explanation": "p-e-t makes pet; the middle sound is e. The expected response is pet. Listen carefully for e in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -11908,7 +11908,7 @@
         "Replay the sounds.",
         "Listen carefully for e in the middle."
       ],
-      "explanation": "r-e-d makes red; the middle sound is e.",
+      "explanation": "r-e-d makes red; the middle sound is e. The expected response is red. Listen carefully for e in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -12201,7 +12201,7 @@
         "Replay the sounds.",
         "Listen carefully for e in the middle."
       ],
-      "explanation": "t-e-n makes ten; the middle sound is e.",
+      "explanation": "t-e-n makes ten; the middle sound is e. The expected response is ten. Listen carefully for e in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -12494,7 +12494,7 @@
         "Replay the sounds.",
         "Listen carefully for e in the middle."
       ],
-      "explanation": "v-e-t makes vet; the middle sound is e.",
+      "explanation": "v-e-t makes vet; the middle sound is e. The expected response is vet. Listen carefully for e in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -12787,7 +12787,7 @@
         "Replay the sounds.",
         "Listen carefully for e in the middle."
       ],
-      "explanation": "w-e-b makes web; the middle sound is e.",
+      "explanation": "w-e-b makes web; the middle sound is e. The expected response is web. Listen carefully for e in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -13080,7 +13080,7 @@
         "Replay the sounds.",
         "Listen carefully for e in the middle."
       ],
-      "explanation": "w-e-t makes wet; the middle sound is e.",
+      "explanation": "w-e-t makes wet; the middle sound is e. The expected response is wet. Listen carefully for e in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -13373,7 +13373,7 @@
         "Replay the sounds.",
         "Listen carefully for e in the middle."
       ],
-      "explanation": "y-e-t makes yet; the middle sound is e.",
+      "explanation": "y-e-t makes yet; the middle sound is e. The expected response is yet. Listen carefully for e in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -13666,7 +13666,7 @@
         "Replay the sounds.",
         "Listen carefully for i in the middle."
       ],
-      "explanation": "b-i-g makes big; the middle sound is i.",
+      "explanation": "b-i-g makes big; the middle sound is i. The expected response is big. Listen carefully for i in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -13959,7 +13959,7 @@
         "Replay the sounds.",
         "Listen carefully for i in the middle."
       ],
-      "explanation": "b-i-n makes bin; the middle sound is i.",
+      "explanation": "b-i-n makes bin; the middle sound is i. The expected response is bin. Listen carefully for i in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -14252,7 +14252,7 @@
         "Replay the sounds.",
         "Listen carefully for i in the middle."
       ],
-      "explanation": "b-i-t makes bit; the middle sound is i.",
+      "explanation": "b-i-t makes bit; the middle sound is i. The expected response is bit. Listen carefully for i in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -14545,7 +14545,7 @@
         "Replay the sounds.",
         "Listen carefully for i in the middle."
       ],
-      "explanation": "d-i-g makes dig; the middle sound is i.",
+      "explanation": "d-i-g makes dig; the middle sound is i. The expected response is dig. Listen carefully for i in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -14838,7 +14838,7 @@
         "Replay the sounds.",
         "Listen carefully for i in the middle."
       ],
-      "explanation": "d-i-p makes dip; the middle sound is i.",
+      "explanation": "d-i-p makes dip; the middle sound is i. The expected response is dip. Listen carefully for i in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -15131,7 +15131,7 @@
         "Replay the sounds.",
         "Listen carefully for i in the middle."
       ],
-      "explanation": "f-i-g makes fig; the middle sound is i.",
+      "explanation": "f-i-g makes fig; the middle sound is i. The expected response is fig. Listen carefully for i in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -15424,7 +15424,7 @@
         "Replay the sounds.",
         "Listen carefully for i in the middle."
       ],
-      "explanation": "f-i-n makes fin; the middle sound is i.",
+      "explanation": "f-i-n makes fin; the middle sound is i. The expected response is fin. Listen carefully for i in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -15717,7 +15717,7 @@
         "Replay the sounds.",
         "Listen carefully for i in the middle."
       ],
-      "explanation": "f-i-t makes fit; the middle sound is i.",
+      "explanation": "f-i-t makes fit; the middle sound is i. The expected response is fit. Listen carefully for i in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -16010,7 +16010,7 @@
         "Replay the sounds.",
         "Listen carefully for i in the middle."
       ],
-      "explanation": "h-i-d makes hid; the middle sound is i.",
+      "explanation": "h-i-d makes hid; the middle sound is i. The expected response is hid. Listen carefully for i in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -16303,7 +16303,7 @@
         "Replay the sounds.",
         "Listen carefully for i in the middle."
       ],
-      "explanation": "h-i-m makes him; the middle sound is i.",
+      "explanation": "h-i-m makes him; the middle sound is i. The expected response is him. Listen carefully for i in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -16596,7 +16596,7 @@
         "Replay the sounds.",
         "Listen carefully for i in the middle."
       ],
-      "explanation": "h-i-p makes hip; the middle sound is i.",
+      "explanation": "h-i-p makes hip; the middle sound is i. The expected response is hip. Listen carefully for i in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -16889,7 +16889,7 @@
         "Replay the sounds.",
         "Listen carefully for i in the middle."
       ],
-      "explanation": "h-i-t makes hit; the middle sound is i.",
+      "explanation": "h-i-t makes hit; the middle sound is i. The expected response is hit. Listen carefully for i in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -17182,7 +17182,7 @@
         "Replay the sounds.",
         "Listen carefully for i in the middle."
       ],
-      "explanation": "k-i-d makes kid; the middle sound is i.",
+      "explanation": "k-i-d makes kid; the middle sound is i. The expected response is kid. Listen carefully for i in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -17475,7 +17475,7 @@
         "Replay the sounds.",
         "Listen carefully for i in the middle."
       ],
-      "explanation": "k-i-t makes kit; the middle sound is i.",
+      "explanation": "k-i-t makes kit; the middle sound is i. The expected response is kit. Listen carefully for i in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -17768,7 +17768,7 @@
         "Replay the sounds.",
         "Listen carefully for i in the middle."
       ],
-      "explanation": "l-i-d makes lid; the middle sound is i.",
+      "explanation": "l-i-d makes lid; the middle sound is i. The expected response is lid. Listen carefully for i in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -18061,7 +18061,7 @@
         "Replay the sounds.",
         "Listen carefully for i in the middle."
       ],
-      "explanation": "l-i-p makes lip; the middle sound is i.",
+      "explanation": "l-i-p makes lip; the middle sound is i. The expected response is lip. Listen carefully for i in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -18354,7 +18354,7 @@
         "Replay the sounds.",
         "Listen carefully for i in the middle."
       ],
-      "explanation": "p-i-g makes pig; the middle sound is i.",
+      "explanation": "p-i-g makes pig; the middle sound is i. The expected response is pig. Listen carefully for i in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -18647,7 +18647,7 @@
         "Replay the sounds.",
         "Listen carefully for i in the middle."
       ],
-      "explanation": "p-i-n makes pin; the middle sound is i.",
+      "explanation": "p-i-n makes pin; the middle sound is i. The expected response is pin. Listen carefully for i in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -18940,7 +18940,7 @@
         "Replay the sounds.",
         "Listen carefully for i in the middle."
       ],
-      "explanation": "r-i-p makes rip; the middle sound is i.",
+      "explanation": "r-i-p makes rip; the middle sound is i. The expected response is rip. Listen carefully for i in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -19233,7 +19233,7 @@
         "Replay the sounds.",
         "Listen carefully for i in the middle."
       ],
-      "explanation": "s-i-t makes sit; the middle sound is i.",
+      "explanation": "s-i-t makes sit; the middle sound is i. The expected response is sit. Listen carefully for i in the middle. Replay the sounds.",
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -19526,7 +19526,7 @@
         "Replay the sounds.",
         "Listen carefully for o in the middle."
       ],
-      "explanation": "b-o-g makes bog; the middle sound is o.",
+      "explanation": "b-o-g makes bog; the middle sound is o. The expected response is bog. Listen carefully for o in the middle. Replay the sounds.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -19819,7 +19819,7 @@
         "Replay the sounds.",
         "Listen carefully for o in the middle."
       ],
-      "explanation": "c-o-b makes cob; the middle sound is o.",
+      "explanation": "c-o-b makes cob; the middle sound is o. The expected response is cob. Listen carefully for o in the middle. Replay the sounds.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -20112,7 +20112,7 @@
         "Replay the sounds.",
         "Listen carefully for o in the middle."
       ],
-      "explanation": "c-o-d makes cod; the middle sound is o.",
+      "explanation": "c-o-d makes cod; the middle sound is o. The expected response is cod. Listen carefully for o in the middle. Replay the sounds.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -20405,7 +20405,7 @@
         "Replay the sounds.",
         "Listen carefully for o in the middle."
       ],
-      "explanation": "c-o-p makes cop; the middle sound is o.",
+      "explanation": "c-o-p makes cop; the middle sound is o. The expected response is cop. Listen carefully for o in the middle. Replay the sounds.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -20894,7 +20894,7 @@
         "Replay the sounds.",
         "Listen carefully for o in the middle."
       ],
-      "explanation": "d-o-g makes dog; the middle sound is o.",
+      "explanation": "d-o-g makes dog; the middle sound is o. The expected response is dog. Listen carefully for o in the middle. Replay the sounds.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -21187,7 +21187,7 @@
         "Replay the sounds.",
         "Listen carefully for o in the middle."
       ],
-      "explanation": "d-o-t makes dot; the middle sound is o.",
+      "explanation": "d-o-t makes dot; the middle sound is o. The expected response is dot. Listen carefully for o in the middle. Replay the sounds.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -21480,7 +21480,7 @@
         "Replay the sounds.",
         "Listen carefully for o in the middle."
       ],
-      "explanation": "f-o-g makes fog; the middle sound is o.",
+      "explanation": "f-o-g makes fog; the middle sound is o. The expected response is fog. Listen carefully for o in the middle. Replay the sounds.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -21773,7 +21773,7 @@
         "Replay the sounds.",
         "Listen carefully for o in the middle."
       ],
-      "explanation": "g-o-t makes got; the middle sound is o.",
+      "explanation": "g-o-t makes got; the middle sound is o. The expected response is got. Listen carefully for o in the middle. Replay the sounds.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -22066,7 +22066,7 @@
         "Replay the sounds.",
         "Listen carefully for o in the middle."
       ],
-      "explanation": "h-o-p makes hop; the middle sound is o.",
+      "explanation": "h-o-p makes hop; the middle sound is o. The expected response is hop. Listen carefully for o in the middle. Replay the sounds.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -22359,7 +22359,7 @@
         "Replay the sounds.",
         "Listen carefully for o in the middle."
       ],
-      "explanation": "h-o-t makes hot; the middle sound is o.",
+      "explanation": "h-o-t makes hot; the middle sound is o. The expected response is hot. Listen carefully for o in the middle. Replay the sounds.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -22652,7 +22652,7 @@
         "Replay the sounds.",
         "Listen carefully for o in the middle."
       ],
-      "explanation": "j-o-g makes jog; the middle sound is o.",
+      "explanation": "j-o-g makes jog; the middle sound is o. The expected response is jog. Listen carefully for o in the middle. Replay the sounds.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -22945,7 +22945,7 @@
         "Replay the sounds.",
         "Listen carefully for o in the middle."
       ],
-      "explanation": "l-o-g makes log; the middle sound is o.",
+      "explanation": "l-o-g makes log; the middle sound is o. The expected response is log. Listen carefully for o in the middle. Replay the sounds.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -23238,7 +23238,7 @@
         "Replay the sounds.",
         "Listen carefully for o in the middle."
       ],
-      "explanation": "l-o-t makes lot; the middle sound is o.",
+      "explanation": "l-o-t makes lot; the middle sound is o. The expected response is lot. Listen carefully for o in the middle. Replay the sounds.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -23531,7 +23531,7 @@
         "Replay the sounds.",
         "Listen carefully for o in the middle."
       ],
-      "explanation": "m-o-b makes mob; the middle sound is o.",
+      "explanation": "m-o-b makes mob; the middle sound is o. The expected response is mob. Listen carefully for o in the middle. Replay the sounds.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -23824,7 +23824,7 @@
         "Replay the sounds.",
         "Listen carefully for o in the middle."
       ],
-      "explanation": "m-o-p makes mop; the middle sound is o.",
+      "explanation": "m-o-p makes mop; the middle sound is o. The expected response is mop. Listen carefully for o in the middle. Replay the sounds.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -24117,7 +24117,7 @@
         "Replay the sounds.",
         "Listen carefully for o in the middle."
       ],
-      "explanation": "t-o-p makes top; the middle sound is o.",
+      "explanation": "t-o-p makes top; the middle sound is o. The expected response is top. Listen carefully for o in the middle. Replay the sounds.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -24410,7 +24410,7 @@
         "Replay the sounds.",
         "Listen carefully for u in the middle."
       ],
-      "explanation": "b-u-d makes bud; the middle sound is u.",
+      "explanation": "b-u-d makes bud; the middle sound is u. The expected response is bud. Listen carefully for u in the middle. Replay the sounds.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -24703,7 +24703,7 @@
         "Replay the sounds.",
         "Listen carefully for u in the middle."
       ],
-      "explanation": "b-u-g makes bug; the middle sound is u.",
+      "explanation": "b-u-g makes bug; the middle sound is u. The expected response is bug. Listen carefully for u in the middle. Replay the sounds.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -24996,7 +24996,7 @@
         "Replay the sounds.",
         "Listen carefully for u in the middle."
       ],
-      "explanation": "b-u-n makes bun; the middle sound is u.",
+      "explanation": "b-u-n makes bun; the middle sound is u. The expected response is bun. Listen carefully for u in the middle. Replay the sounds.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -25289,7 +25289,7 @@
         "Replay the sounds.",
         "Listen carefully for u in the middle."
       ],
-      "explanation": "b-u-s makes bus; the middle sound is u.",
+      "explanation": "b-u-s makes bus; the middle sound is u. The expected response is bus. Listen carefully for u in the middle. Replay the sounds.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -25582,7 +25582,7 @@
         "Replay the sounds.",
         "Listen carefully for u in the middle."
       ],
-      "explanation": "b-u-t makes but; the middle sound is u.",
+      "explanation": "b-u-t makes but; the middle sound is u. The expected response is but. Listen carefully for u in the middle. Replay the sounds.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -25875,7 +25875,7 @@
         "Replay the sounds.",
         "Listen carefully for u in the middle."
       ],
-      "explanation": "c-u-b makes cub; the middle sound is u.",
+      "explanation": "c-u-b makes cub; the middle sound is u. The expected response is cub. Listen carefully for u in the middle. Replay the sounds.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -26168,7 +26168,7 @@
         "Replay the sounds.",
         "Listen carefully for u in the middle."
       ],
-      "explanation": "c-u-p makes cup; the middle sound is u.",
+      "explanation": "c-u-p makes cup; the middle sound is u. The expected response is cup. Listen carefully for u in the middle. Replay the sounds.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -26461,7 +26461,7 @@
         "Replay the sounds.",
         "Listen carefully for u in the middle."
       ],
-      "explanation": "c-u-t makes cut; the middle sound is u.",
+      "explanation": "c-u-t makes cut; the middle sound is u. The expected response is cut. Listen carefully for u in the middle. Replay the sounds.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -26754,7 +26754,7 @@
         "Replay the sounds.",
         "Listen carefully for u in the middle."
       ],
-      "explanation": "d-u-g makes dug; the middle sound is u.",
+      "explanation": "d-u-g makes dug; the middle sound is u. The expected response is dug. Listen carefully for u in the middle. Replay the sounds.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -27047,7 +27047,7 @@
         "Replay the sounds.",
         "Listen carefully for u in the middle."
       ],
-      "explanation": "f-u-n makes fun; the middle sound is u.",
+      "explanation": "f-u-n makes fun; the middle sound is u. The expected response is fun. Listen carefully for u in the middle. Replay the sounds.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -27340,7 +27340,7 @@
         "Replay the sounds.",
         "Listen carefully for u in the middle."
       ],
-      "explanation": "g-u-m makes gum; the middle sound is u.",
+      "explanation": "g-u-m makes gum; the middle sound is u. The expected response is gum. Listen carefully for u in the middle. Replay the sounds.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -27633,7 +27633,7 @@
         "Replay the sounds.",
         "Listen carefully for u in the middle."
       ],
-      "explanation": "g-u-n makes gun; the middle sound is u.",
+      "explanation": "g-u-n makes gun; the middle sound is u. The expected response is gun. Listen carefully for u in the middle. Replay the sounds.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -27926,7 +27926,7 @@
         "Replay the sounds.",
         "Listen carefully for u in the middle."
       ],
-      "explanation": "h-u-t makes hut; the middle sound is u.",
+      "explanation": "h-u-t makes hut; the middle sound is u. The expected response is hut. Listen carefully for u in the middle. Replay the sounds.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -28219,7 +28219,7 @@
         "Replay the sounds.",
         "Listen carefully for u in the middle."
       ],
-      "explanation": "j-u-g makes jug; the middle sound is u.",
+      "explanation": "j-u-g makes jug; the middle sound is u. The expected response is jug. Listen carefully for u in the middle. Replay the sounds.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -28512,7 +28512,7 @@
         "Replay the sounds.",
         "Listen carefully for u in the middle."
       ],
-      "explanation": "m-u-g makes mug; the middle sound is u.",
+      "explanation": "m-u-g makes mug; the middle sound is u. The expected response is mug. Listen carefully for u in the middle. Replay the sounds.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -28805,7 +28805,7 @@
         "Replay the sounds.",
         "Listen carefully for u in the middle."
       ],
-      "explanation": "m-u-d makes mud; the middle sound is u.",
+      "explanation": "m-u-d makes mud; the middle sound is u. The expected response is mud. Listen carefully for u in the middle. Replay the sounds.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -29098,7 +29098,7 @@
         "Replay the sounds.",
         "Listen carefully for u in the middle."
       ],
-      "explanation": "r-u-n makes run; the middle sound is u.",
+      "explanation": "r-u-n makes run; the middle sound is u. The expected response is run. Listen carefully for u in the middle. Replay the sounds.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",
@@ -29391,7 +29391,7 @@
         "Replay the sounds.",
         "Listen carefully for u in the middle."
       ],
-      "explanation": "s-u-n makes sun; the middle sound is u.",
+      "explanation": "s-u-n makes sun; the middle sound is u. The expected response is sun. Listen carefully for u in the middle. Replay the sounds.",
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "middle_vowel_changed",

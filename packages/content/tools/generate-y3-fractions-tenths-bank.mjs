@@ -19,6 +19,12 @@ if (pack.pack_id !== "ma-y3-number-fractions-tenths") {
   throw new Error("This generator only supports the Year 3 fractions tenths pack.");
 }
 
+for (const variant of pack.question_variants ?? []) {
+  if (typeof variant.explanation === "string" && variant.explanation.includes(" The expected response is ")) {
+    variant.explanation = variant.explanation.split(" The expected response is ")[0];
+  }
+}
+
 const beforeVariants = structuredClone(pack.question_variants ?? []);
 const beforeCore = coreSnapshot(beforeVariants);
 const beforeBlueprints = sortedCounts(beforeVariants, (variant) => variant.body?.variant_blueprint_id ?? "undefined");
@@ -658,6 +664,7 @@ function validateHardening(variants, beforeCoreSnapshot, beforeBlueprintCounts) 
 function coreSnapshot(variants) { return variants.map(stripEnrichment); }
 function stripEnrichment(variant) {
   const copy = structuredClone(variant); delete copy.feedback;
+  if (typeof copy.explanation === "string") copy.explanation = copy.explanation.split(" The expected response is ")[0];
   for (const key of ["interaction_route", "accessible_response_route", "equal_parts_route", "numerator_denominator_route", "number_line_route", "partition_repair_route", "dyscalculia_support", "reduced_load_route", "no_mandatory_dragging", "no_mandatory_handwriting", "no_mandatory_speech", "microphone_required", "handwriting_required", "drag_required", "retry_without_penalty", "no_timer", "speed_score_allowed", "preserve_correct_work", "undo_available", "pressure_rules", "fraction_contract", "audio_required", "audio_route", "audio_policy", "audio_provider", "audio_production_policy", "human_listening_approval_required", "browser_tts_allowed", "browser_tts_fallback"]) delete copy.body[key];
   return copy;
 }

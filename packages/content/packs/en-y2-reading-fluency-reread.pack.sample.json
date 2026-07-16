@@ -2017,7 +2017,7 @@
         "Replay the chunk that holds the answer.",
         "Choose from the sentence, not from a guess."
       ],
-      "explanation": "The reread shows that the answer is on the pond.",
+      "explanation": "The reread shows that the answer is on the pond. The expected response is on the pond. Choose from the sentence, not from a guess. Replay the chunk that holds the answer.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
         "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it.",
@@ -2096,7 +2096,7 @@
         "Replay the chunk that holds the answer.",
         "Choose from the sentence, not from a guess."
       ],
-      "explanation": "The reread shows that the answer is after lunch.",
+      "explanation": "The reread shows that the answer is after lunch. The expected response is after lunch. Choose from the sentence, not from a guess. Replay the chunk that holds the answer.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
         "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it.",
@@ -2175,7 +2175,7 @@
         "Replay the chunk that holds the answer.",
         "Choose from the sentence, not from a guess."
       ],
-      "explanation": "The reread shows that the answer is the swings.",
+      "explanation": "The reread shows that the answer is the swings. The expected response is the swings. Choose from the sentence, not from a guess. Replay the chunk that holds the answer.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
         "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it.",
@@ -2412,7 +2412,7 @@
         "Replay the chunk that holds the answer.",
         "Choose from the sentence, not from a guess."
       ],
-      "explanation": "The reread shows that the answer is on the table.",
+      "explanation": "The reread shows that the answer is on the table. The expected response is on the table. Choose from the sentence, not from a guess. Replay the chunk that holds the answer.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
         "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it.",
@@ -2492,7 +2492,7 @@
         "Replay the chunk that holds the answer.",
         "Choose from the sentence, not from a guess."
       ],
-      "explanation": "The reread shows that the answer is at night.",
+      "explanation": "The reread shows that the answer is at night. The expected response is at night. Choose from the sentence, not from a guess. Replay the chunk that holds the answer.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
         "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it.",
@@ -2571,7 +2571,7 @@
         "Replay the chunk that holds the answer.",
         "Choose from the sentence, not from a guess."
       ],
-      "explanation": "The reread shows that the answer is the wet log.",
+      "explanation": "The reread shows that the answer is the wet log. The expected response is the wet log. Choose from the sentence, not from a guess. Replay the chunk that holds the answer.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
         "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it.",
@@ -2967,7 +2967,7 @@
         "Replay the chunk that holds the answer.",
         "Choose from the sentence, not from a guess."
       ],
-      "explanation": "The reread shows that the answer is a blue scarf.",
+      "explanation": "The reread shows that the answer is a blue scarf. The expected response is a blue scarf. Choose from the sentence, not from a guess. Replay the chunk that holds the answer.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
         "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it.",
@@ -3363,7 +3363,7 @@
         "Replay the chunk that holds the answer.",
         "Choose from the sentence, not from a guess."
       ],
-      "explanation": "The reread shows that the answer is slowly.",
+      "explanation": "The reread shows that the answer is slowly. The expected response is slowly. Choose from the sentence, not from a guess. Replay the chunk that holds the answer.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
         "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it.",
@@ -3442,7 +3442,7 @@
         "Replay the chunk that holds the answer.",
         "Choose from the sentence, not from a guess."
       ],
-      "explanation": "The reread shows that the answer is on Saturday.",
+      "explanation": "The reread shows that the answer is on Saturday. The expected response is on Saturday. Choose from the sentence, not from a guess. Replay the chunk that holds the answer.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
         "repair": "Replay the meaning chunk, then say the answer in a short phrase before selecting it.",
@@ -5865,7 +5865,7 @@
         "Look at commas and the end mark.",
         "Choose expression that matches the meaning, not the loudest voice."
       ],
-      "explanation": "Pause after First, then read the list smoothly.",
+      "explanation": "Pause after First, then read the list smoothly. The expected response is Pause after First, then read the list smoothly.. Choose expression that matches the meaning, not the loudest voice. Look at commas and the end mark.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
         "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read.",
@@ -6178,7 +6178,7 @@
         "Look at commas and the end mark.",
         "Choose expression that matches the meaning, not the loudest voice."
       ],
-      "explanation": "Use an amazed voice without rushing the words.",
+      "explanation": "Use an amazed voice without rushing the words. The expected response is Use an amazed voice without rushing the words.. Choose expression that matches the meaning, not the loudest voice. Look at commas and the end mark.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
         "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read.",
@@ -6412,7 +6412,7 @@
         "Look at commas and the end mark.",
         "Choose expression that matches the meaning, not the loudest voice."
       ],
-      "explanation": "Join the two actions smoothly around and.",
+      "explanation": "Join the two actions smoothly around and. The expected response is Join the two actions smoothly around and.. Choose expression that matches the meaning, not the loudest voice. Look at commas and the end mark.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
         "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read.",
@@ -6491,7 +6491,7 @@
         "Look at commas and the end mark.",
         "Choose expression that matches the meaning, not the loudest voice."
       ],
-      "explanation": "Use the chunks to make the movement sound steady.",
+      "explanation": "Use the chunks to make the movement sound steady. The expected response is Use the chunks to make the movement sound steady.. Choose expression that matches the meaning, not the loudest voice. Look at commas and the end mark.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
         "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read.",
@@ -6569,7 +6569,7 @@
         "Look at commas and the end mark.",
         "Choose expression that matches the meaning, not the loudest voice."
       ],
-      "explanation": "Pause after the opening time phrase.",
+      "explanation": "Pause after the opening time phrase. The expected response is Pause after the opening time phrase.. Choose expression that matches the meaning, not the loudest voice. Look at commas and the end mark.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
         "repair": "Highlight the punctuation, model the matching voice gently and invite an optional echo read.",
@@ -13139,7 +13139,7 @@
         "Reread the chunk that contains the clue.",
         "Meaning is part of fluent reading."
       ],
-      "explanation": "The sentence says on the pond.",
+      "explanation": "The sentence says on the pond. The expected response is on the pond. Meaning is part of fluent reading. Reread the chunk that contains the clue.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
         "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation.",
@@ -13217,7 +13217,7 @@
         "Reread the chunk that contains the clue.",
         "Meaning is part of fluent reading."
       ],
-      "explanation": "The sentence says after lunch.",
+      "explanation": "The sentence says after lunch. The expected response is after lunch. Meaning is part of fluent reading. Reread the chunk that contains the clue.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
         "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation.",
@@ -13295,7 +13295,7 @@
         "Reread the chunk that contains the clue.",
         "Meaning is part of fluent reading."
       ],
-      "explanation": "The sentence says the swings.",
+      "explanation": "The sentence says the swings. The expected response is the swings. Meaning is part of fluent reading. Reread the chunk that contains the clue.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
         "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation.",
@@ -13373,7 +13373,7 @@
         "Reread the chunk that contains the clue.",
         "Meaning is part of fluent reading."
       ],
-      "explanation": "The sentence says watch out for the puddle.",
+      "explanation": "The sentence says watch out for the puddle. The expected response is watch out for the puddle. Meaning is part of fluent reading. Reread the chunk that contains the clue.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
         "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation.",
@@ -13451,7 +13451,7 @@
         "Reread the chunk that contains the clue.",
         "Meaning is part of fluent reading."
       ],
-      "explanation": "The sentence says the children ran outside.",
+      "explanation": "The sentence says the children ran outside. The expected response is the children ran outside. Meaning is part of fluent reading. Reread the chunk that contains the clue.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
         "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation.",
@@ -13529,7 +13529,7 @@
         "Reread the chunk that contains the clue.",
         "Meaning is part of fluent reading."
       ],
-      "explanation": "The sentence says on the table.",
+      "explanation": "The sentence says on the table. The expected response is on the table. Meaning is part of fluent reading. Reread the chunk that contains the clue.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
         "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation.",
@@ -13608,7 +13608,7 @@
         "Reread the chunk that contains the clue.",
         "Meaning is part of fluent reading."
       ],
-      "explanation": "The sentence says at night.",
+      "explanation": "The sentence says at night. The expected response is at night. Meaning is part of fluent reading. Reread the chunk that contains the clue.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
         "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation.",
@@ -13686,7 +13686,7 @@
         "Reread the chunk that contains the clue.",
         "Meaning is part of fluent reading."
       ],
-      "explanation": "The sentence says the wet log.",
+      "explanation": "The sentence says the wet log. The expected response is the wet log. Meaning is part of fluent reading. Reread the chunk that contains the clue.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
         "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation.",
@@ -13764,7 +13764,7 @@
         "Reread the chunk that contains the clue.",
         "Meaning is part of fluent reading."
       ],
-      "explanation": "The sentence says the sun was shining.",
+      "explanation": "The sentence says the sun was shining. The expected response is the sun was shining. Meaning is part of fluent reading. Reread the chunk that contains the clue.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
         "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation.",
@@ -13842,7 +13842,7 @@
         "Reread the chunk that contains the clue.",
         "Meaning is part of fluent reading."
       ],
-      "explanation": "The sentence says a drink and a map.",
+      "explanation": "The sentence says a drink and a map. The expected response is a drink and a map. Meaning is part of fluent reading. Reread the chunk that contains the clue.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
         "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation.",
@@ -13920,7 +13920,7 @@
         "Reread the chunk that contains the clue.",
         "Meaning is part of fluent reading."
       ],
-      "explanation": "The sentence says beside the school gate.",
+      "explanation": "The sentence says beside the school gate. The expected response is beside the school gate. Meaning is part of fluent reading. Reread the chunk that contains the clue.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
         "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation.",
@@ -13999,7 +13999,7 @@
         "Reread the chunk that contains the clue.",
         "Meaning is part of fluent reading."
       ],
-      "explanation": "The sentence says on its soft bed.",
+      "explanation": "The sentence says on its soft bed. The expected response is on its soft bed. Meaning is part of fluent reading. Reread the chunk that contains the clue.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
         "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation.",
@@ -14077,7 +14077,7 @@
         "Reread the chunk that contains the clue.",
         "Meaning is part of fluent reading."
       ],
-      "explanation": "The sentence says a blue scarf.",
+      "explanation": "The sentence says a blue scarf. The expected response is a blue scarf. Meaning is part of fluent reading. Reread the chunk that contains the clue.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
         "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation.",
@@ -14155,7 +14155,7 @@
         "Reread the chunk that contains the clue.",
         "Meaning is part of fluent reading."
       ],
-      "explanation": "The sentence says a huge sandcastle.",
+      "explanation": "The sentence says a huge sandcastle. The expected response is a huge sandcastle. Meaning is part of fluent reading. Reread the chunk that contains the clue.",
       "feedback": {
         "correct": "Careful reading matched the words, phrasing or meaning.",
         "repair": "Keep only the clue chunk visible, replay it if approved audio is ready and answer without any speed expectation.",

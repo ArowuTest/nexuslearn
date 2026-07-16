@@ -16288,7 +16288,7 @@
       "id": "en-y6-reading-inference-bank-sufficiency-park-archive",
       "format": "short-response",
       "body": {
-        "prompt": "Sufficiency review 7: do 'the survey should begin this month' and 'allow more residents to use the garden independently' sufficiently support the claim 'the writer proves that every resident wants exactly this ramp design'?",
+        "prompt": "At the Clue Archive, do the quoted details sufficiently support the claim?",
         "text": "The eastern gate is the only entrance without a level path. Installing a short ramp would allow more residents to use the garden independently; the survey should begin this month.",
         "genre": "persuasive article",
         "choices": [
@@ -17380,7 +17380,7 @@
       "id": "en-y6-reading-inference-bank-sufficiency-park-newsroom",
       "format": "short-response",
       "body": {
-        "prompt": "Sufficiency review 19: do 'the survey should begin this month' and 'allow more residents to use the garden independently' sufficiently support the claim 'the writer proves that every resident wants exactly this ramp design'?",
+        "prompt": "In the Evidence Newsroom, do the quoted details sufficiently support the claim?",
         "text": "The eastern gate is the only entrance without a level path. Installing a short ramp would allow more residents to use the garden independently; the survey should begin this month.",
         "genre": "persuasive article",
         "choices": [
@@ -18472,7 +18472,7 @@
       "id": "en-y6-reading-inference-bank-sufficiency-park-library",
       "format": "short-response",
       "body": {
-        "prompt": "Sufficiency review 31: do 'the survey should begin this month' and 'allow more residents to use the garden independently' sufficiently support the claim 'the writer proves that every resident wants exactly this ramp design'?",
+        "prompt": "In the Hidden Meanings Library, do the quoted details sufficiently support the claim?",
         "text": "The eastern gate is the only entrance without a level path. Installing a short ramp would allow more residents to use the garden independently; the survey should begin this month.",
         "genre": "persuasive article",
         "choices": [

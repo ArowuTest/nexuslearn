@@ -298,7 +298,7 @@
         "Read the two values first.",
         "Subtract the earlier value from the later value."
       ],
-      "explanation": "The increase is 18 - 12 = 6 degrees C.",
+      "explanation": "The increase is 18 - 12 = 6 degrees C. The expected response is 6 degrees C. Subtract the earlier value from the later value. Read the two values first.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "conclusion_without_context",
@@ -360,7 +360,7 @@
         "The gap from 50 to 75 is 25.",
         "Half of 25 is 12.5."
       ],
-      "explanation": "Halfway between 50 and 75 is 50 + 12.5 = 62.5.",
+      "explanation": "Halfway between 50 and 75 is 50 + 12.5 = 62.5. The expected response is 62.5. Half of 25 is 12.5. The gap from 50 to 75 is 25.",
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "interval_as_one",

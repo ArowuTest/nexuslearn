@@ -21361,7 +21361,7 @@
         "Find the main-clause action and test when, where, how or how often.",
         "Bracket the whole opener before checking the comma or effect."
       ],
-      "explanation": "“In winter” is time because it answers when?.",
+      "explanation": "“In winter” is time because it answers when?. The expected response is time. Bracket the whole opener before checking the comma or effect. Find the main-clause action and test when, where, how or how often.",
       "feedback": {
         "correct": "Spaced fronted-adverbial knowledge retained. “In winter” is time because it answers when?.",
         "repair": "Return to the opener/comma/main-clause track, preserve correct chunks and retry with two choices.",

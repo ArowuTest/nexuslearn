@@ -20206,7 +20206,7 @@
       "id": "en-y2-spelling-patterns-bank-review-repair-knock-6",
       "format": "word-build",
       "body": {
-        "prompt": "Repair-bench mission 6: the claim says, “The word can be built as n-o-k because that sounds close enough.” Rebuild the reviewed word knock.",
+        "prompt": "At the first knock checkpoint, build the reviewed word from grapheme chunks that match the taught sound pattern.",
         "target_word": "knock",
         "misconception_claim": "The word can be built as n-o-k because that sounds close enough.",
         "repair_explanation": "Use the reviewed word-specific graphemes kn and ck, then check every letter.",
@@ -23065,7 +23065,7 @@
       "id": "en-y2-spelling-patterns-bank-review-repair-knock-36",
       "format": "word-build",
       "body": {
-        "prompt": "Repair-bench mission 36: the claim says, “The word can be built as n-o-k because that sounds close enough.” Rebuild the reviewed word knock.",
+        "prompt": "At the later knock checkpoint, which grapheme chunks repair the reviewed spelling?",
         "target_word": "knock",
         "misconception_claim": "The word can be built as n-o-k because that sounds close enough.",
         "repair_explanation": "Use the reviewed word-specific graphemes kn and ck, then check every letter.",

@@ -28,6 +28,12 @@ const originalText = await readFile(packPath, "utf8");
 const pack = JSON.parse(originalText);
 if (pack.pack_id !== "ma-y4-number-multiplication-12x12") throw new Error("This generator only supports the Year 4 multiplication flagship pack.");
 
+for (const variant of pack.question_variants ?? []) {
+  if (typeof variant.explanation === "string" && variant.explanation.includes(" The expected response is ")) {
+    variant.explanation = variant.explanation.split(" The expected response is ")[0];
+  }
+}
+
 const beforeVariants = structuredClone(pack.question_variants ?? []);
 const beforeCore = coreSnapshot(beforeVariants);
 const beforeBlueprints = sortedCounts(beforeVariants, (variant) => variant.body?.variant_blueprint_id);
@@ -454,6 +460,7 @@ function validateHardening(variants, beforeCoreSnapshot, beforeBlueprintCounts) 
 function coreSnapshot(variants) { return variants.map(stripEnrichment); }
 function stripEnrichment(variant) {
   const copy = structuredClone(variant), legacy = !copy.id.startsWith(extensionPrefix);
+  if (typeof copy.explanation === "string") copy.explanation = copy.explanation.split(" The expected response is ")[0];
   if (legacy) delete copy.feedback;
   else if (copy.feedback) for (const key of ["representation_evidence", "check_prompt", "strategy_support", "support_message"]) delete copy.feedback[key];
   for (const key of ["interaction_route", "accessible_response_route", "array_equal_groups_route", "decomposition_route", "fact_family_route", "dyscalculia_support", "reduced_load_route", "no_mandatory_fine_dragging", "no_mandatory_handwriting", "no_mandatory_speech", "microphone_required", "handwriting_required", "drag_required", "retry_without_penalty", "no_timer", "speed_score_allowed", "preserve_correct_work", "undo_available", "multiplication_contract", "audio_required", "audio_route", "audio_policy", "audio_provider", "audio_production_policy", "human_listening_approval_required", "browser_tts_allowed", "browser_tts_fallback"]) delete copy.body[key];

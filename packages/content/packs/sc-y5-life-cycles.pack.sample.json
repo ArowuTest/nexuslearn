@@ -11620,7 +11620,7 @@
       "id": "sc-y5-life-cycles-bank-plant-full-sequence-3",
       "format": "time-line",
       "body": {
-        "prompt": "Plant process record 3 uses a labelled cycle model with a generation boundary. Evidence: a flower opens; pollen reaches a suitable stigma; seeds form after fertilisation; seeds disperse and may germinate. Which explanation is supported?",
+        "prompt": "Using a labelled cycle with a generation boundary, which sequence matches the plant life-cycle evidence?",
         "evidence": [
           "a flower opens",
           "pollen reaches a suitable stigma",
@@ -11700,7 +11700,7 @@
       "id": "sc-y5-life-cycles-bank-plant-full-sequence-4",
       "format": "time-line",
       "body": {
-        "prompt": "Plant process record 4 uses a linear timeline with forward arrows. Evidence: a flower opens; pollen reaches a suitable stigma; seeds form after fertilisation; seeds disperse and may germinate. Which explanation is supported?",
+        "prompt": "On the linear timeline, which sequence matches the plant life-cycle evidence?",
         "evidence": [
           "a flower opens",
           "pollen reaches a suitable stigma",
@@ -11780,7 +11780,7 @@
       "id": "sc-y5-life-cycles-bank-plant-full-sequence-5",
       "format": "time-line",
       "body": {
-        "prompt": "Plant process record 5 uses an audio-described sequence with static cards. Evidence: a flower opens; pollen reaches a suitable stigma; seeds form after fertilisation; seeds disperse and may germinate. Which explanation is supported?",
+        "prompt": "Using the audio-described static cards, which sequence matches the plant life-cycle evidence?",
         "evidence": [
           "a flower opens",
           "pollen reaches a suitable stigma",
@@ -16640,7 +16640,7 @@
       "id": "sc-y5-life-cycles-bank-evidence-secondary-source-19",
       "format": "evidence-explain",
       "body": {
-        "prompt": "Evidence log 19 presents a labelled photograph sequence: a trusted field guide supplies an unobserved overwintering stage; class observations cover only spring and summer. Which claim is justified and appropriately limited?",
+        "prompt": "Using the labelled photograph sequence, which claim is supported by this life-cycle evidence?",
         "evidence": [
           "a trusted field guide supplies an unobserved overwintering stage",
           "class observations cover only spring and summer"
@@ -17345,7 +17345,7 @@
       "id": "sc-y5-life-cycles-bank-evidence-secondary-source-29",
       "format": "evidence-explain",
       "body": {
-        "prompt": "Evidence log 29 presents an audio-described field log: a trusted field guide supplies an unobserved overwintering stage; class observations cover only spring and summer. Which claim is justified and appropriately limited?",
+        "prompt": "Using the audio-described field log, which claim is supported by this life-cycle evidence?",
         "evidence": [
           "a trusted field guide supplies an unobserved overwintering stage",
           "class observations cover only spring and summer"
@@ -17908,7 +17908,7 @@
       "id": "sc-y5-life-cycles-bank-evidence-runner-record-37",
       "format": "evidence-explain",
       "body": {
-        "prompt": "Evidence log 37 presents a static graph with a text data table: week 1: runner touches soil; week 3: roots visible at a node; week 5: connected young plant has new leaves. Which claim is justified and appropriately limited?",
+        "prompt": "Which claim is supported by this life-cycle evidence?",
         "evidence": [
           "week 1: runner touches soil",
           "week 3: roots visible at a node",
@@ -18050,7 +18050,7 @@
       "id": "sc-y5-life-cycles-bank-evidence-secondary-source-39",
       "format": "evidence-explain",
       "body": {
-        "prompt": "Evidence log 39 presents a static graph with a text data table: a trusted field guide supplies an unobserved overwintering stage; class observations cover only spring and summer. Which claim is justified and appropriately limited?",
+        "prompt": "Using the static graph and data table, which claim is supported by this life-cycle evidence?",
         "evidence": [
           "a trusted field guide supplies an unobserved overwintering stage",
           "class observations cover only spring and summer"

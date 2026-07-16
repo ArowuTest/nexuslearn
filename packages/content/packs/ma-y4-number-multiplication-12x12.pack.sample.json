@@ -3907,7 +3907,7 @@
         "10 x 2 = 20.",
         "Use the known 10 times table fact."
       ],
-      "explanation": "9 x 2 is 18. It can be checked from 10 x 2.",
+      "explanation": "9 x 2 is 18. It can be checked from 10 x 2. The expected response is 18. Use the known 10 times table fact. 10 x 2 = 20.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "nearby_fact_confusion",
@@ -4010,7 +4010,7 @@
         "10 x 3 = 30.",
         "Use the known 10 times table fact."
       ],
-      "explanation": "9 x 3 is 27. It can be checked from 10 x 3.",
+      "explanation": "9 x 3 is 27. It can be checked from 10 x 3. The expected response is 27. Use the known 10 times table fact. 10 x 3 = 30.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "nearby_fact_confusion",
@@ -4113,7 +4113,7 @@
         "10 x 4 = 40.",
         "Use the known 10 times table fact."
       ],
-      "explanation": "9 x 4 is 36. It can be checked from 10 x 4.",
+      "explanation": "9 x 4 is 36. It can be checked from 10 x 4. The expected response is 36. Use the known 10 times table fact. 10 x 4 = 40.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "nearby_fact_confusion",
@@ -4216,7 +4216,7 @@
         "10 x 5 = 50.",
         "Use the known 10 times table fact."
       ],
-      "explanation": "9 x 5 is 45. It can be checked from 10 x 5.",
+      "explanation": "9 x 5 is 45. It can be checked from 10 x 5. The expected response is 45. Use the known 10 times table fact. 10 x 5 = 50.",
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "nearby_fact_confusion",
@@ -4319,7 +4319,7 @@
         "10 x 6 = 60.",
         "Use the known 10 times table fact."
       ],
-      "explanation": "9 x 6 is 54. It can be checked from 10 x 6.",
+      "explanation": "9 x 6 is 54. It can be checked from 10 x 6. The expected response is 54. Use the known 10 times table fact. 10 x 6 = 60.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "nearby_fact_confusion",
@@ -4422,7 +4422,7 @@
         "10 x 7 = 70.",
         "Use the known 10 times table fact."
       ],
-      "explanation": "9 x 7 is 63. It can be checked from 10 x 7.",
+      "explanation": "9 x 7 is 63. It can be checked from 10 x 7. The expected response is 63. Use the known 10 times table fact. 10 x 7 = 70.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "nearby_fact_confusion",
@@ -4525,7 +4525,7 @@
         "10 x 8 = 80.",
         "Use the known 10 times table fact."
       ],
-      "explanation": "9 x 8 is 72. It can be checked from 10 x 8.",
+      "explanation": "9 x 8 is 72. It can be checked from 10 x 8. The expected response is 72. Use the known 10 times table fact. 10 x 8 = 80.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "nearby_fact_confusion",
@@ -4628,7 +4628,7 @@
         "10 x 9 = 90.",
         "Use the known 10 times table fact."
       ],
-      "explanation": "9 x 9 is 81. It can be checked from 10 x 9.",
+      "explanation": "9 x 9 is 81. It can be checked from 10 x 9. The expected response is 81. Use the known 10 times table fact. 10 x 9 = 90.",
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "nearby_fact_confusion",
@@ -4731,7 +4731,7 @@
         "10 x 10 = 100.",
         "Use the known 10 times table fact."
       ],
-      "explanation": "9 x 10 is 90. It can be checked from 10 x 10.",
+      "explanation": "9 x 10 is 90. It can be checked from 10 x 10. The expected response is 90. Use the known 10 times table fact. 10 x 10 = 100.",
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "nearby_fact_confusion",
@@ -4834,7 +4834,7 @@
         "10 x 11 = 110.",
         "Use the known 10 times table fact."
       ],
-      "explanation": "9 x 11 is 99. It can be checked from 10 x 11.",
+      "explanation": "9 x 11 is 99. It can be checked from 10 x 11. The expected response is 99. Use the known 10 times table fact. 10 x 11 = 110.",
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "nearby_fact_confusion",
@@ -4937,7 +4937,7 @@
         "10 x 12 = 120.",
         "Use the known 10 times table fact."
       ],
-      "explanation": "9 x 12 is 108. It can be checked from 10 x 12.",
+      "explanation": "9 x 12 is 108. It can be checked from 10 x 12. The expected response is 108. Use the known 10 times table fact. 10 x 12 = 120.",
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "nearby_fact_confusion",

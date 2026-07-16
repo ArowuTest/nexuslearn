@@ -13853,7 +13853,7 @@
       "id": "ma-y1-add-subtract-stories-bank-mixed-4-20-0-10",
       "format": "tap-choice",
       "body": {
-        "prompt": "Story mission 10: A story model shows 0 and 20 making 20. Which subtraction uses the whole and known part to check the hidden part?",
+        "prompt": "Which subtraction uses the whole and known part to check the hidden part?",
         "whole": 20,
         "part": 0,
         "other_part": 20,
@@ -14623,7 +14623,7 @@
       "id": "ma-y1-add-subtract-stories-bank-mixed-4-19-2-20",
       "format": "tap-choice",
       "body": {
-        "prompt": "Story mission 20: A story model shows 2 and 17 making 19. Which subtraction uses the whole and known part to check the hidden part?",
+        "prompt": "Which subtraction uses the whole and known part to check the hidden part?",
         "whole": 19,
         "part": 2,
         "other_part": 17,

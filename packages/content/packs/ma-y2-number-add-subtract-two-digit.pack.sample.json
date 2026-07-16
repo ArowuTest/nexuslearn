@@ -545,7 +545,7 @@
         "Keep 2 tens fixed.",
         "Combine 0 and 1 ones."
       ],
-      "explanation": "20 + 1 = 21; only the ones change.",
+      "explanation": "20 + 1 = 21; only the ones change. The expected response is 21. Combine 0 and 1 ones. Keep 2 tens fixed.",
       "feedback": {
         "correct": "The calculation and model agree. 20 + 1 = 21; only the ones change.",
         "repair": "Separate tens and ones on a labelled mat, keep correct groups and rebuild only the first place-value step that does not match.",
@@ -905,7 +905,7 @@
         "Build 7 ten-rods.",
         "Add 1 one-cubes in the ones place."
       ],
-      "explanation": "71 is 7 tens and 1 ones: 70 + 1 = 71.",
+      "explanation": "71 is 7 tens and 1 ones: 70 + 1 = 71. The expected response is 71. Add 1 one-cubes in the ones place. Build 7 ten-rods.",
       "feedback": {
         "correct": "The calculation and model agree. 71 is 7 tens and 1 ones: 70 + 1 = 71.",
         "repair": "Separate tens and ones on a labelled mat, keep correct groups and rebuild only the first place-value step that does not match.",
@@ -1151,7 +1151,7 @@
         "Keep 7 tens fixed.",
         "Combine 3 and 6 ones."
       ],
-      "explanation": "73 + 6 = 79; only the ones change.",
+      "explanation": "73 + 6 = 79; only the ones change. The expected response is 79. Combine 3 and 6 ones. Keep 7 tens fixed.",
       "feedback": {
         "correct": "The calculation and model agree. 73 + 6 = 79; only the ones change.",
         "repair": "Separate tens and ones on a labelled mat, keep correct groups and rebuild only the first place-value step that does not match.",
@@ -1511,7 +1511,7 @@
         "Build 7 ten-rods.",
         "Add 7 one-cubes in the ones place."
       ],
-      "explanation": "77 is 7 tens and 7 ones: 70 + 7 = 77.",
+      "explanation": "77 is 7 tens and 7 ones: 70 + 7 = 77. The expected response is 77. Add 7 one-cubes in the ones place. Build 7 ten-rods.",
       "feedback": {
         "correct": "The calculation and model agree. 77 is 7 tens and 7 ones: 70 + 7 = 77.",
         "repair": "Separate tens and ones on a labelled mat, keep correct groups and rebuild only the first place-value step that does not match.",
@@ -1757,7 +1757,7 @@
         "Keep 5 tens fixed.",
         "Combine 0 and 2 ones."
       ],
-      "explanation": "50 + 2 = 52; only the ones change.",
+      "explanation": "50 + 2 = 52; only the ones change. The expected response is 52. Combine 0 and 2 ones. Keep 5 tens fixed.",
       "feedback": {
         "correct": "The calculation and model agree. 50 + 2 = 52; only the ones change.",
         "repair": "Separate tens and ones on a labelled mat, keep correct groups and rebuild only the first place-value step that does not match.",
@@ -2117,7 +2117,7 @@
         "Build 8 ten-rods.",
         "Add 3 one-cubes in the ones place."
       ],
-      "explanation": "83 is 8 tens and 3 ones: 80 + 3 = 83.",
+      "explanation": "83 is 8 tens and 3 ones: 80 + 3 = 83. The expected response is 83. Add 3 one-cubes in the ones place. Build 8 ten-rods.",
       "feedback": {
         "correct": "The calculation and model agree. 83 is 8 tens and 3 ones: 80 + 3 = 83.",
         "repair": "Separate tens and ones on a labelled mat, keep correct groups and rebuild only the first place-value step that does not match.",
@@ -2363,7 +2363,7 @@
         "Keep 3 tens fixed.",
         "Combine 3 and 4 ones."
       ],
-      "explanation": "33 + 4 = 37; only the ones change.",
+      "explanation": "33 + 4 = 37; only the ones change. The expected response is 37. Combine 3 and 4 ones. Keep 3 tens fixed.",
       "feedback": {
         "correct": "The calculation and model agree. 33 + 4 = 37; only the ones change.",
         "repair": "Separate tens and ones on a labelled mat, keep correct groups and rebuild only the first place-value step that does not match.",
@@ -2723,7 +2723,7 @@
         "Build 8 ten-rods.",
         "Add 9 one-cubes in the ones place."
       ],
-      "explanation": "89 is 8 tens and 9 ones: 80 + 9 = 89.",
+      "explanation": "89 is 8 tens and 9 ones: 80 + 9 = 89. The expected response is 89. Add 9 one-cubes in the ones place. Build 8 ten-rods.",
       "feedback": {
         "correct": "The calculation and model agree. 89 is 8 tens and 9 ones: 80 + 9 = 89.",
         "repair": "Separate tens and ones on a labelled mat, keep correct groups and rebuild only the first place-value step that does not match.",
@@ -2969,7 +2969,7 @@
         "Keep 8 tens fixed.",
         "Combine 0 and 3 ones."
       ],
-      "explanation": "80 + 3 = 83; only the ones change.",
+      "explanation": "80 + 3 = 83; only the ones change. The expected response is 83. Combine 0 and 3 ones. Keep 8 tens fixed.",
       "feedback": {
         "correct": "The calculation and model agree. 80 + 3 = 83; only the ones change.",
         "repair": "Separate tens and ones on a labelled mat, keep correct groups and rebuild only the first place-value step that does not match.",
@@ -3329,7 +3329,7 @@
         "Build 9 ten-rods.",
         "Add 5 one-cubes in the ones place."
       ],
-      "explanation": "95 is 9 tens and 5 ones: 90 + 5 = 95.",
+      "explanation": "95 is 9 tens and 5 ones: 90 + 5 = 95. The expected response is 95. Add 5 one-cubes in the ones place. Build 9 ten-rods.",
       "feedback": {
         "correct": "The calculation and model agree. 95 is 9 tens and 5 ones: 90 + 5 = 95.",
         "repair": "Separate tens and ones on a labelled mat, keep correct groups and rebuild only the first place-value step that does not match.",
@@ -3575,7 +3575,7 @@
         "Keep 6 tens fixed.",
         "Combine 3 and 2 ones."
       ],
-      "explanation": "63 + 2 = 65; only the ones change.",
+      "explanation": "63 + 2 = 65; only the ones change. The expected response is 65. Combine 3 and 2 ones. Keep 6 tens fixed.",
       "feedback": {
         "correct": "The calculation and model agree. 63 + 2 = 65; only the ones change.",
         "repair": "Separate tens and ones on a labelled mat, keep correct groups and rebuild only the first place-value step that does not match.",
@@ -3935,7 +3935,7 @@
         "Build 2 ten-rods.",
         "Add 2 one-cubes in the ones place."
       ],
-      "explanation": "22 is 2 tens and 2 ones: 20 + 2 = 22.",
+      "explanation": "22 is 2 tens and 2 ones: 20 + 2 = 22. The expected response is 22. Add 2 one-cubes in the ones place. Build 2 ten-rods.",
       "feedback": {
         "correct": "The calculation and model agree. 22 is 2 tens and 2 ones: 20 + 2 = 22.",
         "repair": "Separate tens and ones on a labelled mat, keep correct groups and rebuild only the first place-value step that does not match.",
@@ -4181,7 +4181,7 @@
         "Keep 4 tens fixed.",
         "Combine 0 and 4 ones."
       ],
-      "explanation": "40 + 4 = 44; only the ones change.",
+      "explanation": "40 + 4 = 44; only the ones change. The expected response is 44. Combine 0 and 4 ones. Keep 4 tens fixed.",
       "feedback": {
         "correct": "The calculation and model agree. 40 + 4 = 44; only the ones change.",
         "repair": "Separate tens and ones on a labelled mat, keep correct groups and rebuild only the first place-value step that does not match.",
@@ -4541,7 +4541,7 @@
         "Build 2 ten-rods.",
         "Add 8 one-cubes in the ones place."
       ],
-      "explanation": "28 is 2 tens and 8 ones: 20 + 8 = 28.",
+      "explanation": "28 is 2 tens and 8 ones: 20 + 8 = 28. The expected response is 28. Add 8 one-cubes in the ones place. Build 2 ten-rods.",
       "feedback": {
         "correct": "The calculation and model agree. 28 is 2 tens and 8 ones: 20 + 8 = 28.",
         "repair": "Separate tens and ones on a labelled mat, keep correct groups and rebuild only the first place-value step that does not match.",
@@ -4787,7 +4787,7 @@
         "Keep 2 tens fixed.",
         "Combine 3 and 6 ones."
       ],
-      "explanation": "23 + 6 = 29; only the ones change.",
+      "explanation": "23 + 6 = 29; only the ones change. The expected response is 29. Combine 3 and 6 ones. Keep 2 tens fixed.",
       "feedback": {
         "correct": "The calculation and model agree. 23 + 6 = 29; only the ones change.",
         "repair": "Separate tens and ones on a labelled mat, keep correct groups and rebuild only the first place-value step that does not match.",
@@ -5147,7 +5147,7 @@
         "Build 3 ten-rods.",
         "Add 4 one-cubes in the ones place."
       ],
-      "explanation": "34 is 3 tens and 4 ones: 30 + 4 = 34.",
+      "explanation": "34 is 3 tens and 4 ones: 30 + 4 = 34. The expected response is 34. Add 4 one-cubes in the ones place. Build 3 ten-rods.",
       "feedback": {
         "correct": "The calculation and model agree. 34 is 3 tens and 4 ones: 30 + 4 = 34.",
         "repair": "Separate tens and ones on a labelled mat, keep correct groups and rebuild only the first place-value step that does not match.",
@@ -5393,7 +5393,7 @@
         "Keep 7 tens fixed.",
         "Combine 0 and 5 ones."
       ],
-      "explanation": "70 + 5 = 75; only the ones change.",
+      "explanation": "70 + 5 = 75; only the ones change. The expected response is 75. Combine 0 and 5 ones. Keep 7 tens fixed.",
       "feedback": {
         "correct": "The calculation and model agree. 70 + 5 = 75; only the ones change.",
         "repair": "Separate tens and ones on a labelled mat, keep correct groups and rebuild only the first place-value step that does not match.",
@@ -5753,7 +5753,7 @@
         "Build 4 ten-rods.",
         "Add 0 one-cubes in the ones place."
       ],
-      "explanation": "40 is 4 tens and 0 ones: 40 + 0 = 40.",
+      "explanation": "40 is 4 tens and 0 ones: 40 + 0 = 40. The expected response is 40. Add 0 one-cubes in the ones place. Build 4 ten-rods.",
       "feedback": {
         "correct": "The calculation and model agree. 40 is 4 tens and 0 ones: 40 + 0 = 40.",
         "repair": "Separate tens and ones on a labelled mat, keep correct groups and rebuild only the first place-value step that does not match.",
@@ -5999,7 +5999,7 @@
         "Keep 5 tens fixed.",
         "Combine 3 and 4 ones."
       ],
-      "explanation": "53 + 4 = 57; only the ones change.",
+      "explanation": "53 + 4 = 57; only the ones change. The expected response is 57. Combine 3 and 4 ones. Keep 5 tens fixed.",
       "feedback": {
         "correct": "The calculation and model agree. 53 + 4 = 57; only the ones change.",
         "repair": "Separate tens and ones on a labelled mat, keep correct groups and rebuild only the first place-value step that does not match.",
@@ -22668,7 +22668,7 @@
         "Identify the start, change or compared quantities.",
         "Check with an inverse, estimate or second representation."
       ],
-      "explanation": "25 + 8 = 33; two parts combine.",
+      "explanation": "25 + 8 = 33; two parts combine. The expected response is 33. Check with an inverse, estimate or second representation. Identify the start, change or compared quantities.",
       "feedback": {
         "correct": "The calculation and model agree. 25 + 8 = 33; two parts combine.",
         "repair": "Separate tens and ones on a labelled mat, keep correct groups and rebuild only the first place-value step that does not match.",
@@ -22781,7 +22781,7 @@
         "Identify the start, change or compared quantities.",
         "Check with an inverse, estimate or second representation."
       ],
-      "explanation": "36 − 15 = 21; the starting whole decreases.",
+      "explanation": "36 − 15 = 21; the starting whole decreases. The expected response is 21. Check with an inverse, estimate or second representation. Identify the start, change or compared quantities.",
       "feedback": {
         "correct": "The calculation and model agree. 36 − 15 = 21; the starting whole decreases.",
         "repair": "Rebuild the starting whole, mark the backward direction, remove tens and ones by place value, then check by adding the removed amount back.",
@@ -22896,7 +22896,7 @@
         "Identify the start, change or compared quantities.",
         "Check with an inverse, estimate or second representation."
       ],
-      "explanation": "69 − 47 = 22; aligned bars reveal the difference.",
+      "explanation": "69 − 47 = 22; aligned bars reveal the difference. The expected response is 22. Check with an inverse, estimate or second representation. Identify the start, change or compared quantities.",
       "feedback": {
         "correct": "The calculation and model agree. 69 − 47 = 22; aligned bars reveal the difference.",
         "repair": "Rebuild the starting whole, mark the backward direction, remove tens and ones by place value, then check by adding the removed amount back.",
@@ -23130,7 +23130,7 @@
         "Identify the start, change or compared quantities.",
         "Check with an inverse, estimate or second representation."
       ],
-      "explanation": "30 + 15 = 45; then 45 − 7 = 38.",
+      "explanation": "30 + 15 = 45; then 45 − 7 = 38. The expected response is 38. Check with an inverse, estimate or second representation. Identify the start, change or compared quantities.",
       "feedback": {
         "correct": "The calculation and model agree. 30 + 15 = 45; then 45 − 7 = 38.",
         "repair": "Separate tens and ones on a labelled mat, keep correct groups and rebuild only the first place-value step that does not match.",
@@ -23244,7 +23244,7 @@
         "Identify the start, change or compared quantities.",
         "Check with an inverse, estimate or second representation."
       ],
-      "explanation": "41 − 22 = 19; then 19 + 9 = 28.",
+      "explanation": "41 − 22 = 19; then 19 + 9 = 28. The expected response is 28. Check with an inverse, estimate or second representation. Identify the start, change or compared quantities.",
       "feedback": {
         "correct": "The calculation and model agree. 41 − 22 = 19; then 19 + 9 = 28.",
         "repair": "Rebuild the starting whole, mark the backward direction, remove tens and ones by place value, then check by adding the removed amount back.",
@@ -23479,7 +23479,7 @@
         "Identify the start, change or compared quantities.",
         "Check with an inverse, estimate or second representation."
       ],
-      "explanation": "63 − 15 = 48; inverse check: 48 + 15 = 63.",
+      "explanation": "63 − 15 = 48; inverse check: 48 + 15 = 63. The expected response is 48. Check with an inverse, estimate or second representation. Identify the start, change or compared quantities.",
       "feedback": {
         "correct": "The calculation and model agree. 63 − 15 = 48; inverse check: 48 + 15 = 63.",
         "repair": "Rebuild the starting whole, mark the backward direction, remove tens and ones by place value, then check by adding the removed amount back.",
@@ -23594,7 +23594,7 @@
         "Identify the start, change or compared quantities.",
         "Check with an inverse, estimate or second representation."
       ],
-      "explanation": "35 + 22 = 57; two parts combine.",
+      "explanation": "35 + 22 = 57; two parts combine. The expected response is 57. Check with an inverse, estimate or second representation. Identify the start, change or compared quantities.",
       "feedback": {
         "correct": "The calculation and model agree. 35 + 22 = 57; two parts combine.",
         "repair": "Separate tens and ones on a labelled mat, keep correct groups and rebuild only the first place-value step that does not match.",
@@ -23714,7 +23714,7 @@
         "Identify the start, change or compared quantities.",
         "Check with an inverse, estimate or second representation."
       ],
-      "explanation": "46 − 8 = 38; the starting whole decreases.",
+      "explanation": "46 − 8 = 38; the starting whole decreases. The expected response is 38. Check with an inverse, estimate or second representation. Identify the start, change or compared quantities.",
       "feedback": {
         "correct": "The calculation and model agree. 46 − 8 = 38; the starting whole decreases.",
         "repair": "Rebuild the starting whole, mark the backward direction, remove tens and ones by place value, then check by adding the removed amount back.",
@@ -23829,7 +23829,7 @@
         "Identify the start, change or compared quantities.",
         "Check with an inverse, estimate or second representation."
       ],
-      "explanation": "72 − 57 = 15; aligned bars reveal the difference.",
+      "explanation": "72 − 57 = 15; aligned bars reveal the difference. The expected response is 15. Check with an inverse, estimate or second representation. Identify the start, change or compared quantities.",
       "feedback": {
         "correct": "The calculation and model agree. 72 − 57 = 15; aligned bars reveal the difference.",
         "repair": "Rebuild the starting whole, mark the backward direction, remove tens and ones by place value, then check by adding the removed amount back.",
@@ -24063,7 +24063,7 @@
         "Identify the start, change or compared quantities.",
         "Check with an inverse, estimate or second representation."
       ],
-      "explanation": "40 + 8 = 48; then 48 − 3 = 45.",
+      "explanation": "40 + 8 = 48; then 48 − 3 = 45. The expected response is 45. Check with an inverse, estimate or second representation. Identify the start, change or compared quantities.",
       "feedback": {
         "correct": "The calculation and model agree. 40 + 8 = 48; then 48 − 3 = 45.",
         "repair": "Separate tens and ones on a labelled mat, keep correct groups and rebuild only the first place-value step that does not match.",
@@ -24177,7 +24177,7 @@
         "Identify the start, change or compared quantities.",
         "Check with an inverse, estimate or second representation."
       ],
-      "explanation": "51 − 15 = 36; then 36 + 10 = 46.",
+      "explanation": "51 − 15 = 36; then 36 + 10 = 46. The expected response is 46. Check with an inverse, estimate or second representation. Identify the start, change or compared quantities.",
       "feedback": {
         "correct": "The calculation and model agree. 51 − 15 = 36; then 36 + 10 = 46.",
         "repair": "Rebuild the starting whole, mark the backward direction, remove tens and ones by place value, then check by adding the removed amount back.",
@@ -24412,7 +24412,7 @@
         "Identify the start, change or compared quantities.",
         "Check with an inverse, estimate or second representation."
       ],
-      "explanation": "34 − 8 = 26; inverse check: 26 + 8 = 34.",
+      "explanation": "34 − 8 = 26; inverse check: 26 + 8 = 34. The expected response is 26. Check with an inverse, estimate or second representation. Identify the start, change or compared quantities.",
       "feedback": {
         "correct": "The calculation and model agree. 34 − 8 = 26; inverse check: 26 + 8 = 34.",
         "repair": "Rebuild the starting whole, mark the backward direction, remove tens and ones by place value, then check by adding the removed amount back.",
@@ -24527,7 +24527,7 @@
         "Identify the start, change or compared quantities.",
         "Check with an inverse, estimate or second representation."
       ],
-      "explanation": "45 + 15 = 60; two parts combine.",
+      "explanation": "45 + 15 = 60; two parts combine. The expected response is 60. Check with an inverse, estimate or second representation. Identify the start, change or compared quantities.",
       "feedback": {
         "correct": "The calculation and model agree. 45 + 15 = 60; two parts combine.",
         "repair": "Separate tens and ones on a labelled mat, keep correct groups and rebuild only the first place-value step that does not match.",
@@ -24640,7 +24640,7 @@
         "Identify the start, change or compared quantities.",
         "Check with an inverse, estimate or second representation."
       ],
-      "explanation": "56 − 22 = 34; the starting whole decreases.",
+      "explanation": "56 − 22 = 34; the starting whole decreases. The expected response is 34. Check with an inverse, estimate or second representation. Identify the start, change or compared quantities.",
       "feedback": {
         "correct": "The calculation and model agree. 56 − 22 = 34; the starting whole decreases.",
         "repair": "Rebuild the starting whole, mark the backward direction, remove tens and ones by place value, then check by adding the removed amount back.",
@@ -24762,7 +24762,7 @@
         "Identify the start, change or compared quantities.",
         "Check with an inverse, estimate or second representation."
       ],
-      "explanation": "36 − 28 = 8; aligned bars reveal the difference.",
+      "explanation": "36 − 28 = 8; aligned bars reveal the difference. The expected response is 8. Check with an inverse, estimate or second representation. Identify the start, change or compared quantities.",
       "feedback": {
         "correct": "The calculation and model agree. 36 − 28 = 8; aligned bars reveal the difference.",
         "repair": "Rebuild the starting whole, mark the backward direction, remove tens and ones by place value, then check by adding the removed amount back.",
@@ -24989,7 +24989,7 @@
         "Identify the start, change or compared quantities.",
         "Check with an inverse, estimate or second representation."
       ],
-      "explanation": "50 + 22 = 72; then 72 − 5 = 67.",
+      "explanation": "50 + 22 = 72; then 72 − 5 = 67. The expected response is 67. Check with an inverse, estimate or second representation. Identify the start, change or compared quantities.",
       "feedback": {
         "correct": "The calculation and model agree. 50 + 22 = 72; then 72 − 5 = 67.",
         "repair": "Separate tens and ones on a labelled mat, keep correct groups and rebuild only the first place-value step that does not match.",
@@ -25110,7 +25110,7 @@
         "Identify the start, change or compared quantities.",
         "Check with an inverse, estimate or second representation."
       ],
-      "explanation": "61 − 8 = 53; then 53 + 4 = 57.",
+      "explanation": "61 − 8 = 53; then 53 + 4 = 57. The expected response is 57. Check with an inverse, estimate or second representation. Identify the start, change or compared quantities.",
       "feedback": {
         "correct": "The calculation and model agree. 61 − 8 = 53; then 53 + 4 = 57.",
         "repair": "Rebuild the starting whole, mark the backward direction, remove tens and ones by place value, then check by adding the removed amount back.",
@@ -25338,7 +25338,7 @@
         "Identify the start, change or compared quantities.",
         "Check with an inverse, estimate or second representation."
       ],
-      "explanation": "44 − 22 = 22; inverse check: 22 + 22 = 44.",
+      "explanation": "44 − 22 = 22; inverse check: 22 + 22 = 44. The expected response is 22. Check with an inverse, estimate or second representation. Identify the start, change or compared quantities.",
       "feedback": {
         "correct": "The calculation and model agree. 44 − 22 = 22; inverse check: 22 + 22 = 44.",
         "repair": "Rebuild the starting whole, mark the backward direction, remove tens and ones by place value, then check by adding the removed amount back.",
@@ -25460,7 +25460,7 @@
         "Identify the start, change or compared quantities.",
         "Check with an inverse, estimate or second representation."
       ],
-      "explanation": "55 + 8 = 63; two parts combine.",
+      "explanation": "55 + 8 = 63; two parts combine. The expected response is 63. Check with an inverse, estimate or second representation. Identify the start, change or compared quantities.",
       "feedback": {
         "correct": "The calculation and model agree. 55 + 8 = 63; two parts combine.",
         "repair": "Separate tens and ones on a labelled mat, keep correct groups and rebuild only the first place-value step that does not match.",
@@ -25573,7 +25573,7 @@
         "Identify the start, change or compared quantities.",
         "Check with an inverse, estimate or second representation."
       ],
-      "explanation": "27 − 15 = 12; the starting whole decreases.",
+      "explanation": "27 − 15 = 12; the starting whole decreases. The expected response is 12. Check with an inverse, estimate or second representation. Identify the start, change or compared quantities.",
       "feedback": {
         "correct": "The calculation and model agree. 27 − 15 = 12; the starting whole decreases.",
         "repair": "Rebuild the starting whole, mark the backward direction, remove tens and ones by place value, then check by adding the removed amount back.",
@@ -25688,7 +25688,7 @@
         "Identify the start, change or compared quantities.",
         "Check with an inverse, estimate or second representation."
       ],
-      "explanation": "60 − 38 = 22; aligned bars reveal the difference.",
+      "explanation": "60 − 38 = 22; aligned bars reveal the difference. The expected response is 22. Check with an inverse, estimate or second representation. Identify the start, change or compared quantities.",
       "feedback": {
         "correct": "The calculation and model agree. 60 − 38 = 22; aligned bars reveal the difference.",
         "repair": "Rebuild the starting whole, mark the backward direction, remove tens and ones by place value, then check by adding the removed amount back.",
@@ -25922,7 +25922,7 @@
         "Identify the start, change or compared quantities.",
         "Check with an inverse, estimate or second representation."
       ],
-      "explanation": "60 + 15 = 75; then 75 − 7 = 68.",
+      "explanation": "60 + 15 = 75; then 75 − 7 = 68. The expected response is 68. Check with an inverse, estimate or second representation. Identify the start, change or compared quantities.",
       "feedback": {
         "correct": "The calculation and model agree. 60 + 15 = 75; then 75 − 7 = 68.",
         "repair": "Separate tens and ones on a labelled mat, keep correct groups and rebuild only the first place-value step that does not match.",
@@ -26036,7 +26036,7 @@
         "Identify the start, change or compared quantities.",
         "Check with an inverse, estimate or second representation."
       ],
-      "explanation": "32 − 22 = 10; then 10 + 5 = 15.",
+      "explanation": "32 − 22 = 10; then 10 + 5 = 15. The expected response is 15. Check with an inverse, estimate or second representation. Identify the start, change or compared quantities.",
       "feedback": {
         "correct": "The calculation and model agree. 32 − 22 = 10; then 10 + 5 = 15.",
         "repair": "Rebuild the starting whole, mark the backward direction, remove tens and ones by place value, then check by adding the removed amount back.",
@@ -26271,7 +26271,7 @@
         "Identify the start, change or compared quantities.",
         "Check with an inverse, estimate or second representation."
       ],
-      "explanation": "54 − 15 = 39; inverse check: 39 + 15 = 54.",
+      "explanation": "54 − 15 = 39; inverse check: 39 + 15 = 54. The expected response is 39. Check with an inverse, estimate or second representation. Identify the start, change or compared quantities.",
       "feedback": {
         "correct": "The calculation and model agree. 54 − 15 = 39; inverse check: 39 + 15 = 54.",
         "repair": "Rebuild the starting whole, mark the backward direction, remove tens and ones by place value, then check by adding the removed amount back.",
@@ -26386,7 +26386,7 @@
         "Identify the start, change or compared quantities.",
         "Check with an inverse, estimate or second representation."
       ],
-      "explanation": "26 + 22 = 48; two parts combine.",
+      "explanation": "26 + 22 = 48; two parts combine. The expected response is 48. Check with an inverse, estimate or second representation. Identify the start, change or compared quantities.",
       "feedback": {
         "correct": "The calculation and model agree. 26 + 22 = 48; two parts combine.",
         "repair": "Separate tens and ones on a labelled mat, keep correct groups and rebuild only the first place-value step that does not match.",
@@ -26506,7 +26506,7 @@
         "Identify the start, change or compared quantities.",
         "Check with an inverse, estimate or second representation."
       ],
-      "explanation": "37 − 8 = 29; the starting whole decreases.",
+      "explanation": "37 − 8 = 29; the starting whole decreases. The expected response is 29. Check with an inverse, estimate or second representation. Identify the start, change or compared quantities.",
       "feedback": {
         "correct": "The calculation and model agree. 37 − 8 = 29; the starting whole decreases.",
         "repair": "Rebuild the starting whole, mark the backward direction, remove tens and ones by place value, then check by adding the removed amount back.",
@@ -26621,7 +26621,7 @@
         "Identify the start, change or compared quantities.",
         "Check with an inverse, estimate or second representation."
       ],
-      "explanation": "63 − 48 = 15; aligned bars reveal the difference.",
+      "explanation": "63 − 48 = 15; aligned bars reveal the difference. The expected response is 15. Check with an inverse, estimate or second representation. Identify the start, change or compared quantities.",
       "feedback": {
         "correct": "The calculation and model agree. 63 − 48 = 15; aligned bars reveal the difference.",
         "repair": "Rebuild the starting whole, mark the backward direction, remove tens and ones by place value, then check by adding the removed amount back.",
@@ -26855,7 +26855,7 @@
         "Identify the start, change or compared quantities.",
         "Check with an inverse, estimate or second representation."
       ],
-      "explanation": "31 + 8 = 39; then 39 − 3 = 36.",
+      "explanation": "31 + 8 = 39; then 39 − 3 = 36. The expected response is 36. Check with an inverse, estimate or second representation. Identify the start, change or compared quantities.",
       "feedback": {
         "correct": "The calculation and model agree. 31 + 8 = 39; then 39 − 3 = 36.",
         "repair": "Separate tens and ones on a labelled mat, keep correct groups and rebuild only the first place-value step that does not match.",
@@ -26969,7 +26969,7 @@
         "Identify the start, change or compared quantities.",
         "Check with an inverse, estimate or second representation."
       ],
-      "explanation": "42 − 15 = 27; then 27 + 6 = 33.",
+      "explanation": "42 − 15 = 27; then 27 + 6 = 33. The expected response is 33. Check with an inverse, estimate or second representation. Identify the start, change or compared quantities.",
       "feedback": {
         "correct": "The calculation and model agree. 42 − 15 = 27; then 27 + 6 = 33.",
         "repair": "Rebuild the starting whole, mark the backward direction, remove tens and ones by place value, then check by adding the removed amount back.",
@@ -27204,7 +27204,7 @@
         "Identify the start, change or compared quantities.",
         "Check with an inverse, estimate or second representation."
       ],
-      "explanation": "25 − 8 = 17; inverse check: 17 + 8 = 25.",
+      "explanation": "25 − 8 = 17; inverse check: 17 + 8 = 25. The expected response is 17. Check with an inverse, estimate or second representation. Identify the start, change or compared quantities.",
       "feedback": {
         "correct": "The calculation and model agree. 25 − 8 = 17; inverse check: 17 + 8 = 25.",
         "repair": "Rebuild the starting whole, mark the backward direction, remove tens and ones by place value, then check by adding the removed amount back.",
@@ -27319,7 +27319,7 @@
         "Identify the start, change or compared quantities.",
         "Check with an inverse, estimate or second representation."
       ],
-      "explanation": "36 + 15 = 51; two parts combine.",
+      "explanation": "36 + 15 = 51; two parts combine. The expected response is 51. Check with an inverse, estimate or second representation. Identify the start, change or compared quantities.",
       "feedback": {
         "correct": "The calculation and model agree. 36 + 15 = 51; two parts combine.",
         "repair": "Separate tens and ones on a labelled mat, keep correct groups and rebuild only the first place-value step that does not match.",
@@ -27432,7 +27432,7 @@
         "Identify the start, change or compared quantities.",
         "Check with an inverse, estimate or second representation."
       ],
-      "explanation": "47 − 22 = 25; the starting whole decreases.",
+      "explanation": "47 − 22 = 25; the starting whole decreases. The expected response is 25. Check with an inverse, estimate or second representation. Identify the start, change or compared quantities.",
       "feedback": {
         "correct": "The calculation and model agree. 47 − 22 = 25; the starting whole decreases.",
         "repair": "Rebuild the starting whole, mark the backward direction, remove tens and ones by place value, then check by adding the removed amount back.",
@@ -27554,7 +27554,7 @@
         "Identify the start, change or compared quantities.",
         "Check with an inverse, estimate or second representation."
       ],
-      "explanation": "66 − 58 = 8; aligned bars reveal the difference.",
+      "explanation": "66 − 58 = 8; aligned bars reveal the difference. The expected response is 8. Check with an inverse, estimate or second representation. Identify the start, change or compared quantities.",
       "feedback": {
         "correct": "The calculation and model agree. 66 − 58 = 8; aligned bars reveal the difference.",
         "repair": "Rebuild the starting whole, mark the backward direction, remove tens and ones by place value, then check by adding the removed amount back.",
@@ -27781,7 +27781,7 @@
         "Identify the start, change or compared quantities.",
         "Check with an inverse, estimate or second representation."
       ],
-      "explanation": "41 + 22 = 63; then 63 − 5 = 58.",
+      "explanation": "41 + 22 = 63; then 63 − 5 = 58. The expected response is 58. Check with an inverse, estimate or second representation. Identify the start, change or compared quantities.",
       "feedback": {
         "correct": "The calculation and model agree. 41 + 22 = 63; then 63 − 5 = 58.",
         "repair": "Separate tens and ones on a labelled mat, keep correct groups and rebuild only the first place-value step that does not match.",
@@ -27902,7 +27902,7 @@
         "Identify the start, change or compared quantities.",
         "Check with an inverse, estimate or second representation."
       ],
-      "explanation": "52 − 8 = 44; then 44 + 7 = 51.",
+      "explanation": "52 − 8 = 44; then 44 + 7 = 51. The expected response is 51. Check with an inverse, estimate or second representation. Identify the start, change or compared quantities.",
       "feedback": {
         "correct": "The calculation and model agree. 52 − 8 = 44; then 44 + 7 = 51.",
         "repair": "Rebuild the starting whole, mark the backward direction, remove tens and ones by place value, then check by adding the removed amount back.",
@@ -28130,7 +28130,7 @@
         "Identify the start, change or compared quantities.",
         "Check with an inverse, estimate or second representation."
       ],
-      "explanation": "35 − 22 = 13; inverse check: 13 + 22 = 35.",
+      "explanation": "35 − 22 = 13; inverse check: 13 + 22 = 35. The expected response is 13. Check with an inverse, estimate or second representation. Identify the start, change or compared quantities.",
       "feedback": {
         "correct": "The calculation and model agree. 35 − 22 = 13; inverse check: 13 + 22 = 35.",
         "repair": "Rebuild the starting whole, mark the backward direction, remove tens and ones by place value, then check by adding the removed amount back.",

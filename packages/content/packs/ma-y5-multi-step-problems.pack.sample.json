@@ -429,7 +429,7 @@
       "id": "ma-y5-multi-step-problems-q-first-error",
       "format": "error-analysis",
       "body": {
-        "prompt": "A learner solves: 'A venue sold 4,825 morning tickets and 3,760 afternoon tickets. It refunded 685 tickets. How many tickets remained sold?' They write 4,825 - 3,760 = 1,065, then 1,065 - 685 = 380. Select and repair the first error.",
+        "prompt": "Find and repair the first error in this multi-step calculation.",
         "shown_steps": [
           "4825 - 3760 = 1065",
           "1065 - 685 = 380"
