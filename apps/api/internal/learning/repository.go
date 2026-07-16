@@ -18,6 +18,10 @@ import (
 var ErrStudentNotFound = errors.New("student is not configured")
 var ErrNoDiagnosticObjectives = errors.New("no live diagnostic objectives are available for this year group")
 var ErrIdempotencyConflict = errors.New("idempotency key was already used with a different request")
+var ErrMockAssessmentNotFound = errors.New("mock assessment is not available for this learner")
+var ErrMockAssessmentClosed = errors.New("mock assessment is already closed")
+var ErrMockQuestionNotInAssessment = errors.New("question is not part of this mock assessment")
+var ErrMockQuestionAlreadyAnswered = errors.New("question has already been answered in this mock assessment")
 
 type queryExecutor interface {
 	Exec(context.Context, string, ...any) (pgconn.CommandTag, error)
@@ -507,46 +511,78 @@ func (r *PostgresRepository) RecordAttempt(ctx context.Context, attempt Attempt,
 		}
 		return result, nil
 	}
-	if err := r.ensureObjective(ctx, tx, attempt.ObjectiveID); err != nil {
-		return result, err
-	}
-	if _, err := tx.Exec(ctx, `
-		INSERT INTO student_objective_mastery (student_id, objective_id, score, band, updated_at)
-		VALUES ($1,$2,0,$3,now())
-		ON CONFLICT (student_id, objective_id) DO NOTHING
-	`, studentUUID, attempt.ObjectiveID, MasteryBand(0)); err != nil {
-		return result, err
-	}
+	var priorScore int
+	if attempt.MockAssessmentID != "" {
+		if err := r.prepareMockAssessmentAttempt(ctx, tx, attempt, studentUUID); err != nil {
+			return result, err
+		}
+		if err := r.ensureObjective(ctx, tx, attempt.ObjectiveID); err != nil {
+			return result, err
+		}
+		// A mock is a sampled subject check, not mastery evidence. Keep its
+		// response and reward hooks, but do not create/update mastery, review,
+		// misconception or world-state rows from this one-off check.
+		result, err = r.applyRewardPolicy(ctx, tx, attempt.ObjectiveID, result)
+		if err != nil {
+			return result, err
+		}
+	} else {
+		if err := r.ensureObjective(ctx, tx, attempt.ObjectiveID); err != nil {
+			return result, err
+		}
+		if _, err := tx.Exec(ctx, `
+			INSERT INTO student_objective_mastery (student_id, objective_id, score, band, updated_at)
+			VALUES ($1,$2,0,$3,now())
+			ON CONFLICT (student_id, objective_id) DO NOTHING
+		`, studentUUID, attempt.ObjectiveID, MasteryBand(0)); err != nil {
+			return result, err
+		}
 
-	priorScore, err := r.currentMasteryScore(ctx, tx, studentUUID, attempt.ObjectiveID)
-	if err != nil {
-		return result, err
-	}
-	result.MasteryDelta = cumulativeDelta(attempt, result)
-	result.MasteryGain = maxInt(result.MasteryDelta, 0)
-	result.ProjectedScore = clamp(priorScore+result.MasteryDelta, 0, 100)
-	result.ProjectedBand = MasteryBand(result.ProjectedScore)
-	result.NextReviewDays, err = r.nextReviewDaysForObjective(ctx, tx, attempt.ObjectiveID, result.ProjectedScore)
-	if err != nil {
-		return result, err
-	}
-	result, err = r.applyRewardPolicy(ctx, tx, attempt.ObjectiveID, result)
-	if err != nil {
-		return result, err
+		priorScore, err = r.currentMasteryScore(ctx, tx, studentUUID, attempt.ObjectiveID)
+		if err != nil {
+			return result, err
+		}
+		result.MasteryDelta = cumulativeDelta(attempt, result)
+		result.MasteryGain = maxInt(result.MasteryDelta, 0)
+		result.ProjectedScore = clamp(priorScore+result.MasteryDelta, 0, 100)
+		result.ProjectedBand = MasteryBand(result.ProjectedScore)
+		result.NextReviewDays, err = r.nextReviewDaysForObjective(ctx, tx, attempt.ObjectiveID, result.ProjectedScore)
+		if err != nil {
+			return result, err
+		}
+		result, err = r.applyRewardPolicy(ctx, tx, attempt.ObjectiveID, result)
+		if err != nil {
+			return result, err
+		}
 	}
 
 	_, err = tx.Exec(ctx, `
 		INSERT INTO question_attempts (
 			student_id, objective_id, question_id, format, expected_answer, given_answer,
-			correct, response_ms, hint_used, confidence, mastery_delta, explanation, response_mode
+			correct, response_ms, hint_used, confidence, mastery_delta, explanation, response_mode,
+			mock_assessment_id
 		)
-		VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,NULLIF($10,0),$11,$12,$13)
+		VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,NULLIF($10,0),$11,$12,$13,NULLIF($14,'')::uuid)
 	`, studentUUID, attempt.ObjectiveID, attempt.QuestionID, attemptFormat(attempt),
 		expectedAnswerText(attempt), givenAnswerText(attempt),
 		result.Correct, attempt.MS, attempt.HintUsed, attempt.Confidence,
-		result.MasteryDelta, result.Explanation, attemptResponseMode(attempt))
+		result.MasteryDelta, result.Explanation, attemptResponseMode(attempt), attempt.MockAssessmentID)
 	if err != nil {
 		return result, err
+	}
+	if attempt.MockAssessmentID != "" {
+		result.EvidenceEvent = "mock_assessment.answer_recorded"
+		result.MockAssessment, err = r.updateMockAssessmentProgress(ctx, tx, attempt.MockAssessmentID)
+		if err != nil {
+			return result, err
+		}
+		if err := completeIdempotency(ctx, tx, "learning.attempt", studentUUID, attempt.IdempotencyKey, result); err != nil {
+			return result, err
+		}
+		if err := tx.Commit(ctx); err != nil {
+			return result, err
+		}
+		return result, nil
 	}
 
 	var historyID string
@@ -736,7 +772,7 @@ func (r *PostgresRepository) RecentAttempts(ctx context.Context, studentID strin
 	rows, err := r.db.Query(ctx, `
 		SELECT objective_id, question_id, response_mode, correct, response_ms, hint_used, mastery_delta, explanation, created_at
 		FROM question_attempts
-		WHERE student_id=$1
+		WHERE student_id=$1 AND mock_assessment_id IS NULL
 		ORDER BY created_at DESC
 		LIMIT $2
 	`, studentUUID, limit)
@@ -894,9 +930,9 @@ func (r *PostgresRepository) EvidenceSummary(ctx context.Context, studentID stri
 	var bandsRaw []byte
 	if err := r.db.QueryRow(ctx, `
 		SELECT
-			(SELECT count(*)::int FROM question_attempts WHERE student_id=$1 AND created_at >= now() - interval '7 days'),
-			(SELECT count(*) FILTER (WHERE correct)::int FROM question_attempts WHERE student_id=$1 AND created_at >= now() - interval '7 days'),
-			(SELECT COALESCE(round(100.0 * count(*) FILTER (WHERE correct) / NULLIF(count(*), 0)), 0)::int FROM question_attempts WHERE student_id=$1 AND created_at >= now() - interval '7 days'),
+			(SELECT count(*)::int FROM question_attempts WHERE student_id=$1 AND mock_assessment_id IS NULL AND created_at >= now() - interval '7 days'),
+			(SELECT count(*) FILTER (WHERE correct)::int FROM question_attempts WHERE student_id=$1 AND mock_assessment_id IS NULL AND created_at >= now() - interval '7 days'),
+			(SELECT COALESCE(round(100.0 * count(*) FILTER (WHERE correct) / NULLIF(count(*), 0)), 0)::int FROM question_attempts WHERE student_id=$1 AND mock_assessment_id IS NULL AND created_at >= now() - interval '7 days'),
 			(SELECT count(*) FILTER (WHERE completed_at IS NULL AND due_at <= now())::int FROM spaced_review_queue WHERE student_id=$1),
 			(SELECT count(*) FILTER (WHERE completed_at IS NULL)::int FROM spaced_review_queue WHERE student_id=$1),
 			(SELECT count(*)::int FROM student_misconception_state WHERE student_id=$1 AND status='repaired' AND repaired_at >= now() - interval '7 days'),

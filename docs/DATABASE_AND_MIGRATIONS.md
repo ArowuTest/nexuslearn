@@ -176,6 +176,12 @@ revision/stretch policy, accessibility intent and runtime-approved question
 items. It is idempotent at the application boundary and indexed for learner,
 school and question lookups.
 
+The thirty-fourth migration links learner question attempts to their mock
+assessment when applicable. It enforces one answer per selected question and
+adds the index used to calculate resumable completion, score and status. Mock
+answers remain separate from long-term mastery evidence until an explicit
+assessment-evidence policy promotes them.
+
 ## Applying Migrations
 
 The API includes an explicit migration command. For paid Render plans, this can be run as a one-off job. Render free web services do not support one-off jobs, so the current prototype path is `AUTO_MIGRATE=true`.

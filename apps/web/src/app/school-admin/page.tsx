@@ -537,7 +537,7 @@ export default function SchoolAdminPage() {
               ))}
               {learningAssignments.filter((item) => item.status === "active").length === 0 && (
                 <div className="p-5 text-sm leading-6 text-[#17233f]/58">
-                  Teachers can place a curriculum objective into a pupil's adaptive queue.
+                  Teachers can place a curriculum objective into a pupil&apos;s adaptive queue.
                 </div>
               )}
             </Panel>
@@ -823,7 +823,7 @@ function LoginCard({ credential, schoolName }: { credential: StudentCredential; 
         </div>
       </div>
 
-      <p className="mt-4 text-xs leading-5 text-[#17233f]/58">Scan the QR code or go to NexusLearn, enter the code, then choose the pictures in order. Do not share this card outside the learner's trusted adults.</p>
+      <p className="mt-4 text-xs leading-5 text-[#17233f]/58">Scan the QR code or go to NexusLearn, enter the code, then choose the pictures in order. Do not share this card outside the learner&apos;s trusted adults.</p>
     </article>
   );
 }

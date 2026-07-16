@@ -61,6 +61,16 @@ type AttemptResult = {
   explanation: string;
   evidence_event: string;
   companion_prompt: string;
+  mock_assessment?: {
+    id: string;
+    title: string;
+    status: "ready" | "in_progress" | "completed" | "cancelled";
+    question_count: number;
+    answered_count: number;
+    correct_count: number;
+    score: number;
+    completed_at?: string;
+  };
 };
 type RuntimeFlags = {
   flags: Record<string, boolean>;
@@ -159,6 +169,7 @@ export default function Mission() {
   const [confidence, setConfidence] = useState<0 | 2 | 3 | 4>(0);
   const [responseMode, setResponseMode] = useState<"interactive" | "keyboard">("interactive");
   const [projectedBand, setProjectedBand] = useState("Unknown");
+  const [mockSummary, setMockSummary] = useState<AttemptResult["mock_assessment"]>(undefined);
   const [lessonIdx, setLessonIdx] = useState(0);
   const [lessonComplete, setLessonComplete] = useState(false);
   const [paused, setPaused] = useState(false);
@@ -468,6 +479,7 @@ export default function Mission() {
             student_id: studentId,
             objective_id: q.objectiveId,
             question_id: q.id,
+            mock_assessment_id: route.mockAssessmentId || undefined,
             format: q.format,
             response_mode: responseMode,
             given: isTextAnswer ? 0 : given,
@@ -492,6 +504,7 @@ export default function Mission() {
     }
 
     const correct = result.correct;
+    if (result.mock_assessment) setMockSummary(result.mock_assessment);
     setProjectedBand(result.projected_band);
     if (correct) {
       setXp((x) => x + result.mastery_gain);
@@ -512,8 +525,14 @@ export default function Mission() {
       setMessage(result.feedback || result.companion_prompt || `Try again: ${q.prompt}`);
       setWrongFlash(true);
       setTimeout(() => setWrongFlash(false), 400);
-      setShowHint(true);
-      void recordLearningEvent("hint_opened", { question_id: q.id, objective_id: q.objectiveId, reason: "incorrect_response" });
+      if (route.mockAssessmentId) {
+        setShowHint(false);
+        setMessage(result.feedback || "That answer is saved. Let’s use the next question to build a clearer picture.");
+        setIdx((i) => i + 1);
+      } else {
+        setShowHint(true);
+        void recordLearningEvent("hint_opened", { question_id: q.id, objective_id: q.objectiveId, reason: "incorrect_response" });
+      }
       sfx.gentle();
       setInput("");
     }
@@ -547,6 +566,7 @@ export default function Mission() {
     setXp(0);
     setConfidence(0);
     setProjectedBand("Unknown");
+    setMockSummary(undefined);
     setLessonIdx(0);
     setLessonComplete(teachingSequence.length === 0);
     setResults([]);
@@ -1212,6 +1232,18 @@ export default function Mission() {
                 <p className="text-xs text-ink/75">Saved evidence band</p>
               </div>
             </div>
+            {route.mockAssessmentId && mockSummary && (
+              <div className="mt-5 rounded-2xl border border-grape/15 bg-[#f3efff] p-4 text-center" aria-label="Mock assessment result">
+                <p className="font-display text-sm font-semibold uppercase tracking-[0.14em] text-[#5a3ca8]">Subject check result</p>
+                <p className="mt-2 text-sm text-ink/72">
+                  {mockSummary.status === "completed"
+                    ? `${mockSummary.correct_count} of ${mockSummary.question_count} answers correct.`
+                    : `${mockSummary.answered_count} of ${mockSummary.question_count} answers saved so far.`}
+                </p>
+                <p className="mt-1 font-display text-3xl font-semibold text-[#5a3ca8]">{mockSummary.score}%</p>
+                <p className="text-xs text-ink/65">Saved to the learner report. A subject check never restricts progress in another subject.</p>
+              </div>
+            )}
             <p className="mt-5 text-center text-sm text-ink/75">
               Objective: {mission?.objective?.statement || "recall multiplication facts up to 12 x 12"} Nixi will
               bring these back later to make them stick.

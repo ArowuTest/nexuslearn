@@ -170,6 +170,7 @@ export type ProgressReport = {
   subjects: ProgressSubject[];
   strengths: ProgressTopic[];
   practice: ProgressTopic[];
+  mock_assessments: MockAssessmentSummary[];
   updated_at?: string;
 };
 
@@ -291,6 +292,9 @@ export type MockAssessment = {
   title: string;
   status: "ready" | "in_progress" | "completed" | "cancelled";
   question_count: number;
+  answered_count: number;
+  correct_count: number;
+  score: number;
   duration_minutes: number;
   include_revision: boolean;
   include_stretch: boolean;
@@ -304,6 +308,19 @@ export type MockAssessment = {
   }>;
   created_at?: string;
   updated_at?: string;
+  completed_at?: string;
+};
+
+export type MockAssessmentSummary = {
+  id: string;
+  subject: string;
+  year_group: number;
+  title: string;
+  status: "ready" | "in_progress" | "completed" | "cancelled";
+  question_count: number;
+  answered_count: number;
+  correct_count: number;
+  score: number;
   completed_at?: string;
 };
 

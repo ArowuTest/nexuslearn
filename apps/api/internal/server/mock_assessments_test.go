@@ -2,6 +2,7 @@ package server
 
 import (
 	"context"
+	"encoding/json"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -95,5 +96,33 @@ func TestMockAssessmentBlueprintExplainsRevisionAndStretch(t *testing.T) {
 	}
 	if len(blueprint.Rationale) != 5 {
 		t.Fatalf("expected explicit mock rationale, got %#v", blueprint.Rationale)
+	}
+}
+
+func TestAdminCanReadLearnerMockAssessmentHistory(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "test-admin")
+	repo := &fakeMockAssessmentStore{
+		created: learning.MockAssessment{
+			ID: "mock-1", StudentExternalRef: "ava-y3", Subject: "Mathematics",
+			YearGroup: 3, Status: "completed", QuestionCount: 10, AnsweredCount: 10,
+			CorrectCount: 8, Score: 80,
+		},
+	}
+	srv := New(repo, "postgres")
+	req := httptest.NewRequest(http.MethodGet, "/v1/admin/students/ava-y3/mock-assessments", nil)
+	req.Header.Set("X-Admin-Key", "test-admin")
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected admin mock history, got %d: %s", res.Code, res.Body.String())
+	}
+	var body struct {
+		Assessments []learning.MockAssessment `json:"mock_assessments"`
+	}
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if len(body.Assessments) != 1 || body.Assessments[0].Score != 80 {
+		t.Fatalf("expected completed mock evidence in admin response, got %#v", body.Assessments)
 	}
 }

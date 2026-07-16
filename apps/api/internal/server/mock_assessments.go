@@ -29,6 +29,24 @@ type mockAssessmentStore interface {
 	learning.MockAssessmentStore
 }
 
+func (s *Server) handleAdminStudentMockAssessments(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	store, ok := s.repo.(mockAssessmentStore)
+	if !ok {
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "mock assessments are not available"})
+		return
+	}
+	studentID := r.PathValue("externalRef")
+	items, err := store.ListMockAssessments(r.Context(), studentID, "", 100)
+	if err != nil {
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not load mock assessments"})
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{"mock_assessments": items})
+}
+
 func (s *Server) handlePupilCreateMockAssessment(w http.ResponseWriter, r *http.Request) {
 	studentID := r.PathValue("studentId")
 	if !s.requirePupilSession(w, r, studentID) {

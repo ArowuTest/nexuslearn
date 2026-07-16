@@ -201,10 +201,10 @@ function WordBuilder({ question, input, onChoose }: { question: StudioQuestion; 
 }
 
 function NounPhraseBuilder({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
-  if (question.format.toLowerCase() !== "noun-phrase-builder" || asStringArray(question.body.tiles).length < 2) return null;
   const tiles = asStringArray(question.body.tiles);
   const [built, setBuilt] = useState<string[]>([]);
   const [used, setUsed] = useState<number[]>([]);
+  if (question.format.toLowerCase() !== "noun-phrase-builder" || tiles.length < 2) return null;
   const phrase = (parts: string[]) => parts.join(" ").replaceAll(" ,", ",").replaceAll(" .", ".");
   const publish = (next: string[], nextUsed: number[]) => { setBuilt(next); setUsed(nextUsed); onChoose(phrase(next)); };
   return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Noun phrase builder">
@@ -389,6 +389,8 @@ function SequenceBoard({ question, input, onChoose }: { question: StudioQuestion
 }
 
 function CoordinateBoard({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
+  const [x, setX] = useState<number>(0);
+  const [y, setY] = useState<number>(0);
   if (question.format.toLowerCase() !== "coordinate-plot") return null;
   const grid = question.body.grid as Record<string, unknown> | undefined;
   const xMax = Number(grid?.x_max);
@@ -404,8 +406,6 @@ function CoordinateBoard({ question, input, onChoose }: { question: StudioQuesti
       return null;
     }
   })();
-  const [x, setX] = useState<number>(selected?.[0] ?? 0);
-  const [y, setY] = useState<number>(selected?.[1] ?? 0);
   const choose = (nextX: number, nextY: number) => {
     setX(nextX);
     setY(nextY);
@@ -493,18 +493,18 @@ function PhonemeCounter({ question, input, onChoose }: { question: StudioQuestio
 }
 
 function SoundBoxBuilder({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
-  if (!['sound-box-build', 'oral-segment'].includes(question.format.toLowerCase())) return null;
-  const tiles = asStringArray(question.body.tiles);
-  const boxCount = Number(question.body.sound_boxes);
-  if (!Number.isInteger(boxCount) || boxCount < 2 || boxCount > 6 || tiles.length < boxCount) return null;
   const initial = (() => {
     try {
       const value = JSON.parse(input);
-      return Array.isArray(value) && value.every((item) => typeof item === 'string') ? value : [];
+      return Array.isArray(value) && value.every((item) => typeof item === "string") ? value : [];
     } catch { return []; }
   })();
   const [built, setBuilt] = useState<string[]>(initial);
   const [used, setUsed] = useState<number[]>([]);
+  if (!['sound-box-build', 'oral-segment'].includes(question.format.toLowerCase())) return null;
+  const tiles = asStringArray(question.body.tiles);
+  const boxCount = Number(question.body.sound_boxes);
+  if (!Number.isInteger(boxCount) || boxCount < 2 || boxCount > 6 || tiles.length < boxCount) return null;
   const publish = (next: string[], nextUsed: number[]) => { setBuilt(next); setUsed(nextUsed); onChoose(JSON.stringify(next)); };
   const add = (tile: string, index: number) => { if (built.length < boxCount) publish([...built, tile], [...used, index]); };
   const undo = () => publish(built.slice(0, -1), used.slice(0, -1));
@@ -662,11 +662,11 @@ function ParagraphThemeCard({ question }: { question: StudioQuestion }) {
 }
 
 function MethodChoiceBoard({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
+  const [chosen, setChosen] = useState('');
   if (question.format.toLowerCase() !== 'method-choice') return null;
   const strategies = asStringArray(question.body.choices);
   const steps = asStringArray(question.body.strategy_steps);
   const calculation = typeof question.body.calculation === 'string' ? question.body.calculation : '';
-  const [chosen, setChosen] = useState('');
   const expectsNumber = typeof question.expected === 'number';
   return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Calculation strategy board">
     <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Number workshop</p>
@@ -1204,12 +1204,14 @@ function PredictionEvidenceBoard({ question, input, onChoose }: { question: Stud
 }
 
 function FairTestPlanner({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
+  let saved: { change?: string; measure?: string; keep_same?: string[] } = {};
+  try { saved = JSON.parse(input); } catch { /* start fresh */ }
+  const [change, setChange] = useState(saved.change ?? '');
+  const [measure, setMeasure] = useState(saved.measure ?? '');
+  const [controls, setControls] = useState<string[]>(saved.keep_same ?? []);
   if (question.format.toLowerCase() !== 'fair-test-plan') return null;
   const variables = asStringArray(question.body.variable_options);
   if (variables.length < 3) return null;
-  let saved: { change?: string; measure?: string; keep_same?: string[] } = {};
-  try { saved = JSON.parse(input); } catch { /* start fresh */ }
-  const [change, setChange] = useState(saved.change ?? ''); const [measure, setMeasure] = useState(saved.measure ?? ''); const [controls, setControls] = useState<string[]>(saved.keep_same ?? []);
   const publish = (nextChange: string, nextMeasure: string, nextControls: string[]) => onChoose(JSON.stringify({ change: nextChange, measure: nextMeasure, keep_same: [...nextControls].sort() }));
   const chooseChange = (value: string) => { setChange(value); const next = controls.filter((item) => item !== value); setControls(next); publish(value, measure, next); };
   const chooseMeasure = (value: string) => { setMeasure(value); const next = controls.filter((item) => item !== value); setControls(next); publish(change, value, next); };

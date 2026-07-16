@@ -10,6 +10,102 @@ import (
 	"github.com/jackc/pgx/v5"
 )
 
+func (r *PostgresRepository) prepareMockAssessmentAttempt(ctx context.Context, exec queryExecutor, attempt Attempt, studentUUID string) error {
+	var status string
+	if err := exec.QueryRow(ctx, `
+		SELECT status
+		FROM mock_assessments
+		WHERE id=$1::uuid AND student_id=$2::uuid
+		FOR UPDATE
+	`, attempt.MockAssessmentID, studentUUID).Scan(&status); errors.Is(err, pgx.ErrNoRows) {
+		return ErrMockAssessmentNotFound
+	} else if err != nil {
+		return err
+	}
+	if status == "completed" || status == "cancelled" {
+		return ErrMockAssessmentClosed
+	}
+	var selected bool
+	if err := exec.QueryRow(ctx, `
+		SELECT EXISTS (
+			SELECT 1
+			FROM mock_assessment_items
+			WHERE assessment_id=$1::uuid
+			  AND question_id=$2
+			  AND objective_id=$3
+		)
+	`, attempt.MockAssessmentID, attempt.QuestionID, attempt.ObjectiveID).Scan(&selected); err != nil {
+		return err
+	}
+	if !selected {
+		return ErrMockQuestionNotInAssessment
+	}
+	var answered bool
+	if err := exec.QueryRow(ctx, `
+		SELECT EXISTS (
+			SELECT 1 FROM question_attempts
+			WHERE mock_assessment_id=$1::uuid AND question_id=$2
+		)
+	`, attempt.MockAssessmentID, attempt.QuestionID).Scan(&answered); err != nil {
+		return err
+	}
+	if answered {
+		return ErrMockQuestionAlreadyAnswered
+	}
+	return nil
+}
+
+func (r *PostgresRepository) updateMockAssessmentProgress(ctx context.Context, exec queryExecutor, assessmentID string) (*MockAssessmentSummary, error) {
+	var summary MockAssessmentSummary
+	var completedAt *time.Time
+	err := exec.QueryRow(ctx, `
+		WITH stats AS (
+			SELECT ma.id, ma.question_count,
+			       COUNT(qa.question_id)::int AS answered_count,
+			       COUNT(*) FILTER (WHERE qa.correct)::int AS correct_count
+			FROM mock_assessments ma
+			JOIN mock_assessment_items mi ON mi.assessment_id=ma.id
+			LEFT JOIN question_attempts qa
+			  ON qa.mock_assessment_id=mi.assessment_id
+			 AND qa.question_id=mi.question_id
+			WHERE ma.id=$1::uuid
+			GROUP BY ma.id, ma.question_count
+		)
+		UPDATE mock_assessments ma
+		SET status = CASE
+				WHEN stats.answered_count >= stats.question_count THEN 'completed'
+				WHEN ma.status = 'ready' THEN 'in_progress'
+				ELSE ma.status
+			END,
+			completed_at = CASE
+				WHEN stats.answered_count >= stats.question_count THEN COALESCE(ma.completed_at, now())
+				ELSE ma.completed_at
+			END,
+			updated_at = now()
+		FROM stats
+		WHERE ma.id=stats.id
+		RETURNING ma.id::text, ma.subject, ma.year_group, ma.title, ma.status,
+		          ma.question_count, stats.answered_count, stats.correct_count,
+		          ma.completed_at
+	`, assessmentID).Scan(
+		&summary.ID, &summary.Subject, &summary.YearGroup, &summary.Title, &summary.Status,
+		&summary.QuestionCount, &summary.AnsweredCount, &summary.CorrectCount, &completedAt,
+	)
+	if err != nil {
+		if errors.Is(err, pgx.ErrNoRows) {
+			return nil, ErrMockAssessmentNotFound
+		}
+		return nil, err
+	}
+	if summary.AnsweredCount > 0 {
+		summary.Score = summary.CorrectCount * 100 / summary.AnsweredCount
+	}
+	if completedAt != nil {
+		summary.CompletedAt = completedAt.UTC().Format(time.RFC3339)
+	}
+	return &summary, nil
+}
+
 // MockAssessmentStore is intentionally optional on Repository. This keeps the
 // in-memory/demo repository useful while requiring production persistence for
 // generated assessments.
@@ -137,10 +233,20 @@ func (r *PostgresRepository) ListMockAssessments(ctx context.Context, studentExt
 		       ma.created_by_role, ma.created_by, ma.subject, ma.year_group, ma.year_from,
 		       ma.year_to, ma.title, ma.status, ma.question_count, ma.duration_minutes,
 		       ma.include_revision, ma.include_stretch, ma.accessibility,
+		       COALESCE(stats.answered_count, 0), COALESCE(stats.correct_count, 0),
 		       ma.created_at, ma.updated_at, ma.completed_at
 		FROM mock_assessments ma
 		JOIN students st ON st.id=ma.student_id
 		LEFT JOIN schools sch ON sch.id=ma.school_id
+		LEFT JOIN LATERAL (
+			SELECT COUNT(qa.question_id)::int AS answered_count,
+			       COUNT(*) FILTER (WHERE qa.correct)::int AS correct_count
+			FROM mock_assessment_items mi
+			LEFT JOIN question_attempts qa
+			  ON qa.mock_assessment_id=mi.assessment_id
+			 AND qa.question_id=mi.question_id
+			WHERE mi.assessment_id=ma.id
+		) stats ON TRUE
 		WHERE st.external_ref=$1
 		  AND ($2='' OR sch.urn=$2)
 		ORDER BY ma.created_at DESC, ma.id
@@ -168,10 +274,20 @@ func (r *PostgresRepository) GetMockAssessment(ctx context.Context, id string, s
 		       ma.created_by_role, ma.created_by, ma.subject, ma.year_group, ma.year_from,
 		       ma.year_to, ma.title, ma.status, ma.question_count, ma.duration_minutes,
 		       ma.include_revision, ma.include_stretch, ma.accessibility,
+		       COALESCE(stats.answered_count, 0), COALESCE(stats.correct_count, 0),
 		       ma.created_at, ma.updated_at, ma.completed_at
 		FROM mock_assessments ma
 		JOIN students st ON st.id=ma.student_id
 		LEFT JOIN schools sch ON sch.id=ma.school_id
+		LEFT JOIN LATERAL (
+			SELECT COUNT(qa.question_id)::int AS answered_count,
+			       COUNT(*) FILTER (WHERE qa.correct)::int AS correct_count
+			FROM mock_assessment_items mi
+			LEFT JOIN question_attempts qa
+			  ON qa.mock_assessment_id=mi.assessment_id
+			 AND qa.question_id=mi.question_id
+			WHERE mi.assessment_id=ma.id
+		) stats ON TRUE
 		WHERE ma.id=$1::uuid
 		  AND st.external_ref=$2
 		  AND ($3='' OR sch.urn=$3)
@@ -270,7 +386,8 @@ func scanMockAssessmentRow(row mockAssessmentRow) (MockAssessment, error) {
 		&assessment.CreatedByRole, &assessment.CreatedBy, &assessment.Subject, &assessment.YearGroup,
 		&assessment.YearFrom, &assessment.YearTo, &assessment.Title, &assessment.Status,
 		&assessment.QuestionCount, &assessment.DurationMinutes, &assessment.IncludeRevision,
-		&assessment.IncludeStretch, &accessibility, &createdAt, &updatedAt, &completedAt,
+		&assessment.IncludeStretch, &accessibility, &assessment.AnsweredCount, &assessment.CorrectCount,
+		&createdAt, &updatedAt, &completedAt,
 	)
 	if err != nil {
 		return MockAssessment{}, err
@@ -285,6 +402,9 @@ func scanMockAssessmentRow(row mockAssessmentRow) (MockAssessment, error) {
 	assessment.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
 	if completedAt != nil {
 		assessment.CompletedAt = completedAt.UTC().Format(time.RFC3339)
+	}
+	if assessment.AnsweredCount > 0 {
+		assessment.Score = assessment.CorrectCount * 100 / assessment.AnsweredCount
 	}
 	return assessment, nil
 }

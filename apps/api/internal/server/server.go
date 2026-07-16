@@ -236,6 +236,7 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("PUT /v1/admin/reward-rules/{id}", s.handleUpsertRewardRule)
 	s.mux.HandleFunc("GET /v1/admin/students", s.handleAdminStudents)
 	s.mux.HandleFunc("GET /v1/admin/students/{externalRef}/progress", s.handleAdminStudentProgress)
+	s.mux.HandleFunc("GET /v1/admin/students/{externalRef}/mock-assessments", s.handleAdminStudentMockAssessments)
 	s.mux.HandleFunc("PUT /v1/admin/students/{externalRef}", s.handleUpsertStudent)
 	s.mux.HandleFunc("GET /v1/admin/schools", s.handleSchools)
 	s.mux.HandleFunc("PUT /v1/admin/schools/{urn}", s.handleUpsertSchool)
@@ -2041,6 +2042,11 @@ func (s *Server) handleParentChildEvidence(w http.ResponseWriter, r *http.Reques
 		return
 	}
 	progress := learning.BuildProgressReport(externalRef, child.Student.YearGroup, objectives, mastery)
+	if err := s.addMockAssessmentSummaries(r.Context(), externalRef, "", &progress); err != nil {
+		slog.Warn("failed to read parent child mock assessments", "student_id", externalRef, "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read progress"})
+		return
+	}
 	var nextActivity any
 	if decision, err := s.nextDecision(r.Context(), externalRef); err == nil {
 		nextActivity = decision
@@ -2755,7 +2761,13 @@ func (s *Server) handleStudentProgress(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read progress"})
 		return
 	}
-	writeJSON(w, http.StatusOK, learning.BuildProgressReport(studentID, year, objectives, mastery))
+	progress := learning.BuildProgressReport(studentID, year, objectives, mastery)
+	if err := s.addMockAssessmentSummaries(r.Context(), studentID, "", &progress); err != nil {
+		slog.Warn("failed to read student mock assessments", "student_id", studentID, "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read progress"})
+		return
+	}
+	writeJSON(w, http.StatusOK, progress)
 }
 
 func (s *Server) handleRecentAttempts(w http.ResponseWriter, r *http.Request) {
@@ -3515,6 +3527,18 @@ func (s *Server) handleAttempt(w http.ResponseWriter, r *http.Request) {
 		slog.Warn("failed to persist attempt", "error", err)
 		if errors.Is(err, learning.ErrStudentNotFound) {
 			writeJSON(w, http.StatusNotFound, map[string]string{"error": "student is not configured"})
+			return
+		}
+		if errors.Is(err, learning.ErrMockAssessmentNotFound) {
+			writeJSON(w, http.StatusNotFound, map[string]string{"error": "mock assessment is not available"})
+			return
+		}
+		if errors.Is(err, learning.ErrMockAssessmentClosed) || errors.Is(err, learning.ErrMockQuestionAlreadyAnswered) {
+			writeJSON(w, http.StatusConflict, map[string]string{"error": err.Error()})
+			return
+		}
+		if errors.Is(err, learning.ErrMockQuestionNotInAssessment) {
+			writeJSON(w, http.StatusUnprocessableEntity, map[string]string{"error": err.Error()})
 			return
 		}
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "answer could not be saved"})

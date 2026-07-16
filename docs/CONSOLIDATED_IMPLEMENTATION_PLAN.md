@@ -70,6 +70,11 @@ only the evidence their role is entitled to see.
 - Pupil, linked-parent and school/tutor creation routes.
 - Pupil-protected mission loading for a generated assessment.
 - Idempotency and tenant-scope tests.
+- Durable answer capture linked to the mock, one answer per selected question,
+  locked assessment state and completion/score summaries.
+- Mock attempts are excluded from adaptive mastery, spaced review,
+  misconception and world-state evidence until a future evidence policy
+  explicitly promotes them.
 
 Acceptance criteria:
 
@@ -83,19 +88,23 @@ Acceptance criteria:
 
 ### Slice B - role-aware UI and reporting
 
-- Pupil mock builder and launch route.
-- Parent child-card mock builder and progress result link.
-- School/tutor mock builder scoped to one learner, followed by group creation.
-- Mock completion summary with subject-level evidence and revision guidance.
+- Pupil mock builder and launch route (implemented).
+- Parent child-card mock builder and progress result link (implemented).
+- School/tutor mock builder scoped to one learner (implemented; group creation
+  remains follow-on work).
+- Mock completion summary with subject-level evidence and revision guidance
+  (completion evidence implemented; richer revision guidance remains).
 - Admin operational view for generated assessments, content readiness and
-  audio/listening QA.
+  audio/listening QA (scoped read route implemented; richer dashboard remains).
 
 ### Slice C - progression and evidence hardening
 
 - Subject-independent working/stretch routes with revision interleaving.
 - School/admin progress endpoints with explicit tenant filters.
 - Mock attempts separated from high-confidence mastery until evidence rules are
-  satisfied; SEND response modes remain equivalent evidence.
+  satisfied; SEND response modes remain equivalent evidence (implemented).
+- School progress and mock-history reads carry the authenticated school tenant
+  through to persistence queries (implemented).
 - Query budgets, indexes, pagination and audit events for all operational lists.
 
 ### Slice D - curriculum depth and expansion

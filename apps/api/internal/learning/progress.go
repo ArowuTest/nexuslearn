@@ -9,16 +9,17 @@ import (
 // deliberately separates sampled evidence from unsampled curriculum so a
 // missing attempt is never presented as a deficit.
 type ProgressReport struct {
-	StudentID      string            `json:"student_id"`
-	YearGroup      int               `json:"year_group"`
-	WorkingYear    int               `json:"working_year"`
-	StretchYear    int               `json:"stretch_year"`
-	StretchAllowed bool              `json:"stretch_allowed"`
-	Summary        string            `json:"summary"`
-	Subjects       []ProgressSubject `json:"subjects"`
-	Strengths      []ProgressTopic   `json:"strengths"`
-	Practice       []ProgressTopic   `json:"practice"`
-	UpdatedAt      string            `json:"updated_at,omitempty"`
+	StudentID       string                  `json:"student_id"`
+	YearGroup       int                     `json:"year_group"`
+	WorkingYear     int                     `json:"working_year"`
+	StretchYear     int                     `json:"stretch_year"`
+	StretchAllowed  bool                    `json:"stretch_allowed"`
+	Summary         string                  `json:"summary"`
+	Subjects        []ProgressSubject       `json:"subjects"`
+	Strengths       []ProgressTopic         `json:"strengths"`
+	Practice        []ProgressTopic         `json:"practice"`
+	MockAssessments []MockAssessmentSummary `json:"mock_assessments"`
+	UpdatedAt       string                  `json:"updated_at,omitempty"`
 }
 
 type ProgressSubject struct {
@@ -174,6 +175,7 @@ func BuildProgressReport(studentID string, yearGroup int, objectives []Objective
 		StudentID: studentID, YearGroup: yearGroup, WorkingYear: workingYear,
 		StretchYear: stretchYear, StretchAllowed: stretchAllowed, Summary: summary,
 		Subjects: subjects, Strengths: strengths, Practice: practice,
+		MockAssessments: []MockAssessmentSummary{},
 	}
 }
 

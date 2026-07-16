@@ -181,6 +181,9 @@ type MockAssessment struct {
 	Title              string               `json:"title"`
 	Status             string               `json:"status"`
 	QuestionCount      int                  `json:"question_count"`
+	AnsweredCount      int                  `json:"answered_count"`
+	CorrectCount       int                  `json:"correct_count"`
+	Score              int                  `json:"score"`
 	DurationMinutes    int                  `json:"duration_minutes"`
 	IncludeRevision    bool                 `json:"include_revision"`
 	IncludeStretch     bool                 `json:"include_stretch"`
@@ -189,6 +192,28 @@ type MockAssessment struct {
 	CreatedAt          string               `json:"created_at,omitempty"`
 	UpdatedAt          string               `json:"updated_at,omitempty"`
 	CompletedAt        string               `json:"completed_at,omitempty"`
+}
+
+type MockAssessmentSummary struct {
+	ID            string `json:"id"`
+	Subject       string `json:"subject"`
+	YearGroup     int    `json:"year_group"`
+	Title         string `json:"title"`
+	Status        string `json:"status"`
+	QuestionCount int    `json:"question_count"`
+	AnsweredCount int    `json:"answered_count"`
+	CorrectCount  int    `json:"correct_count"`
+	Score         int    `json:"score"`
+	CompletedAt   string `json:"completed_at,omitempty"`
+}
+
+func (assessment MockAssessment) Summary() MockAssessmentSummary {
+	return MockAssessmentSummary{
+		ID: assessment.ID, Subject: assessment.Subject, YearGroup: assessment.YearGroup,
+		Title: assessment.Title, Status: assessment.Status, QuestionCount: assessment.QuestionCount,
+		AnsweredCount: assessment.AnsweredCount, CorrectCount: assessment.CorrectCount,
+		Score: assessment.Score, CompletedAt: assessment.CompletedAt,
+	}
 }
 
 type MockAssessmentItem struct {

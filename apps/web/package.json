@@ -12,7 +12,7 @@
     "test:e2e": "playwright test",
     "test:visual": "playwright test tests/e2e/mission-visual.spec.ts",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint ."
   },
   "dependencies": {
     "@fontsource/atkinson-hyperlegible": "5.2.8",

@@ -3,35 +3,37 @@ package learning
 import "strings"
 
 type Attempt struct {
-	ID             string `json:"id,omitempty"`
-	IdempotencyKey string `json:"-"`
-	StudentID      string `json:"student_id"`
-	ObjectiveID    string `json:"objective_id"`
-	QuestionID     string `json:"question_id"`
-	Format         string `json:"format"`
-	ResponseMode   string `json:"response_mode"`
-	Given          int    `json:"given"`
-	Expected       int    `json:"expected"`
-	GivenText      string `json:"given_text"`
-	ExpectedText   string `json:"expected_text"`
-	MS             int    `json:"ms"`
-	HintUsed       bool   `json:"hint_used"`
-	Confidence     int    `json:"confidence"`
+	ID               string `json:"id,omitempty"`
+	IdempotencyKey   string `json:"-"`
+	StudentID        string `json:"student_id"`
+	MockAssessmentID string `json:"mock_assessment_id,omitempty"`
+	ObjectiveID      string `json:"objective_id"`
+	QuestionID       string `json:"question_id"`
+	Format           string `json:"format"`
+	ResponseMode     string `json:"response_mode"`
+	Given            int    `json:"given"`
+	Expected         int    `json:"expected"`
+	GivenText        string `json:"given_text"`
+	ExpectedText     string `json:"expected_text"`
+	MS               int    `json:"ms"`
+	HintUsed         bool   `json:"hint_used"`
+	Confidence       int    `json:"confidence"`
 }
 
 type AttemptResult struct {
-	Correct         bool   `json:"correct"`
-	MasteryGain     int    `json:"mastery_gain"`
-	MasteryDelta    int    `json:"mastery_delta"`
-	ProjectedScore  int    `json:"projected_score"`
-	ProjectedBand   string `json:"projected_band"`
-	NextReviewDays  int    `json:"next_review_days"`
-	RewardHook      string `json:"reward_hook"`
-	AnimationHook   string `json:"animation_hook"`
-	Feedback        string `json:"feedback"`
-	Explanation     string `json:"explanation"`
-	EvidenceEvent   string `json:"evidence_event"`
-	CompanionPrompt string `json:"companion_prompt"`
+	Correct         bool                   `json:"correct"`
+	MasteryGain     int                    `json:"mastery_gain"`
+	MasteryDelta    int                    `json:"mastery_delta"`
+	ProjectedScore  int                    `json:"projected_score"`
+	ProjectedBand   string                 `json:"projected_band"`
+	NextReviewDays  int                    `json:"next_review_days"`
+	RewardHook      string                 `json:"reward_hook"`
+	AnimationHook   string                 `json:"animation_hook"`
+	Feedback        string                 `json:"feedback"`
+	Explanation     string                 `json:"explanation"`
+	EvidenceEvent   string                 `json:"evidence_event"`
+	CompanionPrompt string                 `json:"companion_prompt"`
+	MockAssessment  *MockAssessmentSummary `json:"mock_assessment,omitempty"`
 }
 
 // ScoreAttempt applies the v1 explainable scoring rules.
