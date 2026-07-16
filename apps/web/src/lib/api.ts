@@ -9,6 +9,12 @@ export type Objective = {
   misconceptions: string[];
   parent_explanation: string;
   teacher_evidence: string;
+  mastery?: {
+    expected: number;
+    secure: number;
+    retention_days?: number[];
+    required_formats?: string[];
+  };
 };
 
 export type CurriculumMap = {
@@ -115,6 +121,53 @@ export type DiagnosticBaseline = {
     response_formats: string[];
     completed_at?: string;
   }>;
+};
+
+export type ProgressTopic = {
+  objective_id: string;
+  subject: string;
+  year: number;
+  strand: string;
+  topic: string;
+  statement: string;
+  score: number;
+  status: "secure" | "on_track" | "building" | "needs_practice";
+  evidence_confidence: string;
+};
+
+export type ProgressYear = {
+  year: number;
+  status: "not_sampled" | "ahead" | "secure" | "on_track" | "needs_practice";
+  average_score: number;
+  sampled_objectives: number;
+  objective_count: number;
+  secure_objectives: number;
+};
+
+export type ProgressSubject = {
+  subject: string;
+  current_year: number;
+  status: string;
+  average_score: number;
+  sampled_objectives: number;
+  objective_count: number;
+  secure_objectives: number;
+  years: ProgressYear[];
+  strengths: ProgressTopic[];
+  practice: ProgressTopic[];
+};
+
+export type ProgressReport = {
+  student_id: string;
+  year_group: number;
+  working_year: number;
+  stretch_year: number;
+  stretch_allowed: boolean;
+  summary: string;
+  subjects: ProgressSubject[];
+  strengths: ProgressTopic[];
+  practice: ProgressTopic[];
+  updated_at?: string;
 };
 
 export type RuntimeAdaptations = {
@@ -273,6 +326,7 @@ export type ParentChildEvidence = {
   mastery: Mastery[];
   attempts: RecentAttempt[];
   summary: EvidenceSummary;
+  progress: ProgressReport;
   next_activity?: NextActivityDecision | null;
 };
 
@@ -427,6 +481,11 @@ export async function getMastery(studentId: string): Promise<Mastery[] | null> {
   if (!studentId) return null;
   const data = await getJSON<{ mastery: Mastery[] }>(`/v1/students/${encodeURIComponent(studentId)}/mastery`, { headers: pupilSessionHeaders(studentId) });
   return data?.mastery ?? null;
+}
+
+export async function getProgress(studentId: string): Promise<ProgressReport | null> {
+  if (!studentId) return null;
+  return getJSON<ProgressReport>(`/v1/students/${encodeURIComponent(studentId)}/progress`, { headers: pupilSessionHeaders(studentId) });
 }
 
 export async function getRecentAttempts(studentId: string): Promise<RecentAttempt[] | null> {

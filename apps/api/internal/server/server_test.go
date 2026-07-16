@@ -835,6 +835,30 @@ func TestChooseAdaptiveActivityPrioritisesDueReview(t *testing.T) {
 	}
 }
 
+func TestChooseAdaptiveActivityOpensNextYearAfterCrossSubjectEvidence(t *testing.T) {
+	activities := []learning.ActivityConfig{
+		{ID: "en-y4", ObjectiveID: "en-y4", Status: "published"},
+		{ID: "ma-y4", ObjectiveID: "ma-y4", Status: "published"},
+		{ID: "en-y3", ObjectiveID: "en-y3", Status: "published"},
+	}
+	objectives := []learning.Objective{
+		{ID: "en-y3", Year: 3, Subject: "English", Mastery: learning.MasteryRule{Expected: 80, Secure: 90}},
+		{ID: "ma-y3", Year: 3, Subject: "Mathematics", Mastery: learning.MasteryRule{Expected: 80, Secure: 90}},
+		{ID: "sc-y3", Year: 3, Subject: "Science", Mastery: learning.MasteryRule{Expected: 80, Secure: 90}},
+		{ID: "en-y4", Year: 4, Subject: "English", Mastery: learning.MasteryRule{Expected: 80, Secure: 90}},
+		{ID: "ma-y4", Year: 4, Subject: "Mathematics", Mastery: learning.MasteryRule{Expected: 80, Secure: 90}},
+	}
+	mastery := []learning.StudentMastery{
+		{ObjectiveID: "en-y3", Score: 95, EvidenceCount: 3, FormatCount: 2, EvidenceConfidence: "strong", EvidenceFreshness: "current"},
+		{ObjectiveID: "ma-y3", Score: 94, EvidenceCount: 3, FormatCount: 2, EvidenceConfidence: "supported", EvidenceFreshness: "current"},
+		{ObjectiveID: "sc-y3", Score: 93, EvidenceCount: 3, FormatCount: 2, EvidenceConfidence: "supported", EvidenceFreshness: "current"},
+	}
+	choice, ok := chooseAdaptiveActivity(activities, objectives, mastery, nil, nil, nil, nil, nil, 3)
+	if !ok || (choice.Activity.ID != "en-y4" && choice.Activity.ID != "ma-y4") || !strings.Contains(choice.Explanation, "next-year stretch") {
+		t.Fatalf("expected evidence-gated next-year activity, got %#v", choice)
+	}
+}
+
 func TestChooseDiagnosticBaselineItemsBalancesCoreSubjectsAndWeakEvidence(t *testing.T) {
 	objectives := []learning.Objective{
 		{ID: "en-secure", Year: 4, Subject: "English"},
@@ -1337,6 +1361,38 @@ func TestLearnerEndpointsCanRequireSignedPupilSession(t *testing.T) {
 	srv.ServeHTTP(res, req)
 	if res.Code != http.StatusForbidden {
 		t.Fatalf("expected mismatched pupil session to be forbidden, got %d", res.Code)
+	}
+}
+
+func TestHandleStudentProgressReturnsParentSafeProgressContract(t *testing.T) {
+	t.Setenv("PUPIL_SESSION_SECRET", "test-pupil-session-secret")
+	t.Setenv("REQUIRE_PUPIL_SESSION", "true")
+	srv := New(fakeRepository{
+		studentYear: 3,
+		objectives: []learning.Objective{
+			{ID: "en-y3", Year: 3, Subject: "English", Strand: "Reading", Topic: "Inference", Mastery: learning.MasteryRule{Expected: 80, Secure: 90}},
+			{ID: "ma-y3", Year: 3, Subject: "Mathematics", Strand: "Number", Topic: "Place value", Mastery: learning.MasteryRule{Expected: 80, Secure: 90}},
+			{ID: "sc-y3", Year: 3, Subject: "Science", Strand: "Plants", Topic: "Functions", Mastery: learning.MasteryRule{Expected: 80, Secure: 90}},
+		},
+		mastery: []learning.StudentMastery{
+			{ObjectiveID: "en-y3", Score: 94, EvidenceCount: 3, FormatCount: 2, EvidenceConfidence: "strong", EvidenceFreshness: "current"},
+			{ObjectiveID: "ma-y3", Score: 92, EvidenceCount: 3, FormatCount: 2, EvidenceConfidence: "supported", EvidenceFreshness: "current"},
+			{ObjectiveID: "sc-y3", Score: 91, EvidenceCount: 3, FormatCount: 2, EvidenceConfidence: "supported", EvidenceFreshness: "current"},
+		},
+	}, "postgres")
+	req := httptest.NewRequest(http.MethodGet, "/v1/students/ava-y3/progress", nil)
+	req.Header.Set("X-Pupil-Session", srv.createPupilSession("ava-y3").Token)
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected progress 200, got %d: %s", res.Code, res.Body.String())
+	}
+	var report learning.ProgressReport
+	if err := json.NewDecoder(res.Body).Decode(&report); err != nil {
+		t.Fatal(err)
+	}
+	if !report.StretchAllowed || report.WorkingYear != 4 || len(report.Subjects) != 3 {
+		t.Fatalf("expected cross-subject progress response, got %#v", report)
 	}
 }
 
@@ -2447,12 +2503,13 @@ func TestHandleParentChildEvidenceIsScopedToParent(t *testing.T) {
 		Mastery      []learning.StudentMastery      `json:"mastery"`
 		Attempts     []learning.RecentAttempt       `json:"attempts"`
 		Summary      learning.EvidenceSummary       `json:"summary"`
+		Progress     learning.ProgressReport        `json:"progress"`
 		NextActivity *learning.NextActivityDecision `json:"next_activity"`
 	}
 	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
 		t.Fatal(err)
 	}
-	if body.Child.Student.ExternalRef != "ava-home" || len(body.Mastery) != 1 || body.Summary.Accuracy7Days != 75 || body.NextActivity == nil || body.NextActivity.ActivityID != "act-y2-add" {
+	if body.Child.Student.ExternalRef != "ava-home" || len(body.Mastery) != 1 || body.Summary.Accuracy7Days != 75 || body.Progress.YearGroup != 2 || body.NextActivity == nil || body.NextActivity.ActivityID != "act-y2-add" {
 		t.Fatalf("expected scoped parent evidence payload, got %#v", body)
 	}
 

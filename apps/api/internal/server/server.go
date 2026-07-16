@@ -272,6 +272,7 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("GET /v1/learning/worlds", s.handlePublicWorlds)
 	s.mux.HandleFunc("GET /v1/students/{studentId}/profile", s.handleStudentProfile)
 	s.mux.HandleFunc("GET /v1/students/{studentId}/mastery", s.handleMastery)
+	s.mux.HandleFunc("GET /v1/students/{studentId}/progress", s.handleStudentProgress)
 	s.mux.HandleFunc("GET /v1/students/{studentId}/attempts", s.handleRecentAttempts)
 	s.mux.HandleFunc("GET /v1/students/{studentId}/summary", s.handleEvidenceSummary)
 	s.mux.HandleFunc("GET /v1/students/{studentId}/world", s.handleWorldState)
@@ -1999,6 +2000,13 @@ func (s *Server) handleParentChildEvidence(w http.ResponseWriter, r *http.Reques
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read summary"})
 		return
 	}
+	objectives, err := s.repo.ListObjectives(r.Context())
+	if err != nil {
+		slog.Warn("failed to read parent child objectives", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read progress"})
+		return
+	}
+	progress := learning.BuildProgressReport(externalRef, child.Student.YearGroup, objectives, mastery)
 	var nextActivity any
 	if decision, err := s.nextDecision(r.Context(), externalRef); err == nil {
 		nextActivity = decision
@@ -2010,6 +2018,7 @@ func (s *Server) handleParentChildEvidence(w http.ResponseWriter, r *http.Reques
 		"mastery":       mastery,
 		"attempts":      attempts,
 		"summary":       summary,
+		"progress":      progress,
 		"next_activity": nextActivity,
 	})
 }
@@ -2683,6 +2692,36 @@ func (s *Server) handleMastery(w http.ResponseWriter, r *http.Request) {
 		"student_id": studentID,
 		"mastery":    mastery,
 	})
+}
+
+func (s *Server) handleStudentProgress(w http.ResponseWriter, r *http.Request) {
+	studentID := r.PathValue("studentId")
+	if !s.requirePupilSession(w, r, studentID) {
+		return
+	}
+	year, ok, err := s.repo.StudentYear(r.Context(), studentID)
+	if err != nil {
+		slog.Warn("failed to read student year for progress", "student_id", studentID, "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read progress"})
+		return
+	}
+	if !ok {
+		writeJSON(w, http.StatusNotFound, map[string]string{"error": "student is not configured"})
+		return
+	}
+	objectives, err := s.repo.ListObjectives(r.Context())
+	if err != nil {
+		slog.Warn("failed to read objectives for progress", "student_id", studentID, "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read progress"})
+		return
+	}
+	mastery, err := s.repo.ListMastery(r.Context(), studentID)
+	if err != nil {
+		slog.Warn("failed to read mastery for progress", "student_id", studentID, "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read progress"})
+		return
+	}
+	writeJSON(w, http.StatusOK, learning.BuildProgressReport(studentID, year, objectives, mastery))
 }
 
 func (s *Server) handleRecentAttempts(w http.ResponseWriter, r *http.Request) {
@@ -4063,11 +4102,16 @@ func chooseAdaptiveActivity(
 	}
 
 	bestScore := 101
+	targetYear := preferredYear
+	stretchAvailable := learning.CanStretchToYear(preferredYear, objectives, mastery)
+	if stretchAvailable {
+		targetYear = preferredYear + 1
+	}
 	var target learning.ActivityConfig
 	found := false
 	for objectiveID, options := range liveByObjective {
 		objective := objectiveByID[objectiveID]
-		if preferredYear > 0 && objective.Year > 0 && objective.Year != preferredYear {
+		if targetYear > 0 && objective.Year > 0 && objective.Year != targetYear {
 			continue
 		}
 		score := 0
@@ -4081,6 +4125,31 @@ func chooseAdaptiveActivity(
 		}
 	}
 	if !found {
+		if stretchAvailable {
+			for objectiveID, options := range liveByObjective {
+				objective := objectiveByID[objectiveID]
+				if preferredYear > 0 && objective.Year > 0 && objective.Year != preferredYear {
+					continue
+				}
+				score := 0
+				if current, ok := masteryByObjective[objectiveID]; ok {
+					score = current.Score
+				}
+				if score < bestScore {
+					bestScore = score
+					target = options[0]
+					found = true
+				}
+			}
+			if found {
+				stretchAvailable = false
+				targetYear = preferredYear
+			}
+		}
+	}
+	if !found {
+		stretchAvailable = false
+		targetYear = preferredYear
 		activity, ok := chooseActivity(activities, "", "", worlds, preferredYear)
 		if !ok {
 			return adaptiveActivityChoice{}, false
@@ -4108,15 +4177,25 @@ func chooseAdaptiveActivity(
 
 	if bestScore == 0 {
 		return adaptiveActivityChoice{
-			Activity:    target,
-			Explanation: "Selected to establish the learner's first trustworthy evidence for this objective.",
-			Scaffold:    true,
+			Activity: target,
+			Explanation: func() string {
+				if stretchAvailable && targetYear > preferredYear {
+					return "Selected as a next-year stretch to establish the learner's first trustworthy evidence in the new year; spaced review remains available when due."
+				}
+				return "Selected to establish the learner's first trustworthy evidence for this objective."
+			}(),
+			Scaffold: true,
 		}, true
 	}
 	return adaptiveActivityChoice{
-		Activity:    target,
-		Explanation: "Selected because it is the learner's lowest-evidence available objective in the current curriculum year.",
-		Scaffold:    bestScore < targetObjective.Mastery.Expected,
+		Activity: target,
+		Explanation: func() string {
+			if stretchAvailable && targetYear > preferredYear {
+				return "Selected as a next-year stretch because current-year evidence is secure across the active subjects; spaced review remains available when due."
+			}
+			return "Selected because it is the learner's lowest-evidence available objective in the current curriculum year."
+		}(),
+		Scaffold: bestScore < targetObjective.Mastery.Expected,
 	}, true
 }
 

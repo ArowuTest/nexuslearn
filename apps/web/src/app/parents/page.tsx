@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { DEFAULT_STUDENT_ID, getEvidenceSummary, getMastery, getNextActivity, getObjectives, getRecentAttempts, getRuntimeFlags, getStudentProfile } from "@/lib/api";
+import { DEFAULT_STUDENT_ID, getEvidenceSummary, getMastery, getNextActivity, getObjectives, getProgress, getRecentAttempts, getRuntimeFlags, getStudentProfile, type ProgressReport, type ProgressSubject } from "@/lib/api";
 
 export const dynamic = "force-dynamic";
 
@@ -54,12 +54,13 @@ export default async function Parents() {
     );
   }
 
-  const [objectives, mastery, nextActivity, profile, summary] = await Promise.all([
+  const [objectives, mastery, nextActivity, profile, summary, progress] = await Promise.all([
     getObjectives(),
     getMastery(DEFAULT_STUDENT_ID),
     getNextActivity(DEFAULT_STUDENT_ID),
     getStudentProfile(DEFAULT_STUDENT_ID),
     getEvidenceSummary(DEFAULT_STUDENT_ID),
+    getProgress(DEFAULT_STUDENT_ID),
   ]);
   const recentAttempts = await getRecentAttempts(DEFAULT_STUDENT_ID);
   const learnerName = profile?.display_name ?? "Learner";
@@ -75,7 +76,7 @@ export default async function Parents() {
           };
         });
 
-  const subjectRows = buildSubjectRows(objectives ?? [], mastery ?? []);
+  const subjectRows = progress?.subjects.length ? progressSubjectRows(progress.subjects) : buildSubjectRows(objectives ?? [], mastery ?? []);
 
   const signals = [
     { value: String(summary?.attempts_7_days ?? 0), label: "Attempts this week" },
@@ -164,6 +165,8 @@ export default async function Parents() {
           </aside>
         </section>
 
+        <ProgressPathway progress={progress} />
+
         <section className="mt-8 overflow-hidden rounded-2xl bg-white shadow-card">
           <div className="border-b border-ink/8 p-6">
             <h2 className="font-display text-2xl font-semibold">Objective evidence</h2>
@@ -215,6 +218,101 @@ export default async function Parents() {
       </div>
     </main>
   );
+}
+
+function ProgressPathway({ progress }: { progress: ProgressReport | null }) {
+  if (!progress) {
+    return <section className="mt-8 rounded-2xl bg-white p-6 shadow-card"><EmptyState title="Progress pathway is waiting for secure evidence" body="Once the learner profile is connected, this view will show sampled skills across year groups, strengths, practice topics and any evidence-gated stretch route." /></section>;
+  }
+  return (
+    <section className="mt-8 grid gap-6 lg:grid-cols-[1.35fr_0.65fr]">
+      <div className="rounded-2xl bg-white p-6 shadow-card">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div>
+            <p className="font-display text-xs uppercase tracking-[0.16em] text-grape">Progress pathway</p>
+            <h2 className="font-display mt-2 text-2xl font-semibold">A year group is a starting point, not a ceiling.</h2>
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-ink/62">Bars show evidence that has actually been sampled. Pale rows are not failures; they are topics the system has not checked yet.</p>
+          </div>
+          <span className={`rounded-full px-4 py-2 text-sm font-semibold ${progress.stretch_allowed ? "bg-[#8be28f]/35 text-[#215d26]" : "bg-[#ffbf45]/30 text-[#6a4a00]"}`}>
+            {progress.stretch_allowed ? `Stretch route: Year ${progress.stretch_year}` : `Core route: Year ${progress.year_group}`}
+          </span>
+        </div>
+        <div className="mt-6 grid gap-5">
+          {progress.subjects.map((subject) => <SubjectYearLadder key={subject.subject} subject={subject} />)}
+        </div>
+      </div>
+      <div className="grid gap-6">
+        <TopicPanel title="Topics to practise" detail="Evidence suggests these need another supported route." topics={progress.practice.slice(0, 5)} tone="practice" empty="No sampled practice gaps yet." />
+        <TopicPanel title="Topics of strength" detail="Secure evidence worth celebrating and revisiting later." topics={progress.strengths.slice(0, 5)} tone="strength" empty="Strengths will appear after enough varied evidence is collected." />
+      </div>
+    </section>
+  );
+}
+
+function SubjectYearLadder({ subject }: { subject: ProgressSubject }) {
+  return (
+    <article className="rounded-2xl bg-cream p-5">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <div>
+          <h3 className="font-display text-xl font-semibold">{subject.subject}</h3>
+          <p className="mt-1 text-xs text-ink/55">{subject.sampled_objectives} of {subject.objective_count} Year {subject.current_year} objectives sampled</p>
+        </div>
+        <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-ink/65">{progressLabel(subject.status)}</span>
+      </div>
+      <div className="mt-4 grid gap-3">
+        {subject.years.map((year) => (
+          <div key={year.year} className="grid grid-cols-[42px_1fr_86px] items-center gap-3">
+            <span className="text-xs font-semibold text-ink/55">Y{year.year}</span>
+            <div className="h-3 overflow-hidden rounded-full bg-ink/8" aria-label={`Year ${year.year} ${progressLabel(year.status)}`}>
+              <div className={`h-full rounded-full ${progressColor(year.status)}`} style={{ width: `${year.sampled_objectives ? Math.max(8, year.average_score) : 4}%` }} />
+            </div>
+            <span className="text-right text-xs font-semibold text-ink/58">{progressLabel(year.status)}</span>
+          </div>
+        ))}
+      </div>
+    </article>
+  );
+}
+
+function TopicPanel({ title, detail, topics, tone, empty }: { title: string; detail: string; topics: ProgressReport["practice"]; tone: "practice" | "strength"; empty: string }) {
+  return (
+    <section className="rounded-2xl bg-white p-6 shadow-card">
+      <h2 className="font-display text-xl font-semibold">{title}</h2>
+      <p className="mt-1 text-sm leading-6 text-ink/58">{detail}</p>
+      {topics.length ? <ul className="mt-4 grid gap-2">{topics.map((topic) => <li key={topic.objective_id} className="rounded-xl border border-ink/8 p-3"><p className="text-sm font-semibold">{topic.topic || topic.statement}</p><p className="mt-1 text-xs text-ink/52">Year {topic.year} · {topic.strand} · {topic.score}% evidence signal</p></li>)}</ul> : <p className="mt-4 rounded-xl bg-cream p-4 text-sm text-ink/58">{empty}</p>}
+      <span className={`mt-4 inline-flex rounded-full px-3 py-1 text-xs font-semibold ${tone === "strength" ? "bg-[#8be28f]/30 text-[#215d26]" : "bg-[#ffbf45]/30 text-[#6a4a00]"}`}>{tone === "strength" ? "Celebrate and retain" : "Practise without pressure"}</span>
+    </section>
+  );
+}
+
+function progressSubjectRows(subjects: ProgressSubject[]) {
+  const colors = ["bg-[#55cbd3]", "bg-[#8be28f]", "bg-[#ff7b73]", "bg-[#9d82ff]"];
+  return subjects.map((subject, index) => ({
+    name: subject.subject,
+    mastery: subject.average_score,
+    note: `${progressLabel(subject.status)} · ${subject.sampled_objectives} sampled of ${subject.objective_count} current-year objectives.`,
+    color: colors[index % colors.length],
+  }));
+}
+
+function progressLabel(status: string) {
+  switch (status) {
+    case "ahead": return "Ahead";
+    case "secure": return "Secure";
+    case "on_track": return "On track";
+    case "needs_practice": return "Needs practice";
+    default: return "Not sampled";
+  }
+}
+
+function progressColor(status: string) {
+  switch (status) {
+    case "ahead": return "bg-[#9d82ff]";
+    case "secure": return "bg-[#8be28f]";
+    case "on_track": return "bg-[#55cbd3]";
+    case "needs_practice": return "bg-[#ffbf45]";
+    default: return "bg-ink/12";
+  }
 }
 
 function buildSubjectRows(objectives: NonNullable<Awaited<ReturnType<typeof getObjectives>>>, mastery: NonNullable<Awaited<ReturnType<typeof getMastery>>>) {
