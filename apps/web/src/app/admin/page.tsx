@@ -3,7 +3,8 @@
 import type { ReactNode } from "react";
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { accountSessionHeaders, logoutAccount, storeAccountSession, type AccountSession } from "@/lib/api";
+import ProgressSnapshot from "@/components/ProgressSnapshot";
+import { accountSessionHeaders, logoutAccount, storeAccountSession, type AccountSession, type ProgressReport } from "@/lib/api";
 
 type FeatureFlag = { key: string; enabled: boolean; description: string; config?: Record<string, unknown>; updated_at?: string };
 type World = { key: string; name: string; year_group: number; theme: string; config?: Record<string, unknown>; enabled: boolean };
@@ -541,7 +542,7 @@ type AdminConfig = {
 const API = process.env.NEXT_PUBLIC_API_URL;
 const EMPTY_OBJECT = "{}";
 const EMPTY_ARRAY = "[]";
-const TABS = ["Access", "Schools", "Learners", "Groups", "Parents", "Worlds", "Readiness", "Activities", "Questions", "Rewards", "Objectives", "Flags", "Audit"] as const;
+const TABS = ["Access", "Schools", "Learners", "Progress", "Groups", "Parents", "Worlds", "Readiness", "Activities", "Questions", "Rewards", "Objectives", "Flags", "Audit"] as const;
 type Tab = (typeof TABS)[number];
 
 const newWorld: World = {
@@ -734,6 +735,8 @@ export default function AdminPage() {
     requiredFormatsText: pretty(newObjective.mastery.required_formats),
   });
   const [flagDraft, setFlagDraft] = useState({ ...newFlag, configText: pretty(newFlag.config) });
+  const [progressStudentID, setProgressStudentID] = useState("");
+  const [adminProgress, setAdminProgress] = useState<ProgressReport | null>(null);
 
   const totals = useMemo(
     () => [
@@ -871,6 +874,20 @@ export default function AdminPage() {
       roles: [platformUserDraft.role],
     });
     setPlatformUserDraft({ email: "", display_name: "", login_id: "", password: "", role: "platform_admin" });
+  }
+
+  async function loadAdminProgress() {
+    if (!progressStudentID) return;
+    setSaving("progress");
+    try {
+      const data = await adminFetch(`/v1/admin/students/${encodeURIComponent(progressStudentID)}/progress`);
+      setAdminProgress(data as ProgressReport);
+      setMessage("Learner progress loaded with platform-admin scope.");
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Could not load learner progress.");
+    } finally {
+      setSaving("");
+    }
   }
 
   async function createParentInvitation() {
@@ -1666,6 +1683,35 @@ export default function AdminPage() {
                   <JsonField label="Picture password JSON" value={credentialDraft.picturePasswordText} onChange={(picturePasswordText) => setCredentialDraft({ ...credentialDraft, picturePasswordText })} />
                   <Field label="QR secret hash" value={credentialDraft.qr_secret_hash ?? ""} onChange={(value) => setCredentialDraft({ ...credentialDraft, qr_secret_hash: value })} />
                   <Actions disabled={!credentialDraft.student_external_ref || !!saving} onSave={saveCredential} onNew={() => setCredentialDraft({ ...newCredential, picturePasswordText: pretty(newCredential.picture_password) })} />
+                </Panel>
+              </div>
+            }
+          />
+        )}
+
+        {tab === "Progress" && (
+          <EditorGrid
+            left={
+              <Panel title="Learner progress lookup">
+                {(config?.students ?? []).map((student) => (
+                  <PickRow
+                    key={student.external_ref}
+                    title={student.display_name}
+                    meta={`Year ${student.year_group}`}
+                    body={student.external_ref}
+                    onClick={() => setProgressStudentID(student.external_ref)}
+                  />
+                ))}
+              </Panel>
+            }
+            right={
+              <div className="grid gap-6">
+                <Panel title="Platform progress report">
+                  <Field label="Learner external ref" value={progressStudentID} onChange={(value) => setProgressStudentID(slug(value))} />
+                  <div className="flex justify-end border-t border-[#1d1a3e]/10 p-5">
+                    <button onClick={loadAdminProgress} disabled={!progressStudentID || !!saving} className="btn-pop bg-[#7357c9] px-5 py-3 text-sm text-white disabled:opacity-50">Load progress</button>
+                  </div>
+                  <ProgressSnapshot progress={adminProgress} empty="Select a learner to inspect subject-independent progress, revision and stretch routes." />
                 </Panel>
               </div>
             }

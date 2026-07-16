@@ -13,17 +13,22 @@ import (
 	"time"
 
 	"github.com/jackc/pgx/v5"
+	"github.com/jackc/pgx/v5/pgconn"
 	"golang.org/x/crypto/bcrypt"
 )
 
 var ErrInvalidConfiguration = errors.New("invalid configuration")
 
 type contentVersionStore interface {
+	Exec(ctx context.Context, sql string, args ...any) (pgconn.CommandTag, error)
 	QueryRow(ctx context.Context, sql string, args ...any) pgx.Row
 }
 
 func recordContentVersion(ctx context.Context, store contentVersionStore, key string, contentType string, status string, payload any) error {
 	status = contentVersionStatus(status)
+	if _, err := store.Exec(ctx, `SELECT pg_advisory_xact_lock(hashtextextended($1, 0))`, strings.TrimSpace(key)); err != nil {
+		return err
+	}
 	var id string
 	return store.QueryRow(ctx, `
 		INSERT INTO content_versions (content_key, content_type, status, version, payload, published_at)
@@ -220,8 +225,13 @@ func (r *PostgresRepository) UpsertFeatureFlag(ctx context.Context, flag Feature
 	if flag.Config == nil {
 		flag.Config = map[string]any{}
 	}
+	tx, err := r.db.Begin(ctx)
+	if err != nil {
+		return flag, err
+	}
+	defer tx.Rollback(ctx)
 	var updatedAt time.Time
-	err := r.db.QueryRow(ctx, `
+	err = tx.QueryRow(ctx, `
 		INSERT INTO feature_flags (key, enabled, config, description, updated_at)
 		VALUES ($1,$2,$3::jsonb,$4,now())
 		ON CONFLICT (key) DO UPDATE SET
@@ -232,7 +242,10 @@ func (r *PostgresRepository) UpsertFeatureFlag(ctx context.Context, flag Feature
 		RETURNING updated_at
 	`, flag.Key, flag.Enabled, mustJSON(flag.Config), flag.Description).Scan(&updatedAt)
 	if err == nil {
-		_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'feature_flag', $1, $2::jsonb)`, flag.Key, mustJSON(flag))
+		_, err = tx.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'feature_flag', $1, $2::jsonb)`, flag.Key, mustJSON(flag))
+	}
+	if err == nil {
+		err = tx.Commit(ctx)
 	}
 	flag.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
 	return flag, err
@@ -262,8 +275,13 @@ func (r *PostgresRepository) UpsertWorld(ctx context.Context, world WorldConfig)
 	if world.Config == nil {
 		world.Config = map[string]any{}
 	}
+	tx, err := r.db.Begin(ctx)
+	if err != nil {
+		return world, err
+	}
+	defer tx.Rollback(ctx)
 	var updatedAt time.Time
-	err := r.db.QueryRow(ctx, `
+	err = tx.QueryRow(ctx, `
 		INSERT INTO worlds (key, name, year_group, theme, config, enabled, updated_at)
 		VALUES ($1,$2,NULLIF($3,0),$4,$5::jsonb,$6,now())
 		ON CONFLICT (key) DO UPDATE SET
@@ -276,14 +294,17 @@ func (r *PostgresRepository) UpsertWorld(ctx context.Context, world WorldConfig)
 		RETURNING updated_at
 	`, world.Key, world.Name, world.YearGroup, world.Theme, mustJSON(world.Config), world.Enabled).Scan(&updatedAt)
 	if err == nil {
-		_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'world', $1, $2::jsonb)`, world.Key, mustJSON(world))
+		_, err = tx.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'world', $1, $2::jsonb)`, world.Key, mustJSON(world))
 	}
 	if err == nil {
 		status := "published"
 		if !world.Enabled {
 			status = "archived"
 		}
-		err = recordContentVersion(ctx, r.db, world.Key, "world", status, world)
+		err = recordContentVersion(ctx, tx, world.Key, "world", status, world)
+	}
+	if err == nil {
+		err = tx.Commit(ctx)
 	}
 	world.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
 	return world, err
@@ -311,6 +332,66 @@ func (r *PostgresRepository) ListActivities(ctx context.Context) ([]ActivityConf
 	return activities, rows.Err()
 }
 
+// ListAdaptiveActivities returns only live activities in the learner's review,
+// current and near-progression year window. The adaptive engine should not
+// download the whole catalogue for every decision.
+func (r *PostgresRepository) ListAdaptiveActivities(ctx context.Context, studentID string) ([]ActivityConfig, error) {
+	rows, err := r.db.Query(ctx, `
+		SELECT a.id, COALESCE(a.objective_id,''), COALESCE(a.template_id,''), a.world_key, a.title, a.prompt, a.difficulty,
+		       a.interaction, a.feedback, a.animation_hooks, a.status, a.updated_at
+		FROM activities a
+		JOIN curriculum_objectives o ON o.id=a.objective_id
+		JOIN students s ON s.external_ref=$1
+		WHERE a.status IN ('approved','published','live')
+		  AND o.year_group BETWEEN GREATEST(1, s.year_group-1) AND LEAST(7, s.year_group+2)
+		ORDER BY a.updated_at DESC, a.id
+		LIMIT 2000
+	`, studentID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	activities := []ActivityConfig{}
+	for rows.Next() {
+		activity, err := scanActivity(rows)
+		if err != nil {
+			return nil, err
+		}
+		activities = append(activities, activity)
+	}
+	return activities, rows.Err()
+}
+
+func (r *PostgresRepository) ListAdaptiveObjectives(ctx context.Context, studentID string) ([]Objective, error) {
+	rows, err := r.db.Query(ctx, `
+		SELECT
+			o.id, o.year_group, o.subject, o.strand, o.topic, o.statement,
+			o.parent_explanation, o.teacher_evidence, o.expected_mastery, o.secure_mastery,
+			array_to_json(o.retention_days)::text,
+			array_to_json(o.required_formats)::text,
+			COALESCE((SELECT json_agg(p.prerequisite_id) FROM objective_prerequisites p WHERE p.objective_id=o.id), '[]')::text,
+			COALESCE((SELECT json_agg(m.description) FROM objective_misconceptions m WHERE m.objective_id=o.id), '[]')::text
+		FROM curriculum_objectives o
+		JOIN students s ON s.external_ref=$1
+		WHERE o.year_group BETWEEN GREATEST(1, s.year_group-1) AND LEAST(7, s.year_group+2)
+		ORDER BY o.year_group, o.subject, o.strand, o.topic, o.id
+		LIMIT 2000
+	`, studentID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	objectives := []Objective{}
+	for rows.Next() {
+		objective, err := scanObjective(rows)
+		if err != nil {
+			return nil, err
+		}
+		objectives = append(objectives, objective)
+	}
+	return objectives, rows.Err()
+}
+
 func (r *PostgresRepository) UpsertActivity(ctx context.Context, activity ActivityConfig) (ActivityConfig, error) {
 	if err := validateActivity(activity); err != nil {
 		return activity, err
@@ -327,8 +408,13 @@ func (r *PostgresRepository) UpsertActivity(ctx context.Context, activity Activi
 	if activity.Status == "" {
 		activity.Status = "draft"
 	}
+	tx, err := r.db.Begin(ctx)
+	if err != nil {
+		return activity, err
+	}
+	defer tx.Rollback(ctx)
 	var updatedAt time.Time
-	err := r.db.QueryRow(ctx, `
+	err = tx.QueryRow(ctx, `
 		INSERT INTO activities (
 			id, objective_id, template_id, world_key, title, prompt, difficulty,
 			interaction, feedback, animation_hooks, status, updated_at
@@ -350,10 +436,13 @@ func (r *PostgresRepository) UpsertActivity(ctx context.Context, activity Activi
 	`, activity.ID, activity.ObjectiveID, activity.TemplateID, activity.WorldKey, activity.Title, activity.Prompt,
 		activity.Difficulty, mustJSON(activity.Interaction), mustJSON(activity.Feedback), mustJSON(activity.AnimationHooks), activity.Status).Scan(&updatedAt)
 	if err == nil {
-		_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'activity', $1, $2::jsonb)`, activity.ID, mustJSON(activity))
+		_, err = tx.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'activity', $1, $2::jsonb)`, activity.ID, mustJSON(activity))
 	}
 	if err == nil {
-		err = recordContentVersion(ctx, r.db, activity.ID, "activity", activity.Status, activity)
+		err = recordContentVersion(ctx, tx, activity.ID, "activity", activity.Status, activity)
+	}
+	if err == nil {
+		err = tx.Commit(ctx)
 	}
 	activity.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
 	return activity, err
@@ -366,6 +455,34 @@ func (r *PostgresRepository) ListQuestions(ctx context.Context) ([]QuestionConfi
 		FROM questions
 		ORDER BY updated_at DESC, id
 	`)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	questions := []QuestionConfig{}
+	for rows.Next() {
+		question, err := scanQuestion(rows)
+		if err != nil {
+			return nil, err
+		}
+		questions = append(questions, question)
+	}
+	return questions, rows.Err()
+}
+
+func (r *PostgresRepository) ListQuestionsForActivity(ctx context.Context, activityID string, objectiveID string, limit int) ([]QuestionConfig, error) {
+	if limit <= 0 || limit > 500 {
+		limit = 200
+	}
+	rows, err := r.db.Query(ctx, `
+		SELECT id, COALESCE(activity_id,''), COALESCE(objective_id,''), format, body, expected_answer,
+		       hints, explanation, difficulty, status, updated_at
+		FROM questions
+		WHERE status IN ('approved','published','live')
+		  AND (activity_id=$1 OR (activity_id IS NULL AND objective_id=$2))
+		ORDER BY updated_at DESC, id
+		LIMIT $3
+	`, activityID, objectiveID, limit)
 	if err != nil {
 		return nil, err
 	}
@@ -397,8 +514,13 @@ func (r *PostgresRepository) UpsertQuestion(ctx context.Context, question Questi
 	if question.Status == "" {
 		question.Status = "draft"
 	}
+	tx, err := r.db.Begin(ctx)
+	if err != nil {
+		return question, err
+	}
+	defer tx.Rollback(ctx)
 	var updatedAt time.Time
-	err := r.db.QueryRow(ctx, `
+	err = tx.QueryRow(ctx, `
 		INSERT INTO questions (
 			id, activity_id, objective_id, format, body, expected_answer, hints,
 			explanation, difficulty, status, updated_at
@@ -419,10 +541,13 @@ func (r *PostgresRepository) UpsertQuestion(ctx context.Context, question Questi
 	`, question.ID, question.ActivityID, question.ObjectiveID, question.Format, mustJSON(question.Body),
 		mustJSON(question.ExpectedAnswer), mustJSON(question.Hints), question.Explanation, question.Difficulty, question.Status).Scan(&updatedAt)
 	if err == nil {
-		_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'question', $1, $2::jsonb)`, question.ID, mustJSON(question))
+		_, err = tx.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'question', $1, $2::jsonb)`, question.ID, mustJSON(question))
 	}
 	if err == nil {
-		err = recordContentVersion(ctx, r.db, question.ID, "question", question.Status, question)
+		err = recordContentVersion(ctx, tx, question.ID, "question", question.Status, question)
+	}
+	if err == nil {
+		err = tx.Commit(ctx)
 	}
 	question.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
 	return question, err
@@ -461,8 +586,13 @@ func (r *PostgresRepository) UpsertRewardRule(ctx context.Context, rule RewardRu
 	if rule.RewardPayload == nil {
 		rule.RewardPayload = map[string]any{}
 	}
+	tx, err := r.db.Begin(ctx)
+	if err != nil {
+		return rule, err
+	}
+	defer tx.Rollback(ctx)
 	var updatedAt time.Time
-	err := r.db.QueryRow(ctx, `
+	err = tx.QueryRow(ctx, `
 		INSERT INTO reward_rules (id, world_key, objective_id, trigger, reward_payload, enabled, updated_at)
 		VALUES ($1,NULLIF($2,''),NULLIF($3,''),$4,$5::jsonb,$6,now())
 		ON CONFLICT (id) DO UPDATE SET
@@ -475,14 +605,17 @@ func (r *PostgresRepository) UpsertRewardRule(ctx context.Context, rule RewardRu
 		RETURNING updated_at
 	`, rule.ID, rule.WorldKey, rule.ObjectiveID, rule.Trigger, mustJSON(rule.RewardPayload), rule.Enabled).Scan(&updatedAt)
 	if err == nil {
-		_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'reward_rule', $1, $2::jsonb)`, rule.ID, mustJSON(rule))
+		_, err = tx.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'reward_rule', $1, $2::jsonb)`, rule.ID, mustJSON(rule))
 	}
 	if err == nil {
 		status := "archived"
 		if rule.Enabled {
 			status = "published"
 		}
-		err = recordContentVersion(ctx, r.db, rule.ID, "reward_rule", status, rule)
+		err = recordContentVersion(ctx, tx, rule.ID, "reward_rule", status, rule)
+	}
+	if err == nil {
+		err = tx.Commit(ctx)
 	}
 	rule.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
 	return rule, err
@@ -517,9 +650,14 @@ func (r *PostgresRepository) UpsertStudent(ctx context.Context, student StudentP
 	if err := validateStudent(student); err != nil {
 		return student, err
 	}
+	tx, err := r.db.Begin(ctx)
+	if err != nil {
+		return student, err
+	}
+	defer tx.Rollback(ctx)
 	var id string
 	var createdAt, updatedAt time.Time
-	err := r.db.QueryRow(ctx, `
+	err = tx.QueryRow(ctx, `
 		INSERT INTO students (external_ref, display_name, year_group, updated_at)
 		VALUES ($1,$2,$3,now())
 		ON CONFLICT (external_ref) DO UPDATE SET
@@ -529,7 +667,10 @@ func (r *PostgresRepository) UpsertStudent(ctx context.Context, student StudentP
 		RETURNING id::text, created_at, updated_at
 	`, student.ExternalRef, student.DisplayName, student.YearGroup).Scan(&id, &createdAt, &updatedAt)
 	if err == nil {
-		_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'student', $1, $2::jsonb)`, student.ExternalRef, mustJSON(student))
+		_, err = tx.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'student', $1, $2::jsonb)`, student.ExternalRef, mustJSON(student))
+	}
+	if err == nil {
+		err = tx.Commit(ctx)
 	}
 	student.ID = id
 	student.CreatedAt = createdAt.UTC().Format(time.RFC3339)
@@ -566,9 +707,14 @@ func (r *PostgresRepository) UpsertSchool(ctx context.Context, school SchoolConf
 	if err := validateSchool(school); err != nil {
 		return school, err
 	}
+	tx, err := r.db.Begin(ctx)
+	if err != nil {
+		return school, err
+	}
+	defer tx.Rollback(ctx)
 	var id string
 	var createdAt, updatedAt time.Time
-	err := r.db.QueryRow(ctx, `
+	err = tx.QueryRow(ctx, `
 		INSERT INTO schools (name, urn, status, updated_at)
 		VALUES ($1,$2,$3,now())
 		ON CONFLICT (urn) WHERE urn IS NOT NULL AND urn <> '' DO UPDATE SET
@@ -578,7 +724,10 @@ func (r *PostgresRepository) UpsertSchool(ctx context.Context, school SchoolConf
 		RETURNING id::text, created_at, updated_at
 	`, school.Name, school.URN, school.Status).Scan(&id, &createdAt, &updatedAt)
 	if err == nil {
-		_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'school', $1, $2::jsonb)`, school.URN, mustJSON(school))
+		_, err = tx.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'school', $1, $2::jsonb)`, school.URN, mustJSON(school))
+	}
+	if err == nil {
+		err = tx.Commit(ctx)
 	}
 	school.ID = id
 	school.CreatedAt = createdAt.UTC().Format(time.RFC3339)
@@ -611,6 +760,32 @@ func (r *PostgresRepository) ListSchoolUsers(ctx context.Context) ([]SchoolUserC
 	return users, rows.Err()
 }
 
+func (r *PostgresRepository) ListSchoolUsersForSchool(ctx context.Context, schoolURN string) ([]SchoolUserConfig, error) {
+	rows, err := r.db.Query(ctx, `
+		SELECT u.id::text, COALESCE(s.urn,''), COALESCE(s.name,''), COALESCE(u.email,''), u.display_name,
+		       su.role, COALESCE(u.login_id,''), u.temporary_password_required, u.status, u.created_at, u.updated_at
+		FROM school_users su
+		JOIN app_users u ON u.id = su.user_id
+		JOIN schools s ON s.id = su.school_id
+		WHERE s.urn=$1
+		ORDER BY su.role, u.display_name
+		LIMIT 500
+	`, schoolURN)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	users := []SchoolUserConfig{}
+	for rows.Next() {
+		user, err := scanSchoolUser(rows)
+		if err != nil {
+			return nil, err
+		}
+		users = append(users, user)
+	}
+	return users, rows.Err()
+}
+
 func (r *PostgresRepository) UpsertSchoolUser(ctx context.Context, user SchoolUserConfig) (SchoolUserConfig, error) {
 	if err := validateSchoolUser(user); err != nil {
 		return user, err
@@ -620,8 +795,6 @@ func (r *PostgresRepository) UpsertSchoolUser(ctx context.Context, user SchoolUs
 	if loginID == "" {
 		loginID = slugForLogin(user.SchoolURN + "-" + user.DisplayName)
 	}
-	tempPassword := randomPassword()
-	passwordHash := credentialHash(loginID, tempPassword)
 	tx, err := r.db.Begin(ctx)
 	if err != nil {
 		return user, err
@@ -637,20 +810,52 @@ func (r *PostgresRepository) UpsertSchoolUser(ctx context.Context, user SchoolUs
 	}
 
 	var userID string
-	if err := tx.QueryRow(ctx, `
-		INSERT INTO app_users (email, display_name, user_type, status, login_id, password_hash, temporary_password_required, updated_at)
-		VALUES (NULLIF($1,''), $2, $3, $4, $5, $6, true, now())
-		ON CONFLICT (email) DO UPDATE SET
-			display_name = EXCLUDED.display_name,
-			user_type = EXCLUDED.user_type,
-			status = EXCLUDED.status,
-			login_id = EXCLUDED.login_id,
-			password_hash = EXCLUDED.password_hash,
-			temporary_password_required = true,
-			updated_at = now()
-		RETURNING id::text
-	`, email, strings.TrimSpace(user.DisplayName), userTypeForSchoolRole(user.Role), user.Status, loginID, passwordHash).Scan(&userID); err != nil {
-		return user, err
+	tempPassword := ""
+	requestedPassword := strings.TrimSpace(user.TemporaryPassword)
+	var existingPasswordHash string
+	var existingTemporaryRequired bool
+	existingErr := tx.QueryRow(ctx, `
+		SELECT id::text, password_hash, temporary_password_required
+		FROM app_users
+		WHERE lower(email)=lower($1)
+		FOR UPDATE
+	`, email).Scan(&userID, &existingPasswordHash, &existingTemporaryRequired)
+	if errors.Is(existingErr, pgx.ErrNoRows) {
+		if requestedPassword == "" {
+			tempPassword = randomPassword()
+		} else {
+			tempPassword = requestedPassword
+		}
+		passwordHash := credentialHash(loginID, tempPassword)
+		if err := tx.QueryRow(ctx, `
+			INSERT INTO app_users (email, display_name, user_type, status, login_id, password_hash, temporary_password_required, updated_at)
+			VALUES (NULLIF($1,''), $2, $3, $4, $5, $6, true, now())
+			RETURNING id::text
+		`, email, strings.TrimSpace(user.DisplayName), userTypeForSchoolRole(user.Role), user.Status, loginID, passwordHash).Scan(&userID); err != nil {
+			return user, err
+		}
+	} else if existingErr != nil {
+		return user, existingErr
+	} else {
+		if requestedPassword != "" {
+			tempPassword = requestedPassword
+			if _, err := tx.Exec(ctx, `
+				UPDATE app_users
+				SET display_name=$2, user_type=$3, status=$4, login_id=$5,
+				    password_hash=$6, temporary_password_required=true, updated_at=now()
+				WHERE id=$1
+			`, userID, strings.TrimSpace(user.DisplayName), userTypeForSchoolRole(user.Role), user.Status, loginID, credentialHash(loginID, tempPassword)); err != nil {
+				return user, err
+			}
+		} else if _, err := tx.Exec(ctx, `
+			UPDATE app_users
+			SET display_name=$2, user_type=$3, status=$4, login_id=$5, updated_at=now()
+			WHERE id=$1
+		`, userID, strings.TrimSpace(user.DisplayName), userTypeForSchoolRole(user.Role), user.Status, loginID); err != nil {
+			return user, err
+		}
+		_ = existingPasswordHash
+		_ = existingTemporaryRequired
 	}
 	if _, err := tx.Exec(ctx, `
 		INSERT INTO user_roles (user_id, role_id)
@@ -742,55 +947,40 @@ func (r *PostgresRepository) SchoolPortal(ctx context.Context, schoolURN string)
 	if school.URN == "" {
 		return SchoolPortalConfig{}, invalidConfig("school urn does not exist")
 	}
-	classes, err := r.ListClasses(ctx)
+	classes, err := r.ListClassesForSchool(ctx, schoolURN)
 	if err != nil {
 		return SchoolPortalConfig{}, err
 	}
-	groups, err := r.ListGroups(ctx)
+	groups, err := r.ListGroupsForSchool(ctx, schoolURN)
 	if err != nil {
 		return SchoolPortalConfig{}, err
 	}
-	credentials, err := r.ListStudentCredentials(ctx)
+	credentials, err := r.ListStudentCredentialsForSchool(ctx, schoolURN)
 	if err != nil {
 		return SchoolPortalConfig{}, err
 	}
-	users, err := r.ListSchoolUsers(ctx)
+	users, err := r.ListSchoolUsersForSchool(ctx, schoolURN)
 	if err != nil {
 		return SchoolPortalConfig{}, err
 	}
 	out := SchoolPortalConfig{School: school}
-	studentRefs := map[string]bool{}
 	classIDs := map[string]bool{}
 	for _, classConfig := range classes {
-		if classConfig.SchoolURN != schoolURN {
-			continue
-		}
 		out.Classes = append(out.Classes, classConfig)
 		classIDs[classConfig.ID] = true
-		for _, student := range classConfig.Students {
-			studentRefs[student.ExternalRef] = true
-		}
 	}
 	for _, group := range groups {
 		if classIDs[group.ClassID] {
 			out.Groups = append(out.Groups, group)
 		}
 	}
-	for _, credential := range credentials {
-		if studentRefs[credential.StudentExternalRef] {
-			out.StudentCredentials = append(out.StudentCredentials, credential)
-		}
-	}
-	for _, user := range users {
-		if user.SchoolURN == schoolURN {
-			out.Users = append(out.Users, user)
-		}
-	}
+	out.StudentCredentials = credentials
+	out.Users = users
 	return out, nil
 }
 
 func (r *PostgresRepository) ListClasses(ctx context.Context) ([]ClassConfig, error) {
-	rows, err := r.db.Query(ctx, `
+	return r.listClasses(ctx, `
 		SELECT c.id::text, COALESCE(c.school_id::text,''), COALESCE(s.urn,''), COALESCE(s.name,''), c.name, c.year_group,
 		       c.created_at, c.updated_at
 		FROM classes c
@@ -798,34 +988,94 @@ func (r *PostgresRepository) ListClasses(ctx context.Context) ([]ClassConfig, er
 		ORDER BY s.name, c.year_group, c.name
 		LIMIT 500
 	`)
+}
+
+func (r *PostgresRepository) ListClassesForSchool(ctx context.Context, schoolURN string) ([]ClassConfig, error) {
+	return r.listClasses(ctx, `
+		SELECT c.id::text, COALESCE(c.school_id::text,''), COALESCE(s.urn,''), COALESCE(s.name,''), c.name, c.year_group,
+		       c.created_at, c.updated_at
+		FROM classes c
+		JOIN schools s ON s.id = c.school_id
+		WHERE s.urn=$1
+		ORDER BY c.year_group, c.name
+		LIMIT 500
+	`, schoolURN)
+}
+
+func (r *PostgresRepository) listClasses(ctx context.Context, query string, args ...any) ([]ClassConfig, error) {
+	rows, err := r.db.Query(ctx, query, args...)
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
 	classes := []ClassConfig{}
 	for rows.Next() {
-		classConfig, err := r.scanClass(ctx, rows)
+		classConfig, err := scanClassBase(rows)
 		if err != nil {
+			rows.Close()
 			return nil, err
 		}
 		classes = append(classes, classConfig)
 	}
-	return classes, rows.Err()
+	if err := rows.Err(); err != nil {
+		rows.Close()
+		return nil, err
+	}
+	rows.Close()
+	if len(classes) == 0 {
+		return classes, nil
+	}
+	ids := make([]string, 0, len(classes))
+	byID := make(map[string]int, len(classes))
+	for index := range classes {
+		ids = append(ids, classes[index].ID)
+		byID[classes[index].ID] = index
+		classes[index].Students = []StudentProfileConfig{}
+	}
+	studentRows, err := r.db.Query(ctx, `
+		SELECT cs.class_id::text, s.id::text, s.external_ref, s.display_name, s.year_group, s.created_at, s.updated_at
+		FROM class_students cs
+		JOIN students s ON s.id=cs.student_id
+		WHERE cs.class_id::text = ANY($1::text[])
+		ORDER BY s.display_name, s.external_ref
+	`, ids)
+	if err != nil {
+		return nil, err
+	}
+	defer studentRows.Close()
+	for studentRows.Next() {
+		var classID string
+		var student StudentProfileConfig
+		var createdAt, updatedAt time.Time
+		if err := studentRows.Scan(&classID, &student.ID, &student.ExternalRef, &student.DisplayName, &student.YearGroup, &createdAt, &updatedAt); err != nil {
+			return nil, err
+		}
+		student.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+		student.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+		if index, ok := byID[classID]; ok {
+			classes[index].Students = append(classes[index].Students, student)
+		}
+	}
+	return classes, studentRows.Err()
 }
 
 func (r *PostgresRepository) UpsertClass(ctx context.Context, classConfig ClassConfig) (ClassConfig, error) {
 	if err := validateClass(classConfig); err != nil {
 		return classConfig, err
 	}
+	tx, err := r.db.Begin(ctx)
+	if err != nil {
+		return classConfig, err
+	}
+	defer tx.Rollback(ctx)
 	var schoolExists bool
-	if err := r.db.QueryRow(ctx, `SELECT EXISTS (SELECT 1 FROM schools WHERE urn=$1)`, classConfig.SchoolURN).Scan(&schoolExists); err != nil {
+	if err := tx.QueryRow(ctx, `SELECT EXISTS (SELECT 1 FROM schools WHERE urn=$1)`, classConfig.SchoolURN).Scan(&schoolExists); err != nil {
 		return classConfig, err
 	}
 	if !schoolExists {
 		return classConfig, invalidConfig("class school urn does not exist")
 	}
 	var id string
-	err := r.db.QueryRow(ctx, `
+	err = tx.QueryRow(ctx, `
 		INSERT INTO classes (school_id, name, year_group, updated_at)
 		VALUES ((SELECT id FROM schools WHERE urn=$1 LIMIT 1), $2, $3, now())
 		ON CONFLICT (school_id, name) DO UPDATE SET
@@ -836,8 +1086,11 @@ func (r *PostgresRepository) UpsertClass(ctx context.Context, classConfig ClassC
 	if err != nil {
 		return classConfig, err
 	}
-	_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'class', $1, $2::jsonb)`, id, mustJSON(classConfig))
+	_, err = tx.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'class', $1, $2::jsonb)`, id, mustJSON(classConfig))
 	if err != nil {
+		return classConfig, err
+	}
+	if err := tx.Commit(ctx); err != nil {
 		return classConfig, err
 	}
 	return r.getClass(ctx, id)
@@ -863,13 +1116,16 @@ func (r *PostgresRepository) AssignStudentToClass(ctx context.Context, classID s
 	if !studentExists {
 		return ClassConfig{}, invalidConfig("student external ref does not exist")
 	}
-	_, err := r.db.Exec(ctx, `
+	tag, err := r.db.Exec(ctx, `
 		INSERT INTO class_students (class_id, student_id)
 		VALUES ($1, (SELECT id FROM students WHERE external_ref=$2 LIMIT 1))
 		ON CONFLICT DO NOTHING
 	`, classID, studentExternalRef)
 	if err != nil {
 		return ClassConfig{}, err
+	}
+	if tag.RowsAffected() == 0 {
+		return r.getClass(ctx, classID)
 	}
 	_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('assign', 'class_student', $1, $2::jsonb)`,
 		classID, mustJSON(map[string]string{"class_id": classID, "student_external_ref": studentExternalRef}))
@@ -908,19 +1164,60 @@ func (r *PostgresRepository) ListStudentCredentials(ctx context.Context) ([]Stud
 	return credentials, rows.Err()
 }
 
+func (r *PostgresRepository) ListStudentCredentialsForSchool(ctx context.Context, schoolURN string) ([]StudentCredentialConfig, error) {
+	rows, err := r.db.Query(ctx, `
+		SELECT s.external_ref, s.display_name, COALESCE(c.login_code,''), COALESCE(c.picture_password, '[]'::jsonb),
+		       COALESCE(c.qr_secret_hash,''), COALESCE(c.updated_at, s.updated_at)
+		FROM students s
+		LEFT JOIN student_credentials c ON c.student_id=s.id
+		WHERE EXISTS (
+			SELECT 1
+			FROM class_students cs
+			JOIN classes cl ON cl.id=cs.class_id
+			JOIN schools sch ON sch.id=cl.school_id
+			WHERE cs.student_id=s.id AND sch.urn=$1
+		)
+		ORDER BY s.year_group, s.display_name, s.external_ref
+		LIMIT 500
+	`, schoolURN)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	credentials := []StudentCredentialConfig{}
+	for rows.Next() {
+		var credential StudentCredentialConfig
+		var raw []byte
+		var updatedAt time.Time
+		if err := rows.Scan(&credential.StudentExternalRef, &credential.DisplayName, &credential.LoginCode, &raw, &credential.QRSecretHash, &updatedAt); err != nil {
+			return nil, err
+		}
+		credential.PicturePassword = []string{}
+		_ = json.Unmarshal(raw, &credential.PicturePassword)
+		credential.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+		credentials = append(credentials, credential)
+	}
+	return credentials, rows.Err()
+}
+
 func (r *PostgresRepository) UpsertStudentCredential(ctx context.Context, credential StudentCredentialConfig) (StudentCredentialConfig, error) {
 	if err := validateStudentCredential(credential); err != nil {
 		return credential, err
 	}
+	tx, err := r.db.Begin(ctx)
+	if err != nil {
+		return credential, err
+	}
+	defer tx.Rollback(ctx)
 	var studentExists bool
-	if err := r.db.QueryRow(ctx, `SELECT EXISTS (SELECT 1 FROM students WHERE external_ref=$1)`, credential.StudentExternalRef).Scan(&studentExists); err != nil {
+	if err := tx.QueryRow(ctx, `SELECT EXISTS (SELECT 1 FROM students WHERE external_ref=$1)`, credential.StudentExternalRef).Scan(&studentExists); err != nil {
 		return credential, err
 	}
 	if !studentExists {
 		return credential, invalidConfig("credential student external ref does not exist")
 	}
 	var updatedAt time.Time
-	err := r.db.QueryRow(ctx, `
+	err = tx.QueryRow(ctx, `
 		INSERT INTO student_credentials (student_id, login_code, picture_password, qr_secret_hash, updated_at)
 		VALUES ((SELECT id FROM students WHERE external_ref=$1 LIMIT 1), NULLIF($2,''), $3::jsonb, NULLIF($4,''), now())
 		ON CONFLICT (student_id) DO UPDATE SET
@@ -931,7 +1228,10 @@ func (r *PostgresRepository) UpsertStudentCredential(ctx context.Context, creden
 		RETURNING updated_at
 	`, credential.StudentExternalRef, credential.LoginCode, mustJSON(credential.PicturePassword), credential.QRSecretHash).Scan(&updatedAt)
 	if err == nil {
-		_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'student_credential', $1, $2::jsonb)`, credential.StudentExternalRef, mustJSON(credential))
+		_, err = tx.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'student_credential', $1, $2::jsonb)`, credential.StudentExternalRef, mustJSON(credential))
+	}
+	if err == nil {
+		err = tx.Commit(ctx)
 	}
 	credential.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
 	return credential, err
@@ -1003,41 +1303,101 @@ func (r *PostgresRepository) GenerateClassCredentials(ctx context.Context, class
 }
 
 func (r *PostgresRepository) ListGroups(ctx context.Context) ([]LearningGroupConfig, error) {
-	rows, err := r.db.Query(ctx, `
+	return r.listGroups(ctx, `
 		SELECT g.id::text, COALESCE(g.class_id::text,''), COALESCE(c.name,''), g.name, g.purpose, g.created_at, g.updated_at
 		FROM learning_groups g
 		LEFT JOIN classes c ON c.id = g.class_id
 		ORDER BY c.year_group, c.name, g.name
 		LIMIT 500
 	`)
+}
+
+func (r *PostgresRepository) ListGroupsForSchool(ctx context.Context, schoolURN string) ([]LearningGroupConfig, error) {
+	return r.listGroups(ctx, `
+		SELECT g.id::text, COALESCE(g.class_id::text,''), COALESCE(c.name,''), g.name, g.purpose, g.created_at, g.updated_at
+		FROM learning_groups g
+		JOIN classes c ON c.id = g.class_id
+		JOIN schools s ON s.id = c.school_id
+		WHERE s.urn=$1
+		ORDER BY c.year_group, c.name, g.name
+		LIMIT 500
+	`, schoolURN)
+}
+
+func (r *PostgresRepository) listGroups(ctx context.Context, query string, args ...any) ([]LearningGroupConfig, error) {
+	rows, err := r.db.Query(ctx, query, args...)
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
 	groups := []LearningGroupConfig{}
 	for rows.Next() {
-		group, err := r.scanGroup(ctx, rows)
+		group, err := scanGroupBase(rows)
 		if err != nil {
+			rows.Close()
 			return nil, err
 		}
 		groups = append(groups, group)
 	}
-	return groups, rows.Err()
+	if err := rows.Err(); err != nil {
+		rows.Close()
+		return nil, err
+	}
+	rows.Close()
+	if len(groups) == 0 {
+		return groups, nil
+	}
+	ids := make([]string, 0, len(groups))
+	byID := make(map[string]int, len(groups))
+	for index := range groups {
+		ids = append(ids, groups[index].ID)
+		byID[groups[index].ID] = index
+		groups[index].Students = []StudentProfileConfig{}
+	}
+	studentRows, err := r.db.Query(ctx, `
+		SELECT gs.group_id::text, s.id::text, s.external_ref, s.display_name, s.year_group, s.created_at, s.updated_at
+		FROM learning_group_students gs
+		JOIN students s ON s.id = gs.student_id
+		WHERE gs.group_id::text = ANY($1::text[])
+		ORDER BY s.display_name, s.external_ref
+	`, ids)
+	if err != nil {
+		return nil, err
+	}
+	defer studentRows.Close()
+	for studentRows.Next() {
+		var groupID string
+		var student StudentProfileConfig
+		var createdAt, updatedAt time.Time
+		if err := studentRows.Scan(&groupID, &student.ID, &student.ExternalRef, &student.DisplayName, &student.YearGroup, &createdAt, &updatedAt); err != nil {
+			return nil, err
+		}
+		student.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+		student.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+		if index, ok := byID[groupID]; ok {
+			groups[index].Students = append(groups[index].Students, student)
+		}
+	}
+	return groups, studentRows.Err()
 }
 
 func (r *PostgresRepository) UpsertGroup(ctx context.Context, group LearningGroupConfig) (LearningGroupConfig, error) {
 	if err := validateGroup(group); err != nil {
 		return group, err
 	}
+	tx, err := r.db.Begin(ctx)
+	if err != nil {
+		return group, err
+	}
+	defer tx.Rollback(ctx)
 	var classExists bool
-	if err := r.db.QueryRow(ctx, `SELECT EXISTS (SELECT 1 FROM classes WHERE id=$1)`, group.ClassID).Scan(&classExists); err != nil {
+	if err := tx.QueryRow(ctx, `SELECT EXISTS (SELECT 1 FROM classes WHERE id=$1)`, group.ClassID).Scan(&classExists); err != nil {
 		return group, err
 	}
 	if !classExists {
 		return group, invalidConfig("group class id does not exist")
 	}
 	var id string
-	err := r.db.QueryRow(ctx, `
+	err = tx.QueryRow(ctx, `
 		INSERT INTO learning_groups (class_id, name, purpose, updated_at)
 		VALUES ($1,$2,$3,now())
 		ON CONFLICT (class_id, name) DO UPDATE SET
@@ -1048,8 +1408,11 @@ func (r *PostgresRepository) UpsertGroup(ctx context.Context, group LearningGrou
 	if err != nil {
 		return group, err
 	}
-	_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'learning_group', $1, $2::jsonb)`, id, mustJSON(group))
+	_, err = tx.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'learning_group', $1, $2::jsonb)`, id, mustJSON(group))
 	if err != nil {
+		return group, err
+	}
+	if err := tx.Commit(ctx); err != nil {
 		return group, err
 	}
 	return r.getGroup(ctx, id)
@@ -1075,13 +1438,16 @@ func (r *PostgresRepository) AssignStudentToGroup(ctx context.Context, groupID s
 	if !studentExists {
 		return LearningGroupConfig{}, invalidConfig("student external ref does not exist")
 	}
-	_, err := r.db.Exec(ctx, `
+	tag, err := r.db.Exec(ctx, `
 		INSERT INTO learning_group_students (group_id, student_id)
 		VALUES ($1, (SELECT id FROM students WHERE external_ref=$2 LIMIT 1))
 		ON CONFLICT DO NOTHING
 	`, groupID, studentExternalRef)
 	if err != nil {
 		return LearningGroupConfig{}, err
+	}
+	if tag.RowsAffected() == 0 {
+		return r.getGroup(ctx, groupID)
 	}
 	_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('assign', 'learning_group_student', $1, $2::jsonb)`,
 		groupID, mustJSON(map[string]string{"group_id": groupID, "student_external_ref": studentExternalRef}))
@@ -1199,9 +1565,14 @@ func (r *PostgresRepository) UpsertParentAccount(ctx context.Context, parent Par
 	if parent.Status == "" {
 		parent.Status = "active"
 	}
+	tx, err := r.db.Begin(ctx)
+	if err != nil {
+		return parent, err
+	}
+	defer tx.Rollback(ctx)
 	var id string
 	var createdAt, updatedAt time.Time
-	err := r.db.QueryRow(ctx, `
+	err = tx.QueryRow(ctx, `
 		INSERT INTO app_users (email, display_name, user_type, status, login_id, password_hash, temporary_password_required, updated_at)
 		VALUES ($1,$2,'parent',$3,$4,$5,$6,now())
 		ON CONFLICT (email) DO UPDATE SET
@@ -1215,13 +1586,16 @@ func (r *PostgresRepository) UpsertParentAccount(ctx context.Context, parent Par
 		RETURNING id::text, created_at, updated_at
 	`, email, strings.TrimSpace(parent.DisplayName), parent.Status, loginID, credentialHash(loginID, password), parent.TemporaryPasswordRequired).Scan(&id, &createdAt, &updatedAt)
 	if err == nil {
-		_, err = r.db.Exec(ctx, `INSERT INTO roles (id, description) VALUES ('parent', 'Can manage home child profiles and view family evidence.') ON CONFLICT DO NOTHING`)
+		_, err = tx.Exec(ctx, `INSERT INTO roles (id, description) VALUES ('parent', 'Can manage home child profiles and view family evidence.') ON CONFLICT DO NOTHING`)
 	}
 	if err == nil {
-		_, err = r.db.Exec(ctx, `INSERT INTO user_roles (user_id, role_id) VALUES ($1, 'parent') ON CONFLICT DO NOTHING`, id)
+		_, err = tx.Exec(ctx, `INSERT INTO user_roles (user_id, role_id) VALUES ($1, 'parent') ON CONFLICT DO NOTHING`, id)
 	}
 	if err == nil {
-		_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'parent_account', $1, $2::jsonb)`, id, mustJSON(map[string]string{"email": email, "login_id": loginID}))
+		_, err = tx.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'parent_account', $1, $2::jsonb)`, id, mustJSON(map[string]string{"email": email, "login_id": loginID}))
+	}
+	if err == nil {
+		err = tx.Commit(ctx)
 	}
 	parent.ID = id
 	parent.Email = email
@@ -1648,10 +2022,23 @@ func (r *PostgresRepository) ParentPortal(ctx context.Context, parentLoginID str
 		return ParentPortalConfig{}, err
 	}
 	rows, err := r.db.Query(ctx, `
-		SELECT s.id::text, s.external_ref, s.display_name, s.year_group, s.created_at, s.updated_at
+		SELECT s.id::text, s.external_ref, s.display_name, s.year_group, s.created_at, s.updated_at,
+		       COALESCE(c.login_code,''), COALESCE(c.picture_password,'[]'::jsonb), COALESCE(c.qr_secret_hash,''),
+		       COALESCE(c.updated_at, s.updated_at),
+		       COALESCE(to_json(p.declared_support_needs)::text,'[]'),
+		       COALESCE(to_json(p.learning_approaches)::text,'[]'),
+		       COALESCE(p.celebration_intensity,'balanced'), COALESCE(p.audio_support,false),
+		       COALESCE(p.reading_support,false), COALESCE(p.session_length,'standard'),
+		       COALESCE(p.sensory_load,'balanced'), COALESCE(p.attention_support,'standard'),
+		       COALESCE(p.communication_support,'standard'), COALESCE(p.processing_support,'standard'),
+		       COALESCE(p.confidence_support,'balanced'), COALESCE(p.companion_style,'friendly'),
+		       COALESCE(p.reward_style,'world_building'), COALESCE(to_json(p.interests)::text,'[]'),
+		       COALESCE(p.notes,''), COALESCE(p.updated_at, s.updated_at)
 		FROM parent_student_links l
 		JOIN app_users u ON u.id = l.parent_user_id
 		JOIN students s ON s.id = l.student_id
+		LEFT JOIN student_credentials c ON c.student_id=s.id
+		LEFT JOIN student_engagement_profiles p ON p.student_id=s.id
 		WHERE u.id=$1
 		  AND l.status IN ('invited', 'active')
 		ORDER BY s.display_name, s.external_ref
@@ -1663,20 +2050,32 @@ func (r *PostgresRepository) ParentPortal(ctx context.Context, parentLoginID str
 	out := ParentPortalConfig{Parent: parent}
 	for rows.Next() {
 		var student StudentProfileConfig
-		var createdAt, updatedAt time.Time
-		if err := rows.Scan(&student.ID, &student.ExternalRef, &student.DisplayName, &student.YearGroup, &createdAt, &updatedAt); err != nil {
+		var createdAt, updatedAt, credentialUpdatedAt, engagementUpdatedAt time.Time
+		var credentialRaw []byte
+		var supportJSON, approachesJSON, interestsJSON string
+		var credential StudentCredentialConfig
+		engagement := defaultStudentEngagement("")
+		if err := rows.Scan(&student.ID, &student.ExternalRef, &student.DisplayName, &student.YearGroup, &createdAt, &updatedAt,
+			&credential.LoginCode, &credentialRaw, &credential.QRSecretHash, &credentialUpdatedAt,
+			&supportJSON, &approachesJSON, &engagement.CelebrationIntensity, &engagement.AudioSupport,
+			&engagement.ReadingSupport, &engagement.SessionLength, &engagement.SensoryLoad,
+			&engagement.AttentionSupport, &engagement.CommunicationSupport, &engagement.ProcessingSupport,
+			&engagement.ConfidenceSupport, &engagement.CompanionStyle, &engagement.RewardStyle,
+			&interestsJSON, &engagement.Notes, &engagementUpdatedAt); err != nil {
 			return ParentPortalConfig{}, err
 		}
 		student.CreatedAt = createdAt.UTC().Format(time.RFC3339)
 		student.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
-		credential, err := r.studentCredential(ctx, student.ExternalRef)
-		if err != nil {
-			return ParentPortalConfig{}, err
-		}
-		engagement, err := r.studentEngagement(ctx, student.ExternalRef)
-		if err != nil {
-			return ParentPortalConfig{}, err
-		}
+		credential.StudentExternalRef = student.ExternalRef
+		credential.DisplayName = student.DisplayName
+		credential.PicturePassword = []string{}
+		_ = json.Unmarshal(credentialRaw, &credential.PicturePassword)
+		credential.UpdatedAt = credentialUpdatedAt.UTC().Format(time.RFC3339)
+		engagement.StudentExternalRef = student.ExternalRef
+		_ = json.Unmarshal([]byte(supportJSON), &engagement.DeclaredSupportNeeds)
+		_ = json.Unmarshal([]byte(approachesJSON), &engagement.LearningApproaches)
+		_ = json.Unmarshal([]byte(interestsJSON), &engagement.Interests)
+		engagement.UpdatedAt = engagementUpdatedAt.UTC().Format(time.RFC3339)
 		out.Children = append(out.Children, ParentChildConfig{Student: student, Credential: credential, Engagement: engagement})
 	}
 	return out, rows.Err()
@@ -1723,8 +2122,13 @@ func (r *PostgresRepository) UpsertStudentEngagement(ctx context.Context, profil
 	if err := validateStudentEngagement(profile); err != nil {
 		return profile, err
 	}
+	tx, err := r.db.Begin(ctx)
+	if err != nil {
+		return profile, err
+	}
+	defer tx.Rollback(ctx)
 	var updatedAt time.Time
-	err := r.db.QueryRow(ctx, `
+	err = tx.QueryRow(ctx, `
 		INSERT INTO student_engagement_profiles (
 			student_id, declared_support_needs, learning_approaches, celebration_intensity,
 			audio_support, reading_support, session_length, sensory_load, attention_support,
@@ -1758,7 +2162,10 @@ func (r *PostgresRepository) UpsertStudentEngagement(ctx context.Context, profil
 		return profile, err
 	}
 	profile.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
-	_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'student_engagement_profile', $1, $2::jsonb)`, profile.StudentExternalRef, mustJSON(profile))
+	_, err = tx.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'student_engagement_profile', $1, $2::jsonb)`, profile.StudentExternalRef, mustJSON(profile))
+	if err == nil {
+		err = tx.Commit(ctx)
+	}
 	return profile, err
 }
 
@@ -1815,7 +2222,22 @@ func (r *PostgresRepository) CreateAccessRequest(ctx context.Context, request Ac
 	if request.LearnerCount > 0 {
 		learnerCount = request.LearnerCount
 	}
-	row := r.db.QueryRow(ctx, `
+	tx, err := r.db.Begin(ctx)
+	if err != nil {
+		return request, err
+	}
+	defer tx.Rollback(ctx)
+	replay, err := beginIdempotency(ctx, tx, "public.access_request", request.ContactEmail, request.IdempotencyKey, request)
+	if err != nil {
+		return request, err
+	}
+	if replay.Found {
+		if err := json.Unmarshal(replay.Response, &request); err != nil {
+			return request, err
+		}
+		return request, nil
+	}
+	row := tx.QueryRow(ctx, `
 		INSERT INTO access_requests (
 			request_type, organisation_name, contact_name, contact_email, phone, role, region,
 			learner_count, year_groups, support_needs, learning_priorities, message, status, source, updated_at
@@ -1830,9 +2252,18 @@ func (r *PostgresRepository) CreateAccessRequest(ctx context.Context, request Ac
 		learnerCount, request.YearGroups, request.SupportNeeds, request.LearningPriorities, strings.TrimSpace(request.Message), request.Source)
 	saved, err := scanAccessRequest(row)
 	if err == nil {
-		_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('create', 'access_request', $1, $2::jsonb)`, saved.ID, mustJSON(saved))
+		_, err = tx.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('create', 'access_request', $1, $2::jsonb)`, saved.ID, mustJSON(saved))
 	}
-	return saved, err
+	if err != nil {
+		return saved, err
+	}
+	if err := completeIdempotency(ctx, tx, "public.access_request", request.ContactEmail, request.IdempotencyKey, saved); err != nil {
+		return saved, err
+	}
+	if err := tx.Commit(ctx); err != nil {
+		return saved, err
+	}
+	return saved, nil
 }
 
 func (r *PostgresRepository) UpdateAccessRequestStatus(ctx context.Context, id string, status string) (AccessRequestConfig, error) {
@@ -1884,6 +2315,19 @@ func (r *PostgresRepository) getGroup(ctx context.Context, id string) (LearningG
 }
 
 func (r *PostgresRepository) scanGroup(ctx context.Context, row pgx.Row) (LearningGroupConfig, error) {
+	group, err := scanGroupBase(row)
+	if err != nil {
+		return group, err
+	}
+	students, err := r.groupStudents(ctx, group.ID)
+	if err != nil {
+		return group, err
+	}
+	group.Students = students
+	return group, nil
+}
+
+func scanGroupBase(row rowScanner) (LearningGroupConfig, error) {
 	var group LearningGroupConfig
 	var createdAt, updatedAt time.Time
 	if err := row.Scan(&group.ID, &group.ClassID, &group.ClassName, &group.Name, &group.Purpose, &createdAt, &updatedAt); err != nil {
@@ -1891,11 +2335,7 @@ func (r *PostgresRepository) scanGroup(ctx context.Context, row pgx.Row) (Learni
 	}
 	group.CreatedAt = createdAt.UTC().Format(time.RFC3339)
 	group.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
-	students, err := r.groupStudents(ctx, group.ID)
-	if err != nil {
-		return group, err
-	}
-	group.Students = students
+	group.Students = []StudentProfileConfig{}
 	return group, nil
 }
 
@@ -1926,6 +2366,19 @@ func (r *PostgresRepository) groupStudents(ctx context.Context, groupID string) 
 }
 
 func (r *PostgresRepository) scanClass(ctx context.Context, row pgx.Row) (ClassConfig, error) {
+	classConfig, err := scanClassBase(row)
+	if err != nil {
+		return classConfig, err
+	}
+	students, err := r.classStudents(ctx, classConfig.ID)
+	if err != nil {
+		return classConfig, err
+	}
+	classConfig.Students = students
+	return classConfig, nil
+}
+
+func scanClassBase(row rowScanner) (ClassConfig, error) {
 	var classConfig ClassConfig
 	var createdAt, updatedAt time.Time
 	if err := row.Scan(&classConfig.ID, &classConfig.SchoolID, &classConfig.SchoolURN, &classConfig.SchoolName, &classConfig.Name, &classConfig.YearGroup, &createdAt, &updatedAt); err != nil {
@@ -1933,11 +2386,7 @@ func (r *PostgresRepository) scanClass(ctx context.Context, row pgx.Row) (ClassC
 	}
 	classConfig.CreatedAt = createdAt.UTC().Format(time.RFC3339)
 	classConfig.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
-	students, err := r.classStudents(ctx, classConfig.ID)
-	if err != nil {
-		return classConfig, err
-	}
-	classConfig.Students = students
+	classConfig.Students = []StudentProfileConfig{}
 	return classConfig, nil
 }
 

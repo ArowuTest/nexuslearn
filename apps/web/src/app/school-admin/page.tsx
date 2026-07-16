@@ -4,7 +4,9 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { useMemo, useState } from "react";
 import QRCode from "qrcode";
-import { accountSessionHeaders, logoutAccount, storeAccountSession, type AccountSession } from "@/lib/api";
+import MockAssessmentBuilder from "@/components/MockAssessmentBuilder";
+import ProgressSnapshot from "@/components/ProgressSnapshot";
+import { accountSessionHeaders, logoutAccount, storeAccountSession, type AccountSession, type ProgressReport } from "@/lib/api";
 
 type Student = { external_ref: string; display_name: string; year_group: number };
 type ClassGroup = { id?: string; school_urn?: string; name: string; year_group: number; students?: Student[] };
@@ -188,6 +190,7 @@ export default function SchoolAdminPage() {
   const [engagementPupil, setEngagementPupil] = useState("");
   const [engagementProfile, setEngagementProfile] = useState<StudentEngagementProfile>(emptyEngagementProfile());
   const [engagementInterests, setEngagementInterests] = useState("");
+  const [progressReport, setProgressReport] = useState<ProgressReport | null>(null);
   const credentials = portal?.student_credentials ?? [];
   const isSchoolAdmin = portal?.current_user?.role === "school_admin";
   const runtimePreview = runtimePreviewItems(engagementProfile);
@@ -217,7 +220,11 @@ export default function SchoolAdminPage() {
 
   async function apiFetch(path: string, options: RequestInit = {}) {
     if (!API) throw new Error("API is not configured.");
-    const res = await fetch(`${API}${path}`, { ...options, headers: { ...headers(), ...(options.headers ?? {}) } });
+    const requestHeaders: Record<string, string> = { ...headers(), ...(options.headers ?? {}) as Record<string, string> };
+    if ((options.method || "GET").toUpperCase() === "POST" && !requestHeaders["Idempotency-Key"]) {
+      requestHeaders["Idempotency-Key"] = typeof crypto !== "undefined" && typeof crypto.randomUUID === "function" ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`;
+    }
+    const res = await fetch(`${API}${path}`, { ...options, headers: requestHeaders });
     const body = await res.json().catch(() => ({}));
     if (!res.ok) throw new Error(body.error ?? "Request failed.");
     return body;
@@ -289,6 +296,14 @@ export default function SchoolAdminPage() {
       setEngagementProfile({ ...emptyEngagementProfile(engagementPupil), ...profile, student_external_ref: engagementPupil });
       setEngagementInterests((profile.interests ?? []).join(", "));
       setMessage("Pupil support profile loaded.");
+    });
+  }
+
+  async function loadProgressReport() {
+    if (!engagementPupil) return;
+    await guarded("Loading learner progress...", async () => {
+      const data = await apiFetch(`/v1/school/students/${encodeURIComponent(engagementPupil)}/progress`);
+      setProgressReport(data as ProgressReport);
     });
   }
 
@@ -659,6 +674,13 @@ export default function SchoolAdminPage() {
               {engagementProfile.updated_at && <p className="px-5 pb-2 text-xs text-[#17233f]/52">Last updated {new Date(engagementProfile.updated_at).toLocaleString()}</p>}
               <Actions label="Save support profile" disabled={!engagementPupil || saving} onClick={saveEngagementProfile} />
             </Panel>
+            <Panel title="Learner Progress Snapshot">
+              <div className="flex flex-wrap items-center justify-between gap-3 p-5">
+                <p className="max-w-xl text-sm leading-6 text-[#17233f]/62">Progress is subject-specific: a pupil may work ahead in Mathematics while English remains on its own support route.</p>
+                <button onClick={loadProgressReport} disabled={!engagementPupil || saving} className="btn-pop bg-[#7357c9] px-5 py-3 text-sm text-white disabled:opacity-50">Load progress</button>
+              </div>
+              <ProgressSnapshot progress={progressReport} tone="navy" empty="Choose a pupil above, then load their progress evidence." />
+            </Panel>
             <Panel title="Create Class">
               <Field label="Class ID" value={classDraft.id ?? ""} onChange={(id) => setClassDraft({ ...classDraft, id: slug(id) })} />
               <Field label="Class name" value={classDraft.name} onChange={(name) => setClassDraft({ ...classDraft, name })} />
@@ -692,6 +714,17 @@ export default function SchoolAdminPage() {
                 disabled={!learningAssignment.student_external_ref || !learningAssignment.objective_id || !learningAssignment.title || saving}
                 onClick={saveLearningAssignment}
               />
+            </Panel>
+            <Panel title="Generate Subject Mock">
+              <Field label="Pupil ID" value={learningAssignment.student_external_ref} onChange={(student_external_ref) => setLearningAssignment({ ...learningAssignment, student_external_ref: slug(student_external_ref) })} />
+              {(() => {
+                const target = (portal?.classes ?? []).flatMap((item) => item.students ?? []).find((item) => item.external_ref === learningAssignment.student_external_ref);
+                return target ? (
+                  <div className="p-5 pt-0">
+                    <MockAssessmentBuilder role="school" studentId={target.external_ref} studentName={target.display_name} yearGroup={target.year_group} />
+                  </div>
+                ) : <p className="px-5 pb-5 text-sm leading-6 text-[#17233f]/58">Enter a pupil ID that belongs to this school to generate a scoped subject mock.</p>;
+              })()}
             </Panel>
             <Panel title="Record Teacher Evidence">
               <Field label="Pupil ID" value={evidenceDraft.student_external_ref} onChange={(student_external_ref) => setEvidenceDraft({ ...evidenceDraft, student_external_ref: slug(student_external_ref) })} />

@@ -243,6 +243,10 @@ func (f fakeRepository) ListSchoolUsers(context.Context) ([]learning.SchoolUserC
 	return f.schoolUsers, nil
 }
 
+func (f fakeRepository) ListSchoolUsersForSchool(context.Context, string) ([]learning.SchoolUserConfig, error) {
+	return f.schoolUsers, nil
+}
+
 func (f fakeRepository) UpsertSchoolUser(_ context.Context, user learning.SchoolUserConfig) (learning.SchoolUserConfig, error) {
 	user.ID = "school-user-1"
 	user.LoginID = "nexus-primary-lead"
@@ -272,6 +276,10 @@ func (f fakeRepository) ListClasses(context.Context) ([]learning.ClassConfig, er
 	return f.classes, nil
 }
 
+func (f fakeRepository) ListClassesForSchool(context.Context, string) ([]learning.ClassConfig, error) {
+	return f.classes, nil
+}
+
 func (f fakeRepository) UpsertClass(_ context.Context, classConfig learning.ClassConfig) (learning.ClassConfig, error) {
 	return classConfig, nil
 }
@@ -281,6 +289,10 @@ func (f fakeRepository) AssignStudentToClass(_ context.Context, classID string, 
 }
 
 func (f fakeRepository) ListStudentCredentials(context.Context) ([]learning.StudentCredentialConfig, error) {
+	return f.credentials, nil
+}
+
+func (f fakeRepository) ListStudentCredentialsForSchool(context.Context, string) ([]learning.StudentCredentialConfig, error) {
 	return f.credentials, nil
 }
 
@@ -299,6 +311,10 @@ func (f fakeRepository) GenerateClassCredentials(_ context.Context, classID stri
 }
 
 func (f fakeRepository) ListGroups(context.Context) ([]learning.LearningGroupConfig, error) {
+	return f.groups, nil
+}
+
+func (f fakeRepository) ListGroupsForSchool(context.Context, string) ([]learning.LearningGroupConfig, error) {
 	return f.groups, nil
 }
 

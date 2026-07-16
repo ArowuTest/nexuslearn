@@ -9,6 +9,7 @@ import {
   DEFAULT_STUDENT_ID,
   getDiagnosticBaseline,
   getNextActivity,
+  getWorldState,
   pupilSessionHeaders,
   type DiagnosticBaseline,
   type MissionConfig,
@@ -30,6 +31,24 @@ type Q = {
   explanation: string;
   selectionReason: string;
 };
+
+function questionAudioURL(question: Q | null) {
+  if (!question) return "";
+  for (const key of ["prompt_audio_url", "audio_url", "narration_url"]) {
+    const value = question.body[key];
+    if (typeof value === "string" && value.trim()) return value;
+  }
+  return "";
+}
+
+function questionAudioScript(question: Q | null) {
+  if (!question) return "";
+  for (const key of ["audio_script", "narration_script"]) {
+    const value = question.body[key];
+    if (typeof value === "string" && value.trim()) return value;
+  }
+  return "";
+}
 type AttemptResult = {
   correct: boolean;
   mastery_gain: number;
@@ -50,6 +69,7 @@ type MissionRoute = {
   studentId: string;
   worldKey: string;
   activityId: string;
+  mockAssessmentId: string;
   assessmentMode: string;
   hasRequestedStudent: boolean;
 };
@@ -82,7 +102,7 @@ function worldReward(year: number) {
 
 function readMissionRoute(): MissionRoute {
   if (typeof window === "undefined") {
-    return { studentId: DEFAULT_STUDENT_ID, worldKey: "", activityId: "", assessmentMode: "", hasRequestedStudent: false };
+    return { studentId: DEFAULT_STUDENT_ID, worldKey: "", activityId: "", mockAssessmentId: "", assessmentMode: "", hasRequestedStudent: false };
   }
   const params = new URLSearchParams(window.location.search);
   const requestedStudent = params.get("studentId") || "";
@@ -90,6 +110,7 @@ function readMissionRoute(): MissionRoute {
     studentId: requestedStudent || DEFAULT_STUDENT_ID,
     worldKey: params.get("world") || "",
     activityId: params.get("activityId") || "",
+    mockAssessmentId: params.get("mockAssessmentId") || "",
     assessmentMode: params.get("mode") || "",
     hasRequestedStudent: Boolean(requestedStudent),
   };
@@ -163,6 +184,13 @@ export default function Mission() {
 
   const lessonStartRef = useRef(Date.now());
   const sparkId = useRef(0);
+  const requestSequence = useRef(0);
+
+  function clientRequestId(kind: string) {
+    requestSequence.current += 1;
+    const uuid = typeof crypto !== "undefined" && typeof crypto.randomUUID === "function" ? crypto.randomUUID() : `${Date.now()}-${requestSequence.current}`;
+    return `${kind}-${studentId}-${uuid}`;
+  }
 
   function expectedValue(question: MissionConfig["questions"][number]) {
     const value = question.expected_answer?.value;
@@ -214,7 +242,8 @@ export default function Mission() {
             }
           }
           const params = new URLSearchParams({ studentId });
-          if (route.activityId) params.set("activityId", route.activityId);
+          if (route.mockAssessmentId) params.set("mockAssessmentId", route.mockAssessmentId);
+          else if (route.activityId) params.set("activityId", route.activityId);
           else if (route.worldKey) params.set("world", route.worldKey);
           if (route.assessmentMode) params.set("mode", route.assessmentMode);
           const res = await fetch(`${API}/v1/learning/mission?${params.toString()}`, {
@@ -303,7 +332,7 @@ export default function Mission() {
     return () => {
       cancelled = true;
     };
-  }, [route.activityId, route.assessmentMode, route.hasRequestedStudent, route.worldKey, studentId]);
+  }, [route.activityId, route.assessmentMode, route.hasRequestedStudent, route.mockAssessmentId, route.worldKey, studentId]);
 
   const total = questions?.length ?? 0;
   const q = questions ? questions[Math.min(idx, total - 1)] : null;
@@ -389,9 +418,13 @@ export default function Mission() {
       void Promise.all([
         getDiagnosticBaseline(studentId),
         getNextActivity(studentId),
-      ]).then(([baseline, next]) => {
+        getWorldState(studentId, mission?.world?.key),
+      ]).then(([baseline, next, worldState]) => {
         setBaselineProgress(baseline);
         setNextActivity(next);
+        if (worldState) {
+          setMission((current) => current ? { ...current, world_state: worldState } : current);
+        }
       });
       const t = setTimeout(() => {
         setHatched(true);
@@ -431,6 +464,7 @@ export default function Mission() {
           method: "POST",
           headers: { "Content-Type": "application/json", ...pupilSessionHeaders(studentId) },
           body: JSON.stringify({
+            id: clientRequestId("attempt"),
             student_id: studentId,
             objective_id: q.objectiveId,
             question_id: q.id,
@@ -544,7 +578,7 @@ export default function Mission() {
       await fetch(`${API}/v1/learning/event`, {
         method: "POST",
         headers: { "Content-Type": "application/json", ...pupilSessionHeaders(studentId) },
-        body: JSON.stringify({ student_id: studentId, event_type: eventType, payload }),
+        body: JSON.stringify({ id: clientRequestId("event"), student_id: studentId, event_type: eventType, payload }),
         keepalive: true,
       });
     } catch {
@@ -567,6 +601,7 @@ export default function Mission() {
           method: "POST",
           headers: { "Content-Type": "application/json", ...pupilSessionHeaders(studentId) },
           body: JSON.stringify({
+            id: clientRequestId("lesson-step"),
             student_id: studentId,
             activity_id: mission.activity.id,
             objective_id: mission.objective.id,
@@ -639,6 +674,8 @@ export default function Mission() {
   const reward = worldReward(Number(mission?.world?.year_group || 0));
   const companionName = String(mission?.world?.config?.companion || "Nixi");
   const savedArtefacts = Array.isArray(mission?.world_state?.state?.artefacts) ? mission.world_state.state.artefacts.length : 0;
+  const questionAudio = questionAudioURL(q);
+  const questionAudioScriptText = questionAudioScript(q);
   const adaptations = mission?.runtime_adaptations;
   const activeSupportPlan = supportPlanItems(adaptations);
   const supportBadges = activeSupportBadges(adaptations);
@@ -1068,6 +1105,27 @@ export default function Mission() {
                 </p>
               )}
             </details>
+
+            {(questionAudio || questionAudioScriptText) && (
+              <div className="mt-5 rounded-2xl border border-[#7fe7d7]/45 bg-[#17233f] p-4" aria-label="Question audio support">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <div>
+                    <p className="font-display text-sm font-semibold text-[#7fe7d7]">Listen to the question</p>
+                    <p className="mt-1 text-xs leading-5 text-white/70">Replay the approved studio narration as often as you need.</p>
+                  </div>
+                  {questionAudio && (
+                    <button type="button" onClick={() => void readAloud(questionAudio)} className="btn-pop bg-white/12 px-4 py-2 text-sm text-white">
+                      Hear question
+                    </button>
+                  )}
+                </div>
+                {!questionAudio && questionAudioScriptText && (
+                  <p className="mt-3 rounded-xl border border-white/10 bg-white/8 p-3 text-xs leading-5 text-white/75">
+                    Studio narration is being prepared for this question. The text and visual route remain available; browser text-to-speech is not used as a robotic fallback.
+                  </p>
+                )}
+              </div>
+            )}
 
             {visualGuide && (
               <div className="mt-5 rounded-2xl border border-[#7fe7d7]/60 bg-[#17233f] p-4" role="group" aria-label="Visual task steps">

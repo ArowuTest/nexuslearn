@@ -2,18 +2,97 @@ package learning
 
 import (
 	"context"
+	"crypto/sha256"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"strconv"
 	"strings"
 	"time"
 
 	"github.com/jackc/pgx/v5"
+	"github.com/jackc/pgx/v5/pgconn"
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 var ErrStudentNotFound = errors.New("student is not configured")
 var ErrNoDiagnosticObjectives = errors.New("no live diagnostic objectives are available for this year group")
+var ErrIdempotencyConflict = errors.New("idempotency key was already used with a different request")
+
+type queryExecutor interface {
+	Exec(context.Context, string, ...any) (pgconn.CommandTag, error)
+	Query(context.Context, string, ...any) (pgx.Rows, error)
+	QueryRow(context.Context, string, ...any) pgx.Row
+}
+
+type idempotencyReplay struct {
+	Found    bool
+	Response []byte
+}
+
+func requestHash(value any) (string, error) {
+	raw, err := json.Marshal(value)
+	if err != nil {
+		return "", err
+	}
+	digest := sha256.Sum256(raw)
+	return fmt.Sprintf("%x", digest[:]), nil
+}
+
+func beginIdempotency(ctx context.Context, tx pgx.Tx, scope string, actor string, key string, request any) (idempotencyReplay, error) {
+	key = strings.TrimSpace(key)
+	if key == "" {
+		return idempotencyReplay{}, nil
+	}
+	hash, err := requestHash(request)
+	if err != nil {
+		return idempotencyReplay{}, err
+	}
+	tag, err := tx.Exec(ctx, `
+		INSERT INTO request_idempotency (scope, actor_key, request_key, request_hash)
+		VALUES ($1,$2,$3,$4)
+		ON CONFLICT (scope, actor_key, request_key) DO NOTHING
+	`, scope, actor, key, hash)
+	if err != nil {
+		return idempotencyReplay{}, err
+	}
+	if tag.RowsAffected() > 0 {
+		return idempotencyReplay{}, nil
+	}
+	var existingHash string
+	var response []byte
+	if err := tx.QueryRow(ctx, `
+		SELECT request_hash, response_payload
+		FROM request_idempotency
+		WHERE scope=$1 AND actor_key=$2 AND request_key=$3
+		FOR UPDATE
+	`, scope, actor, key).Scan(&existingHash, &response); err != nil {
+		return idempotencyReplay{}, err
+	}
+	if existingHash != hash {
+		return idempotencyReplay{}, ErrIdempotencyConflict
+	}
+	if len(response) == 0 {
+		return idempotencyReplay{}, errors.New("idempotent request is still being processed")
+	}
+	return idempotencyReplay{Found: true, Response: response}, nil
+}
+
+func completeIdempotency(ctx context.Context, tx pgx.Tx, scope string, actor string, key string, response any) error {
+	if strings.TrimSpace(key) == "" {
+		return nil
+	}
+	payload, err := json.Marshal(response)
+	if err != nil {
+		return err
+	}
+	_, err = tx.Exec(ctx, `
+		UPDATE request_idempotency
+		SET response_payload=$4::jsonb, updated_at=now()
+		WHERE scope=$1 AND actor_key=$2 AND request_key=$3
+	`, scope, actor, key, payload)
+	return err
+}
 
 type Repository interface {
 	RecordAttempt(ctx context.Context, attempt Attempt, result AttemptResult) (AttemptResult, error)
@@ -42,16 +121,20 @@ type Repository interface {
 	ListSchools(ctx context.Context) ([]SchoolConfig, error)
 	UpsertSchool(ctx context.Context, school SchoolConfig) (SchoolConfig, error)
 	ListSchoolUsers(ctx context.Context) ([]SchoolUserConfig, error)
+	ListSchoolUsersForSchool(ctx context.Context, schoolURN string) ([]SchoolUserConfig, error)
 	UpsertSchoolUser(ctx context.Context, user SchoolUserConfig) (SchoolUserConfig, error)
 	VerifySchoolUser(ctx context.Context, schoolURN string, loginID string, password string) (SchoolUserConfig, bool, error)
 	SchoolPortal(ctx context.Context, schoolURN string) (SchoolPortalConfig, error)
 	ListClasses(ctx context.Context) ([]ClassConfig, error)
+	ListClassesForSchool(ctx context.Context, schoolURN string) ([]ClassConfig, error)
 	UpsertClass(ctx context.Context, classConfig ClassConfig) (ClassConfig, error)
 	AssignStudentToClass(ctx context.Context, classID string, studentExternalRef string) (ClassConfig, error)
 	ListStudentCredentials(ctx context.Context) ([]StudentCredentialConfig, error)
+	ListStudentCredentialsForSchool(ctx context.Context, schoolURN string) ([]StudentCredentialConfig, error)
 	UpsertStudentCredential(ctx context.Context, credential StudentCredentialConfig) (StudentCredentialConfig, error)
 	GenerateClassCredentials(ctx context.Context, classID string, overwrite bool, picturePool []string) (ClassCredentialBatch, error)
 	ListGroups(ctx context.Context) ([]LearningGroupConfig, error)
+	ListGroupsForSchool(ctx context.Context, schoolURN string) ([]LearningGroupConfig, error)
 	UpsertGroup(ctx context.Context, group LearningGroupConfig) (LearningGroupConfig, error)
 	AssignStudentToGroup(ctx context.Context, groupID string, studentExternalRef string) (LearningGroupConfig, error)
 	ListParentLinks(ctx context.Context) ([]ParentLinkConfig, error)
@@ -209,6 +292,10 @@ func (NoopRepository) ListSchoolUsers(context.Context) ([]SchoolUserConfig, erro
 	return []SchoolUserConfig{}, nil
 }
 
+func (NoopRepository) ListSchoolUsersForSchool(context.Context, string) ([]SchoolUserConfig, error) {
+	return []SchoolUserConfig{}, nil
+}
+
 func (NoopRepository) UpsertSchoolUser(_ context.Context, user SchoolUserConfig) (SchoolUserConfig, error) {
 	return user, nil
 }
@@ -225,6 +312,10 @@ func (NoopRepository) ListClasses(context.Context) ([]ClassConfig, error) {
 	return []ClassConfig{}, nil
 }
 
+func (NoopRepository) ListClassesForSchool(context.Context, string) ([]ClassConfig, error) {
+	return []ClassConfig{}, nil
+}
+
 func (NoopRepository) UpsertClass(_ context.Context, classConfig ClassConfig) (ClassConfig, error) {
 	return classConfig, nil
 }
@@ -237,6 +328,10 @@ func (NoopRepository) ListStudentCredentials(context.Context) ([]StudentCredenti
 	return []StudentCredentialConfig{}, nil
 }
 
+func (NoopRepository) ListStudentCredentialsForSchool(context.Context, string) ([]StudentCredentialConfig, error) {
+	return []StudentCredentialConfig{}, nil
+}
+
 func (NoopRepository) UpsertStudentCredential(_ context.Context, credential StudentCredentialConfig) (StudentCredentialConfig, error) {
 	return credential, nil
 }
@@ -246,6 +341,10 @@ func (NoopRepository) GenerateClassCredentials(_ context.Context, classID string
 }
 
 func (NoopRepository) ListGroups(context.Context) ([]LearningGroupConfig, error) {
+	return []LearningGroupConfig{}, nil
+}
+
+func (NoopRepository) ListGroupsForSchool(context.Context, string) ([]LearningGroupConfig, error) {
 	return []LearningGroupConfig{}, nil
 }
 
@@ -392,11 +491,34 @@ func (r *PostgresRepository) RecordAttempt(ctx context.Context, attempt Attempt,
 	if err != nil {
 		return result, err
 	}
-	if err := r.ensureObjective(ctx, attempt.ObjectiveID); err != nil {
+	tx, err := r.db.Begin(ctx)
+	if err != nil {
+		return result, err
+	}
+	defer tx.Rollback(ctx)
+
+	replay, err := beginIdempotency(ctx, tx, "learning.attempt", studentUUID, attempt.IdempotencyKey, attempt)
+	if err != nil {
+		return result, err
+	}
+	if replay.Found {
+		if err := json.Unmarshal(replay.Response, &result); err != nil {
+			return result, err
+		}
+		return result, nil
+	}
+	if err := r.ensureObjective(ctx, tx, attempt.ObjectiveID); err != nil {
+		return result, err
+	}
+	if _, err := tx.Exec(ctx, `
+		INSERT INTO student_objective_mastery (student_id, objective_id, score, band, updated_at)
+		VALUES ($1,$2,0,$3,now())
+		ON CONFLICT (student_id, objective_id) DO NOTHING
+	`, studentUUID, attempt.ObjectiveID, MasteryBand(0)); err != nil {
 		return result, err
 	}
 
-	priorScore, err := r.currentMasteryScore(ctx, studentUUID, attempt.ObjectiveID)
+	priorScore, err := r.currentMasteryScore(ctx, tx, studentUUID, attempt.ObjectiveID)
 	if err != nil {
 		return result, err
 	}
@@ -404,16 +526,16 @@ func (r *PostgresRepository) RecordAttempt(ctx context.Context, attempt Attempt,
 	result.MasteryGain = maxInt(result.MasteryDelta, 0)
 	result.ProjectedScore = clamp(priorScore+result.MasteryDelta, 0, 100)
 	result.ProjectedBand = MasteryBand(result.ProjectedScore)
-	result.NextReviewDays, err = r.nextReviewDaysForObjective(ctx, attempt.ObjectiveID, result.ProjectedScore)
+	result.NextReviewDays, err = r.nextReviewDaysForObjective(ctx, tx, attempt.ObjectiveID, result.ProjectedScore)
 	if err != nil {
 		return result, err
 	}
-	result, err = r.applyRewardPolicy(ctx, attempt.ObjectiveID, result)
+	result, err = r.applyRewardPolicy(ctx, tx, attempt.ObjectiveID, result)
 	if err != nil {
 		return result, err
 	}
 
-	_, err = r.db.Exec(ctx, `
+	_, err = tx.Exec(ctx, `
 		INSERT INTO question_attempts (
 			student_id, objective_id, question_id, format, expected_answer, given_answer,
 			correct, response_ms, hint_used, confidence, mastery_delta, explanation, response_mode
@@ -428,7 +550,7 @@ func (r *PostgresRepository) RecordAttempt(ctx context.Context, attempt Attempt,
 	}
 
 	var historyID string
-	err = r.db.QueryRow(ctx, `
+	err = tx.QueryRow(ctx, `
 		INSERT INTO mastery_history (
 			student_id, objective_id, question_id, prior_score, new_score, mastery_delta,
 			correct, hint_used, confidence, response_format, response_mode
@@ -440,17 +562,17 @@ func (r *PostgresRepository) RecordAttempt(ctx context.Context, attempt Attempt,
 	if err != nil {
 		return result, err
 	}
-	if err := r.updateMisconceptionState(ctx, studentUUID, attempt, result); err != nil {
+	if err := r.updateMisconceptionState(ctx, tx, studentUUID, attempt, result); err != nil {
 		return result, err
 	}
 
 	if result.Correct {
-		retentionReview, err := r.completeMatchingReview(ctx, studentUUID, attempt.ObjectiveID)
+		retentionReview, err := r.completeMatchingReview(ctx, tx, studentUUID, attempt.ObjectiveID)
 		if err != nil {
 			return result, err
 		}
 		if retentionReview {
-			if _, err := r.db.Exec(ctx, `UPDATE mastery_history SET retention_review=true WHERE id=$1`, historyID); err != nil {
+			if _, err := tx.Exec(ctx, `UPDATE mastery_history SET retention_review=true WHERE id=$1`, historyID); err != nil {
 				return result, err
 			}
 		}
@@ -462,7 +584,7 @@ func (r *PostgresRepository) RecordAttempt(ctx context.Context, attempt Attempt,
 		dueAt = &next
 	}
 
-	_, err = r.db.Exec(ctx, `
+	_, err = tx.Exec(ctx, `
 		INSERT INTO student_objective_mastery (
 			student_id, objective_id, score, band, last_signal, next_review_due_at, updated_at
 		)
@@ -477,17 +599,17 @@ func (r *PostgresRepository) RecordAttempt(ctx context.Context, attempt Attempt,
 	if err != nil {
 		return result, err
 	}
-	if err := r.completeMasteredAssignments(ctx, studentUUID, attempt.ObjectiveID, result.ProjectedScore); err != nil {
+	if err := r.completeMasteredAssignments(ctx, tx, studentUUID, attempt.ObjectiveID, result.ProjectedScore); err != nil {
 		return result, err
 	}
-	_, adjustedBand, err := r.refreshEvidenceConfidence(ctx, studentUUID, attempt.ObjectiveID, result.ProjectedScore)
+	_, adjustedBand, err := r.refreshEvidenceConfidence(ctx, tx, studentUUID, attempt.ObjectiveID, result.ProjectedScore)
 	if err != nil {
 		return result, err
 	}
 	result.ProjectedBand = adjustedBand
 
 	if dueAt != nil {
-		_, err = r.db.Exec(ctx, `
+		_, err = tx.Exec(ctx, `
 			INSERT INTO spaced_review_queue (student_id, objective_id, due_at, interval_days, priority, reason)
 			VALUES ($1,$2,$3,$4,$5,$6)
 			ON CONFLICT (student_id, objective_id) WHERE completed_at IS NULL DO UPDATE SET
@@ -500,17 +622,23 @@ func (r *PostgresRepository) RecordAttempt(ctx context.Context, attempt Attempt,
 	if err != nil {
 		return result, err
 	}
-	if err := r.updateWorldState(ctx, studentUUID, attempt.StudentID, attempt.ObjectiveID, result); err != nil {
+	if err := r.updateWorldState(ctx, tx, studentUUID, attempt.StudentID, attempt.ObjectiveID, result); err != nil {
 		return result, err
 	}
-	if err := r.advanceDiagnosticBaseline(ctx, studentUUID, attempt.ObjectiveID, attemptFormat(attempt), result.Correct); err != nil {
+	if err := r.advanceDiagnosticBaseline(ctx, tx, studentUUID, attempt.ObjectiveID, attemptFormat(attempt), result.Correct); err != nil {
+		return result, err
+	}
+	if err := completeIdempotency(ctx, tx, "learning.attempt", studentUUID, attempt.IdempotencyKey, result); err != nil {
+		return result, err
+	}
+	if err := tx.Commit(ctx); err != nil {
 		return result, err
 	}
 	return result, nil
 }
 
-func (r *PostgresRepository) completeMasteredAssignments(ctx context.Context, studentUUID string, objectiveID string, score int) error {
-	if _, err := r.db.Exec(ctx, `
+func (r *PostgresRepository) completeMasteredAssignments(ctx context.Context, exec queryExecutor, studentUUID string, objectiveID string, score int) error {
+	if _, err := exec.Exec(ctx, `
 		UPDATE assignments a
 		SET status = 'completed',
 			updated_at = now()
@@ -523,7 +651,7 @@ func (r *PostgresRepository) completeMasteredAssignments(ctx context.Context, st
 	`, studentUUID, objectiveID, score); err != nil {
 		return err
 	}
-	_, err := r.db.Exec(ctx, `
+	_, err := exec.Exec(ctx, `
 		UPDATE intervention_plans p
 		SET status='monitoring',
 			updated_at=now()
@@ -763,65 +891,27 @@ func (r *PostgresRepository) EvidenceSummary(ctx context.Context, studentID stri
 		return summary, err
 	}
 
+	var bandsRaw []byte
 	if err := r.db.QueryRow(ctx, `
 		SELECT
-			count(*)::int,
-			count(*) FILTER (WHERE correct)::int,
-			COALESCE(round(100.0 * count(*) FILTER (WHERE correct) / NULLIF(count(*), 0)), 0)::int
-		FROM question_attempts
-		WHERE student_id=$1
-		  AND created_at >= now() - interval '7 days'
-	`, studentUUID).Scan(&summary.Attempts7Days, &summary.Correct7Days, &summary.Accuracy7Days); err != nil {
-		return summary, err
-	}
-
-	if err := r.db.QueryRow(ctx, `
-		SELECT
-			count(*) FILTER (WHERE completed_at IS NULL AND due_at <= now())::int,
-			count(*) FILTER (WHERE completed_at IS NULL)::int
-		FROM spaced_review_queue
-		WHERE student_id=$1
-	`, studentUUID).Scan(&summary.DueReviews, &summary.OpenReviews); err != nil {
-		return summary, err
-	}
-
-	if err := r.db.QueryRow(ctx, `
-		SELECT count(*)::int
-		FROM student_misconception_state
-		WHERE student_id=$1
-		  AND status = 'repaired'
-		  AND repaired_at >= now() - interval '7 days'
-	`, studentUUID).Scan(&summary.MisconceptionsRepaired); err != nil {
-		return summary, err
-	}
-
-	if err := r.db.QueryRow(ctx, `
-		SELECT
+			(SELECT count(*)::int FROM question_attempts WHERE student_id=$1 AND created_at >= now() - interval '7 days'),
+			(SELECT count(*) FILTER (WHERE correct)::int FROM question_attempts WHERE student_id=$1 AND created_at >= now() - interval '7 days'),
+			(SELECT COALESCE(round(100.0 * count(*) FILTER (WHERE correct) / NULLIF(count(*), 0)), 0)::int FROM question_attempts WHERE student_id=$1 AND created_at >= now() - interval '7 days'),
+			(SELECT count(*) FILTER (WHERE completed_at IS NULL AND due_at <= now())::int FROM spaced_review_queue WHERE student_id=$1),
+			(SELECT count(*) FILTER (WHERE completed_at IS NULL)::int FROM spaced_review_queue WHERE student_id=$1),
+			(SELECT count(*)::int FROM student_misconception_state WHERE student_id=$1 AND status='repaired' AND repaired_at >= now() - interval '7 days'),
 			(SELECT count(*)::int FROM teacher_evidence_records WHERE student_id=$1),
-			(SELECT count(*)::int FROM intervention_plans WHERE student_id=$1 AND status IN ('active','monitoring'))
-	`, studentUUID).Scan(&summary.TeacherEvidenceCount, &summary.ActiveInterventions); err != nil {
+			(SELECT count(*)::int FROM intervention_plans WHERE student_id=$1 AND status IN ('active','monitoring')),
+			COALESCE((SELECT jsonb_object_agg(band, band_count) FROM (SELECT band, count(*)::int AS band_count FROM student_objective_mastery WHERE student_id=$1 GROUP BY band) grouped), '{}'::jsonb)
+	`, studentUUID).Scan(&summary.Attempts7Days, &summary.Correct7Days, &summary.Accuracy7Days,
+		&summary.DueReviews, &summary.OpenReviews, &summary.MisconceptionsRepaired,
+		&summary.TeacherEvidenceCount, &summary.ActiveInterventions, &bandsRaw); err != nil {
 		return summary, err
 	}
-
-	rows, err := r.db.Query(ctx, `
-		SELECT band, count(*)::int
-		FROM student_objective_mastery
-		WHERE student_id=$1
-		GROUP BY band
-	`, studentUUID)
-	if err != nil {
+	if err := json.Unmarshal(bandsRaw, &summary.Bands); err != nil {
 		return summary, err
 	}
-	defer rows.Close()
-	for rows.Next() {
-		var band string
-		var count int
-		if err := rows.Scan(&band, &count); err != nil {
-			return summary, err
-		}
-		summary.Bands[band] = count
-	}
-	return summary, rows.Err()
+	return summary, nil
 }
 
 func (r *PostgresRepository) WorldState(ctx context.Context, studentID string, worldKey string) (WorldState, error) {
@@ -909,6 +999,14 @@ func (r *PostgresRepository) Diagnostics(ctx context.Context) (Diagnostics, erro
 }
 
 func (r *PostgresRepository) StartSession(ctx context.Context, studentID string, mode string, deviceTier string) (LearningSession, error) {
+	return r.startSession(ctx, studentID, mode, deviceTier, "")
+}
+
+func (r *PostgresRepository) StartSessionWithKey(ctx context.Context, studentID string, mode string, deviceTier string, idempotencyKey string) (LearningSession, error) {
+	return r.startSession(ctx, studentID, mode, deviceTier, idempotencyKey)
+}
+
+func (r *PostgresRepository) startSession(ctx context.Context, studentID string, mode string, deviceTier string, idempotencyKey string) (LearningSession, error) {
 	if mode == "" {
 		mode = "home"
 	}
@@ -931,8 +1029,23 @@ func (r *PostgresRepository) StartSession(ctx context.Context, studentID string,
 	if err != nil {
 		return session, err
 	}
+	tx, err := r.db.Begin(ctx)
+	if err != nil {
+		return session, err
+	}
+	defer tx.Rollback(ctx)
+	replay, err := beginIdempotency(ctx, tx, "learning.session", studentUUID, idempotencyKey, map[string]string{"student_id": studentID, "mode": mode, "device_tier": deviceTier})
+	if err != nil {
+		return session, err
+	}
+	if replay.Found {
+		if err := json.Unmarshal(replay.Response, &session); err != nil {
+			return session, err
+		}
+		return session, nil
+	}
 	var startedAt time.Time
-	err = r.db.QueryRow(ctx, `
+	err = tx.QueryRow(ctx, `
 		INSERT INTO learning_sessions (student_id, mode, device_tier)
 		VALUES ($1,$2,$3)
 		RETURNING id::text, started_at
@@ -941,6 +1054,12 @@ func (r *PostgresRepository) StartSession(ctx context.Context, studentID string,
 		return session, err
 	}
 	session.StartedAt = startedAt.UTC().Format(time.RFC3339)
+	if err := completeIdempotency(ctx, tx, "learning.session", studentUUID, idempotencyKey, session); err != nil {
+		return session, err
+	}
+	if err := tx.Commit(ctx); err != nil {
+		return session, err
+	}
 	return session, nil
 }
 
@@ -963,8 +1082,23 @@ func (r *PostgresRepository) RecordLessonStep(ctx context.Context, attempt Lesso
 	if err != nil {
 		return attempt, err
 	}
+	tx, err := r.db.Begin(ctx)
+	if err != nil {
+		return attempt, err
+	}
+	defer tx.Rollback(ctx)
+	replay, err := beginIdempotency(ctx, tx, "learning.lesson_step", studentUUID, attempt.IdempotencyKey, attempt)
+	if err != nil {
+		return attempt, err
+	}
+	if replay.Found {
+		if err := json.Unmarshal(replay.Response, &attempt); err != nil {
+			return attempt, err
+		}
+		return attempt, nil
+	}
 	var recordedAt time.Time
-	err = r.db.QueryRow(ctx, `
+	err = tx.QueryRow(ctx, `
 		INSERT INTO lesson_step_attempts (
 			student_id, activity_id, objective_id, step_id, step_kind,
 			status, duration_ms, support_used
@@ -978,6 +1112,12 @@ func (r *PostgresRepository) RecordLessonStep(ctx context.Context, attempt Lesso
 		return attempt, err
 	}
 	attempt.RecordedAt = recordedAt.UTC().Format(time.RFC3339)
+	if err := completeIdempotency(ctx, tx, "learning.lesson_step", studentUUID, attempt.IdempotencyKey, attempt); err != nil {
+		return attempt, err
+	}
+	if err := tx.Commit(ctx); err != nil {
+		return attempt, err
+	}
 	return attempt, nil
 }
 
@@ -988,7 +1128,7 @@ func (r *PostgresRepository) RecordLearningEvent(ctx context.Context, event Lear
 	switch event.EventType {
 	case "assessment_started", "assessment_completed", "question_seen", "audio_replay", "hint_opened",
 		"mission_paused", "mission_resumed", "mission_exited", "mission_restarted",
-		"response_mode_changed", "support_changed":
+		"response_mode_changed", "support_changed", "audio_playback_failed":
 	default:
 		return event, invalidConfig("learning event type is not valid")
 	}
@@ -1002,12 +1142,27 @@ func (r *PostgresRepository) RecordLearningEvent(ctx context.Context, event Lear
 	if err != nil {
 		return event, err
 	}
+	tx, err := r.db.Begin(ctx)
+	if err != nil {
+		return event, err
+	}
+	defer tx.Rollback(ctx)
+	replay, err := beginIdempotency(ctx, tx, "learning.event", studentUUID, event.IdempotencyKey, event)
+	if err != nil {
+		return event, err
+	}
+	if replay.Found {
+		if err := json.Unmarshal(replay.Response, &event); err != nil {
+			return event, err
+		}
+		return event, nil
+	}
 	payload, err := json.Marshal(event.Payload)
 	if err != nil {
 		return event, invalidConfig("learning event payload is not valid")
 	}
 	var createdAt time.Time
-	err = r.db.QueryRow(ctx, `
+	err = tx.QueryRow(ctx, `
 		INSERT INTO learning_events (student_id, event_type, event_payload)
 		VALUES ($1,$2,$3)
 		RETURNING id::text, created_at
@@ -1016,25 +1171,42 @@ func (r *PostgresRepository) RecordLearningEvent(ctx context.Context, event Lear
 		return event, err
 	}
 	event.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+	if err := completeIdempotency(ctx, tx, "learning.event", studentUUID, event.IdempotencyKey, event); err != nil {
+		return event, err
+	}
+	if err := tx.Commit(ctx); err != nil {
+		return event, err
+	}
 	return event, nil
 }
 
 func (r *PostgresRepository) ListAssignments(ctx context.Context, schoolURN string, studentExternalRef string) ([]Assignment, error) {
-	rows, err := r.db.Query(ctx, `
+	query := `
 		SELECT a.id::text, COALESCE(sch.urn,''), st.external_ref, st.display_name,
 		       a.objective_id, COALESCE(a.activity_id,''), a.title, a.priority,
 		       a.status, a.due_at, a.created_by, a.created_at, a.updated_at
 		FROM assignments a
 		JOIN schools sch ON sch.id = a.school_id
 		JOIN students st ON st.id = a.student_id
-		WHERE ($1 = '' OR sch.urn = $1)
-		  AND ($2 = '' OR st.external_ref = $2)
+		WHERE 1=1
+	`
+	args := []any{}
+	if strings.TrimSpace(schoolURN) != "" {
+		query += " AND sch.urn=$" + strconv.Itoa(len(args)+1)
+		args = append(args, strings.TrimSpace(schoolURN))
+	}
+	if strings.TrimSpace(studentExternalRef) != "" {
+		query += " AND st.external_ref=$" + strconv.Itoa(len(args)+1)
+		args = append(args, strings.TrimSpace(studentExternalRef))
+	}
+	query += `
 		ORDER BY
 		  CASE WHEN a.status = 'active' THEN 0 ELSE 1 END,
 		  a.priority DESC,
 		  a.due_at NULLS LAST,
 		  a.updated_at DESC
-	`, schoolURN, studentExternalRef)
+		LIMIT 500`
+	rows, err := r.db.Query(ctx, query, args...)
 	if err != nil {
 		return nil, err
 	}
@@ -1088,8 +1260,23 @@ func (r *PostgresRepository) CreateAssignment(ctx context.Context, assignment As
 		}
 		dueAt = &parsed
 	}
+	tx, err := r.db.Begin(ctx)
+	if err != nil {
+		return assignment, err
+	}
+	defer tx.Rollback(ctx)
+	replay, err := beginIdempotency(ctx, tx, "school.assignment", assignment.SchoolURN+":"+assignment.StudentExternalRef, assignment.IdempotencyKey, assignment)
+	if err != nil {
+		return assignment, err
+	}
+	if replay.Found {
+		if err := json.Unmarshal(replay.Response, &assignment); err != nil {
+			return assignment, err
+		}
+		return assignment, nil
+	}
 	var createdAt, updatedAt time.Time
-	err := r.db.QueryRow(ctx, `
+	err = tx.QueryRow(ctx, `
 		INSERT INTO assignments (
 			school_id, student_id, objective_id, activity_id, title,
 			priority, status, due_at, created_by
@@ -1126,22 +1313,38 @@ func (r *PostgresRepository) CreateAssignment(ctx context.Context, assignment As
 	}
 	assignment.CreatedAt = createdAt.UTC().Format(time.RFC3339)
 	assignment.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+	if err := completeIdempotency(ctx, tx, "school.assignment", assignment.SchoolURN+":"+assignment.StudentExternalRef, assignment.IdempotencyKey, assignment); err != nil {
+		return assignment, err
+	}
+	if err := tx.Commit(ctx); err != nil {
+		return assignment, err
+	}
 	return assignment, nil
 }
 
 func (r *PostgresRepository) ListTeacherEvidence(ctx context.Context, schoolURN string, studentExternalRef string) ([]TeacherEvidenceRecord, error) {
-	rows, err := r.db.Query(ctx, `
+	query := `
 		SELECT e.id::text, COALESCE(sch.urn,''), st.external_ref, st.display_name,
 		       e.objective_id, e.evidence_type, e.outcome, e.note, e.source_ref,
 		       e.recorded_by, e.recorded_at
 		FROM teacher_evidence_records e
 		JOIN schools sch ON sch.id=e.school_id
 		JOIN students st ON st.id=e.student_id
-		WHERE ($1='' OR sch.urn=$1)
-		  AND ($2='' OR st.external_ref=$2)
+		WHERE 1=1
+	`
+	args := []any{}
+	if strings.TrimSpace(schoolURN) != "" {
+		query += " AND sch.urn=$" + strconv.Itoa(len(args)+1)
+		args = append(args, strings.TrimSpace(schoolURN))
+	}
+	if strings.TrimSpace(studentExternalRef) != "" {
+		query += " AND st.external_ref=$" + strconv.Itoa(len(args)+1)
+		args = append(args, strings.TrimSpace(studentExternalRef))
+	}
+	query += `
 		ORDER BY e.recorded_at DESC
-		LIMIT 200
-	`, schoolURN, studentExternalRef)
+		LIMIT 200`
+	rows, err := r.db.Query(ctx, query, args...)
 	if err != nil {
 		return nil, err
 	}
@@ -1177,8 +1380,23 @@ func (r *PostgresRepository) CreateTeacherEvidence(ctx context.Context, record T
 	default:
 		return record, invalidConfig("teacher evidence outcome is not valid")
 	}
+	tx, err := r.db.Begin(ctx)
+	if err != nil {
+		return record, err
+	}
+	defer tx.Rollback(ctx)
+	replay, err := beginIdempotency(ctx, tx, "school.teacher_evidence", record.SchoolURN+":"+record.StudentExternalRef, record.IdempotencyKey, record)
+	if err != nil {
+		return record, err
+	}
+	if replay.Found {
+		if err := json.Unmarshal(replay.Response, &record); err != nil {
+			return record, err
+		}
+		return record, nil
+	}
 	var recordedAt time.Time
-	err := r.db.QueryRow(ctx, `
+	err = tx.QueryRow(ctx, `
 		INSERT INTO teacher_evidence_records (
 			school_id, student_id, objective_id, evidence_type, outcome,
 			note, source_ref, recorded_by
@@ -1202,25 +1420,42 @@ func (r *PostgresRepository) CreateTeacherEvidence(ctx context.Context, record T
 		return record, err
 	}
 	record.RecordedAt = recordedAt.UTC().Format(time.RFC3339)
+	if err := completeIdempotency(ctx, tx, "school.teacher_evidence", record.SchoolURN+":"+record.StudentExternalRef, record.IdempotencyKey, record); err != nil {
+		return record, err
+	}
+	if err := tx.Commit(ctx); err != nil {
+		return record, err
+	}
 	return record, nil
 }
 
 func (r *PostgresRepository) ListInterventions(ctx context.Context, schoolURN string, studentExternalRef string) ([]InterventionPlan, error) {
-	rows, err := r.db.Query(ctx, `
+	query := `
 		SELECT p.id::text, COALESCE(sch.urn,''), st.external_ref, st.display_name,
 		       p.objective_id, p.title, p.need, p.strategy, p.priority, p.status,
 		       p.review_due_at, p.created_by, p.created_at, p.updated_at
 		FROM intervention_plans p
 		JOIN schools sch ON sch.id=p.school_id
 		JOIN students st ON st.id=p.student_id
-		WHERE ($1='' OR sch.urn=$1)
-		  AND ($2='' OR st.external_ref=$2)
+		WHERE 1=1
+	`
+	args := []any{}
+	if strings.TrimSpace(schoolURN) != "" {
+		query += " AND sch.urn=$" + strconv.Itoa(len(args)+1)
+		args = append(args, strings.TrimSpace(schoolURN))
+	}
+	if strings.TrimSpace(studentExternalRef) != "" {
+		query += " AND st.external_ref=$" + strconv.Itoa(len(args)+1)
+		args = append(args, strings.TrimSpace(studentExternalRef))
+	}
+	query += `
 		ORDER BY
 		  CASE WHEN p.status IN ('active','monitoring') THEN 0 ELSE 1 END,
 		  p.priority DESC,
 		  p.review_due_at NULLS LAST,
 		  p.updated_at DESC
-	`, schoolURN, studentExternalRef)
+		LIMIT 500`
+	rows, err := r.db.Query(ctx, query, args...)
 	if err != nil {
 		return nil, err
 	}
@@ -1273,8 +1508,23 @@ func (r *PostgresRepository) CreateIntervention(ctx context.Context, plan Interv
 		}
 		reviewDue = &parsed
 	}
+	tx, err := r.db.Begin(ctx)
+	if err != nil {
+		return plan, err
+	}
+	defer tx.Rollback(ctx)
+	replay, err := beginIdempotency(ctx, tx, "school.intervention", plan.SchoolURN+":"+plan.StudentExternalRef, plan.IdempotencyKey, plan)
+	if err != nil {
+		return plan, err
+	}
+	if replay.Found {
+		if err := json.Unmarshal(replay.Response, &plan); err != nil {
+			return plan, err
+		}
+		return plan, nil
+	}
 	var createdAt, updatedAt time.Time
-	err := r.db.QueryRow(ctx, `
+	err = tx.QueryRow(ctx, `
 		INSERT INTO intervention_plans (
 			school_id, student_id, objective_id, title, need, strategy,
 			priority, status, review_due_at, created_by
@@ -1299,6 +1549,12 @@ func (r *PostgresRepository) CreateIntervention(ctx context.Context, plan Interv
 	}
 	plan.CreatedAt = createdAt.UTC().Format(time.RFC3339)
 	plan.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+	if err := completeIdempotency(ctx, tx, "school.intervention", plan.SchoolURN+":"+plan.StudentExternalRef, plan.IdempotencyKey, plan); err != nil {
+		return plan, err
+	}
+	if err := tx.Commit(ctx); err != nil {
+		return plan, err
+	}
 	return plan, nil
 }
 
@@ -1345,17 +1601,28 @@ func (r *PostgresRepository) UpdateInterventionStatus(ctx context.Context, schoo
 }
 
 func (r *PostgresRepository) ListInterventionReviews(ctx context.Context, schoolURN string, studentExternalRef string) ([]InterventionReview, error) {
-	rows, err := r.db.Query(ctx, `
+	query := `
 		SELECT r.id::text, r.intervention_id::text, sch.urn, st.external_ref,
 		       st.display_name, r.objective_id, r.outcome, r.evidence_note,
 		       r.next_review_due_at, r.reviewed_by, r.reviewed_at
 		FROM intervention_reviews r
 		JOIN schools sch ON sch.id=r.school_id
 		JOIN students st ON st.id=r.student_id
-		WHERE ($1='' OR sch.urn=$1)
-		  AND ($2='' OR st.external_ref=$2)
+		WHERE 1=1
+	`
+	args := []any{}
+	if strings.TrimSpace(schoolURN) != "" {
+		query += " AND sch.urn=$" + strconv.Itoa(len(args)+1)
+		args = append(args, strings.TrimSpace(schoolURN))
+	}
+	if strings.TrimSpace(studentExternalRef) != "" {
+		query += " AND st.external_ref=$" + strconv.Itoa(len(args)+1)
+		args = append(args, strings.TrimSpace(studentExternalRef))
+	}
+	query += `
 		ORDER BY r.reviewed_at DESC
-	`, schoolURN, studentExternalRef)
+		LIMIT 500`
+	rows, err := r.db.Query(ctx, query, args...)
 	if err != nil {
 		return nil, err
 	}
@@ -1406,6 +1673,16 @@ func (r *PostgresRepository) CreateInterventionReview(ctx context.Context, revie
 		return review, err
 	}
 	defer tx.Rollback(ctx)
+	replay, err := beginIdempotency(ctx, tx, "school.intervention_review", review.SchoolURN+":"+review.InterventionID, review.IdempotencyKey, review)
+	if err != nil {
+		return review, err
+	}
+	if replay.Found {
+		if err := json.Unmarshal(replay.Response, &review); err != nil {
+			return review, err
+		}
+		return review, nil
+	}
 	var reviewedAt time.Time
 	err = tx.QueryRow(ctx, `
 		INSERT INTO intervention_reviews (
@@ -1436,13 +1713,16 @@ func (r *PostgresRepository) CreateInterventionReview(ctx context.Context, revie
 	`, review.SchoolURN, review.InterventionID, status, nextReview); err != nil {
 		return review, err
 	}
-	if err := tx.Commit(ctx); err != nil {
-		return review, err
-	}
 	if nextReview != nil {
 		review.NextReviewDueAt = nextReview.UTC().Format(time.RFC3339)
 	}
 	review.ReviewedAt = reviewedAt.UTC().Format(time.RFC3339)
+	if err := completeIdempotency(ctx, tx, "school.intervention_review", review.SchoolURN+":"+review.InterventionID, review.IdempotencyKey, review); err != nil {
+		return review, err
+	}
+	if err := tx.Commit(ctx); err != nil {
+		return review, err
+	}
 	return review, nil
 }
 
@@ -1480,12 +1760,13 @@ func (r *PostgresRepository) studentUUID(ctx context.Context, externalID string)
 	return id, err
 }
 
-func (r *PostgresRepository) currentMasteryScore(ctx context.Context, studentUUID string, objectiveID string) (int, error) {
+func (r *PostgresRepository) currentMasteryScore(ctx context.Context, exec queryExecutor, studentUUID string, objectiveID string) (int, error) {
 	var score int
-	err := r.db.QueryRow(ctx, `
+	err := exec.QueryRow(ctx, `
 		SELECT score
 		FROM student_objective_mastery
 		WHERE student_id=$1 AND objective_id=$2
+		FOR UPDATE
 	`, studentUUID, objectiveID).Scan(&score)
 	if errors.Is(err, pgx.ErrNoRows) {
 		return 0, nil
@@ -1493,10 +1774,10 @@ func (r *PostgresRepository) currentMasteryScore(ctx context.Context, studentUUI
 	return score, err
 }
 
-func (r *PostgresRepository) nextReviewDaysForObjective(ctx context.Context, objectiveID string, score int) (int, error) {
+func (r *PostgresRepository) nextReviewDaysForObjective(ctx context.Context, exec queryExecutor, objectiveID string, score int) (int, error) {
 	var expected, secure int
 	var retentionDays []int
-	err := r.db.QueryRow(ctx, `
+	err := exec.QueryRow(ctx, `
 		SELECT expected_mastery, secure_mastery, retention_days
 		FROM curriculum_objectives
 		WHERE id=$1
@@ -1529,12 +1810,12 @@ func selectRetentionInterval(score, expected, secure int, days []int) int {
 	}
 }
 
-func (r *PostgresRepository) updateMisconceptionState(ctx context.Context, studentUUID string, attempt Attempt, result AttemptResult) error {
+func (r *PostgresRepository) updateMisconceptionState(ctx context.Context, exec queryExecutor, studentUUID string, attempt Attempt, result AttemptResult) error {
 	if attempt.QuestionID == "" {
 		return nil
 	}
 	var key string
-	err := r.db.QueryRow(ctx, `
+	err := exec.QueryRow(ctx, `
 		SELECT COALESCE(NULLIF(body->>'misconception_tag', ''), NULLIF(body->>'misconception', ''), '')
 		FROM questions
 		WHERE id=$1
@@ -1546,7 +1827,7 @@ func (r *PostgresRepository) updateMisconceptionState(ctx context.Context, stude
 		return err
 	}
 	if !result.Correct {
-		_, err = r.db.Exec(ctx, `
+		_, err = exec.Exec(ctx, `
 			INSERT INTO student_misconception_state (
 				student_id, objective_id, misconception_key, status, evidence_count,
 				repair_evidence_count, last_question_id, last_evidence_at, repaired_at
@@ -1568,7 +1849,7 @@ func (r *PostgresRepository) updateMisconceptionState(ctx context.Context, stude
 		return err
 	}
 	var questionIDs, formats []string
-	err = r.db.QueryRow(ctx, `
+	err = exec.QueryRow(ctx, `
 		SELECT repair_question_ids, repair_formats
 		FROM student_misconception_state
 		WHERE student_id=$1
@@ -1592,7 +1873,7 @@ func (r *PostgresRepository) updateMisconceptionState(ctx context.Context, stude
 		now := time.Now().UTC()
 		repairedAt = &now
 	}
-	_, err = r.db.Exec(ctx, `
+	_, err = exec.Exec(ctx, `
 		UPDATE student_misconception_state
 		SET repair_evidence_count = $5,
 			repair_question_ids = $6,
@@ -1609,8 +1890,8 @@ func (r *PostgresRepository) updateMisconceptionState(ctx context.Context, stude
 	return err
 }
 
-func (r *PostgresRepository) completeMatchingReview(ctx context.Context, studentUUID string, objectiveID string) (bool, error) {
-	tag, err := r.db.Exec(ctx, `
+func (r *PostgresRepository) completeMatchingReview(ctx context.Context, exec queryExecutor, studentUUID string, objectiveID string) (bool, error) {
+	tag, err := exec.Exec(ctx, `
 		UPDATE spaced_review_queue
 		SET completed_at = now()
 		WHERE id = (
@@ -1627,8 +1908,8 @@ func (r *PostgresRepository) completeMatchingReview(ctx context.Context, student
 	return tag.RowsAffected() > 0, err
 }
 
-func (r *PostgresRepository) refreshEvidenceConfidence(ctx context.Context, studentUUID string, objectiveID string, score int) (string, string, error) {
-	rows, err := r.db.Query(ctx, `
+func (r *PostgresRepository) refreshEvidenceConfidence(ctx context.Context, exec queryExecutor, studentUUID string, objectiveID string, score int) (string, string, error) {
+	rows, err := exec.Query(ctx, `
 		SELECT correct, hint_used, retention_review, response_format, recorded_at
 		FROM mastery_history
 		WHERE student_id=$1 AND objective_id=$2
@@ -1652,7 +1933,7 @@ func (r *PostgresRepository) refreshEvidenceConfidence(ctx context.Context, stud
 	summary := summariseEvidence(signals, time.Now().UTC())
 	confidence := evidenceConfidenceBand(summary.EffectiveScore, summary.FormatCount, summary.IndependentCorrect, summary.RetainedSuccess, summary.Freshness)
 	band := evidenceAdjustedMasteryBand(score, confidence)
-	_, err = r.db.Exec(ctx, `
+	_, err = exec.Exec(ctx, `
 		UPDATE student_objective_mastery
 		SET evidence_count=$3,
 			format_count=$4,
@@ -1775,17 +2056,25 @@ func evidenceAdjustedMasteryBand(score int, confidence string) string {
 	return MasteryBand(score)
 }
 
-func (r *PostgresRepository) updateWorldState(ctx context.Context, studentUUID, studentID, objectiveID string, result AttemptResult) error {
-	worldKey, err := r.worldKeyForObjective(ctx, objectiveID)
+func (r *PostgresRepository) updateWorldState(ctx context.Context, exec queryExecutor, studentUUID, studentID, objectiveID string, result AttemptResult) error {
+	worldKey, err := r.worldKeyForObjective(ctx, exec, objectiveID)
 	if err != nil {
 		return err
 	}
 	state := map[string]any{}
+	if _, err := exec.Exec(ctx, `
+		INSERT INTO student_world_state (student_id, world_key, state, updated_at)
+		VALUES ($1,$2,'{}'::jsonb,now())
+		ON CONFLICT (student_id, world_key) DO NOTHING
+	`, studentUUID, worldKey); err != nil {
+		return err
+	}
 	var existing []byte
-	err = r.db.QueryRow(ctx, `
+	err = exec.QueryRow(ctx, `
 		SELECT state
 		FROM student_world_state
 		WHERE student_id=$1 AND world_key=$2
+		FOR UPDATE
 	`, studentUUID, worldKey).Scan(&existing)
 	if err == nil {
 		if unmarshalErr := json.Unmarshal(existing, &state); unmarshalErr != nil {
@@ -1830,7 +2119,7 @@ func (r *PostgresRepository) updateWorldState(ctx context.Context, studentUUID, 
 	if err != nil {
 		return err
 	}
-	_, err = r.db.Exec(ctx, `
+	_, err = exec.Exec(ctx, `
 		INSERT INTO student_world_state (student_id, world_key, state, updated_at)
 		VALUES ($1,$2,$3::jsonb,now())
 		ON CONFLICT (student_id, world_key) DO UPDATE SET
@@ -1880,8 +2169,8 @@ func containsStringValue(values []string, target string) bool {
 	return false
 }
 
-func (r *PostgresRepository) applyRewardPolicy(ctx context.Context, objectiveID string, result AttemptResult) (AttemptResult, error) {
-	worldKey, err := r.worldKeyForObjective(ctx, objectiveID)
+func (r *PostgresRepository) applyRewardPolicy(ctx context.Context, exec queryExecutor, objectiveID string, result AttemptResult) (AttemptResult, error) {
+	worldKey, err := r.worldKeyForObjective(ctx, exec, objectiveID)
 	if err != nil {
 		return result, err
 	}
@@ -1890,7 +2179,7 @@ func (r *PostgresRepository) applyRewardPolicy(ctx context.Context, objectiveID 
 		trigger = "attempt.correct"
 	}
 	var raw []byte
-	err = r.db.QueryRow(ctx, `
+	err = exec.QueryRow(ctx, `
 		SELECT reward_payload
 		FROM reward_rules
 		WHERE enabled
@@ -1923,9 +2212,9 @@ func (r *PostgresRepository) applyRewardPolicy(ctx context.Context, objectiveID 
 	return result, nil
 }
 
-func (r *PostgresRepository) ensureObjective(ctx context.Context, objectiveID string) error {
+func (r *PostgresRepository) ensureObjective(ctx context.Context, exec queryExecutor, objectiveID string) error {
 	var exists bool
-	err := r.db.QueryRow(ctx, `SELECT EXISTS (SELECT 1 FROM curriculum_objectives WHERE id=$1)`, objectiveID).Scan(&exists)
+	err := exec.QueryRow(ctx, `SELECT EXISTS (SELECT 1 FROM curriculum_objectives WHERE id=$1)`, objectiveID).Scan(&exists)
 	if err != nil {
 		return err
 	}
@@ -1935,9 +2224,9 @@ func (r *PostgresRepository) ensureObjective(ctx context.Context, objectiveID st
 	return nil
 }
 
-func (r *PostgresRepository) worldKeyForObjective(ctx context.Context, objectiveID string) (string, error) {
+func (r *PostgresRepository) worldKeyForObjective(ctx context.Context, exec queryExecutor, objectiveID string) (string, error) {
 	var worldKey string
-	err := r.db.QueryRow(ctx, `
+	err := exec.QueryRow(ctx, `
 		SELECT world_key
 		FROM activities
 		WHERE objective_id=$1
@@ -1953,7 +2242,7 @@ func (r *PostgresRepository) worldKeyForObjective(ctx context.Context, objective
 		return "", err
 	}
 
-	err = r.db.QueryRow(ctx, `
+	err = exec.QueryRow(ctx, `
 		SELECT w.key
 		FROM curriculum_objectives o
 		JOIN worlds w ON w.year_group = o.year_group
@@ -1969,7 +2258,7 @@ func (r *PostgresRepository) worldKeyForObjective(ctx context.Context, objective
 		return "", err
 	}
 
-	err = r.db.QueryRow(ctx, `
+	err = exec.QueryRow(ctx, `
 		SELECT key
 		FROM worlds
 		WHERE enabled

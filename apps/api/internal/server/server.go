@@ -34,6 +34,16 @@ type Server struct {
 	allowLegacyAuth bool
 }
 
+type adaptiveCatalogueRepository interface {
+	ListAdaptiveActivities(context.Context, string) ([]learning.ActivityConfig, error)
+	ListAdaptiveObjectives(context.Context, string) ([]learning.Objective, error)
+	ListQuestionsForActivity(context.Context, string, string, int) ([]learning.QuestionConfig, error)
+}
+
+type idempotentSessionRepository interface {
+	StartSessionWithKey(context.Context, string, string, string, string) (learning.LearningSession, error)
+}
+
 type strandBucket struct {
 	topics map[string]bool
 	count  int
@@ -197,6 +207,8 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("POST /v1/parent/invitations/accept", s.handleAcceptParentInvitation)
 	s.mux.HandleFunc("GET /v1/parent/config", s.handleParentConfig)
 	s.mux.HandleFunc("GET /v1/parent/children/{externalRef}/evidence", s.handleParentChildEvidence)
+	s.mux.HandleFunc("GET /v1/parent/children/{externalRef}/mock-assessments", s.handleParentMockAssessments)
+	s.mux.HandleFunc("POST /v1/parent/children/{externalRef}/mock-assessments", s.handleParentCreateMockAssessment)
 	s.mux.HandleFunc("PUT /v1/parent/children/{externalRef}", s.handleParentUpsertChild)
 	s.mux.HandleFunc("PUT /v1/parent/children/{externalRef}/engagement", s.handleParentUpsertEngagement)
 	s.mux.HandleFunc("GET /v1/admin/config", s.handleAdminConfig)
@@ -223,6 +235,7 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("GET /v1/admin/reward-rules", s.handleRewardRules)
 	s.mux.HandleFunc("PUT /v1/admin/reward-rules/{id}", s.handleUpsertRewardRule)
 	s.mux.HandleFunc("GET /v1/admin/students", s.handleAdminStudents)
+	s.mux.HandleFunc("GET /v1/admin/students/{externalRef}/progress", s.handleAdminStudentProgress)
 	s.mux.HandleFunc("PUT /v1/admin/students/{externalRef}", s.handleUpsertStudent)
 	s.mux.HandleFunc("GET /v1/admin/schools", s.handleSchools)
 	s.mux.HandleFunc("PUT /v1/admin/schools/{urn}", s.handleUpsertSchool)
@@ -254,6 +267,7 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("GET /v1/school/config", s.handleSchoolConfig)
 	s.mux.HandleFunc("PUT /v1/school/students/{externalRef}", s.handleSchoolUpsertStudent)
 	s.mux.HandleFunc("GET /v1/school/students/{externalRef}/engagement", s.handleSchoolStudentEngagement)
+	s.mux.HandleFunc("GET /v1/school/students/{externalRef}/progress", s.handleSchoolStudentProgress)
 	s.mux.HandleFunc("PUT /v1/school/students/{externalRef}/engagement", s.handleSchoolUpsertStudentEngagement)
 	s.mux.HandleFunc("PUT /v1/school/classes/{id}", s.handleSchoolUpsertClass)
 	s.mux.HandleFunc("PUT /v1/school/classes/{id}/students/{externalRef}", s.handleSchoolAssignStudentToClass)
@@ -262,6 +276,8 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("PUT /v1/school/groups/{id}/students/{externalRef}", s.handleSchoolAssignStudentToGroup)
 	s.mux.HandleFunc("GET /v1/school/assignments", s.handleSchoolAssignments)
 	s.mux.HandleFunc("POST /v1/school/assignments", s.handleSchoolCreateAssignment)
+	s.mux.HandleFunc("GET /v1/school/mock-assessments", s.handleSchoolMockAssessments)
+	s.mux.HandleFunc("POST /v1/school/mock-assessments", s.handleSchoolCreateMockAssessment)
 	s.mux.HandleFunc("GET /v1/school/evidence", s.handleSchoolTeacherEvidence)
 	s.mux.HandleFunc("POST /v1/school/evidence", s.handleSchoolCreateTeacherEvidence)
 	s.mux.HandleFunc("GET /v1/school/interventions", s.handleSchoolInterventions)
@@ -275,6 +291,8 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("GET /v1/students/{studentId}/progress", s.handleStudentProgress)
 	s.mux.HandleFunc("GET /v1/students/{studentId}/attempts", s.handleRecentAttempts)
 	s.mux.HandleFunc("GET /v1/students/{studentId}/summary", s.handleEvidenceSummary)
+	s.mux.HandleFunc("GET /v1/students/{studentId}/mock-assessments", s.handlePupilMockAssessments)
+	s.mux.HandleFunc("POST /v1/students/{studentId}/mock-assessments", s.handlePupilCreateMockAssessment)
 	s.mux.HandleFunc("GET /v1/students/{studentId}/world", s.handleWorldState)
 	s.mux.HandleFunc("POST /v1/students/{studentId}/sessions", s.handleStartSession)
 	s.mux.HandleFunc("GET /v1/students/{studentId}/baseline", s.handleDiagnosticBaseline)
@@ -297,13 +315,20 @@ func withCORS(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS")
-		w.Header().Set("Access-Control-Allow-Headers", "Authorization, Content-Type, X-Admin-Key, X-School-URN, X-School-Login, X-School-Password, X-Parent-Login, X-Parent-Password, X-Pupil-Session")
+		w.Header().Set("Access-Control-Allow-Headers", "Authorization, Content-Type, Idempotency-Key, X-Admin-Key, X-School-URN, X-School-Login, X-School-Password, X-Parent-Login, X-Parent-Password, X-Pupil-Session")
 		if r.Method == http.MethodOptions {
 			w.WriteHeader(http.StatusNoContent)
 			return
 		}
 		next.ServeHTTP(w, r)
 	})
+}
+
+func requestIdempotencyKey(r *http.Request, bodyID string) string {
+	if key := strings.TrimSpace(r.Header.Get("Idempotency-Key")); key != "" {
+		return key
+	}
+	return strings.TrimSpace(bodyID)
 }
 
 func writeJSON(w http.ResponseWriter, status int, v any) {
@@ -361,6 +386,10 @@ func (s *Server) requireAdmin(w http.ResponseWriter, r *http.Request) bool {
 }
 
 func (s *Server) writeAdminSaveError(w http.ResponseWriter, err error, entity string) {
+	if errors.Is(err, learning.ErrIdempotencyConflict) {
+		writeJSON(w, http.StatusConflict, map[string]string{"error": "idempotency key was reused with a different request"})
+		return
+	}
 	if errors.Is(err, learning.ErrInvalidConfiguration) {
 		writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
 		return
@@ -1518,6 +1547,7 @@ func (s *Server) handleSchoolCreateAssignment(w http.ResponseWriter, r *http.Req
 		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
 		return
 	}
+	assignment.IdempotencyKey = requestIdempotencyKey(r, assignment.ID)
 	assignment.SchoolURN = user.SchoolURN
 	assignment.CreatedBy = user.LoginID
 	saved, err := s.repo.CreateAssignment(r.Context(), assignment)
@@ -1552,6 +1582,7 @@ func (s *Server) handleSchoolCreateTeacherEvidence(w http.ResponseWriter, r *htt
 		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
 		return
 	}
+	record.IdempotencyKey = requestIdempotencyKey(r, record.ID)
 	record.SchoolURN = user.SchoolURN
 	record.RecordedBy = user.LoginID
 	saved, err := s.repo.CreateTeacherEvidence(r.Context(), record)
@@ -1586,6 +1617,7 @@ func (s *Server) handleSchoolCreateIntervention(w http.ResponseWriter, r *http.R
 		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
 		return
 	}
+	plan.IdempotencyKey = requestIdempotencyKey(r, plan.ID)
 	plan.SchoolURN = user.SchoolURN
 	plan.CreatedBy = user.LoginID
 	saved, err := s.repo.CreateIntervention(r.Context(), plan)
@@ -1640,6 +1672,7 @@ func (s *Server) handleSchoolCreateInterventionReview(w http.ResponseWriter, r *
 		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
 		return
 	}
+	review.IdempotencyKey = requestIdempotencyKey(r, review.ID)
 	review.InterventionID = r.PathValue("id")
 	review.SchoolURN = user.SchoolURN
 	review.ReviewedBy = user.LoginID
@@ -1855,6 +1888,7 @@ func (s *Server) handleCreateAccessRequest(w http.ResponseWriter, r *http.Reques
 		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
 		return
 	}
+	request.IdempotencyKey = requestIdempotencyKey(r, request.ID)
 	saved, err := s.repo.CreateAccessRequest(r.Context(), request)
 	if err != nil {
 		if errors.Is(err, learning.ErrInvalidConfiguration) {
@@ -2778,12 +2812,24 @@ func (s *Server) handleStartSession(w http.ResponseWriter, r *http.Request) {
 	var in struct {
 		Mode       string `json:"mode"`
 		DeviceTier string `json:"device_tier"`
+		ID         string `json:"id,omitempty"`
 	}
 	if r.Body != nil {
 		_ = json.NewDecoder(r.Body).Decode(&in)
 	}
-	session, err := s.repo.StartSession(r.Context(), studentID, in.Mode, in.DeviceTier)
+	key := requestIdempotencyKey(r, in.ID)
+	var session learning.LearningSession
+	var err error
+	if repository, ok := s.repo.(idempotentSessionRepository); ok {
+		session, err = repository.StartSessionWithKey(r.Context(), studentID, in.Mode, in.DeviceTier, key)
+	} else {
+		session, err = s.repo.StartSession(r.Context(), studentID, in.Mode, in.DeviceTier)
+	}
 	if err != nil {
+		if errors.Is(err, learning.ErrIdempotencyConflict) {
+			writeJSON(w, http.StatusConflict, map[string]string{"error": "idempotency key was reused with a different session"})
+			return
+		}
 		slog.Warn("failed to start session", "error", err)
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not start session"})
 		return
@@ -2815,8 +2861,9 @@ func (s *Server) handleCreateDiagnosticBaseline(w http.ResponseWriter, r *http.R
 		return
 	}
 	var in struct {
-		Limit   int  `json:"limit"`
-		Restart bool `json:"restart"`
+		Limit          int    `json:"limit"`
+		Restart        bool   `json:"restart"`
+		IdempotencyKey string `json:"idempotency_key"`
 	}
 	if r.Body != nil {
 		_ = json.NewDecoder(r.Body).Decode(&in)
@@ -2835,7 +2882,7 @@ func (s *Server) handleCreateDiagnosticBaseline(w http.ResponseWriter, r *http.R
 		writeJSON(w, http.StatusUnprocessableEntity, map[string]string{"error": "student year group must be configured before starting a diagnostic"})
 		return
 	}
-	baseline, err := s.createDiagnosticBaseline(r.Context(), studentID, year, in.Limit)
+	baseline, err := s.createDiagnosticBaseline(r.Context(), studentID, year, in.Limit, requestIdempotencyKey(r, in.IdempotencyKey))
 	if err != nil {
 		switch {
 		case errors.Is(err, learning.ErrStudentNotFound):
@@ -2853,7 +2900,7 @@ func (s *Server) handleCreateDiagnosticBaseline(w http.ResponseWriter, r *http.R
 	writeJSON(w, http.StatusCreated, baseline)
 }
 
-func (s *Server) createDiagnosticBaseline(ctx context.Context, studentID string, year int, limit int) (learning.DiagnosticBaseline, error) {
+func (s *Server) createDiagnosticBaseline(ctx context.Context, studentID string, year int, limit int, idempotencyKey ...string) (learning.DiagnosticBaseline, error) {
 	objectives, err := s.repo.ListObjectives(ctx)
 	if err != nil {
 		return learning.DiagnosticBaseline{}, err
@@ -2867,11 +2914,16 @@ func (s *Server) createDiagnosticBaseline(ctx context.Context, studentID string,
 	if len(items) == 0 {
 		return learning.DiagnosticBaseline{}, learning.ErrNoDiagnosticObjectives
 	}
+	key := ""
+	if len(idempotencyKey) > 0 {
+		key = idempotencyKey[0]
+	}
 	return s.repo.CreateDiagnosticBaseline(ctx, learning.DiagnosticBaseline{
-		StudentID: studentID,
-		YearGroup: year,
-		CreatedBy: "adaptive-engine",
-		Items:     items,
+		StudentID:      studentID,
+		IdempotencyKey: key,
+		YearGroup:      year,
+		CreatedBy:      "adaptive-engine",
+		Items:          items,
 	})
 }
 
@@ -2926,27 +2978,115 @@ func (s *Server) handleConfiguredMission(w http.ResponseWriter, r *http.Request)
 	activityID := r.URL.Query().Get("activityId")
 	worldKey := r.URL.Query().Get("world")
 	requestedMode := r.URL.Query().Get("mode")
+	mockAssessmentID := strings.TrimSpace(r.URL.Query().Get("mockAssessmentId"))
 	if requestedMode != "" && !validAssessmentMode(requestedMode) {
 		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "mode must be teach, practice, review, diagnostic or assessment"})
 		return
 	}
-	activities, err := s.repo.ListActivities(r.Context())
+	var activities []learning.ActivityConfig
+	var err error
+	if scoped, ok := s.repo.(adaptiveCatalogueRepository); ok {
+		activities, err = scoped.ListAdaptiveActivities(r.Context(), studentID)
+	} else {
+		activities, err = s.repo.ListActivities(r.Context())
+	}
 	if err != nil {
 		slog.Warn("failed to read mission activities", "error", err)
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read mission"})
 		return
 	}
 	worlds, _ := s.repo.ListWorlds(r.Context())
-	activity, ok := chooseActivity(activities, activityID, worldKey, worlds, s.preferredYear(r.Context(), studentID))
-	if !ok {
-		writeJSON(w, http.StatusNotFound, map[string]string{"error": "no configured mission available"})
-		return
+	isMockAssessment := mockAssessmentID != ""
+	var mockAssessment learning.MockAssessment
+	var mockQuestions []learning.QuestionConfig
+	var mockItems map[string]learning.MockAssessmentItem
+	var activity learning.ActivityConfig
+	var ok bool
+	if isMockAssessment {
+		store, storeOK := s.repo.(mockAssessmentStore)
+		if !storeOK {
+			writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "mock assessments are not available"})
+			return
+		}
+		var found bool
+		mockAssessment, found, err = store.GetMockAssessment(r.Context(), mockAssessmentID, studentID, "")
+		if err != nil {
+			writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not load mock assessment"})
+			return
+		}
+		if !found || mockAssessment.Status == "cancelled" {
+			writeJSON(w, http.StatusNotFound, map[string]string{"error": "mock assessment is not available"})
+			return
+		}
+		mockQuestions, err = store.ListMockAssessmentQuestions(r.Context(), mockAssessmentID, studentID)
+		if err != nil {
+			writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not load mock assessment questions"})
+			return
+		}
+		if len(mockQuestions) == 0 {
+			writeJSON(w, http.StatusUnprocessableEntity, map[string]string{"error": "mock assessment has no runtime-approved questions"})
+			return
+		}
+		if len(mockAssessment.Items) == 0 {
+			writeJSON(w, http.StatusUnprocessableEntity, map[string]string{"error": "mock assessment has no selected questions"})
+			return
+		}
+		mockItems = map[string]learning.MockAssessmentItem{}
+		for _, item := range mockAssessment.Items {
+			mockItems[item.QuestionID] = item
+		}
+		first := mockAssessment.Items[0]
+		for _, candidate := range activities {
+			if candidate.ID == first.ActivityID {
+				activity = candidate
+				break
+			}
+		}
+		if activity.ID == "" {
+			for _, candidate := range activities {
+				if candidate.ObjectiveID == first.ObjectiveID {
+					activity = candidate
+					break
+				}
+			}
+		}
+		if activity.ID == "" {
+			activity = learning.ActivityConfig{WorldKey: worldKey, Difficulty: 5, Status: "live"}
+		}
+		activity.ID = "mock-assessment-" + mockAssessmentID
+		activity.ObjectiveID = first.ObjectiveID
+		activity.Title = mockAssessment.Title
+		activity.Prompt = "A calm subject check built from what you have learned. You can pause and return whenever you need."
+		activity.Interaction = map[string]any{"type": "mock-assessment", "assessment_id": mockAssessmentID}
+		activity.Feedback = map[string]any{"companion_prompt": "Show what you know, then we will choose a useful next step together."}
+		worldKey = activity.WorldKey
+	} else {
+		activity, ok = chooseActivity(activities, activityID, worldKey, worlds, s.preferredYear(r.Context(), studentID))
+		if !ok {
+			writeJSON(w, http.StatusNotFound, map[string]string{"error": "no configured mission available"})
+			return
+		}
 	}
 	objective, _, _ := s.repo.GetObjective(r.Context(), activity.ObjectiveID)
 	world := worldForActivity(worlds, activity)
+	if isMockAssessment && world.Key == "" && len(worlds) > 0 {
+		for _, candidate := range worlds {
+			if candidate.YearGroup == mockAssessment.YearGroup {
+				world = candidate
+				break
+			}
+		}
+	}
 	worldState, _ := s.repo.WorldState(r.Context(), studentID, world.Key)
 	adaptations := s.runtimeAdaptations(r.Context(), studentID)
-	questions, err := s.repo.ListQuestions(r.Context())
+	var questions []learning.QuestionConfig
+	if isMockAssessment {
+		questions = mockQuestions
+	} else if scoped, ok := s.repo.(adaptiveCatalogueRepository); ok {
+		questions, err = scoped.ListQuestionsForActivity(r.Context(), activity.ID, activity.ObjectiveID, 500)
+	} else {
+		questions, err = s.repo.ListQuestions(r.Context())
+	}
 	if err != nil {
 		slog.Warn("failed to read mission questions", "error", err)
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read questions"})
@@ -2971,17 +3111,29 @@ func (s *Server) handleConfiguredMission(w http.ResponseWriter, r *http.Request)
 		if !s.questionAllowedByReleaseFlags(r.Context(), studentID, question, releaseFlags) {
 			continue
 		}
-		if question.ActivityID == activity.ID || (question.ActivityID == "" && question.ObjectiveID == activity.ObjectiveID) {
+		if isMockAssessment {
+			if _, selected := mockItems[question.ID]; selected {
+				candidates = append(candidates, question)
+			}
+		} else if question.ActivityID == activity.ID || (question.ActivityID == "" && question.ObjectiveID == activity.ObjectiveID) {
 			candidates = append(candidates, question)
 		}
 	}
 	mastery, _ := s.repo.ListMastery(r.Context(), studentID)
 	attempts, _ := s.repo.RecentAttempts(r.Context(), studentID, 40)
 	mode := assessmentMode(requestedMode, activity.ObjectiveID, mastery, attempts)
-	if mode == "diagnostic" && questionLimit > 3 {
-		questionLimit = 3
+	var filtered []learning.QuestionConfig
+	var blueprint learning.AssessmentBlueprint
+	if isMockAssessment {
+		mode = "assessment"
+		filtered = candidates
+		blueprint = mockAssessmentBlueprint(filtered, mockAssessment)
+	} else {
+		if mode == "diagnostic" && questionLimit > 3 {
+			questionLimit = 3
+		}
+		filtered, blueprint = selectMissionQuestions(candidates, attempts, masteryForObjective(mastery, activity.ObjectiveID), mode, questionLimit, activity.Difficulty, adaptations)
 	}
-	filtered, blueprint := selectMissionQuestions(candidates, attempts, masteryForObjective(mastery, activity.ObjectiveID), mode, questionLimit, activity.Difficulty, adaptations)
 	writeJSON(w, http.StatusOK, map[string]any{
 		"student_id":           studentID,
 		"activity":             activity,
@@ -3287,11 +3439,16 @@ func (s *Server) handleLessonStep(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
 		return
 	}
+	in.IdempotencyKey = requestIdempotencyKey(r, in.ID)
 	if !s.requirePupilSession(w, r, in.StudentID) {
 		return
 	}
 	saved, err := s.repo.RecordLessonStep(r.Context(), in)
 	if err != nil {
+		if errors.Is(err, learning.ErrIdempotencyConflict) {
+			writeJSON(w, http.StatusConflict, map[string]string{"error": "idempotency key was reused with a different lesson step"})
+			return
+		}
 		if errors.Is(err, learning.ErrStudentNotFound) {
 			writeJSON(w, http.StatusNotFound, map[string]string{"error": "student is not configured"})
 			return
@@ -3313,11 +3470,16 @@ func (s *Server) handleLearningEvent(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
 		return
 	}
+	event.IdempotencyKey = requestIdempotencyKey(r, event.ID)
 	if !s.requirePupilSession(w, r, event.StudentID) {
 		return
 	}
 	saved, err := s.repo.RecordLearningEvent(r.Context(), event)
 	if err != nil {
+		if errors.Is(err, learning.ErrIdempotencyConflict) {
+			writeJSON(w, http.StatusConflict, map[string]string{"error": "idempotency key was reused with a different learning event"})
+			return
+		}
 		if errors.Is(err, learning.ErrStudentNotFound) {
 			writeJSON(w, http.StatusNotFound, map[string]string{"error": "student is not configured"})
 			return
@@ -3339,12 +3501,17 @@ func (s *Server) handleAttempt(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
 		return
 	}
+	in.IdempotencyKey = requestIdempotencyKey(r, in.ID)
 	if !s.requirePupilSession(w, r, in.StudentID) {
 		return
 	}
 	result := learning.ScoreAttempt(in)
 	adjusted, err := s.repo.RecordAttempt(r.Context(), in, result)
 	if err != nil {
+		if errors.Is(err, learning.ErrIdempotencyConflict) {
+			writeJSON(w, http.StatusConflict, map[string]string{"error": "idempotency key was reused with a different attempt"})
+			return
+		}
 		slog.Warn("failed to persist attempt", "error", err)
 		if errors.Is(err, learning.ErrStudentNotFound) {
 			writeJSON(w, http.StatusNotFound, map[string]string{"error": "student is not configured"})
@@ -3358,12 +3525,24 @@ func (s *Server) handleAttempt(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *Server) nextDecision(ctx context.Context, studentID string) (learning.NextActivityDecision, error) {
-	activities, err := s.repo.ListActivities(ctx)
+	var activities []learning.ActivityConfig
+	var objectives []learning.Objective
+	var err error
+	if scoped, ok := s.repo.(adaptiveCatalogueRepository); ok {
+		activities, err = scoped.ListAdaptiveActivities(ctx, studentID)
+		if err == nil {
+			objectives, err = scoped.ListAdaptiveObjectives(ctx, studentID)
+		}
+	} else {
+		activities, err = s.repo.ListActivities(ctx)
+		if err == nil {
+			objectives, err = s.repo.ListObjectives(ctx)
+		}
+	}
 	if err != nil {
 		return learning.NextActivityDecision{}, err
 	}
 	worlds, _ := s.repo.ListWorlds(ctx)
-	objectives, _ := s.repo.ListObjectives(ctx)
 	mastery, _ := s.repo.ListMastery(ctx, studentID)
 	warmUps, _ := s.repo.WarmUpItems(ctx, studentID, 10)
 	attempts, _ := s.repo.RecentAttempts(ctx, studentID, 20)
@@ -3381,7 +3560,16 @@ func (s *Server) nextDecision(ctx context.Context, studentID string) (learning.N
 		return learning.NextActivityDecision{}, errors.New("no configured activity available")
 	}
 	activity := choice.Activity
-	objective, _, _ := s.repo.GetObjective(ctx, activity.ObjectiveID)
+	objective := learning.Objective{}
+	for _, candidate := range objectives {
+		if candidate.ID == activity.ObjectiveID {
+			objective = candidate
+			break
+		}
+	}
+	if objective.ID == "" {
+		objective, _, _ = s.repo.GetObjective(ctx, activity.ObjectiveID)
+	}
 	world := worldForActivity(worlds, activity)
 	interaction := mapString(activity.Interaction, "type", activity.TemplateID)
 	if interaction == "" {
@@ -4133,9 +4321,6 @@ func chooseAdaptiveActivity(
 		targetYear = preferredYear
 	}
 	for objectiveID, options := range liveByObjective {
-		if found {
-			break
-		}
 		objective := objectiveByID[objectiveID]
 		if preferredYear > 0 && objective.Year > 0 && objective.Year != preferredYear {
 			continue

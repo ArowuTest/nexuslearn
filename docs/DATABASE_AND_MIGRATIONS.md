@@ -170,6 +170,12 @@ The thirtieth migration records the child's response mode on attempts and
 mastery history, keeping motor/access choice separate from the configured
 curriculum interaction format.
 
+The thirty-third migration adds durable, ordered subject mock assessments. A
+mock records its learner, authorised creator role, subject/year range,
+revision/stretch policy, accessibility intent and runtime-approved question
+items. It is idempotent at the application boundary and indexed for learner,
+school and question lookups.
+
 ## Applying Migrations
 
 The API includes an explicit migration command. For paid Render plans, this can be run as a one-off job. Render free web services do not support one-off jobs, so the current prototype path is `AUTO_MIGRATE=true`.

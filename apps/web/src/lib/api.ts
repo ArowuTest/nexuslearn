@@ -210,6 +210,13 @@ export type WorldConfig = {
   enabled: boolean;
 };
 
+export type WorldState = {
+  student_id: string;
+  world_key: string;
+  state: Record<string, unknown>;
+  updated_at: string;
+};
+
 export type StudentProfile = {
   student_id: string;
   display_name: string;
@@ -268,6 +275,49 @@ export type MissionConfig = {
     rationale: string[];
   };
   runtime_adaptations: RuntimeAdaptations;
+};
+
+export type MockAssessment = {
+  id: string;
+  student_external_ref: string;
+  student_display_name?: string;
+  school_urn?: string;
+  created_by_role: "pupil" | "parent" | "teacher" | "school_admin" | "admin";
+  created_by: string;
+  subject: string;
+  year_group: number;
+  year_from: number;
+  year_to: number;
+  title: string;
+  status: "ready" | "in_progress" | "completed" | "cancelled";
+  question_count: number;
+  duration_minutes: number;
+  include_revision: boolean;
+  include_stretch: boolean;
+  accessibility: Record<string, unknown>;
+  items: Array<{
+    position: number;
+    question_id: string;
+    objective_id: string;
+    activity_id?: string;
+    selection_reason?: string;
+  }>;
+  created_at?: string;
+  updated_at?: string;
+  completed_at?: string;
+};
+
+export type MockAssessmentRequest = {
+  subject: "English" | "Mathematics" | "Science";
+  year_group: number;
+  topics?: string[];
+  question_count: number;
+  duration_minutes?: number;
+  include_revision: boolean;
+  include_stretch: boolean;
+  title?: string;
+  accessibility?: Record<string, unknown>;
+  student_external_ref?: string;
 };
 
 export type AccessRequest = {
@@ -471,6 +521,12 @@ export async function getWorlds(): Promise<WorldConfig[] | null> {
   return data?.worlds ?? null;
 }
 
+export async function getWorldState(studentId: string, worldKey?: string): Promise<WorldState | null> {
+  if (!studentId) return null;
+  const params = worldKey ? `?worldKey=${encodeURIComponent(worldKey)}` : "";
+  return getJSON<WorldState>(`/v1/students/${encodeURIComponent(studentId)}/world${params}`, { headers: pupilSessionHeaders(studentId) });
+}
+
 export async function getRuntimeFlags(): Promise<RuntimeFlags | null> {
   return getJSON<RuntimeFlags>("/v1/runtime/flags");
 }
@@ -520,11 +576,48 @@ export async function getMissionConfig(studentId = DEFAULT_STUDENT_ID, activityI
   return getJSON<MissionConfig>(`/v1/learning/mission?${params.toString()}`, { headers: pupilSessionHeaders(studentId) });
 }
 
+export async function createPupilMockAssessment(studentId: string, request: MockAssessmentRequest): Promise<MockAssessment> {
+  return createMockAssessment(`/v1/students/${encodeURIComponent(studentId)}/mock-assessments`, request, pupilSessionHeaders(studentId));
+}
+
+export async function createParentMockAssessment(studentId: string, request: MockAssessmentRequest): Promise<MockAssessment> {
+  return createMockAssessment(`/v1/parent/children/${encodeURIComponent(studentId)}/mock-assessments`, request, accountSessionHeaders(["parent"]));
+}
+
+export async function createSchoolMockAssessment(studentId: string, request: MockAssessmentRequest): Promise<MockAssessment> {
+  return createMockAssessment("/v1/school/mock-assessments", { ...request, student_external_ref: studentId }, accountSessionHeaders(["school_admin", "teacher"]));
+}
+
+export async function getPupilMockAssessments(studentId: string): Promise<MockAssessment[]> {
+  if (!API) return [];
+  const res = await fetch(`${API}/v1/students/${encodeURIComponent(studentId)}/mock-assessments`, {
+    headers: pupilSessionHeaders(studentId),
+    cache: "no-store",
+  });
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(body.error ?? "Could not load mock assessments.");
+  return (body.mock_assessments ?? []) as MockAssessment[];
+}
+
+async function createMockAssessment(path: string, request: MockAssessmentRequest, authHeaders: Record<string, string>): Promise<MockAssessment> {
+  if (!API) throw new Error("The NexusLearn API is not configured yet.");
+  const idempotencyKey = typeof crypto !== "undefined" && typeof crypto.randomUUID === "function" ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`;
+  const res = await fetch(`${API}${path}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "Idempotency-Key": idempotencyKey, ...authHeaders },
+    body: JSON.stringify({ ...request, idempotency_key: idempotencyKey }),
+  });
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(body.error ?? "Could not generate the mock assessment.");
+  return body as MockAssessment;
+}
+
 export async function submitAccessRequest(request: AccessRequest): Promise<AccessRequest> {
   if (!API) throw new Error("The NexusLearn API is not configured yet.");
+  const idempotencyKey = request.id || (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function" ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`);
   const res = await fetch(`${API}/v1/access-requests`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", "Idempotency-Key": idempotencyKey },
     body: JSON.stringify(request),
   });
   const body = await res.json().catch(() => ({}));

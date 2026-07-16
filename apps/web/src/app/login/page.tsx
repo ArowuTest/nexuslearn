@@ -131,7 +131,10 @@ function PupilLoginContent() {
                 The platform checks the login code and picture sequence, then routes the child to their configured mission.
               </p>
               {result ? (
-                <Link href={launchURL} className="btn-pop bg-[#ffbf45] px-6 py-4 text-sm text-[#17233f]">Start mission</Link>
+                <div className="flex flex-wrap gap-2">
+                  <Link href={launchURL} className="btn-pop bg-[#ffbf45] px-6 py-4 text-sm text-[#17233f]">Start mission</Link>
+                  <Link href={`/play/mock?studentId=${encodeURIComponent(result.student.external_ref)}`} className="btn-pop bg-[#55cbd3] px-6 py-4 text-sm text-[#17233f]">Build a subject mock</Link>
+                </div>
               ) : (
                 <button onClick={submit} disabled={!studentRef || !loginCode || saving} className="btn-pop bg-[#ffbf45] px-6 py-4 text-sm disabled:opacity-50">
                   {saving ? "Checking" : "Log in"}

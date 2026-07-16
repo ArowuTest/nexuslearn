@@ -3,18 +3,20 @@ package learning
 import "strings"
 
 type Attempt struct {
-	StudentID    string `json:"student_id"`
-	ObjectiveID  string `json:"objective_id"`
-	QuestionID   string `json:"question_id"`
-	Format       string `json:"format"`
-	ResponseMode string `json:"response_mode"`
-	Given        int    `json:"given"`
-	Expected     int    `json:"expected"`
-	GivenText    string `json:"given_text"`
-	ExpectedText string `json:"expected_text"`
-	MS           int    `json:"ms"`
-	HintUsed     bool   `json:"hint_used"`
-	Confidence   int    `json:"confidence"`
+	ID             string `json:"id,omitempty"`
+	IdempotencyKey string `json:"-"`
+	StudentID      string `json:"student_id"`
+	ObjectiveID    string `json:"objective_id"`
+	QuestionID     string `json:"question_id"`
+	Format         string `json:"format"`
+	ResponseMode   string `json:"response_mode"`
+	Given          int    `json:"given"`
+	Expected       int    `json:"expected"`
+	GivenText      string `json:"given_text"`
+	ExpectedText   string `json:"expected_text"`
+	MS             int    `json:"ms"`
+	HintUsed       bool   `json:"hint_used"`
+	Confidence     int    `json:"confidence"`
 }
 
 type AttemptResult struct {

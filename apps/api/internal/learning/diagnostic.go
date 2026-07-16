@@ -2,6 +2,7 @@ package learning
 
 import (
 	"context"
+	"encoding/json"
 	"errors"
 	"strings"
 	"time"
@@ -102,6 +103,16 @@ func (r *PostgresRepository) CreateDiagnosticBaseline(ctx context.Context, basel
 		return baseline, err
 	}
 	defer tx.Rollback(ctx)
+	replay, err := beginIdempotency(ctx, tx, "learning.diagnostic_baseline", studentUUID, baseline.IdempotencyKey, baseline)
+	if err != nil {
+		return baseline, err
+	}
+	if replay.Found {
+		if err := json.Unmarshal(replay.Response, &baseline); err != nil {
+			return baseline, err
+		}
+		return baseline, nil
+	}
 	if _, err := tx.Exec(ctx, `
 		UPDATE diagnostic_baselines
 		SET status='cancelled', updated_at=now()
@@ -120,18 +131,18 @@ func (r *PostgresRepository) CreateDiagnosticBaseline(ctx context.Context, basel
 	`, studentUUID, baseline.YearGroup, baseline.CreatedBy).Scan(&baseline.ID, &startedAt); err != nil {
 		return baseline, err
 	}
-	for index, item := range baseline.Items {
+	objectiveIDs := make([]string, 0, len(baseline.Items))
+	for _, item := range baseline.Items {
 		if strings.TrimSpace(item.ObjectiveID) == "" {
 			return baseline, invalidConfig("diagnostic objective_id is required")
 		}
-		if _, err := tx.Exec(ctx, `
-			INSERT INTO diagnostic_baseline_items (baseline_id, objective_id, position)
-			VALUES ($1,$2,$3)
-		`, baseline.ID, item.ObjectiveID, index+1); err != nil {
-			return baseline, err
-		}
+		objectiveIDs = append(objectiveIDs, item.ObjectiveID)
 	}
-	if err := tx.Commit(ctx); err != nil {
+	if _, err := tx.Exec(ctx, `
+		INSERT INTO diagnostic_baseline_items (baseline_id, objective_id, position)
+		SELECT $1, objective_id, position::int
+		FROM unnest($2::text[]) WITH ORDINALITY AS items(objective_id, position)
+	`, baseline.ID, objectiveIDs); err != nil {
 		return baseline, err
 	}
 	baseline.Status = "in_progress"
@@ -144,10 +155,16 @@ func (r *PostgresRepository) CreateDiagnosticBaseline(ctx context.Context, basel
 		baseline.Items[index].Status = "planned"
 		baseline.Items[index].ResponseFormats = []string{}
 	}
+	if err := completeIdempotency(ctx, tx, "learning.diagnostic_baseline", studentUUID, baseline.IdempotencyKey, baseline); err != nil {
+		return baseline, err
+	}
+	if err := tx.Commit(ctx); err != nil {
+		return baseline, err
+	}
 	return baseline, nil
 }
 
-func (r *PostgresRepository) advanceDiagnosticBaseline(ctx context.Context, studentUUID string, objectiveID string, responseFormat string, correct bool) error {
+func (r *PostgresRepository) advanceDiagnosticBaseline(ctx context.Context, exec queryExecutor, studentUUID string, objectiveID string, responseFormat string, correct bool) error {
 	if responseFormat == "" {
 		responseFormat = "unknown"
 	}
@@ -155,7 +172,7 @@ func (r *PostgresRepository) advanceDiagnosticBaseline(ctx context.Context, stud
 	if correct {
 		correctIncrement = 1
 	}
-	_, err := r.db.Exec(ctx, `
+	_, err := exec.Exec(ctx, `
 		WITH target AS (
 			SELECT i.baseline_id, i.objective_id,
 			       i.attempt_count + 1 AS next_attempt_count,
@@ -171,6 +188,7 @@ func (r *PostgresRepository) advanceDiagnosticBaseline(ctx context.Context, stud
 			  AND i.objective_id=$2
 			  AND i.status='planned'
 			LIMIT 1
+			FOR UPDATE
 		), updated AS (
 			UPDATE diagnostic_baseline_items i
 			SET attempt_count=t.next_attempt_count,

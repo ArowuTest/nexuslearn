@@ -84,6 +84,22 @@ func (r *PostgresRepository) StageContentRelease(ctx context.Context, manifest C
 	if manifest.Metadata == nil {
 		manifest.Metadata = map[string]any{}
 	}
+	var existingID string
+	var existingStatus string
+	existingErr := r.db.QueryRow(ctx, `
+		SELECT id, status
+		FROM content_releases
+		WHERE channel=$1 AND manifest_sha256=$2
+		LIMIT 1
+	`, manifest.Channel, manifest.ManifestSHA256).Scan(&existingID, &existingStatus)
+	if existingErr == nil {
+		// The manifest digest is the business idempotency key. A caller may
+		// generate a new transport ID while retrying the same release.
+		return r.contentRelease(ctx, existingID)
+	}
+	if !errors.Is(existingErr, pgx.ErrNoRows) {
+		return manifest, existingErr
+	}
 	var createdAt, updatedAt time.Time
 	err := r.db.QueryRow(ctx, `
 		INSERT INTO content_releases (
@@ -209,6 +225,9 @@ func (r *PostgresRepository) ApplyContentRelease(ctx context.Context, releaseID 
 	}
 	if err != nil {
 		return ContentReleaseManifest{}, err
+	}
+	if manifest.Status == "applied" {
+		return manifest, nil
 	}
 	if manifest.Status != "staged" {
 		return ContentReleaseManifest{}, ErrContentReleaseConflict

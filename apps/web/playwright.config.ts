@@ -2,6 +2,7 @@ import { defineConfig, devices } from "@playwright/test";
 
 const port = process.env.PLAYWRIGHT_PORT ?? "3000";
 const baseURL = `http://127.0.0.1:${port}`;
+const executablePath = process.env.PLAYWRIGHT_EXECUTABLE_PATH;
 
 export default defineConfig({
   testDir: "./tests/e2e",
@@ -15,6 +16,7 @@ export default defineConfig({
     baseURL,
     trace: "retain-on-failure",
     screenshot: "only-on-failure",
+    launchOptions: executablePath ? { executablePath } : undefined,
   },
   projects: [
     { name: "desktop-chromium", use: { ...devices["Desktop Chrome"] } },

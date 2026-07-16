@@ -79,6 +79,7 @@ type RecentAttempt struct {
 
 type DiagnosticBaseline struct {
 	ID                 string                   `json:"id"`
+	IdempotencyKey     string                   `json:"-"`
 	StudentID          string                   `json:"student_id"`
 	YearGroup          int                      `json:"year_group"`
 	Status             string                   `json:"status"`
@@ -131,24 +132,26 @@ type LearningSession struct {
 }
 
 type LessonStepAttempt struct {
-	ID          string   `json:"id,omitempty"`
-	StudentID   string   `json:"student_id"`
-	ActivityID  string   `json:"activity_id"`
-	ObjectiveID string   `json:"objective_id"`
-	StepID      string   `json:"step_id"`
-	StepKind    string   `json:"step_kind"`
-	Status      string   `json:"status"`
-	DurationMS  int      `json:"duration_ms"`
-	SupportUsed []string `json:"support_used"`
-	RecordedAt  string   `json:"recorded_at,omitempty"`
+	ID             string   `json:"id,omitempty"`
+	IdempotencyKey string   `json:"-"`
+	StudentID      string   `json:"student_id"`
+	ActivityID     string   `json:"activity_id"`
+	ObjectiveID    string   `json:"objective_id"`
+	StepID         string   `json:"step_id"`
+	StepKind       string   `json:"step_kind"`
+	Status         string   `json:"status"`
+	DurationMS     int      `json:"duration_ms"`
+	SupportUsed    []string `json:"support_used"`
+	RecordedAt     string   `json:"recorded_at,omitempty"`
 }
 
 type LearningEvent struct {
-	ID        string         `json:"id,omitempty"`
-	StudentID string         `json:"student_id"`
-	EventType string         `json:"event_type"`
-	Payload   map[string]any `json:"payload"`
-	CreatedAt string         `json:"created_at,omitempty"`
+	ID             string         `json:"id,omitempty"`
+	IdempotencyKey string         `json:"-"`
+	StudentID      string         `json:"student_id"`
+	EventType      string         `json:"event_type"`
+	Payload        map[string]any `json:"payload"`
+	CreatedAt      string         `json:"created_at,omitempty"`
 }
 
 type AssessmentBlueprint struct {
@@ -159,8 +162,46 @@ type AssessmentBlueprint struct {
 	Rationale        []string `json:"rationale"`
 }
 
+// MockAssessment is a durable, role-scoped subject assessment assembled from
+// runtime-approved question variants. It deliberately remains separate from
+// the adaptive next-activity decision so a practice mock can be resumed and
+// reported without changing the learner's route by accident.
+type MockAssessment struct {
+	ID                 string               `json:"id"`
+	IdempotencyKey     string               `json:"-"`
+	StudentExternalRef string               `json:"student_external_ref"`
+	StudentDisplayName string               `json:"student_display_name,omitempty"`
+	SchoolURN          string               `json:"school_urn,omitempty"`
+	CreatedByRole      string               `json:"created_by_role"`
+	CreatedBy          string               `json:"created_by"`
+	Subject            string               `json:"subject"`
+	YearGroup          int                  `json:"year_group"`
+	YearFrom           int                  `json:"year_from"`
+	YearTo             int                  `json:"year_to"`
+	Title              string               `json:"title"`
+	Status             string               `json:"status"`
+	QuestionCount      int                  `json:"question_count"`
+	DurationMinutes    int                  `json:"duration_minutes"`
+	IncludeRevision    bool                 `json:"include_revision"`
+	IncludeStretch     bool                 `json:"include_stretch"`
+	Accessibility      map[string]any       `json:"accessibility"`
+	Items              []MockAssessmentItem `json:"items"`
+	CreatedAt          string               `json:"created_at,omitempty"`
+	UpdatedAt          string               `json:"updated_at,omitempty"`
+	CompletedAt        string               `json:"completed_at,omitempty"`
+}
+
+type MockAssessmentItem struct {
+	Position        int    `json:"position"`
+	QuestionID      string `json:"question_id"`
+	ObjectiveID     string `json:"objective_id"`
+	ActivityID      string `json:"activity_id,omitempty"`
+	SelectionReason string `json:"selection_reason,omitempty"`
+}
+
 type Assignment struct {
 	ID                 string `json:"id"`
+	IdempotencyKey     string `json:"-"`
 	SchoolURN          string `json:"school_urn"`
 	StudentExternalRef string `json:"student_external_ref"`
 	StudentDisplayName string `json:"student_display_name,omitempty"`
@@ -177,6 +218,7 @@ type Assignment struct {
 
 type TeacherEvidenceRecord struct {
 	ID                 string `json:"id"`
+	IdempotencyKey     string `json:"-"`
 	SchoolURN          string `json:"school_urn"`
 	StudentExternalRef string `json:"student_external_ref"`
 	StudentDisplayName string `json:"student_display_name,omitempty"`
@@ -191,6 +233,7 @@ type TeacherEvidenceRecord struct {
 
 type InterventionPlan struct {
 	ID                 string `json:"id"`
+	IdempotencyKey     string `json:"-"`
 	SchoolURN          string `json:"school_urn"`
 	StudentExternalRef string `json:"student_external_ref"`
 	StudentDisplayName string `json:"student_display_name,omitempty"`
@@ -208,6 +251,7 @@ type InterventionPlan struct {
 
 type InterventionReview struct {
 	ID                 string `json:"id,omitempty"`
+	IdempotencyKey     string `json:"-"`
 	InterventionID     string `json:"intervention_id"`
 	SchoolURN          string `json:"school_urn,omitempty"`
 	StudentExternalRef string `json:"student_external_ref,omitempty"`
@@ -494,6 +538,7 @@ type ParentInvitation struct {
 
 type AccessRequestConfig struct {
 	ID                 string   `json:"id"`
+	IdempotencyKey     string   `json:"-"`
 	RequestType        string   `json:"request_type"`
 	OrganisationName   string   `json:"organisation_name"`
 	ContactName        string   `json:"contact_name"`
