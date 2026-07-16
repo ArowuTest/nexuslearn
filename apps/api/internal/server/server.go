@@ -4103,15 +4103,41 @@ func chooseAdaptiveActivity(
 
 	bestScore := 101
 	targetYear := preferredYear
-	stretchAvailable := learning.CanStretchToYear(preferredYear, objectives, mastery)
-	if stretchAvailable {
-		targetYear = preferredYear + 1
-	}
+	stretchAvailable := false
+	stretchSubjects := learning.StretchableSubjects(preferredYear, objectives, mastery)
 	var target learning.ActivityConfig
 	found := false
+	if preferredYear > 0 && preferredYear < 7 {
+		for objectiveID, options := range liveByObjective {
+			objective := objectiveByID[objectiveID]
+			if objective.Year != preferredYear+1 || !stretchSubjects[objective.Subject] {
+				continue
+			}
+			score := 0
+			if current, ok := masteryByObjective[objectiveID]; ok {
+				score = current.Score
+			}
+			if score < bestScore {
+				bestScore = score
+				target = options[0]
+				found = true
+			}
+		}
+		if found {
+			targetYear = preferredYear + 1
+			stretchAvailable = true
+		}
+	}
+	if !found {
+		bestScore = 101
+		targetYear = preferredYear
+	}
 	for objectiveID, options := range liveByObjective {
+		if found {
+			break
+		}
 		objective := objectiveByID[objectiveID]
-		if targetYear > 0 && objective.Year > 0 && objective.Year != targetYear {
+		if preferredYear > 0 && objective.Year > 0 && objective.Year != preferredYear {
 			continue
 		}
 		score := 0
@@ -4122,29 +4148,6 @@ func chooseAdaptiveActivity(
 			bestScore = score
 			target = options[0]
 			found = true
-		}
-	}
-	if !found {
-		if stretchAvailable {
-			for objectiveID, options := range liveByObjective {
-				objective := objectiveByID[objectiveID]
-				if preferredYear > 0 && objective.Year > 0 && objective.Year != preferredYear {
-					continue
-				}
-				score := 0
-				if current, ok := masteryByObjective[objectiveID]; ok {
-					score = current.Score
-				}
-				if score < bestScore {
-					bestScore = score
-					target = options[0]
-					found = true
-				}
-			}
-			if found {
-				stretchAvailable = false
-				targetYear = preferredYear
-			}
 		}
 	}
 	if !found {
@@ -4180,7 +4183,7 @@ func chooseAdaptiveActivity(
 			Activity: target,
 			Explanation: func() string {
 				if stretchAvailable && targetYear > preferredYear {
-					return "Selected as a next-year stretch to establish the learner's first trustworthy evidence in the new year; spaced review remains available when due."
+					return "Selected for the next-year " + targetObjective.Subject + " route to establish the learner's first trustworthy evidence in the new year; earlier-year spaced review remains available when due."
 				}
 				return "Selected to establish the learner's first trustworthy evidence for this objective."
 			}(),
@@ -4191,7 +4194,7 @@ func chooseAdaptiveActivity(
 		Activity: target,
 		Explanation: func() string {
 			if stretchAvailable && targetYear > preferredYear {
-				return "Selected as a next-year stretch because current-year evidence is secure across the active subjects; spaced review remains available when due."
+				return "Selected for the next-year " + targetObjective.Subject + " route because every required current-year objective in this subject is secure; earlier-year spaced review remains available when due."
 			}
 			return "Selected because it is the learner's lowest-evidence available objective in the current curriculum year."
 		}(),

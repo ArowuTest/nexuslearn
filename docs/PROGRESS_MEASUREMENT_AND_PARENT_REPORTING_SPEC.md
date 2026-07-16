@@ -7,7 +7,7 @@ Scope: Years 1-7 English, Mathematics and Science MVP
 
 A learner's school year is a starting point, not a ceiling. NexusLearn must
 show what has actually been sampled, what is becoming secure, what needs more
-practice and where a learner is ready for a carefully governed stretch into
+practice and which subject routes are ready for a carefully governed move into
 the next year's curriculum.
 
 The report must be useful to a parent or teacher without requiring knowledge of
@@ -17,8 +17,7 @@ the adaptive engine. It should answer:
 - Which subject, strand or topic is becoming secure?
 - Which sampled topics need another supported route?
 - Which topics have not been sampled yet?
-- Is the learner broadly on the current-year route, or is a next-year stretch
-  available in addition to spaced review?
+- Which subjects can open a next-year route in addition to spaced review?
 - What should the adult do next?
 
 ## Evidence model
@@ -33,17 +32,21 @@ The backend is the source of truth. A progress signal may use:
 - evidence freshness;
 - teacher evidence and active intervention context.
 
-The report must not claim mastery from one correct answer. Current stretch
-eligibility requires, per active current-year subject:
+The report must not claim mastery from one correct answer. A subject's
+next-year route eligibility requires every required current-year objective in
+that subject:
 
-1. At least the smaller of two current-year objectives to have secure evidence.
-2. Each secure objective to meet its configured secure threshold.
-3. At least three evidence points and two response formats.
-4. Evidence confidence to be supported or strong.
-5. Evidence not to be stale.
+1. Secure evidence meeting its configured secure threshold.
+2. At least three evidence points and two response formats.
+3. Evidence confidence to be supported or strong.
+4. Evidence not to be stale.
 
-This is a stretch gate, not a permanent year-group promotion. Spaced reviews,
-teacher assignments and interventions continue to take priority when due.
+This opens the eligible subject's next-year working route automatically; it
+does not change the learner's recorded school year or permanently reclassify
+them. A gap in one subject must not block secure progress in another subject.
+Spaced reviews, teacher assignments and interventions continue to take
+priority when due, so earlier-year knowledge remains active while the learner
+studies ahead.
 
 ## Status semantics
 
@@ -67,9 +70,9 @@ sample counts are more important than a pseudo-precise percentage.
 `GET /v1/students/{studentId}/progress` is pupil-session protected and returns:
 
 - recorded year group;
-- current working year;
-- next stretch year when eligible;
-- stretch eligibility and plain-English summary;
+- current working year and route status for each subject;
+- next route year when a subject is eligible;
+- subject-level route eligibility and plain-English summary;
 - subject reports with current-year status and sampled counts;
 - subject-by-year rows for the Years 1-7 ladder;
 - strengths and practice topics with subject, year, strand and topic context.
@@ -84,7 +87,7 @@ The report should lead with meaning, not internal telemetry:
 
 - “Sam is secure with…”
 - “Next practice: …”
-- “Year 4 stretch is open in addition to spaced review.”
+- “Year 4 Mathematics is open in addition to spaced review.”
 - “We have not sampled this topic yet.”
 
 Avoid:
@@ -114,9 +117,10 @@ The feature is complete when:
 
 - all three MVP subjects can appear in the report;
 - each subject can show multiple year rows with sampled and unsampled states;
-- a Year 3 learner with secure, varied, recent evidence across English,
-  Mathematics and Science receives a Year 4 stretch route;
-- one weak subject keeps the learner on the Year 3 core route;
+- a Year 3 learner with secure, varied, recent evidence across every required
+  Mathematics objective receives a Year 4 Mathematics route even if English
+  remains on the Year 3 support route;
+- a weak subject keeps only that subject on the Year 3 core route;
 - due reviews, teacher assignments and active interventions still override the
   stretch choice;
 - unsampled objectives never appear in the practice list as failures;

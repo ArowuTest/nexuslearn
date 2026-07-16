@@ -24,6 +24,9 @@ type ProgressReport struct {
 type ProgressSubject struct {
 	Subject           string          `json:"subject"`
 	CurrentYear       int             `json:"current_year"`
+	WorkingYear       int             `json:"working_year"`
+	StretchYear       int             `json:"stretch_year"`
+	StretchAllowed    bool            `json:"stretch_allowed"`
 	Status            string          `json:"status"`
 	AverageScore      int             `json:"average_score"`
 	SampledObjectives int             `json:"sampled_objectives"`
@@ -124,7 +127,14 @@ func BuildProgressReport(studentID string, yearGroup int, objectives []Objective
 		subject.Practice = append(subject.Practice, bucket.practice...)
 	}
 
+	eligibleSubjects := StretchableSubjects(yearGroup, objectives, mastery)
 	for subjectName, subject := range progressSubjects {
+		subject.WorkingYear = yearGroup
+		subject.StretchAllowed = eligibleSubjects[subjectName]
+		if subject.StretchAllowed && yearGroup < 7 {
+			subject.WorkingYear = yearGroup + 1
+			subject.StretchYear = yearGroup + 1
+		}
 		for _, year := range bySubject[subjectName] {
 			subject.Years = append(subject.Years, year)
 		}
@@ -142,7 +152,7 @@ func BuildProgressReport(studentID string, yearGroup int, objectives []Objective
 	}
 	sort.Slice(subjects, func(i, j int) bool { return subjects[i].Subject < subjects[j].Subject })
 	strengths, practice := progressHighlights(objectives, masteryByID, yearGroup)
-	stretchAllowed := CanStretchToYear(yearGroup, objectives, mastery)
+	stretchAllowed := len(eligibleSubjects) > 0
 	workingYear := yearGroup
 	stretchYear := 0
 	if stretchAllowed && yearGroup < 7 {
@@ -152,7 +162,11 @@ func BuildProgressReport(studentID string, yearGroup int, objectives []Objective
 
 	summary := "Keep building evidence across the current year."
 	if stretchAllowed {
-		summary = "Current-year evidence is secure across the active subjects. The next-year pathway is now available alongside spaced review."
+		if CanStretchToYear(yearGroup, objectives, mastery) {
+			summary = "Every required current-year objective is secure in each active subject. All next-year subject routes are now available alongside spaced review."
+		} else {
+			summary = "Some subject routes are ready for the next year. Other subjects remain on their supported current-year routes, with spaced review keeping earlier skills active."
+		}
 	} else if len(strengths) > 0 {
 		summary = "Strengths are visible. The next focus is the smallest set of skills that will make progress more secure."
 	}
@@ -163,13 +177,14 @@ func BuildProgressReport(studentID string, yearGroup int, objectives []Objective
 	}
 }
 
-// CanStretchToYear is intentionally conservative: every active subject in
-// the learner's current year needs at least the smaller of two secure,
-// multi-format evidence points. This supports a next-year stretch without
-// confusing one lucky answer with readiness.
-func CanStretchToYear(yearGroup int, objectives []Objective, mastery []StudentMastery) bool {
+// StretchableSubjects returns the current-year subjects whose every required
+// objective has recent, varied, secure evidence. Progression is intentionally
+// subject-specific: a gap in English must not block secure Mathematics from
+// opening a next-year route. Earlier-year spaced revision remains eligible.
+func StretchableSubjects(yearGroup int, objectives []Objective, mastery []StudentMastery) map[string]bool {
+	result := map[string]bool{}
 	if yearGroup < 1 || yearGroup >= 7 {
-		return false
+		return result
 	}
 	masteryByID := map[string]StudentMastery{}
 	for _, item := range mastery {
@@ -191,19 +206,38 @@ func CanStretchToYear(yearGroup int, objectives []Objective, mastery []StudentMa
 			gate.secure++
 		}
 	}
-	if len(gates) == 0 {
+	for subject, gate := range gates {
+		if gate.total > 0 && gate.secure == gate.total {
+			result[subject] = true
+		}
+	}
+	return result
+}
+
+// CanStretchSubjectToYear reports whether one subject can move to the next
+// working year without waiting for unrelated subjects to catch up.
+func CanStretchSubjectToYear(yearGroup int, subject string, objectives []Objective, mastery []StudentMastery) bool {
+	return StretchableSubjects(yearGroup, objectives, mastery)[subject]
+}
+
+// CanStretchToYear is retained as an aggregate compatibility helper. It is
+// true only when every active current-year subject is ready; runtime routing
+// uses StretchableSubjects so secure subjects can progress independently.
+func CanStretchToYear(yearGroup int, objectives []Objective, mastery []StudentMastery) bool {
+	if yearGroup < 1 || yearGroup >= 7 {
 		return false
 	}
-	for _, gate := range gates {
-		required := gate.total
-		if required > 2 {
-			required = 2
-		}
-		if gate.secure < required {
-			return false
+	activeSubjects := map[string]bool{}
+	for _, objective := range objectives {
+		if objective.Year == yearGroup {
+			activeSubjects[objective.Subject] = true
 		}
 	}
-	return true
+	eligibleSubjects := StretchableSubjects(yearGroup, objectives, mastery)
+	if len(activeSubjects) == 0 {
+		return false
+	}
+	return len(activeSubjects) == len(eligibleSubjects)
 }
 
 func secureEvidence(objective Objective, current StudentMastery) bool {

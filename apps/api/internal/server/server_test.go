@@ -854,8 +854,55 @@ func TestChooseAdaptiveActivityOpensNextYearAfterCrossSubjectEvidence(t *testing
 		{ObjectiveID: "sc-y3", Score: 93, EvidenceCount: 3, FormatCount: 2, EvidenceConfidence: "supported", EvidenceFreshness: "current"},
 	}
 	choice, ok := chooseAdaptiveActivity(activities, objectives, mastery, nil, nil, nil, nil, nil, 3)
-	if !ok || (choice.Activity.ID != "en-y4" && choice.Activity.ID != "ma-y4") || !strings.Contains(choice.Explanation, "next-year stretch") {
+	if !ok || (choice.Activity.ID != "en-y4" && choice.Activity.ID != "ma-y4") || !strings.Contains(choice.Explanation, "next-year") {
 		t.Fatalf("expected evidence-gated next-year activity, got %#v", choice)
+	}
+}
+
+func TestChooseAdaptiveActivityKeepsEarlierYearReviewAfterProgression(t *testing.T) {
+	activities := []learning.ActivityConfig{
+		{ID: "y3-review", ObjectiveID: "en-y3", Status: "published"},
+		{ID: "y4-learning", ObjectiveID: "en-y4", Status: "published"},
+	}
+	objectives := []learning.Objective{
+		{ID: "en-y3", Year: 3, Subject: "English", Mastery: learning.MasteryRule{Expected: 80, Secure: 90}},
+		{ID: "ma-y3", Year: 3, Subject: "Mathematics", Mastery: learning.MasteryRule{Expected: 80, Secure: 90}},
+		{ID: "sc-y3", Year: 3, Subject: "Science", Mastery: learning.MasteryRule{Expected: 80, Secure: 90}},
+		{ID: "en-y4", Year: 4, Subject: "English", Mastery: learning.MasteryRule{Expected: 80, Secure: 90}},
+	}
+	mastery := []learning.StudentMastery{
+		{ObjectiveID: "en-y3", Score: 95, EvidenceCount: 3, FormatCount: 2, EvidenceConfidence: "strong", EvidenceFreshness: "current"},
+		{ObjectiveID: "ma-y3", Score: 94, EvidenceCount: 3, FormatCount: 2, EvidenceConfidence: "supported", EvidenceFreshness: "current"},
+		{ObjectiveID: "sc-y3", Score: 93, EvidenceCount: 3, FormatCount: 2, EvidenceConfidence: "supported", EvidenceFreshness: "current"},
+	}
+	choice, ok := chooseAdaptiveActivity(
+		activities, objectives, mastery,
+		[]learning.WarmUpItem{{ObjectiveID: "en-y3"}},
+		nil, nil, nil, nil, 3,
+	)
+	if !ok || choice.Activity.ID != "y3-review" || !choice.Review {
+		t.Fatalf("due Year 3 review must take priority after Year 4 progression, got %#v", choice)
+	}
+}
+
+func TestChooseAdaptiveActivityProgressesSecureSubjectIndependently(t *testing.T) {
+	activities := []learning.ActivityConfig{
+		{ID: "en-y4", ObjectiveID: "en-y4", Status: "published"},
+		{ID: "ma-y4", ObjectiveID: "ma-y4", Status: "published"},
+		{ID: "en-y3", ObjectiveID: "en-y3", Status: "published"},
+	}
+	objectives := []learning.Objective{
+		{ID: "en-y3", Year: 3, Subject: "English", Mastery: learning.MasteryRule{Expected: 80, Secure: 90}},
+		{ID: "ma-y3", Year: 3, Subject: "Mathematics", Mastery: learning.MasteryRule{Expected: 80, Secure: 90}},
+		{ID: "ma-y4", Year: 4, Subject: "Mathematics", Mastery: learning.MasteryRule{Expected: 80, Secure: 90}},
+		{ID: "en-y4", Year: 4, Subject: "English", Mastery: learning.MasteryRule{Expected: 80, Secure: 90}},
+	}
+	mastery := []learning.StudentMastery{
+		{ObjectiveID: "ma-y3", Score: 95, EvidenceCount: 3, FormatCount: 2, EvidenceConfidence: "strong", EvidenceFreshness: "current"},
+	}
+	choice, ok := chooseAdaptiveActivity(activities, objectives, mastery, nil, nil, nil, nil, nil, 3)
+	if !ok || choice.Activity.ID != "ma-y4" || !strings.Contains(choice.Explanation, "Mathematics route") {
+		t.Fatalf("expected Mathematics to progress independently of English, got %#v", choice)
 	}
 }
 

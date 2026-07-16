@@ -222,8 +222,9 @@ export default async function Parents() {
 
 function ProgressPathway({ progress }: { progress: ProgressReport | null }) {
   if (!progress) {
-    return <section className="mt-8 rounded-2xl bg-white p-6 shadow-card"><EmptyState title="Progress pathway is waiting for secure evidence" body="Once the learner profile is connected, this view will show sampled skills across year groups, strengths, practice topics and any evidence-gated stretch route." /></section>;
+    return <section className="mt-8 rounded-2xl bg-white p-6 shadow-card"><EmptyState title="Progress pathway is waiting for secure evidence" body="Once the learner profile is connected, this view will show sampled skills across year groups, strengths, practice topics and any evidence-gated next-year route." /></section>;
   }
+  const routeSubjects = progress.subjects.filter((subject) => subject.stretch_allowed).map((subject) => subject.subject).join(", ");
   return (
     <section className="mt-8 grid gap-6 lg:grid-cols-[1.35fr_0.65fr]">
       <div className="rounded-2xl bg-white p-6 shadow-card">
@@ -234,7 +235,7 @@ function ProgressPathway({ progress }: { progress: ProgressReport | null }) {
             <p className="mt-2 max-w-2xl text-sm leading-6 text-ink/62">Bars show evidence that has actually been sampled. Pale rows are not failures; they are topics the system has not checked yet.</p>
           </div>
           <span className={`rounded-full px-4 py-2 text-sm font-semibold ${progress.stretch_allowed ? "bg-[#8be28f]/35 text-[#215d26]" : "bg-[#ffbf45]/30 text-[#6a4a00]"}`}>
-            {progress.stretch_allowed ? `Stretch route: Year ${progress.stretch_year}` : `Core route: Year ${progress.year_group}`}
+            {progress.stretch_allowed ? `${routeSubjects} route: Year ${progress.stretch_year}` : `Core routes: Year ${progress.year_group}`}
           </span>
         </div>
         <div className="mt-6 grid gap-5">
@@ -256,6 +257,7 @@ function SubjectYearLadder({ subject }: { subject: ProgressSubject }) {
         <div>
           <h3 className="font-display text-xl font-semibold">{subject.subject}</h3>
           <p className="mt-1 text-xs text-ink/55">{subject.sampled_objectives} of {subject.objective_count} Year {subject.current_year} objectives sampled</p>
+          <p className="mt-1 text-xs font-semibold text-ink/62">{subject.stretch_allowed ? `Year ${subject.stretch_year} route unlocked; earlier-year reviews remain scheduled.` : `Year ${subject.current_year} route continues.`}</p>
         </div>
         <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-ink/65">{progressLabel(subject.status)}</span>
       </div>

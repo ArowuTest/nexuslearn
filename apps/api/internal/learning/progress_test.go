@@ -30,8 +30,13 @@ func TestBuildProgressReportUnlocksNextYearOnlyWithCrossSubjectEvidence(t *testi
 	mastery[2].Score = 62
 	mastery[2].EvidenceConfidence = "emerging"
 	report = BuildProgressReport("ava-y3", 3, objectives, mastery)
-	if report.StretchAllowed || report.WorkingYear != 3 {
-		t.Fatalf("expected weak Science evidence to keep the learner on the core route, got %#v", report)
+	if !report.StretchAllowed || report.WorkingYear != 4 {
+		t.Fatalf("expected secure subjects to retain their Year 4 routes, got %#v", report)
+	}
+	for _, subject := range report.Subjects {
+		if subject.Subject == "Science" && subject.StretchAllowed {
+			t.Fatalf("weak Science should remain on its Year 3 route, got %#v", subject)
+		}
 	}
 }
 
@@ -57,5 +62,35 @@ func TestCanStretchToYearRequiresEvidenceQuality(t *testing.T) {
 	}
 	if CanStretchToYear(3, objectives, mastery) {
 		t.Fatal("stale evidence must not unlock a next-year stretch")
+	}
+}
+
+func TestCanStretchToYearRequiresEveryCurrentYearObjective(t *testing.T) {
+	objectives := []Objective{
+		{ID: "en-reading", Year: 3, Subject: "English", Mastery: MasteryRule{Secure: 90}},
+		{ID: "en-writing", Year: 3, Subject: "English", Mastery: MasteryRule{Secure: 90}},
+		{ID: "en-spelling", Year: 3, Subject: "English", Mastery: MasteryRule{Secure: 90}},
+		{ID: "ma-number", Year: 3, Subject: "Mathematics", Mastery: MasteryRule{Secure: 90}},
+		{ID: "sc-plants", Year: 3, Subject: "Science", Mastery: MasteryRule{Secure: 90}},
+	}
+	mastery := []StudentMastery{
+		{ObjectiveID: "en-reading", Score: 95, EvidenceCount: 3, FormatCount: 2, EvidenceConfidence: "strong", EvidenceFreshness: "current"},
+		{ObjectiveID: "en-writing", Score: 94, EvidenceCount: 3, FormatCount: 2, EvidenceConfidence: "supported", EvidenceFreshness: "current"},
+		{ObjectiveID: "ma-number", Score: 93, EvidenceCount: 3, FormatCount: 2, EvidenceConfidence: "supported", EvidenceFreshness: "current"},
+		{ObjectiveID: "sc-plants", Score: 92, EvidenceCount: 3, FormatCount: 2, EvidenceConfidence: "supported", EvidenceFreshness: "current"},
+	}
+	if CanStretchToYear(3, objectives, mastery) {
+		t.Fatal("one unsampled current-year objective must keep the learner on the core route")
+	}
+	if !CanStretchSubjectToYear(3, "Mathematics", objectives, mastery) || CanStretchSubjectToYear(3, "English", objectives, mastery) {
+		t.Fatal("subject routes must progress independently")
+	}
+
+	mastery = append(mastery, StudentMastery{
+		ObjectiveID: "en-spelling", Score: 91, EvidenceCount: 3, FormatCount: 2,
+		EvidenceConfidence: "supported", EvidenceFreshness: "current",
+	})
+	if !CanStretchToYear(3, objectives, mastery) {
+		t.Fatal("every secure current-year objective should unlock the next-year route")
 	}
 }

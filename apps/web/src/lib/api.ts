@@ -147,6 +147,9 @@ export type ProgressYear = {
 export type ProgressSubject = {
   subject: string;
   current_year: number;
+  working_year: number;
+  stretch_year: number;
+  stretch_allowed: boolean;
   status: string;
   average_score: number;
   sampled_objectives: number;

@@ -290,7 +290,6 @@ export default function FamilyPage() {
                             <p className="leading-5">
                               {evidence.next_activity?.explanation || "Next activity will appear after configured learning evidence is available."}
                             </p>
-                            {evidence.progress && <MiniProgress progress={evidence.progress} />}
                           </div>
                         )}
                       </article>
@@ -343,52 +342,6 @@ export default function FamilyPage() {
       </div>
     </main>
   );
-}
-
-function MiniProgress({ progress }: { progress: ParentChildEvidence["progress"] }) {
-  return (
-    <div className="mt-2 rounded-lg border border-[#15213d]/8 bg-[#f7f0df] p-3">
-      <div className="flex flex-wrap items-center justify-between gap-2">
-        <p className="font-display text-sm font-semibold">Learning progress</p>
-        <span className={`rounded-full px-2 py-1 text-[0.68rem] font-semibold ${progress.stretch_allowed ? "bg-[#8be28f]/35 text-[#215d26]" : "bg-[#ffbf45]/30 text-[#6a4a00]"}`}>
-          {progress.stretch_allowed ? `Year ${progress.stretch_year} stretch open` : `Year ${progress.year_group} core path`}
-        </span>
-      </div>
-      <p className="mt-2 leading-5">{progress.summary}</p>
-      <div className="mt-3 grid gap-2">
-        {progress.subjects.map((subject) => (
-          <div key={subject.subject}>
-            <div className="flex items-center justify-between gap-2"><span className="font-semibold">{subject.subject}</span><span>{progressLabel(subject.status)}</span></div>
-            <div className="mt-1 h-2 overflow-hidden rounded-full bg-[#15213d]/10"><div className={`h-full rounded-full ${progressColor(subject.status)}`} style={{ width: `${subject.sampled_objectives ? Math.max(8, subject.average_score) : 4}%` }} /></div>
-          </div>
-        ))}
-      </div>
-      <div className="mt-3 grid gap-2 sm:grid-cols-2">
-        <div><p className="font-semibold text-[#6a4a00]">Next practice</p><p className="mt-1">{progress.practice[0]?.topic || "Keep collecting evidence across the current route."}</p></div>
-        <div><p className="font-semibold text-[#215d26]">Strength</p><p className="mt-1">{progress.strengths[0]?.topic || "Strengths will appear after varied evidence."}</p></div>
-      </div>
-    </div>
-  );
-}
-
-function progressLabel(status: string) {
-  switch (status) {
-    case "ahead": return "Ahead";
-    case "secure": return "Secure";
-    case "on_track": return "On track";
-    case "needs_practice": return "Needs practice";
-    default: return "Not sampled";
-  }
-}
-
-function progressColor(status: string) {
-  switch (status) {
-    case "ahead": return "bg-[#9d82ff]";
-    case "secure": return "bg-[#8be28f]";
-    case "on_track": return "bg-[#55cbd3]";
-    case "needs_practice": return "bg-[#ffbf45]";
-    default: return "bg-[#15213d]/15";
-  }
 }
 
 function weakestEvidenceConfidence(mastery: Array<{ evidence_confidence?: string }>) {
