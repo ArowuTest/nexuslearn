@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NexusLearn narration listening QA</title>
+  <style>
+    :root { color-scheme: light; --ink:#17233f; --muted:#59657d; --line:#dbe2ec; --cream:#fffaf0; --teal:#155d64; --gold:#f0b35a; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--cream); color:var(--ink); font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif; }
+    main { max-width:1100px; margin:0 auto; padding:32px 20px 64px; }
+    h1,h2 { line-height:1.1; margin:0; }
+    h1 { font-size:clamp(2rem,5vw,3.4rem); max-width:760px; }
+    h2 { font-size:1.25rem; }
+    .eyebrow { color:var(--teal); font-size:.75rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
+    .intro { margin:14px 0 22px; max-width:780px; color:var(--muted); }
+    .notice { border:1px solid #f0b35a80; border-radius:16px; background:#fff4d5; padding:16px; margin:18px 0 26px; }
+    .toolbar { display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-bottom:18px; }
+    .toolbar span { color:var(--muted); font-size:.9rem; margin-right:auto; }
+    button { border:0; border-radius:999px; cursor:pointer; font:inherit; font-weight:750; padding:10px 16px; }
+    .save { background:var(--ink); color:white; }
+    .clear { background:white; border:1px solid var(--line); color:var(--ink); }
+    .queue { display:grid; gap:14px; }
+    article { background:white; border:1px solid var(--line); border-radius:18px; padding:18px; box-shadow:0 5px 18px #17233f0b; }
+    article.approved { border-color:#64b983; box-shadow:0 0 0 2px #64b98324; }
+    article.rejected { border-color:#c86a6a; box-shadow:0 0 0 2px #c86a6a20; }
+    .heading { display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px; }
+    .asset { font-weight:800; overflow-wrap:anywhere; }
+    .meta { color:var(--muted); font-size:.85rem; margin-top:4px; }
+    .rank { background:#dff5f6; border-radius:999px; color:var(--teal); font-size:.8rem; font-weight:800; padding:5px 10px; }
+    audio { display:block; width:100%; margin:16px 0; }
+    .script { border-left:4px solid var(--gold); background:#fffaf0; padding:10px 12px; color:#3f4960; }
+    fieldset { border:0; padding:0; margin:16px 0 10px; display:grid; gap:8px; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); }
+    label { color:#3f4960; font-size:.9rem; }
+    input[type=checkbox] { accent-color:var(--teal); margin-right:7px; }
+    input[type=text], textarea { border:1px solid var(--line); border-radius:10px; display:block; font:inherit; margin-top:7px; padding:9px 10px; width:100%; }
+    textarea { min-height:62px; resize:vertical; }
+    .actions { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-top:12px; }
+    .approve { background:#dff7e7; color:#28613c; }
+    .reject { background:#fde4e4; color:#8b2b2b; }
+    .status { color:var(--muted); font-size:.85rem; }
+    .empty { color:var(--muted); background:white; border:1px dashed var(--line); border-radius:16px; padding:24px; }
+    @media (prefers-reduced-motion:reduce) { * { scroll-behavior:auto !important; } }
+  </style>
+</head>
+<body>
+<main>
+  <p class="eyebrow">NexusLearn · teacher audio gate</p>
+  <h1>Listen, check, and record narration decisions.</h1>
+  <p class="intro">This ranked first-pass queue covers the highest-priority produced ElevenLabs assets. Listen with headphones, check every criterion, and flag anything that sounds rushed, robotic, unclear or unsuitable for the learner’s age.</p>
+  <div class="notice"><strong>Important:</strong> this page stores draft decisions in this browser only. It does not approve release audio. Final production approval must be submitted through the authenticated server-side review ledger with reviewer identity, timestamp, notes and the asset hash.</div>
+  <div class="toolbar"><span id="summary">Loading priority queue…</span><button class="save" id="save" type="button">Save local drafts</button><button class="clear" id="clear" type="button">Clear local drafts</button></div>
+  <section class="queue" id="queue"><p class="empty">Loading audio items…</p></section>
+</main>
+<script>
+(() => {
+  const KEY = "nexuslearn-narration-qa-drafts-v1";
+  const queue = document.getElementById("queue");
+  const summary = document.getElementById("summary");
+  const read = () => { try { return JSON.parse(localStorage.getItem(KEY) || "{}"); } catch { return {}; } };
+  const drafts = read();
+  const escape = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[char]));
+  const save = () => localStorage.setItem(KEY, JSON.stringify(drafts));
+  const draftFor = (id) => drafts[id] || { checks:{}, decision:"", reviewer:"", notes:"" };
+  const render = (items) => {
+    queue.innerHTML = items.map((item) => {
+      const draft = draftFor(item.asset_id);
+      const checks = ["natural","clear","pronunciation","age_suitable"];
+      return `<article data-id="${escape(item.asset_id)}" class="${draft.decision}">
+        <div class="heading"><div><div class="asset">${escape(item.asset_id)}</div><div class="meta">Rank #${escape(item.rank)} · Year ${escape(item.year)} · ${escape(item.kind)} · ${escape(item.pack_id)}</div></div><span class="rank">${escape(item.rationale?.[0] || "Priority")}</span></div>
+        <audio controls preload="none" src="${escape(item.file)}"></audio>
+        <div class="script"><strong>Script:</strong> ${escape(item.text_preview)}</div>
+        <fieldset>${checks.map((check) => `<label><input type="checkbox" data-check="${check}" ${draft.checks?.[check] ? "checked" : ""}> ${check.replace("_"," ")}</label>`).join("")}</fieldset>
+        <label>Reviewer name<input type="text" data-reviewer value="${escape(draft.reviewer)}" autocomplete="name"></label>
+        <label>Notes<textarea data-notes placeholder="Required when flagging a re-record">${escape(draft.notes)}</textarea></label>
+        <div class="actions"><button class="approve" type="button" data-decision="approved">Approve listening</button><button class="reject" type="button" data-decision="rejected">Flag for re-recording</button><span class="status" data-status>${draft.decision ? `Local draft: ${draft.decision}` : "Not reviewed in this browser"}</span></div>
+      </article>`;
+    }).join("");
+    summary.textContent = `${items.length} priority assets · ${Object.values(drafts).filter((draft) => draft.decision).length} local decisions saved`;
+  };
+  const update = (article, decision) => {
+    const id = article.dataset.id;
+    const checks = Object.fromEntries([...article.querySelectorAll("[data-check]")].map((input) => [input.dataset.check, input.checked]));
+    const reviewer = article.querySelector("[data-reviewer]").value.trim();
+    const notes = article.querySelector("[data-notes]").value.trim();
+    if (decision === "approved" && (!reviewer || Object.values(checks).some((value) => !value))) return alert("Add your name and confirm all four listening criteria before approving.");
+    if (decision === "rejected" && !notes) return alert("Add a short note explaining what needs re-recording.");
+    drafts[id] = { checks, reviewer, notes, decision, saved_at:new Date().toISOString() }; save();
+    article.className = decision; article.querySelector("[data-status]").textContent = `Local draft: ${decision}`;
+    summary.textContent = `${document.querySelectorAll("article").length} priority assets · ${Object.values(drafts).filter((draft) => draft.decision).length} local decisions saved`;
+  };
+  document.getElementById("save").onclick = () => { save(); alert("Drafts saved in this browser. They are not production approvals."); };
+  document.getElementById("clear").onclick = () => { if (confirm("Clear all local listening drafts on this browser?")) { localStorage.removeItem(KEY); location.reload(); } };
+  queue.onclick = (event) => { const button = event.target.closest("[data-decision]"); if (button) update(button.closest("article"), button.dataset.decision); };
+  fetch("/content/narration-listening-priority.json").then((response) => response.json()).then((data) => render(data.first_pass || [])).catch(() => { queue.innerHTML = "<p class=empty>Priority queue unavailable. Rebuild the content report and try again.</p>"; summary.textContent = "Queue unavailable"; });
+})();
+</script>
+</body>
+</html>

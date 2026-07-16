@@ -286,6 +286,11 @@ type NarrationListeningPriority = {
     pack_id: string;
     year: number | null;
     kind: string;
+    source_id: string;
+    text_preview: string;
+    file: string;
+    voice_name?: string;
+    model_id?: string;
     rationale: string[];
   }>;
 };
@@ -1781,8 +1786,8 @@ export default function AdminPage() {
                   <a href="/content/narration-readiness.html" target="_blank" rel="noreferrer" className="inline-flex rounded-full bg-[#8b2b2b] px-4 py-2 text-sm font-semibold text-white">
                     Open full narration audit
                   </a>
-                  <a href="/content/narration-review.html" target="_blank" rel="noreferrer" className="inline-flex rounded-full bg-[#17233f] px-4 py-2 text-sm font-semibold text-white">
-                    Open listening review
+                  <a href="/content/listening-qa.html" target="_blank" rel="noreferrer" className="inline-flex rounded-full bg-[#17233f] px-4 py-2 text-sm font-semibold text-white">
+                    Open listening QA
                   </a>
                   <a href="/content/narration-listening-priority.html" target="_blank" rel="noreferrer" className="inline-flex rounded-full bg-[#155d64] px-4 py-2 text-sm font-semibold text-white">
                     Open priority queue
@@ -1969,12 +1974,12 @@ export default function AdminPage() {
                   Produced companions, world art, manipulatives and narration need accessibility, year coverage and release status before they become part of the scaled child experience.
                 </p>
                 <a
-                  href="/content/narration-review.html"
+                  href="/content/listening-qa.html"
                   target="_blank"
                   rel="noreferrer"
                   className="mt-3 inline-flex rounded-full bg-[#17233f] px-4 py-2 text-sm font-semibold text-white"
                 >
-                  Open narration listening review
+                  Open narration listening QA
                 </a>
               </div>
               <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-4">

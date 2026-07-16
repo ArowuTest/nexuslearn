@@ -4,6 +4,11 @@ import Dino from "@/components/Dino";
 import { DEFAULT_STUDENT_ID, getNextActivity, getRuntimeFlags, getWorlds } from "@/lib/api";
 
 const WORLD_SHAPES = ["seed", "story", "island", "machine", "orbit", "crest", "lab"] as const;
+const MVP_SUBJECTS = [
+  { name: "English", short: "Words & stories", accent: "#f7a6d8", icon: "✦" },
+  { name: "Mathematics", short: "Patterns & problem solving", accent: "#55cbd3", icon: "＋" },
+  { name: "Science", short: "Questions & discovery", accent: "#8be28f", icon: "◌" },
+] as const;
 
 export default async function PlayEntry() {
   const [worlds, runtimeFlags] = await Promise.all([
@@ -73,9 +78,9 @@ export default async function PlayEntry() {
         <section className="mt-8 grid gap-6 lg:grid-cols-[0.7fr_1.3fr]">
           <aside className="rounded-lg border border-white/12 bg-[#142746]/88 p-6 shadow-[0_24px_80px_rgba(0,0,0,0.24)] backdrop-blur">
             <p className="font-display text-sm uppercase tracking-[0.18em] text-[#ffbf45]">Child entry</p>
-            <h1 className="font-display mt-3 text-4xl font-semibold leading-tight md:text-5xl">Open today&apos;s learning portal</h1>
+            <h1 className="font-display mt-3 text-4xl font-semibold leading-tight md:text-5xl">Choose today&apos;s learning world</h1>
             <p className="mt-4 leading-7 text-white/68">
-              Every portal is connected to configured curriculum, an adaptive mission route and a companion style. Children open a real route through their issued login card or family profile.
+              Every portal leads to a real curriculum mission. Start with a predictable warm-up, learn with your companion, then grow your world with what you have proved.
             </p>
             <div className="mt-6 rounded-lg bg-[#ffbf45] p-5 text-[#17233f] shadow-[0_18px_42px_rgba(255,191,69,0.28)]">
               <div className="flex items-center gap-4">
@@ -89,7 +94,22 @@ export default async function PlayEntry() {
                   <h2 className="font-display mt-2 text-2xl font-semibold">Retrieve, repair, then explore.</h2>
                 </div>
               </div>
-              <p className="mt-3 text-sm leading-6 opacity-80">A predictable retrieval ritual leads into the main mission.</p>
+              <p className="mt-3 text-sm leading-6 opacity-80">A predictable retrieval ritual leads into the main mission, with support ready when you need it.</p>
+            </div>
+            <div className="mt-5 grid gap-2 sm:grid-cols-3 lg:grid-cols-1" aria-label="Learning journey">
+              {[
+                ["1", "Warm up", "Remember one idea"],
+                ["2", "Mission", "Learn and practise"],
+                ["3", "Grow", "Earn and return"],
+              ].map(([number, title, body], index) => (
+                <div key={title} className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/8 px-4 py-3">
+                  <span className={`grid h-8 w-8 shrink-0 place-items-center rounded-full font-display text-sm font-semibold ${index === 0 ? "bg-[#ffbf45] text-[#17233f]" : "bg-white/12 text-white"}`}>{number}</span>
+                  <div>
+                    <p className="font-display text-sm font-semibold text-white">{title}</p>
+                    <p className="text-xs text-white/55">{body}</p>
+                  </div>
+                </div>
+              ))}
             </div>
             <div className="mt-5 rounded-lg border border-white/10 bg-white/8 p-5">
               <p className="font-display text-sm uppercase tracking-[0.14em] text-[#ffbf45]">Next adaptive decision</p>
@@ -130,7 +150,23 @@ export default async function PlayEntry() {
             </div>
           </aside>
 
-          <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+          <section aria-label="MVP subject pathways" className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+            <div className="rounded-2xl border border-white/10 bg-white/8 p-4 sm:col-span-2 xl:col-span-3">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <p className="font-display text-xs uppercase tracking-[0.14em] text-[#ffdf8a]">MVP subject portals</p>
+                  <p className="mt-1 text-sm text-white/62">Every world uses the same playful learning loop across the three launch subjects.</p>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {MVP_SUBJECTS.map((subject) => (
+                    <span key={subject.name} className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 text-xs font-semibold text-white/80">
+                      <span className="grid h-5 w-5 place-items-center rounded-full text-[#17233f]" style={{ backgroundColor: subject.accent }}>{subject.icon}</span>
+                      {subject.name}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
             {profiles.map((profile, index) => (
               <Link
                 key={`${profile.year}-${profile.world}`}
@@ -144,14 +180,19 @@ export default async function PlayEntry() {
                     {profile.year.replace("Year ", "Y")}
                   </div>
                   {profile.live && showDemoBadges ? (
-                    <span className="relative z-10 rounded-lg bg-[#ffbf45] px-3 py-1 text-xs font-bold text-[#17233f]">Next</span>
+                    <span className="relative z-10 rounded-lg bg-[#ffbf45] px-3 py-1 text-xs font-bold text-[#17233f]">Next mission</span>
                   ) : (
-                    <span className="relative z-10 rounded-lg bg-white/12 px-3 py-1 text-xs font-bold text-white/72">Login</span>
+                    <span className="relative z-10 rounded-lg bg-white/12 px-3 py-1 text-xs font-bold text-white/72">Use access card</span>
                   )}
                 </div>
                 <p className={`relative z-10 font-display mt-5 text-sm font-semibold ${profile.live ? "text-[#7357c9]" : "text-[#ffdf8a]"}`}>{profile.year}</p>
                 <h2 className="relative z-10 font-display mt-1 text-2xl font-semibold">{profile.world}</h2>
                 <p className={`relative z-10 mt-3 max-w-[14rem] text-sm leading-6 ${profile.live ? "text-[#17233f]/68" : "text-white/62"}`}>{profile.focus}</p>
+                <div className="relative z-10 mt-4 flex flex-wrap gap-1.5">
+                  {MVP_SUBJECTS.map((subject) => (
+                    <span key={subject.name} className={`rounded-full px-2.5 py-1 text-[0.68rem] font-semibold ${profile.live ? "bg-[#17233f]/8 text-[#17233f]/65" : "bg-white/10 text-white/65"}`}>{subject.name}</span>
+                  ))}
+                </div>
                 <div className="absolute bottom-5 right-5 z-10">
                   <Dino mood={profile.live ? "happy" : "idle"} size={62} />
                 </div>

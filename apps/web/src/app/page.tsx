@@ -12,6 +12,11 @@ const SUBJECT_ACCENTS: Record<string, string> = {
   Geography: "#74a7ff",
   History: "#ffbf45",
 };
+const MVP_SUBJECTS = [
+  { name: "English", promise: "Words, stories and confident communication.", accent: "#f7a6d8" },
+  { name: "Mathematics", promise: "Patterns, reasoning and problem solving.", accent: "#55cbd3" },
+  { name: "Science", promise: "Questions, models and discovery missions.", accent: "#8be28f" },
+] as const;
 
 function NexusMap({
   worlds,
@@ -66,6 +71,12 @@ function NexusMap({
       <div className="absolute bottom-0 right-4">
         <Dino mood="celebrate" size={118} />
       </div>
+      {visible.length === 0 && (
+        <div className="absolute inset-x-6 top-1/2 -translate-y-1/2 rounded-2xl border border-white/15 bg-[#17233f]/80 p-5 text-center text-white backdrop-blur">
+          <p className="font-display text-lg font-semibold">Your learning worlds are being tuned.</p>
+          <p className="mt-2 text-sm leading-6 text-white/65">The live curriculum service will place the year portals here when it is connected.</p>
+        </div>
+      )}
     </div>
   );
 }
@@ -90,6 +101,7 @@ export default async function Home() {
   const activeTitle = activeWorld?.name ?? "Nexusverse";
   const years = curriculumMap?.years ?? [];
   const subjects = curriculumMap?.subjects ?? [];
+  const curriculumAvailable = Boolean(curriculumMap);
   const coveredYears = years.filter((year) => year.total > 0).length;
 
   return (
@@ -108,7 +120,7 @@ export default async function Home() {
 
           <div className="grid min-h-[calc(100vh-92px)] items-center gap-10 py-10 lg:grid-cols-[0.88fr_1.12fr]">
             <div>
-              <p className="font-display text-sm uppercase tracking-[0.18em] text-[#ffdf8a]">UK Years 1-7 learning universe</p>
+              <p className="font-display text-sm uppercase tracking-[0.18em] text-[#ffdf8a]">England-aligned Years 1-7 MVP</p>
               <h1 className="font-display mt-5 max-w-3xl text-5xl font-semibold leading-[0.98] md:text-7xl">NexusLearn</h1>
               <p className="mt-5 max-w-2xl text-xl leading-8 text-white/80">
                 Animated missions, adaptive support and evidence-rich curriculum pathways for children, families and schools.
@@ -137,9 +149,9 @@ export default async function Home() {
               </div>
               <div className="mt-8 grid max-w-2xl grid-cols-3 gap-3">
                 {[
-                  ["Years", `${coveredYears}/7`],
-                  ["Objectives", String(curriculumMap?.total ?? 0)],
-                  ["Subjects", String(subjects.length)],
+                  ["Years", curriculumAvailable ? `${coveredYears}/7` : "7 planned"],
+                  ["Objectives", curriculumAvailable ? String(curriculumMap?.total ?? 0) : "Live data"],
+                  ["Subjects", curriculumAvailable ? String(subjects.length) : "3 MVP"],
                 ].map(([label, value]) => (
                   <div key={label} className="rounded-lg border border-white/12 bg-white/10 p-4">
                     <p className="font-display text-3xl font-semibold text-[#ffdf8a]">{value}</p>
@@ -188,11 +200,13 @@ export default async function Home() {
             <p className="font-display text-sm uppercase tracking-[0.18em] text-[#7357c9]">Curriculum map</p>
             <h2 className="font-display mt-3 text-4xl font-semibold">Year, subject and strand coverage.</h2>
             <p className="mt-4 text-base leading-7 text-[#162244]/66">
-              Starter coverage is now organised as a real curriculum system: objective packs, teaching steps, misconceptions and evidence rules.
+              {curriculumAvailable
+                ? "Starter coverage is organised as a real curriculum system: objective packs, teaching steps, misconceptions and evidence rules."
+                : "The MVP is built around Years 1-7 English, Mathematics and Science. Connect the curriculum service to load live objective coverage."}
             </p>
           </div>
           <div className="grid gap-3 md:grid-cols-7">
-            {years.map((year) => (
+            {curriculumAvailable ? years.map((year) => (
               <div key={year.year} className="rounded-lg border border-[#162244]/10 bg-white p-4 shadow-card">
                 <p className="font-display text-lg font-semibold">Y{year.year}</p>
                 <p className="mt-1 text-3xl font-semibold" style={{ color: year.total ? "#7357c9" : "#9c978b" }}>{year.total}</p>
@@ -202,6 +216,12 @@ export default async function Home() {
                     <p key={subject.name} className="truncate text-xs text-[#162244]/66">{subject.name}</p>
                   ))}
                 </div>
+              </div>
+            )) : Array.from({ length: 7 }, (_, index) => (
+              <div key={index} className="rounded-lg border border-[#162244]/10 bg-white p-4 shadow-card">
+                <p className="font-display text-lg font-semibold">Y{index + 1}</p>
+                <p className="mt-2 text-sm font-semibold text-[#7357c9]">MVP scope</p>
+                <p className="mt-1 text-xs leading-5 text-[#162244]/52">English · Mathematics · Science</p>
               </div>
             ))}
           </div>
@@ -215,7 +235,7 @@ export default async function Home() {
             <h2 className="font-display mt-3 text-4xl font-semibold">Structured learning, not a single quiz game.</h2>
           </div>
           <div className="grid gap-3 md:grid-cols-2">
-            {subjects.map((subject) => {
+            {(subjects.length ? subjects : MVP_SUBJECTS.map((subject) => ({ name: subject.name, total: 0, strands: [] }))).map((subject) => {
               const accent = SUBJECT_ACCENTS[subject.name] ?? "#7357c9";
               return (
                 <article key={subject.name} className="rounded-lg border border-white/10 bg-white/10 p-5">
@@ -224,14 +244,14 @@ export default async function Home() {
                       <span className="h-4 w-4 rounded-full" style={{ backgroundColor: accent }} />
                       <h3 className="font-display text-2xl font-semibold">{subject.name}</h3>
                     </div>
-                    <p className="text-sm font-semibold text-white/58">{subject.total}</p>
+                    <p className="text-sm font-semibold text-white/58">{subject.total || "MVP"}</p>
                   </div>
                   <div className="mt-4 flex flex-wrap gap-2">
-                    {subject.strands.map((strand) => (
+                    {subject.strands.length ? subject.strands.map((strand) => (
                       <span key={strand.name} className="rounded-lg bg-white/10 px-3 py-2 text-xs font-semibold text-white/70">
                         {strand.name}: {strand.objectives}
                       </span>
-                    ))}
+                    )) : <span className="rounded-lg bg-white/10 px-3 py-2 text-xs font-semibold text-white/70">Live curriculum map connects here</span>}
                   </div>
                 </article>
               );
