@@ -817,6 +817,8 @@ export default function AdminPage() {
     );
   }
 
+  const narrationQueueItems = narrationListeningPriority?.first_pass ?? [];
+
   function narrationDraftFor(item: NarrationListeningPriority["first_pass"][number]) {
     return narrationReviewDrafts[item.asset_id] ?? {
       reviewer_name: narrationReviews[item.asset_id]?.reviewer_name ?? "",
@@ -1978,7 +1980,7 @@ export default function AdminPage() {
                     <Info label="Phonics/listening" value={String(narrationListeningPriority.totals.phonics_or_listening_first_pass)} />
                   </div>
                   <div className="mt-4 grid gap-3 lg:grid-cols-2">
-                    {narrationListeningPriority.first_pass.slice(0, 4).map((item) => {
+                    {narrationQueueItems.map((item) => {
                       const draft = narrationDraftFor(item);
                       const savedReview = narrationReviews[item.asset_id];
                       return (
