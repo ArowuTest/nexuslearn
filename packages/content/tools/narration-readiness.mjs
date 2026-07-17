@@ -143,7 +143,7 @@ function walkReferenceFields(value, visit, location = "question_variant", seen =
   }
   for (const [key, entry] of Object.entries(value)) {
     const next = `${location}.${key}`;
-    if (key === "audio_asset_id" || key === "audio_ref") visit(key, entry, value, next);
+    if (["audio_asset_id", "audio_ref", "whole_audio_asset_id"].includes(key)) visit(key, entry, value, next);
     if (entry && typeof entry === "object") walkReferenceFields(entry, visit, next, seen);
   }
 }
@@ -213,7 +213,12 @@ function buildReport() {
     .map(([relative_file, ids]) => ({ relative_file, ids: ids.sort() }));
 
   const expectedByID = new Map(expected.map((item) => [item.id, item]));
-  const expectedPaths = new Set(expected.map((item) => item.relative_file));
+  const referenceIDs = new Set(refs.filter((entry) => typeof entry.asset_id === "string" && entry.asset_id.length > 0).map((entry) => entry.asset_id));
+  const supplementalVariantItems = manifestItems.filter((item) => item.kind === "variant" && referenceIDs.has(item.id));
+  const expectedPaths = new Set([
+    ...expected.map((item) => item.relative_file),
+    ...supplementalVariantItems.map((item) => normalPath(item.relative_file)),
+  ]);
   const missing = [];
   const stale = [];
   const invalid = [];
@@ -271,7 +276,7 @@ function buildReport() {
   }
 
   const orphanManifest = manifestItems
-    .filter((item) => !expectedByID.has(item.id))
+    .filter((item) => !expectedByID.has(item.id) && !(item.kind === "variant" && referenceIDs.has(item.id)))
     .map((item) => ({ id: item.id ?? null, relative_file: normalPath(item.relative_file) }));
   const orphanFiles = actualFiles
     .filter((relative) => !expectedPaths.has(relative))
@@ -311,7 +316,7 @@ function buildReport() {
     nonconforming_variant_references: 0,
   }]));
   for (const item of expected) packStats.get(item.pack_id).expected_assets += 1;
-  for (const item of manifestItems) if (packStats.has(item.pack_id)) packStats.get(item.pack_id).manifest_assets += 1;
+  for (const item of manifestItems) if (packStats.has(item.pack_id) && expectedByID.has(item.id)) packStats.get(item.pack_id).manifest_assets += 1;
   for (const item of assetChecks) {
     const stat = packStats.get(item.pack_id);
     if (item.technical_pass) stat.technical_pass += 1;
@@ -364,6 +369,7 @@ function buildReport() {
       expected_lesson_assets: expected.filter((item) => item.kind === "lesson").length,
       expected_vocabulary_assets: expected.filter((item) => item.kind === "vocabulary").length,
       manifest_items: manifestItems.length,
+      variant_manifest_items: supplementalVariantItems.length,
       technical_pass: assetChecks.filter((item) => item.technical_pass).length,
       decoder_valid: assetChecks.filter((item) => item.technical_pass && item.frame_count >= 3 && item.duration_seconds >= 0.1).length,
       total_duration_seconds: Math.round(assetChecks.reduce((sum, item) => sum + (item.duration_seconds ?? 0), 0) * 1000) / 1000,
@@ -386,6 +392,8 @@ function buildReport() {
       unique_audio_asset_id_references: new Set(actualRefs.filter((entry) => entry.field === "audio_asset_id").map((entry) => entry.asset_id)).size,
       audio_ref_references: actualRefs.filter((entry) => entry.field === "audio_ref").length,
       unique_audio_ref_references: new Set(actualRefs.filter((entry) => entry.field === "audio_ref").map((entry) => entry.asset_id)).size,
+      whole_audio_asset_id_references: actualRefs.filter((entry) => entry.field === "whole_audio_asset_id").length,
+      unique_whole_audio_asset_id_references: new Set(actualRefs.filter((entry) => entry.field === "whole_audio_asset_id").map((entry) => entry.asset_id)).size,
       resolved_variant_references: resolvedRefs.length,
       unique_resolved_variant_references: new Set(resolvedRefs.map((entry) => entry.asset_id)).size,
       unresolved_variant_references: unresolvedRefs.length,

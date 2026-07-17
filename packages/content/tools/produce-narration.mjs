@@ -100,9 +100,109 @@ async function collect() {
   return items;
 }
 
+async function collectVariantItems() {
+  const files = (await fs.readdir(packDir)).filter((file) => file.endsWith(".json")).sort();
+  const byAssetID = new Map();
+  for (const file of files) {
+    const pack = await readJSON(path.join(packDir, file));
+    for (const [index, variant] of (pack.question_variants ?? []).entries()) {
+      walkAudioReferenceFields(variant, (key, value, owner, location) => {
+        const assetID = typeof value === "string" ? value.trim() : "";
+        const { text, textSource } = variantNarrationText(variant, owner, key);
+        if (!assetID || !text) return;
+        const item = makeVariantItem(pack, variant, index, assetID, text, textSource, key, location);
+        const previous = byAssetID.get(assetID);
+        if (previous && previous.text_sha256 !== item.text_sha256) {
+          throw new Error(`variant audio asset ${assetID} is declared with conflicting spoken text`);
+        }
+        if (!previous) byAssetID.set(assetID, item);
+      });
+    }
+  }
+  return [...byAssetID.values()].sort((left, right) => left.id.localeCompare(right.id));
+}
+
+function variantNarrationText(variant, owner, referenceField) {
+  const candidates = [owner, variant, variant?.body]
+    .map((candidate) => candidate && typeof candidate === "object" ? candidate : {});
+  const authoredScript = [owner, variant, variant?.body]
+    .map((candidate) => candidate && typeof candidate === "object" ? candidate : {})
+    .map((candidate) => typeof candidate.narration_script === "string" ? candidate.narration_script.trim() : typeof candidate.audio_script === "string" ? candidate.audio_script.trim() : "")
+    .find(Boolean);
+  if (authoredScript) return { text: authoredScript, textSource: "authored_narration_script" };
+  if (candidates.some((candidate) => candidate.pure_phoneme_audio_referenced === true)) {
+    return { text: "", textSource: "" };
+  }
+  if (referenceField !== "whole_audio_asset_id") {
+    const spokenWord = candidates
+      .map((candidate) => typeof candidate.target_word === "string" ? candidate.target_word.trim() : typeof candidate.word === "string" ? candidate.word.trim() : "")
+      .find(Boolean);
+    if (spokenWord) return { text: spokenWord, textSource: "authored_spoken_word_fallback" };
+  }
+  const authoredPrompt = candidates
+    .map((candidate) => typeof candidate.prompt === "string" ? candidate.prompt.trim() : typeof candidate.verbal_route === "string" ? candidate.verbal_route.trim() : "")
+    .find(Boolean);
+  return {
+    text: authoredPrompt ? canonicaliseVariantPrompt(authoredPrompt) : "",
+    textSource: authoredPrompt ? "authored_variant_prompt_fallback" : "",
+  };
+}
+
+function canonicaliseVariantPrompt(value) {
+  return value
+    .replace(/\bmission\s+\d+\s*:?/gi, "Mission:")
+    .replace(/\bquestion\s+\d+\s*:?/gi, "Question:")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}
+
+function walkAudioReferenceFields(value, visit, location = "question_variant", seen = new Set()) {
+  if (!value || typeof value !== "object" || seen.has(value)) return;
+  seen.add(value);
+  if (Array.isArray(value)) {
+    value.forEach((entry, index) => walkAudioReferenceFields(entry, visit, `${location}[${index}]`, seen));
+    return;
+  }
+  for (const [key, entry] of Object.entries(value)) {
+    const next = `${location}.${key}`;
+    if (["audio_asset_id", "audio_ref", "whole_audio_asset_id"].includes(key)) visit(key, entry, value, next);
+    if (entry && typeof entry === "object") walkAudioReferenceFields(entry, visit, next, seen);
+  }
+}
+
+function makeVariantItem(pack, variant, index, assetID, text, textSource, referenceField, referenceLocation) {
+  const year = Number(pack.source_alignment?.year);
+  if (!Number.isInteger(year) || year < 1 || year > 7) {
+    throw new Error(`${pack.pack_id}: variant narration requires a valid source-alignment year`);
+  }
+  const relativeFile = `${pack.pack_id}/variant/${slug(assetID)}.mp3`;
+  const pacing = pacingFor(year, "variant");
+  return {
+    id: assetID,
+    pack_id: pack.pack_id,
+    kind: "variant",
+    source_id: variant.variant_id ?? variant.id ?? variant.question_variant_id ?? `index-${index}`,
+    source_variant_id: variant.variant_id ?? variant.id ?? variant.question_variant_id ?? `index-${index}`,
+    reference_field: referenceField,
+    reference_location: referenceLocation,
+    text,
+    text_source: textSource,
+    text_sha256: textHash(text),
+    voice_id: voiceId,
+    voice_name: "Alice - Clear, Engaging Educator",
+    model_id: modelId,
+    year,
+    pacing_profile: pacing.profile,
+    voice_settings: pacing.voiceSettings,
+    file: `/audio/narration/alice/${relativeFile.replaceAll("\\", "/")}`,
+    relative_file: relativeFile,
+    production_status: "generated_pending_human_listening",
+  };
+}
+
 function selectItems(items) {
-  if (!new Set(["all", "lessons", "vocabulary"]).has(only)) {
-    throw new Error("--only must be all, lessons or vocabulary");
+  if (!new Set(["all", "lessons", "vocabulary", "variants"]).has(only)) {
+    throw new Error("--only must be all, lessons, vocabulary or variants");
   }
   const parsedYear = yearFilter === undefined ? undefined : Number(yearFilter);
   if (parsedYear !== undefined && (!Number.isInteger(parsedYear) || parsedYear < 1 || parsedYear > 7)) {
@@ -115,6 +215,7 @@ function selectItems(items) {
   let selected = items.filter((item) => {
     if (only === "lessons" && item.kind !== "lesson") return false;
     if (only === "vocabulary" && item.kind !== "vocabulary") return false;
+    if (only === "variants" && item.kind !== "variant") return false;
     if (packFilter && item.pack_id !== packFilter) return false;
     if (parsedYear !== undefined && !item.pack_id.includes(`-y${parsedYear}-`)) return false;
     return true;
@@ -153,6 +254,7 @@ function makeItem(packId, yearValue, kind, sourceId, text) {
 
 function pacingFor(year, kind) {
   const profile = year === 1 ? "year_1" : year === 2 ? "year_2" : "year_3_to_7";
+  const speed = kind === "vocabulary" ? narrationPacingPolicy[profile].vocabulary : narrationPacingPolicy[profile].lesson;
   return {
     profile,
     voiceSettings: {
@@ -160,7 +262,7 @@ function pacingFor(year, kind) {
       similarity_boost: 0.75,
       style: 0.15,
       use_speaker_boost: true,
-      speed: narrationPacingPolicy[profile][kind],
+      speed,
     },
   };
 }
@@ -281,7 +383,11 @@ async function produce(items, previousItems) {
 
 async function mergeProducedInventory(allItems, selectedItems, previousItems) {
   const selectedByID = new Map(selectedItems.map((item) => [item.id, item]));
+  const expectedIDs = new Set(allItems.map((item) => item.id));
   const merged = [];
+  for (const previous of previousItems.values()) {
+    if (!expectedIDs.has(previous.id)) merged.push(previous);
+  }
   for (const expected of allItems) {
     const selected = selectedByID.get(expected.id);
     if (selected?.technical_pass) {
@@ -326,6 +432,7 @@ async function writeManifest(items, summary, expectedAssets, selectedAssets) {
       assets: items.length,
       lesson_assets: items.filter((item) => item.kind === "lesson").length,
       vocabulary_assets: items.filter((item) => item.kind === "vocabulary").length,
+      variant_assets: items.filter((item) => item.kind === "variant").length,
       characters: items.reduce((total, item) => total + item.text.length, 0),
       technical_pass: items.filter((item) => item.technical_pass).length,
       expected_assets: expectedAssets,
@@ -416,20 +523,22 @@ function renderReview(manifest) {
   return html.replace(/[ \t]+$/gm, "");
 }
 
-const allItems = await collect();
-const items = selectItems(allItems);
+const standardItems = await collect();
+const variantItems = await collectVariantItems();
+const inventory = only === "variants" ? variantItems : standardItems;
+const items = selectItems(inventory);
 const previous = await readPreviousManifest();
 const previousItems = previous.items;
-if (items.length < allItems.length && previous.manifest && (
+if (items.length < inventory.length && previous.manifest && (
   previous.manifest.voice?.id !== voiceId || previous.manifest.voice?.model_id !== modelId
 )) {
   throw new Error("filtered production cannot change voice or model; run the complete inventory migration without --pack, --year, --only or --limit");
 }
 const summary = await produce(items, previousItems);
 if (!dryRun) {
-  const mergedItems = await mergeProducedInventory(allItems, items, previousItems);
-  await writeManifest(mergedItems, summary, allItems.length, items.length);
+  const mergedItems = await mergeProducedInventory(inventory, items, previousItems);
+  await writeManifest(mergedItems, summary, inventory.length, items.length);
 }
 console.log(
-  `narration selected=${items.length} expected=${allItems.length} lessons=${items.filter((item) => item.kind === "lesson").length} vocabulary=${items.filter((item) => item.kind === "vocabulary").length} characters=${items.reduce((total, item) => total + item.text.length, 0)} produced=${summary.produced} skipped=${summary.skipped} planned=${summary.planned}`,
+  `narration selected=${items.length} expected=${inventory.length} standard=${standardItems.length} variants=${variantItems.length} lessons=${items.filter((item) => item.kind === "lesson").length} vocabulary=${items.filter((item) => item.kind === "vocabulary").length} variant_items=${items.filter((item) => item.kind === "variant").length} characters=${items.reduce((total, item) => total + item.text.length, 0)} produced=${summary.produced} skipped=${summary.skipped} planned=${summary.planned}`,
 );

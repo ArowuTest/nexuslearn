@@ -2,6 +2,7 @@
 
 import { useState, type PointerEvent } from "react";
 import { playProducedAudio } from "@/lib/sound";
+import { resolveNarrationAsset, resolveNarrationAssetMap, useNarrationAssets } from "@/lib/narration";
 
 type StudioQuestion = {
   id: string;
@@ -1292,12 +1293,10 @@ function ParticleLab({ question, input, onChoose }: { question: StudioQuestion; 
 
 function AudioBlend({ question }: { question: StudioQuestion }) {
   const [audioStatus, setAudioStatus] = useState("");
+  const narrationAssets = useNarrationAssets();
   const sounds = asStringArray(question.body.sounds);
-  const audioAssets =
-    question.body.audio_assets && typeof question.body.audio_assets === "object"
-      ? question.body.audio_assets as Record<string, string>
-      : {};
-  const promptAudio = typeof question.body.prompt_audio_url === "string" ? question.body.prompt_audio_url : "";
+  const audioAssets = resolveNarrationAssetMap(question.body.audio_assets, narrationAssets);
+  const promptAudio = resolveNarrationAsset(question.body.prompt_audio_url, narrationAssets);
   if (!["audio_blend", "audio-blend", "audio-choice", "listen-read"].includes(question.format.toLowerCase()) && sounds.length === 0) return null;
 
   function audioFor(sound: string) {

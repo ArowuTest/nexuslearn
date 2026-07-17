@@ -60,6 +60,28 @@
     },
     {
       "rank": 2,
+      "asset_id": "en-y1-listening-comprehension--lesson--clue-not-guess-checkpoint",
+      "pack_id": "en-y1-listening-comprehension",
+      "year": 1,
+      "kind": "lesson",
+      "source_id": "clue-not-guess-checkpoint",
+      "priority": 13220,
+      "rationale": [
+        "early-years audio clarity has the highest child-impact risk",
+        "listening and fluency packs depend on warm non-robotic narration",
+        "240 variant audio references depend on this pack family being trusted",
+        "lesson narration guides the learner before task attempts"
+      ],
+      "text_preview": "Point to the part you heard that helped you work it out.",
+      "file": "/audio/narration/alice/en-y1-listening-comprehension/lesson/clue-not-guess-checkpoint.mp3",
+      "relative_file": "en-y1-listening-comprehension/lesson/clue-not-guess-checkpoint.mp3",
+      "text_sha256": "bd6e3049db5b7bae9cf122c89b02cd5801df125d1e756664bd97e5d9dbcd1e54",
+      "audio_sha256": "c5eb6cf885c4e9d457d0371c1f65d816a9abc5581ea69320158562d83a3959b5",
+      "review_command": "node packages/content/tools/narration-review.mjs --asset en-y1-listening-comprehension--lesson--clue-not-guess-checkpoint --decision approve --reviewer \"REVIEWER NAME\" --confirm natural,clear,pronunciation,age_suitable --notes \"warm child-safe pace; accurate pronunciation; no robotic artefacts\"",
+      "reject_command": "node packages/content/tools/narration-review.mjs --asset en-y1-listening-comprehension--lesson--clue-not-guess-checkpoint --decision reject --reviewer \"REVIEWER NAME\" --notes \"describe the pronunciation, pace, warmth or clarity issue\""
+    },
+    {
+      "rank": 3,
       "asset_id": "en-y2-reading-fluency-reread--lesson--accuracy-checkpoint",
       "pack_id": "en-y2-reading-fluency-reread",
       "year": 2,
@@ -81,7 +103,7 @@
       "reject_command": "node packages/content/tools/narration-review.mjs --asset en-y2-reading-fluency-reread--lesson--accuracy-checkpoint --decision reject --reviewer \"REVIEWER NAME\" --notes \"describe the pronunciation, pace, warmth or clarity issue\""
     },
     {
-      "rank": 3,
+      "rank": 4,
       "asset_id": "en-y1-phonics-blend-cvc-words--lesson--blend-river-launch",
       "pack_id": "en-y1-phonics-blend-cvc-words",
       "year": 1,
@@ -102,7 +124,7 @@
       "reject_command": "node packages/content/tools/narration-review.mjs --asset en-y1-phonics-blend-cvc-words--lesson--blend-river-launch --decision reject --reviewer \"REVIEWER NAME\" --notes \"describe the pronunciation, pace, warmth or clarity issue\""
     },
     {
-      "rank": 4,
+      "rank": 5,
       "asset_id": "en-y1-segmenting--lesson--guided-push-and-build",
       "pack_id": "en-y1-segmenting",
       "year": 1,
@@ -123,7 +145,7 @@
       "reject_command": "node packages/content/tools/narration-review.mjs --asset en-y1-segmenting--lesson--guided-push-and-build --decision reject --reviewer \"REVIEWER NAME\" --notes \"describe the pronunciation, pace, warmth or clarity issue\""
     },
     {
-      "rank": 5,
+      "rank": 6,
       "asset_id": "ma-y1-shape-and-measures--lesson--feel-and-notice-warm-up",
       "pack_id": "ma-y1-shape-and-measures",
       "year": 1,
@@ -142,27 +164,6 @@
       "audio_sha256": "f7c4ec21327c531bed1693750b05f85c662b4f019841a30369e7f7989b9dce93",
       "review_command": "node packages/content/tools/narration-review.mjs --asset ma-y1-shape-and-measures--lesson--feel-and-notice-warm-up --decision approve --reviewer \"REVIEWER NAME\" --confirm natural,clear,pronunciation,age_suitable --notes \"warm child-safe pace; accurate pronunciation; no robotic artefacts\"",
       "reject_command": "node packages/content/tools/narration-review.mjs --asset ma-y1-shape-and-measures--lesson--feel-and-notice-warm-up --decision reject --reviewer \"REVIEWER NAME\" --notes \"describe the pronunciation, pace, warmth or clarity issue\""
-    },
-    {
-      "rank": 6,
-      "asset_id": "en-y1-listening-comprehension--lesson--clue-not-guess-checkpoint",
-      "pack_id": "en-y1-listening-comprehension",
-      "year": 1,
-      "kind": "lesson",
-      "source_id": "clue-not-guess-checkpoint",
-      "priority": 12740,
-      "rationale": [
-        "early-years audio clarity has the highest child-impact risk",
-        "listening and fluency packs depend on warm non-robotic narration",
-        "lesson narration guides the learner before task attempts"
-      ],
-      "text_preview": "Point to the part you heard that helped you work it out.",
-      "file": "/audio/narration/alice/en-y1-listening-comprehension/lesson/clue-not-guess-checkpoint.mp3",
-      "relative_file": "en-y1-listening-comprehension/lesson/clue-not-guess-checkpoint.mp3",
-      "text_sha256": "bd6e3049db5b7bae9cf122c89b02cd5801df125d1e756664bd97e5d9dbcd1e54",
-      "audio_sha256": "c5eb6cf885c4e9d457d0371c1f65d816a9abc5581ea69320158562d83a3959b5",
-      "review_command": "node packages/content/tools/narration-review.mjs --asset en-y1-listening-comprehension--lesson--clue-not-guess-checkpoint --decision approve --reviewer \"REVIEWER NAME\" --confirm natural,clear,pronunciation,age_suitable --notes \"warm child-safe pace; accurate pronunciation; no robotic artefacts\"",
-      "reject_command": "node packages/content/tools/narration-review.mjs --asset en-y1-listening-comprehension--lesson--clue-not-guess-checkpoint --decision reject --reviewer \"REVIEWER NAME\" --notes \"describe the pronunciation, pace, warmth or clarity issue\""
     },
     {
       "rank": 7,
@@ -560,6 +561,28 @@
     },
     {
       "rank": 26,
+      "asset_id": "en-y1-listening-comprehension--lesson--guided-listen-pause-show",
+      "pack_id": "en-y1-listening-comprehension",
+      "year": 1,
+      "kind": "lesson",
+      "source_id": "guided-listen-pause-show",
+      "priority": 13220,
+      "rationale": [
+        "early-years audio clarity has the highest child-impact risk",
+        "listening and fluency packs depend on warm non-robotic narration",
+        "240 variant audio references depend on this pack family being trusted",
+        "lesson narration guides the learner before task attempts"
+      ],
+      "text_preview": "Hear the whole part before choosing. Replay if you need it. Check that every part of the picture fits.",
+      "file": "/audio/narration/alice/en-y1-listening-comprehension/lesson/guided-listen-pause-show.mp3",
+      "relative_file": "en-y1-listening-comprehension/lesson/guided-listen-pause-show.mp3",
+      "text_sha256": "b3838fd7eecc6367a88737885e7c2b882e983f5079da4f67282b31b8688750d2",
+      "audio_sha256": "32ea790c6fa66696a63fd15646af4452f4400974d2aded69e3d117984669b0aa",
+      "review_command": "node packages/content/tools/narration-review.mjs --asset en-y1-listening-comprehension--lesson--guided-listen-pause-show --decision approve --reviewer \"REVIEWER NAME\" --confirm natural,clear,pronunciation,age_suitable --notes \"warm child-safe pace; accurate pronunciation; no robotic artefacts\"",
+      "reject_command": "node packages/content/tools/narration-review.mjs --asset en-y1-listening-comprehension--lesson--guided-listen-pause-show --decision reject --reviewer \"REVIEWER NAME\" --notes \"describe the pronunciation, pace, warmth or clarity issue\""
+    },
+    {
+      "rank": 27,
       "asset_id": "en-y2-reading-fluency-reread--lesson--guided-phrase-read",
       "pack_id": "en-y2-reading-fluency-reread",
       "year": 2,
@@ -581,7 +604,7 @@
       "reject_command": "node packages/content/tools/narration-review.mjs --asset en-y2-reading-fluency-reread--lesson--guided-phrase-read --decision reject --reviewer \"REVIEWER NAME\" --notes \"describe the pronunciation, pace, warmth or clarity issue\""
     },
     {
-      "rank": 27,
+      "rank": 28,
       "asset_id": "en-y1-phonics-blend-cvc-words--lesson--cat-worked-example",
       "pack_id": "en-y1-phonics-blend-cvc-words",
       "year": 1,
@@ -602,7 +625,7 @@
       "reject_command": "node packages/content/tools/narration-review.mjs --asset en-y1-phonics-blend-cvc-words--lesson--cat-worked-example --decision reject --reviewer \"REVIEWER NAME\" --notes \"describe the pronunciation, pace, warmth or clarity issue\""
     },
     {
-      "rank": 28,
+      "rank": 29,
       "asset_id": "en-y1-segmenting--lesson--middle-sound-checkpoint",
       "pack_id": "en-y1-segmenting",
       "year": 1,
@@ -623,7 +646,7 @@
       "reject_command": "node packages/content/tools/narration-review.mjs --asset en-y1-segmenting--lesson--middle-sound-checkpoint --decision reject --reviewer \"REVIEWER NAME\" --notes \"describe the pronunciation, pace, warmth or clarity issue\""
     },
     {
-      "rank": 29,
+      "rank": 30,
       "asset_id": "ma-y1-shape-and-measures--lesson--guided-measure-stations",
       "pack_id": "ma-y1-shape-and-measures",
       "year": 1,
@@ -642,27 +665,6 @@
       "audio_sha256": "f78296b8eb552a7e962af3de4c6284aedcb2ff58295a3082e675a3356f3513e9",
       "review_command": "node packages/content/tools/narration-review.mjs --asset ma-y1-shape-and-measures--lesson--guided-measure-stations --decision approve --reviewer \"REVIEWER NAME\" --confirm natural,clear,pronunciation,age_suitable --notes \"warm child-safe pace; accurate pronunciation; no robotic artefacts\"",
       "reject_command": "node packages/content/tools/narration-review.mjs --asset ma-y1-shape-and-measures--lesson--guided-measure-stations --decision reject --reviewer \"REVIEWER NAME\" --notes \"describe the pronunciation, pace, warmth or clarity issue\""
-    },
-    {
-      "rank": 30,
-      "asset_id": "en-y1-listening-comprehension--lesson--guided-listen-pause-show",
-      "pack_id": "en-y1-listening-comprehension",
-      "year": 1,
-      "kind": "lesson",
-      "source_id": "guided-listen-pause-show",
-      "priority": 12740,
-      "rationale": [
-        "early-years audio clarity has the highest child-impact risk",
-        "listening and fluency packs depend on warm non-robotic narration",
-        "lesson narration guides the learner before task attempts"
-      ],
-      "text_preview": "Hear the whole part before choosing. Replay if you need it. Check that every part of the picture fits.",
-      "file": "/audio/narration/alice/en-y1-listening-comprehension/lesson/guided-listen-pause-show.mp3",
-      "relative_file": "en-y1-listening-comprehension/lesson/guided-listen-pause-show.mp3",
-      "text_sha256": "b3838fd7eecc6367a88737885e7c2b882e983f5079da4f67282b31b8688750d2",
-      "audio_sha256": "32ea790c6fa66696a63fd15646af4452f4400974d2aded69e3d117984669b0aa",
-      "review_command": "node packages/content/tools/narration-review.mjs --asset en-y1-listening-comprehension--lesson--guided-listen-pause-show --decision approve --reviewer \"REVIEWER NAME\" --confirm natural,clear,pronunciation,age_suitable --notes \"warm child-safe pace; accurate pronunciation; no robotic artefacts\"",
-      "reject_command": "node packages/content/tools/narration-review.mjs --asset en-y1-listening-comprehension--lesson--guided-listen-pause-show --decision reject --reviewer \"REVIEWER NAME\" --notes \"describe the pronunciation, pace, warmth or clarity issue\""
     },
     {
       "rank": 31,

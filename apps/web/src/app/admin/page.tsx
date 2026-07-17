@@ -258,6 +258,7 @@ type NarrationReadinessReport = {
     missing: number;
     unreviewed: number;
     variant_references: number;
+    variant_manifest_items: number;
     unresolved_variant_references: number;
     nonconforming_variant_references: number;
   };
@@ -1840,13 +1841,14 @@ export default function AdminPage() {
                   </a>
                 </div>
               </div>
-              <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-4 lg:grid-cols-7">
+              <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-4 lg:grid-cols-8">
                 <Info label="Scripts" value={String(narrationReadiness?.totals.expected_assets ?? 0)} />
                 <Info label="Technical pass" value={String(narrationReadiness?.totals.technical_pass ?? 0)} />
                 <Info label="Missing MP3s" value={String(narrationReadiness?.totals.missing ?? 0)} />
                 <Info label="Listening approved" value={String(narrationReadiness?.totals.listening_approved ?? 0)} />
                 <Info label="Awaiting listening" value={String(narrationReadiness?.totals.unreviewed ?? 0)} />
                 <Info label="Variant audio refs" value={String(narrationReadiness?.totals.variant_references ?? 0)} />
+                <Info label="Registered variants" value={String(narrationReadiness?.totals.variant_manifest_items ?? 0)} />
                 <Info label="Unresolved refs" value={String(narrationReadiness?.totals.unresolved_variant_references ?? 0)} />
               </div>
               {narrationReadiness && (

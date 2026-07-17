@@ -16,6 +16,7 @@ import {
   type NextActivityDecision,
 } from "@/lib/api";
 import { playProducedAudio, sfx, setMuted } from "@/lib/sound";
+import { resolveNarrationFields, useNarrationAssets } from "@/lib/narration";
 
 type Q = {
   id: string;
@@ -32,13 +33,9 @@ type Q = {
   selectionReason: string;
 };
 
-function questionAudioURL(question: Q | null) {
+function questionAudioURL(question: Q | null, narrationAssets: ReturnType<typeof useNarrationAssets>) {
   if (!question) return "";
-  for (const key of ["prompt_audio_url", "audio_url", "narration_url"]) {
-    const value = question.body[key];
-    if (typeof value === "string" && value.trim()) return value;
-  }
-  return "";
+  return resolveNarrationFields(question.body, narrationAssets);
 }
 
 function questionAudioScript(question: Q | null) {
@@ -48,6 +45,12 @@ function questionAudioScript(question: Q | null) {
     if (typeof value === "string" && value.trim()) return value;
   }
   return "";
+}
+
+function questionHasAudioReference(question: Q | null) {
+  if (!question) return false;
+  return ["audio_asset_id", "audio_ref", "whole_audio_asset_id"].some((key) => typeof question.body[key] === "string" && Boolean(String(question.body[key]).trim()))
+    || question.body.audio_required === true;
 }
 type AttemptResult = {
   correct: boolean;
@@ -90,6 +93,9 @@ type LessonStep = {
   learning_purpose?: string;
   audio_script?: string;
   audio_url?: string;
+  audio_asset_id?: string;
+  audio_ref?: string;
+  narration_url?: string;
   visual_model?: string;
   animation_hook?: string;
   estimated_seconds?: number;
@@ -191,6 +197,7 @@ export default function Mission() {
   const [switchLabel, setSwitchLabel] = useState("");
   const [mute, setMute] = useState(false);
   const [sparks, setSparks] = useState<{ id: number; dx: number; dy: number }[]>([]);
+  const narrationAssets = useNarrationAssets();
   const startRef = useRef(Date.now());
 
   const lessonStartRef = useRef(Date.now());
@@ -400,6 +407,7 @@ export default function Mission() {
     ? (mission.activity.interaction.teaching_sequence as LessonStep[])
     : [];
   const lessonStep = teachingSequence[Math.min(lessonIdx, Math.max(0, teachingSequence.length - 1))];
+  const lessonAudioURL = lessonStep ? resolveNarrationFields(lessonStep as Record<string, unknown>, narrationAssets) : "";
   const inLesson = teachingSequence.length > 0 && !lessonComplete;
 
   useEffect(() => {
@@ -694,8 +702,9 @@ export default function Mission() {
   const reward = worldReward(Number(mission?.world?.year_group || 0));
   const companionName = String(mission?.world?.config?.companion || "Nixi");
   const savedArtefacts = Array.isArray(mission?.world_state?.state?.artefacts) ? mission.world_state.state.artefacts.length : 0;
-  const questionAudio = questionAudioURL(q);
+  const questionAudio = questionAudioURL(q, narrationAssets);
   const questionAudioScriptText = questionAudioScript(q);
+  const questionAudioPending = questionHasAudioReference(q);
   const adaptations = mission?.runtime_adaptations;
   const activeSupportPlan = supportPlanItems(adaptations);
   const supportBadges = activeSupportBadges(adaptations);
@@ -1060,10 +1069,10 @@ export default function Mission() {
               </p>
             )}
             <div className="mt-7 flex flex-wrap gap-3">
-              {lessonStep.audio_url && (
+              {lessonAudioURL && (
                 <button
                   type="button"
-                  onClick={() => readAloud(lessonStep.audio_url || "")}
+                  onClick={() => readAloud(lessonAudioURL)}
                   className="btn-pop bg-white/12 px-5 py-3 text-white"
                 >
                   Read this aloud
@@ -1073,7 +1082,7 @@ export default function Mission() {
                 {lessonIdx + 1 >= teachingSequence.length ? "Start practice" : "Next step"}
               </button>
             </div>
-            {!lessonStep.audio_url && lessonStep.audio_script && (
+            {!lessonAudioURL && lessonStep.audio_script && (
               <p className="mt-4 rounded-2xl border border-white/10 bg-white/8 p-3 text-xs leading-5 text-white/72">
                 Studio narration is being prepared for this step. We keep the text and visual model available, and we do not use browser text-to-speech as a robotic fallback.
               </p>
@@ -1126,7 +1135,7 @@ export default function Mission() {
               )}
             </details>
 
-            {(questionAudio || questionAudioScriptText) && (
+            {(questionAudio || questionAudioScriptText || questionAudioPending) && (
               <div className="mt-5 rounded-2xl border border-[#7fe7d7]/45 bg-[#17233f] p-4" aria-label="Question audio support">
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div>
@@ -1139,7 +1148,7 @@ export default function Mission() {
                     </button>
                   )}
                 </div>
-                {!questionAudio && questionAudioScriptText && (
+                {!questionAudio && (questionAudioScriptText || questionAudioPending) && (
                   <p className="mt-3 rounded-xl border border-white/10 bg-white/8 p-3 text-xs leading-5 text-white/75">
                     Studio narration is being prepared for this question. The text and visual route remain available; browser text-to-speech is not used as a robotic fallback.
                   </p>

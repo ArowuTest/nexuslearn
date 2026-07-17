@@ -97,15 +97,20 @@ scanning, single-key selection and icon-supported Visual guide steps.
 Array-building and audio-blend acceptance additionally verifies keyboard range
 operation, semantic array descriptions and named phoneme/prompt replay controls.
 
-The narration production gate inventories every curriculum `audio_script`,
+The narration production gate inventories every curriculum `audio_script` and
+every question-level `audio_asset_id`, `audio_ref` and `whole_audio_asset_id`,
 requires technically valid produced MP3s and checksums before a pack can leave
 authoring/review, prohibits browser TTS and unreviewed pure phonemes, and
-publishes a human listening-review page. Newly authored review packs may report
-pending narration as an explicit warning while they remain unavailable to the
-child runtime. Automated technical completion does not impersonate listening
-approval. Listening decisions live in an append-only, reviewer-attributed
-ledger and are valid only while their script, audio, voice and model hashes
-still match the produced asset.
+publishes a human listening-review page. Variant assets are independently
+registered and deduplicated by asset ID; a generated prompt fallback is labelled
+in the manifest and is not treated as a dedicated narration script. Newly
+authored review packs may report pending narration as an explicit warning while
+they remain unavailable to the child runtime. Automated technical completion
+does not impersonate listening approval. Listening decisions live in an
+append-only, reviewer-attributed ledger and are valid only while their script,
+audio, voice and model hashes still match the produced asset. The pupil runtime
+resolves only technically valid, human-approved manifest assets; pending assets
+remain available through the adult listening-review surface.
 The `narration-listening-priority.json` report turns that large review backlog
 into an ordered first-pass listening queue. It prioritises Year 1-2,
 phonics/listening and high-impact referenced assets, and includes the exact
