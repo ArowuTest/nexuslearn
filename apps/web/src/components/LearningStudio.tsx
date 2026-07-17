@@ -421,7 +421,7 @@ function CoordinateBoard({ question, input, onChoose }: { question: StudioQuesti
         {Array.from({ length: yMax + 1 }, (_, row) => yMax - row).flatMap((gridY) =>
           Array.from({ length: xMax + 1 }, (_, gridX) => {
             const isSelected = selected?.[0] === gridX && selected?.[1] === gridY;
-            return <button key={`${gridX}-${gridY}`} type="button" role="gridcell" onClick={() => choose(gridX, gridY)} aria-label={`Plot point (${gridX}, ${gridY})`} aria-pressed={isSelected} className={`flex min-h-9 min-w-9 items-center justify-center rounded-lg border text-xs font-bold ${isSelected ? "border-[#17233f] bg-leaf text-white ring-2 ring-sun" : "border-[#17233f]/20 bg-white text-ink hover:bg-sun focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-sun"}`}>
+            return <button key={`${gridX}-${gridY}`} type="button" role="gridcell" onClick={() => choose(gridX, gridY)} aria-label={`Plot point (${gridX}, ${gridY})`} aria-selected={isSelected} className={`flex min-h-9 min-w-9 items-center justify-center rounded-lg border text-xs font-bold ${isSelected ? "border-[#17233f] bg-leaf text-white ring-2 ring-sun" : "border-[#17233f]/20 bg-white text-ink hover:bg-sun focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-sun"}`}>
               {isSelected ? "●" : gridX === 0 ? gridY : gridY === 0 ? gridX : ""}
             </button>;
           }),
