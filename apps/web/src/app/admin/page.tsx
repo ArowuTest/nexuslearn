@@ -273,6 +273,21 @@ type NarrationReadinessReport = {
     unresolved_variant_references: number;
   }>;
 };
+type NarrationReview = {
+  id: string;
+  asset_id: string;
+  text_sha256: string;
+  audio_sha256: string;
+  decision: "approved" | "rejected";
+  reviewer_id?: string;
+  reviewer_name: string;
+  criteria: Record<string, boolean>;
+  rejection_reasons?: string[];
+  notes?: string;
+  created_at: string;
+  updated_at: string;
+  stale?: boolean;
+};
 type NarrationListeningPriority = {
   status: string;
   served_by?: string;
@@ -291,6 +306,8 @@ type NarrationListeningPriority = {
     source_id: string;
     text_preview: string;
     file: string;
+    text_sha256: string;
+    audio_sha256: string;
     voice_name?: string;
     model_id?: string;
     rationale: string[];
@@ -679,6 +696,8 @@ export default function AdminPage() {
   const [assetReadiness, setAssetReadiness] = useState<AssetReadinessReport | null>(null);
   const [narrationReadiness, setNarrationReadiness] = useState<NarrationReadinessReport | null>(null);
   const [narrationListeningPriority, setNarrationListeningPriority] = useState<NarrationListeningPriority | null>(null);
+  const [narrationReviews, setNarrationReviews] = useState<Record<string, NarrationReview>>({});
+  const [narrationReviewDrafts, setNarrationReviewDrafts] = useState<Record<string, { reviewer_name: string; notes: string; criteria: Record<string, boolean> }>>({});
   const [packDepthReadiness, setPackDepthReadiness] = useState<PackDepthReadiness | null>(null);
   const [curriculumCoverage, setCurriculumCoverage] = useState<CurriculumAreaCoverage | null>(null);
   const [releaseSnapshot, setReleaseSnapshot] = useState<ContentReleaseSnapshot | null>(null);
@@ -798,11 +817,72 @@ export default function AdminPage() {
     );
   }
 
+  function narrationDraftFor(item: NarrationListeningPriority["first_pass"][number]) {
+    return narrationReviewDrafts[item.asset_id] ?? {
+      reviewer_name: narrationReviews[item.asset_id]?.reviewer_name ?? "",
+      notes: narrationReviews[item.asset_id]?.notes ?? "",
+      criteria: narrationReviews[item.asset_id]?.criteria ?? {},
+    };
+  }
+
+  function updateNarrationDraft(assetID: string, patch: Partial<{ reviewer_name: string; notes: string; criteria: Record<string, boolean> }>) {
+    setNarrationReviewDrafts((current) => ({
+      ...current,
+      [assetID]: {
+        reviewer_name: current[assetID]?.reviewer_name ?? "",
+        notes: current[assetID]?.notes ?? "",
+        criteria: current[assetID]?.criteria ?? {},
+        ...patch,
+      },
+    }));
+  }
+
+  async function saveNarrationReview(item: NarrationListeningPriority["first_pass"][number], decision: NarrationReview["decision"]) {
+    const draft = narrationDraftFor(item);
+    const criteria = {
+      natural: Boolean(draft.criteria.natural),
+      clear: Boolean(draft.criteria.clear),
+      pronunciation: Boolean(draft.criteria.pronunciation),
+      age_suitable: Boolean(draft.criteria.age_suitable),
+    };
+    if (decision === "approved" && (!draft.reviewer_name.trim() || Object.values(criteria).some((value) => !value))) {
+      setMessage("Add the reviewer name and confirm all four listening criteria before approval.");
+      return;
+    }
+    if (decision === "rejected" && !draft.notes.trim()) {
+      setMessage("Add a short note explaining what needs re-recording before rejecting audio.");
+      return;
+    }
+    setLoading(true);
+    try {
+      const review = await adminFetch("/v1/admin/content/narration-reviews", {
+        method: "POST",
+        headers: { "Idempotency-Key": `narration-${item.asset_id}-${item.text_sha256}-${decision}` },
+        body: JSON.stringify({
+          asset_id: item.asset_id,
+          text_sha256: item.text_sha256,
+          audio_sha256: item.audio_sha256,
+          decision,
+          reviewer_name: draft.reviewer_name.trim(),
+          criteria,
+          rejection_reasons: decision === "rejected" ? ["listening_review"] : [],
+          notes: draft.notes.trim(),
+        }),
+      }) as NarrationReview;
+      setNarrationReviews((current) => ({ ...current, [review.asset_id]: review }));
+      setMessage(`${item.asset_id} marked ${decision}. The decision is now recorded in the server-side review ledger.`);
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Could not save narration review.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
   async function loadConfig() {
     setLoading(true);
     setMessage("Loading live configuration...");
     try {
-      const [loadedConfig, objectiveData, readinessData, auditData, versionsData, invitationData, rendererData, assetData, narrationData, narrationListeningPriorityData, packDepthData, curriculumCoverageData, releaseData, variantQueueData, runtimeSpineData, pilotReviewBatchData, pilotReviewEvidenceData, pilotReviewEvidenceCheckData, flagshipReviewData] = await Promise.all([
+      const [loadedConfig, objectiveData, readinessData, auditData, versionsData, invitationData, rendererData, assetData, narrationData, narrationListeningPriorityData, narrationReviewData, packDepthData, curriculumCoverageData, releaseData, variantQueueData, runtimeSpineData, pilotReviewBatchData, pilotReviewEvidenceData, pilotReviewEvidenceCheckData, flagshipReviewData] = await Promise.all([
         adminFetch("/v1/admin/config"),
         fetch(`${API}/v1/curriculum/objectives`).then((res) => res.json()),
         adminFetch("/v1/admin/content/readiness"),
@@ -813,6 +893,7 @@ export default function AdminPage() {
         loadGeneratedContentReport("asset-production-readiness"),
         loadGeneratedContentReport("narration-readiness"),
         loadGeneratedContentReport("narration-listening-priority"),
+        adminFetch("/v1/admin/content/narration-reviews?limit=200").catch(() => ({ reviews: [] })),
         loadGeneratedContentReport("pack-depth-readiness"),
         loadGeneratedContentReport("curriculum-area-coverage"),
         loadGeneratedContentReport("content-release-snapshot"),
@@ -830,6 +911,7 @@ export default function AdminPage() {
       setAssetReadiness(assetData as AssetReadinessReport | null);
       setNarrationReadiness(narrationData as NarrationReadinessReport | null);
       setNarrationListeningPriority(narrationListeningPriorityData as NarrationListeningPriority | null);
+      setNarrationReviews(Object.fromEntries(((narrationReviewData.reviews ?? []) as NarrationReview[]).map((review) => [review.asset_id, review])));
       setPackDepthReadiness(packDepthData as PackDepthReadiness | null);
       setCurriculumCoverage(curriculumCoverageData as CurriculumAreaCoverage | null);
       setReleaseSnapshot(releaseData as ContentReleaseSnapshot | null);
@@ -850,6 +932,7 @@ export default function AdminPage() {
       setAssetReadiness(null);
       setNarrationReadiness(null);
       setNarrationListeningPriority(null);
+      setNarrationReviews({});
       setPackDepthReadiness(null);
       setCurriculumCoverage(null);
       setReleaseSnapshot(null);
@@ -1895,20 +1978,60 @@ export default function AdminPage() {
                     <Info label="Phonics/listening" value={String(narrationListeningPriority.totals.phonics_or_listening_first_pass)} />
                   </div>
                   <div className="mt-4 grid gap-3 lg:grid-cols-2">
-                    {narrationListeningPriority.first_pass.slice(0, 4).map((item) => (
-                      <article key={item.asset_id} className="rounded-2xl border border-[#1d1a3e]/8 bg-white p-4">
-                        <div className="flex flex-wrap items-start justify-between gap-2">
-                          <p className="font-semibold">{item.asset_id}</p>
-                          <span className="rounded-full bg-[#55cbd3]/12 px-3 py-1 text-xs font-semibold text-[#155d64]">#{item.rank}</span>
-                        </div>
-                        <p className="mt-2 text-xs leading-5 text-[#1d1a3e]/62">
-                          Y{item.year ?? "?"} - {item.kind} - {item.pack_id}
-                        </p>
-                        <p className="mt-2 text-xs leading-5 text-[#1d1a3e]/68">
-                          {item.rationale.slice(0, 2).join("; ")}
-                        </p>
-                      </article>
-                    ))}
+                    {narrationListeningPriority.first_pass.slice(0, 4).map((item) => {
+                      const draft = narrationDraftFor(item);
+                      const savedReview = narrationReviews[item.asset_id];
+                      return (
+                        <article key={item.asset_id} className={`rounded-2xl border bg-white p-4 ${savedReview?.decision === "approved" ? "border-[#64b983]" : savedReview?.decision === "rejected" ? "border-[#c86a6a]" : "border-[#1d1a3e]/8"}`}>
+                          <div className="flex flex-wrap items-start justify-between gap-2">
+                            <div>
+                              <p className="font-semibold">{item.asset_id}</p>
+                              <p className="mt-2 text-xs leading-5 text-[#1d1a3e]/62">Y{item.year ?? "?"} · {item.kind} · {item.pack_id}</p>
+                            </div>
+                            <span className="rounded-full bg-[#55cbd3]/12 px-3 py-1 text-xs font-semibold text-[#155d64]">#{item.rank}</span>
+                          </div>
+                          <audio className="mt-4 w-full" controls preload="none" src={item.file} aria-label={`Listen to ${item.asset_id}`} />
+                          <p className="mt-3 rounded-xl border-l-4 border-[#f0b35a] bg-[#fffaf0] p-3 text-xs leading-5 text-[#1d1a3e]/68"><strong>Script:</strong> {item.text_preview}</p>
+                          <div className="mt-4 grid gap-2 sm:grid-cols-2">
+                            {(["natural", "clear", "pronunciation", "age_suitable"] as const).map((criterion) => (
+                              <label key={criterion} className="text-xs text-[#1d1a3e]/68">
+                                <input
+                                  type="checkbox"
+                                  checked={Boolean(draft.criteria[criterion])}
+                                  onChange={(event) => updateNarrationDraft(item.asset_id, { criteria: { ...draft.criteria, [criterion]: event.target.checked } })}
+                                  className="mr-2 accent-[#155d64]"
+                                />
+                                {criterion.replace("_", " ")}
+                              </label>
+                            ))}
+                          </div>
+                          <label className="mt-4 block text-xs font-semibold text-[#1d1a3e]/68">Reviewer name
+                            <input
+                              value={draft.reviewer_name}
+                              onChange={(event) => updateNarrationDraft(item.asset_id, { reviewer_name: event.target.value })}
+                              className="mt-1 w-full rounded-xl border border-[#1d1a3e]/12 px-3 py-2 text-sm font-normal outline-none focus:border-[#7357c9]"
+                              autoComplete="name"
+                            />
+                          </label>
+                          <label className="mt-3 block text-xs font-semibold text-[#1d1a3e]/68">Review notes
+                            <textarea
+                              value={draft.notes}
+                              onChange={(event) => updateNarrationDraft(item.asset_id, { notes: event.target.value })}
+                              placeholder="Required when flagging a re-record"
+                              className="mt-1 min-h-16 w-full rounded-xl border border-[#1d1a3e]/12 px-3 py-2 text-sm font-normal outline-none focus:border-[#7357c9]"
+                            />
+                          </label>
+                          <div className="mt-4 flex flex-wrap items-center gap-2">
+                            <button type="button" onClick={() => void saveNarrationReview(item, "approved")} disabled={loading} className="btn-pop rounded-full bg-[#dff7e7] px-4 py-2 text-xs font-semibold text-[#28613c] disabled:opacity-50">Approve listening</button>
+                            <button type="button" onClick={() => void saveNarrationReview(item, "rejected")} disabled={loading} className="btn-pop rounded-full bg-[#fde4e4] px-4 py-2 text-xs font-semibold text-[#8b2b2b] disabled:opacity-50">Flag re-record</button>
+                            <span className="text-xs text-[#1d1a3e]/55">
+                              {savedReview ? `${savedReview.stale ? "Stale" : "Server"} decision: ${savedReview.decision}` : "Not reviewed"}
+                            </span>
+                          </div>
+                          <p className="mt-3 text-xs leading-5 text-[#1d1a3e]/55">{item.rationale.slice(0, 2).join("; ")}</p>
+                        </article>
+                      );
+                    })}
                   </div>
                 </div>
               )}

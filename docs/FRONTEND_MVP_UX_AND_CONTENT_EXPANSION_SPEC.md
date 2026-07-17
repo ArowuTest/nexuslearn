@@ -363,13 +363,16 @@ No new subject is ready for release until it has:
 - [ ] Child portal redesign around warm-up, mission and growth.
 - [ ] Consistent subject identity for English, Mathematics and Science.
 - [ ] Mission support controls and audio replay made easier to find.
-- [ ] Audio listening queue embedded in admin readiness.
+- [x] Audio listening queue embedded in admin readiness, with embedded playback,
+  criteria capture and server review status.
 - [ ] Teacher evidence links and review context improved.
 - [ ] Responsive, keyboard and reduced-motion visual QA across all lanes.
 
 ### Then platform readiness
 
-- [ ] Server-persisted narration review ledger and stale-binding checks.
+- [x] Server-persisted narration review ledger and stale-binding checks. Reviews
+  are bound to the current script/audio hashes and cannot be saved against a
+  changed manifest asset.
 - [ ] Server-persisted teacher audio/content review decisions.
 - [ ] Release dashboard that blocks production claims while human gates are open.
 - [ ] Independent teacher and SEND review workflow.
