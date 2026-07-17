@@ -56,7 +56,15 @@ export function useNarrationAssets(): NarrationAssetIndex {
 export function resolveNarrationAsset(value: unknown, assets: NarrationAssetIndex) {
   if (typeof value !== "string" || !value.trim()) return "";
   const candidate = value.trim();
-  if (candidate.startsWith("/")) return candidate;
+  // Authored test fixtures and a small number of runtime integrations can
+  // provide a direct playable URL. Manifest IDs still require a released,
+  // technically validated asset before they resolve.
+  if (
+    candidate.startsWith("/") ||
+    candidate.startsWith("blob:") ||
+    candidate.startsWith("data:audio/") ||
+    /^https?:\/\//i.test(candidate)
+  ) return candidate;
   return assets.get(candidate) ?? "";
 }
 
