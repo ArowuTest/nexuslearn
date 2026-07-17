@@ -48,12 +48,19 @@ func (r *PostgresRepository) ListNarrationReviews(ctx context.Context, assetID s
 	}
 	assetID = strings.TrimSpace(assetID)
 	rows, err := r.db.Query(ctx, `
-		SELECT id::text, asset_id, text_sha256, audio_sha256, decision,
+		SELECT id, asset_id, text_sha256, audio_sha256, decision,
 		       reviewer_id, reviewer_name, criteria, rejection_reasons, notes,
 		       created_at, updated_at
-		FROM narration_reviews
-		WHERE ($1 = '' OR asset_id = $1)
-		ORDER BY updated_at DESC
+		FROM (
+			SELECT DISTINCT ON (asset_id)
+			       id::text AS id, asset_id, text_sha256, audio_sha256, decision,
+			       reviewer_id, reviewer_name, criteria, rejection_reasons, notes,
+			       created_at, updated_at
+			FROM narration_reviews
+			WHERE ($1 = '' OR asset_id = $1)
+			ORDER BY asset_id, updated_at DESC, id DESC
+		) latest
+		ORDER BY updated_at DESC, id DESC
 		LIMIT $2
 	`, assetID, limit)
 	if err != nil {
@@ -129,14 +136,6 @@ func (r *PostgresRepository) SaveNarrationReview(ctx context.Context, review Nar
 			reviewer_name, criteria, rejection_reasons, notes
 		)
 		VALUES($1,$2,$3,$4,$5,$6,$7::jsonb,$8::jsonb,$9)
-		ON CONFLICT(asset_id, text_sha256, audio_sha256) DO UPDATE SET
-			decision = EXCLUDED.decision,
-			reviewer_id = EXCLUDED.reviewer_id,
-			reviewer_name = EXCLUDED.reviewer_name,
-			criteria = EXCLUDED.criteria,
-			rejection_reasons = EXCLUDED.rejection_reasons,
-			notes = EXCLUDED.notes,
-			updated_at = now()
 		RETURNING id::text, created_at, updated_at
 	`, review.AssetID, review.TextSHA256, review.AudioSHA256, review.Decision,
 		review.ReviewerID, review.ReviewerName, criteria, reasons, review.Notes,

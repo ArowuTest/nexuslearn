@@ -28,7 +28,7 @@ func (r *narrationReviewTestRepository) ListNarrationReviews(context.Context, st
 func (r *narrationReviewTestRepository) SaveNarrationReview(_ context.Context, review learning.NarrationReview, idempotencyKey string) (learning.NarrationReview, error) {
 	r.saved = append(r.saved, review)
 	r.keys = append(r.keys, idempotencyKey)
-	r.reviews = append([]learning.NarrationReview(nil), review)
+	r.reviews = append(r.reviews, review)
 	return review, nil
 }
 
@@ -101,6 +101,22 @@ func TestNarrationReviewEndpointsEnforceAudioBindingAndCriteria(t *testing.T) {
 		t.Fatalf("expected one persisted approval with idempotency key, saved=%#v keys=%#v", repo.saved, repo.keys)
 	}
 
+	rejected := map[string]any{
+		"asset_id": "asset-1", "text_sha256": textHash, "audio_sha256": audioHash,
+		"decision": "rejected", "reviewer_name": "A. Reviewer",
+		"criteria":          map[string]bool{"natural": true, "clear": false},
+		"rejection_reasons": []string{"pronunciation"}, "notes": "Re-record the final consonant.",
+	}
+	rejectedBody, _ := json.Marshal(rejected)
+	rejectedRequest := httptest.NewRequest(http.MethodPost, "/v1/admin/content/narration-reviews", bytes.NewReader(rejectedBody))
+	rejectedRequest.Header.Set("X-Admin-Key", "test-admin")
+	rejectedRequest.Header.Set("Idempotency-Key", "review-asset-1-rerecord")
+	rejectedResponse := httptest.NewRecorder()
+	srv.ServeHTTP(rejectedResponse, rejectedRequest)
+	if rejectedResponse.Code != http.StatusOK || len(repo.saved) != 2 || len(repo.reviews) != 2 {
+		t.Fatalf("expected an immutable rejected decision alongside the approval, status=%d saved=%d history=%d", rejectedResponse.Code, len(repo.saved), len(repo.reviews))
+	}
+
 	stale := map[string]any{
 		"asset_id": "asset-1", "text_sha256": strings.Repeat("c", 64), "audio_sha256": audioHash,
 		"decision": "approved", "reviewer_name": "A. Reviewer",
@@ -116,7 +132,7 @@ func TestNarrationReviewEndpointsEnforceAudioBindingAndCriteria(t *testing.T) {
 	if staleResponse.Code != http.StatusConflict {
 		t.Fatalf("expected changed script hash to be rejected, got %d", staleResponse.Code)
 	}
-	if len(repo.saved) != 1 {
+	if len(repo.saved) != 2 {
 		t.Fatalf("stale review must not be persisted")
 	}
 }

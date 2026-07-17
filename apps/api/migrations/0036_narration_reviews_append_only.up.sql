@@ -1,0 +1,2 @@
+ALTER TABLE narration_reviews
+  DROP CONSTRAINT IF EXISTS narration_reviews_asset_id_text_sha256_audio_sha256_key;

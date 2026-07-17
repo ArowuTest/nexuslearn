@@ -10,8 +10,7 @@ CREATE TABLE IF NOT EXISTS narration_reviews (
   rejection_reasons jsonb NOT NULL DEFAULT '[]'::jsonb,
   notes text NOT NULL DEFAULT '',
   created_at timestamptz NOT NULL DEFAULT now(),
-  updated_at timestamptz NOT NULL DEFAULT now(),
-  UNIQUE (asset_id, text_sha256, audio_sha256)
+  updated_at timestamptz NOT NULL DEFAULT now()
 );
 
 CREATE INDEX IF NOT EXISTS idx_narration_reviews_asset_updated

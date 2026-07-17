@@ -1,0 +1,2 @@
+-- The append-only review history cannot be safely reverted to one row per
+-- asset/hash without discarding reviewer decisions.

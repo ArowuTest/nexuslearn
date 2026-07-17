@@ -182,6 +182,11 @@ adds the index used to calculate resumable completion, score and status. Mock
 answers remain separate from long-term mastery evidence until an explicit
 assessment-evidence policy promotes them.
 
+The thirty-fifth migration adds the narration review ledger. The thirty-sixth
+migration makes that ledger explicitly append-only: each reviewer decision is
+immutable, while API reads expose the latest decision for each asset and
+idempotency keys prevent a retried request from creating a duplicate event.
+
 ## Applying Migrations
 
 The API includes an explicit migration command. For paid Render plans, this can be run as a one-off job. Render free web services do not support one-off jobs, so the current prototype path is `AUTO_MIGRATE=true`.
