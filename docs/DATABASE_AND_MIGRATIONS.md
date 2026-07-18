@@ -187,6 +187,12 @@ migration makes that ledger explicitly append-only: each reviewer decision is
 immutable, while API reads expose the latest decision for each asset and
 idempotency keys prevent a retried request from creating a duplicate event.
 
+The thirty-seventh migration adds the append-only content review ledger. It
+stores curriculum, independent teacher, SEND/accessibility, safeguarding,
+renderer and conditional audio decisions per pilot pack and lane. Decisions
+are bound to the generated pilot-batch SHA-256, so a regenerated queue makes
+old approvals visibly stale instead of silently carrying them into release.
+
 ## Applying Migrations
 
 The API includes an explicit migration command. For paid Render plans, this can be run as a one-off job. Render free web services do not support one-off jobs, so the current prototype path is `AUTO_MIGRATE=true`.

@@ -380,6 +380,25 @@ type NarrationReview struct {
 	Stale            bool            `json:"stale,omitempty"`
 }
 
+// ContentReviewDecision is an append-only decision for one governed review
+// lane in a generated pilot batch. The batch hash prevents an approval from
+// silently carrying forward after the source queue changes.
+type ContentReviewDecision struct {
+	ID              string   `json:"id"`
+	BatchID         string   `json:"batch_id"`
+	BatchSHA256     string   `json:"batch_sha256"`
+	PackID          string   `json:"pack_id"`
+	LaneID          string   `json:"lane_id"`
+	Decision        string   `json:"decision"`
+	ReviewerID      string   `json:"reviewer_id,omitempty"`
+	ReviewerName    string   `json:"reviewer_name"`
+	EvidenceNotes   string   `json:"evidence_notes"`
+	CandidateIDs    []string `json:"candidate_ids,omitempty"`
+	RevisionActions []string `json:"revision_actions,omitempty"`
+	CreatedAt       string   `json:"created_at"`
+	Stale           bool     `json:"stale,omitempty"`
+}
+
 type ContentVersion struct {
 	ID          string         `json:"id"`
 	ContentKey  string         `json:"content_key"`

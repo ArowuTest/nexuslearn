@@ -373,9 +373,15 @@ No new subject is ready for release until it has:
 - [x] Server-persisted narration review ledger and stale-binding checks. Reviews
   are bound to the current script/audio hashes and cannot be saved against a
   changed manifest asset.
-- [ ] Server-persisted teacher audio/content review decisions.
-- [ ] Release dashboard that blocks production claims while human gates are open.
-- [ ] Independent teacher and SEND review workflow.
+- [x] Server-persisted teacher/content review decisions. The append-only
+  content-review ledger stores pack/lane decisions, reviewer evidence and
+  representative candidate IDs against the current pilot-batch hash.
+- [x] Release dashboard that blocks pilot promotion claims while human gates
+  are open. The API exposes a separate persisted-ledger gate and marks stale,
+  held or missing required lanes as blocked.
+- [x] Independent teacher and SEND review workflow. Reviewer lanes are
+  separately recorded rather than inferred from authored volume, with notes,
+  candidate coverage and revision actions required for decisions.
 - [ ] Pilot evidence and child-safety sign-off.
 
 ### Only then expand content

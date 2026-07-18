@@ -522,6 +522,38 @@ type PilotReviewEvidenceCheck = {
   warnings: string[];
   errors: string[];
 };
+type ContentReviewDecision = {
+  id: string;
+  batch_id: string;
+  batch_sha256: string;
+  pack_id: string;
+  lane_id: string;
+  decision: "approved" | "revise" | "hold";
+  reviewer_name: string;
+  evidence_notes: string;
+  candidate_ids?: string[];
+  revision_actions?: string[];
+  created_at: string;
+  stale?: boolean;
+};
+type ContentReviewLedger = {
+  batch_id: string;
+  batch_sha256: string;
+  reviews: ContentReviewDecision[];
+  release_gate: {
+    status: string;
+    promotion_allowed: boolean;
+    required_lanes: number;
+    approved_required_lanes: number;
+    pending_required_lanes: number;
+    conditional_lanes_pending: number;
+    non_approved_decisions: number;
+    stale_decisions: number;
+    decision_count: number;
+    promotion_guard: string;
+  };
+  served_by?: string;
+};
 type FlagshipReviewReport = {
   totals: {
     packs: number;
@@ -706,6 +738,8 @@ export default function AdminPage() {
   const [pilotReviewBatch, setPilotReviewBatch] = useState<PilotReviewBatch | null>(null);
   const [pilotReviewEvidence, setPilotReviewEvidence] = useState<PilotReviewEvidenceTemplate | null>(null);
   const [pilotReviewEvidenceCheck, setPilotReviewEvidenceCheck] = useState<PilotReviewEvidenceCheck | null>(null);
+  const [contentReviewLedger, setContentReviewLedger] = useState<ContentReviewLedger | null>(null);
+  const [contentReviewDrafts, setContentReviewDrafts] = useState<Record<string, { reviewer_name: string; evidence_notes: string; candidate_ids: string; revision_actions: string }>>({});
   const [flagshipReview, setFlagshipReview] = useState<FlagshipReviewReport | null>(null);
   const [auditLogs, setAuditLogs] = useState<AuditLog[]>([]);
   const [contentVersions, setContentVersions] = useState<ContentVersion[]>([]);
@@ -827,6 +861,72 @@ export default function AdminPage() {
     };
   }
 
+  function contentReviewKey(packID: string, laneID: string) {
+    return `${packID}:${laneID}`;
+  }
+
+  function contentReviewFor(packID: string, laneID: string) {
+    return contentReviewLedger?.reviews.find((review) => review.pack_id === packID && review.lane_id === laneID);
+  }
+
+  function contentReviewDraftFor(packID: string, laneID: string) {
+    const key = contentReviewKey(packID, laneID);
+    const saved = contentReviewFor(packID, laneID);
+    return contentReviewDrafts[key] ?? {
+      reviewer_name: saved?.reviewer_name ?? "",
+      evidence_notes: saved?.evidence_notes ?? "",
+      candidate_ids: saved?.candidate_ids?.join(", ") ?? "",
+      revision_actions: saved?.revision_actions?.join(", ") ?? "",
+    };
+  }
+
+  function updateContentReviewDraft(packID: string, laneID: string, patch: Partial<{ reviewer_name: string; evidence_notes: string; candidate_ids: string; revision_actions: string }>) {
+    const key = contentReviewKey(packID, laneID);
+    setContentReviewDrafts((current) => ({
+      ...current,
+      [key]: { ...contentReviewDraftFor(packID, laneID), ...patch },
+    }));
+  }
+
+  async function saveContentReview(pack: PilotReviewPack, lane: PilotReviewLane, decision: ContentReviewDecision["decision"]) {
+    const draft = contentReviewDraftFor(pack.pack_id, lane.id);
+    const candidateIDs = draft.candidate_ids.split(",").map((item) => item.trim()).filter(Boolean);
+    if (!draft.reviewer_name.trim() || !draft.evidence_notes.trim()) {
+      setMessage("Add the reviewer name and evidence notes before recording a content decision.");
+      return;
+    }
+    if (decision === "approved" && candidateIDs.length === 0) {
+      setMessage("An approval needs at least one representative candidate ID.");
+      return;
+    }
+    setSaving(contentReviewKey(pack.pack_id, lane.id));
+    try {
+      const review = await adminFetch("/v1/admin/content/reviews", {
+        method: "POST",
+        headers: { "Idempotency-Key": `content-${contentReviewLedger?.batch_id ?? "batch"}-${pack.pack_id}-${lane.id}-${decision}-${candidateIDs.join("|")}` },
+        body: JSON.stringify({
+          batch_id: contentReviewLedger?.batch_id,
+          batch_sha256: contentReviewLedger?.batch_sha256,
+          pack_id: pack.pack_id,
+          lane_id: lane.id,
+          decision,
+          reviewer_name: draft.reviewer_name.trim(),
+          evidence_notes: draft.evidence_notes.trim(),
+          candidate_ids: candidateIDs,
+          revision_actions: draft.revision_actions.split(",").map((item) => item.trim()).filter(Boolean),
+        }),
+      }) as ContentReviewDecision;
+      setContentReviewLedger((current) => current ? { ...current, reviews: [review, ...current.reviews.filter((item) => !(item.pack_id === review.pack_id && item.lane_id === review.lane_id))] } : current);
+      setMessage(`${pack.pack_id} / ${lane.id.replaceAll("_", " ")} recorded as ${decision}. The release gate will remain blocked until every required lane is current and approved.`);
+      const refreshed = await adminFetch("/v1/admin/content/reviews") as ContentReviewLedger;
+      setContentReviewLedger(refreshed);
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Could not save content review.");
+    } finally {
+      setSaving("");
+    }
+  }
+
   function updateNarrationDraft(assetID: string, patch: Partial<{ reviewer_name: string; notes: string; criteria: Record<string, boolean> }>) {
     setNarrationReviewDrafts((current) => ({
       ...current,
@@ -884,7 +984,7 @@ export default function AdminPage() {
     setLoading(true);
     setMessage("Loading live configuration...");
     try {
-      const [loadedConfig, objectiveData, readinessData, auditData, versionsData, invitationData, rendererData, assetData, narrationData, narrationListeningPriorityData, narrationReviewData, packDepthData, curriculumCoverageData, releaseData, variantQueueData, runtimeSpineData, pilotReviewBatchData, pilotReviewEvidenceData, pilotReviewEvidenceCheckData, flagshipReviewData] = await Promise.all([
+      const [loadedConfig, objectiveData, readinessData, auditData, versionsData, invitationData, rendererData, assetData, narrationData, narrationListeningPriorityData, narrationReviewData, packDepthData, curriculumCoverageData, releaseData, variantQueueData, runtimeSpineData, pilotReviewBatchData, pilotReviewEvidenceData, pilotReviewEvidenceCheckData, contentReviewLedgerData, flagshipReviewData] = await Promise.all([
         adminFetch("/v1/admin/config"),
         fetch(`${API}/v1/curriculum/objectives`).then((res) => res.json()),
         adminFetch("/v1/admin/content/readiness"),
@@ -904,6 +1004,7 @@ export default function AdminPage() {
         loadGeneratedContentReport("pilot-review-batch"),
         loadGeneratedContentReport("pilot-review-evidence-template"),
         loadGeneratedContentReport("pilot-review-evidence-check"),
+        adminFetch("/v1/admin/content/reviews").catch(() => null),
         loadGeneratedContentReport("flagship-review"),
       ]);
       setConfig(loadedConfig as AdminConfig);
@@ -922,6 +1023,7 @@ export default function AdminPage() {
       setPilotReviewBatch(pilotReviewBatchData as PilotReviewBatch | null);
       setPilotReviewEvidence(pilotReviewEvidenceData as PilotReviewEvidenceTemplate | null);
       setPilotReviewEvidenceCheck(pilotReviewEvidenceCheckData as PilotReviewEvidenceCheck | null);
+      setContentReviewLedger(contentReviewLedgerData as ContentReviewLedger | null);
       setFlagshipReview(flagshipReviewData as FlagshipReviewReport | null);
       setAuditLogs(auditData.audit_logs ?? []);
       setContentVersions(versionsData.content_versions ?? []);
@@ -943,6 +1045,7 @@ export default function AdminPage() {
       setPilotReviewBatch(null);
       setPilotReviewEvidence(null);
       setPilotReviewEvidenceCheck(null);
+      setContentReviewLedger(null);
       setFlagshipReview(null);
       setAuditLogs([]);
       setContentVersions([]);
@@ -2339,6 +2442,25 @@ export default function AdminPage() {
                   {pilotReviewEvidenceCheck?.promotion_guard ?? "The backend evidence-check report will appear after content quality runs."}
                 </p>
               </div>
+              <div className={`border-b border-[#1d1a3e]/8 p-5 text-sm ${contentReviewLedger?.release_gate.promotion_allowed ? "bg-[#effaf3] text-[#155d36]" : "bg-[#fff4d5] text-[#725100]"}`}>
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <div>
+                    <p className="font-semibold">Server review ledger: {contentReviewLedger?.release_gate.status.replaceAll("_", " ") ?? "not connected"}</p>
+                    <p className="mt-1 max-w-3xl leading-6">
+                      {contentReviewLedger?.release_gate.promotion_guard ?? "Sign in with a content reviewer account to record teacher and SEND decisions against the current batch."}
+                    </p>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 text-center sm:grid-cols-4">
+                    <Info label="Required approved" value={`${contentReviewLedger?.release_gate.approved_required_lanes ?? 0}/${contentReviewLedger?.release_gate.required_lanes ?? 0}`} />
+                    <Info label="Pending" value={String(contentReviewLedger?.release_gate.pending_required_lanes ?? 0)} />
+                    <Info label="Stale" value={String(contentReviewLedger?.release_gate.stale_decisions ?? 0)} />
+                    <Info label="Decisions" value={String(contentReviewLedger?.release_gate.decision_count ?? 0)} />
+                  </div>
+                </div>
+                <p className="mt-3 text-xs leading-5 opacity-75">
+                  {contentReviewLedger ? `Batch hash ${contentReviewLedger.batch_sha256.slice(0, 12)}… · ${contentReviewLedger.served_by === "api" ? "persisted backend ledger" : "fallback"}` : "The static evidence report is not a substitute for persisted reviewer decisions."}
+                </p>
+              </div>
               {pilotReviewBatch && (
                 <div className="border-b border-[#1d1a3e]/8 bg-[#fbfaf6] p-5">
                   <p className="font-display text-xs uppercase tracking-[0.14em] text-[#155d64]">Decision policy</p>
@@ -2375,11 +2497,34 @@ export default function AdminPage() {
                     <div className="mt-3 grid gap-2 sm:grid-cols-2">
                       {pack.lanes.map((lane) => (
                         <div key={lane.id} className="rounded-2xl border border-[#1d1a3e]/8 bg-white p-3">
+                          {(() => {
+                            const review = contentReviewFor(pack.pack_id, lane.id);
+                            const draft = contentReviewDraftFor(pack.pack_id, lane.id);
+                            const reviewKey = contentReviewKey(pack.pack_id, lane.id);
+                            const reviewable = lane.status === "required" || lane.status === "conditional";
+                            return <>
                           <div className="flex items-center justify-between gap-2">
                             <p className="text-xs font-semibold">{lane.id.replaceAll("_", " ")}</p>
-                            <span className={`px-2 py-0.5 text-[11px] font-semibold ${pilotLaneBadgeClass(lane.status)}`}>{lane.status}</span>
+                            <div className="flex flex-wrap justify-end gap-1">
+                              <span className={`px-2 py-0.5 text-[11px] font-semibold ${pilotLaneBadgeClass(lane.status)}`}>{lane.status}</span>
+                              {review && <span className={`px-2 py-0.5 text-[11px] font-semibold ${review.stale ? "bg-[#ffe8e8] text-[#8b2b2b]" : review.decision === "approved" ? "bg-[#dff7e7] text-[#28613c]" : "bg-[#fff4d5] text-[#725100]"}`}>{review.stale ? "stale" : review.decision}</span>}
+                            </div>
                           </div>
                           <p className="mt-2 text-[11px] leading-4 text-[#1d1a3e]/58">{lane.description}</p>
+                          {reviewable && contentReviewLedger && <div className="mt-3 space-y-2 border-t border-[#1d1a3e]/8 pt-3">
+                            <input value={draft.reviewer_name} onChange={(event) => updateContentReviewDraft(pack.pack_id, lane.id, { reviewer_name: event.target.value })} placeholder="Reviewer name / role" className="w-full border border-[#1d1a3e]/10 px-3 py-2 text-xs outline-none focus:border-[#7357c9]" />
+                            <textarea value={draft.evidence_notes} onChange={(event) => updateContentReviewDraft(pack.pack_id, lane.id, { evidence_notes: event.target.value })} placeholder="Evidence notes: age fit, SEND access, misconceptions, safeguarding or audio findings" rows={2} className="w-full resize-y border border-[#1d1a3e]/10 px-3 py-2 text-xs outline-none focus:border-[#7357c9]" />
+                            <input value={draft.candidate_ids} onChange={(event) => updateContentReviewDraft(pack.pack_id, lane.id, { candidate_ids: event.target.value })} placeholder="Candidate IDs reviewed (comma separated)" className="w-full border border-[#1d1a3e]/10 px-3 py-2 text-xs outline-none focus:border-[#7357c9]" />
+                            <input value={draft.revision_actions} onChange={(event) => updateContentReviewDraft(pack.pack_id, lane.id, { revision_actions: event.target.value })} placeholder="Revision actions, if any (comma separated)" className="w-full border border-[#1d1a3e]/10 px-3 py-2 text-xs outline-none focus:border-[#7357c9]" />
+                            <div className="flex flex-wrap gap-2">
+                              <button type="button" onClick={() => void saveContentReview(pack, lane, "approved")} disabled={saving === reviewKey} className="btn-pop rounded-full bg-[#dff7e7] px-3 py-2 text-[11px] font-semibold text-[#28613c] disabled:opacity-50">Approve lane</button>
+                              <button type="button" onClick={() => void saveContentReview(pack, lane, "revise")} disabled={saving === reviewKey} className="btn-pop rounded-full bg-[#fff4d5] px-3 py-2 text-[11px] font-semibold text-[#725100] disabled:opacity-50">Request revision</button>
+                              <button type="button" onClick={() => void saveContentReview(pack, lane, "hold")} disabled={saving === reviewKey} className="btn-pop rounded-full bg-[#fde4e4] px-3 py-2 text-[11px] font-semibold text-[#8b2b2b] disabled:opacity-50">Hold release</button>
+                            </div>
+                            {review && <p className="text-[11px] leading-4 text-[#1d1a3e]/55">Latest by {review.reviewer_name} · {new Date(review.created_at).toLocaleString()}</p>}
+                          </div>}
+                            </>;
+                          })()}
                         </div>
                       ))}
                     </div>
