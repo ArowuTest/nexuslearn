@@ -3,17 +3,21 @@
 import type { CSSProperties } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
+import ChildJourneyChrome, { ApiStateCard } from "@/components/ChildJourneyChrome";
 import Dino, { type DinoMood } from "@/components/Dino";
 import LearningStudio from "@/components/LearningStudio";
+import ProgressSnapshot from "@/components/ProgressSnapshot";
 import {
   DEFAULT_STUDENT_ID,
   getDiagnosticBaseline,
   getNextActivity,
+  getProgress,
   getWorldState,
   pupilSessionHeaders,
   type DiagnosticBaseline,
   type MissionConfig,
   type NextActivityDecision,
+  type ProgressReport,
 } from "@/lib/api";
 import { playProducedAudio, sfx, setMuted } from "@/lib/sound";
 import { resolveNarrationFields, useNarrationAssets } from "@/lib/narration";
@@ -189,6 +193,8 @@ export default function Mission() {
   const [results, setResults] = useState<boolean[]>([]);
   const [baselineProgress, setBaselineProgress] = useState<DiagnosticBaseline | null>(null);
   const [nextActivity, setNextActivity] = useState<NextActivityDecision | null>(null);
+  const [progressReport, setProgressReport] = useState<ProgressReport | null>(null);
+  const [progressState, setProgressState] = useState<"not-requested" | "loading" | "ready" | "unavailable">("not-requested");
   const [reducedMotion, setReducedMotion] = useState(false);
   const [highContrast, setHighContrast] = useState(false);
   const [readingReduced, setReadingReduced] = useState(false);
@@ -437,14 +443,18 @@ export default function Mission() {
       void Promise.all([
         getDiagnosticBaseline(studentId),
         getNextActivity(studentId),
+        getProgress(studentId),
         getWorldState(studentId, mission?.world?.key),
-      ]).then(([baseline, next, worldState]) => {
+      ]).then(([baseline, next, progress, worldState]) => {
         setBaselineProgress(baseline);
         setNextActivity(next);
+        setProgressReport(progress);
+        setProgressState(progress ? "ready" : "unavailable");
         if (worldState) {
           setMission((current) => current ? { ...current, world_state: worldState } : current);
         }
-      });
+      }).catch(() => setProgressState("unavailable"));
+      setProgressState("loading");
       const t = setTimeout(() => {
         setHatched(true);
         setMood("celebrate");
@@ -719,6 +729,10 @@ export default function Mission() {
         mode: nextActivity.assessment_mode,
       }).toString()}`
     : "";
+  const journeyStage = done ? "grow" : inLesson ? "learn" : "practise";
+  const journeyContext = `${mission?.objective?.subject || "Learning"} · Year ${mission?.objective?.year || mission?.world?.year_group || "—"} · ${mission?.objective?.topic || "today's mission"}`;
+  const hasLessonAudio = Boolean(lessonAudioURL || lessonStep?.audio_script);
+  const hasQuestionAudio = Boolean(questionAudio || questionAudioScriptText || questionAudioPending);
 
   return (
     <main
@@ -738,6 +752,15 @@ export default function Mission() {
         <div className="absolute right-[4%] top-[18%] h-72 w-72 rounded-full bg-[#55cbd3] opacity-10 blur-3xl" />
         <div className="absolute inset-x-0 bottom-0 h-48 bg-[linear-gradient(180deg,transparent,rgba(255,255,255,0.08))]" />
       </div>
+
+      <ChildJourneyChrome
+        active={journeyStage}
+        context={journeyContext}
+        backHref="/play"
+        backLabel="Exit"
+        actionHref="#mission-support"
+        actionLabel="Support & audio"
+      />
 
       {/* top bar */}
       <div className="relative z-10 mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3">
@@ -891,6 +914,7 @@ export default function Mission() {
       {activeSupportPlan.length > 0 && (
         <section
           className="relative z-10 mx-auto mt-4 max-w-6xl rounded-[1.4rem] border border-[#55cbd3]/35 bg-[#10233f]/82 p-4 shadow-[0_18px_60px_rgba(0,0,0,0.18)]"
+          id="mission-support"
           aria-label="Active support plan"
         >
           <div className="flex flex-wrap items-start justify-between gap-3">
@@ -907,6 +931,14 @@ export default function Mission() {
                       {badge}
                     </span>
                   ))}
+                </div>
+              )}
+              {(hasLessonAudio || hasQuestionAudio) && (
+                <div className="mt-3 flex flex-wrap gap-2" aria-label="Audio shortcuts">
+                  <a href={`#${inLesson ? "lesson-audio" : "question-audio"}`} className="rounded-full border border-[#ffdf8a]/35 bg-[#ffdf8a]/10 px-3 py-1 text-xs font-semibold text-[#ffdf8a]">
+                    Jump to audio replay
+                  </a>
+                  <span className="rounded-full border border-white/10 bg-white/8 px-3 py-1 text-xs text-white/70">Produced studio audio only</span>
                 </div>
               )}
             </div>
@@ -1068,7 +1100,7 @@ export default function Mission() {
                 We are practising: {lessonStep.learning_purpose}
               </p>
             )}
-            <div className="mt-7 flex flex-wrap gap-3">
+            <div id="lesson-audio" className="mt-7 flex flex-wrap gap-3">
               {lessonAudioURL && (
                 <button
                   type="button"
@@ -1136,7 +1168,7 @@ export default function Mission() {
             </details>
 
             {(questionAudio || questionAudioScriptText || questionAudioPending) && (
-              <div className="mt-5 rounded-2xl border border-[#7fe7d7]/45 bg-[#17233f] p-4" aria-label="Question audio support">
+              <div id="question-audio" className="mt-5 rounded-2xl border border-[#7fe7d7]/45 bg-[#17233f] p-4" aria-label="Question audio support">
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div>
                     <p className="font-display text-sm font-semibold text-[#7fe7d7]">Listen to the question</p>
@@ -1283,6 +1315,25 @@ export default function Mission() {
                     />
                   ))}
                 </div>
+              </div>
+            )}
+            {progressState === "loading" && (
+              <div className="mt-5">
+                <ApiStateCard kind="loading" title="Updating your growth view" body="We are combining this mission with your cross-subject evidence so the next route reflects what you can already do." />
+              </div>
+            )}
+            {progressState === "ready" && progressReport && (
+              <div className="mt-5 overflow-hidden rounded-2xl border border-[#17233f]/10 bg-white">
+                <div className="border-b border-[#17233f]/10 bg-[#f3efff] px-5 py-4">
+                  <p className="font-display text-sm font-semibold uppercase tracking-[0.14em] text-[#5a3ca8]">Your growth across subjects</p>
+                  <p className="mt-1 text-sm text-ink/70">A strong subject can move ahead independently; another subject can keep its own revision route.</p>
+                </div>
+                <ProgressSnapshot progress={progressReport} empty="No cross-subject evidence is available yet." tone="navy" />
+              </div>
+            )}
+            {progressState === "unavailable" && (
+              <div className="mt-5">
+                <ApiStateCard kind="unavailable" title="Growth view is temporarily unavailable" body="This mission was saved, but the wider progress report did not return. Your evidence is not being replaced with a guessed score." />
               </div>
             )}
             <div className="mt-6 flex justify-center gap-3">

@@ -6,11 +6,11 @@ const root = path.resolve(process.cwd(), ".next", "static");
 const limits = {
   // The interaction runtime now carries the accessible renderer families for
   // all Years 1–7. Keep the per-chunk and public-asset limits strict while
-  // allowing the measured aggregate bundle to remain below 1.29 MB.
+  // allowing the measured aggregate bundle to remain below 1.31 MB.
   // Authenticated reporting, governed teacher/SEND review controls and
-  // subject-mock routes add intentional runtime coverage; keep the stricter
-  // per-chunk limit while allowing 1.29 MB total.
-  totalJavaScript: 1_290_000,
+  // subject-mock routes and shared child journey/growth chrome add intentional
+  // runtime coverage; keep the stricter per-chunk limit while allowing 1.31 MB total.
+  totalJavaScript: 1_310_000,
   largestJavaScript: 250_000,
   totalCSS: 120_000,
   individualPublicAsset: 600_000,

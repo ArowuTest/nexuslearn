@@ -358,11 +358,13 @@ No new subject is ready for release until it has:
 
 ### Frontend hardening first
 
-- [ ] Shared child journey chrome and route status vocabulary.
+- [x] Shared child journey chrome and route status vocabulary across the child
+  route, mission and mock-assessment surfaces.
 - [ ] Honest API loading, empty and unavailable states.
 - [ ] Child portal redesign around warm-up, mission and growth.
 - [ ] Consistent subject identity for English, Mathematics and Science.
-- [ ] Mission support controls and audio replay made easier to find.
+- [x] Mission support controls and audio replay made easier to find, including
+  route-level support shortcuts and produced-audio-only messaging.
 - [x] Audio listening queue embedded in admin readiness, with embedded playback,
   criteria capture and server review status.
 - [ ] Teacher evidence links and review context improved.

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { CSSProperties } from "react";
+import ChildJourneyChrome, { ApiStateCard } from "@/components/ChildJourneyChrome";
 import Dino from "@/components/Dino";
 import { DEFAULT_STUDENT_ID, getNextActivity, getRuntimeFlags, getWorlds } from "@/lib/api";
 
@@ -46,6 +47,8 @@ export default async function PlayEntry() {
         shape: WORLD_SHAPES[(Math.max(1, world.year_group) - 1) % WORLD_SHAPES.length],
       }))
     : [];
+  const worldsAvailable = worlds !== null;
+  const runtimeAvailable = runtimeFlags !== null;
 
   if (!childPlayEnabled) {
     return (
@@ -67,13 +70,25 @@ export default async function PlayEntry() {
       {visualPortalsEnabled && <div className="play-entry__aurora" aria-hidden="true" />}
       {visualPortalsEnabled && <div className="play-entry__grid" aria-hidden="true" />}
       <div className="relative mx-auto max-w-7xl px-5 py-5">
-        <nav className="flex flex-wrap items-center justify-between gap-4">
-          <Link href="/" className="font-display text-xl font-semibold">NexusLearn</Link>
-          <div className="flex flex-wrap gap-2">
-            <Link href="/login" className="rounded-lg bg-white/10 px-4 py-2 text-sm font-semibold">Pupil login</Link>
-            <Link href="/" className="rounded-lg bg-white/10 px-4 py-2 text-sm font-semibold">Home</Link>
+        <ChildJourneyChrome
+          active="route"
+          context="Choose today’s route across English, Mathematics and Science"
+          backHref="/"
+          backLabel="Home"
+          actionHref="/login"
+          actionLabel="Pupil login"
+        />
+
+        {(!worldsAvailable || !runtimeAvailable) && (
+          <div className="mt-5">
+            <ApiStateCard
+              kind="unavailable"
+              tone="dark"
+              title="Live learning service is unavailable"
+              body="The portal cannot confirm the current worlds or access settings right now. No placeholder learning route has been shown; try again when the service is connected."
+            />
           </div>
-        </nav>
+        )}
 
         <section className="mt-8 grid gap-6 lg:grid-cols-[0.7fr_1.3fr]">
           <aside className="rounded-lg border border-white/12 bg-[#142746]/88 p-6 shadow-[0_24px_80px_rgba(0,0,0,0.24)] backdrop-blur">
@@ -198,10 +213,13 @@ export default async function PlayEntry() {
                 </div>
               </Link>
             ))}
-            {profiles.length === 0 && (
-              <div className="rounded-lg border border-white/10 bg-white/10 p-6 text-sm leading-6 text-white/68 sm:col-span-2 xl:col-span-3">
-                No learning worlds are currently published. A platform administrator can configure and release Year 1-7 worlds without changing the child application.
-              </div>
+            {worldsAvailable && profiles.length === 0 && (
+              <ApiStateCard
+                kind="empty"
+                tone="dark"
+                title="No learning worlds are published"
+                body="A platform administrator can configure and release the Year 1-7 worlds without changing the child application."
+              />
             )}
           </section>
         </section>
