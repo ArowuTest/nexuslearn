@@ -2506,7 +2506,7 @@ export default function AdminPage() {
                       <div>
                         <p className="font-semibold">{pack.pack_id}</p>
                         <p className="mt-1 text-xs leading-5 text-[#1d1a3e]/58">
-                          Y{pack.year} {pack.subject} Â· queue #{pack.queue_rank} Â· first pass {pack.recommended_first_pass}/{pack.review_candidates}
+                          Y{pack.year} {pack.subject}{" · "}queue #{pack.queue_rank}{" · "}first pass {pack.recommended_first_pass}/{pack.review_candidates}
                         </p>
                       </div>
                       <div className="flex flex-wrap gap-2">

@@ -34,6 +34,9 @@ export default function MockAssessmentBuilder({
   const [message, setMessage] = useState("Choose a subject check. It will use approved questions and keep SEND supports active.");
   const [created, setCreated] = useState<MockAssessment | null>(null);
   const requestKey = useRef({ fingerprint: "", value: "" });
+  const [createdRequestFingerprint, setCreatedRequestFingerprint] = useState("");
+
+  const currentFingerprint = JSON.stringify({ role, studentId, subject, year, questionCount, includeRevision, includeStretch });
 
   async function generate() {
     if (!studentId) {
@@ -43,7 +46,7 @@ export default function MockAssessmentBuilder({
     setSaving(true);
     setMessage("Building a balanced subject check...");
     try {
-      const fingerprint = JSON.stringify({ role, studentId, subject, year, questionCount, includeRevision, includeStretch });
+      const fingerprint = currentFingerprint;
       if (requestKey.current.fingerprint !== fingerprint || !requestKey.current.value) {
         requestKey.current = {
           fingerprint,
@@ -65,6 +68,7 @@ export default function MockAssessmentBuilder({
           ? await createParentMockAssessment(studentId, request)
           : await createSchoolMockAssessment(studentId, request);
       setCreated(assessment);
+      setCreatedRequestFingerprint(fingerprint);
       onCreated?.(assessment);
       setMessage(`${assessment.title} is ready with ${assessment.question_count} approved questions.`);
       requestKey.current = { fingerprint: "", value: "" };
@@ -75,7 +79,8 @@ export default function MockAssessmentBuilder({
     }
   }
 
-  const launchHref = created ? `/play/mission?studentId=${encodeURIComponent(studentId)}&mockAssessmentId=${encodeURIComponent(created.id)}` : "";
+  const hasCurrentAssessment = Boolean(created && createdRequestFingerprint === currentFingerprint);
+  const launchHref = hasCurrentAssessment && created ? `/play/mission?studentId=${encodeURIComponent(studentId)}&mockAssessmentId=${encodeURIComponent(created.id)}` : "";
   return (
     <section className="rounded-lg border border-[#7357c9]/18 bg-[#fbfaf6] p-4 text-[#15213d]" aria-label="Generate a mock assessment">
       <div className="flex flex-wrap items-start justify-between gap-3">
@@ -116,11 +121,11 @@ export default function MockAssessmentBuilder({
       <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
         <p className="max-w-xl text-xs leading-5 text-[#15213d]/62" aria-live="polite">{message}</p>
         <div className="flex flex-wrap gap-2">
-          {created && role === "pupil" && <Link href={launchHref} className="rounded-lg bg-[#55cbd3] px-4 py-2 text-xs font-semibold text-[#15213d]">Start mock</Link>}
+          {hasCurrentAssessment && role === "pupil" && <Link href={launchHref} className="rounded-lg bg-[#55cbd3] px-4 py-2 text-xs font-semibold text-[#15213d]">Start mock</Link>}
           <button onClick={generate} disabled={saving || !studentId} className="btn-pop bg-[#7357c9] px-4 py-2 text-xs text-white disabled:opacity-50">{saving ? "Building..." : "Generate mock"}</button>
         </div>
       </div>
-      {created && role !== "pupil" && <p className="mt-2 rounded-lg bg-white p-3 text-xs leading-5 text-[#15213d]/68">Assessment ID: <code>{created.id}</code>. The pupil can open it after signing in with their usual access card.</p>}
+      {hasCurrentAssessment && created && role !== "pupil" && <p className="mt-2 rounded-lg bg-white p-3 text-xs leading-5 text-[#15213d]/68">Assessment ID: <code>{created.id}</code>. The pupil can open it after signing in with their usual access card.</p>}
     </section>
   );
 }
