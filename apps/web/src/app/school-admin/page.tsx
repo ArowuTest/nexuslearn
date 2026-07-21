@@ -199,6 +199,7 @@ export default function SchoolAdminPage() {
     (portal?.classes ?? []).forEach((item) => (item.students ?? []).forEach((learner) => byID.set(learner.external_ref, learner)));
     return Array.from(byID.values()).sort((left, right) => left.display_name.localeCompare(right.display_name));
   }, [portal]);
+  const selectedEngagementStudent = schoolStudents.find((item) => item.external_ref === engagementPupil);
 
   const totals = useMemo(() => {
     const students = new Set<string>();
@@ -230,18 +231,24 @@ export default function SchoolAdminPage() {
     return body;
   }
 
+  async function loadWorkspace() {
+    const [data, assignmentData, evidenceData, interventionData, reviewData] = await Promise.all([
+      apiFetch("/v1/school/config"),
+      apiFetch("/v1/school/assignments"),
+      apiFetch("/v1/school/evidence"),
+      apiFetch("/v1/school/interventions"),
+      apiFetch("/v1/school/intervention-reviews"),
+    ]);
+    setPortal(data as SchoolPortal);
+    setLearningAssignments(assignmentData.assignments ?? []);
+    setTeacherEvidence(evidenceData.teacher_evidence ?? []);
+    setInterventions(interventionData.interventions ?? []);
+    setInterventionReviews(reviewData.intervention_reviews ?? []);
+  }
+
   async function load() {
     await guarded("Loading school workspace...", async () => {
-      const data = await apiFetch("/v1/school/config");
-      setPortal(data as SchoolPortal);
-      const assignmentData = await apiFetch("/v1/school/assignments");
-      setLearningAssignments(assignmentData.assignments ?? []);
-      const evidenceData = await apiFetch("/v1/school/evidence");
-      setTeacherEvidence(evidenceData.teacher_evidence ?? []);
-      const interventionData = await apiFetch("/v1/school/interventions");
-      setInterventions(interventionData.interventions ?? []);
-      const reviewData = await apiFetch("/v1/school/intervention-reviews");
-      setInterventionReviews(reviewData.intervention_reviews ?? []);
+      await loadWorkspace();
       setMessage("School workspace loaded.");
     });
   }
@@ -258,16 +265,7 @@ export default function SchoolAdminPage() {
       if (!res.ok) throw new Error(body.error ?? "School login failed.");
       storeAccountSession(body.session as AccountSession);
       setPassword("");
-      const data = await apiFetch("/v1/school/config");
-      setPortal(data as SchoolPortal);
-      const assignmentData = await apiFetch("/v1/school/assignments");
-      setLearningAssignments(assignmentData.assignments ?? []);
-      const evidenceData = await apiFetch("/v1/school/evidence");
-      setTeacherEvidence(evidenceData.teacher_evidence ?? []);
-      const interventionData = await apiFetch("/v1/school/interventions");
-      setInterventions(interventionData.interventions ?? []);
-      const reviewData = await apiFetch("/v1/school/intervention-reviews");
-      setInterventionReviews(reviewData.intervention_reviews ?? []);
+      await loadWorkspace();
       setMessage("School workspace loaded.");
     });
   }
@@ -301,6 +299,7 @@ export default function SchoolAdminPage() {
 
   async function loadProgressReport() {
     if (!engagementPupil) return;
+    setProgressReport(null);
     await guarded("Loading learner progress...", async () => {
       const data = await apiFetch(`/v1/school/students/${encodeURIComponent(engagementPupil)}/progress`);
       setProgressReport(data as ProgressReport);
@@ -606,6 +605,7 @@ export default function SchoolAdminPage() {
                   setEngagementPupil(studentExternalRef);
                   setEngagementProfile(emptyEngagementProfile(studentExternalRef));
                   setEngagementInterests("");
+                  setProgressReport(null);
                 }}
               />
               <div className="flex justify-end border-b border-[#17233f]/10 p-5">
@@ -676,7 +676,11 @@ export default function SchoolAdminPage() {
             </Panel>
             <Panel title="Learner Progress Snapshot">
               <div className="flex flex-wrap items-center justify-between gap-3 p-5">
-                <p className="max-w-xl text-sm leading-6 text-[#17233f]/62">Progress is subject-specific: a pupil may work ahead in Mathematics while English remains on its own support route.</p>
+                <p className="max-w-xl text-sm leading-6 text-[#17233f]/62">
+                  {selectedEngagementStudent
+                    ? `Showing ${selectedEngagementStudent.display_name} (${selectedEngagementStudent.external_ref}). Progress is subject-specific, so Mathematics can stretch while English remains on its own support route.`
+                    : "Choose a pupil above. Progress is subject-specific: a pupil may work ahead in Mathematics while English remains on its own support route."}
+                </p>
                 <button onClick={loadProgressReport} disabled={!engagementPupil || saving} className="btn-pop bg-[#7357c9] px-5 py-3 text-sm text-white disabled:opacity-50">Load progress</button>
               </div>
               <ProgressSnapshot progress={progressReport} tone="navy" empty="Choose a pupil above, then load their progress evidence." />
