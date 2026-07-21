@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import MockAssessmentBuilder from "@/components/MockAssessmentBuilder";
 import { acceptParentInvitation, createParentAccount, createParentChild, getParentChildEvidence, getParentPortal, logoutAccount, parentLogin, type ParentChildEvidence, type ParentPortal, type ProgressReport, type ProgressSubject, type ProgressTopic, type StudentEngagementProfile } from "@/lib/api";
 
@@ -74,6 +74,7 @@ export default function FamilyPage() {
   const [saving, setSaving] = useState(false);
   const [invitation, setInvitation] = useState("");
   const [invitationProfile, setInvitationProfile] = useState({ display_name: "", password: "" });
+  const portalLoadVersion = useRef(0);
 
   const recommendations = useMemo(() => inclusionSummary(engagement), [engagement]);
 
@@ -98,6 +99,9 @@ export default function FamilyPage() {
 
   async function loadPortal() {
     await guarded("Loading family workspace...", async () => {
+      portalLoadVersion.current += 1;
+      setPortal(null);
+      setEvidenceByChild({});
       await parentLogin(login.login_id, login.password);
       await fetchPortal();
       setMessage("Family workspace loaded.");
@@ -122,25 +126,41 @@ export default function FamilyPage() {
   }
 
   async function fetchPortal() {
+    const loadVersion = portalLoadVersion.current + 1;
+    portalLoadVersion.current = loadVersion;
     const loaded = await getParentPortal();
+    if (loadVersion !== portalLoadVersion.current) return loaded;
     setPortal(loaded);
+    const linkedRefs = loaded.children.map((item) => pupilRefFor(item));
+    const refsToLoad = linkedRefs.filter((externalRef) => !evidenceByChild[externalRef]);
     const entries = await Promise.allSettled(
-      loaded.children.map(async (item) => {
-        const pupilRef = item.credential.student_external_ref || item.student.external_ref || item.student.student_id;
-        const evidence = await getParentChildEvidence(pupilRef);
-        return [pupilRef, evidence] as const;
+      refsToLoad.map(async (externalRef) => {
+        const evidence = await getParentChildEvidence(externalRef);
+        return [externalRef, evidence] as const;
       })
     );
+    if (loadVersion !== portalLoadVersion.current) return loaded;
     const nextEvidence: Record<string, ParentChildEvidence> = {};
     for (const entry of entries) {
       if (entry.status === "fulfilled") nextEvidence[entry.value[0]] = entry.value[1];
     }
-    setEvidenceByChild(nextEvidence);
+    setEvidenceByChild((current) => {
+      const linkedEvidence: Record<string, ParentChildEvidence> = {};
+      for (const externalRef of linkedRefs) {
+        if (current[externalRef]) linkedEvidence[externalRef] = current[externalRef];
+      }
+      return { ...linkedEvidence, ...nextEvidence };
+    });
     return loaded;
   }
 
   async function loadEvidence(externalRef: string) {
     await guarded("Loading child evidence...", async () => {
+      setEvidenceByChild((current) => {
+        const next = { ...current };
+        delete next[externalRef];
+        return next;
+      });
       const evidence = await getParentChildEvidence(externalRef);
       setEvidenceByChild((current) => ({ ...current, [externalRef]: evidence }));
       setMessage(`Evidence loaded for ${evidence.child.student.display_name}.`);
@@ -163,6 +183,7 @@ export default function FamilyPage() {
   }
 
   async function logout() {
+    portalLoadVersion.current += 1;
     await logoutAccount();
     setPortal(null);
     setEvidenceByChild({});
@@ -261,7 +282,7 @@ export default function FamilyPage() {
               {portal && portal.children.length > 0 ? (
                 <div className="grid gap-3 border-t border-[#15213d]/10 p-5 md:grid-cols-2 xl:grid-cols-3">
                   {portal.children.map((item) => {
-                    const pupilRef = item.credential.student_external_ref || item.student.external_ref || item.student.student_id;
+                    const pupilRef = pupilRefFor(item);
                     const loginHref = `/login?pupil=${encodeURIComponent(pupilRef)}&code=${encodeURIComponent(item.credential.login_code)}`;
                     const evidence = evidenceByChild[pupilRef];
                     const evidenceConfidence = weakestEvidenceConfidence(evidence?.mastery ?? []);
@@ -357,6 +378,10 @@ function weakestEvidenceConfidence(mastery: Array<{ evidence_confidence?: string
     return (rank[candidate] ?? 0) < (rank[current] ?? 0) ? candidate : current;
   }, "strong");
   return weakest.charAt(0).toUpperCase() + weakest.slice(1);
+}
+
+function pupilRefFor(item: ParentPortal["children"][number]) {
+  return item.credential.student_external_ref || item.student.external_ref || item.student.student_id;
 }
 
 function inclusionSummary(profile: StudentEngagementProfile) {
