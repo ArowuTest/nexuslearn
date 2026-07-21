@@ -204,11 +204,13 @@ export default function Mission() {
   const [mute, setMute] = useState(false);
   const [sparks, setSparks] = useState<{ id: number; dx: number; dy: number }[]>([]);
   const narrationAssets = useNarrationAssets();
-  const startRef = useRef(Date.now());
+  const startRef = useRef(0);
 
-  const lessonStartRef = useRef(Date.now());
+  const lessonStartRef = useRef(0);
   const sparkId = useRef(0);
   const requestSequence = useRef(0);
+  const attemptInFlight = useRef(false);
+  const lessonStepInFlight = useRef(false);
 
   function clientRequestId(kind: string) {
     requestSequence.current += 1;
@@ -245,6 +247,17 @@ export default function Mission() {
   useEffect(() => {
     let cancelled = false;
     async function loadMission() {
+      setQuestions(null);
+      setMission(null);
+      setIdx(0);
+      setInput("");
+      setResults([]);
+      setMockSummary(undefined);
+      setHatched(false);
+      setProgressReport(null);
+      setProgressState("not-requested");
+      setLoadState("loading");
+      setMessage("Loading configured mission content...");
       if (!studentId) {
         if (!cancelled) {
           setLoadState("access-required");
@@ -481,7 +494,8 @@ export default function Mission() {
   }
 
   async function submit() {
-    if (done || input === "" || !q) return;
+    if (done || input === "" || !q || attemptInFlight.current) return;
+    attemptInFlight.current = true;
     const given = parseInt(input, 10);
     const ms = Date.now() - startRef.current;
     let result: AttemptResult | null = null;
@@ -518,6 +532,7 @@ export default function Mission() {
       setMood("encourage");
       setMessage("I could not save that answer. Please try again in a moment.");
       setInput("");
+      attemptInFlight.current = false;
       return;
     }
 
@@ -554,6 +569,7 @@ export default function Mission() {
       sfx.gentle();
       setInput("");
     }
+    attemptInFlight.current = false;
   }
 
   function key(k: string) {
@@ -625,9 +641,11 @@ export default function Mission() {
   }
 
   async function continueLesson() {
-    if (!mission || !lessonStep) return;
-    if (API) {
-      try {
+    if (!mission || !lessonStep || lessonStepInFlight.current) return;
+    lessonStepInFlight.current = true;
+    try {
+      if (API) {
+        try {
         const supportUsed = [
           adaptations?.audio_support ? "audio_support" : "",
           adaptations?.reading_support ? "reading_support" : "",
@@ -650,21 +668,24 @@ export default function Mission() {
             support_used: supportUsed,
           }),
         });
-        if (!response.ok) {
+          if (!response.ok) {
+            setMessage("I could not save this learning step. Please try again.");
+            return;
+          }
+        } catch {
           setMessage("I could not save this learning step. Please try again.");
           return;
         }
-      } catch {
-        setMessage("I could not save this learning step. Please try again.");
+      }
+      if (lessonIdx + 1 >= teachingSequence.length) {
+        setLessonComplete(true);
+        setMessage(String(mission?.activity?.prompt || "Now show what you can do."));
         return;
       }
+      setLessonIdx((value) => value + 1);
+    } finally {
+      lessonStepInFlight.current = false;
     }
-    if (lessonIdx + 1 >= teachingSequence.length) {
-      setLessonComplete(true);
-      setMessage(String(mission?.activity?.prompt || "Now show what you can do."));
-      return;
-    }
-    setLessonIdx((value) => value + 1);
   }
 
   if (!q && loadState === "loading") {
