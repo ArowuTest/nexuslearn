@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   createParentMockAssessment,
   createPupilMockAssessment,
@@ -33,6 +33,7 @@ export default function MockAssessmentBuilder({
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("Choose a subject check. It will use approved questions and keep SEND supports active.");
   const [created, setCreated] = useState<MockAssessment | null>(null);
+  const requestKey = useRef({ fingerprint: "", value: "" });
 
   async function generate() {
     if (!studentId) {
@@ -42,6 +43,13 @@ export default function MockAssessmentBuilder({
     setSaving(true);
     setMessage("Building a balanced subject check...");
     try {
+      const fingerprint = JSON.stringify({ role, studentId, subject, year, questionCount, includeRevision, includeStretch });
+      if (requestKey.current.fingerprint !== fingerprint || !requestKey.current.value) {
+        requestKey.current = {
+          fingerprint,
+          value: typeof crypto !== "undefined" && typeof crypto.randomUUID === "function" ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`,
+        };
+      }
       const request: MockAssessmentRequest = {
         subject,
         year_group: year,
@@ -49,6 +57,7 @@ export default function MockAssessmentBuilder({
         include_revision: includeRevision,
         include_stretch: includeStretch,
         accessibility: { generated_from: role === "pupil" ? "pupil" : "adult_support_profile" },
+        idempotency_key: requestKey.current.value,
       };
       const assessment = role === "pupil"
         ? await createPupilMockAssessment(studentId, request)
@@ -58,6 +67,7 @@ export default function MockAssessmentBuilder({
       setCreated(assessment);
       onCreated?.(assessment);
       setMessage(`${assessment.title} is ready with ${assessment.question_count} approved questions.`);
+      requestKey.current = { fingerprint: "", value: "" };
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "The mock could not be generated.");
     } finally {

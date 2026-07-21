@@ -48,7 +48,10 @@ export default function PupilMockPage() {
           <h1 className="font-display mt-2 text-4xl font-semibold">Build a subject check.</h1>
           <p className="mt-3 max-w-2xl leading-7 text-[#15213d]/65">Choose what you want to practise. The platform keeps your learning supports, mixes retrieval with fresh evidence and never turns a mock into a speed penalty.</p>
           <div className="mt-6">
-            {studentId ? <MockAssessmentBuilder role="pupil" studentId={studentId} yearGroup={yearGroup} onCreated={(assessment) => setAssessments((items) => [assessment, ...items.filter((item) => item.id !== assessment.id)])} /> : (
+            {studentId ? <MockAssessmentBuilder key={`pupil:${studentId}:${yearGroup}`} role="pupil" studentId={studentId} yearGroup={yearGroup} onCreated={(assessment) => {
+              setAssessments((items) => [assessment, ...items.filter((item) => item.id !== assessment.id)]);
+              setAssessmentState("ready");
+            }} /> : (
               <div className="rounded-lg border border-[#d97919]/25 bg-[#fff7e7] p-5 text-sm leading-6 text-[#6a4a00]">Sign in with your pupil learning card first. Your session keeps this builder private to you. <Link href="/login" className="font-semibold underline">Open pupil login</Link>.</div>
             )}
           </div>

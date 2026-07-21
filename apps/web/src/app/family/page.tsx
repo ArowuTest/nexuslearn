@@ -302,7 +302,7 @@ export default function FamilyPage() {
                           <span className="text-xs text-[#15213d]/52">Picture password still required.</span>
                         </div>
                         <div className="mt-4">
-                          <MockAssessmentBuilder role="parent" studentId={pupilRef} studentName={item.student.display_name} yearGroup={item.student.year_group} />
+                          <MockAssessmentBuilder key={`parent:${pupilRef}:${item.student.year_group}`} role="parent" studentId={pupilRef} studentName={item.student.display_name} yearGroup={item.student.year_group} />
                         </div>
                         {evidence && (
                           <div className="mt-4 grid gap-2 rounded-lg bg-white p-3 text-xs text-[#15213d]/68">

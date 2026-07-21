@@ -725,7 +725,7 @@ export default function SchoolAdminPage() {
                 const target = (portal?.classes ?? []).flatMap((item) => item.students ?? []).find((item) => item.external_ref === learningAssignment.student_external_ref);
                 return target ? (
                   <div className="p-5 pt-0">
-                    <MockAssessmentBuilder role="school" studentId={target.external_ref} studentName={target.display_name} yearGroup={target.year_group} />
+                    <MockAssessmentBuilder key={`school:${target.external_ref}:${target.year_group}`} role="school" studentId={target.external_ref} studentName={target.display_name} yearGroup={target.year_group} />
                   </div>
                 ) : <p className="px-5 pb-5 text-sm leading-6 text-[#17233f]/58">Enter a pupil ID that belongs to this school to generate a scoped subject mock.</p>;
               })()}

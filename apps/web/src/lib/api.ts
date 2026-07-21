@@ -335,6 +335,7 @@ export type MockAssessmentRequest = {
   title?: string;
   accessibility?: Record<string, unknown>;
   student_external_ref?: string;
+  idempotency_key?: string;
 };
 
 export type AccessRequest = {
@@ -618,7 +619,7 @@ export async function getPupilMockAssessments(studentId: string): Promise<MockAs
 
 async function createMockAssessment(path: string, request: MockAssessmentRequest, authHeaders: Record<string, string>): Promise<MockAssessment> {
   if (!API) throw new Error("The NexusLearn API is not configured yet.");
-  const idempotencyKey = typeof crypto !== "undefined" && typeof crypto.randomUUID === "function" ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`;
+  const idempotencyKey = request.idempotency_key || (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function" ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`);
   const res = await fetch(`${API}${path}`, {
     method: "POST",
     headers: { "Content-Type": "application/json", "Idempotency-Key": idempotencyKey, ...authHeaders },
