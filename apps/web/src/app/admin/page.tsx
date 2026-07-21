@@ -595,6 +595,16 @@ const EMPTY_ARRAY = "[]";
 const TABS = ["Access", "Schools", "Learners", "Progress", "Groups", "Parents", "Worlds", "Readiness", "Activities", "Questions", "Rewards", "Objectives", "Flags", "Audit"] as const;
 type Tab = (typeof TABS)[number];
 
+async function reviewIdempotencyKey(scope: string, payload: Record<string, unknown>) {
+  const serialized = JSON.stringify(payload);
+  if (typeof crypto !== "undefined" && crypto.subtle && typeof TextEncoder !== "undefined") {
+    const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(serialized));
+    const hash = Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, "0")).join("");
+    return `${scope}-${hash}`;
+  }
+  return `${scope}-${encodeURIComponent(serialized).slice(0, 180)}`;
+}
+
 const newWorld: World = {
   key: "",
   name: "",
@@ -848,6 +858,10 @@ export default function AdminPage() {
     setAdminProgress(null);
     setProgressStudentID("");
     setAdminKey("");
+    setNarrationReviews({});
+    setNarrationReviewDrafts({});
+    setContentReviewLedger(null);
+    setContentReviewDrafts({});
     setMessage("Signed out securely.");
   }
 
@@ -858,6 +872,7 @@ export default function AdminPage() {
   }
 
   const narrationQueueItems = narrationListeningPriority?.first_pass ?? [];
+  const narrationReviewedFirstPass = narrationQueueItems.filter((item) => narrationReviews[item.asset_id] && !narrationReviews[item.asset_id].stale).length;
 
   function narrationDraftFor(item: NarrationListeningPriority["first_pass"][number]) {
     return narrationReviewDrafts[item.asset_id] ?? {
@@ -905,27 +920,34 @@ export default function AdminPage() {
       setMessage("An approval needs at least one representative candidate ID.");
       return;
     }
-    setSaving(contentReviewKey(pack.pack_id, lane.id));
+    const saveKey = contentReviewKey(pack.pack_id, lane.id);
+    if (saving === saveKey) return;
+    setSaving(saveKey);
     try {
+      const reviewPayload = {
+        batch_id: contentReviewLedger?.batch_id,
+        batch_sha256: contentReviewLedger?.batch_sha256,
+        pack_id: pack.pack_id,
+        lane_id: lane.id,
+        decision,
+        reviewer_name: draft.reviewer_name.trim(),
+        evidence_notes: draft.evidence_notes.trim(),
+        candidate_ids: candidateIDs,
+        revision_actions: draft.revision_actions.split(",").map((item) => item.trim()).filter(Boolean),
+      };
       const review = await adminFetch("/v1/admin/content/reviews", {
         method: "POST",
-        headers: { "Idempotency-Key": `content-${contentReviewLedger?.batch_id ?? "batch"}-${pack.pack_id}-${lane.id}-${decision}-${candidateIDs.join("|")}` },
-        body: JSON.stringify({
-          batch_id: contentReviewLedger?.batch_id,
-          batch_sha256: contentReviewLedger?.batch_sha256,
-          pack_id: pack.pack_id,
-          lane_id: lane.id,
-          decision,
-          reviewer_name: draft.reviewer_name.trim(),
-          evidence_notes: draft.evidence_notes.trim(),
-          candidate_ids: candidateIDs,
-          revision_actions: draft.revision_actions.split(",").map((item) => item.trim()).filter(Boolean),
-        }),
+        headers: { "Idempotency-Key": await reviewIdempotencyKey(`content-${pack.pack_id}-${lane.id}`, reviewPayload) },
+        body: JSON.stringify(reviewPayload),
       }) as ContentReviewDecision;
       setContentReviewLedger((current) => current ? { ...current, reviews: [review, ...current.reviews.filter((item) => !(item.pack_id === review.pack_id && item.lane_id === review.lane_id))] } : current);
+      try {
+        const refreshed = await adminFetch("/v1/admin/content/reviews") as ContentReviewLedger;
+        setContentReviewLedger(refreshed);
+      } catch {
+        // The decision is already persisted; retain the optimistic ledger if a refresh briefly fails.
+      }
       setMessage(`${pack.pack_id} / ${lane.id.replaceAll("_", " ")} recorded as ${decision}. The release gate will remain blocked until every required lane is current and approved.`);
-      const refreshed = await adminFetch("/v1/admin/content/reviews") as ContentReviewLedger;
-      setContentReviewLedger(refreshed);
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Could not save content review.");
     } finally {
@@ -961,28 +983,37 @@ export default function AdminPage() {
       setMessage("Add a short note explaining what needs re-recording before rejecting audio.");
       return;
     }
-    setLoading(true);
+    const saveKey = `narration:${item.asset_id}`;
+    if (saving === saveKey) return;
+    setSaving(saveKey);
     try {
+      const reviewPayload = {
+        asset_id: item.asset_id,
+        text_sha256: item.text_sha256,
+        audio_sha256: item.audio_sha256,
+        decision,
+        reviewer_name: draft.reviewer_name.trim(),
+        criteria,
+        rejection_reasons: decision === "rejected" ? ["listening_review"] : [],
+        notes: draft.notes.trim(),
+      };
       const review = await adminFetch("/v1/admin/content/narration-reviews", {
         method: "POST",
-        headers: { "Idempotency-Key": `narration-${item.asset_id}-${item.text_sha256}-${decision}` },
-        body: JSON.stringify({
-          asset_id: item.asset_id,
-          text_sha256: item.text_sha256,
-          audio_sha256: item.audio_sha256,
-          decision,
-          reviewer_name: draft.reviewer_name.trim(),
-          criteria,
-          rejection_reasons: decision === "rejected" ? ["listening_review"] : [],
-          notes: draft.notes.trim(),
-        }),
+        headers: { "Idempotency-Key": await reviewIdempotencyKey(`narration-${item.asset_id}`, reviewPayload) },
+        body: JSON.stringify(reviewPayload),
       }) as NarrationReview;
       setNarrationReviews((current) => ({ ...current, [review.asset_id]: review }));
+      try {
+        const refreshed = await adminFetch("/v1/admin/content/narration-reviews?limit=200");
+        setNarrationReviews(Object.fromEntries(((refreshed.reviews ?? []) as NarrationReview[]).map((savedReview) => [savedReview.asset_id, savedReview])));
+      } catch {
+        // The decision is already persisted; retain the optimistic review if a refresh briefly fails.
+      }
       setMessage(`${item.asset_id} marked ${decision}. The decision is now recorded in the server-side review ledger.`);
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Could not save narration review.");
     } finally {
-      setLoading(false);
+      setSaving("");
     }
   }
 
@@ -1022,6 +1053,7 @@ export default function AdminPage() {
       setNarrationReadiness(narrationData as NarrationReadinessReport | null);
       setNarrationListeningPriority(narrationListeningPriorityData as NarrationListeningPriority | null);
       setNarrationReviews(Object.fromEntries(((narrationReviewData.reviews ?? []) as NarrationReview[]).map((review) => [review.asset_id, review])));
+      setNarrationReviewDrafts({});
       setPackDepthReadiness(packDepthData as PackDepthReadiness | null);
       setCurriculumCoverage(curriculumCoverageData as CurriculumAreaCoverage | null);
       setReleaseSnapshot(releaseData as ContentReleaseSnapshot | null);
@@ -1031,6 +1063,7 @@ export default function AdminPage() {
       setPilotReviewEvidence(pilotReviewEvidenceData as PilotReviewEvidenceTemplate | null);
       setPilotReviewEvidenceCheck(pilotReviewEvidenceCheckData as PilotReviewEvidenceCheck | null);
       setContentReviewLedger(contentReviewLedgerData as ContentReviewLedger | null);
+      setContentReviewDrafts({});
       setFlagshipReview(flagshipReviewData as FlagshipReviewReport | null);
       setAuditLogs(auditData.audit_logs ?? []);
       setContentVersions(versionsData.content_versions ?? []);
@@ -1044,6 +1077,7 @@ export default function AdminPage() {
       setNarrationReadiness(null);
       setNarrationListeningPriority(null);
       setNarrationReviews({});
+      setNarrationReviewDrafts({});
       setPackDepthReadiness(null);
       setCurriculumCoverage(null);
       setReleaseSnapshot(null);
@@ -1053,6 +1087,7 @@ export default function AdminPage() {
       setPilotReviewEvidence(null);
       setPilotReviewEvidenceCheck(null);
       setContentReviewLedger(null);
+      setContentReviewDrafts({});
       setFlagshipReview(null);
       setAuditLogs([]);
       setContentVersions([]);
@@ -2096,12 +2131,18 @@ export default function AdminPage() {
                       {narrationListeningPriority.status.replaceAll("_", " ")}
                     </span>
                   </div>
-                  <div className="mt-4 grid gap-3 text-sm md:grid-cols-4">
+                  <div className="mt-4 grid gap-3 text-sm md:grid-cols-5">
                     <Info label="First-pass assets" value={String(narrationListeningPriority.totals.first_pass_assets)} />
+                    <Info label="Reviewed first pass" value={`${narrationReviewedFirstPass}/${narrationListeningPriority.totals.first_pass_assets}`} />
                     <Info label="Awaiting listening" value={String(narrationListeningPriority.totals.awaiting_listening)} />
                     <Info label="Year 1-2 assets" value={String(narrationListeningPriority.totals.early_years_first_pass)} />
                     <Info label="Phonics/listening" value={String(narrationListeningPriority.totals.phonics_or_listening_first_pass)} />
                   </div>
+                  <p className="mt-3 text-xs leading-5 text-[#1d1a3e]/62">
+                    {narrationReviewedFirstPass === narrationListeningPriority.totals.first_pass_assets
+                      ? "This first-pass queue is fully reviewed. Regenerate the priority report to receive the next ranked listening batch."
+                      : `${narrationListeningPriority.totals.first_pass_assets - narrationReviewedFirstPass} first-pass assets still need a server-recorded listening decision.`}
+                  </p>
                   <div className="mt-4 grid gap-3 lg:grid-cols-2">
                     {narrationQueueItems.map((item) => {
                       const draft = narrationDraftFor(item);
@@ -2147,8 +2188,8 @@ export default function AdminPage() {
                             />
                           </label>
                           <div className="mt-4 flex flex-wrap items-center gap-2">
-                            <button type="button" onClick={() => void saveNarrationReview(item, "approved")} disabled={loading} className="btn-pop rounded-full bg-[#dff7e7] px-4 py-2 text-xs font-semibold text-[#28613c] disabled:opacity-50">Approve listening</button>
-                            <button type="button" onClick={() => void saveNarrationReview(item, "rejected")} disabled={loading} className="btn-pop rounded-full bg-[#fde4e4] px-4 py-2 text-xs font-semibold text-[#8b2b2b] disabled:opacity-50">Flag re-record</button>
+                            <button type="button" onClick={() => void saveNarrationReview(item, "approved")} disabled={loading || saving === `narration:${item.asset_id}`} className="btn-pop rounded-full bg-[#dff7e7] px-4 py-2 text-xs font-semibold text-[#28613c] disabled:opacity-50">Approve listening</button>
+                            <button type="button" onClick={() => void saveNarrationReview(item, "rejected")} disabled={loading || saving === `narration:${item.asset_id}`} className="btn-pop rounded-full bg-[#fde4e4] px-4 py-2 text-xs font-semibold text-[#8b2b2b] disabled:opacity-50">Flag re-record</button>
                             <span className="text-xs text-[#1d1a3e]/55">
                               {savedReview ? `${savedReview.stale ? "Stale" : "Server"} decision: ${savedReview.decision}` : "Not reviewed"}
                             </span>
