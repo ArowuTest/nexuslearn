@@ -360,7 +360,8 @@ No new subject is ready for release until it has:
 
 - [x] Shared child journey chrome and route status vocabulary across the child
   route, mission and mock-assessment surfaces.
-- [ ] Honest API loading, empty and unavailable states.
+- [x] Honest API loading, empty and unavailable states across the public home,
+  child route, mission and mock-assessment surfaces.
 - [ ] Child portal redesign around warm-up, mission and growth.
 - [ ] Consistent subject identity for English, Mathematics and Science.
 - [x] Mission support controls and audio replay made easier to find, including

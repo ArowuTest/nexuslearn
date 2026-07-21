@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { CSSProperties } from "react";
+import { ApiStateCard } from "@/components/ChildJourneyChrome";
 import Dino from "@/components/Dino";
 import { DEFAULT_STUDENT_ID, getCurriculumMap, getNextActivity, getRuntimeFlags, getWorlds } from "@/lib/api";
 
@@ -21,9 +22,11 @@ const MVP_SUBJECTS = [
 function NexusMap({
   worlds,
   activeKey,
+  available,
 }: {
   worlds: NonNullable<Awaited<ReturnType<typeof getWorlds>>>;
   activeKey?: string;
+  available: boolean;
 }) {
   const visible = worlds.filter((world) => world.year_group).slice(0, 7);
   return (
@@ -71,7 +74,16 @@ function NexusMap({
       <div className="absolute bottom-0 right-4">
         <Dino mood="celebrate" size={118} />
       </div>
-      {visible.length === 0 && (
+      {!available ? (
+        <div className="absolute inset-x-6 top-1/2 -translate-y-1/2">
+          <ApiStateCard
+            kind="unavailable"
+            tone="dark"
+            title="Learning map unavailable"
+            body="The live service did not return the current worlds. No placeholder route has been presented; reconnect to see the configured learning map."
+          />
+        </div>
+      ) : visible.length === 0 && (
         <div className="absolute inset-x-6 top-1/2 -translate-y-1/2 rounded-2xl border border-white/15 bg-[#17233f]/80 p-5 text-center text-white backdrop-blur">
           <p className="font-display text-lg font-semibold">Your learning worlds are being tuned.</p>
           <p className="mt-2 text-sm leading-6 text-white/65">The live curriculum service will place the year portals here when it is connected.</p>
@@ -102,6 +114,8 @@ export default async function Home() {
   const years = curriculumMap?.years ?? [];
   const subjects = curriculumMap?.subjects ?? [];
   const curriculumAvailable = Boolean(curriculumMap);
+  const worldsAvailable = worlds !== null;
+  const runtimeAvailable = runtimeFlags !== null;
   const coveredYears = years.filter((year) => year.total > 0).length;
 
   return (
@@ -117,6 +131,17 @@ export default async function Home() {
               {schoolWorkspaceEnabled && <Link href="/school-admin" className="rounded-lg bg-white/10 px-4 py-2 font-semibold">School</Link>}
             </div>
           </nav>
+
+          {(!worldsAvailable || !runtimeAvailable) && (
+            <div className="mt-5">
+              <ApiStateCard
+                kind="unavailable"
+                tone="dark"
+                title="Live configuration is unavailable"
+                body="The public site is showing only stable product information until the learning service confirms current worlds and access settings."
+              />
+            </div>
+          )}
 
           <div className="grid min-h-[calc(100vh-92px)] items-center gap-10 py-10 lg:grid-cols-[0.88fr_1.12fr]">
             <div>
@@ -149,9 +174,9 @@ export default async function Home() {
               </div>
               <div className="mt-8 grid max-w-2xl grid-cols-3 gap-3">
                 {[
-                  ["Years", curriculumAvailable ? `${coveredYears}/7` : "7 planned"],
-                  ["Objectives", curriculumAvailable ? String(curriculumMap?.total ?? 0) : "Live data"],
-                  ["Subjects", curriculumAvailable ? String(subjects.length) : "3 MVP"],
+                  ["Years", curriculumAvailable ? `${coveredYears}/7` : "Unavailable"],
+                  ["Objectives", curriculumAvailable ? String(curriculumMap?.total ?? 0) : "Unavailable"],
+                  ["Subjects", curriculumAvailable ? String(subjects.length) : "MVP scope"],
                 ].map(([label, value]) => (
                   <div key={label} className="rounded-lg border border-white/12 bg-white/10 p-4">
                     <p className="font-display text-3xl font-semibold text-[#ffdf8a]">{value}</p>
@@ -161,7 +186,7 @@ export default async function Home() {
               </div>
             </div>
 
-            <NexusMap worlds={configuredWorlds} activeKey={activeWorld?.key} />
+            <NexusMap worlds={configuredWorlds} activeKey={activeWorld?.key} available={worldsAvailable} />
           </div>
         </div>
       </section>
@@ -202,7 +227,7 @@ export default async function Home() {
             <p className="mt-4 text-base leading-7 text-[#162244]/66">
               {curriculumAvailable
                 ? "Starter coverage is organised as a real curriculum system: objective packs, teaching steps, misconceptions and evidence rules."
-                : "The MVP is built around Years 1-7 English, Mathematics and Science. Connect the curriculum service to load live objective coverage."}
+                : "Live objective coverage is unavailable. The public site will not invent year, subject or strand counts until the curriculum service responds."}
             </p>
           </div>
           <div className="grid gap-3 md:grid-cols-7">
@@ -220,7 +245,7 @@ export default async function Home() {
             )) : Array.from({ length: 7 }, (_, index) => (
               <div key={index} className="rounded-lg border border-[#162244]/10 bg-white p-4 shadow-card">
                 <p className="font-display text-lg font-semibold">Y{index + 1}</p>
-                <p className="mt-2 text-sm font-semibold text-[#7357c9]">MVP scope</p>
+                <p className="mt-2 text-sm font-semibold text-[#7357c9]">Awaiting live map</p>
                 <p className="mt-1 text-xs leading-5 text-[#162244]/52">English · Mathematics · Science</p>
               </div>
             ))}
