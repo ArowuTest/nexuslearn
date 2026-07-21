@@ -801,6 +801,10 @@ export default function AdminPage() {
     ],
     [config, readiness],
   );
+  const selectedProgressStudent = useMemo(
+    () => (config?.students ?? []).find((student) => student.external_ref === progressStudentID),
+    [config, progressStudentID],
+  );
 
   async function adminFetch(path: string, options: RequestInit = {}) {
     if (!API) throw new Error("NEXT_PUBLIC_API_URL is not configured.");
@@ -841,6 +845,8 @@ export default function AdminPage() {
     await logoutAccount();
     setConfig(null);
     setObjectives([]);
+    setAdminProgress(null);
+    setProgressStudentID("");
     setAdminKey("");
     setMessage("Signed out securely.");
   }
@@ -983,6 +989,7 @@ export default function AdminPage() {
   async function loadConfig() {
     setLoading(true);
     setMessage("Loading live configuration...");
+    setAdminProgress(null);
     try {
       const [loadedConfig, objectiveData, readinessData, auditData, versionsData, invitationData, rendererData, assetData, narrationData, narrationListeningPriorityData, narrationReviewData, packDepthData, curriculumCoverageData, releaseData, variantQueueData, runtimeSpineData, pilotReviewBatchData, pilotReviewEvidenceData, pilotReviewEvidenceCheckData, contentReviewLedgerData, flagshipReviewData] = await Promise.all([
         adminFetch("/v1/admin/config"),
@@ -1050,6 +1057,7 @@ export default function AdminPage() {
       setAuditLogs([]);
       setContentVersions([]);
       setMessage(error instanceof Error ? error.message : "Could not reach the API.");
+      setAdminProgress(null);
     } finally {
       setLoading(false);
     }
@@ -1067,6 +1075,7 @@ export default function AdminPage() {
 
   async function loadAdminProgress() {
     if (!progressStudentID) return;
+    setAdminProgress(null);
     setSaving("progress");
     try {
       const data = await adminFetch(`/v1/admin/students/${encodeURIComponent(progressStudentID)}/progress`);
@@ -1888,16 +1897,27 @@ export default function AdminPage() {
                     title={student.display_name}
                     meta={`Year ${student.year_group}`}
                     body={student.external_ref}
-                    onClick={() => setProgressStudentID(student.external_ref)}
+                    onClick={() => {
+                      setProgressStudentID(student.external_ref);
+                      setAdminProgress(null);
+                    }}
                   />
                 ))}
               </Panel>
             }
             right={
               <div className="grid gap-6">
-                <Panel title="Platform progress report">
-                  <Field label="Learner external ref" value={progressStudentID} onChange={(value) => setProgressStudentID(slug(value))} />
-                  <div className="flex justify-end border-t border-[#1d1a3e]/10 p-5">
+                  <Panel title="Platform progress report">
+                    <Field label="Learner external ref" value={progressStudentID} onChange={(value) => {
+                      setProgressStudentID(slug(value));
+                      setAdminProgress(null);
+                    }} />
+                    <p className="px-5 pt-4 text-sm leading-6 text-[#1d1a3e]/62">
+                      {selectedProgressStudent
+                        ? `Showing ${selectedProgressStudent.display_name} (${selectedProgressStudent.external_ref}), Year ${selectedProgressStudent.year_group}.`
+                        : "Select a learner from the list or enter an external reference to load a scoped report."}
+                    </p>
+                    <div className="flex justify-end border-t border-[#1d1a3e]/10 p-5">
                     <button onClick={loadAdminProgress} disabled={!progressStudentID || !!saving} className="btn-pop bg-[#7357c9] px-5 py-3 text-sm text-white disabled:opacity-50">Load progress</button>
                   </div>
                   <ProgressSnapshot progress={adminProgress} empty="Select a learner to inspect subject-independent progress, revision and stretch routes." />
