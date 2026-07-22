@@ -73,14 +73,25 @@ func validUUID(value string) bool {
 
 func (r *PostgresRepository) ListObjectives(ctx context.Context) ([]Objective, error) {
 	rows, err := r.db.Query(ctx, `
+		WITH prerequisites AS (
+			SELECT objective_id, json_agg(prerequisite_id ORDER BY prerequisite_id) AS items_json
+			FROM objective_prerequisites
+			GROUP BY objective_id
+		), misconceptions AS (
+			SELECT objective_id, json_agg(description ORDER BY id) AS items_json
+			FROM objective_misconceptions
+			GROUP BY objective_id
+		)
 		SELECT
 			o.id, o.year_group, o.subject, o.strand, o.topic, o.statement,
 			o.parent_explanation, o.teacher_evidence, o.expected_mastery, o.secure_mastery,
 			array_to_json(o.retention_days)::text,
 			array_to_json(o.required_formats)::text,
-			COALESCE((SELECT json_agg(p.prerequisite_id) FROM objective_prerequisites p WHERE p.objective_id=o.id), '[]')::text,
-			COALESCE((SELECT json_agg(m.description) FROM objective_misconceptions m WHERE m.objective_id=o.id), '[]')::text
+			COALESCE(prerequisites.items_json, '[]'::json)::text,
+			COALESCE(misconceptions.items_json, '[]'::json)::text
 		FROM curriculum_objectives o
+		LEFT JOIN prerequisites ON prerequisites.objective_id=o.id
+		LEFT JOIN misconceptions ON misconceptions.objective_id=o.id
 		ORDER BY o.year_group, o.subject, o.strand, o.topic, o.id
 	`)
 	if err != nil {
@@ -364,15 +375,26 @@ func (r *PostgresRepository) ListAdaptiveActivities(ctx context.Context, student
 
 func (r *PostgresRepository) ListAdaptiveObjectives(ctx context.Context, studentID string) ([]Objective, error) {
 	rows, err := r.db.Query(ctx, `
+		WITH prerequisites AS (
+			SELECT objective_id, json_agg(prerequisite_id ORDER BY prerequisite_id) AS items_json
+			FROM objective_prerequisites
+			GROUP BY objective_id
+		), misconceptions AS (
+			SELECT objective_id, json_agg(description ORDER BY id) AS items_json
+			FROM objective_misconceptions
+			GROUP BY objective_id
+		)
 		SELECT
 			o.id, o.year_group, o.subject, o.strand, o.topic, o.statement,
 			o.parent_explanation, o.teacher_evidence, o.expected_mastery, o.secure_mastery,
 			array_to_json(o.retention_days)::text,
 			array_to_json(o.required_formats)::text,
-			COALESCE((SELECT json_agg(p.prerequisite_id) FROM objective_prerequisites p WHERE p.objective_id=o.id), '[]')::text,
-			COALESCE((SELECT json_agg(m.description) FROM objective_misconceptions m WHERE m.objective_id=o.id), '[]')::text
+			COALESCE(prerequisites.items_json, '[]'::json)::text,
+			COALESCE(misconceptions.items_json, '[]'::json)::text
 		FROM curriculum_objectives o
 		JOIN students s ON s.external_ref=$1
+		LEFT JOIN prerequisites ON prerequisites.objective_id=o.id
+		LEFT JOIN misconceptions ON misconceptions.objective_id=o.id
 		WHERE o.year_group BETWEEN GREATEST(1, s.year_group-1) AND LEAST(7, s.year_group+2)
 		ORDER BY o.year_group, o.subject, o.strand, o.topic, o.id
 		LIMIT 2000
