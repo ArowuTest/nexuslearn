@@ -706,23 +706,16 @@ func (r *PostgresRepository) ListMastery(ctx context.Context, studentID string) 
 		return []StudentMastery{}, nil
 	}
 
-	studentUUID, err := r.studentUUID(ctx, studentID)
-	if errors.Is(err, pgx.ErrNoRows) {
-		return []StudentMastery{}, nil
-	}
-	if err != nil {
-		return nil, err
-	}
-
 	rows, err := r.db.Query(ctx, `
-		SELECT objective_id, score, band, last_signal, next_review_due_at,
+		SELECT m.objective_id, m.score, m.band, m.last_signal, m.next_review_due_at,
 		       evidence_count, format_count, independent_correct_count,
 		       retained_success_count, evidence_confidence,
 		       effective_evidence_score, evidence_freshness, last_evidence_at
-		FROM student_objective_mastery
-		WHERE student_id=$1
-		ORDER BY updated_at DESC, objective_id
-	`, studentUUID)
+		FROM student_objective_mastery m
+		JOIN students s ON s.id=m.student_id
+		WHERE s.external_ref=$1
+		ORDER BY m.updated_at DESC, m.objective_id
+	`, studentID)
 	if err != nil {
 		return nil, err
 	}
@@ -761,21 +754,14 @@ func (r *PostgresRepository) RecentAttempts(ctx context.Context, studentID strin
 		limit = 10
 	}
 
-	studentUUID, err := r.studentUUID(ctx, studentID)
-	if errors.Is(err, pgx.ErrNoRows) {
-		return []RecentAttempt{}, nil
-	}
-	if err != nil {
-		return nil, err
-	}
-
 	rows, err := r.db.Query(ctx, `
-		SELECT objective_id, question_id, response_mode, correct, response_ms, hint_used, mastery_delta, explanation, created_at
-		FROM question_attempts
-		WHERE student_id=$1 AND mock_assessment_id IS NULL
-		ORDER BY created_at DESC
+		SELECT a.objective_id, a.question_id, a.response_mode, a.correct, a.response_ms, a.hint_used, a.mastery_delta, a.explanation, a.created_at
+		FROM question_attempts a
+		JOIN students s ON s.id=a.student_id
+		WHERE s.external_ref=$1 AND a.mock_assessment_id IS NULL
+		ORDER BY a.created_at DESC
 		LIMIT $2
-	`, studentUUID, limit)
+	`, studentID, limit)
 	if err != nil {
 		return nil, err
 	}
@@ -818,14 +804,6 @@ func (r *PostgresRepository) WarmUpItems(ctx context.Context, studentID string, 
 		limit = 3
 	}
 
-	studentUUID, err := r.studentUUID(ctx, studentID)
-	if errors.Is(err, pgx.ErrNoRows) {
-		return r.configuredWarmUpItems(ctx, limit)
-	}
-	if err != nil {
-		return nil, err
-	}
-
 	rows, err := r.db.Query(ctx, `
 		SELECT
 		  q.objective_id,
@@ -835,8 +813,9 @@ func (r *PostgresRepository) WarmUpItems(ctx context.Context, studentID string, 
 		  COALESCE(o.statement, q.objective_id),
 		  COALESCE(o.required_formats[1], 'review')
 		FROM spaced_review_queue q
+		JOIN students s ON s.id=q.student_id
 		LEFT JOIN curriculum_objectives o ON o.id = q.objective_id
-		WHERE q.student_id=$1
+		WHERE s.external_ref=$1
 		  AND q.completed_at IS NULL
 		  AND q.due_at <= now() + interval '30 days'
 		ORDER BY
@@ -844,7 +823,7 @@ func (r *PostgresRepository) WarmUpItems(ctx context.Context, studentID string, 
 		  q.priority DESC,
 		  q.due_at ASC
 		LIMIT $2
-	`, studentUUID, limit)
+	`, studentID, limit)
 	if err != nil {
 		return nil, err
 	}
