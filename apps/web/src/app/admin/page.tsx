@@ -740,6 +740,7 @@ export default function AdminPage() {
   const [narrationListeningPriority, setNarrationListeningPriority] = useState<NarrationListeningPriority | null>(null);
   const [narrationReviews, setNarrationReviews] = useState<Record<string, NarrationReview>>({});
   const [narrationReviewDrafts, setNarrationReviewDrafts] = useState<Record<string, { reviewer_name: string; notes: string; criteria: Record<string, boolean> }>>({});
+  const [narrationPlaybackErrors, setNarrationPlaybackErrors] = useState<Record<string, boolean>>({});
   const [packDepthReadiness, setPackDepthReadiness] = useState<PackDepthReadiness | null>(null);
   const [curriculumCoverage, setCurriculumCoverage] = useState<CurriculumAreaCoverage | null>(null);
   const [releaseSnapshot, setReleaseSnapshot] = useState<ContentReleaseSnapshot | null>(null);
@@ -860,6 +861,7 @@ export default function AdminPage() {
     setAdminKey("");
     setNarrationReviews({});
     setNarrationReviewDrafts({});
+    setNarrationPlaybackErrors({});
     setContentReviewLedger(null);
     setContentReviewDrafts({});
     setMessage("Signed out securely.");
@@ -1054,6 +1056,7 @@ export default function AdminPage() {
       setNarrationListeningPriority(narrationListeningPriorityData as NarrationListeningPriority | null);
       setNarrationReviews(Object.fromEntries(((narrationReviewData.reviews ?? []) as NarrationReview[]).map((review) => [review.asset_id, review])));
       setNarrationReviewDrafts({});
+      setNarrationPlaybackErrors({});
       setPackDepthReadiness(packDepthData as PackDepthReadiness | null);
       setCurriculumCoverage(curriculumCoverageData as CurriculumAreaCoverage | null);
       setReleaseSnapshot(releaseData as ContentReleaseSnapshot | null);
@@ -1078,6 +1081,7 @@ export default function AdminPage() {
       setNarrationListeningPriority(null);
       setNarrationReviews({});
       setNarrationReviewDrafts({});
+      setNarrationPlaybackErrors({});
       setPackDepthReadiness(null);
       setCurriculumCoverage(null);
       setReleaseSnapshot(null);
@@ -2156,8 +2160,28 @@ export default function AdminPage() {
                             </div>
                             <span className="rounded-full bg-[#55cbd3]/12 px-3 py-1 text-xs font-semibold text-[#155d64]">#{item.rank}</span>
                           </div>
-                          <audio className="mt-4 w-full" controls preload="none" src={item.file} aria-label={`Listen to ${item.asset_id}`} />
+                          <audio
+                            className="mt-4 w-full"
+                            controls
+                            preload="metadata"
+                            src={item.file}
+                            aria-label={`Listen to ${item.asset_id}`}
+                            onError={() => setNarrationPlaybackErrors((current) => ({ ...current, [item.asset_id]: true }))}
+                            onCanPlay={() => setNarrationPlaybackErrors((current) => ({ ...current, [item.asset_id]: false }))}
+                          />
+                          {narrationPlaybackErrors[item.asset_id] && (
+                            <div className="mt-3 rounded-xl border border-[#c86a6a]/35 bg-[#fff1f1] p-3 text-xs leading-5 text-[#8b2b2b]" role="alert">
+                              <p className="font-semibold">This recording could not be played in the review browser.</p>
+                              <p className="mt-1">Do not approve it until the produced asset is reachable and audible. <a href={item.file} target="_blank" rel="noreferrer" className="font-semibold underline">Open the asset directly</a> or flag it for re-recording.</p>
+                            </div>
+                          )}
                           <p className="mt-3 rounded-xl border-l-4 border-[#f0b35a] bg-[#fffaf0] p-3 text-xs leading-5 text-[#1d1a3e]/68"><strong>Script:</strong> {item.text_preview}</p>
+                          <details className="mt-3 text-[11px] leading-5 text-[#1d1a3e]/55">
+                            <summary className="cursor-pointer font-semibold">Technical trace</summary>
+                            <p className="mt-2 break-all">Voice: {item.voice_name ?? "registered manifest voice"} · Model: {item.model_id ?? "registered manifest model"}</p>
+                            <p className="break-all">Text SHA-256: {item.text_sha256}</p>
+                            <p className="break-all">Audio SHA-256: {item.audio_sha256}</p>
+                          </details>
                           <div className="mt-4 grid gap-2 sm:grid-cols-2">
                             {(["natural", "clear", "pronunciation", "age_suitable"] as const).map((criterion) => (
                               <label key={criterion} className="text-xs text-[#1d1a3e]/68">
