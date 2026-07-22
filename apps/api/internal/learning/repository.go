@@ -908,16 +908,60 @@ func (r *PostgresRepository) EvidenceSummary(ctx context.Context, studentID stri
 
 	var bandsRaw []byte
 	if err := r.db.QueryRow(ctx, `
+		WITH recent_attempts AS (
+			SELECT
+				count(*)::int AS attempts,
+				count(*) FILTER (WHERE correct)::int AS correct
+			FROM question_attempts
+			WHERE student_id=$1
+			  AND mock_assessment_id IS NULL
+			  AND created_at >= now() - interval '7 days'
+		), review_counts AS (
+			SELECT
+				count(*) FILTER (WHERE completed_at IS NULL AND due_at <= now())::int AS due,
+				count(*) FILTER (WHERE completed_at IS NULL)::int AS open
+			FROM spaced_review_queue
+			WHERE student_id=$1
+		), repaired_misconceptions AS (
+			SELECT count(*)::int AS repaired
+			FROM student_misconception_state
+			WHERE student_id=$1
+			  AND status='repaired'
+			  AND repaired_at >= now() - interval '7 days'
+		), teacher_evidence AS (
+			SELECT count(*)::int AS recorded
+			FROM teacher_evidence_records
+			WHERE student_id=$1
+		), active_interventions AS (
+			SELECT count(*)::int AS active
+			FROM intervention_plans
+			WHERE student_id=$1
+			  AND status IN ('active','monitoring')
+		), mastery_bands AS (
+			SELECT COALESCE(jsonb_object_agg(band, band_count), '{}'::jsonb) AS bands
+			FROM (
+				SELECT band, count(*)::int AS band_count
+				FROM student_objective_mastery
+				WHERE student_id=$1
+				GROUP BY band
+			) grouped
+		)
 		SELECT
-			(SELECT count(*)::int FROM question_attempts WHERE student_id=$1 AND mock_assessment_id IS NULL AND created_at >= now() - interval '7 days'),
-			(SELECT count(*) FILTER (WHERE correct)::int FROM question_attempts WHERE student_id=$1 AND mock_assessment_id IS NULL AND created_at >= now() - interval '7 days'),
-			(SELECT COALESCE(round(100.0 * count(*) FILTER (WHERE correct) / NULLIF(count(*), 0)), 0)::int FROM question_attempts WHERE student_id=$1 AND mock_assessment_id IS NULL AND created_at >= now() - interval '7 days'),
-			(SELECT count(*) FILTER (WHERE completed_at IS NULL AND due_at <= now())::int FROM spaced_review_queue WHERE student_id=$1),
-			(SELECT count(*) FILTER (WHERE completed_at IS NULL)::int FROM spaced_review_queue WHERE student_id=$1),
-			(SELECT count(*)::int FROM student_misconception_state WHERE student_id=$1 AND status='repaired' AND repaired_at >= now() - interval '7 days'),
-			(SELECT count(*)::int FROM teacher_evidence_records WHERE student_id=$1),
-			(SELECT count(*)::int FROM intervention_plans WHERE student_id=$1 AND status IN ('active','monitoring')),
-			COALESCE((SELECT jsonb_object_agg(band, band_count) FROM (SELECT band, count(*)::int AS band_count FROM student_objective_mastery WHERE student_id=$1 GROUP BY band) grouped), '{}'::jsonb)
+			recent_attempts.attempts,
+			recent_attempts.correct,
+			COALESCE(round(100.0 * recent_attempts.correct / NULLIF(recent_attempts.attempts, 0)), 0)::int,
+			review_counts.due,
+			review_counts.open,
+			repaired_misconceptions.repaired,
+			teacher_evidence.recorded,
+			active_interventions.active,
+			mastery_bands.bands
+		FROM recent_attempts
+		CROSS JOIN review_counts
+		CROSS JOIN repaired_misconceptions
+		CROSS JOIN teacher_evidence
+		CROSS JOIN active_interventions
+		CROSS JOIN mastery_bands
 	`, studentUUID).Scan(&summary.Attempts7Days, &summary.Correct7Days, &summary.Accuracy7Days,
 		&summary.DueReviews, &summary.OpenReviews, &summary.MisconceptionsRepaired,
 		&summary.TeacherEvidenceCount, &summary.ActiveInterventions, &bandsRaw); err != nil {
