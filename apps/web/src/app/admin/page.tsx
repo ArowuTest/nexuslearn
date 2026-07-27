@@ -732,6 +732,7 @@ export default function AdminPage() {
   const [adminKey, setAdminKey] = useState("");
   const [adminLogin, setAdminLogin] = useState({ login_id: "", password: "" });
   const [config, setConfig] = useState<AdminConfig | null>(null);
+  const [accountRole, setAccountRole] = useState<string | null>(null);
   const [objectives, setObjectives] = useState<Objective[]>([]);
   const [readiness, setReadiness] = useState<ContentReadinessReport | null>(null);
   const [rendererReadiness, setRendererReadiness] = useState<RendererReadinessReport | null>(null);
@@ -842,7 +843,10 @@ export default function AdminPage() {
       });
       const body = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(body.error ?? "Administrator login failed.");
-      storeAccountSession(body.session as AccountSession);
+      const session = body.session as AccountSession;
+      storeAccountSession(session);
+      setAccountRole(session.role);
+      setTab(session.role === "content_reviewer" ? "Readiness" : "Worlds");
       setAdminLogin({ login_id: adminLogin.login_id, password: "" });
       await loadConfig();
     } catch (error) {
@@ -855,6 +859,7 @@ export default function AdminPage() {
   async function signOutAdmin() {
     await logoutAccount();
     setConfig(null);
+    setAccountRole(null);
     setObjectives([]);
     setAdminProgress(null);
     setProgressStudentID("");
@@ -1546,6 +1551,12 @@ export default function AdminPage() {
     }
   }
 
+  const visibleTabs: Tab[] = accountRole === "content_reviewer"
+    ? ["Readiness"]
+    : accountRole === "content_editor"
+      ? ["Worlds", "Readiness", "Activities", "Questions", "Rewards", "Objectives"]
+      : [...TABS];
+
   return (
     <main className="min-h-screen bg-[#f6f3ea] px-5 py-8 text-[#1d1a3e]">
       <div className="mx-auto max-w-7xl">
@@ -1562,42 +1573,48 @@ export default function AdminPage() {
           </Link>
         </div>
 
-        <section className="mt-8 grid gap-4 bg-white p-5 shadow-card md:grid-cols-[1fr_1fr_auto]">
-          <label className="block">
-            <span className="text-sm font-semibold">Platform login ID</span>
-            <input
-              value={adminLogin.login_id}
-              onChange={(event) => setAdminLogin({ ...adminLogin, login_id: event.target.value })}
-              className="mt-2 w-full border border-[#1d1a3e]/15 px-4 py-3 outline-none focus:border-[#7357c9]"
-              placeholder="admin@example.com"
-            />
-          </label>
-          <label className="block">
-            <span className="text-sm font-semibold">Password</span>
-            <input
-              value={adminLogin.password}
-              onChange={(event) => setAdminLogin({ ...adminLogin, password: event.target.value })}
-              type="password"
-              className="mt-2 w-full border border-[#1d1a3e]/15 px-4 py-3 outline-none focus:border-[#7357c9]"
-              placeholder="Password"
-            />
-          </label>
-          <button
-            onClick={signInAdmin}
-            disabled={loading || !adminLogin.login_id || !adminLogin.password}
-            className="btn-pop self-end bg-[#ffbf45] px-6 py-3 text-[#1d1a3e] disabled:cursor-not-allowed disabled:opacity-50"
-          >
-            {loading ? "Signing in" : "Sign in"}
-          </button>
-          <label className="block md:col-span-2">
-            <span className="text-xs font-semibold text-[#1d1a3e]/54">Temporary bootstrap API key</span>
-            <input value={adminKey} onChange={(event) => setAdminKey(event.target.value)} type="password" className="mt-2 w-full border border-[#1d1a3e]/10 px-4 py-3 outline-none focus:border-[#7357c9]" placeholder="Only needed to create the first named administrator" />
-          </label>
-          <div className="flex items-end gap-2">
-            <button onClick={loadConfig} disabled={loading || !adminKey} className="btn-pop bg-[#55cbd3] px-4 py-3 text-sm disabled:opacity-50">Use bootstrap key</button>
-            {config && <button onClick={signOutAdmin} className="btn-pop bg-[#1d1a3e] px-4 py-3 text-sm text-white">Sign out</button>}
+        {!config && (
+          <div className="fixed inset-0 z-50 overflow-y-auto bg-[#f6f3ea] px-5 py-8 text-[#1d1a3e]" role="dialog" aria-modal="true" aria-labelledby="admin-sign-in-title">
+            <div className="mx-auto flex min-h-[80vh] max-w-md flex-col justify-center">
+              <div className="mb-8 text-center">
+                <p className="font-display text-sm uppercase tracking-[0.18em] text-[#7357c9]">NexusLearn platform</p>
+                <h1 id="admin-sign-in-title" className="font-display mt-3 text-4xl font-semibold">Admin sign in</h1>
+                <p className="mt-3 text-sm leading-6 text-[#1d1a3e]/62">Sign in with your named platform account to continue to the functions assigned to your role.</p>
+              </div>
+              <form className="bg-white p-6 shadow-card" onSubmit={(event) => { event.preventDefault(); void signInAdmin(); }}>
+                <label className="block">
+                  <span className="text-sm font-semibold">Login ID</span>
+                  <input value={adminLogin.login_id} onChange={(event) => setAdminLogin({ ...adminLogin, login_id: event.target.value })} className="mt-2 w-full border border-[#1d1a3e]/15 px-4 py-3 outline-none focus:border-[#7357c9]" placeholder="name@example.com" autoComplete="username" autoFocus />
+                </label>
+                <label className="mt-4 block">
+                  <span className="text-sm font-semibold">Password</span>
+                  <input value={adminLogin.password} onChange={(event) => setAdminLogin({ ...adminLogin, password: event.target.value })} type="password" className="mt-2 w-full border border-[#1d1a3e]/15 px-4 py-3 outline-none focus:border-[#7357c9]" placeholder="Password" autoComplete="current-password" />
+                </label>
+                <button type="submit" disabled={loading || !adminLogin.login_id || !adminLogin.password} className="btn-pop mt-6 w-full bg-[#ffbf45] px-6 py-3 text-[#1d1a3e] disabled:cursor-not-allowed disabled:opacity-50">{loading ? "Signing in" : "Sign in"}</button>
+                <p className="mt-4 text-center text-xs leading-5 text-[#1d1a3e]/54">Access is role-controlled. Reviewers see review tools; platform administrators see the full control room.</p>
+              </form>
+              <p className="mt-4 bg-white/70 px-4 py-3 text-sm text-[#1d1a3e]/66" role="status">{message}</p>
+              <details className="mt-6 text-xs text-[#1d1a3e]/55">
+                <summary className="cursor-pointer text-center font-semibold">First-time platform setup</summary>
+                <div className="mt-3 border border-[#1d1a3e]/10 bg-white p-4">
+                  <p className="leading-5">The bootstrap key is only for creating the first named administrator during deployment. It is not part of normal sign in and should be removed after setup.</p>
+                  <label className="mt-3 block"><span className="font-semibold">Temporary bootstrap API key</span><input value={adminKey} onChange={(event) => setAdminKey(event.target.value)} type="password" className="mt-2 w-full border border-[#1d1a3e]/10 px-3 py-2 outline-none focus:border-[#7357c9]" placeholder="Deployment bootstrap key" autoComplete="off" /></label>
+                  <button type="button" onClick={loadConfig} disabled={loading || !adminKey} className="btn-pop mt-3 bg-[#55cbd3] px-4 py-2 text-xs disabled:opacity-50">Load setup workspace</button>
+                </div>
+              </details>
+            </div>
           </div>
-        </section>
+        )}
+
+        {config && (
+          <div className="mt-8 flex flex-wrap items-center justify-between gap-4 bg-white p-4 shadow-card">
+            <div>
+              <p className="text-xs uppercase tracking-[0.14em] text-[#1d1a3e]/45">Authenticated workspace</p>
+              <p className="mt-1 text-sm font-semibold">{accountRole === "content_reviewer" ? "Content reviewer" : accountRole === "content_editor" ? "Content editor" : "Platform administrator"}</p>
+            </div>
+            <button onClick={signOutAdmin} className="btn-pop bg-[#1d1a3e] px-5 py-3 text-sm text-white">Sign out</button>
+          </div>
+        )}
 
         <p className="mt-4 bg-white/70 px-4 py-3 text-sm text-[#1d1a3e]/66">{message}</p>
 
@@ -1610,7 +1627,30 @@ export default function AdminPage() {
           ))}
         </section>
 
-        <div className="mt-6 flex flex-wrap gap-2">
+        <nav className="mt-6 space-y-4" aria-label="Admin sections">
+          {[
+            { label: "People & organisations", items: ["Access", "Schools", "Learners", "Groups", "Parents"] },
+            { label: "Learning operations", items: ["Progress", "Worlds", "Readiness"] },
+            { label: "Product configuration", items: ["Activities", "Questions", "Rewards", "Objectives", "Flags"] },
+            { label: "Governance", items: ["Audit"] },
+          ].map((group) => {
+            const groupTabs = group.items.filter((item) => visibleTabs.includes(item as Tab));
+            if (groupTabs.length === 0) return null;
+            const groupID = "admin-nav-" + group.label.replaceAll(" ", "-").toLowerCase();
+            return (
+              <section key={group.label} aria-labelledby={groupID}>
+                <h2 id={groupID} className="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#1d1a3e]/45">{group.label}</h2>
+                <div className="flex flex-wrap gap-2">
+                  {groupTabs.map((item) => (
+                    <button key={item} onClick={() => setTab(item as Tab)} className={"btn-pop px-4 py-2 text-sm " + (tab === item ? "bg-[#7357c9] text-white" : "bg-white text-[#1d1a3e]")}>{item}</button>
+                  ))}
+                </div>
+              </section>
+            );
+          })}
+        </nav>
+
+        <div className="hidden mt-6 flex-wrap gap-2">
           {TABS.map((item) => (
             <button
               key={item}

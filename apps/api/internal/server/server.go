@@ -365,7 +365,11 @@ func (s *Server) handlePersistence(w http.ResponseWriter, _ *http.Request) {
 
 func (s *Server) requireAdmin(w http.ResponseWriter, r *http.Request) bool {
 	if bearerToken(r) != "" {
-		_, ok := s.requireAccountSession(w, r, "platform_admin", "content_editor", "content_reviewer")
+		payload, ok := s.requireAccountSession(w, r, "platform_admin", "content_editor", "content_reviewer")
+		if ok && r.Method != http.MethodGet && payload.Role == "content_reviewer" {
+			writeJSON(w, http.StatusForbidden, map[string]string{"error": "content reviewers may only use review workflows"})
+			return false
+		}
 		return ok
 	}
 	if !s.allowLegacyAuth {
