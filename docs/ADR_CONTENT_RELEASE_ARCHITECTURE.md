@@ -68,6 +68,22 @@ can therefore be reactivated through the same activation endpoint to perform a
 transactional rollback; the currently applied release becomes superseded only
 after the older snapshot has been restored successfully.
 
+## Runtime truth and observability
+
+Learner-facing repository reads are release-scoped. Before the first live
+release is applied, the original database seed remains the safe legacy
+catalogue. Once a live release is applied, objectives, adaptive activities,
+learner questions, warm-ups and generated mock-assessment items are restricted
+to that release ID. Superseded seed or release rows remain available for
+rollback and audit, but cannot leak into the learner runtime.
+
+The public `GET /v1/curriculum/release-status` endpoint exposes only the safe
+runtime summary: whether the learner catalogue is the legacy seed or a live
+release, the runtime objective count, and non-sensitive applied-release counts.
+It does not expose staged payloads, review decisions or learner data. The
+authenticated admin release ledger remains the operational source for staged
+pack uploads and activation history.
+
 ## Operational workflow
 
 Build and verify locally:

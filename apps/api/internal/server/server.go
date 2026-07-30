@@ -2524,8 +2524,23 @@ func (s *Server) handleCurriculumMap(w http.ResponseWriter, r *http.Request) {
 // small. The public experience can describe what learners can actually see
 // without exposing staged pack payloads, review decisions or learner data.
 func (s *Server) handleCurriculumReleaseStatus(w http.ResponseWriter, r *http.Request) {
-	objectives, err := s.repo.ListObjectives(r.Context())
-	if err != nil {
+	group, ctx := errgroup.WithContext(r.Context())
+	var objectives []learning.Objective
+	var releases []learning.ContentReleaseManifest
+	group.Go(func() error {
+		var err error
+		objectives, err = s.repo.ListObjectives(ctx)
+		return err
+	})
+	store, hasReleaseStore := s.repo.(contentReleaseRepository)
+	if hasReleaseStore {
+		group.Go(func() error {
+			var err error
+			releases, err = store.ListContentReleases(ctx, 100)
+			return err
+		})
+	}
+	if err := group.Wait(); err != nil {
 		slog.Warn("failed to read curriculum release status", "error", err)
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read curriculum release status"})
 		return
@@ -2535,13 +2550,7 @@ func (s *Server) handleCurriculumReleaseStatus(w http.ResponseWriter, r *http.Re
 		"runtime_objectives": len(objectives),
 		"generated_at":       time.Now().UTC().Format(time.RFC3339),
 	}
-	if store, ok := s.repo.(contentReleaseRepository); ok {
-		releases, listErr := store.ListContentReleases(r.Context(), 100)
-		if listErr != nil {
-			slog.Warn("failed to read active curriculum release", "error", listErr)
-			writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read curriculum release status"})
-			return
-		}
+	if hasReleaseStore {
 		for _, release := range releases {
 			if release.Channel != "live" || release.Status != "applied" {
 				continue
