@@ -395,6 +395,19 @@ type ContentReleaseSnapshot = {
   warnings: string[];
   packs: ContentReleasePack[];
 };
+type BackendContentRelease = {
+  id: string;
+  channel: "review" | "pilot" | "live" | string;
+  status: "staged" | "applied" | "superseded" | string;
+  expected_pack_count: number;
+  expected_objective_count: number;
+  expected_activity_count: number;
+  expected_question_count: number;
+  uploaded_pack_count: number;
+  source_revision: string;
+  created_at: string;
+  applied_at?: string;
+};
 type VariantProductionItem = {
   rank: number;
   pack_id: string;
@@ -746,6 +759,7 @@ export default function AdminPage() {
   const [packDepthReadiness, setPackDepthReadiness] = useState<PackDepthReadiness | null>(null);
   const [curriculumCoverage, setCurriculumCoverage] = useState<CurriculumAreaCoverage | null>(null);
   const [releaseSnapshot, setReleaseSnapshot] = useState<ContentReleaseSnapshot | null>(null);
+  const [backendReleases, setBackendReleases] = useState<BackendContentRelease[] | null>(null);
   const [variantQueue, setVariantQueue] = useState<VariantProductionQueue | null>(null);
   const [runtimeSpine, setRuntimeSpine] = useState<RuntimeSpineEnhancement | null>(null);
   const [pilotReviewBatch, setPilotReviewBatch] = useState<PilotReviewBatch | null>(null);
@@ -1043,7 +1057,7 @@ export default function AdminPage() {
     setMessage("Loading live configuration...");
     setAdminProgress(null);
     try {
-      const [loadedConfig, objectiveData, readinessData, auditData, versionsData, invitationData, rendererData, assetData, narrationData, narrationListeningPriorityData, narrationReviewData, packDepthData, curriculumCoverageData, releaseData, variantQueueData, runtimeSpineData, pilotReviewBatchData, pilotReviewEvidenceData, pilotReviewEvidenceCheckData, contentReviewLedgerData, flagshipReviewData] = await Promise.all([
+      const [loadedConfig, objectiveData, readinessData, auditData, versionsData, invitationData, rendererData, assetData, narrationData, narrationListeningPriorityData, narrationReviewData, packDepthData, curriculumCoverageData, releaseData, backendReleaseData, variantQueueData, runtimeSpineData, pilotReviewBatchData, pilotReviewEvidenceData, pilotReviewEvidenceCheckData, contentReviewLedgerData, flagshipReviewData] = await Promise.all([
         adminFetch("/v1/admin/config"),
         fetch(`${API}/v1/curriculum/objectives`).then((res) => res.json()),
         adminFetch("/v1/admin/content/readiness"),
@@ -1058,6 +1072,7 @@ export default function AdminPage() {
         loadGeneratedContentReport("pack-depth-readiness"),
         loadGeneratedContentReport("curriculum-area-coverage"),
         loadGeneratedContentReport("content-release-snapshot"),
+        adminFetch("/v1/admin/content/releases").catch(() => ({ content_releases: [] })),
         loadGeneratedContentReport("variant-production-queue"),
         loadGeneratedContentReport("runtime-spine-enhancement"),
         loadGeneratedContentReport("pilot-review-batch"),
@@ -1079,6 +1094,7 @@ export default function AdminPage() {
       setPackDepthReadiness(packDepthData as PackDepthReadiness | null);
       setCurriculumCoverage(curriculumCoverageData as CurriculumAreaCoverage | null);
       setReleaseSnapshot(releaseData as ContentReleaseSnapshot | null);
+      setBackendReleases((backendReleaseData.content_releases ?? []) as BackendContentRelease[]);
       setVariantQueue(variantQueueData as VariantProductionQueue | null);
       setRuntimeSpine(runtimeSpineData as RuntimeSpineEnhancement | null);
       setPilotReviewBatch(pilotReviewBatchData as PilotReviewBatch | null);
@@ -1104,6 +1120,7 @@ export default function AdminPage() {
       setPackDepthReadiness(null);
       setCurriculumCoverage(null);
       setReleaseSnapshot(null);
+      setBackendReleases(null);
       setVariantQueue(null);
       setRuntimeSpine(null);
       setPilotReviewBatch(null);
@@ -2722,6 +2739,43 @@ export default function AdminPage() {
                 <Info label="Authoring" value={String(releaseSnapshot?.totals.authoring ?? 0)} />
                 <Info label="Release failures" value={String(releaseSnapshot?.totals.failures ?? 0)} />
                 <Info label="Warnings" value={String(releaseSnapshot?.totals.warnings ?? 0)} />
+              </div>
+              <div className="border-b border-[#1d1a3e]/8 bg-[#f8fbff] p-5">
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <div>
+                    <h3 className="font-display text-lg font-semibold">Backend release ledger</h3>
+                    <p className="mt-1 text-sm leading-6 text-[#1d1a3e]/62">
+                      This is the learner-runtime truth. A generated pack report is not live until a complete backend release is applied.
+                    </p>
+                  </div>
+                  {backendReleases?.some((release) => release.channel === "live" && release.status === "applied") ? (
+                    <span className="bg-[#dff7e7] px-3 py-1 text-xs font-semibold text-[#28613c]">live release applied</span>
+                  ) : (
+                    <span className="bg-[#fff4d5] px-3 py-1 text-xs font-semibold text-[#725100]">no live release applied</span>
+                  )}
+                </div>
+                <div className="mt-4 grid gap-3 lg:grid-cols-2">
+                  {(backendReleases ?? []).slice(0, 6).map((release) => (
+                    <article key={release.id} className="border border-[#1d1a3e]/8 bg-white p-4">
+                      <div className="flex flex-wrap items-center justify-between gap-2">
+                        <p className="font-semibold">{release.channel} / {release.status}</p>
+                        <span className="font-mono text-[11px] text-[#1d1a3e]/48">{release.id.slice(0, 24)}</span>
+                      </div>
+                      <p className="mt-2 text-xs leading-5 text-[#1d1a3e]/60">
+                        Packs {release.uploaded_pack_count}/{release.expected_pack_count} · {release.expected_objective_count} objectives · {release.expected_activity_count} activities · {release.expected_question_count} questions.
+                      </p>
+                      <p className="mt-2 text-[11px] text-[#1d1a3e]/45">
+                        Source {release.source_revision || "not recorded"} {release.applied_at ? `· applied ${release.applied_at}` : ""}
+                      </p>
+                    </article>
+                  ))}
+                  {backendReleases?.length === 0 && (
+                    <p className="text-sm leading-6 text-[#725100]">No release has been staged in the connected backend yet.</p>
+                  )}
+                  {!backendReleases && (
+                    <p className="text-sm leading-6 text-[#725100]">The backend release ledger is unavailable. Check the API connection before treating content as live.</p>
+                  )}
+                </div>
               </div>
               <div className="grid gap-3 p-5 lg:grid-cols-2">
                 {(releaseSnapshot?.packs ?? []).slice(0, 12).map((pack) => (
