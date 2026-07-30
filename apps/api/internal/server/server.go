@@ -23,6 +23,7 @@ import (
 	"time"
 
 	"github.com/ArowuTest/nexuslearn/apps/api/internal/learning"
+	"golang.org/x/sync/errgroup"
 )
 
 type Server struct {
@@ -887,98 +888,54 @@ func (s *Server) handleAdminConfig(w http.ResponseWriter, r *http.Request) {
 	if !s.requireAdmin(w, r) {
 		return
 	}
-	flags, err := s.repo.ListFeatureFlags(r.Context())
-	if err != nil {
-		slog.Warn("failed to read feature flags", "error", err)
-		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read feature flags"})
-		return
+	var data struct {
+		featureFlags   []learning.FeatureFlag
+		worlds         []learning.WorldConfig
+		activities     []learning.ActivityConfig
+		questions      []learning.QuestionConfig
+		rewardRules    []learning.RewardRule
+		students       []learning.StudentProfileConfig
+		schools        []learning.SchoolConfig
+		schoolUsers    []learning.SchoolUserConfig
+		classes        []learning.ClassConfig
+		credentials    []learning.StudentCredentialConfig
+		groups         []learning.LearningGroupConfig
+		parentLinks    []learning.ParentLinkConfig
+		accessRequests []learning.AccessRequestConfig
 	}
-	worlds, err := s.repo.ListWorlds(r.Context())
-	if err != nil {
-		slog.Warn("failed to read worlds", "error", err)
-		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read worlds"})
-		return
-	}
-	activities, err := s.repo.ListActivities(r.Context())
-	if err != nil {
-		slog.Warn("failed to read activities", "error", err)
-		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read activities"})
-		return
-	}
-	questions, err := s.repo.ListQuestions(r.Context())
-	if err != nil {
-		slog.Warn("failed to read questions", "error", err)
-		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read questions"})
-		return
-	}
-	rewardRules, err := s.repo.ListRewardRules(r.Context())
-	if err != nil {
-		slog.Warn("failed to read reward rules", "error", err)
-		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read reward rules"})
-		return
-	}
-	students, err := s.repo.ListStudents(r.Context())
-	if err != nil {
-		slog.Warn("failed to read students", "error", err)
-		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read students"})
-		return
-	}
-	schools, err := s.repo.ListSchools(r.Context())
-	if err != nil {
-		slog.Warn("failed to read schools", "error", err)
-		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read schools"})
-		return
-	}
-	schoolUsers, err := s.repo.ListSchoolUsers(r.Context())
-	if err != nil {
-		slog.Warn("failed to read school users", "error", err)
-		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read school users"})
-		return
-	}
-	classes, err := s.repo.ListClasses(r.Context())
-	if err != nil {
-		slog.Warn("failed to read classes", "error", err)
-		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read classes"})
-		return
-	}
-	credentials, err := s.repo.ListStudentCredentials(r.Context())
-	if err != nil {
-		slog.Warn("failed to read student credentials", "error", err)
-		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read student credentials"})
-		return
-	}
-	groups, err := s.repo.ListGroups(r.Context())
-	if err != nil {
-		slog.Warn("failed to read groups", "error", err)
-		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read groups"})
-		return
-	}
-	parentLinks, err := s.repo.ListParentLinks(r.Context())
-	if err != nil {
-		slog.Warn("failed to read parent links", "error", err)
-		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read parent links"})
-		return
-	}
-	accessRequests, err := s.repo.ListAccessRequests(r.Context(), "")
-	if err != nil {
-		slog.Warn("failed to read access requests", "error", err)
-		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read access requests"})
+	group, ctx := errgroup.WithContext(r.Context())
+	group.Go(func() error { var err error; data.featureFlags, err = s.repo.ListFeatureFlags(ctx); return err })
+	group.Go(func() error { var err error; data.worlds, err = s.repo.ListWorlds(ctx); return err })
+	group.Go(func() error { var err error; data.activities, err = s.repo.ListActivities(ctx); return err })
+	group.Go(func() error { var err error; data.questions, err = s.repo.ListQuestions(ctx); return err })
+	group.Go(func() error { var err error; data.rewardRules, err = s.repo.ListRewardRules(ctx); return err })
+	group.Go(func() error { var err error; data.students, err = s.repo.ListStudents(ctx); return err })
+	group.Go(func() error { var err error; data.schools, err = s.repo.ListSchools(ctx); return err })
+	group.Go(func() error { var err error; data.schoolUsers, err = s.repo.ListSchoolUsers(ctx); return err })
+	group.Go(func() error { var err error; data.classes, err = s.repo.ListClasses(ctx); return err })
+	group.Go(func() error { var err error; data.credentials, err = s.repo.ListStudentCredentials(ctx); return err })
+	group.Go(func() error { var err error; data.groups, err = s.repo.ListGroups(ctx); return err })
+	group.Go(func() error { var err error; data.parentLinks, err = s.repo.ListParentLinks(ctx); return err })
+	group.Go(func() error { var err error; data.accessRequests, err = s.repo.ListAccessRequests(ctx, ""); return err })
+	if err := group.Wait(); err != nil {
+		slog.Warn("failed to read admin configuration", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read admin configuration"})
 		return
 	}
 	writeJSON(w, http.StatusOK, map[string]any{
-		"feature_flags":       flags,
-		"worlds":              worlds,
-		"activities":          activities,
-		"questions":           questions,
-		"reward_rules":        rewardRules,
-		"students":            students,
-		"schools":             schools,
-		"school_users":        schoolUsers,
-		"classes":             classes,
-		"student_credentials": credentials,
-		"groups":              groups,
-		"parent_links":        parentLinks,
-		"access_requests":     accessRequests,
+		"feature_flags":       data.featureFlags,
+		"worlds":              data.worlds,
+		"activities":          data.activities,
+		"questions":           data.questions,
+		"reward_rules":        data.rewardRules,
+		"students":            data.students,
+		"schools":             data.schools,
+		"school_users":        data.schoolUsers,
+		"classes":             data.classes,
+		"student_credentials": data.credentials,
+		"groups":              data.groups,
+		"parent_links":        data.parentLinks,
+		"access_requests":     data.accessRequests,
 	})
 }
 

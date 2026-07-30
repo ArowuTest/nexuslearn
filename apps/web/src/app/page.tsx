@@ -33,7 +33,7 @@ function NexusMap({
     <div className="relative min-h-[460px] overflow-hidden rounded-lg border border-white/12 bg-[#121a35] shadow-[0_26px_80px_rgba(0,0,0,0.28)]">
       <div className="absolute inset-0 bg-[#121a35]" />
       <div className="absolute inset-x-0 bottom-0 h-[48%] bg-[#1f6d66]" />
-      <div className="absolute inset-x-0 bottom-[34%] h-28 bg-[#2d8a6c]" style={{ clipPath: "polygon(0 72%, 12% 42%, 24% 58%, 38% 28%, 52% 60%, 68% 22%, 82% 54%, 100% 34%, 100% 100%, 0 100%)" }} />
+      <div className="absolute inset-x-0 bottom-[34%] h-28 bg-[#1f6d66]" style={{ clipPath: "polygon(0 72%, 12% 42%, 24% 58%, 38% 28%, 52% 60%, 68% 22%, 82% 54%, 100% 34%, 100% 100%, 0 100%)" }} />
       <svg className="absolute inset-0 h-full w-full" viewBox="0 0 620 460" aria-hidden>
         <path d="M70 355 C152 255, 238 378, 306 260 C382 126, 468 218, 548 86" fill="none" stroke="rgba(255,255,255,0.42)" strokeWidth="8" strokeLinecap="round" strokeDasharray="10 18" />
         <path className="anim-scan-line" d="M70 355 C152 255, 238 378, 306 260 C382 126, 468 218, 548 86" fill="none" stroke="rgba(255,255,255,0.66)" strokeWidth="4" strokeLinecap="round" />

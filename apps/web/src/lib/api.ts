@@ -485,6 +485,18 @@ export function clearAccountSession() {
   sessionStorage.removeItem(ACCOUNT_SESSION_EXPIRES_KEY);
 }
 
+export function accountSessionRole(): string | null {
+  if (!storageAvailable()) return null;
+  const token = sessionStorage.getItem(ACCOUNT_SESSION_KEY);
+  const role = sessionStorage.getItem(ACCOUNT_SESSION_ROLE_KEY);
+  const expiresAt = sessionStorage.getItem(ACCOUNT_SESSION_EXPIRES_KEY);
+  if (expiresAt && Date.now() >= Date.parse(expiresAt)) {
+    clearAccountSession();
+    return null;
+  }
+  return token && role ? role : null;
+}
+
 export function accountSessionHeaders(roles: string[] = []): Record<string, string> {
   if (!storageAvailable()) return {};
   const token = sessionStorage.getItem(ACCOUNT_SESSION_KEY);

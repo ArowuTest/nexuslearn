@@ -1,10 +1,10 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import ProgressSnapshot from "@/components/ProgressSnapshot";
-import { accountSessionHeaders, logoutAccount, storeAccountSession, type AccountSession, type ProgressReport } from "@/lib/api";
+import { accountSessionHeaders, accountSessionRole, logoutAccount, storeAccountSession, type AccountSession, type ProgressReport } from "@/lib/api";
 
 type FeatureFlag = { key: string; enabled: boolean; description: string; config?: Record<string, unknown>; updated_at?: string };
 type World = { key: string; name: string; year_group: number; theme: string; config?: Record<string, unknown>; enabled: boolean };
@@ -594,6 +594,7 @@ const EMPTY_OBJECT = "{}";
 const EMPTY_ARRAY = "[]";
 const TABS = ["Access", "Schools", "Learners", "Progress", "Groups", "Parents", "Worlds", "Readiness", "Activities", "Questions", "Rewards", "Objectives", "Flags", "Audit"] as const;
 type Tab = (typeof TABS)[number];
+const ADMIN_PAGE_SIZE = 25;
 
 async function reviewIdempotencyKey(scope: string, payload: Record<string, unknown>) {
   const serialized = JSON.stringify(payload);
@@ -759,6 +760,19 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState("");
   const [tab, setTab] = useState<Tab>("Worlds");
+  const [listPages, setListPages] = useState<Record<string, number>>({});
+
+  useEffect(() => {
+    const role = accountSessionRole();
+    if (!role) return;
+    void Promise.resolve().then(() => {
+      setAccountRole(role);
+      setTab(role === "content_reviewer" ? "Readiness" : "Worlds");
+      return loadConfig();
+    });
+    // The session is hydrated once on mount; loadConfig is intentionally not a reactive dependency.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const [worldDraft, setWorldDraft] = useState({ ...newWorld, configText: pretty(newWorld.config) });
   const [activityDraft, setActivityDraft] = useState({
@@ -1557,6 +1571,27 @@ export default function AdminPage() {
       ? ["Worlds", "Readiness", "Activities", "Questions", "Rewards", "Objectives"]
       : [...TABS];
 
+  function paginate<T>(key: string, items: T[]) {
+    const totalPages = Math.max(1, Math.ceil(items.length / ADMIN_PAGE_SIZE));
+    const page = Math.min(listPages[key] ?? 0, totalPages - 1);
+    return { items: items.slice(page * ADMIN_PAGE_SIZE, (page + 1) * ADMIN_PAGE_SIZE), page, totalPages };
+  }
+
+  function changePage(key: string, page: number) {
+    setListPages((current) => ({ ...current, [key]: page }));
+  }
+
+  const pagedWorlds = paginate("worlds", config?.worlds ?? []);
+  const pagedActivities = paginate("activities", config?.activities ?? []);
+  const pagedQuestions = paginate("questions", config?.questions ?? []);
+  const pagedRewards = paginate("rewards", config?.reward_rules ?? []);
+  const pagedObjectives = paginate("objectives", objectives);
+  const pagedFlags = paginate("flags", config?.feature_flags ?? []);
+  const pagedVersions = paginate("content-versions", contentVersions);
+  const pagedAuditLogs = paginate("audit-logs", auditLogs);
+  const pagedLearners = paginate("learners", config?.students ?? []);
+  const pagedCredentials = paginate("credentials", config?.student_credentials ?? []);
+
   return (
     <main className="min-h-screen bg-[#f6f3ea] px-5 py-8 text-[#1d1a3e]">
       <div className="mx-auto max-w-7xl">
@@ -1616,6 +1651,7 @@ export default function AdminPage() {
           </div>
         )}
 
+        <div className={config ? "" : "hidden"}>
         <p className="mt-4 bg-white/70 px-4 py-3 text-sm text-[#1d1a3e]/66">{message}</p>
 
         <section className="mt-6 grid gap-4 md:grid-cols-4">
@@ -1925,8 +1961,8 @@ export default function AdminPage() {
         {tab === "Learners" && (
           <EditorGrid
             left={
-              <Panel title="Learner Profiles">
-                {(config?.students ?? []).map((student) => (
+          <Panel title="Learner Profiles">
+                {pagedLearners.items.map((student) => (
                   <PickRow
                     key={student.external_ref}
                     title={student.display_name}
@@ -1935,7 +1971,7 @@ export default function AdminPage() {
                     onClick={() => setStudentDraft({ ...student })}
                   />
                 ))}
-                {(config?.student_credentials ?? []).map((credential) => (
+                {pagedCredentials.items.map((credential) => (
                   <PickRow
                     key={`credential-${credential.student_external_ref}`}
                     title={`${credential.display_name || credential.student_external_ref} access`}
@@ -1944,6 +1980,8 @@ export default function AdminPage() {
                     onClick={() => setCredentialDraft({ ...credential, picturePasswordText: pretty(credential.picture_password ?? []) })}
                   />
                 ))}
+                <AdminListPager page={pagedLearners.page} totalPages={pagedLearners.totalPages} onChange={(page) => changePage("learners", page)} />
+                <AdminListPager page={pagedCredentials.page} totalPages={pagedCredentials.totalPages} onChange={(page) => changePage("credentials", page)} />
               </Panel>
             }
             right={
@@ -2009,8 +2047,8 @@ export default function AdminPage() {
         {tab === "Worlds" && (
           <EditorGrid
             left={
-              <Panel title="Configured Worlds">
-                {(config?.worlds ?? []).map((world) => (
+          <Panel title="Configured Worlds">
+                {pagedWorlds.items.map((world) => (
                   <PickRow
                     key={world.key}
                     title={world.name}
@@ -2019,6 +2057,7 @@ export default function AdminPage() {
                     onClick={() => setWorldDraft({ ...world, configText: pretty(world.config ?? {}) })}
                   />
                 ))}
+                <AdminListPager page={pagedWorlds.page} totalPages={pagedWorlds.totalPages} onChange={(page) => changePage("worlds", page)} />
               </Panel>
             }
             right={
@@ -2815,8 +2854,8 @@ export default function AdminPage() {
         {tab === "Activities" && (
           <EditorGrid
             left={
-              <Panel title="Configured Activities">
-                {(config?.activities ?? []).map((activity) => (
+          <Panel title="Configured Activities">
+                {pagedActivities.items.map((activity) => (
                   <PickRow
                     key={activity.id}
                     title={activity.title || activity.id}
@@ -2832,6 +2871,7 @@ export default function AdminPage() {
                     }
                   />
                 ))}
+                <AdminListPager page={pagedActivities.page} totalPages={pagedActivities.totalPages} onChange={(page) => changePage("activities", page)} />
               </Panel>
             }
             right={
@@ -2856,8 +2896,8 @@ export default function AdminPage() {
         {tab === "Questions" && (
           <EditorGrid
             left={
-              <Panel title="Configured Questions">
-                {(config?.questions ?? []).map((question) => (
+          <Panel title="Configured Questions">
+                {pagedQuestions.items.map((question) => (
                   <PickRow
                     key={question.id}
                     title={question.id}
@@ -2873,6 +2913,7 @@ export default function AdminPage() {
                     }
                   />
                 ))}
+                <AdminListPager page={pagedQuestions.page} totalPages={pagedQuestions.totalPages} onChange={(page) => changePage("questions", page)} />
               </Panel>
             }
             right={
@@ -2896,8 +2937,8 @@ export default function AdminPage() {
         {tab === "Rewards" && (
           <EditorGrid
             left={
-              <Panel title="Reward Rules">
-                {(config?.reward_rules ?? []).map((rule) => (
+          <Panel title="Reward Rules">
+                {pagedRewards.items.map((rule) => (
                   <PickRow
                     key={rule.id}
                     title={rule.id}
@@ -2906,6 +2947,7 @@ export default function AdminPage() {
                     onClick={() => setRewardDraft({ ...rule, rewardPayloadText: pretty(rule.reward_payload ?? {}) })}
                   />
                 ))}
+                <AdminListPager page={pagedRewards.page} totalPages={pagedRewards.totalPages} onChange={(page) => changePage("rewards", page)} />
               </Panel>
             }
             right={
@@ -2925,8 +2967,8 @@ export default function AdminPage() {
         {tab === "Objectives" && (
           <EditorGrid
             left={
-              <Panel title="Curriculum Objectives">
-                {objectives.map((objective) => (
+          <Panel title="Curriculum Objectives">
+                {pagedObjectives.items.map((objective) => (
                   <PickRow
                     key={objective.id}
                     title={objective.statement}
@@ -2943,6 +2985,7 @@ export default function AdminPage() {
                     }
                   />
                 ))}
+                <AdminListPager page={pagedObjectives.page} totalPages={pagedObjectives.totalPages} onChange={(page) => changePage("objectives", page)} />
               </Panel>
             }
             right={
@@ -2970,8 +3013,8 @@ export default function AdminPage() {
         {tab === "Flags" && (
           <EditorGrid
             left={
-              <Panel title="Feature Flags">
-                {(config?.feature_flags ?? []).map((flag) => (
+          <Panel title="Feature Flags">
+                {pagedFlags.items.map((flag) => (
                   <PickRow
                     key={flag.key}
                     title={flag.key}
@@ -2980,6 +3023,7 @@ export default function AdminPage() {
                     onClick={() => setFlagDraft({ ...flag, configText: pretty(flag.config ?? {}) })}
                   />
                 ))}
+                <AdminListPager page={pagedFlags.page} totalPages={pagedFlags.totalPages} onChange={(page) => changePage("flags", page)} />
               </Panel>
             }
             right={
@@ -2997,8 +3041,8 @@ export default function AdminPage() {
         {tab === "Audit" && (
           <EditorGrid
             left={
-              <Panel title="Content Version Snapshots">
-                {contentVersions.map((version) => {
+          <Panel title="Content Version Snapshots">
+                {pagedVersions.items.map((version) => {
                   const currentPayload = currentPayloadForVersion(version, config, objectives);
                   const diffFields = contentVersionDiffFields(version, currentPayload);
                   return (
@@ -3044,12 +3088,13 @@ export default function AdminPage() {
                     </article>
                   );
                 })}
+                <AdminListPager page={pagedVersions.page} totalPages={pagedVersions.totalPages} onChange={(page) => changePage("content-versions", page)} />
                 {contentVersions.length === 0 && <p className="p-5 text-sm text-[#1d1a3e]/58">No content snapshots have been recorded yet.</p>}
               </Panel>
             }
             right={
-              <Panel title="Recent Audit Events">
-                {auditLogs.map((log) => (
+          <Panel title="Recent Audit Events">
+                {pagedAuditLogs.items.map((log) => (
                   <article key={log.id} className="grid gap-2 p-5 md:grid-cols-[160px_1fr]">
                     <p className="font-semibold">{log.action}</p>
                     <div>
@@ -3058,11 +3103,13 @@ export default function AdminPage() {
                     </div>
                   </article>
                 ))}
+                <AdminListPager page={pagedAuditLogs.page} totalPages={pagedAuditLogs.totalPages} onChange={(page) => changePage("audit-logs", page)} />
                 {auditLogs.length === 0 && <p className="p-5 text-sm text-[#1d1a3e]/58">No audit events have been recorded yet.</p>}
               </Panel>
             }
           />
         )}
+        </div>
       </div>
     </main>
   );
@@ -3092,6 +3139,19 @@ function PickRow({ title, meta, body, onClick }: { title: string; meta: string; 
       </div>
       <p className="mt-2 text-sm leading-6 text-[#1d1a3e]/58">{body}</p>
     </button>
+  );
+}
+
+function AdminListPager({ page, totalPages, onChange }: { page: number; totalPages: number; onChange: (page: number) => void }) {
+  if (totalPages <= 1) return null;
+  return (
+    <nav className="flex items-center justify-between gap-3 border-t border-[#1d1a3e]/8 p-4 text-xs" aria-label="List pagination">
+      <span className="text-[#1d1a3e]/58">Page {page + 1} of {totalPages}</span>
+      <div className="flex gap-2">
+        <button type="button" onClick={() => onChange(page - 1)} disabled={page === 0} className="btn-pop bg-[#f6f3ea] px-3 py-2 disabled:cursor-not-allowed disabled:opacity-45">Previous</button>
+        <button type="button" onClick={() => onChange(page + 1)} disabled={page >= totalPages - 1} className="btn-pop bg-[#f6f3ea] px-3 py-2 disabled:cursor-not-allowed disabled:opacity-45">Next</button>
+      </div>
+    </nav>
   );
 }
 

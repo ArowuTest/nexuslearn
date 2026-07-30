@@ -12,7 +12,7 @@ test("public entry keeps learning behind structured access", async ({ page }) =>
 
 test("family workspace exposes secure signup, invitation and support controls", async ({ page }) => {
   await page.goto("/family?invitation=test-invitation");
-  await expect(page.getByRole("heading", { name: /join your child's learning workspace/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /set up learning around the child/i })).toBeVisible();
   await expect(page.getByLabel("Your name")).toBeVisible();
   await expect(page.getByText("SEND/support needs")).toBeVisible();
   await expect(page.getByRole("button", { name: "Accept invitation" })).toBeDisabled();
@@ -29,9 +29,13 @@ test("school workspace requests one-time credentials and supports child-safe acc
 test("admin console prefers named accounts and retains explicit bootstrap migration", async ({ page }) => {
   await page.goto("/admin");
   await expect(page.getByRole("heading", { name: /configuration control room/i })).toBeVisible();
-  await expect(page.getByLabel("Platform login ID")).toBeVisible();
+  await expect(page.getByLabel("Login ID")).toBeVisible();
+  await expect(page.getByText("First-time platform setup")).toBeVisible();
+  await page.getByText("First-time platform setup").click();
   await expect(page.getByText("Temporary bootstrap API key")).toBeVisible();
   await expect(page.getByRole("button", { name: "Sign in" })).toBeDisabled();
+  await expect(page.getByRole("heading", { name: "Configured Worlds" })).not.toBeVisible();
+  await expect(page.getByRole("navigation", { name: "Admin sections" })).not.toBeVisible();
 });
 
 test("content production reports real reviewed-variant depth", async ({ request }) => {
