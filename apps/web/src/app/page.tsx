@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 import { ApiStateCard } from "@/components/ChildJourneyChrome";
 import Dino from "@/components/Dino";
-import { DEFAULT_STUDENT_ID, getCurriculumMap, getNextActivity, getRuntimeFlags, getWorlds } from "@/lib/api";
+import { DEFAULT_STUDENT_ID, getCurriculumMap, getCurriculumReleaseStatus, getNextActivity, getRuntimeFlags, getWorlds } from "@/lib/api";
 
 export const dynamic = "force-dynamic";
 
@@ -94,9 +94,10 @@ function NexusMap({
 }
 
 export default async function Home() {
-  const [worlds, curriculumMap, runtimeFlags] = await Promise.all([
+  const [worlds, curriculumMap, releaseStatus, runtimeFlags] = await Promise.all([
     getWorlds(),
     getCurriculumMap(),
+    getCurriculumReleaseStatus(),
     getRuntimeFlags(),
   ]);
   const flags = runtimeFlags?.flags ?? {};
@@ -117,6 +118,7 @@ export default async function Home() {
   const worldsAvailable = worlds !== null;
   const runtimeAvailable = runtimeFlags !== null;
   const coveredYears = years.filter((year) => year.total > 0).length;
+  const liveCatalogueLabel = releaseStatus?.state === "live_release" ? "Live release" : "Seed catalogue";
 
   return (
     <main className="bg-[#f7f0df] text-[#162244]">
@@ -175,7 +177,7 @@ export default async function Home() {
               <div className="mt-8 grid max-w-2xl grid-cols-3 gap-3">
                 {[
                   ["Years", curriculumAvailable ? `${coveredYears}/7` : "Unavailable"],
-                  ["Objectives", curriculumAvailable ? String(curriculumMap?.total ?? 0) : "Unavailable"],
+                  ["Live objectives", curriculumAvailable ? String(releaseStatus?.runtime_objectives ?? curriculumMap?.total ?? 0) : "Unavailable"],
                   ["Subjects", curriculumAvailable ? String(subjects.length) : "MVP scope"],
                 ].map(([label, value]) => (
                   <div key={label} className="rounded-lg border border-white/12 bg-white/10 p-4">
@@ -226,16 +228,27 @@ export default async function Home() {
             <h2 className="font-display mt-3 text-4xl font-semibold">Year, subject and strand coverage.</h2>
             <p className="mt-4 text-base leading-7 text-[#162244]/66">
               {curriculumAvailable
-                ? "Starter coverage is organised as a real curriculum system: objective packs, teaching steps, misconceptions and evidence rules."
+                ? `The learner runtime currently serves the ${liveCatalogueLabel.toLowerCase()}: objective packs, teaching steps, misconceptions and evidence rules are released through the backend.`
                 : "Live objective coverage is unavailable. The public site will not invent year, subject or strand counts until the curriculum service responds."}
             </p>
+            {curriculumAvailable && (
+              <div className="mt-5 rounded-lg border border-[#162244]/10 bg-white p-4 shadow-card">
+                <p className="font-display text-sm uppercase tracking-[0.14em] text-[#7357c9]">Runtime catalogue</p>
+                <p className="mt-2 text-lg font-semibold">{liveCatalogueLabel}</p>
+                <p className="mt-1 text-sm leading-6 text-[#162244]/66">
+                  {releaseStatus?.state === "live_release"
+                    ? `${releaseStatus.active_release?.expected_pack_count ?? 0} packs are connected to the learner runtime.`
+                    : "The full authored curriculum remains controlled in review until its release gates are complete."}
+                </p>
+              </div>
+            )}
           </div>
           <div className="grid gap-3 md:grid-cols-7">
             {curriculumAvailable ? years.map((year) => (
               <div key={year.year} className="rounded-lg border border-[#162244]/10 bg-white p-4 shadow-card">
                 <p className="font-display text-lg font-semibold">Y{year.year}</p>
                 <p className="mt-1 text-3xl font-semibold" style={{ color: year.total ? "#7357c9" : "#9c978b" }}>{year.total}</p>
-                <p className="text-xs text-[#162244]/52">objectives</p>
+                <p className="text-xs text-[#162244]/52">live objectives</p>
                 <div className="mt-3 space-y-1">
                   {year.subjects.slice(0, 3).map((subject) => (
                     <p key={subject.name} className="truncate text-xs text-[#162244]/66">{subject.name}</p>

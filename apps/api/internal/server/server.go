@@ -178,6 +178,17 @@ type contentReleaseRepository interface {
 	learning.ContentReleaseStore
 }
 
+type publicCurriculumRelease struct {
+	ID                     string `json:"id"`
+	Channel                string `json:"channel"`
+	Status                 string `json:"status"`
+	ExpectedPackCount      int    `json:"expected_pack_count"`
+	ExpectedObjectiveCount int    `json:"expected_objective_count"`
+	ExpectedActivityCount  int    `json:"expected_activity_count"`
+	ExpectedQuestionCount  int    `json:"expected_question_count"`
+	AppliedAt              string `json:"applied_at,omitempty"`
+}
+
 func New(repo learning.Repository, persistence string) *Server {
 	if repo == nil {
 		repo = learning.NoopRepository{}
@@ -269,6 +280,7 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("GET /v1/curriculum/objectives", s.handleObjectives)
 	s.mux.HandleFunc("GET /v1/curriculum/objectives/{id}", s.handleObjective)
 	s.mux.HandleFunc("GET /v1/curriculum/map", s.handleCurriculumMap)
+	s.mux.HandleFunc("GET /v1/curriculum/release-status", s.handleCurriculumReleaseStatus)
 	s.mux.HandleFunc("GET /v1/runtime/flags", s.handleRuntimeFlags)
 	s.mux.HandleFunc("GET /v1/school/config", s.handleSchoolConfig)
 	s.mux.HandleFunc("PUT /v1/school/students/{externalRef}", s.handleSchoolUpsertStudent)
@@ -2506,6 +2518,49 @@ func (s *Server) handleCurriculumMap(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	writeJSON(w, http.StatusOK, buildCurriculumMap(objectives))
+}
+
+// handleCurriculumReleaseStatus is deliberately public but intentionally
+// small. The public experience can describe what learners can actually see
+// without exposing staged pack payloads, review decisions or learner data.
+func (s *Server) handleCurriculumReleaseStatus(w http.ResponseWriter, r *http.Request) {
+	objectives, err := s.repo.ListObjectives(r.Context())
+	if err != nil {
+		slog.Warn("failed to read curriculum release status", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read curriculum release status"})
+		return
+	}
+	response := map[string]any{
+		"state":              "legacy_seed",
+		"runtime_objectives": len(objectives),
+		"generated_at":       time.Now().UTC().Format(time.RFC3339),
+	}
+	if store, ok := s.repo.(contentReleaseRepository); ok {
+		releases, listErr := store.ListContentReleases(r.Context(), 100)
+		if listErr != nil {
+			slog.Warn("failed to read active curriculum release", "error", listErr)
+			writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read curriculum release status"})
+			return
+		}
+		for _, release := range releases {
+			if release.Channel != "live" || release.Status != "applied" {
+				continue
+			}
+			response["state"] = "live_release"
+			response["active_release"] = publicCurriculumRelease{
+				ID:                     release.ID,
+				Channel:                release.Channel,
+				Status:                 release.Status,
+				ExpectedPackCount:      release.ExpectedPackCount,
+				ExpectedObjectiveCount: release.ExpectedObjectiveCount,
+				ExpectedActivityCount:  release.ExpectedActivityCount,
+				ExpectedQuestionCount:  release.ExpectedQuestionCount,
+				AppliedAt:              release.AppliedAt,
+			}
+			break
+		}
+	}
+	writeJSON(w, http.StatusOK, response)
 }
 
 func (s *Server) handleContentReadiness(w http.ResponseWriter, r *http.Request) {

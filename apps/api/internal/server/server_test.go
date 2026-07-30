@@ -775,6 +775,33 @@ func TestHandleCurriculumMapGroupsObjectives(t *testing.T) {
 	}
 }
 
+func TestHandleCurriculumReleaseStatusReportsLegacyRuntime(t *testing.T) {
+	srv := New(fakeRepository{
+		objectives: []learning.Objective{
+			{ID: "ma-y1-count", Year: 1, Subject: "Mathematics", Strand: "Number", Topic: "Counting"},
+			{ID: "en-y1-read", Year: 1, Subject: "English", Strand: "Reading", Topic: "Words"},
+		},
+	}, "postgres")
+
+	req := httptest.NewRequest(http.MethodGet, "/v1/curriculum/release-status", nil)
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200, got %d", res.Code)
+	}
+	var body struct {
+		State             string `json:"state"`
+		RuntimeObjectives int    `json:"runtime_objectives"`
+	}
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if body.State != "legacy_seed" || body.RuntimeObjectives != 2 {
+		t.Fatalf("expected legacy runtime status, got %#v", body)
+	}
+}
+
 func TestHandleNextActivityPrefersConfiguredPublishedActivity(t *testing.T) {
 	srv := New(fakeRepository{
 		objectives: []learning.Objective{{ID: "ma-y4-test", Mastery: learning.MasteryRule{RequiredFormats: []string{"array-build"}}}},

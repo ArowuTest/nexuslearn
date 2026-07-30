@@ -73,7 +73,13 @@ func validUUID(value string) bool {
 
 func (r *PostgresRepository) ListObjectives(ctx context.Context) ([]Objective, error) {
 	rows, err := r.db.Query(ctx, `
-		WITH prerequisites AS (
+		WITH active_release AS (
+			SELECT id
+			FROM content_releases
+			WHERE channel='live' AND status='applied'
+			ORDER BY applied_at DESC NULLS LAST, id DESC
+			LIMIT 1
+		), prerequisites AS (
 			SELECT objective_id, json_agg(prerequisite_id ORDER BY prerequisite_id) AS items_json
 			FROM objective_prerequisites
 			GROUP BY objective_id
@@ -90,8 +96,10 @@ func (r *PostgresRepository) ListObjectives(ctx context.Context) ([]Objective, e
 			COALESCE(prerequisites.items_json, '[]'::json)::text,
 			COALESCE(misconceptions.items_json, '[]'::json)::text
 		FROM curriculum_objectives o
+		LEFT JOIN active_release ON TRUE
 		LEFT JOIN prerequisites ON prerequisites.objective_id=o.id
 		LEFT JOIN misconceptions ON misconceptions.objective_id=o.id
+		WHERE active_release.id IS NULL OR o.content_release_id=active_release.id
 		ORDER BY o.year_group, o.subject, o.strand, o.topic, o.id
 	`)
 	if err != nil {
@@ -115,6 +123,13 @@ func (r *PostgresRepository) GetObjective(ctx context.Context, id string) (Objec
 		return Objective{}, false, nil
 	}
 	row := r.db.QueryRow(ctx, `
+		WITH active_release AS (
+			SELECT id
+			FROM content_releases
+			WHERE channel='live' AND status='applied'
+			ORDER BY applied_at DESC NULLS LAST, id DESC
+			LIMIT 1
+		)
 		SELECT
 			o.id, o.year_group, o.subject, o.strand, o.topic, o.statement,
 			o.parent_explanation, o.teacher_evidence, o.expected_mastery, o.secure_mastery,
@@ -123,7 +138,8 @@ func (r *PostgresRepository) GetObjective(ctx context.Context, id string) (Objec
 			COALESCE((SELECT json_agg(p.prerequisite_id) FROM objective_prerequisites p WHERE p.objective_id=o.id), '[]')::text,
 			COALESCE((SELECT json_agg(m.description) FROM objective_misconceptions m WHERE m.objective_id=o.id), '[]')::text
 		FROM curriculum_objectives o
-		WHERE o.id=$1
+		LEFT JOIN active_release ON TRUE
+		WHERE o.id=$1 AND (active_release.id IS NULL OR o.content_release_id=active_release.id)
 	`, id)
 	objective, err := scanObjective(row)
 	if errors.Is(err, pgx.ErrNoRows) {
@@ -348,12 +364,21 @@ func (r *PostgresRepository) ListActivities(ctx context.Context) ([]ActivityConf
 // download the whole catalogue for every decision.
 func (r *PostgresRepository) ListAdaptiveActivities(ctx context.Context, studentID string) ([]ActivityConfig, error) {
 	rows, err := r.db.Query(ctx, `
+		WITH active_release AS (
+			SELECT id
+			FROM content_releases
+			WHERE channel='live' AND status='applied'
+			ORDER BY applied_at DESC NULLS LAST, id DESC
+			LIMIT 1
+		)
 		SELECT a.id, COALESCE(a.objective_id,''), COALESCE(a.template_id,''), a.world_key, a.title, a.prompt, a.difficulty,
 		       a.interaction, a.feedback, a.animation_hooks, a.status, a.updated_at
 		FROM activities a
 		JOIN curriculum_objectives o ON o.id=a.objective_id
 		JOIN students s ON s.external_ref=$1
+		LEFT JOIN active_release ON TRUE
 		WHERE a.status IN ('approved','published','live')
+		  AND (active_release.id IS NULL OR a.content_release_id=active_release.id)
 		  AND o.year_group BETWEEN GREATEST(1, s.year_group-1) AND LEAST(7, s.year_group+2)
 		ORDER BY a.updated_at DESC, a.id
 		LIMIT 2000
@@ -375,7 +400,13 @@ func (r *PostgresRepository) ListAdaptiveActivities(ctx context.Context, student
 
 func (r *PostgresRepository) ListAdaptiveObjectives(ctx context.Context, studentID string) ([]Objective, error) {
 	rows, err := r.db.Query(ctx, `
-		WITH prerequisites AS (
+		WITH active_release AS (
+			SELECT id
+			FROM content_releases
+			WHERE channel='live' AND status='applied'
+			ORDER BY applied_at DESC NULLS LAST, id DESC
+			LIMIT 1
+		), prerequisites AS (
 			SELECT objective_id, json_agg(prerequisite_id ORDER BY prerequisite_id) AS items_json
 			FROM objective_prerequisites
 			GROUP BY objective_id
@@ -393,9 +424,11 @@ func (r *PostgresRepository) ListAdaptiveObjectives(ctx context.Context, student
 			COALESCE(misconceptions.items_json, '[]'::json)::text
 		FROM curriculum_objectives o
 		JOIN students s ON s.external_ref=$1
+		LEFT JOIN active_release ON TRUE
 		LEFT JOIN prerequisites ON prerequisites.objective_id=o.id
 		LEFT JOIN misconceptions ON misconceptions.objective_id=o.id
-		WHERE o.year_group BETWEEN GREATEST(1, s.year_group-1) AND LEAST(7, s.year_group+2)
+		WHERE (active_release.id IS NULL OR o.content_release_id=active_release.id)
+		  AND o.year_group BETWEEN GREATEST(1, s.year_group-1) AND LEAST(7, s.year_group+2)
 		ORDER BY o.year_group, o.subject, o.strand, o.topic, o.id
 		LIMIT 2000
 	`, studentID)
@@ -497,12 +530,21 @@ func (r *PostgresRepository) ListQuestionsForActivity(ctx context.Context, activ
 		limit = 200
 	}
 	rows, err := r.db.Query(ctx, `
-		SELECT id, COALESCE(activity_id,''), COALESCE(objective_id,''), format, body, expected_answer,
-		       hints, explanation, difficulty, status, updated_at
+		WITH active_release AS (
+			SELECT id
+			FROM content_releases
+			WHERE channel='live' AND status='applied'
+			ORDER BY applied_at DESC NULLS LAST, id DESC
+			LIMIT 1
+		)
+		SELECT questions.id, COALESCE(questions.activity_id,''), COALESCE(questions.objective_id,''), questions.format, questions.body, questions.expected_answer,
+		       questions.hints, questions.explanation, questions.difficulty, questions.status, questions.updated_at
 		FROM questions
-		WHERE status IN ('approved','published','live')
-		  AND (activity_id=$1 OR (activity_id IS NULL AND objective_id=$2))
-		ORDER BY updated_at DESC, id
+		LEFT JOIN active_release ON TRUE
+		WHERE questions.status IN ('approved','published','live')
+		  AND (active_release.id IS NULL OR questions.content_release_id=active_release.id)
+		  AND (questions.activity_id=$1 OR (questions.activity_id IS NULL AND questions.objective_id=$2))
+		ORDER BY questions.updated_at DESC, questions.id
 		LIMIT $3
 	`, activityID, objectiveID, limit)
 	if err != nil {

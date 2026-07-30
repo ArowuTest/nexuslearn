@@ -36,6 +36,22 @@ export type CurriculumMap = {
   generated_at: string;
 };
 
+export type CurriculumReleaseStatus = {
+  state: "legacy_seed" | "live_release";
+  runtime_objectives: number;
+  generated_at: string;
+  active_release?: {
+    id: string;
+    channel: string;
+    status: string;
+    expected_pack_count: number;
+    expected_objective_count: number;
+    expected_activity_count: number;
+    expected_question_count: number;
+    applied_at?: string;
+  };
+};
+
 export type Mastery = {
   student_id: string;
   objective_id: string;
@@ -544,6 +560,10 @@ export async function getObjectives(): Promise<Objective[] | null> {
 
 export async function getCurriculumMap(): Promise<CurriculumMap | null> {
   return getJSON<CurriculumMap>("/v1/curriculum/map");
+}
+
+export async function getCurriculumReleaseStatus(): Promise<CurriculumReleaseStatus | null> {
+  return getJSON<CurriculumReleaseStatus>("/v1/curriculum/release-status");
 }
 
 export async function getWorlds(): Promise<WorldConfig[] | null> {

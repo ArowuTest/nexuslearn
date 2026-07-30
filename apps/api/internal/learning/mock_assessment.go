@@ -200,9 +200,17 @@ func (r *PostgresRepository) CreateMockAssessment(ctx context.Context, assessmen
 			INSERT INTO mock_assessment_items (assessment_id, position, question_id, objective_id, activity_id, selection_reason)
 			SELECT $1::uuid, $2, q.id, q.objective_id, NULLIF($5, ''), $6
 			FROM questions q
+			LEFT JOIN LATERAL (
+				SELECT id
+				FROM content_releases
+				WHERE channel='live' AND status='applied'
+				ORDER BY applied_at DESC NULLS LAST, id DESC
+				LIMIT 1
+			) active_release ON TRUE
 			WHERE q.id=$3
 			  AND q.objective_id=$4
 			  AND q.status IN ('approved','published','live')
+			  AND (active_release.id IS NULL OR q.content_release_id=active_release.id)
 		`, assessment.ID, item.Position, item.QuestionID, item.ObjectiveID, item.ActivityID, item.SelectionReason)
 		if execErr != nil {
 			return assessment, execErr

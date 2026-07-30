@@ -868,7 +868,15 @@ func (r *PostgresRepository) configuredWarmUpItems(ctx context.Context, limit in
 			q.difficulty
 		FROM questions q
 		LEFT JOIN curriculum_objectives o ON o.id = q.objective_id
+		LEFT JOIN LATERAL (
+			SELECT id
+			FROM content_releases
+			WHERE channel='live' AND status='applied'
+			ORDER BY applied_at DESC NULLS LAST, id DESC
+			LIMIT 1
+		) active_release ON TRUE
 		WHERE q.status IN ('published', 'approved', 'live')
+		  AND (active_release.id IS NULL OR q.content_release_id=active_release.id)
 		ORDER BY q.difficulty, q.updated_at DESC, q.id
 		LIMIT $1
 	`, limit)
