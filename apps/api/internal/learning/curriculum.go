@@ -167,53 +167,106 @@ type AssessmentBlueprint struct {
 // the adaptive next-activity decision so a practice mock can be resumed and
 // reported without changing the learner's route by accident.
 type MockAssessment struct {
-	ID                 string               `json:"id"`
-	IdempotencyKey     string               `json:"-"`
-	StudentExternalRef string               `json:"student_external_ref"`
-	StudentDisplayName string               `json:"student_display_name,omitempty"`
-	SchoolURN          string               `json:"school_urn,omitempty"`
-	CreatedByRole      string               `json:"created_by_role"`
-	CreatedBy          string               `json:"created_by"`
-	Subject            string               `json:"subject"`
-	YearGroup          int                  `json:"year_group"`
-	YearFrom           int                  `json:"year_from"`
-	YearTo             int                  `json:"year_to"`
-	Title              string               `json:"title"`
-	Status             string               `json:"status"`
-	QuestionCount      int                  `json:"question_count"`
-	AnsweredCount      int                  `json:"answered_count"`
-	CorrectCount       int                  `json:"correct_count"`
-	Score              int                  `json:"score"`
-	DurationMinutes    int                  `json:"duration_minutes"`
-	IncludeRevision    bool                 `json:"include_revision"`
-	IncludeStretch     bool                 `json:"include_stretch"`
-	Accessibility      map[string]any       `json:"accessibility"`
-	Items              []MockAssessmentItem `json:"items"`
-	CreatedAt          string               `json:"created_at,omitempty"`
-	UpdatedAt          string               `json:"updated_at,omitempty"`
-	CompletedAt        string               `json:"completed_at,omitempty"`
+	ID                 string                `json:"id"`
+	IdempotencyKey     string                `json:"-"`
+	StudentExternalRef string                `json:"student_external_ref"`
+	StudentDisplayName string                `json:"student_display_name,omitempty"`
+	SchoolURN          string                `json:"school_urn,omitempty"`
+	CreatedByRole      string                `json:"created_by_role"`
+	CreatedBy          string                `json:"created_by"`
+	Subject            string                `json:"subject"`
+	YearGroup          int                   `json:"year_group"`
+	YearFrom           int                   `json:"year_from"`
+	YearTo             int                   `json:"year_to"`
+	Title              string                `json:"title"`
+	Status             string                `json:"status"`
+	QuestionCount      int                   `json:"question_count"`
+	AnsweredCount      int                   `json:"answered_count"`
+	CorrectCount       int                   `json:"correct_count"`
+	Score              int                   `json:"score"`
+	DurationMinutes    int                   `json:"duration_minutes"`
+	IncludeRevision    bool                  `json:"include_revision"`
+	IncludeStretch     bool                  `json:"include_stretch"`
+	Accessibility      map[string]any        `json:"accessibility"`
+	Items              []MockAssessmentItem  `json:"items"`
+	ObjectiveResults   []MockObjectiveResult `json:"objective_results"`
+	CreatedAt          string                `json:"created_at,omitempty"`
+	UpdatedAt          string                `json:"updated_at,omitempty"`
+	CompletedAt        string                `json:"completed_at,omitempty"`
 }
 
 type MockAssessmentSummary struct {
-	ID            string `json:"id"`
-	Subject       string `json:"subject"`
-	YearGroup     int    `json:"year_group"`
-	Title         string `json:"title"`
-	Status        string `json:"status"`
-	QuestionCount int    `json:"question_count"`
-	AnsweredCount int    `json:"answered_count"`
-	CorrectCount  int    `json:"correct_count"`
-	Score         int    `json:"score"`
-	CompletedAt   string `json:"completed_at,omitempty"`
+	ID               string                `json:"id"`
+	Subject          string                `json:"subject"`
+	YearGroup        int                   `json:"year_group"`
+	Title            string                `json:"title"`
+	Status           string                `json:"status"`
+	QuestionCount    int                   `json:"question_count"`
+	AnsweredCount    int                   `json:"answered_count"`
+	CorrectCount     int                   `json:"correct_count"`
+	Score            int                   `json:"score"`
+	ObjectiveResults []MockObjectiveResult `json:"objective_results"`
+	CompletedAt      string                `json:"completed_at,omitempty"`
 }
 
 func (assessment MockAssessment) Summary() MockAssessmentSummary {
+	objectiveResults := normalizeMockObjectiveResults(append([]MockObjectiveResult{}, assessment.ObjectiveResults...))
 	return MockAssessmentSummary{
 		ID: assessment.ID, Subject: assessment.Subject, YearGroup: assessment.YearGroup,
 		Title: assessment.Title, Status: assessment.Status, QuestionCount: assessment.QuestionCount,
 		AnsweredCount: assessment.AnsweredCount, CorrectCount: assessment.CorrectCount,
-		Score: assessment.Score, CompletedAt: assessment.CompletedAt,
+		Score: assessment.Score, ObjectiveResults: objectiveResults,
+		CompletedAt: assessment.CompletedAt,
 	}
+}
+
+// MockObjectiveResult is sampled subject-check evidence. It is deliberately
+// separate from adaptive mastery so one mock cannot open or close a learner's
+// curriculum route.
+type MockObjectiveResult struct {
+	ObjectiveID   string `json:"objective_id"`
+	YearGroup     int    `json:"year_group"`
+	Strand        string `json:"strand"`
+	Topic         string `json:"topic"`
+	Statement     string `json:"statement"`
+	QuestionCount int    `json:"question_count"`
+	AnsweredCount int    `json:"answered_count"`
+	CorrectCount  int    `json:"correct_count"`
+	Score         int    `json:"score"`
+	Status        string `json:"status"`
+	Guidance      string `json:"guidance"`
+}
+
+func classifyMockObjectiveResult(result MockObjectiveResult) MockObjectiveResult {
+	result.Score = 0
+	if result.AnsweredCount > 0 {
+		result.Score = result.CorrectCount * 100 / result.AnsweredCount
+	}
+	switch {
+	case result.AnsweredCount == 0:
+		result.Status = "not_sampled"
+		result.Guidance = "Not sampled in this check yet."
+	case result.AnsweredCount >= result.QuestionCount && result.Score >= 80:
+		result.Status = "secure_for_now"
+		result.Guidance = "Secure in this sample for now. Keep it in spaced revision."
+	case result.Score >= 50:
+		result.Status = "practising"
+		result.Guidance = "Partly secure in this sample. Revisit a worked example, then try a fresh question."
+	default:
+		result.Status = "review_next"
+		result.Guidance = "Review this next with a different explanation and supported practice."
+	}
+	return result
+}
+
+func normalizeMockObjectiveResults(results []MockObjectiveResult) []MockObjectiveResult {
+	if results == nil {
+		return []MockObjectiveResult{}
+	}
+	for index := range results {
+		results[index] = classifyMockObjectiveResult(results[index])
+	}
+	return results
 }
 
 type MockAssessmentItem struct {

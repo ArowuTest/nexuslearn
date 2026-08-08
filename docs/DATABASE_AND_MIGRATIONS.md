@@ -193,6 +193,18 @@ renderer and conditional audio decisions per pilot pack and lane. Decisions
 are bound to the generated pilot-batch SHA-256, so a regenerated queue makes
 old approvals visibly stale instead of silently carrying them into release.
 
+The thirty-eighth and thirty-ninth migrations add immutable AI curriculum/SEND
+review evidence and the exact variant-coverage projection used by the release
+gate. Decisions remain bound to content hashes, rubric/source revisions and
+reviewer implementation identity.
+
+The fortieth migration adds `mock_assessments.objective_results`. When the final
+selected answer is recorded, the same transaction stores bounded raw sample
+counts grouped by curriculum objective. API responses derive “review next”,
+“practising” and “secure for now” guidance from those counts. The column keeps
+completed subject-check evidence durable and listable without N+1 queries;
+mock evidence still does not update adaptive mastery or progression routes.
+
 ## Applying Migrations
 
 The API includes an explicit migration command. For paid Render plans, this can be run as a one-off job. Render free web services do not support one-off jobs, so the current prototype path is `AUTO_MIGRATE=true`.

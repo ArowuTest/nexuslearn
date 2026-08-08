@@ -92,8 +92,9 @@ Acceptance criteria:
 - Parent child-card mock builder and progress result link (implemented).
 - School/tutor mock builder scoped to one learner (implemented; group creation
   remains follow-on work).
-- Mock completion summary with subject-level evidence and revision guidance
-  (completion evidence implemented; richer revision guidance remains).
+- Mock completion summary with subject-level and objective-level sampled
+  evidence, plain-language revision guidance and an explicit boundary from
+  adaptive mastery (implemented).
 - Admin operational view for generated assessments, content readiness and
   audio/listening QA (scoped read route implemented; richer dashboard remains).
 

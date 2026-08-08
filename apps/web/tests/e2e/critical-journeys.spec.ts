@@ -331,3 +331,173 @@ test("SEND-aware mission teaches before practice and records child confidence", 
   const accessibility = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"]).analyze();
   expect(accessibility.violations.filter((item) => item.impact === "critical" || item.impact === "serious")).toEqual([]);
 });
+
+test("completed subject check explains objective evidence without changing mastery", async ({ page }) => {
+  await page.route("http://api.test/v1/learning/mission**", async (route) => {
+    await route.fulfill({
+      contentType: "application/json",
+      body: JSON.stringify({
+        student_id: "sam-y3",
+        activity: {
+          id: "act-maths-check",
+          objective_id: "ma-y3-number-recall-3-4-8-tables",
+          template_id: "tap-choice",
+          world_key: "explorer-archipelago",
+          title: "Maths route check",
+          prompt: "Show what you know.",
+          difficulty: 2,
+          interaction: {},
+          feedback: {},
+          animation_hooks: {},
+          status: "published",
+        },
+        objective: {
+          id: "ma-y3-number-recall-3-4-8-tables",
+          year: 3,
+          subject: "Mathematics",
+          strand: "Number",
+          topic: "Multiplication and division",
+          statement: "Recall multiplication and division facts for the 3, 4 and 8 tables.",
+          prerequisites: [],
+          misconceptions: [],
+          mastery: { expected: 80, secure: 90, retention_days: [1, 3, 7, 14], required_formats: ["tap-choice"] },
+          parent_explanation: "",
+          teacher_evidence: "",
+        },
+        world: { key: "explorer-archipelago", name: "Explorer Archipelago", year_group: 3, theme: "Discovery", config: {}, enabled: true },
+        world_state: { student_id: "sam-y3", world_key: "explorer-archipelago", state: {}, updated_at: "" },
+        questions: [{
+          id: "q-six",
+          activity_id: "act-maths-check",
+          objective_id: "ma-y3-number-recall-3-4-8-tables",
+          format: "tap-choice",
+          body: { prompt: "What is 2 × 3?", choices: [5, 6, 7] },
+          expected_answer: { value: 6 },
+          hints: [],
+          explanation: "Two groups of three make six.",
+          difficulty: 1,
+          status: "published",
+        }],
+        runtime_adaptations: { animation_tier: "low", reduced_motion: true, celebration_intensity: "quiet" },
+      }),
+    });
+  });
+  await page.route("http://api.test/v1/learning/attempt", async (route) => {
+    await route.fulfill({
+      contentType: "application/json",
+      body: JSON.stringify({
+        correct: true,
+        mastery_gain: 0,
+        projected_score: 0,
+        projected_band: "Unknown",
+        next_review_days: 0,
+        feedback: "Answer saved.",
+        explanation: "Mock evidence is kept separate from mastery.",
+        evidence_event: "mock_assessment.answer_recorded",
+        companion_prompt: "Now look at what to practise next.",
+        mock_assessment: {
+          id: "mock-1",
+          subject: "Mathematics",
+          year_group: 3,
+          title: "Year 3 maths check",
+          status: "completed",
+          question_count: 4,
+          answered_count: 4,
+          correct_count: 3,
+          score: 75,
+          objective_results: [
+            {
+              objective_id: "ma-y3-place-value-to-1000",
+              year_group: 3,
+              strand: "Number",
+              topic: "Place value",
+              statement: "Recognise the place value of each digit in a three-digit number.",
+              question_count: 2,
+              answered_count: 2,
+              correct_count: 0,
+              score: 0,
+              status: "review_next",
+              guidance: "Review this next with a different explanation and supported practice.",
+            },
+            {
+              objective_id: "ma-y3-number-recall-3-4-8-tables",
+              year_group: 3,
+              strand: "Number",
+              topic: "Multiplication and division",
+              statement: "Recall multiplication and division facts for the 3, 4 and 8 tables.",
+              question_count: 2,
+              answered_count: 2,
+              correct_count: 2,
+              score: 100,
+              status: "secure_for_now",
+              guidance: "Secure in this sample for now. Keep it in spaced revision.",
+            },
+          ],
+        },
+      }),
+    });
+  });
+
+  await page.goto("/play/mission?studentId=sam-y3&mockAssessmentId=mock-1");
+  await page.getByRole("button", { name: "6" }).click();
+  await page.getByRole("button", { name: "Submit answer" }).click();
+  await expect(page.getByRole("region", { name: "What this check sampled" })).toContainText("Review next");
+  await expect(page.getByRole("region", { name: "What this check sampled" })).toContainText("Place value");
+  await expect(page.getByRole("region", { name: "What this check sampled" })).toContainText("Secure for now");
+  await expect(page.getByRole("region", { name: "What this check sampled" })).toContainText("sampled evidence, not a limit on progress");
+});
+
+test("saved completed check opens its evidence instead of a locked assessment", async ({ page }) => {
+  await page.route("http://api.test/v1/students/sam-y3/profile", async (route) => {
+    await route.fulfill({ contentType: "application/json", body: JSON.stringify({ external_ref: "sam-y3", display_name: "Sam", year_group: 3 }) });
+  });
+  await page.route("http://api.test/v1/students/sam-y3/mock-assessments", async (route) => {
+    await route.fulfill({
+      contentType: "application/json",
+      body: JSON.stringify({
+        mock_assessments: [{
+          id: "mock-complete",
+          student_external_ref: "sam-y3",
+          created_by_role: "pupil",
+          created_by: "sam-y3",
+          subject: "Mathematics",
+          year_group: 3,
+          year_from: 3,
+          year_to: 3,
+          title: "Year 3 maths check",
+          status: "completed",
+          question_count: 4,
+          answered_count: 4,
+          correct_count: 2,
+          score: 50,
+          duration_minutes: 0,
+          include_revision: true,
+          include_stretch: false,
+          accessibility: {},
+          items: [],
+          objective_results: [{
+            objective_id: "ma-y3-place-value-to-1000",
+            year_group: 3,
+            strand: "Number",
+            topic: "Place value",
+            statement: "Recognise the place value of each digit in a three-digit number.",
+            question_count: 2,
+            answered_count: 2,
+            correct_count: 0,
+            score: 0,
+            status: "review_next",
+            guidance: "Review this next with a different explanation and supported practice.",
+          }],
+        }],
+      }),
+    });
+  });
+
+  await page.goto("/play/mock?studentId=sam-y3");
+  await expect(page.getByText("Completed", { exact: true })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Review check" })).toHaveCount(0);
+  await page.getByText("See what to practise next", { exact: true }).click();
+  await expect(page.getByRole("region", { name: "What this check sampled" })).toContainText("Place value");
+  const accessibility = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"]).analyze();
+  expect(accessibility.violations.filter((item) => item.impact === "critical" || item.impact === "serious")).toEqual([]);
+});

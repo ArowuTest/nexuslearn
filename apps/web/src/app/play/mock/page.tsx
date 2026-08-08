@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import ChildJourneyChrome, { ApiStateCard } from "@/components/ChildJourneyChrome";
 import MockAssessmentBuilder from "@/components/MockAssessmentBuilder";
+import MockObjectiveGuidance from "@/components/MockObjectiveGuidance";
 import { getPupilMockAssessments, getStudentProfile, type MockAssessment } from "@/lib/api";
 
 export default function PupilMockPage() {
@@ -65,13 +66,25 @@ export default function PupilMockPage() {
               <h2 className="font-display text-xl font-semibold">Ready checks</h2>
               <div className="mt-3 grid gap-2">
                 {assessments.map((assessment) => (
-                  <div key={assessment.id} className="flex flex-wrap items-center justify-between gap-3 rounded-lg bg-white p-3">
-                    <div>
-                      <p className="font-semibold">{assessment.title}</p>
-                      <p className="mt-1 text-xs text-[#15213d]/58">{assessment.subject} · Y{assessment.year_from}{assessment.year_to !== assessment.year_from ? `–Y${assessment.year_to}` : ""} · {assessment.question_count} questions</p>
+                  <article key={assessment.id} className="rounded-lg bg-white p-3">
+                    <div className="flex flex-wrap items-center justify-between gap-3">
+                      <div>
+                        <p className="font-semibold">{assessment.title}</p>
+                        <p className="mt-1 text-xs text-[#15213d]/58">{assessment.subject} · Y{assessment.year_from}{assessment.year_to !== assessment.year_from ? `–Y${assessment.year_to}` : ""} · {assessment.question_count} questions</p>
+                      </div>
+                      {assessment.status === "completed" ? (
+                        <span className="rounded-full bg-[#dff5e7] px-3 py-2 text-xs font-semibold text-[#236846]">Completed</span>
+                      ) : (
+                        <Link href={`/play/mission?studentId=${encodeURIComponent(studentId)}&mockAssessmentId=${encodeURIComponent(assessment.id)}`} className="rounded-lg bg-[#7357c9] px-4 py-2 text-xs font-semibold text-white">Open check</Link>
+                      )}
                     </div>
-                    <Link href={`/play/mission?studentId=${encodeURIComponent(studentId)}&mockAssessmentId=${encodeURIComponent(assessment.id)}`} className="rounded-lg bg-[#7357c9] px-4 py-2 text-xs font-semibold text-white">Open check</Link>
-                  </div>
+                    {assessment.status === "completed" && assessment.objective_results?.length > 0 && (
+                      <details className="mt-3 border-t border-[#15213d]/10 pt-3">
+                        <summary className="cursor-pointer text-xs font-semibold text-[#5a3ca8]">See what to practise next</summary>
+                        <MockObjectiveGuidance results={assessment.objective_results} compact />
+                      </details>
+                    )}
+                  </article>
                 ))}
               </div>
             </section>

@@ -315,6 +315,7 @@ export type MockAssessment = {
   include_revision: boolean;
   include_stretch: boolean;
   accessibility: Record<string, unknown>;
+  objective_results: MockObjectiveResult[];
   items: Array<{
     position: number;
     question_id: string;
@@ -337,7 +338,22 @@ export type MockAssessmentSummary = {
   answered_count: number;
   correct_count: number;
   score: number;
+  objective_results: MockObjectiveResult[];
   completed_at?: string;
+};
+
+export type MockObjectiveResult = {
+  objective_id: string;
+  year_group: number;
+  strand: string;
+  topic: string;
+  statement: string;
+  question_count: number;
+  answered_count: number;
+  correct_count: number;
+  score: number;
+  status: "review_next" | "practising" | "secure_for_now" | "not_sampled";
+  guidance: string;
 };
 
 export type MockAssessmentRequest = {

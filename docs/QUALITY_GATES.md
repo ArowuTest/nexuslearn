@@ -172,11 +172,13 @@ Verified commands and results:
 - review evidence, importer and release reconciliation tests: 14 passed;
 - `npm run quality:content`: 87 packs and 20,210/20,210 variants covered;
 - `go test ./... -count=1`: passed;
-- `npm run lint`, `npm run quality:performance`, and `npm run build`: passed
-  (lint retains nine pre-existing non-fatal React hook warnings);
-- Playwright: the complete run passed 41/42, with only the stale desktop mission
-  baseline failing; after approving the current learning-route and five-support
-  desktop images, normal-mode desktop/mobile visual verification passed 2/2.
+- `npm run lint`, `npm run quality:performance`, and `npm run build`: passed;
+  the nine prior React lifecycle/dependency warnings are resolved with no lint
+  suppression.
+- Playwright: 42 family, learner, SEND, mock-evidence, renderer, keyboard and
+  switch-access journeys passed across desktop and mobile, including WCAG
+  scanning of the completed-check evidence view. Mission visual baselines
+  remain a required GitHub check.
 
 ## Remaining Hardening Before Production
 

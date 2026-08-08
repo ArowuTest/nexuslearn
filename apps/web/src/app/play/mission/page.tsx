@@ -6,6 +6,7 @@ import Link from "next/link";
 import ChildJourneyChrome, { ApiStateCard } from "@/components/ChildJourneyChrome";
 import Dino, { type DinoMood } from "@/components/Dino";
 import LearningStudio from "@/components/LearningStudio";
+import MockObjectiveGuidance from "@/components/MockObjectiveGuidance";
 import ProgressSnapshot from "@/components/ProgressSnapshot";
 import {
   DEFAULT_STUDENT_ID,
@@ -16,6 +17,7 @@ import {
   pupilSessionHeaders,
   type DiagnosticBaseline,
   type MissionConfig,
+  type MockAssessmentSummary,
   type NextActivityDecision,
   type ProgressReport,
 } from "@/lib/api";
@@ -68,16 +70,7 @@ type AttemptResult = {
   explanation: string;
   evidence_event: string;
   companion_prompt: string;
-  mock_assessment?: {
-    id: string;
-    title: string;
-    status: "ready" | "in_progress" | "completed" | "cancelled";
-    question_count: number;
-    answered_count: number;
-    correct_count: number;
-    score: number;
-    completed_at?: string;
-  };
+  mock_assessment?: MockAssessmentSummary;
 };
 type RuntimeFlags = {
   flags: Record<string, boolean>;
@@ -1311,6 +1304,7 @@ export default function Mission() {
                 </p>
                 <p className="mt-1 font-display text-3xl font-semibold text-[#5a3ca8]">{mockSummary.score}%</p>
                 <p className="text-xs text-ink/65">Saved to the learner report. A subject check never restricts progress in another subject.</p>
+                <MockObjectiveGuidance results={mockSummary.objective_results || []} />
               </div>
             )}
             <p className="mt-5 text-center text-sm text-ink/75">

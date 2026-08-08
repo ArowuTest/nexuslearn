@@ -58,16 +58,44 @@ func (r *PostgresRepository) prepareMockAssessmentAttempt(ctx context.Context, e
 func (r *PostgresRepository) updateMockAssessmentProgress(ctx context.Context, exec queryExecutor, assessmentID string) (*MockAssessmentSummary, error) {
 	var summary MockAssessmentSummary
 	var completedAt *time.Time
+	var objectiveResults []byte
 	err := exec.QueryRow(ctx, `
-		WITH stats AS (
-			SELECT ma.id, ma.question_count,
+		WITH objective_counts AS (
+			SELECT mi.assessment_id, co.id AS objective_id, co.year_group, co.strand,
+			       co.topic, co.statement, COUNT(mi.question_id)::int AS question_count,
 			       COUNT(qa.question_id)::int AS answered_count,
 			       COUNT(*) FILTER (WHERE qa.correct)::int AS correct_count
-			FROM mock_assessments ma
-			JOIN mock_assessment_items mi ON mi.assessment_id=ma.id
+			FROM mock_assessment_items mi
+			JOIN curriculum_objectives co ON co.id=mi.objective_id
 			LEFT JOIN question_attempts qa
 			  ON qa.mock_assessment_id=mi.assessment_id
 			 AND qa.question_id=mi.question_id
+			WHERE mi.assessment_id=$1::uuid
+			GROUP BY mi.assessment_id, co.id, co.year_group, co.strand, co.topic, co.statement
+		), stats AS (
+			SELECT ma.id, ma.question_count,
+			       COALESCE(SUM(oc.answered_count), 0)::int AS answered_count,
+			       COALESCE(SUM(oc.correct_count), 0)::int AS correct_count,
+			       COALESCE(jsonb_agg(jsonb_build_object(
+			         'objective_id', oc.objective_id,
+			         'year_group', oc.year_group,
+			         'strand', oc.strand,
+			         'topic', oc.topic,
+			         'statement', oc.statement,
+			         'question_count', oc.question_count,
+			         'answered_count', oc.answered_count,
+			         'correct_count', oc.correct_count
+			       ) ORDER BY
+			         CASE
+			           WHEN oc.answered_count=0 THEN 3
+			           WHEN oc.correct_count * 100 / oc.answered_count < 50 THEN 0
+			           WHEN oc.correct_count * 100 / oc.answered_count < 80 THEN 1
+			           ELSE 2
+			         END,
+			         oc.year_group, oc.strand, oc.topic, oc.objective_id
+			       ), '[]'::jsonb) AS objective_results
+			FROM mock_assessments ma
+			JOIN objective_counts oc ON oc.assessment_id=ma.id
 			WHERE ma.id=$1::uuid
 			GROUP BY ma.id, ma.question_count
 		)
@@ -81,15 +109,19 @@ func (r *PostgresRepository) updateMockAssessmentProgress(ctx context.Context, e
 				WHEN stats.answered_count >= stats.question_count THEN COALESCE(ma.completed_at, now())
 				ELSE ma.completed_at
 			END,
+			objective_results = CASE
+				WHEN stats.answered_count >= stats.question_count THEN stats.objective_results
+				ELSE ma.objective_results
+			END,
 			updated_at = now()
 		FROM stats
 		WHERE ma.id=stats.id
 		RETURNING ma.id::text, ma.subject, ma.year_group, ma.title, ma.status,
 		          ma.question_count, stats.answered_count, stats.correct_count,
-		          ma.completed_at
+		          ma.objective_results, ma.completed_at
 	`, assessmentID).Scan(
 		&summary.ID, &summary.Subject, &summary.YearGroup, &summary.Title, &summary.Status,
-		&summary.QuestionCount, &summary.AnsweredCount, &summary.CorrectCount, &completedAt,
+		&summary.QuestionCount, &summary.AnsweredCount, &summary.CorrectCount, &objectiveResults, &completedAt,
 	)
 	if err != nil {
 		if errors.Is(err, pgx.ErrNoRows) {
@@ -99,6 +131,10 @@ func (r *PostgresRepository) updateMockAssessmentProgress(ctx context.Context, e
 	}
 	if summary.AnsweredCount > 0 {
 		summary.Score = summary.CorrectCount * 100 / summary.AnsweredCount
+	}
+	summary.ObjectiveResults, err = decodeMockObjectiveResults(objectiveResults)
+	if err != nil {
+		return nil, err
 	}
 	if completedAt != nil {
 		summary.CompletedAt = completedAt.UTC().Format(time.RFC3339)
@@ -138,6 +174,9 @@ func (r *PostgresRepository) CreateMockAssessment(ctx context.Context, assessmen
 	}
 	if assessment.Accessibility == nil {
 		assessment.Accessibility = map[string]any{}
+	}
+	if assessment.ObjectiveResults == nil {
+		assessment.ObjectiveResults = []MockObjectiveResult{}
 	}
 	seen := map[string]struct{}{}
 	for index := range assessment.Items {
@@ -240,7 +279,7 @@ func (r *PostgresRepository) ListMockAssessments(ctx context.Context, studentExt
 		SELECT ma.id::text, st.external_ref, st.display_name, COALESCE(sch.urn,''),
 		       ma.created_by_role, ma.created_by, ma.subject, ma.year_group, ma.year_from,
 		       ma.year_to, ma.title, ma.status, ma.question_count, ma.duration_minutes,
-		       ma.include_revision, ma.include_stretch, ma.accessibility,
+		       ma.include_revision, ma.include_stretch, ma.accessibility, ma.objective_results,
 		       COALESCE(stats.answered_count, 0), COALESCE(stats.correct_count, 0),
 		       ma.created_at, ma.updated_at, ma.completed_at
 		FROM mock_assessments ma
@@ -281,7 +320,7 @@ func (r *PostgresRepository) GetMockAssessment(ctx context.Context, id string, s
 		SELECT ma.id::text, st.external_ref, st.display_name, COALESCE(sch.urn,''),
 		       ma.created_by_role, ma.created_by, ma.subject, ma.year_group, ma.year_from,
 		       ma.year_to, ma.title, ma.status, ma.question_count, ma.duration_minutes,
-		       ma.include_revision, ma.include_stretch, ma.accessibility,
+		       ma.include_revision, ma.include_stretch, ma.accessibility, ma.objective_results,
 		       COALESCE(stats.answered_count, 0), COALESCE(stats.correct_count, 0),
 		       ma.created_at, ma.updated_at, ma.completed_at
 		FROM mock_assessments ma
@@ -387,6 +426,7 @@ func scanMockAssessment(rows interface{ Scan(...any) error }) (MockAssessment, e
 func scanMockAssessmentRow(row mockAssessmentRow) (MockAssessment, error) {
 	var assessment MockAssessment
 	var accessibility []byte
+	var objectiveResults []byte
 	var createdAt, updatedAt time.Time
 	var completedAt *time.Time
 	err := row.Scan(
@@ -394,7 +434,7 @@ func scanMockAssessmentRow(row mockAssessmentRow) (MockAssessment, error) {
 		&assessment.CreatedByRole, &assessment.CreatedBy, &assessment.Subject, &assessment.YearGroup,
 		&assessment.YearFrom, &assessment.YearTo, &assessment.Title, &assessment.Status,
 		&assessment.QuestionCount, &assessment.DurationMinutes, &assessment.IncludeRevision,
-		&assessment.IncludeStretch, &accessibility, &assessment.AnsweredCount, &assessment.CorrectCount,
+		&assessment.IncludeStretch, &accessibility, &objectiveResults, &assessment.AnsweredCount, &assessment.CorrectCount,
 		&createdAt, &updatedAt, &completedAt,
 	)
 	if err != nil {
@@ -406,6 +446,10 @@ func scanMockAssessmentRow(row mockAssessmentRow) (MockAssessment, error) {
 			return MockAssessment{}, err
 		}
 	}
+	assessment.ObjectiveResults, err = decodeMockObjectiveResults(objectiveResults)
+	if err != nil {
+		return MockAssessment{}, err
+	}
 	assessment.CreatedAt = createdAt.UTC().Format(time.RFC3339)
 	assessment.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
 	if completedAt != nil {
@@ -415,4 +459,15 @@ func scanMockAssessmentRow(row mockAssessmentRow) (MockAssessment, error) {
 		assessment.Score = assessment.CorrectCount * 100 / assessment.AnsweredCount
 	}
 	return assessment, nil
+}
+
+func decodeMockObjectiveResults(raw []byte) ([]MockObjectiveResult, error) {
+	results := []MockObjectiveResult{}
+	if len(raw) == 0 {
+		return results, nil
+	}
+	if err := json.Unmarshal(raw, &results); err != nil {
+		return nil, err
+	}
+	return normalizeMockObjectiveResults(results), nil
 }
