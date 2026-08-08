@@ -224,8 +224,20 @@
           "daisy",
           "grass"
         ],
+        "narration_script": "Which picture shows a tree? Option one: oak tree. Option two: daisy. Option three: grass.",
+        "audio_asset_id": "sc-y1-tree-identification-prompt",
+        "audio_provider": "elevenlabs",
+        "audio_asset_status": "required",
+        "human_listening_approval_required": true,
+        "browser_tts_allowed": false,
         "response_mode": "replay_then_touch_keyboard_switch_eye_gaze_or_aac_choice",
-        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory.",
+        "review_provenance": {
+          "kind": "curated",
+          "pack_id": "sc-y1-plants-identify-common",
+          "variant_id": "sc-y1-plants-identify-common-q-tree-plant"
+        },
+        "review_batch": "curated-review-sc-y1-plants-identify-common"
       },
       "expected_answer": {
         "value": "oak tree"
@@ -236,7 +248,7 @@
       ],
       "explanation": "An oak tree is a tree, and a tree is a plant.",
       "difficulty": 2,
-      "status": "approved",
+      "status": "review",
       "misconception_tag": "flower_only_category",
       "animation_hook": "tree-card-compare",
       "feedback": {

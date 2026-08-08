@@ -258,8 +258,20 @@
           "start at bottom and go up",
           "draw a straight line"
         ],
+        "narration_script": "Which path forms the letter c correctly? Option one: curve around from the top. Option two: start at the bottom and go up. Option three: draw a straight line.",
+        "audio_asset_id": "en-y1-letter-c-direction-prompt",
+        "audio_provider": "elevenlabs",
+        "audio_asset_status": "required",
+        "human_listening_approval_required": true,
+        "browser_tts_allowed": false,
         "response_mode": "replay_then_touch_keyboard_switch_eye_gaze_or_aac_choice",
-        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory.",
+        "review_provenance": {
+          "kind": "curated",
+          "pack_id": "en-y1-phonics-form-lowercase-letters",
+          "variant_id": "en-y1-phonics-form-lowercase-letters-q-c-direction"
+        },
+        "review_batch": "curated-review-en-y1-phonics-form-lowercase-letters"
       },
       "expected_answer": {
         "value": "curve around from the top"
@@ -270,7 +282,7 @@
       ],
       "explanation": "The correct c path starts near the top and curves around.",
       "difficulty": 3,
-      "status": "approved",
+      "status": "review",
       "misconception_tag": "wrong_direction",
       "animation_hook": "letter-c-trace",
       "feedback": {

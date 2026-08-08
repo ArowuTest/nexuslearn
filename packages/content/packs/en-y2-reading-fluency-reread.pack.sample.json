@@ -277,6 +277,12 @@
           "jumped",
           "log"
         ],
+        "narration_script": "Pip read: The frog jumped log. Which word was skipped? Option one: over. Option two: frog. Option three: jumped. Option four: log.",
+        "audio_asset_id": "en-y2-fluency-skipped-word-prompt",
+        "audio_provider": "elevenlabs",
+        "audio_asset_status": "required",
+        "human_listening_approval_required": true,
+        "browser_tts_allowed": false,
         "response_mode": "replay_then_touch_keyboard_switch_eye_gaze_or_aac_choice",
         "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory.",
         "fluency_contract": {
@@ -295,7 +301,13 @@
             "aac"
           ],
           "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
-        }
+        },
+        "review_provenance": {
+          "kind": "curated",
+          "pack_id": "en-y2-reading-fluency-reread",
+          "variant_id": "en-y2-reading-fluency-reread-q-skipped-word"
+        },
+        "review_batch": "curated-review-en-y2-reading-fluency-reread"
       },
       "expected_answer": {
         "value": "over"
@@ -304,9 +316,9 @@
         "Read the full sentence slowly.",
         "The frog jumped over the log."
       ],
-      "explanation": "The skipped word was 'over'.",
+      "explanation": "The skipped word was 'over'. The expected response is over. The frog jumped over the log. Read the full sentence slowly.",
       "difficulty": 4,
-      "status": "approved",
+      "status": "review",
       "misconception_tag": "speed_over_accuracy",
       "animation_hook": "skipped-word-glow",
       "feedback": {

@@ -90,3 +90,18 @@ test("answer resolution recognises units and equivalent 12/24-hour times", () =>
     assert.ok(!variant.findings.some((finding) => finding.code === "prompt_answer_mismatch"));
   }
 });
+
+test("whole-word and phoneme asset declarations satisfy audio source provenance", () => {
+  const variant = fixtureVariant("audio", {
+    format: "audio-choice",
+    body: {
+      ...fixtureVariant("audio").body,
+      whole_word_audio_asset_id: "word-map",
+      phoneme_audio_asset_ids: ["phoneme-m", "phoneme-a", "phoneme-p"],
+      audio_asset_status: "required",
+    },
+  });
+  const batch = buildReviewBatch([fixturePack([variant])], options);
+
+  assert.ok(!batch.packs[0].variants[0].findings.some((finding) => finding.code === "required_narration_missing"));
+});

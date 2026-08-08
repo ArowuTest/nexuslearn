@@ -165,7 +165,7 @@ function walkAudioReferenceFields(value, visit, location = "question_variant", s
   }
   for (const [key, entry] of Object.entries(value)) {
     const next = `${location}.${key}`;
-    if (["audio_asset_id", "audio_ref", "whole_audio_asset_id"].includes(key)) visit(key, entry, value, next);
+    if (["audio_asset_id", "audio_ref", "whole_audio_asset_id", "whole_word_audio_asset_id"].includes(key)) visit(key, entry, value, next);
     if (entry && typeof entry === "object") walkAudioReferenceFields(entry, visit, next, seen);
   }
 }

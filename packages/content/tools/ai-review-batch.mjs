@@ -150,7 +150,7 @@ function inspectVariant({ pack, packID, yearGroup, subject, contentRevision, var
   const answerResolved = answerResolvesAgainstBody(variant);
   const narration = narrationText(variant);
   const narrationRequired = hasKeyValue(variant, "audio_asset_status", "required") || format.toLowerCase().includes("audio") || format.toLowerCase().includes("listen");
-  const audioSourceDeclared = Boolean(narration) || hasTruthyKey(variant, /^audio_asset_id(s)?$/i);
+  const audioSourceDeclared = Boolean(narration) || hasTruthyKey(variant, /audio_asset_id(s)?$/i);
   const narrationParity = narration ? textParity(prompt, narration) : null;
   const readingLimit = yearGroup <= 2 ? 130 : yearGroup <= 4 ? 180 : 220;
   const responseRoute = hasResponseRoute(variant) || hasResponseRoute(pack.accessibility_policy) || hasResponseRoute(pack.adaptive_support);

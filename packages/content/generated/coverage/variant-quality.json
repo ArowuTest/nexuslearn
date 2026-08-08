@@ -5,14 +5,18 @@
   "totals": {
     "packs": 87,
     "variants": 20406,
-    "runtime_variants": 261,
-    "review_candidates": 20145,
+    "runtime_variants": 258,
+    "review_candidates": 20148,
     "review_readability_calibrations": 0,
     "errors": 0,
-    "warnings": 0
+    "warnings": 3
   },
   "errors": [],
-  "warnings": [],
+  "warnings": [
+    "en-y1-phonics-form-lowercase-letters: review bank exists but fewer than three runtime variants protect the live path",
+    "en-y2-reading-fluency-reread: review bank exists but fewer than three runtime variants protect the live path",
+    "sc-y1-plants-identify-common: review bank exists but fewer than three runtime variants protect the live path"
+  ],
   "packs": [
     {
       "pack_id": "en-y1-listening-comprehension",
@@ -85,8 +89,8 @@
       "year": 1,
       "subject": "English",
       "total_variants": 180,
-      "runtime_variants": 3,
-      "review_candidates": 177,
+      "runtime_variants": 2,
+      "review_candidates": 178,
       "review_readability_calibrations": 0,
       "pilot_target": 180,
       "formats": {
@@ -95,8 +99,8 @@
         "trace-path": 72
       },
       "statuses": {
-        "approved": 3,
-        "review": 177
+        "approved": 2,
+        "review": 178
       },
       "misconceptions": {
         "wrong_start_point": 48,
@@ -107,7 +111,9 @@
         "word_writing_motor_overload": 36
       },
       "errors": [],
-      "warnings": [],
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ],
       "review_readability_calibrations_detail": []
     },
     {
@@ -393,8 +399,8 @@
       "year": 1,
       "subject": "Science",
       "total_variants": 180,
-      "runtime_variants": 3,
-      "review_candidates": 177,
+      "runtime_variants": 2,
+      "review_candidates": 178,
       "review_readability_calibrations": 0,
       "pilot_target": 180,
       "formats": {
@@ -403,8 +409,8 @@
         "picture-sort": 36
       },
       "statuses": {
-        "approved": 3,
-        "review": 177
+        "review": 178,
+        "approved": 2
       },
       "misconceptions": {
         "flower_only_category": 22,
@@ -419,7 +425,9 @@
         "wild_garden_fixed_boundary": 7
       },
       "errors": [],
-      "warnings": [],
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ],
       "review_readability_calibrations_detail": []
     },
     {
@@ -500,8 +508,8 @@
       "year": 2,
       "subject": "English",
       "total_variants": 180,
-      "runtime_variants": 3,
-      "review_candidates": 177,
+      "runtime_variants": 2,
+      "review_candidates": 178,
       "review_readability_calibrations": 0,
       "pilot_target": 180,
       "formats": {
@@ -510,8 +518,8 @@
         "confidence-choice": 30
       },
       "statuses": {
-        "approved": 3,
-        "review": 177
+        "approved": 2,
+        "review": 178
       },
       "misconceptions": {
         "ignores_punctuation_expression": 32,
@@ -522,7 +530,9 @@
         "guesses_familiar_word": 9
       },
       "errors": [],
-      "warnings": [],
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ],
       "review_readability_calibrations_detail": []
     },
     {

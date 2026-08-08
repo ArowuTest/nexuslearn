@@ -373,6 +373,12 @@
           "eat lunch",
           "clear the plate"
         ],
+        "narration_script": "Listen, then put the three events in order: wash hands, eat lunch, clear the plate.",
+        "audio_asset_id": "ma-y1-event-order-prompt",
+        "audio_provider": "elevenlabs",
+        "audio_asset_status": "required",
+        "human_listening_approval_required": true,
+        "browser_tts_allowed": false,
         "audio_first": true,
         "response_mode": "tap_keyboard_switch_or_oral",
         "variant_blueprint_id": "event-order-duration-and-coin-value",
