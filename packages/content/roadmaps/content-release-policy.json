@@ -1,33 +1,58 @@
 {
-  "version": 1,
-  "status": "phase-3-release-control",
+  "version": 2,
+  "status": "governed-release-control",
   "policy": {
     "default_channel": "authoring",
-    "allowed_channels": ["authoring", "review", "pilot", "release", "archived"],
-    "phase_3_channel": "authoring",
+    "allowed_channels": ["authoring", "review", "pilot", "live", "archived"],
     "requires_payload_hash": true,
-    "requires_preview": true,
     "requires_pack_hash": true,
-    "requires_warning_acknowledgement_before_pilot": true,
-    "rollback_snapshot_required": true
+    "requires_immutable_review_identity": true,
+    "requires_preview": true,
+    "rollback_snapshot_required": true,
+    "fail_closed": true
   },
   "channel_rules": {
     "authoring": {
-      "description": "Proof packs and generated payloads are tracked, but content is not yet claimed as pilot-ready.",
+      "description": "Content may be drafted and generated, but is not available to learners.",
       "minimum_checks": ["objective_pack_validation", "renderer_readiness", "asset_manifest"]
     },
     "review": {
-      "description": "Pack is ready for curriculum, accessibility, safeguarding and teacher review.",
-      "minimum_checks": ["objective_pack_validation", "renderer_readiness", "asset_manifest", "reviewer_preview"]
+      "description": "Content is available only to authenticated reviewers and makes no pilot or production claim.",
+      "minimum_checks": ["strict_validation", "renderer_readiness", "asset_manifest", "reviewer_preview"]
     },
     "pilot": {
-      "description": "Pack can be promoted to a limited pilot cohort after warnings are acknowledged and reviewed variant banks exist.",
-      "minimum_checks": ["strict_validation", "renderer_readiness", "asset_manifest", "teacher_review", "accessibility_review", "safeguarding_review"]
+      "description": "Content may be exposed to a controlled, consented cohort only when both current AI evidence lanes pass for every immutable release identity.",
+      "minimum_checks": [
+        "strict_validation",
+        "renderer_readiness",
+        "asset_manifest",
+        "current_ai_curriculum_lead",
+        "current_ai_send_lead",
+        "no_stale_ai_evidence",
+        "no_revision_or_escalation_decisions",
+        "controlled_cohort_controls"
+      ]
     },
-    "release": {
-      "description": "Pack can be used broadly after reviewed variant banks, evidence thresholds and rollback snapshots are complete.",
-      "minimum_checks": ["strict_validation", "renderer_readiness", "asset_manifest", "pilot_evidence", "rollback_snapshot"]
+    "live": {
+      "description": "Content may be used publicly only after the controlled-pilot gate and independent human evidence all pass for the exact release hashes.",
+      "minimum_checks": [
+        "pilot_gate",
+        "independent_human_safeguarding",
+        "all_required_audio_human_listened",
+        "real_child_pilot_evidence",
+        "rollback_snapshot"
+      ]
+    },
+    "archived": {
+      "description": "Content is retained for audit and rollback but is unavailable to learners.",
+      "minimum_checks": ["audit_record", "immutable_source_revision"]
     }
+  },
+  "evidence_contract": {
+    "ai_lanes": ["ai_curriculum_lead", "ai_send_lead"],
+    "human_lanes": ["safeguarding", "produced_audio_listening", "real_child_pilot_evidence"],
+    "ai_is_not_human_approval": true,
+    "required_hash_bindings": ["pack_payload_sha256", "content_hash", "text_sha256", "audio_sha256"]
   },
   "pack_overrides": {}
 }

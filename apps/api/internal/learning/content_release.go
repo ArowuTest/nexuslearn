@@ -70,6 +70,179 @@ type ContentReleasePackPayload struct {
 	ReadinessSeed map[string]any   `json:"readiness_seed,omitempty"`
 }
 
+// HumanReleaseEvidence records independent evidence that AI review cannot
+// provide. These values must be derived from immutable human-review ledgers,
+// never inferred from AI decisions or a request-body boolean.
+type HumanReleaseEvidence struct {
+	SafeguardingApproved           bool `json:"safeguarding_approved"`
+	RequiredAudioListeningApproved bool `json:"required_audio_listening_approved"`
+	ChildPilotEvidenceApproved     bool `json:"child_pilot_evidence_approved"`
+}
+
+type ReleaseAudioEvidenceIdentity struct {
+	AssetID     string `json:"asset_id"`
+	TextSHA256  string `json:"text_sha256"`
+	AudioSHA256 string `json:"audio_sha256"`
+}
+
+type ReleaseEvidenceMetadata struct {
+	AIReviewIdentities   []ReviewIdentity               `json:"ai_review_identities"`
+	HumanReviewBatchID   string                         `json:"human_review_batch_id"`
+	HumanReviewBatchHash string                         `json:"human_review_batch_sha256"`
+	RequiredAudioAssets  []ReleaseAudioEvidenceIdentity `json:"required_audio_assets"`
+}
+
+func ValidateReleaseEvidence(channel string, ai AIReviewEligibility, human HumanReleaseEvidence) error {
+	switch strings.TrimSpace(channel) {
+	case "review":
+		return nil
+	case "pilot":
+		if !ai.ControlledPilotAllowed {
+			return fmt.Errorf("%w: controlled pilot requires current approval from both AI review lanes", ErrContentReleaseIncomplete)
+		}
+		return nil
+	case "live":
+		if !ai.ControlledPilotAllowed {
+			return fmt.Errorf("%w: live release requires current approval from both AI review lanes", ErrContentReleaseIncomplete)
+		}
+		if !human.SafeguardingApproved {
+			return fmt.Errorf("%w: live release requires independent human safeguarding approval", ErrContentReleaseIncomplete)
+		}
+		if !human.RequiredAudioListeningApproved {
+			return fmt.Errorf("%w: live release requires human listening approval for every required audio asset", ErrContentReleaseIncomplete)
+		}
+		if !human.ChildPilotEvidenceApproved {
+			return fmt.Errorf("%w: live release requires recorded real-child pilot evidence", ErrContentReleaseIncomplete)
+		}
+		return nil
+	default:
+		return fmt.Errorf("%w: invalid release evidence channel", ErrInvalidConfiguration)
+	}
+}
+
+func releaseEvidenceMetadata(manifest ContentReleaseManifest) (ReleaseEvidenceMetadata, error) {
+	var evidence ReleaseEvidenceMetadata
+	raw, err := json.Marshal(manifest.Metadata)
+	if err != nil {
+		return evidence, err
+	}
+	if err := json.Unmarshal(raw, &evidence); err != nil {
+		return evidence, fmt.Errorf("%w: invalid release evidence metadata", ErrInvalidConfiguration)
+	}
+	if len(evidence.AIReviewIdentities) == 0 {
+		return evidence, fmt.Errorf("%w: release metadata requires AI review identities", ErrInvalidConfiguration)
+	}
+	seenIdentities := map[string]bool{}
+	for _, identity := range evidence.AIReviewIdentities {
+		key := identity.ContentID + "\x00" + identity.ContentHash + "\x00" + identity.RubricRevision + "\x00" + identity.SourceSetRevision + "\x00" + identity.ReviewerImplementation
+		if strings.TrimSpace(identity.ContentID) == "" || !validSHA256(identity.ContentHash) ||
+			strings.TrimSpace(identity.RubricRevision) == "" || strings.TrimSpace(identity.SourceSetRevision) == "" ||
+			strings.TrimSpace(identity.ReviewerImplementation) == "" || seenIdentities[key] {
+			return evidence, fmt.Errorf("%w: release AI review identities must be complete and unique", ErrInvalidConfiguration)
+		}
+		seenIdentities[key] = true
+	}
+	for _, pack := range manifest.Packs {
+		matched := false
+		for _, identity := range evidence.AIReviewIdentities {
+			if identity.ContentID == pack.PackID && strings.EqualFold(identity.ContentHash, pack.PayloadSHA256) {
+				matched = true
+				break
+			}
+		}
+		if !matched {
+			return evidence, fmt.Errorf("%w: pack %s has no exact AI-reviewed payload identity", ErrInvalidConfiguration, pack.PackID)
+		}
+	}
+	if strings.TrimSpace(evidence.HumanReviewBatchID) == "" || !validSHA256(evidence.HumanReviewBatchHash) {
+		return evidence, fmt.Errorf("%w: release metadata requires an exact human review batch identity", ErrInvalidConfiguration)
+	}
+	if len(evidence.RequiredAudioAssets) == 0 {
+		return evidence, fmt.Errorf("%w: release metadata requires exact audio assets for listening approval", ErrInvalidConfiguration)
+	}
+	seenAudio := map[string]bool{}
+	for _, asset := range evidence.RequiredAudioAssets {
+		if strings.TrimSpace(asset.AssetID) == "" || !validSHA256(asset.TextSHA256) || !validSHA256(asset.AudioSHA256) || seenAudio[asset.AssetID] {
+			return evidence, fmt.Errorf("%w: release audio identities must be complete and unique", ErrInvalidConfiguration)
+		}
+		seenAudio[asset.AssetID] = true
+	}
+	return evidence, nil
+}
+
+func loadHumanReleaseEvidence(ctx context.Context, tx pgx.Tx, manifest ContentReleaseManifest, metadata ReleaseEvidenceMetadata) (HumanReleaseEvidence, error) {
+	result := HumanReleaseEvidence{}
+	packIDs := make([]string, 0, len(manifest.Packs))
+	for _, pack := range manifest.Packs {
+		packIDs = append(packIDs, pack.PackID)
+	}
+	rows, err := tx.Query(ctx, `
+		SELECT DISTINCT ON (pack_id,lane_id) pack_id,lane_id,batch_sha256,decision
+		FROM content_review_decisions
+		WHERE batch_id=$1 AND pack_id=ANY($2) AND lane_id=ANY($3)
+		ORDER BY pack_id,lane_id,created_at DESC,id DESC
+	`, metadata.HumanReviewBatchID, packIDs, []string{"safeguarding", "real_child_pilot_evidence"})
+	if err != nil {
+		return result, err
+	}
+	approvedHuman := map[string]bool{}
+	for rows.Next() {
+		var packID, laneID, batchHash, decision string
+		if err := rows.Scan(&packID, &laneID, &batchHash, &decision); err != nil {
+			rows.Close()
+			return result, err
+		}
+		approvedHuman[packID+"\x00"+laneID] = strings.EqualFold(batchHash, metadata.HumanReviewBatchHash) && decision == "approved"
+	}
+	if err := rows.Err(); err != nil {
+		rows.Close()
+		return result, err
+	}
+	rows.Close()
+	result.SafeguardingApproved = len(packIDs) > 0
+	result.ChildPilotEvidenceApproved = len(packIDs) > 0
+	for _, packID := range packIDs {
+		result.SafeguardingApproved = result.SafeguardingApproved && approvedHuman[packID+"\x00safeguarding"]
+		result.ChildPilotEvidenceApproved = result.ChildPilotEvidenceApproved && approvedHuman[packID+"\x00real_child_pilot_evidence"]
+	}
+
+	assetIDs := make([]string, 0, len(metadata.RequiredAudioAssets))
+	expectedAudio := map[string]ReleaseAudioEvidenceIdentity{}
+	for _, asset := range metadata.RequiredAudioAssets {
+		assetIDs = append(assetIDs, asset.AssetID)
+		expectedAudio[asset.AssetID] = asset
+	}
+	rows, err = tx.Query(ctx, `
+		SELECT DISTINCT ON (asset_id) asset_id,text_sha256,audio_sha256,decision
+		FROM narration_reviews
+		WHERE asset_id=ANY($1)
+		ORDER BY asset_id,created_at DESC,id DESC
+	`, assetIDs)
+	if err != nil {
+		return result, err
+	}
+	approvedAudio := map[string]bool{}
+	for rows.Next() {
+		var assetID, textHash, audioHash, decision string
+		if err := rows.Scan(&assetID, &textHash, &audioHash, &decision); err != nil {
+			rows.Close()
+			return result, err
+		}
+		expected, ok := expectedAudio[assetID]
+		approvedAudio[assetID] = ok && strings.EqualFold(textHash, expected.TextSHA256) && strings.EqualFold(audioHash, expected.AudioSHA256) && decision == "approved"
+	}
+	if err := rows.Err(); err != nil {
+		rows.Close()
+		return result, err
+	}
+	rows.Close()
+	result.RequiredAudioListeningApproved = len(assetIDs) > 0
+	for _, assetID := range assetIDs {
+		result.RequiredAudioListeningApproved = result.RequiredAudioListeningApproved && approvedAudio[assetID]
+	}
+	return result, nil
+}
+
 type ContentReleaseStore interface {
 	StageContentRelease(context.Context, ContentReleaseManifest) (ContentReleaseManifest, error)
 	PutContentReleaseChunk(context.Context, string, ContentReleaseChunk) (ContentReleaseManifest, error)
@@ -237,6 +410,21 @@ func (r *PostgresRepository) ApplyContentRelease(ctx context.Context, releaseID 
 	}
 	if manifest.UploadedPackCount != manifest.ExpectedPackCount {
 		return ContentReleaseManifest{}, fmt.Errorf("%w: uploaded %d of %d packs", ErrContentReleaseIncomplete, manifest.UploadedPackCount, manifest.ExpectedPackCount)
+	}
+	evidenceMetadata, err := releaseEvidenceMetadata(manifest)
+	if err != nil {
+		return ContentReleaseManifest{}, err
+	}
+	aiEvidence, err := EvaluateAIReviewEligibility(ctx, tx, evidenceMetadata.AIReviewIdentities)
+	if err != nil {
+		return ContentReleaseManifest{}, err
+	}
+	humanEvidence, err := loadHumanReleaseEvidence(ctx, tx, manifest, evidenceMetadata)
+	if err != nil {
+		return ContentReleaseManifest{}, err
+	}
+	if err := ValidateReleaseEvidence(manifest.Channel, aiEvidence, humanEvidence); err != nil {
+		return ContentReleaseManifest{}, err
 	}
 
 	rows, err := tx.Query(ctx, `SELECT pack_id,payload,objective_count,activity_count,question_count,reward_rule_count FROM content_release_chunks WHERE release_id=$1 ORDER BY pack_id`, releaseID)
@@ -420,6 +608,11 @@ func validateReleaseManifest(item ContentReleaseManifest) error {
 	digest := sha256.Sum256(canonical)
 	if !strings.EqualFold(hex.EncodeToString(digest[:]), item.ManifestSHA256) {
 		return ErrContentReleaseDigest
+	}
+	if item.Channel == "live" {
+		if _, err := releaseEvidenceMetadata(item); err != nil {
+			return err
+		}
 	}
 	return nil
 }

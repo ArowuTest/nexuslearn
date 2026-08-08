@@ -107,6 +107,7 @@ function reviewLanes(item, { audioRequired, rendererRequired }) {
     lane("send_accessibility", "required", "Check reading load, response alternatives, sensory load, hinting, pacing, dyslexia-friendly wording and keyboard/screen-reader support."),
     lane("safeguarding", "required", "Check child-safe wording, no harmful incentives, no sensitive profiling, and no unsuitable examples."),
     lane("pilot_calibration", "required", "Record decision thresholds, error patterns and whether the first pass is safe to expose to a controlled pilot."),
+		lane("real_child_pilot_evidence", "conditional", "After the controlled pilot, attach real-child outcome evidence and an independent human decision before any public release."),
   ];
   lanes.push(lane("renderer_accessibility_acceptance", rendererRequired ? "required" : "sample", rendererRequired
     ? "Verify the advanced interaction renderer is accessible before any child runtime promotion."

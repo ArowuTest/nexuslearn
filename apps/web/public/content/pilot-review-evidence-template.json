@@ -2,7 +2,7 @@
   "version": 1,
   "status": "evidence-template-pending-human-review",
   "generated_by": "packages/content/tools/pilot-review-evidence-template.mjs",
-  "generated_at": "2026-07-16T14:13:51.497Z",
+  "generated_at": "2026-08-08T19:53:14.155Z",
   "source_batch_id": "phase3-balanced-y1-y2-y3-y4-y5-y6-y7",
   "source_report": "pilot-review-batch.json",
   "instructions": [
@@ -102,6 +102,16 @@
         {
           "lane_id": "pilot_calibration",
           "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "real_child_pilot_evidence",
+          "required_status": "conditional",
           "approval": "pending",
           "reviewer": "",
           "evidence_notes": "",
@@ -244,6 +254,16 @@
           "held_candidate_ids": []
         },
         {
+          "lane_id": "real_child_pilot_evidence",
+          "required_status": "conditional",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
           "lane_id": "renderer_accessibility_acceptance",
           "required_status": "required",
           "approval": "pending",
@@ -377,6 +397,16 @@
           "held_candidate_ids": []
         },
         {
+          "lane_id": "real_child_pilot_evidence",
+          "required_status": "conditional",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
           "lane_id": "renderer_accessibility_acceptance",
           "required_status": "sample",
           "approval": "pending",
@@ -491,6 +521,16 @@
         {
           "lane_id": "pilot_calibration",
           "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "real_child_pilot_evidence",
+          "required_status": "conditional",
           "approval": "pending",
           "reviewer": "",
           "evidence_notes": "",
@@ -622,6 +662,16 @@
           "held_candidate_ids": []
         },
         {
+          "lane_id": "real_child_pilot_evidence",
+          "required_status": "conditional",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
           "lane_id": "renderer_accessibility_acceptance",
           "required_status": "required",
           "approval": "pending",
@@ -745,6 +795,16 @@
           "held_candidate_ids": []
         },
         {
+          "lane_id": "real_child_pilot_evidence",
+          "required_status": "conditional",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
           "lane_id": "renderer_accessibility_acceptance",
           "required_status": "required",
           "approval": "pending",
@@ -860,6 +920,16 @@
         {
           "lane_id": "pilot_calibration",
           "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "real_child_pilot_evidence",
+          "required_status": "conditional",
           "approval": "pending",
           "reviewer": "",
           "evidence_notes": "",

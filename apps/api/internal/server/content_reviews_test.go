@@ -1,6 +1,7 @@
 package server
 
 import (
+	"strings"
 	"testing"
 
 	"github.com/ArowuTest/nexuslearn/apps/api/internal/learning"
@@ -41,5 +42,31 @@ func TestBuildContentReviewGateRequiresCurrentApprovalForEveryRequiredLane(t *te
 	gate = buildContentReviewGate(batch, "hash-current", decisions)
 	if gate["promotion_allowed"] != true {
 		t.Fatalf("fully approved current gate should allow controlled pilot: %#v", gate)
+	}
+	if gate["status"] != "human_review_complete" || gate["scope"] != "human_evidence_only" {
+		t.Fatalf("human ledger must not claim AI or public-release approval: %#v", gate)
+	}
+}
+
+func TestContentReviewBatchHashIgnoresTimestampButNotMaterialChanges(t *testing.T) {
+	first := []byte(`{"batch_id":"batch-1","generated_at":"2026-01-01T00:00:00Z","packs":[{"pack_id":"pack-1","lanes":[{"id":"safeguarding","status":"required"}]}]}`)
+	second := []byte(`{"generated_at":"2026-08-08T20:00:00Z","packs":[{"lanes":[{"status":"required","id":"safeguarding"}],"pack_id":"pack-1"}],"batch_id":"batch-1"}`)
+	firstHash, err := contentReviewBatchSHA256(first)
+	if err != nil {
+		t.Fatal(err)
+	}
+	secondHash, err := contentReviewBatchSHA256(second)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if firstHash != secondHash || len(firstHash) != 64 {
+		t.Fatalf("operational timestamps or key order changed semantic identity: %s %s", firstHash, secondHash)
+	}
+	changedHash, err := contentReviewBatchSHA256([]byte(strings.ReplaceAll(string(second), "safeguarding", "real_child_pilot_evidence")))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if changedHash == firstHash {
+		t.Fatal("material lane changes must invalidate prior human decisions")
 	}
 }

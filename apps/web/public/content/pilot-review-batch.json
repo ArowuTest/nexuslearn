@@ -4,7 +4,7 @@
   "generated_by": "packages/content/tools/pilot-review-batch.mjs",
   "source_report": "variant-production-queue.json",
   "batch_id": "phase3-balanced-y1-y2-y3-y4-y5-y6-y7",
-  "generated_at": "2026-07-16T14:08:52.716Z",
+  "generated_at": "2026-08-08T19:53:13.634Z",
   "totals": {
     "packs": 7,
     "review_candidates": 1817,
@@ -77,6 +77,11 @@
           "id": "pilot_calibration",
           "status": "required",
           "description": "Record decision thresholds, error patterns and whether the first pass is safe to expose to a controlled pilot."
+        },
+        {
+          "id": "real_child_pilot_evidence",
+          "status": "conditional",
+          "description": "After the controlled pilot, attach real-child outcome evidence and an independent human decision before any public release."
         },
         {
           "id": "renderer_accessibility_acceptance",
@@ -157,6 +162,11 @@
           "description": "Record decision thresholds, error patterns and whether the first pass is safe to expose to a controlled pilot."
         },
         {
+          "id": "real_child_pilot_evidence",
+          "status": "conditional",
+          "description": "After the controlled pilot, attach real-child outcome evidence and an independent human decision before any public release."
+        },
+        {
           "id": "renderer_accessibility_acceptance",
           "status": "required",
           "description": "Verify the advanced interaction renderer is accessible before any child runtime promotion."
@@ -234,6 +244,11 @@
           "description": "Record decision thresholds, error patterns and whether the first pass is safe to expose to a controlled pilot."
         },
         {
+          "id": "real_child_pilot_evidence",
+          "status": "conditional",
+          "description": "After the controlled pilot, attach real-child outcome evidence and an independent human decision before any public release."
+        },
+        {
           "id": "renderer_accessibility_acceptance",
           "status": "sample",
           "description": "Spot-check the runtime renderer even where formats are already common."
@@ -305,6 +320,11 @@
           "id": "pilot_calibration",
           "status": "required",
           "description": "Record decision thresholds, error patterns and whether the first pass is safe to expose to a controlled pilot."
+        },
+        {
+          "id": "real_child_pilot_evidence",
+          "status": "conditional",
+          "description": "After the controlled pilot, attach real-child outcome evidence and an independent human decision before any public release."
         },
         {
           "id": "renderer_accessibility_acceptance",
@@ -380,6 +400,11 @@
           "description": "Record decision thresholds, error patterns and whether the first pass is safe to expose to a controlled pilot."
         },
         {
+          "id": "real_child_pilot_evidence",
+          "status": "conditional",
+          "description": "After the controlled pilot, attach real-child outcome evidence and an independent human decision before any public release."
+        },
+        {
           "id": "renderer_accessibility_acceptance",
           "status": "required",
           "description": "Verify the advanced interaction renderer is accessible before any child runtime promotion."
@@ -453,6 +478,11 @@
           "description": "Record decision thresholds, error patterns and whether the first pass is safe to expose to a controlled pilot."
         },
         {
+          "id": "real_child_pilot_evidence",
+          "status": "conditional",
+          "description": "After the controlled pilot, attach real-child outcome evidence and an independent human decision before any public release."
+        },
+        {
           "id": "renderer_accessibility_acceptance",
           "status": "required",
           "description": "Verify the advanced interaction renderer is accessible before any child runtime promotion."
@@ -524,6 +554,11 @@
           "id": "pilot_calibration",
           "status": "required",
           "description": "Record decision thresholds, error patterns and whether the first pass is safe to expose to a controlled pilot."
+        },
+        {
+          "id": "real_child_pilot_evidence",
+          "status": "conditional",
+          "description": "After the controlled pilot, attach real-child outcome evidence and an independent human decision before any public release."
         },
         {
           "id": "renderer_accessibility_acceptance",

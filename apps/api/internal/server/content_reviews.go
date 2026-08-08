@@ -56,8 +56,11 @@ func (s *Server) handleContentReviewDecisions(w http.ResponseWriter, r *http.Req
 		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "pilot review batch is invalid"})
 		return
 	}
-	digest := sha256.Sum256(raw)
-	batchSHA256 := hex.EncodeToString(digest[:])
+	batchSHA256, err := contentReviewBatchSHA256(raw)
+	if err != nil {
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "pilot review batch identity could not be calculated"})
+		return
+	}
 	decisions, err := repository.ListContentReviewDecisions(r.Context(), batch.BatchID, 500)
 	if err != nil {
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read content review decisions"})
@@ -91,8 +94,11 @@ func (s *Server) handleSaveContentReviewDecision(w http.ResponseWriter, r *http.
 		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "pilot review batch is invalid"})
 		return
 	}
-	digest := sha256.Sum256(raw)
-	batchSHA256 := hex.EncodeToString(digest[:])
+	batchSHA256, err := contentReviewBatchSHA256(raw)
+	if err != nil {
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "pilot review batch identity could not be calculated"})
+		return
+	}
 	var in struct {
 		BatchID         string   `json:"batch_id"`
 		BatchSHA256     string   `json:"batch_sha256"`
@@ -171,6 +177,23 @@ func cleanReviewStrings(values []string) []string {
 	return cleaned
 }
 
+// contentReviewBatchSHA256 excludes operational generation time so rerunning
+// deterministic reports cannot invalidate genuine human decisions. Any
+// material queue, lane, blocker or policy change still changes the digest.
+func contentReviewBatchSHA256(raw []byte) (string, error) {
+	var value map[string]any
+	if err := json.Unmarshal(raw, &value); err != nil {
+		return "", err
+	}
+	delete(value, "generated_at")
+	canonical, err := json.Marshal(value)
+	if err != nil {
+		return "", err
+	}
+	digest := sha256.Sum256(canonical)
+	return hex.EncodeToString(digest[:]), nil
+}
+
 func buildContentReviewGate(batch contentReviewBatch, batchSHA256 string, decisions []learning.ContentReviewDecision) map[string]any {
 	latest := map[string]learning.ContentReviewDecision{}
 	for _, decision := range decisions {
@@ -214,17 +237,17 @@ func buildContentReviewGate(batch contentReviewBatch, batchSHA256 string, decisi
 		}
 	}
 	allowed := required > 0 && pending == 0 && nonApproved == 0 && stale == 0
-	status := "pending_human_review"
+	status := "pending_human_release_evidence"
 	if allowed {
-		status = "approved_for_controlled_pilot"
+		status = "human_review_complete"
 	}
 	return map[string]any{
-		"status": status, "promotion_allowed": allowed,
+		"status": status, "scope": "human_evidence_only", "promotion_allowed": allowed,
 		"required_lanes": required, "approved_required_lanes": approved,
 		"pending_required_lanes": pending, "conditional_lanes_pending": conditionalPending,
 		"non_approved_decisions": nonApproved, "stale_decisions": stale,
 		"decision_count":  len(decisions),
-		"promotion_guard": "Do not promote the batch until every required lane has a current approved decision; conditional holds and stale decisions also block release.",
+		"promotion_guard": "This human evidence ledger is necessary but not sufficient for promotion. Every required lane must be current and approved, and the separate dual-AI and channel-specific release gates must also pass.",
 	}
 }
 
