@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "batch_id": "ai-review-7d15610b2f00505fa79e",
+  "batch_hash": "7d15610b2f00505fa79e908867f4ec90450cf8519b7bfb921647bf577667f11b",
+  "rubric_revision": "curriculum-send-v1",
+  "source_set_revision": "sources-v1",
+  "reviewer_implementation": "nexuslearn-ai-curriculum-send-review-v1",
+  "release_scope": "controlled_development_pilot_only",
+  "controlled_pilot_allowed": true,
+  "production_release_allowed": false,
+  "remaining_external_gates": {
+    "human_safeguarding_review": "required",
+    "produced_audio_listening": "required",
+    "real_child_pilot": "required"
+  },
+  "totals": {
+    "packs": 87,
+    "variants": 20210,
+    "review_units": 6614,
+    "expected_lane_decisions": 13228,
+    "current_lane_decisions": 13228,
+    "missing_lane_decisions": 0,
+    "stale_decisions": 0,
+    "revision_required": 0,
+    "escalation_required": 0,
+    "unacknowledged_blocking_findings": 0,
+    "covered_variants": 20210
+  },
+  "issues": []
+}

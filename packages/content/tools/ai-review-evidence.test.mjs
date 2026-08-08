@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { reconcileEvidence, validateDecision } from "./ai-review-evidence.mjs";
+import { authorReviewCohort, buildEvidenceArtifact, reconcileEvidence, validateDecision } from "./ai-review-evidence.mjs";
 
 const lanes = ["ai_curriculum_lead", "ai_send_lead"];
 const rubric = {
@@ -80,6 +80,8 @@ test("every batch review unit has both AI lane decisions", () => {
   assert.equal(result.totals.missing_lane_decisions, 0);
   assert.equal(result.totals.stale_decisions, 0);
   assert.equal(result.totals.covered_variants, 2);
+  assert.equal(result.production_release_allowed, false);
+  assert.equal(result.remaining_external_gates.produced_audio_listening, "required");
 });
 
 test("missing and stale lane decisions are never converted into approval", () => {
@@ -108,4 +110,41 @@ test("AI notes cannot claim human approval", () => {
     () => validateDecision({ ...valid, evidence_notes: "SEND specialist approved this item" }, { rubric, sourceRegistry }),
     /human approval claim/,
   );
+});
+
+test("the production object-shaped rubric is accepted", () => {
+  const objectRubric = {
+    ...rubric,
+    lanes: Object.fromEntries(rubric.lanes.map((lane) => [lane.id, { criteria: lane.criteria }])),
+  };
+  assert.doesNotThrow(() => validateDecision(completeDecisions()[0], { rubric: objectRubric, sourceRegistry }));
+});
+
+test("authored cohorts emit complete dual-lane decisions without hiding blockers", () => {
+  const cohort = authorReviewCohort(fixtureBatch, { rubric, sourceRegistry, yearGroup: 3, modelIdentifier: "gpt-5" });
+  assert.equal(cohort.decisions.length, 6);
+  for (const item of cohort.decisions) validateDecision(item, { rubric, sourceRegistry });
+
+  const blockedBatch = structuredClone(fixtureBatch);
+  blockedBatch.packs[0].variants[1].findings = [{
+    code: "missing_expected_answer",
+    criterion_id: "curriculum_alignment",
+    severity: "blocking",
+    release_blocking: true,
+    affected_fields: ["expected_answer"],
+    rationale: "Expected answer is missing.",
+  }];
+  const blocked = authorReviewCohort(blockedBatch, { rubric, sourceRegistry, yearGroup: 3, modelIdentifier: "gpt-5" });
+  const blockedDecisions = blocked.decisions.filter((item) => item.content_id === "v2");
+  assert.equal(blockedDecisions.length, 2);
+  assert.ok(blockedDecisions.every((item) => item.status === "revision_required"));
+});
+
+test("generated reconciliation stores a compact index rather than duplicating decisions", () => {
+  const report = reconcileEvidence(fixtureBatch, completeDecisions(), { rubric, sourceRegistry });
+  const artifact = buildEvidenceArtifact(report);
+
+  assert.equal("evidence" in artifact, false);
+  assert.equal(artifact.evidence_index.length, report.evidence.length);
+  assert.deepEqual(Object.keys(artifact.evidence_index[0]).sort(), ["content_hash", "content_id", "lane_id", "risk_tier", "status"]);
 });

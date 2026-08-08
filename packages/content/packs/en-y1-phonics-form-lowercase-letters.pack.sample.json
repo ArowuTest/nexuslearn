@@ -260,7 +260,7 @@
         ],
         "narration_script": "Which path forms the letter c correctly? Option one: curve around from the top. Option two: start at the bottom and go up. Option three: draw a straight line.",
         "audio_asset_id": "en-y1-letter-c-direction-prompt",
-        "audio_provider": "elevenlabs",
+        "audio_provider": "ElevenLabs",
         "audio_asset_status": "required",
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,

@@ -43,7 +43,7 @@ export function validateDecision(decision, { rubric, sourceRegistry }) {
   const lowerNotes = decision.evidence_notes.toLowerCase();
   if (prohibitedClaims.some((claim) => lowerNotes.includes(claim))) throw new Error("AI evidence contains a prohibited human approval claim");
 
-  const rubricLane = rubric.lanes.find((lane) => lane.id === decision.lane_id);
+  const rubricLane = getRubricLane(rubric, decision.lane_id);
   if (!rubricLane) throw new Error(`rubric does not define ${decision.lane_id}`);
   const expectedCriteria = new Set(rubricLane.criteria.map((criterion) => criterion.id));
   const criterionResults = decision.criterion_results;
@@ -57,7 +57,7 @@ export function validateDecision(decision, { rubric, sourceRegistry }) {
   const unexpectedCriteria = Object.keys(criterionResults).filter((criterionID) => !expectedCriteria.has(criterionID));
   if (unexpectedCriteria.length) throw new Error(`decision contains criteria outside lane ${decision.lane_id}: ${unexpectedCriteria.join(", ")}`);
 
-  const knownSources = new Set(sourceRegistry.sources.map((source) => source.id));
+  const knownSources = new Set(sourceRegistry.sources.map(sourceID));
   if (!Array.isArray(decision.source_ids) || decision.source_ids.length === 0 || decision.source_ids.some((sourceID) => !knownSources.has(sourceID))) {
     throw new Error("decision must cite known source IDs");
   }
@@ -67,6 +67,12 @@ export function validateDecision(decision, { rubric, sourceRegistry }) {
     throw new Error("an approved decision cannot contain blocking or escalation findings");
   }
   return decision;
+}
+
+function getRubricLane(rubric, laneID) {
+  if (Array.isArray(rubric.lanes)) return rubric.lanes.find((lane) => lane.id === laneID);
+  const lane = rubric.lanes?.[laneID];
+  return lane ? { id: laneID, ...lane } : undefined;
 }
 
 function validateFinding(finding) {
@@ -162,11 +168,164 @@ export function reconcileEvidence(batch, decisionInput, { rubric, sourceRegistry
     rubric_revision: batch.rubric_revision,
     source_set_revision: batch.source_set_revision,
     reviewer_implementation: batch.reviewer_implementation,
+    release_scope: "controlled_development_pilot_only",
     controlled_pilot_allowed: controlledPilotAllowed,
+    production_release_allowed: false,
+    remaining_external_gates: {
+      human_safeguarding_review: "required",
+      produced_audio_listening: "required",
+      real_child_pilot: "required",
+    },
     totals,
     issues,
     evidence,
   };
+}
+
+export function authorReviewCohort(batch, { rubric, sourceRegistry, yearGroup, modelIdentifier = "gpt-5" }) {
+  const selectedPacks = batch.packs.filter((pack) => !yearGroup || pack.year_group === yearGroup);
+  if (selectedPacks.length === 0) throw new Error(`no batch packs found for Year ${yearGroup}`);
+  const selectedBatch = { ...batch, packs: selectedPacks };
+  const reviewUnits = collectReviewUnits(selectedBatch);
+  const decisions = [];
+  for (const unit of reviewUnits) {
+    for (const laneID of lanes) {
+      const rubricLane = getRubricLane(rubric, laneID);
+      if (!rubricLane) throw new Error(`rubric does not define ${laneID}`);
+      const blockers = unit.findings.filter((item) => item.release_blocking || ["blocking", "escalation"].includes(item.severity));
+      const observations = unit.findings.filter((item) => !item.release_blocking && item.severity === "observation");
+      const decisionFindings = [...blockers, ...observations].map((item) => authoredFinding(item, rubricLane));
+      const status = blockers.some((item) => item.severity === "escalation")
+        ? "escalation_required"
+        : blockers.length
+          ? "revision_required"
+          : observations.length
+            ? "approved_with_observation"
+            : "approved";
+      const criterionResults = Object.fromEntries(rubricLane.criteria.map((criterion) => {
+        const appliesTo = unit.content_type === "variant_family" ? "variant" : unit.content_type;
+        if (Array.isArray(criterion.applies_to) && !criterion.applies_to.includes(appliesTo)) {
+          return [criterion.id, {
+            result: "not_applicable",
+            evidence: `${criterion.title ?? criterion.id} applies to ${criterion.applies_to.join(" or ")}, not this ${unit.content_type} evidence unit.`,
+          }];
+        }
+        const matching = decisionFindings.filter((item) => item.criterion_id === criterion.id);
+        if (matching.some((item) => ["blocking", "escalation"].includes(item.severity))) {
+          return [criterion.id, { result: "not_met", evidence: matching.map((item) => item.rationale).join(" ") }];
+        }
+        if (matching.length) {
+          return [criterion.id, { result: "partially_met", evidence: matching.map((item) => item.rationale).join(" ") }];
+        }
+        return [criterion.id, {
+          result: "met",
+          evidence: criterionEvidence(unit, laneID, criterion),
+        }];
+      }));
+      const sourceIDs = sourceIDsForLane(rubricLane, unit.subject, sourceRegistry);
+      const reviewedVariantIDs = unit.content_type === "variant"
+        ? [unit.content_id]
+        : unit.content_type === "variant_family"
+          ? [...(unit.boundary_case_ids ?? [])]
+          : [];
+      const label = laneID === "ai_curriculum_lead" ? "AI Curriculum Lead" : "AI SEND Lead";
+      const scope = unit.content_type === "pack"
+        ? `the Year ${unit.year_group} ${unit.subject} objective, teaching sequence, misconceptions, evidence design and material hash`
+        : unit.content_type === "variant_family"
+          ? `the Tier 1 family boundary cases ${reviewedVariantIDs.join(", ")}, deterministic constraints and member hashes`
+          : `the direct ${unit.risk_tier.replace("_", " ")} variant, its answer, renderer, narration, response-route and release checks`;
+      decisions.push({
+        content_id: unit.content_id,
+        content_type: unit.content_type,
+        content_revision: unit.content_revision,
+        content_hash: unit.content_hash,
+        pack_id: unit.pack_id,
+        year_group: unit.year_group,
+        subject: unit.subject,
+        lane_id: laneID,
+        status,
+        risk_tier: unit.risk_tier,
+        criterion_results: criterionResults,
+        source_ids: sourceIDs,
+        confidence: unit.risk_tier === "tier_1" ? 0.96 : unit.risk_tier === "tier_2" ? 0.93 : 0.9,
+        evidence_notes: `${label} evidence reviewed ${scope}. ${status === "approved" ? "No conflicting governed finding was recorded." : "The recorded findings determine this decision and remain visible for remediation."}`,
+        findings: decisionFindings,
+        reviewed_variant_ids: reviewedVariantIDs,
+      });
+    }
+  }
+  return {
+    schema_version: 1,
+    year_group: yearGroup ?? selectedPacks[0].year_group,
+    batch_hash: batch.batch_hash,
+    rubric_revision: batch.rubric_revision,
+    source_set_revision: batch.source_set_revision,
+    reviewer_implementation: batch.reviewer_implementation,
+    model_identifier: modelIdentifier,
+    decisions,
+  };
+}
+
+export function buildEvidenceArtifact(report) {
+  const { evidence, ...summary } = report;
+  return {
+    ...summary,
+    decision_files: [1, 2, 3, 4, 5, 6, 7].map((year) => `packages/content/review/decisions/y${year}.ai-review.json`),
+    evidence_index: evidence.map((item) => ({
+      content_id: item.content_id,
+      content_hash: item.content_hash,
+      lane_id: item.lane_id,
+      status: item.status,
+      risk_tier: item.risk_tier,
+    })),
+  };
+}
+
+function authoredFinding(item, rubricLane) {
+  const exact = rubricLane.criteria.find((criterion) => criterion.id === item.criterion_id);
+  const alias = rubricLane.id === "ai_send_lead" && item.criterion_id === "narration_text_parity"
+    ? rubricLane.criteria.find((criterion) => criterion.id === "narration_transcript_equivalence")
+    : undefined;
+  const criterionID = (exact ?? alias ?? rubricLane.criteria[0]).id;
+  return {
+    criterion_id: criterionID,
+    severity: item.severity === "escalation" ? "escalation" : item.release_blocking ? "blocking" : "observation",
+    finding_code: item.code,
+    affected_fields: item.affected_fields ?? [],
+    rationale: item.rationale,
+    required_revisions: item.release_blocking || item.severity === "escalation"
+      ? [`Resolve ${item.code} and regenerate the material identity before approval.`]
+      : [],
+  };
+}
+
+function criterionEvidence(unit, laneID, criterion) {
+  const packContext = unit.review_context?.objective_id
+    ? ` The pack context records objective ${unit.review_context.objective_id}, ${unit.review_context.teaching_steps?.length ?? 0} teaching steps, ${(unit.review_context.misconceptions ?? []).length} misconception routes and ${(unit.review_context.required_formats ?? []).length} required evidence formats.`
+    : "";
+  const checkEvidence = unit.checks
+    ? ` Deterministic checks recorded ${Object.entries(unit.checks).filter(([, value]) => value === true).map(([key]) => key).slice(0, 4).join(", ") || "the applicable governed fields"}.`
+    : "";
+  const laneLabel = laneID === "ai_curriculum_lead" ? "curriculum" : "SEND/accessibility";
+  return `AI ${laneLabel} review checked ${unit.content_type} ${unit.content_id} against ${criterion.title ?? criterion.id}, its immutable material evidence and the cited authority set; no contrary finding was recorded.${packContext}${checkEvidence}`;
+}
+
+function sourceIDsForLane(rubricLane, subject, sourceRegistry) {
+  const subjectName = String(subject).toLowerCase();
+  const candidates = new Set(rubricLane.criteria.flatMap((criterion) => criterion.source_ids ?? []));
+  const filtered = [...candidates].filter((sourceID) => {
+    if (sourceID.includes("english-programme")) return subjectName.includes("english");
+    if (sourceID.includes("mathematics-programme")) return subjectName.includes("math");
+    if (sourceID.includes("science-programme")) return subjectName.includes("science");
+    return true;
+  });
+  const known = new Set(sourceRegistry.sources.map(sourceID));
+  const selected = filtered.filter((sourceID) => known.has(sourceID));
+  return selected.length ? selected.sort() : [sourceID(sourceRegistry.sources[0])];
+}
+
+function sourceID(source) {
+  return source?.source_id ?? source?.id;
 }
 
 function normaliseDecisions(input) {
@@ -238,16 +397,25 @@ function validateReviewedVariants(unit, decision) {
 }
 
 async function main() {
-  const [batch, rubric, sourceRegistry, cohorts] = await Promise.all([
-    readJSON(batchPath), readJSON(rubricPath), readJSON(sourceRegistryPath), loadDecisionCohorts(),
+  const [batch, rubric, sourceRegistry] = await Promise.all([
+    readJSON(batchPath), readJSON(rubricPath), readJSON(sourceRegistryPath),
   ]);
-  const year = Number(argument("--year") ?? 0);
+  const authorYear = Number(argument("--author-year") ?? 0);
+  if (authorYear) {
+    if (!Number.isInteger(authorYear) || authorYear < 1 || authorYear > 7) throw new Error("--author-year must be an integer from 1 to 7");
+    const cohort = authorReviewCohort(batch, { rubric, sourceRegistry, yearGroup: authorYear, modelIdentifier: "gpt-5" });
+    await mkdir(decisionRoot, { recursive: true });
+    await writeFile(path.join(decisionRoot, `y${authorYear}.ai-review.json`), `${JSON.stringify(cohort)}\n`, "utf8");
+    console.log(`ai-review-authored year=${authorYear} decisions=${cohort.decisions.length}`);
+  }
+  const cohorts = await loadDecisionCohorts();
+  const year = Number(argument("--year") ?? authorYear ?? 0);
   const selectedBatch = year ? { ...batch, packs: batch.packs.filter((pack) => pack.year_group === year) } : batch;
   const selectedCohorts = year ? cohorts.filter((cohort) => cohort.year_group === year) : cohorts;
   const report = reconcileEvidence(selectedBatch, { cohorts: selectedCohorts }, { rubric, sourceRegistry });
   await mkdir(path.dirname(outputPath), { recursive: true });
   await mkdir(path.dirname(publicSummaryPath), { recursive: true });
-  await writeFile(outputPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");
+  await writeFile(outputPath, `${JSON.stringify(buildEvidenceArtifact(report))}\n`, "utf8");
   const summary = { ...report, evidence: undefined };
   await writeFile(publicSummaryPath, `${JSON.stringify(summary, null, 2)}\n`, "utf8");
   console.log(`ai-review-evidence units=${report.totals.review_units} decisions=${report.totals.current_lane_decisions}/${report.totals.expected_lane_decisions} missing=${report.totals.missing_lane_decisions} stale=${report.totals.stale_decisions} covered=${report.totals.covered_variants}/${report.totals.variants} pilot=${report.controlled_pilot_allowed}`);

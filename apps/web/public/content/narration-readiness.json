@@ -35,22 +35,22 @@
     "duplicate_ids": 0,
     "duplicate_paths": 0,
     "unreviewed": 874,
-    "variant_reference_declarations": 5605,
+    "variant_reference_declarations": 5610,
     "empty_variant_reference_declarations": 258,
-    "variant_references": 5347,
-    "unique_variant_references": 5304,
-    "audio_asset_id_references": 5107,
-    "unique_audio_asset_id_references": 5064,
+    "variant_references": 5352,
+    "unique_variant_references": 5309,
+    "audio_asset_id_references": 5112,
+    "unique_audio_asset_id_references": 5069,
     "audio_ref_references": 0,
     "unique_audio_ref_references": 0,
     "whole_audio_asset_id_references": 240,
     "unique_whole_audio_asset_id_references": 240,
     "resolved_variant_references": 0,
     "unique_resolved_variant_references": 0,
-    "unresolved_variant_references": 5347,
-    "unique_unresolved_variant_references": 5304,
-    "nonconforming_variant_references": 0,
-    "strict_gaps": 6221
+    "unresolved_variant_references": 5352,
+    "unique_unresolved_variant_references": 5309,
+    "nonconforming_variant_references": 5,
+    "strict_gaps": 6231
   },
   "manifest": {
     "present": true,
@@ -72,12 +72,12 @@
       "stale": 0,
       "invalid": 0,
       "unreviewed": 120,
-      "variant_reference_declarations": 1469,
-      "variant_references": 1469,
+      "variant_reference_declarations": 1473,
+      "variant_references": 1473,
       "resolved_variant_references": 0,
-      "unresolved_variant_references": 1469,
-      "nonconforming_variant_references": 0,
-      "unique_variant_references": 1469
+      "unresolved_variant_references": 1473,
+      "nonconforming_variant_references": 4,
+      "unique_variant_references": 1473
     },
     {
       "year": 2,
@@ -90,12 +90,12 @@
       "stale": 0,
       "invalid": 0,
       "unreviewed": 122,
-      "variant_reference_declarations": 535,
-      "variant_references": 535,
+      "variant_reference_declarations": 536,
+      "variant_references": 536,
       "resolved_variant_references": 0,
-      "unresolved_variant_references": 535,
-      "nonconforming_variant_references": 0,
-      "unique_variant_references": 492
+      "unresolved_variant_references": 536,
+      "nonconforming_variant_references": 1,
+      "unique_variant_references": 493
     },
     {
       "year": 3,
@@ -236,12 +236,12 @@
       "stale": 0,
       "invalid": 0,
       "unreviewed": 8,
-      "variant_reference_declarations": 177,
-      "variant_references": 177,
-      "unique_variant_references": 177,
+      "variant_reference_declarations": 178,
+      "variant_references": 178,
+      "unique_variant_references": 178,
       "resolved_variant_references": 0,
-      "unresolved_variant_references": 177,
-      "nonconforming_variant_references": 0
+      "unresolved_variant_references": 178,
+      "nonconforming_variant_references": 1
     },
     {
       "pack_id": "en-y1-segmenting",
@@ -290,12 +290,12 @@
       "stale": 0,
       "invalid": 0,
       "unreviewed": 8,
-      "variant_reference_declarations": 177,
-      "variant_references": 177,
-      "unique_variant_references": 177,
+      "variant_reference_declarations": 178,
+      "variant_references": 178,
+      "unique_variant_references": 178,
       "resolved_variant_references": 0,
-      "unresolved_variant_references": 177,
-      "nonconforming_variant_references": 0
+      "unresolved_variant_references": 178,
+      "nonconforming_variant_references": 1
     },
     {
       "pack_id": "en-y2-spelling-patterns",
@@ -740,12 +740,12 @@
       "stale": 0,
       "invalid": 0,
       "unreviewed": 12,
-      "variant_reference_declarations": 235,
-      "variant_references": 235,
-      "unique_variant_references": 235,
+      "variant_reference_declarations": 236,
+      "variant_references": 236,
+      "unique_variant_references": 236,
       "resolved_variant_references": 0,
-      "unresolved_variant_references": 235,
-      "nonconforming_variant_references": 0
+      "unresolved_variant_references": 236,
+      "nonconforming_variant_references": 1
     },
     {
       "pack_id": "ma-y2-measures",
@@ -1244,12 +1244,12 @@
       "stale": 0,
       "invalid": 0,
       "unreviewed": 12,
-      "variant_reference_declarations": 216,
-      "variant_references": 216,
-      "unique_variant_references": 216,
+      "variant_reference_declarations": 217,
+      "variant_references": 217,
+      "unique_variant_references": 217,
       "resolved_variant_references": 0,
-      "unresolved_variant_references": 216,
-      "nonconforming_variant_references": 0
+      "unresolved_variant_references": 217,
+      "nonconforming_variant_references": 1
     },
     {
       "pack_id": "sc-y1-plants-identify-common",
@@ -1262,12 +1262,12 @@
       "stale": 0,
       "invalid": 0,
       "unreviewed": 8,
-      "variant_reference_declarations": 177,
-      "variant_references": 177,
-      "unique_variant_references": 177,
+      "variant_reference_declarations": 178,
+      "variant_references": 178,
+      "unique_variant_references": 178,
       "resolved_variant_references": 0,
-      "unresolved_variant_references": 177,
-      "nonconforming_variant_references": 0
+      "unresolved_variant_references": 178,
+      "nonconforming_variant_references": 1
     },
     {
       "pack_id": "sc-y1-seasonal-changes",
@@ -2764,7 +2764,7 @@
       ]
     },
     "unresolved_variant_references": {
-      "count": 5347,
+      "count": 5352,
       "shown": 50,
       "truncated": true,
       "samples": [
@@ -3371,10 +3371,71 @@
       ]
     },
     "nonconforming_variant_references": {
-      "count": 0,
-      "shown": 0,
+      "count": 5,
+      "shown": 5,
       "truncated": false,
-      "samples": []
+      "samples": [
+        {
+          "pack_id": "en-y1-phonics-form-lowercase-letters",
+          "year": 1,
+          "variant_id": "en-y1-phonics-form-lowercase-letters-q-c-direction",
+          "field": "audio_asset_id",
+          "location": "question_variant.body.audio_asset_id",
+          "asset_id": "en-y1-letter-c-direction-prompt",
+          "audio_provider": "elevenlabs",
+          "audio_asset_status": "required",
+          "human_listening_approval_required": true,
+          "browser_tts_allowed": false
+        },
+        {
+          "pack_id": "en-y2-reading-fluency-reread",
+          "year": 2,
+          "variant_id": "en-y2-reading-fluency-reread-q-skipped-word",
+          "field": "audio_asset_id",
+          "location": "question_variant.body.audio_asset_id",
+          "asset_id": "en-y2-fluency-skipped-word-prompt",
+          "audio_provider": "elevenlabs",
+          "audio_asset_status": "required",
+          "human_listening_approval_required": true,
+          "browser_tts_allowed": false
+        },
+        {
+          "pack_id": "ma-y1-shape-and-measures",
+          "year": 1,
+          "variant_id": "ma-y1-shape-and-measures-q-event-order",
+          "field": "audio_asset_id",
+          "location": "question_variant.body.audio_asset_id",
+          "asset_id": "ma-y1-event-order-prompt",
+          "audio_provider": "elevenlabs",
+          "audio_asset_status": "required",
+          "human_listening_approval_required": true,
+          "browser_tts_allowed": false
+        },
+        {
+          "pack_id": "sc-y1-everyday-materials",
+          "year": 1,
+          "variant_id": "sc-y1-everyday-materials-q-different-spoons",
+          "field": "audio_asset_id",
+          "location": "question_variant.body.audio_asset_id",
+          "asset_id": "sc-y1-different-spoons-prompt",
+          "audio_provider": "elevenlabs",
+          "audio_asset_status": "required",
+          "human_listening_approval_required": true,
+          "browser_tts_allowed": false
+        },
+        {
+          "pack_id": "sc-y1-plants-identify-common",
+          "year": 1,
+          "variant_id": "sc-y1-plants-identify-common-q-tree-plant",
+          "field": "audio_asset_id",
+          "location": "question_variant.body.audio_asset_id",
+          "asset_id": "sc-y1-tree-identification-prompt",
+          "audio_provider": "elevenlabs",
+          "audio_asset_status": "required",
+          "human_listening_approval_required": true,
+          "browser_tts_allowed": false
+        }
+      ]
     }
   }
 }

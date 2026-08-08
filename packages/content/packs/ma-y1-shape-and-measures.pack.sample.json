@@ -375,7 +375,7 @@
         ],
         "narration_script": "Listen, then put the three events in order: wash hands, eat lunch, clear the plate.",
         "audio_asset_id": "ma-y1-event-order-prompt",
-        "audio_provider": "elevenlabs",
+        "audio_provider": "ElevenLabs",
         "audio_asset_status": "required",
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,

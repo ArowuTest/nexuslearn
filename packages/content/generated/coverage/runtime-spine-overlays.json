@@ -218,6 +218,44 @@
         }
       }
     ],
+    "en-y1-phonics-form-lowercase-letters": [
+      {
+        "id": "en-y1-phonics-form-lowercase-letters-runtime-spine-3",
+        "format": "explain-choice",
+        "body": {
+          "prompt": "Repair round: your first idea may not fit. What is best?",
+          "choices": [
+            "Slow down, use the clue, and try again.",
+            "Stop when the first answer feels hard.",
+            "Guess quickly and move on."
+          ],
+          "review_focus": "Focuses only on the final shape and ignores movement path.",
+          "runtime_spine": true,
+          "runtime_overlay": true,
+          "runtime_spine_review": {
+            "basis": "internal product, renderer and accessibility pass for starter live path",
+            "independent_review_required_before_pack_pilot": true,
+            "source_pack_mutated": false
+          }
+        },
+        "expected_answer": {
+          "value": "Slow down, use the clue, and try again."
+        },
+        "hints": [
+          "Use the model, evidence or clue before you choose.",
+          "Touch, keyboard, switch, eye gaze, AAC, pointing or adult-supported response routes all count."
+        ],
+        "explanation": "This starter keeps the mission safe and playable: check the evidence, use support without penalty, and explain before moving on.",
+        "difficulty": 6,
+        "status": "approved",
+        "misconception_tag": "runtime_spine_3",
+        "animation_hook": "runtime-spine-confidence-loop",
+        "gamification": {
+          "badge": "Repair Champion",
+          "reward_loop": "award calm progress, clue use and successful repair rather than speed"
+        }
+      }
+    ],
     "en-y1-segmenting": [
       {
         "id": "en-y1-segmenting-runtime-spine-1",
@@ -408,6 +446,44 @@
             "Guess quickly and move on."
           ],
           "review_focus": "Places describing words after the noun in a way that sounds unnatural in the intended sentence.",
+          "runtime_spine": true,
+          "runtime_overlay": true,
+          "runtime_spine_review": {
+            "basis": "internal product, renderer and accessibility pass for starter live path",
+            "independent_review_required_before_pack_pilot": true,
+            "source_pack_mutated": false
+          }
+        },
+        "expected_answer": {
+          "value": "Slow down, use the clue, and try again."
+        },
+        "hints": [
+          "Use the model, evidence or clue before you choose.",
+          "Touch, keyboard, switch, eye gaze, AAC, pointing or adult-supported response routes all count."
+        ],
+        "explanation": "This starter keeps the mission safe and playable: check the evidence, use support without penalty, and explain before moving on.",
+        "difficulty": 6,
+        "status": "approved",
+        "misconception_tag": "runtime_spine_3",
+        "animation_hook": "runtime-spine-confidence-loop",
+        "gamification": {
+          "badge": "Repair Champion",
+          "reward_loop": "award calm progress, clue use and successful repair rather than speed"
+        }
+      }
+    ],
+    "en-y2-reading-fluency-reread": [
+      {
+        "id": "en-y2-reading-fluency-reread-runtime-spine-3",
+        "format": "explain-choice",
+        "body": {
+          "prompt": "Repair round: your first idea may not fit. What is best?",
+          "choices": [
+            "Slow down, use the clue, and try again.",
+            "Stop when the first answer feels hard.",
+            "Guess quickly and move on."
+          ],
+          "review_focus": "Sounds out every familiar word instead of recognising it on reread.",
           "runtime_spine": true,
           "runtime_overlay": true,
           "runtime_spine_review": {
@@ -4737,6 +4813,44 @@
             "Guess quickly and move on."
           ],
           "review_focus": "Treats hard, strong, heavy and stiff as if they mean the same property.",
+          "runtime_spine": true,
+          "runtime_overlay": true,
+          "runtime_spine_review": {
+            "basis": "internal product, renderer and accessibility pass for starter live path",
+            "independent_review_required_before_pack_pilot": true,
+            "source_pack_mutated": false
+          }
+        },
+        "expected_answer": {
+          "value": "Slow down, use the clue, and try again."
+        },
+        "hints": [
+          "Use the model, evidence or clue before you choose.",
+          "Touch, keyboard, switch, eye gaze, AAC, pointing or adult-supported response routes all count."
+        ],
+        "explanation": "This starter keeps the mission safe and playable: check the evidence, use support without penalty, and explain before moving on.",
+        "difficulty": 6,
+        "status": "approved",
+        "misconception_tag": "runtime_spine_3",
+        "animation_hook": "runtime-spine-confidence-loop",
+        "gamification": {
+          "badge": "Repair Champion",
+          "reward_loop": "award calm progress, clue use and successful repair rather than speed"
+        }
+      }
+    ],
+    "sc-y1-plants-identify-common": [
+      {
+        "id": "sc-y1-plants-identify-common-runtime-spine-3",
+        "format": "explain-choice",
+        "body": {
+          "prompt": "Repair round: your first idea may not fit. What is best?",
+          "choices": [
+            "Slow down, use the clue, and try again.",
+            "Stop when the first answer feels hard.",
+            "Guess quickly and move on."
+          ],
+          "review_focus": "Sorts by favourite colour rather than observable plant features.",
           "runtime_spine": true,
           "runtime_overlay": true,
           "runtime_spine_review": {

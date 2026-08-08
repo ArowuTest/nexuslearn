@@ -46,6 +46,7 @@ test("batch gives every variant a hash, risk tier and both lanes", () => {
   assert.match(batch.batch_hash, /^[0-9a-f]{64}$/);
   assert.match(batch.packs[0].variants[0].content_hash, /^[0-9a-f]{64}$/);
   assert.equal(batch.packs[0].variants[0].risk_tier, "tier_1");
+  assert.equal(batch.packs[0].pack_review.review_context.objective_id, "ma-y3-test");
   assert.deepEqual(batch.packs[0].required_lanes, ["ai_curriculum_lead", "ai_send_lead"]);
 });
 

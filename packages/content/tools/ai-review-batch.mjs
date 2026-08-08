@@ -80,6 +80,24 @@ function inspectPack(pack, rendererRegistry) {
     content_revision: contentRevision,
     content_hash: sha256Content(packMaterial),
     risk_tier: packFindings.some((item) => item.release_blocking) ? "tier_2" : "tier_1",
+    review_context: {
+      source_alignment: pack.source_alignment ?? {},
+      objective_id: pack.objective?.id ?? "",
+      objective_statement: pack.objective?.statement ?? "",
+      child_goal: pack.objective?.child_goal ?? "",
+      prerequisites: pack.objective?.prerequisites ?? [],
+      misconceptions: pack.objective?.misconceptions ?? [],
+      vocabulary_terms: (pack.objective?.vocabulary ?? []).map((entry) => entry.term).filter(Boolean),
+      required_formats: pack.objective?.mastery?.required_formats ?? [],
+      teaching_steps: (pack.teaching_sequence ?? []).map((step) => ({
+        id: step.step_id ?? step.id ?? "",
+        title: step.title ?? step.name ?? "",
+        purpose: step.purpose ?? step.goal ?? step.instruction ?? "",
+      })),
+      accessibility_policy_fields: Object.keys(pack.accessibility_policy ?? {}).sort(),
+      adaptive_support_fields: Object.keys(pack.adaptive_support ?? {}).sort(),
+      animation_plan_fields: Object.keys(pack.animation_plan ?? {}).sort(),
+    },
     findings: packFindings,
   };
 

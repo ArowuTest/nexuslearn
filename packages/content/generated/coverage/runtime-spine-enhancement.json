@@ -10,9 +10,9 @@
   },
   "totals": {
     "packs": 87,
-    "packs_needing_overlay": 69,
-    "runtime_before": 65,
-    "overlay_variants": 196,
+    "packs_needing_overlay": 72,
+    "runtime_before": 62,
+    "overlay_variants": 199,
     "runtime_after_overlay": 261,
     "packs_below_spine_after_overlay": 0
   },
@@ -37,8 +37,8 @@
       "pack_id": "en-y1-phonics-form-lowercase-letters",
       "year": 1,
       "subject": "English",
-      "runtime_before": 3,
-      "overlay_variants": 0,
+      "runtime_before": 2,
+      "overlay_variants": 1,
       "runtime_after_overlay": 3
     },
     {
@@ -61,8 +61,8 @@
       "pack_id": "en-y2-reading-fluency-reread",
       "year": 2,
       "subject": "English",
-      "runtime_before": 3,
-      "overlay_variants": 0,
+      "runtime_before": 2,
+      "overlay_variants": 1,
       "runtime_after_overlay": 3
     },
     {
@@ -493,8 +493,8 @@
       "pack_id": "sc-y1-plants-identify-common",
       "year": 1,
       "subject": "Science",
-      "runtime_before": 3,
-      "overlay_variants": 0,
+      "runtime_before": 2,
+      "overlay_variants": 1,
       "runtime_after_overlay": 3
     },
     {

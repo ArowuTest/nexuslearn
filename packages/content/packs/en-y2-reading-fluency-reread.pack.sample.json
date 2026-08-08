@@ -279,7 +279,7 @@
         ],
         "narration_script": "Pip read: The frog jumped log. Which word was skipped? Option one: over. Option two: frog. Option three: jumped. Option four: log.",
         "audio_asset_id": "en-y2-fluency-skipped-word-prompt",
-        "audio_provider": "elevenlabs",
+        "audio_provider": "ElevenLabs",
         "audio_asset_status": "required",
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,

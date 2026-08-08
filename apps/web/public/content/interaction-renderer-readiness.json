@@ -5,7 +5,7 @@
   "totals": {
     "formats": 250,
     "packs": 87,
-    "questions": 20406,
+    "questions": 20409,
     "runtime_questions": 261,
     "missing_registry": 0,
     "runtime_failures": 0,
@@ -135,7 +135,7 @@
       ],
       "pack_count": 4,
       "questions": 248,
-      "runtime_questions": 2,
+      "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
       "target_runtime": "audio-led choice panel with narration and replay"
@@ -873,8 +873,10 @@
       "packs": [
         "en-y1-listening-comprehension",
         "en-y1-phonics-blend-cvc-words",
+        "en-y1-phonics-form-lowercase-letters",
         "en-y1-segmenting",
         "en-y2-expanded-noun-phrases",
+        "en-y2-reading-fluency-reread",
         "en-y2-spelling-patterns",
         "en-y2-writing-sentence-punctuation",
         "en-y3-grammar-expansion",
@@ -918,6 +920,7 @@
         "ma-y7-negative-numbers",
         "sc-y1-animals-including-humans",
         "sc-y1-everyday-materials",
+        "sc-y1-plants-identify-common",
         "sc-y1-seasonal-changes",
         "sc-y2-animals-including-humans",
         "sc-y2-living-things-and-habitats",
@@ -946,9 +949,9 @@
         "sc-y7-particles-states-of-matter",
         "sc-y7-scientific-method"
       ],
-      "pack_count": 74,
-      "questions": 925,
-      "runtime_questions": 202,
+      "pack_count": 77,
+      "questions": 928,
+      "runtime_questions": 205,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
       "target_runtime": "explanation choice with misconception distractor animation"
@@ -1449,7 +1452,7 @@
       ],
       "pack_count": 2,
       "questions": 126,
-      "runtime_questions": 1,
+      "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
       "target_runtime": "listen/read fluency player with phrase replay"

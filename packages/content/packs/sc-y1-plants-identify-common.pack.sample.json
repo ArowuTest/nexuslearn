@@ -226,7 +226,7 @@
         ],
         "narration_script": "Which picture shows a tree? Option one: oak tree. Option two: daisy. Option three: grass.",
         "audio_asset_id": "sc-y1-tree-identification-prompt",
-        "audio_provider": "elevenlabs",
+        "audio_provider": "ElevenLabs",
         "audio_asset_status": "required",
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,

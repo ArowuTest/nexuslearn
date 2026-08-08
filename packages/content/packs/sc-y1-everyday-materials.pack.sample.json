@@ -305,7 +305,7 @@
         ],
         "narration_script": "Can spoons be made from different materials? Choose yes or no.",
         "audio_asset_id": "sc-y1-different-spoons-prompt",
-        "audio_provider": "elevenlabs",
+        "audio_provider": "ElevenLabs",
         "audio_asset_status": "required",
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
