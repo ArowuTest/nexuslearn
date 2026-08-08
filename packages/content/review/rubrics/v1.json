@@ -1,0 +1,372 @@
+{
+  "schema_version": 1,
+  "rubric_revision": "curriculum-send-v1",
+  "effective_date": "2026-08-08",
+  "statuses": [
+    "not_reviewed",
+    "in_review",
+    "approved",
+    "approved_with_observation",
+    "revision_required",
+    "escalation_required",
+    "stale",
+    "superseded"
+  ],
+  "severities": ["observation", "blocking", "escalation"],
+  "lanes": {
+    "ai_curriculum_lead": {
+      "display_name": "AI Curriculum Lead",
+      "disclosure": "AI curriculum evidence; not independent human teacher approval.",
+      "criteria": [
+        {
+          "id": "curriculum_alignment",
+          "title": "Statutory curriculum alignment",
+          "applies_to": ["pack", "variant"],
+          "severity": "blocking",
+          "release_blocking": true,
+          "description": "The content is traceable to the applicable England programme of study and repository curriculum contract.",
+          "source_ids": ["dfe-national-curriculum-framework", "dfe-english-programme", "dfe-mathematics-programme", "dfe-science-programme"]
+        },
+        {
+          "id": "subject_accuracy",
+          "title": "Subject accuracy",
+          "applies_to": ["pack", "variant"],
+          "severity": "blocking",
+          "release_blocking": true,
+          "description": "Facts, terminology, calculations, representations and disciplinary methods are correct.",
+          "source_ids": ["dfe-english-programme", "dfe-mathematics-programme", "dfe-science-programme"]
+        },
+        {
+          "id": "prerequisite_progression",
+          "title": "Prerequisite and progression coherence",
+          "applies_to": ["pack"],
+          "severity": "blocking",
+          "release_blocking": true,
+          "description": "Prerequisites and next steps form a coherent sequence across objectives and years.",
+          "source_ids": ["dfe-national-curriculum-framework", "dfe-english-programme", "dfe-mathematics-programme", "dfe-science-programme"]
+        },
+        {
+          "id": "instructional_depth",
+          "title": "Instructional depth",
+          "applies_to": ["pack"],
+          "severity": "blocking",
+          "release_blocking": true,
+          "description": "Teaching, examples and practice provide enough depth for the intended objective rather than superficial exposure.",
+          "source_ids": ["dfe-english-programme", "dfe-mathematics-programme", "dfe-science-programme", "dfe-reading-framework", "dfe-writing-framework-2025"]
+        },
+        {
+          "id": "teaching_sequence",
+          "title": "Teaching sequence",
+          "applies_to": ["pack"],
+          "severity": "blocking",
+          "release_blocking": true,
+          "description": "The pack includes explicit teaching, guided practice, independent practice, retrieval and assessment in a defensible order.",
+          "source_ids": ["dfe-reading-framework", "dfe-writing-framework-2025"]
+        },
+        {
+          "id": "misconception_response",
+          "title": "Misconception diagnosis and repair",
+          "applies_to": ["pack", "variant"],
+          "severity": "blocking",
+          "release_blocking": true,
+          "description": "Common misconceptions are anticipated and feedback directs learners to contrasting repair evidence.",
+          "source_ids": ["dfe-reading-framework", "dfe-writing-framework-2025", "ofqual-schools-guide-2026"]
+        },
+        {
+          "id": "evidence_modes",
+          "title": "Valid evidence modes",
+          "applies_to": ["pack"],
+          "severity": "blocking",
+          "release_blocking": true,
+          "description": "Evidence modes match the learning construct and provide more than one defensible demonstration where required.",
+          "source_ids": ["ofqual-schools-guide-2026"]
+        },
+        {
+          "id": "retrieval_interleaving",
+          "title": "Retrieval and interleaving",
+          "applies_to": ["pack"],
+          "severity": "blocking",
+          "release_blocking": true,
+          "description": "The design revisits prior learning across time and mixes related knowledge without replacing new teaching.",
+          "source_ids": ["dfe-reading-framework", "dfe-national-curriculum-framework"]
+        },
+        {
+          "id": "subject_progression",
+          "title": "Subject-specific advancement",
+          "applies_to": ["pack"],
+          "severity": "blocking",
+          "release_blocking": true,
+          "description": "Progression is evaluated by subject, strand and objective and can cross a year boundary on sufficient evidence.",
+          "source_ids": ["dfe-national-curriculum-framework", "dfe-english-programme", "dfe-mathematics-programme", "dfe-science-programme"]
+        },
+        {
+          "id": "gamification_alignment",
+          "title": "Learning-aligned gamification",
+          "applies_to": ["pack"],
+          "severity": "blocking",
+          "release_blocking": true,
+          "description": "Narrative, rewards and feedback reinforce effort, strategy and demonstrated learning without false mastery claims.",
+          "source_ids": ["dfe-national-curriculum-framework", "dfe-send-code-0-25"]
+        },
+        {
+          "id": "assessment_reliability",
+          "title": "Assessment reliability",
+          "applies_to": ["pack", "variant"],
+          "severity": "blocking",
+          "release_blocking": true,
+          "description": "Mastery decisions require multiple independent pieces of evidence across time and task form.",
+          "source_ids": ["ofqual-schools-guide-2026", "dfe-mathematics-programme", "dfe-science-programme"]
+        },
+        {
+          "id": "statutory_enrichment_boundary",
+          "title": "Statutory and enrichment boundary",
+          "applies_to": ["pack"],
+          "severity": "blocking",
+          "release_blocking": true,
+          "description": "The pack distinguishes statutory programme content from platform enrichment and future extension.",
+          "source_ids": ["dfe-national-curriculum-framework"]
+        },
+        {
+          "id": "variant_correctness",
+          "title": "Variant correctness",
+          "applies_to": ["variant", "variant_family"],
+          "severity": "blocking",
+          "release_blocking": true,
+          "description": "The learner prompt, worked values and expected response are factually and computationally correct.",
+          "source_ids": ["dfe-english-programme", "dfe-mathematics-programme", "dfe-science-programme"]
+        },
+        {
+          "id": "variant_answer_validity",
+          "title": "Answer validity",
+          "applies_to": ["variant", "variant_family"],
+          "severity": "blocking",
+          "release_blocking": true,
+          "description": "There is one defensible intended answer or a complete accepted-answer set with no hidden assumptions.",
+          "source_ids": ["ofqual-schools-guide-2026"]
+        },
+        {
+          "id": "variant_prompt_alignment",
+          "title": "Prompt-response alignment",
+          "applies_to": ["variant", "variant_family"],
+          "severity": "blocking",
+          "release_blocking": true,
+          "description": "Objective, prompt, interaction, expected response and explanation assess the same construct.",
+          "source_ids": ["ofqual-schools-guide-2026", "dfe-national-curriculum-framework"]
+        },
+        {
+          "id": "variant_scaffolding",
+          "title": "Scaffolding quality",
+          "applies_to": ["variant", "variant_family"],
+          "severity": "blocking",
+          "release_blocking": true,
+          "description": "Hints reduce the next learning barrier without revealing the answer or changing the method unexpectedly.",
+          "source_ids": ["dfe-reading-framework", "dfe-writing-framework-2025", "dfe-send-code-0-25"]
+        },
+        {
+          "id": "variant_explanation_quality",
+          "title": "Explanation quality",
+          "applies_to": ["variant", "variant_family"],
+          "severity": "blocking",
+          "release_blocking": true,
+          "description": "The explanation teaches the underlying idea and addresses the likely misconception.",
+          "source_ids": ["dfe-reading-framework", "dfe-writing-framework-2025"]
+        },
+        {
+          "id": "variant_distractor_quality",
+          "title": "Distractor quality",
+          "applies_to": ["variant", "variant_family"],
+          "severity": "blocking",
+          "release_blocking": true,
+          "description": "Multiple-choice distractors are plausible misconception signals and are not accidentally correct.",
+          "source_ids": ["ofqual-schools-guide-2026"]
+        },
+        {
+          "id": "age_language",
+          "title": "Age-matched language",
+          "applies_to": ["pack", "variant", "variant_family"],
+          "severity": "blocking",
+          "release_blocking": true,
+          "description": "Vocabulary, sentence structure and context fit the learner year without reducing disciplinary ambition.",
+          "source_ids": ["dfe-national-curriculum-framework", "dfe-english-programme", "dfe-writing-framework-2025"]
+        },
+        {
+          "id": "cultural_respect",
+          "title": "Cultural respect",
+          "applies_to": ["pack", "variant", "variant_family"],
+          "severity": "blocking",
+          "release_blocking": true,
+          "description": "Contexts avoid stereotypes, exclusion, humiliation and unsupported assumptions about families or communities.",
+          "source_ids": ["equality-act-2010", "dfe-send-code-0-25"]
+        },
+        {
+          "id": "difficulty_metadata",
+          "title": "Difficulty and prerequisite metadata",
+          "applies_to": ["variant", "variant_family"],
+          "severity": "blocking",
+          "release_blocking": true,
+          "description": "Difficulty, year, strand and prerequisites reflect the actual cognitive and curricular demand.",
+          "source_ids": ["dfe-national-curriculum-framework", "dfe-english-programme", "dfe-mathematics-programme", "dfe-science-programme"]
+        },
+        {
+          "id": "narration_text_parity",
+          "title": "Narration and visible-text parity",
+          "applies_to": ["pack", "variant", "variant_family"],
+          "severity": "blocking",
+          "release_blocking": true,
+          "description": "Narration communicates the same instructions and learning information as the visible content.",
+          "source_ids": ["dfe-reading-framework", "w3c-wcag-22", "dfe-digital-accessibility-2026"]
+        },
+        {
+          "id": "surface_variation",
+          "title": "Construct-preserving variation",
+          "applies_to": ["variant_family"],
+          "severity": "blocking",
+          "release_blocking": true,
+          "description": "Generated variants vary surface form enough to prevent template memorisation while preserving construct and constraints.",
+          "source_ids": ["ofqual-schools-guide-2026"]
+        }
+      ]
+    },
+    "ai_send_lead": {
+      "display_name": "AI SEND Lead",
+      "disclosure": "AI inclusive-design evidence; not independent human SEND-professional approval or diagnosis.",
+      "criteria": [
+        {
+          "id": "instruction_clarity",
+          "title": "Instruction clarity",
+          "applies_to": ["pack", "variant", "variant_family"],
+          "severity": "blocking",
+          "release_blocking": true,
+          "description": "Instructions are concise and literal, with unfamiliar idiom explained or removed.",
+          "source_ids": ["dfe-send-code-0-25", "w3c-wcag-22"]
+        },
+        {
+          "id": "information_chunking",
+          "title": "Information chunking",
+          "applies_to": ["pack", "variant", "variant_family"],
+          "severity": "blocking",
+          "release_blocking": true,
+          "description": "Information density and step size are manageable without hiding the learning goal.",
+          "source_ids": ["dfe-send-code-0-25", "dfe-writing-framework-2025"]
+        },
+        {
+          "id": "predictable_interaction",
+          "title": "Predictable interaction",
+          "applies_to": ["pack", "variant_family"],
+          "severity": "blocking",
+          "release_blocking": true,
+          "description": "Controls, navigation, feedback and state changes follow consistent patterns.",
+          "source_ids": ["dfe-send-code-0-25", "w3c-wcag-22"]
+        },
+        {
+          "id": "input_route_access",
+          "title": "Accessible input routes",
+          "applies_to": ["variant", "variant_family"],
+          "severity": "blocking",
+          "release_blocking": true,
+          "description": "The task supports keyboard, switch-compatible and low-precision input when the construct permits it.",
+          "source_ids": ["equality-act-2010", "w3c-wcag-22", "dfe-digital-accessibility-2026"]
+        },
+        {
+          "id": "construct_preserving_alternatives",
+          "title": "Construct-preserving alternatives",
+          "applies_to": ["variant", "variant_family"],
+          "severity": "blocking",
+          "release_blocking": true,
+          "description": "Alternative response modes remove access barriers without supplying the answer or changing the assessed knowledge or skill.",
+          "source_ids": ["dfe-send-code-0-25", "equality-act-2010", "ofqual-schools-guide-2026"]
+        },
+        {
+          "id": "narration_transcript_equivalence",
+          "title": "Narration and transcript equivalence",
+          "applies_to": ["pack", "variant", "variant_family"],
+          "severity": "blocking",
+          "release_blocking": true,
+          "description": "Required audio has an equivalent transcript and audio-only instructions have a non-audio route.",
+          "source_ids": ["w3c-wcag-22", "dfe-digital-accessibility-2026"]
+        },
+        {
+          "id": "multi_modal_independence",
+          "title": "No single sensory or motor dependency",
+          "applies_to": ["pack", "variant", "variant_family"],
+          "severity": "blocking",
+          "release_blocking": true,
+          "description": "Success does not depend on colour, sound, speed, drag precision or fine motor control alone.",
+          "source_ids": ["equality-act-2010", "w3c-wcag-22", "dfe-digital-accessibility-2026"]
+        },
+        {
+          "id": "reduced_motion_sensory",
+          "title": "Reduced-motion and low-sensory support",
+          "applies_to": ["pack", "variant_family"],
+          "severity": "blocking",
+          "release_blocking": true,
+          "description": "Motion, visual density, sound and celebrations can be reduced without losing information or progress.",
+          "source_ids": ["w3c-wcag-22", "dfe-digital-accessibility-2026"]
+        },
+        {
+          "id": "pace_replay_control",
+          "title": "Pace and replay control",
+          "applies_to": ["pack", "variant", "variant_family"],
+          "severity": "blocking",
+          "release_blocking": true,
+          "description": "Learners can pause, replay and repeat avoidable timed content without mastery penalty.",
+          "source_ids": ["w3c-wcag-22", "dfe-digital-accessibility-2026"]
+        },
+        {
+          "id": "visual_accessibility",
+          "title": "Visual accessibility",
+          "applies_to": ["pack", "variant_family"],
+          "severity": "blocking",
+          "release_blocking": true,
+          "description": "Typography, contrast, focus order, status messages and target sizes meet the governed accessibility standard.",
+          "source_ids": ["equality-act-2010", "w3c-wcag-22", "dfe-digital-accessibility-2026"]
+        },
+        {
+          "id": "supportive_repair",
+          "title": "Supportive repair and feedback",
+          "applies_to": ["pack", "variant", "variant_family"],
+          "severity": "blocking",
+          "release_blocking": true,
+          "description": "Errors lead to calm, specific teaching and retry routes without shame, public comparison or punitive streak loss.",
+          "source_ids": ["dfe-send-code-0-25", "dfe-writing-framework-2025"]
+        },
+        {
+          "id": "non_deficit_language",
+          "title": "Non-deficit language",
+          "applies_to": ["pack", "variant", "variant_family"],
+          "severity": "blocking",
+          "release_blocking": true,
+          "description": "Copy is respectful, needs-led and free from unsupported diagnostic or behavioural inference.",
+          "source_ids": ["dfe-send-code-0-25", "equality-act-2010"]
+        },
+        {
+          "id": "context_safety",
+          "title": "Context and emotional safety",
+          "applies_to": ["pack", "variant", "variant_family"],
+          "severity": "escalation",
+          "release_blocking": true,
+          "description": "Contexts avoid unnecessary sensory, emotional, cultural or safeguarding barriers and escalate unresolved risk.",
+          "source_ids": ["dfe-send-code-0-25", "equality-act-2010"]
+        },
+        {
+          "id": "alternative_equivalence",
+          "title": "Alternative-route equivalence",
+          "applies_to": ["variant", "variant_family"],
+          "severity": "blocking",
+          "release_blocking": true,
+          "description": "Accessible routes require equivalent reasoning and evidence to the default route.",
+          "source_ids": ["equality-act-2010", "ofqual-schools-guide-2026"]
+        },
+        {
+          "id": "professional_escalation",
+          "title": "Professional escalation boundary",
+          "applies_to": ["pack", "variant", "variant_family"],
+          "severity": "escalation",
+          "release_blocking": true,
+          "description": "Safety, trauma, medical, behavioural and diagnostic judgments outside AI authority are explicitly escalated.",
+          "source_ids": ["dfe-send-code-0-25"]
+        }
+      ]
+    }
+  }
+}
