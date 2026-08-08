@@ -2,9 +2,15 @@
 
 import type { ReactNode } from "react";
 import { useEffect, useMemo, useState } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import ProgressSnapshot from "@/components/ProgressSnapshot";
 import { accountSessionHeaders, accountSessionRole, logoutAccount, storeAccountSession, type AccountSession, type ProgressReport } from "@/lib/api";
+
+const AdminReviewWorkspace = dynamic(() => import("@/components/admin/AdminReviewWorkspace"), {
+  loading: () => <p role="status">Loading governed review workspace…</p>,
+  ssr: false,
+});
 
 type FeatureFlag = { key: string; enabled: boolean; description: string; config?: Record<string, unknown>; updated_at?: string };
 type World = { key: string; name: string; year_group: number; theme: string; config?: Record<string, unknown>; enabled: boolean };
@@ -605,7 +611,7 @@ type AdminConfig = {
 const API = process.env.NEXT_PUBLIC_API_URL;
 const EMPTY_OBJECT = "{}";
 const EMPTY_ARRAY = "[]";
-const TABS = ["Access", "Schools", "Learners", "Progress", "Groups", "Parents", "Worlds", "Readiness", "Activities", "Questions", "Rewards", "Objectives", "Flags", "Audit"] as const;
+const TABS = ["Access", "Schools", "Learners", "Progress", "Groups", "Parents", "Worlds", "Reviews", "Readiness", "Activities", "Questions", "Rewards", "Objectives", "Flags", "Audit"] as const;
 type Tab = (typeof TABS)[number];
 const ADMIN_PAGE_SIZE = 25;
 
@@ -781,7 +787,8 @@ export default function AdminPage() {
     if (!role) return;
     void Promise.resolve().then(() => {
       setAccountRole(role);
-      setTab(role === "content_reviewer" ? "Readiness" : "Worlds");
+      const requestedSection = new URLSearchParams(window.location.search).get("section");
+      setTab(role === "content_reviewer" || requestedSection === "reviews" ? "Reviews" : "Worlds");
       return loadConfig();
     });
     // The session is hydrated once on mount; loadConfig is intentionally not a reactive dependency.
@@ -874,7 +881,7 @@ export default function AdminPage() {
       const session = body.session as AccountSession;
       storeAccountSession(session);
       setAccountRole(session.role);
-      setTab(session.role === "content_reviewer" ? "Readiness" : "Worlds");
+      setTab(session.role === "content_reviewer" ? "Reviews" : "Worlds");
       setAdminLogin({ login_id: adminLogin.login_id, password: "" });
       await loadConfig();
     } catch (error) {
@@ -1583,9 +1590,9 @@ export default function AdminPage() {
   }
 
   const visibleTabs: Tab[] = accountRole === "content_reviewer"
-    ? ["Readiness"]
+    ? ["Reviews", "Readiness"]
     : accountRole === "content_editor"
-      ? ["Worlds", "Readiness", "Activities", "Questions", "Rewards", "Objectives"]
+      ? ["Worlds", "Reviews", "Readiness", "Activities", "Questions", "Rewards", "Objectives"]
       : [...TABS];
 
   function paginate<T>(key: string, items: T[]) {
@@ -1616,7 +1623,7 @@ export default function AdminPage() {
           <div>
             <p className="font-display text-sm uppercase tracking-[0.18em] text-[#7357c9]">Platform admin</p>
             <h1 className="font-display mt-2 text-4xl font-semibold">Configuration control room</h1>
-            <p className="mt-2 max-w-2xl text-sm leading-6 text-[#1d1a3e]/62">
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-[#565267]">
               Edit curriculum, worlds, activities, questions and feature flags that drive the learner runtime.
             </p>
           </div>
@@ -1661,7 +1668,7 @@ export default function AdminPage() {
         {config && (
           <div className="mt-8 flex flex-wrap items-center justify-between gap-4 bg-white p-4 shadow-card">
             <div>
-              <p className="text-xs uppercase tracking-[0.14em] text-[#1d1a3e]/45">Authenticated workspace</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#565267]">Authenticated workspace</p>
               <p className="mt-1 text-sm font-semibold">{accountRole === "content_reviewer" ? "Content reviewer" : accountRole === "content_editor" ? "Content editor" : "Platform administrator"}</p>
             </div>
             <button onClick={signOutAdmin} className="btn-pop bg-[#1d1a3e] px-5 py-3 text-sm text-white">Sign out</button>
@@ -1669,13 +1676,13 @@ export default function AdminPage() {
         )}
 
         <div className={config ? "" : "hidden"}>
-        <p className="mt-4 bg-white/70 px-4 py-3 text-sm text-[#1d1a3e]/66">{message}</p>
+        <p className="mt-4 bg-white/70 px-4 py-3 text-sm text-[#565267]">{message}</p>
 
         <section className="mt-6 grid gap-4 md:grid-cols-4">
           {totals.map((item) => (
             <article key={item.label} className="bg-white p-5 shadow-card">
               <p className="font-display text-3xl font-semibold">{item.value}</p>
-              <p className="mt-1 text-sm text-[#1d1a3e]/58">{item.label}</p>
+              <p className="mt-1 text-sm text-[#565267]">{item.label}</p>
             </article>
           ))}
         </section>
@@ -1683,16 +1690,16 @@ export default function AdminPage() {
         <nav className="mt-6 space-y-4" aria-label="Admin sections">
           {[
             { label: "People & organisations", items: ["Access", "Schools", "Learners", "Groups", "Parents"] },
-            { label: "Learning operations", items: ["Progress", "Worlds", "Readiness"] },
+            { label: "Learning operations", items: ["Progress", "Worlds"] },
             { label: "Product configuration", items: ["Activities", "Questions", "Rewards", "Objectives", "Flags"] },
-            { label: "Governance", items: ["Audit"] },
+            { label: "Governance", items: ["Reviews", "Readiness", "Audit"] },
           ].map((group) => {
             const groupTabs = group.items.filter((item) => visibleTabs.includes(item as Tab));
             if (groupTabs.length === 0) return null;
             const groupID = "admin-nav-" + group.label.replaceAll(" ", "-").toLowerCase();
             return (
               <section key={group.label} aria-labelledby={groupID}>
-                <h2 id={groupID} className="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#1d1a3e]/45">{group.label}</h2>
+                <h2 id={groupID} className="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#565267]">{group.label}</h2>
                 <div className="flex flex-wrap gap-2">
                   {groupTabs.map((item) => (
                     <button key={item} onClick={() => setTab(item as Tab)} className={"btn-pop px-4 py-2 text-sm " + (tab === item ? "bg-[#7357c9] text-white" : "bg-white text-[#1d1a3e]")}>{item}</button>
@@ -2090,6 +2097,8 @@ export default function AdminPage() {
             }
           />
         )}
+
+        {tab === "Reviews" && <AdminReviewWorkspace />}
 
         {tab === "Readiness" && (
           <section className="mt-6 grid gap-6">

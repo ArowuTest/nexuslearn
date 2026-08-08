@@ -8,9 +8,11 @@ const limits = {
   // all Years 1–7. Keep the per-chunk and public-asset limits strict while
   // allowing the measured aggregate bundle to remain below 1.31 MB.
   // Authenticated reporting, governed teacher/SEND review controls and
-  // subject-mock routes and shared child journey/growth chrome add intentional
-  // runtime coverage; keep the stricter per-chunk limit while allowing 1.31 MB total.
-  totalJavaScript: 1_310_000,
+  // subject-mock routes, shared child journey/growth chrome and the lazy-loaded
+  // governed review workspace add intentional runtime coverage. The review UI
+  // is excluded from the admin login/operations entry chunk; retain the strict
+  // per-chunk ceiling while allowing the complete multi-route build 1.35 MB.
+  totalJavaScript: 1_350_000,
   largestJavaScript: 250_000,
   totalCSS: 120_000,
   individualPublicAsset: 600_000,
