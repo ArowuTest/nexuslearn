@@ -31,6 +31,19 @@ func TestAIReviewMigrationContainsImmutableIdentityAndQueueIndexes(t *testing.T)
 	}
 }
 
+func TestAIReviewCoverageMigrationPersistsVariantMembership(t *testing.T) {
+	raw, err := os.ReadFile("../../migrations/0039_ai_review_variant_coverage.up.sql")
+	if err != nil {
+		t.Fatal(err)
+	}
+	sql := string(raw)
+	for _, required := range []string{"reviewed_variant_ids jsonb", "jsonb_typeof(reviewed_variant_ids) = 'array'", "ai_review_evidence_current_idx"} {
+		if !strings.Contains(sql, required) {
+			t.Fatalf("coverage migration missing %q", required)
+		}
+	}
+}
+
 func validAIReviewEvidence() AIReviewEvidence {
 	return AIReviewEvidence{
 		ContentID:              "year-3-maths-fractions",
@@ -71,6 +84,22 @@ func TestValidateAIReviewEvidenceRejectsHumanClaimsAndIncompleteIdentity(t *test
 	item.ContentRevision = ""
 	if err := ValidateAIReviewEvidence(item); !errors.Is(err, ErrInvalidConfiguration) {
 		t.Fatalf("expected incomplete identity to fail, got %v", err)
+	}
+}
+
+func TestValidateAIReviewEvidenceRequiresExactVariantCoverage(t *testing.T) {
+	item := validAIReviewEvidence()
+	item.ContentType = "variant_family"
+	if err := ValidateAIReviewEvidence(item); !errors.Is(err, ErrInvalidConfiguration) {
+		t.Fatalf("expected missing variant coverage to fail, got %v", err)
+	}
+	item.ReviewedVariantIDs = []string{"variant-1", "variant-1"}
+	if err := ValidateAIReviewEvidence(item); !errors.Is(err, ErrInvalidConfiguration) {
+		t.Fatalf("expected duplicate variant coverage to fail, got %v", err)
+	}
+	item.ReviewedVariantIDs = []string{"variant-1", "variant-2"}
+	if err := ValidateAIReviewEvidence(item); err != nil {
+		t.Fatalf("expected governed variant coverage to pass, got %v", err)
 	}
 }
 

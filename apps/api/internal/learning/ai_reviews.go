@@ -56,6 +56,7 @@ type AIReviewEvidence struct {
 	Confidence             float64           `json:"confidence"`
 	CriterionResults       map[string]any    `json:"criterion_results"`
 	SourceIDs              []string          `json:"source_ids"`
+	ReviewedVariantIDs     []string          `json:"reviewed_variant_ids"`
 	EvidenceNotes          string            `json:"evidence_notes"`
 	SupersedesID           string            `json:"supersedes_id,omitempty"`
 	Findings               []AIReviewFinding `json:"findings"`
@@ -89,12 +90,16 @@ type AIReviewPage struct {
 }
 
 type AIReviewSummary struct {
-	Total              int            `json:"total"`
-	ByLane             map[string]int `json:"by_lane"`
-	ByStatus           map[string]int `json:"by_status"`
-	ByRiskTier         map[string]int `json:"by_risk_tier"`
-	BlockingFindings   int            `json:"blocking_findings"`
-	EscalationFindings int            `json:"escalation_findings"`
+	Total                  int            `json:"total"`
+	PackCount              int            `json:"packs"`
+	VariantCount           int            `json:"variants"`
+	ByLane                 map[string]int `json:"by_lane"`
+	ByStatus               map[string]int `json:"by_status"`
+	ByRiskTier             map[string]int `json:"by_risk_tier"`
+	Stale                  int            `json:"stale"`
+	BlockingFindings       int            `json:"blocking_findings"`
+	EscalationFindings     int            `json:"escalation_findings"`
+	ControlledPilotAllowed bool           `json:"controlled_pilot_allowed"`
 }
 
 type AIReviewEligibility struct {
@@ -227,6 +232,20 @@ func ValidateAIReviewEvidence(review AIReviewEvidence) error {
 	if len(review.SourceIDs) == 0 {
 		return invalidConfig("at least one source id is required")
 	}
+	if review.ContentType == "pack" && len(review.ReviewedVariantIDs) != 0 {
+		return invalidConfig("pack review evidence cannot claim variant coverage")
+	}
+	if review.ContentType != "pack" && len(review.ReviewedVariantIDs) == 0 {
+		return invalidConfig("variant review evidence must identify covered variants")
+	}
+	seenVariants := map[string]bool{}
+	for _, variantID := range review.ReviewedVariantIDs {
+		variantID = strings.TrimSpace(variantID)
+		if variantID == "" || seenVariants[variantID] {
+			return invalidConfig("reviewed variant ids must be non-empty and unique")
+		}
+		seenVariants[variantID] = true
+	}
 	lowerNotes := strings.ToLower(review.EvidenceNotes)
 	for _, claim := range []string{"teacher approved", "send specialist approved", "human reviewed", "safeguarding approved"} {
 		if strings.Contains(lowerNotes, claim) {
@@ -272,6 +291,12 @@ func comparableAIReview(review AIReviewEvidence) AIReviewEvidence {
 	}
 	if review.SourceIDs == nil {
 		review.SourceIDs = []string{}
+	}
+	if review.ReviewedVariantIDs == nil {
+		review.ReviewedVariantIDs = []string{}
+	}
+	for index := range review.ReviewedVariantIDs {
+		review.ReviewedVariantIDs[index] = strings.TrimSpace(review.ReviewedVariantIDs[index])
 	}
 	if review.Findings == nil {
 		review.Findings = []AIReviewFinding{}
@@ -327,13 +352,17 @@ func (r *PostgresRepository) SaveAIReviewEvidence(ctx context.Context, review AI
 	if err != nil {
 		return review, err
 	}
+	reviewedVariantIDs, err := json.Marshal(review.ReviewedVariantIDs)
+	if err != nil {
+		return review, err
+	}
 	var createdAt time.Time
 	err = tx.QueryRow(ctx, `
 		INSERT INTO ai_review_evidence(
 			content_id,content_type,content_revision,content_hash,pack_id,year_group,subject,
 			lane_id,status,risk_tier,rubric_revision,source_set_revision,reviewer_implementation,
-			model_identifier,confidence,criterion_results,source_ids,evidence_notes,supersedes_id
-		) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16::jsonb,$17::jsonb,$18,NULLIF($19,'')::uuid)
+			model_identifier,confidence,criterion_results,source_ids,reviewed_variant_ids,evidence_notes,supersedes_id
+		) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16::jsonb,$17::jsonb,$18::jsonb,$19,NULLIF($20,'')::uuid)
 		ON CONFLICT(content_id,content_hash,lane_id,rubric_revision,source_set_revision,reviewer_implementation)
 		DO NOTHING
 		RETURNING id::text,created_at
@@ -341,7 +370,7 @@ func (r *PostgresRepository) SaveAIReviewEvidence(ctx context.Context, review AI
 		review.PackID, review.YearGroup, review.Subject, review.LaneID, review.Status,
 		review.RiskTier, review.RubricRevision, review.SourceSetRevision,
 		review.ReviewerImplementation, review.ModelIdentifier, review.Confidence,
-		criterionResults, sourceIDs, review.EvidenceNotes, review.SupersedesID,
+		criterionResults, sourceIDs, reviewedVariantIDs, review.EvidenceNotes, review.SupersedesID,
 	).Scan(&review.ID, &createdAt)
 	if errors.Is(err, pgx.ErrNoRows) {
 		existing, findErr := r.aiReviewByIdentity(ctx, tx, ReviewIdentityFromEvidence(review), review.LaneID)
@@ -410,11 +439,12 @@ func (r *PostgresRepository) SaveAIReviewEvidence(ctx context.Context, review AI
 
 func (r *PostgresRepository) aiReviewByIdentity(ctx context.Context, exec queryExecutor, identity ReviewIdentity, laneID string) (AIReviewEvidence, error) {
 	review, err := scanAIReviewEvidence(exec.QueryRow(ctx, `
-		SELECT id::text,content_id,content_type,content_revision,content_hash,pack_id,year_group,
-		       subject,lane_id,status,risk_tier,rubric_revision,source_set_revision,
-		       reviewer_implementation,model_identifier,confidence,criterion_results,source_ids,
-		       evidence_notes,COALESCE(supersedes_id::text,''),created_at
-		FROM ai_review_evidence
+		SELECT e.id::text,e.content_id,e.content_type,e.content_revision,e.content_hash,e.pack_id,e.year_group,
+		       e.subject,e.lane_id,e.status,e.risk_tier,e.rubric_revision,e.source_set_revision,
+		       e.reviewer_implementation,e.model_identifier,e.confidence,e.criterion_results,e.source_ids,
+		       e.reviewed_variant_ids,e.evidence_notes,COALESCE(e.supersedes_id::text,''),e.created_at,
+		       EXISTS(SELECT 1 FROM ai_review_evidence newer WHERE newer.supersedes_id=e.id)
+		FROM ai_review_evidence e
 		WHERE content_id=$1 AND content_hash=$2 AND lane_id=$3 AND rubric_revision=$4
 		  AND source_set_revision=$5 AND reviewer_implementation=$6
 	`, identity.ContentID, identity.ContentHash, laneID, identity.RubricRevision,
@@ -458,19 +488,20 @@ func (r *PostgresRepository) ListAIReviewEvidence(ctx context.Context, query AIR
 		beforeID = query.BeforeID
 	}
 	rows, err := r.db.Query(ctx, `
-		SELECT id::text,content_id,content_type,content_revision,content_hash,pack_id,year_group,
-		       subject,lane_id,status,risk_tier,rubric_revision,source_set_revision,
-		       reviewer_implementation,model_identifier,confidence,criterion_results,source_ids,
-		       evidence_notes,COALESCE(supersedes_id::text,''),created_at
-		FROM ai_review_evidence
-		WHERE ($1='' OR lane_id=$1)
-		  AND ($2='' OR status=$2)
-		  AND ($3='' OR risk_tier=$3)
-		  AND ($4=0 OR year_group=$4)
-		  AND ($5='' OR subject=$5)
-		  AND ($6='' OR pack_id=$6)
-		  AND ($7::timestamptz IS NULL OR (created_at,id) < ($7::timestamptz,$8::uuid))
-		ORDER BY created_at DESC,id DESC
+		SELECT e.id::text,e.content_id,e.content_type,e.content_revision,e.content_hash,e.pack_id,e.year_group,
+		       e.subject,e.lane_id,e.status,e.risk_tier,e.rubric_revision,e.source_set_revision,
+		       e.reviewer_implementation,e.model_identifier,e.confidence,e.criterion_results,e.source_ids,
+		       e.reviewed_variant_ids,e.evidence_notes,COALESCE(e.supersedes_id::text,''),e.created_at,
+		       EXISTS(SELECT 1 FROM ai_review_evidence newer WHERE newer.supersedes_id=e.id)
+		FROM ai_review_evidence e
+		WHERE ($1='' OR e.lane_id=$1)
+		  AND ($2='' OR e.status=$2)
+		  AND ($3='' OR e.risk_tier=$3)
+		  AND ($4=0 OR e.year_group=$4)
+		  AND ($5='' OR e.subject=$5)
+		  AND ($6='' OR e.pack_id=$6)
+		  AND ($7::timestamptz IS NULL OR (e.created_at,e.id) < ($7::timestamptz,$8::uuid))
+		ORDER BY e.created_at DESC,e.id DESC
 		LIMIT $9
 	`, strings.TrimSpace(query.LaneID), strings.TrimSpace(query.Status), strings.TrimSpace(query.RiskTier),
 		query.YearGroup, strings.TrimSpace(query.Subject), strings.TrimSpace(query.PackID),
@@ -560,8 +591,12 @@ func (r *PostgresRepository) SummariseAIReviews(ctx context.Context) (AIReviewSu
 		ByRiskTier: map[string]int{},
 	}
 	rows, err := r.db.Query(ctx, `
+		WITH current_evidence AS (
+			SELECT e.* FROM ai_review_evidence e
+			WHERE NOT EXISTS (SELECT 1 FROM ai_review_evidence newer WHERE newer.supersedes_id=e.id)
+		)
 		SELECT lane_id,status,risk_tier,count(*)
-		FROM ai_review_evidence
+		FROM current_evidence
 		GROUP BY lane_id,status,risk_tier
 		ORDER BY lane_id,status,risk_tier
 	`)
@@ -586,6 +621,28 @@ func (r *PostgresRepository) SummariseAIReviews(ctx context.Context) (AIReviewSu
 	}
 	rows.Close()
 	if err := r.db.QueryRow(ctx, `
+		WITH current_evidence AS (
+			SELECT e.* FROM ai_review_evidence e
+			WHERE NOT EXISTS (SELECT 1 FROM ai_review_evidence newer WHERE newer.supersedes_id=e.id)
+		), identities AS (
+			SELECT content_id,content_hash,rubric_revision,source_set_revision,reviewer_implementation,
+			       count(*) FILTER (WHERE lane_id='ai_curriculum_lead' AND status IN ('approved','approved_with_observation')) AS curriculum_approved,
+			       count(*) FILTER (WHERE lane_id='ai_send_lead' AND status IN ('approved','approved_with_observation')) AS send_approved
+			FROM current_evidence
+			GROUP BY content_id,content_hash,rubric_revision,source_set_revision,reviewer_implementation
+		), covered_variants AS (
+			SELECT DISTINCT jsonb_array_elements_text(reviewed_variant_ids) AS variant_id
+			FROM current_evidence
+		)
+		SELECT
+			(SELECT count(DISTINCT pack_id) FROM current_evidence),
+			(SELECT count(*) FROM covered_variants),
+			(SELECT count(*) FROM ai_review_evidence e WHERE EXISTS (SELECT 1 FROM ai_review_evidence newer WHERE newer.supersedes_id=e.id)),
+			COALESCE((SELECT count(*) > 0 AND bool_and(curriculum_approved > 0 AND send_approved > 0) FROM identities),false)
+	`).Scan(&summary.PackCount, &summary.VariantCount, &summary.Stale, &summary.ControlledPilotAllowed); err != nil {
+		return summary, err
+	}
+	if err := r.db.QueryRow(ctx, `
 		SELECT count(*) FILTER (WHERE severity='blocking'),
 		       count(*) FILTER (WHERE severity='escalation')
 		FROM ai_review_findings
@@ -600,7 +657,7 @@ func encodeAIReviewCursor(createdAt time.Time, id string) string {
 	return base64.RawURLEncoding.EncodeToString(payload)
 }
 
-func decodeAIReviewCursor(cursor string) (time.Time, string, error) {
+func DecodeAIReviewCursor(cursor string) (time.Time, string, error) {
 	raw, err := base64.RawURLEncoding.DecodeString(strings.TrimSpace(cursor))
 	if err != nil {
 		return time.Time{}, "", invalidConfig("invalid review cursor")
@@ -629,13 +686,14 @@ func queryReviewEvidence(ctx context.Context, exec queryExecutor, identities []R
 		contentIDs = append(contentIDs, identity.ContentID)
 	}
 	rows, err := exec.Query(ctx, `
-		SELECT id::text,content_id,content_type,content_revision,content_hash,pack_id,year_group,
-		       subject,lane_id,status,risk_tier,rubric_revision,source_set_revision,
-		       reviewer_implementation,model_identifier,confidence,criterion_results,source_ids,
-		       evidence_notes,COALESCE(supersedes_id::text,''),created_at
-		FROM ai_review_evidence
-		WHERE content_id = ANY($1)
-		ORDER BY created_at DESC,id DESC
+		SELECT e.id::text,e.content_id,e.content_type,e.content_revision,e.content_hash,e.pack_id,e.year_group,
+		       e.subject,e.lane_id,e.status,e.risk_tier,e.rubric_revision,e.source_set_revision,
+		       e.reviewer_implementation,e.model_identifier,e.confidence,e.criterion_results,e.source_ids,
+		       e.reviewed_variant_ids,e.evidence_notes,COALESCE(e.supersedes_id::text,''),e.created_at,
+		       EXISTS(SELECT 1 FROM ai_review_evidence newer WHERE newer.supersedes_id=e.id)
+		FROM ai_review_evidence e
+		WHERE e.content_id = ANY($1)
+		ORDER BY e.created_at DESC,e.id DESC
 	`, contentIDs)
 	if err != nil {
 		return nil, err
@@ -654,14 +712,14 @@ func queryReviewEvidence(ctx context.Context, exec queryExecutor, identities []R
 
 func scanAIReviewEvidence(row pgx.Row) (AIReviewEvidence, error) {
 	var review AIReviewEvidence
-	var criterionRaw, sourceRaw []byte
+	var criterionRaw, sourceRaw, reviewedVariantRaw []byte
 	var createdAt time.Time
 	err := row.Scan(
 		&review.ID, &review.ContentID, &review.ContentType, &review.ContentRevision, &review.ContentHash,
 		&review.PackID, &review.YearGroup, &review.Subject, &review.LaneID, &review.Status,
 		&review.RiskTier, &review.RubricRevision, &review.SourceSetRevision,
 		&review.ReviewerImplementation, &review.ModelIdentifier, &review.Confidence,
-		&criterionRaw, &sourceRaw, &review.EvidenceNotes, &review.SupersedesID, &createdAt,
+		&criterionRaw, &sourceRaw, &reviewedVariantRaw, &review.EvidenceNotes, &review.SupersedesID, &createdAt, &review.Stale,
 	)
 	if err != nil {
 		return review, err
@@ -672,6 +730,10 @@ func scanAIReviewEvidence(row pgx.Row) (AIReviewEvidence, error) {
 	}
 	review.SourceIDs = []string{}
 	if err := json.Unmarshal(sourceRaw, &review.SourceIDs); err != nil {
+		return review, err
+	}
+	review.ReviewedVariantIDs = []string{}
+	if err := json.Unmarshal(reviewedVariantRaw, &review.ReviewedVariantIDs); err != nil {
 		return review, err
 	}
 	review.Findings = []AIReviewFinding{}
