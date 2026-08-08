@@ -107,6 +107,9 @@ func (s *Server) handleAIReviewSummary(w http.ResponseWriter, r *http.Request) {
 		"blocking_findings":          summary.BlockingFindings,
 		"escalation_findings":        summary.EscalationFindings,
 		"controlled_pilot_allowed":   summary.ControlledPilotAllowed,
+		"rubric_revision":            summary.RubricRevision,
+		"source_set_revision":        summary.SourceSetRevision,
+		"reviewer_implementation":    summary.ReviewerImplementation,
 	})
 }
 

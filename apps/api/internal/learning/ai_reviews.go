@@ -100,6 +100,9 @@ type AIReviewSummary struct {
 	BlockingFindings       int            `json:"blocking_findings"`
 	EscalationFindings     int            `json:"escalation_findings"`
 	ControlledPilotAllowed bool           `json:"controlled_pilot_allowed"`
+	RubricRevision         string         `json:"rubric_revision"`
+	SourceSetRevision      string         `json:"source_set_revision"`
+	ReviewerImplementation string         `json:"reviewer_implementation"`
 }
 
 type AIReviewEligibility struct {
@@ -638,8 +641,12 @@ func (r *PostgresRepository) SummariseAIReviews(ctx context.Context) (AIReviewSu
 			(SELECT count(DISTINCT pack_id) FROM current_evidence),
 			(SELECT count(*) FROM covered_variants),
 			(SELECT count(*) FROM ai_review_evidence e WHERE EXISTS (SELECT 1 FROM ai_review_evidence newer WHERE newer.supersedes_id=e.id)),
-			COALESCE((SELECT count(*) > 0 AND bool_and(curriculum_approved > 0 AND send_approved > 0) FROM identities),false)
-	`).Scan(&summary.PackCount, &summary.VariantCount, &summary.Stale, &summary.ControlledPilotAllowed); err != nil {
+			COALESCE((SELECT count(*) > 0 AND bool_and(curriculum_approved > 0 AND send_approved > 0) FROM identities),false),
+			COALESCE((SELECT CASE WHEN count(DISTINCT rubric_revision)=1 THEN min(rubric_revision) ELSE '' END FROM current_evidence),''),
+			COALESCE((SELECT CASE WHEN count(DISTINCT source_set_revision)=1 THEN min(source_set_revision) ELSE '' END FROM current_evidence),''),
+			COALESCE((SELECT CASE WHEN count(DISTINCT reviewer_implementation)=1 THEN min(reviewer_implementation) ELSE '' END FROM current_evidence),'')
+	`).Scan(&summary.PackCount, &summary.VariantCount, &summary.Stale, &summary.ControlledPilotAllowed,
+		&summary.RubricRevision, &summary.SourceSetRevision, &summary.ReviewerImplementation); err != nil {
 		return summary, err
 	}
 	if err := r.db.QueryRow(ctx, `

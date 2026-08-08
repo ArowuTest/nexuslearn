@@ -707,7 +707,7 @@ git commit -m "Enforce AI and human content release gates"
 - Consumes: Task 6 API and existing `accountSessionHeaders`/`accountSessionRole`.
 - Produces: `getAIReviews(query): Promise<AIReviewPage>`, `getAIReviewSummary(): Promise<AIReviewSummary>`, `saveAIReview(input): Promise<AIReviewEvidence>` and authenticated review/release UI.
 
-- [ ] **Step 1: Write a failing Playwright admin review journey**
+- [x] **Step 1: Write a failing Playwright admin review journey**
 
 ```ts
 test("reviewer filters the SEND queue and sees honest release gates", async ({ page }) => {
@@ -725,7 +725,7 @@ test("reviewer filters the SEND queue and sees honest release gates", async ({ p
 });
 ```
 
-- [ ] **Step 2: Run the focused browser test and verify UI failure**
+- [x] **Step 2: Run the focused browser test and verify UI failure**
 
 Run: `npx playwright test tests/e2e/admin-review-workflow.spec.ts --project=desktop-chromium`
 
@@ -733,17 +733,17 @@ Working directory: `apps/web`
 
 Expected: FAIL because the review section is absent.
 
-- [ ] **Step 3: Implement the typed client**
+- [x] **Step 3: Implement the typed client**
 
 Define exact API response types mirroring the Go JSON types. Apply `accountSessionHeaders(["platform_admin", "content_editor", "content_reviewer"])`, `cache: "no-store"`, URLSearchParams filters, opaque cursor and a generated UUID `Idempotency-Key` for saves. Throw API-provided messages without logging credentials or evidence payloads.
 
-- [ ] **Step 4: Implement the review workspace**
+- [x] **Step 4: Implement the review workspace**
 
 Render lane, status, risk, year, subject and pack filters; cursor-based next-page navigation; content identity and stale state; criterion outcomes; sources; findings; prior revision linkage; and a decision editor. Disable approval when a blocking criterion fails, required source IDs are missing, the hash changed or the API summary reports a stale batch.
 
 Use visible labels `AI Curriculum Lead` and `AI SEND Lead`, followed by the fixed disclosure `AI review evidence — not independent human professional approval.`
 
-- [ ] **Step 5: Implement the release-gate panel and integrate admin navigation**
+- [x] **Step 5: Implement the release-gate panel and integrate admin navigation**
 
 Show separate sections:
 
@@ -752,7 +752,7 @@ Show separate sections:
 
 Unauthenticated `/admin` continues to render only the existing simple sign-in card. Add `Reviews` to authenticated role navigation and keep the existing administration sections behind the session boundary.
 
-- [ ] **Step 6: Run Playwright, Axe, lint and production build**
+- [x] **Step 6: Run Playwright, Axe, lint and production build**
 
 Run: `npx playwright test tests/e2e/admin-review-workflow.spec.ts --project=desktop-chromium`
 
@@ -762,7 +762,7 @@ Run: `npm run build`
 
 Expected: all commands pass; no serious or critical Axe violations; unauthenticated tests find no review data.
 
-- [ ] **Step 7: Commit the admin workspace**
+- [x] **Step 7: Commit the admin workspace**
 
 ```bash
 git add apps/web/src/lib/admin-reviews.ts apps/web/src/components/admin/AdminReviewWorkspace.tsx apps/web/src/components/admin/AdminReleaseGate.tsx apps/web/src/app/admin/page.tsx apps/web/tests/e2e/admin-review-workflow.spec.ts
@@ -781,7 +781,7 @@ git commit -m "Add authenticated AI review workspace"
 - Consumes: Task 5 full evidence report and Task 6 POST endpoint.
 - Produces: idempotent evidence import and a release snapshot that reports database-backed gate state separately from source projections.
 
-- [ ] **Step 1: Write failing import idempotency tests**
+- [x] **Step 1: Write failing import idempotency tests**
 
 ```js
 test("import key is stable for one immutable review identity", () => {
@@ -795,21 +795,21 @@ test("import refuses evidence absent from the current review batch", async () =>
 });
 ```
 
-- [ ] **Step 2: Run and confirm missing implementation failure**
+- [x] **Step 2: Run and confirm missing implementation failure**
 
 Run: `node --test packages/content/tools/import-ai-review-evidence.test.mjs`
 
 Expected: FAIL because import functions are missing.
 
-- [ ] **Step 3: Implement resumable import**
+- [x] **Step 3: Implement resumable import**
 
 Read the full evidence ledger, verify its self-hash, reconcile every review-unit identity with the current batch, sort by immutable identity, POST each decision with idempotency key `sha256(content_id + content_hash + lane_id + rubric_revision + source_set_revision + reviewer_implementation)`, retry 429/502/503/504 with bounded exponential backoff, stop on 400/401/403/409 and write only aggregate progress to stdout. Never print bearer tokens, evidence text or learner data.
 
-- [ ] **Step 4: Separate source projection from backend release state**
+- [x] **Step 4: Separate source projection from backend release state**
 
 Update `content-release-snapshot.mjs` to label generated source figures `source_review_projection` and API figures `backend_release_state`. It must refuse to report `promotion_allowed: true` when the API is unavailable, the response revision differs or either AI lane is incomplete.
 
-- [ ] **Step 5: Run tests and a dry-run import**
+- [x] **Step 5: Run tests and a dry-run import**
 
 Run: `node --test packages/content/tools/import-ai-review-evidence.test.mjs`
 
@@ -817,7 +817,7 @@ Run: `node packages/content/tools/import-ai-review-evidence.mjs --dry-run`
 
 Expected: the dry run reports the exact number of evidence records, zero malformed identities and zero network writes.
 
-- [ ] **Step 6: Commit importer and release reconciliation**
+- [x] **Step 6: Commit importer and release reconciliation**
 
 ```bash
 git add packages/content/tools/import-ai-review-evidence.mjs packages/content/tools/import-ai-review-evidence.test.mjs packages/content/tools/content-release-snapshot.mjs apps/web/package.json

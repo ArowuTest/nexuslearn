@@ -92,6 +92,9 @@ export function reconcileEvidence(batch, decisionInput, { rubric, sourceRegistry
   const reviewUnits = collectReviewUnits(batch);
   const decisionIndex = new Map();
   for (const decision of decisions) {
+    if (decision.decision_batch_hash && decision.decision_batch_hash !== batch.batch_hash) {
+      throw new Error(`decision cohort for ${decision.content_id} does not match the current batch`);
+    }
     validateDecision(decision, { rubric, sourceRegistry });
     const key = `${decision.content_id}\u0000${decision.lane_id}`;
     if (decisionIndex.has(key)) throw new Error(`duplicate decision for ${decision.content_id} ${decision.lane_id}`);
@@ -226,7 +229,7 @@ export function authorReviewCohort(batch, { rubric, sourceRegistry, yearGroup, m
       const reviewedVariantIDs = unit.content_type === "variant"
         ? [unit.content_id]
         : unit.content_type === "variant_family"
-          ? [...(unit.boundary_case_ids ?? [])]
+          ? [...(unit.covered_variant_ids ?? [])]
           : [];
       const label = laneID === "ai_curriculum_lead" ? "AI Curriculum Lead" : "AI SEND Lead";
       const scope = unit.content_type === "pack"

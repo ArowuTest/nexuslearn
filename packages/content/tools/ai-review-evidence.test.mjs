@@ -95,6 +95,20 @@ test("missing and stale lane decisions are never converted into approval", () =>
   assert.equal(result.controlled_pilot_allowed, false);
 });
 
+test("a decision cohort from an older batch cannot be reported as current", () => {
+  assert.throws(
+    () => reconcileEvidence(fixtureBatch, {
+      cohorts: [{
+        batch_hash: "0".repeat(64),
+        reviewer_implementation: fixtureBatch.reviewer_implementation,
+        model_identifier: "gpt-5",
+        decisions: completeDecisions(),
+      }],
+    }, { rubric, sourceRegistry }),
+    /decision cohort.*current batch/,
+  );
+});
+
 test("family decisions cannot cover Tier 2 or Tier 3 variants", () => {
   const invalidBatch = structuredClone(fixtureBatch);
   invalidBatch.packs[0].variant_families[0].member_ids.push("v2");
@@ -124,6 +138,7 @@ test("authored cohorts emit complete dual-lane decisions without hiding blockers
   const cohort = authorReviewCohort(fixtureBatch, { rubric, sourceRegistry, yearGroup: 3, modelIdentifier: "gpt-5" });
   assert.equal(cohort.decisions.length, 6);
   for (const item of cohort.decisions) validateDecision(item, { rubric, sourceRegistry });
+  assert.deepEqual(cohort.decisions.find((item) => item.content_type === "variant_family").reviewed_variant_ids, ["v1"]);
 
   const blockedBatch = structuredClone(fixtureBatch);
   blockedBatch.packs[0].variants[1].findings = [{

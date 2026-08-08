@@ -128,6 +128,8 @@ func TestAIReviewSummaryReturnsRepositoryCoverageAndReleaseState(t *testing.T) {
 		ByStatus:   map[string]int{"approved": 12380, "approved_with_observation": 848},
 		ByRiskTier: map[string]int{"tier_1": 14576, "tier_2": 4800, "tier_3": 834},
 		Stale:      0, ControlledPilotAllowed: true,
+		RubricRevision: "curriculum-send-v1", SourceSetRevision: "sources-v1",
+		ReviewerImplementation: "nexuslearn-ai-curriculum-send-review-v1",
 	}
 	request := httptest.NewRequest(http.MethodGet, "/v1/admin/ai-reviews/summary", nil)
 	request.Header.Set("Authorization", "Bearer "+token)
@@ -150,6 +152,10 @@ func TestAIReviewSummaryReturnsRepositoryCoverageAndReleaseState(t *testing.T) {
 	}
 	if body["controlled_pilot_allowed"] != true {
 		t.Fatalf("expected controlled pilot eligibility, body=%#v", body)
+	}
+	if body["rubric_revision"] != "curriculum-send-v1" || body["source_set_revision"] != "sources-v1" ||
+		body["reviewer_implementation"] != "nexuslearn-ai-curriculum-send-review-v1" {
+		t.Fatalf("expected active review revisions, body=%#v", body)
 	}
 }
 

@@ -10,6 +10,7 @@ const packsDir = path.join(repoRoot, "packages/content/packs");
 const generatedDir = path.join(repoRoot, "packages/content/generated");
 const previewsDir = path.join(generatedDir, "previews");
 const policyPath = path.join(repoRoot, "packages/content/roadmaps/content-release-policy.json");
+const aiEvidencePath = path.join(repoRoot, "packages/content/generated/coverage/ai-review-evidence.json");
 const webContentDir = path.join(repoRoot, "apps/web/public/content");
 const outArg = argValue("--out");
 const outDir = outArg ? path.resolve(process.cwd(), outArg) : path.join(repoRoot, "packages/content/generated/coverage");
@@ -35,7 +36,53 @@ function packFiles() {
   return fs.readdirSync(packsDir).filter((file) => file.endsWith(".json")).sort();
 }
 
-function collect() {
+export function reconcileReviewGate(source, backend) {
+  const unavailable = !backend || backend.available === false;
+  const revisionMatch = !unavailable &&
+    backend.rubric_revision === source.rubric_revision &&
+    backend.source_set_revision === source.source_set_revision &&
+    backend.reviewer_implementation === source.reviewer_implementation;
+  const expectedPerLane = source.review_units;
+  const coverageMatch = !unavailable &&
+    backend.packs === source.packs && backend.variants === source.variants &&
+    backend.current_ai_curriculum_lead === expectedPerLane && backend.current_ai_send_lead === expectedPerLane;
+  const gatesClear = !unavailable && backend.controlled_pilot_allowed === true &&
+    backend.stale === 0 && backend.revision_required === 0 && backend.escalation_required === 0 &&
+    backend.blocking_findings === 0 && backend.escalation_findings === 0;
+  const promotionAllowed = source.controlled_pilot_allowed === true && revisionMatch && coverageMatch && gatesClear;
+  return {
+    ...(backend ?? {}),
+    available: !unavailable,
+    revision_match: revisionMatch,
+    coverage_match: coverageMatch,
+    promotion_allowed: promotionAllowed,
+    reason: promotionAllowed ? "source and backend AI review gates match" :
+      unavailable ? "backend review state unavailable" :
+        !revisionMatch ? "backend review revision differs from source" :
+          !coverageMatch ? "backend review coverage is incomplete" : "backend review gates are not clear",
+  };
+}
+
+function sourceReviewProjection() {
+  if (!fileExists(aiEvidencePath)) return { available: false, controlled_pilot_allowed: false };
+  const evidence = readJSON(aiEvidencePath);
+  return {
+    available: true,
+    batch_id: evidence.batch_id,
+    batch_hash: evidence.batch_hash,
+    rubric_revision: evidence.rubric_revision,
+    source_set_revision: evidence.source_set_revision,
+    reviewer_implementation: evidence.reviewer_implementation,
+    packs: evidence.totals?.packs ?? 0,
+    variants: evidence.totals?.variants ?? 0,
+    review_units: evidence.totals?.review_units ?? 0,
+    current_lane_decisions: evidence.totals?.current_lane_decisions ?? 0,
+    stale: evidence.totals?.stale_decisions ?? 0,
+    controlled_pilot_allowed: evidence.controlled_pilot_allowed === true,
+  };
+}
+
+function collect(backendState) {
   const policy = readJSON(policyPath);
   const allowedChannels = new Set(policy.policy?.allowed_channels ?? []);
   const failures = [];
@@ -107,12 +154,18 @@ function collect() {
     rows.push(row);
   }
 
+  const sourceProjection = sourceReviewProjection();
+  const reconciledBackend = reconcileReviewGate(sourceProjection, backendState);
   return {
     version: policy.version,
     status: policy.status,
     generated_by: "packages/content/tools/content-release-snapshot.mjs",
     generated_at: new Date().toISOString(),
     policy: policy.policy,
+    source_review_projection: sourceProjection,
+    backend_release_state: reconciledBackend,
+    promotion_allowed: reconciledBackend.promotion_allowed,
+    production_release_allowed: false,
     totals: {
       packs: rows.length,
       authoring: channelCounts.authoring ?? 0,
@@ -127,6 +180,23 @@ function collect() {
     warnings,
     packs: rows,
   };
+}
+
+async function loadBackendState() {
+  const statePath = argValue("--backend-state");
+  if (statePath) return { available: true, ...readJSON(path.resolve(process.cwd(), statePath)) };
+  const apiURL = argValue("--api-url") ?? process.env.NEXUSLEARN_API_URL;
+  const token = process.env.NEXUSLEARN_ACCOUNT_SESSION;
+  if (!apiURL || !token) return { available: false };
+  try {
+    const response = await fetch(`${apiURL.replace(/\/$/, "")}/v1/admin/ai-reviews/summary`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (!response.ok) return { available: false, status: response.status };
+    return { available: true, ...(await response.json()) };
+  } catch {
+    return { available: false };
+  }
 }
 
 function htmlEscape(value) {
@@ -193,13 +263,19 @@ function writeReports(report) {
   return { jsonPath, htmlPath, webJSONPath };
 }
 
-const report = collect();
-const paths = writeReports(report);
-console.log(`content-release packs=${report.totals.packs} failures=${report.totals.failures} warnings=${report.totals.warnings}`);
-console.log(`content-release written ${path.relative(process.cwd(), paths.jsonPath)}`);
-console.log(`content-release written ${path.relative(process.cwd(), paths.htmlPath)}`);
-console.log(`content-release web asset ${path.relative(process.cwd(), paths.webJSONPath)}`);
-if (report.totals.failures > 0) {
-  for (const failure of report.failures) console.error(`release failure ${failure}`);
-  process.exit(1);
+if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(fileURLToPath(import.meta.url))) {
+  const report = collect(await loadBackendState());
+  const paths = writeReports(report);
+  console.log(`content-release packs=${report.totals.packs} failures=${report.totals.failures} warnings=${report.totals.warnings} backend=${report.backend_release_state.available ? "available" : "unavailable"} promotion=${report.promotion_allowed}`);
+  console.log(`content-release written ${path.relative(process.cwd(), paths.jsonPath)}`);
+  console.log(`content-release written ${path.relative(process.cwd(), paths.htmlPath)}`);
+  console.log(`content-release web asset ${path.relative(process.cwd(), paths.webJSONPath)}`);
+  if (report.totals.failures > 0) {
+    for (const failure of report.failures) console.error(`release failure ${failure}`);
+    process.exitCode = 1;
+  }
+  if (process.argv.includes("--strict-backend") && !report.promotion_allowed) {
+    console.error(`release failure ${report.backend_release_state.reason}`);
+    process.exitCode = 1;
+  }
 }
