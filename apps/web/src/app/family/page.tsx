@@ -80,10 +80,14 @@ export default function FamilyPage() {
 
   useEffect(() => {
     const token = new URLSearchParams(window.location.search).get("invitation");
-    if (token) {
+    if (!token) return;
+    let active = true;
+    queueMicrotask(() => {
+      if (!active) return;
       setInvitation(token);
       setMessage("Invitation found. Choose your parent account name and password to accept it.");
-    }
+    });
+    return () => { active = false; };
   }, []);
 
   async function signup() {

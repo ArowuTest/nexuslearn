@@ -1,7 +1,7 @@
 "use client";
 
 import type { CSSProperties } from "react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import ChildJourneyChrome, { ApiStateCard } from "@/components/ChildJourneyChrome";
 import Dino, { type DinoMood } from "@/components/Dino";
@@ -211,12 +211,27 @@ export default function Mission() {
   const requestSequence = useRef(0);
   const attemptInFlight = useRef(false);
   const lessonStepInFlight = useRef(false);
+  const completionInFlight = useRef(false);
 
-  function clientRequestId(kind: string) {
+  const clientRequestId = useCallback((kind: string) => {
     requestSequence.current += 1;
     const uuid = typeof crypto !== "undefined" && typeof crypto.randomUUID === "function" ? crypto.randomUUID() : `${Date.now()}-${requestSequence.current}`;
     return `${kind}-${studentId}-${uuid}`;
-  }
+  }, [studentId]);
+
+  const recordLearningEvent = useCallback(async (eventType: string, payload: Record<string, unknown>) => {
+    if (!API || !studentId) return;
+    try {
+      await fetch(`${API}/v1/learning/event`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", ...pupilSessionHeaders(studentId) },
+        body: JSON.stringify({ id: clientRequestId("event"), student_id: studentId, event_type: eventType, payload }),
+        keepalive: true,
+      });
+    } catch {
+      // Event telemetry must never interrupt the learning interaction.
+    }
+  }, [clientRequestId, studentId]);
 
   function expectedValue(question: MissionConfig["questions"][number]) {
     const value = question.expected_answer?.value;
@@ -241,7 +256,9 @@ export default function Mission() {
   }
 
   useEffect(() => {
-    setRoute(readMissionRoute());
+    let active = true;
+    queueMicrotask(() => { if (active) setRoute(readMissionRoute()); });
+    return () => { active = false; };
   }, []);
 
   useEffect(() => {
@@ -249,6 +266,7 @@ export default function Mission() {
     async function loadMission() {
       setQuestions(null);
       setMission(null);
+      completionInFlight.current = false;
       setIdx(0);
       setInput("");
       setResults([]);
@@ -352,6 +370,7 @@ export default function Mission() {
               setVisualGuide(Boolean(data.runtime_adaptations?.visual_guide));
               setSwitchAccess(Boolean(data.runtime_adaptations?.switch_access));
               setMessage(String(data.activity?.prompt || "Answer to send energy through the portal."));
+              startRef.current = Date.now();
               setLoadState("ready");
               return;
             }
@@ -369,14 +388,13 @@ export default function Mission() {
     return () => {
       cancelled = true;
     };
-  }, [route.activityId, route.assessmentMode, route.hasRequestedStudent, route.mockAssessmentId, route.worldKey, studentId]);
+  }, [recordLearningEvent, route.activityId, route.assessmentMode, route.hasRequestedStudent, route.mockAssessmentId, route.worldKey, studentId]);
 
   const total = questions?.length ?? 0;
   const q = questions ? questions[Math.min(idx, total - 1)] : null;
 
   useEffect(() => {
     if (!switchAccess) {
-      setSwitchLabel("");
       return;
     }
 
@@ -430,14 +448,8 @@ export default function Mission() {
   const inLesson = teachingSequence.length > 0 && !lessonComplete;
 
   useEffect(() => {
-    startRef.current = Date.now();
-    setShowHint(false);
-    setConfidence(0);
-  }, [idx]);
-
-  useEffect(() => {
     if (q) void recordLearningEvent("question_seen", { question_id: q.id, objective_id: q.objectiveId, position: idx + 1 });
-  }, [idx, q?.id]);
+  }, [idx, q, recordLearningEvent]);
 
   useEffect(() => {
     lessonStartRef.current = Date.now();
@@ -446,7 +458,8 @@ export default function Mission() {
   useEffect(() => setMuted(mute), [mute]);
 
   useEffect(() => {
-    if (loadState === "ready" && total > 0 && done && !hatched) {
+    if (loadState === "ready" && total > 0 && done && !hatched && !completionInFlight.current) {
+      completionInFlight.current = true;
       void recordLearningEvent("assessment_completed", {
         activity_id: mission?.activity?.id || "",
         objective_id: mission?.objective?.id || "",
@@ -467,7 +480,7 @@ export default function Mission() {
           setMission((current) => current ? { ...current, world_state: worldState } : current);
         }
       }).catch(() => setProgressState("unavailable"));
-      setProgressState("loading");
+      queueMicrotask(() => setProgressState("loading"));
       const t = setTimeout(() => {
         setHatched(true);
         setMood("celebrate");
@@ -475,7 +488,7 @@ export default function Mission() {
       }, 700);
       return () => clearTimeout(t);
     }
-  }, [done, hatched, loadState, total]);
+  }, [done, hatched, loadState, mission?.activity?.id, mission?.objective?.id, mission?.world?.key, recordLearningEvent, results, studentId, total]);
 
   const accuracy = useMemo(
     () => (results.length ? Math.round((results.filter(Boolean).length / results.length) * 100) : 0),
@@ -551,6 +564,9 @@ export default function Mission() {
       sfx.correct();
       sfx.charge();
       setInput("");
+      startRef.current = Date.now();
+      setShowHint(false);
+      setConfidence(0);
       setIdx((i) => i + 1);
     } else {
       setResults((r) => [...r, false]);
@@ -561,6 +577,8 @@ export default function Mission() {
       if (route.mockAssessmentId) {
         setShowHint(false);
         setMessage(result.feedback || "That answer is saved. Let’s use the next question to build a clearer picture.");
+        startRef.current = Date.now();
+        setConfidence(0);
         setIdx((i) => i + 1);
       } else {
         setShowHint(true);
@@ -594,11 +612,14 @@ export default function Mission() {
   }
 
   function again() {
+    completionInFlight.current = false;
+    startRef.current = Date.now();
     setIdx(0);
     setInput("");
     setCharge(0);
     setXp(0);
     setConfidence(0);
+    setShowHint(false);
     setProjectedBand("Unknown");
     setMockSummary(undefined);
     setLessonIdx(0);
@@ -623,20 +644,6 @@ export default function Mission() {
         lesson_step: lessonStep?.step_id || "",
         muted: mute,
       });
-    }
-  }
-
-  async function recordLearningEvent(eventType: string, payload: Record<string, unknown>) {
-    if (!API || !studentId) return;
-    try {
-      await fetch(`${API}/v1/learning/event`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", ...pupilSessionHeaders(studentId) },
-        body: JSON.stringify({ id: clientRequestId("event"), student_id: studentId, event_type: eventType, payload }),
-        keepalive: true,
-      });
-    } catch {
-      // Event telemetry must never interrupt the learning interaction.
     }
   }
 

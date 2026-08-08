@@ -12,18 +12,22 @@ export default function PupilMockPage() {
   const [assessments, setAssessments] = useState<MockAssessment[]>([]);
   const [assessmentState, setAssessmentState] = useState<"loading" | "ready" | "unavailable">("loading");
   useEffect(() => {
-    const queryStudent = new URLSearchParams(window.location.search).get("studentId");
-    const storedStudent = sessionStorage.getItem("nexuslearn_pupil_id") || "";
-    const resolvedStudent = queryStudent || storedStudent;
-    setStudentId(resolvedStudent);
-    if (!resolvedStudent) {
-      setAssessmentState("ready");
-      return;
-    }
-    void Promise.allSettled([
-      getStudentProfile(resolvedStudent),
-      getPupilMockAssessments(resolvedStudent),
-    ]).then(([profileResult, assessmentResult]) => {
+    let active = true;
+    void Promise.resolve().then(async () => {
+      const queryStudent = new URLSearchParams(window.location.search).get("studentId");
+      const storedStudent = sessionStorage.getItem("nexuslearn_pupil_id") || "";
+      const resolvedStudent = queryStudent || storedStudent;
+      if (!active) return;
+      setStudentId(resolvedStudent);
+      if (!resolvedStudent) {
+        setAssessmentState("ready");
+        return;
+      }
+      const [profileResult, assessmentResult] = await Promise.allSettled([
+        getStudentProfile(resolvedStudent),
+        getPupilMockAssessments(resolvedStudent),
+      ]);
+      if (!active) return;
       if (profileResult.status === "fulfilled" && profileResult.value?.year_group) setYearGroup(profileResult.value.year_group);
       if (assessmentResult.status === "fulfilled") {
         setAssessments(assessmentResult.value);
@@ -32,6 +36,7 @@ export default function PupilMockPage() {
         setAssessmentState("unavailable");
       }
     });
+    return () => { active = false; };
   }, []);
 
   return (
