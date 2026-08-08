@@ -835,7 +835,7 @@ git commit -m "Reconcile AI reviews with backend release state"
 - Consumes: all prior tasks.
 - Produces: verified commands, current metrics, honest remaining human gates and a clean integration commit.
 
-- [ ] **Step 1: Run content and unit verification from a clean staging state**
+- [x] **Step 1: Run content and unit verification from a clean staging state**
 
 Run: `node --test packages/content/tools/lib/review-evidence.test.mjs packages/content/tools/ai-review-batch.test.mjs packages/content/tools/ai-review-evidence.test.mjs packages/content/tools/import-ai-review-evidence.test.mjs`
 
@@ -845,7 +845,7 @@ Working directory for the second command: `apps/web`
 
 Expected: PASS with 87 packs, 20,210 variants, zero missing AI lane decisions, zero stale approvals and zero unresolved blocking findings. If review discovers genuine content defects, those figures remain non-zero until source fixes and re-review are complete.
 
-- [ ] **Step 2: Run complete API verification**
+- [x] **Step 2: Run complete API verification**
 
 Run: `gofmt -w internal/learning/ai_reviews.go internal/learning/ai_reviews_test.go internal/learning/content_release.go internal/learning/content_release_test.go internal/server/ai_reviews.go internal/server/ai_reviews_test.go internal/server/content_reviews.go internal/server/content_reviews_test.go internal/server/server.go`
 
@@ -855,7 +855,7 @@ Working directory: `apps/api`
 
 Expected: PASS.
 
-- [ ] **Step 3: Run complete web verification**
+- [x] **Step 3: Run complete web verification**
 
 Run: `npm run lint`
 
@@ -877,7 +877,7 @@ Run: `node packages/content/tools/content-release-snapshot.mjs --strict-backend`
 
 Expected: the source and backend hashes match; controlled-pilot state reflects dual AI decisions; public production remains blocked until human safeguarding, required audio listening and child-pilot evidence are recorded.
 
-- [ ] **Step 5: Update governance documents with measured results**
+- [x] **Step 5: Update governance documents with measured results**
 
 Document exact executed counts and commands. State `AI Curriculum Lead approved` and `AI SEND Lead approved` only for evidence records that passed. State human safeguarding, human audio listening and real-child pilot as incomplete until their independent ledgers prove otherwise. Do not report technical validity as educational or human approval.
 

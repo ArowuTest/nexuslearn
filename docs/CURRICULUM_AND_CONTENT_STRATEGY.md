@@ -15,6 +15,23 @@ Companion implementation assets:
 - `packages/content/generated/coverage/y1-y7-core-coverage.html`
 - `packages/content/generated/coverage/next-pack-production-queue.html`
 
+## Current Governed Core Baseline (8 August 2026)
+
+The current core proof programme covers Years 1-7 in English, Mathematics and
+Science with 87 objective packs and 20,210 authored review variants. It has
+6,614 immutable pack/family/direct-variant review units and complete current
+dual-lane AI evidence (13,228 decisions). Family evidence records every covered
+variant identity while retaining explicit boundary cases for semantic sampling.
+
+This is a strong governed core baseline, not a claim that every statutory and
+foundation-subject curriculum area is production-released. Computing, History,
+French and Spanish remain planned expansion work. Public production also remains
+blocked until independent human safeguarding, required narration listening and
+real-child pilot evidence are complete and stored in their authoritative
+ledgers. Backend promotion is separate from generated source projections and is
+false until verified evidence import and revision/coverage reconciliation have
+succeeded.
+
 ## 1. Why This Matters
 
 The curriculum is the product. Animation makes the experience memorable, but curriculum quality makes the platform valuable to parents and schools.

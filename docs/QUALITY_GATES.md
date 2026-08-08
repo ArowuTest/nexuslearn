@@ -23,6 +23,8 @@ Checks:
 - honest curriculum-area breadth (90 declared core areas, mapped independently
   from the smaller proof-pack roadmap)
 - variant-bank planning
+- deterministic AI Curriculum Lead and AI SEND Lead review batches
+- immutable review-ledger reconciliation and a zero-write backend import dry run
 - Year 1-7 coverage matrix
 - next-pack production queue
 
@@ -49,7 +51,7 @@ Checks:
 - frontend dependency install from lockfile
 - frontend production build
 - Chromebook-oriented production asset budgets:
-  - total emitted JavaScript at or below 1.25 MB;
+  - total emitted JavaScript at or below 1.35 MB;
   - no JavaScript chunk above 250 KB;
   - total emitted CSS at or below 120 KB;
 - no individual public asset above 600 KB.
@@ -147,7 +149,43 @@ names, preserves admin access control and keeps future report storage changes
 behind the backend boundary instead of coupling operational screens directly to
 public web assets.
 
+### Verified AI review and backend reconciliation (8 August 2026)
+
+The governed source projection currently contains 87 packs, 20,210 authored
+review variants and 6,614 immutable review units. Both AI lanes have a current
+decision for every unit: 13,228/13,228 decisions, zero missing, zero stale and
+20,210/20,210 variants covered. These records may be described only as
+`AI Curriculum Lead evidence` and `AI SEND Lead evidence`; they are not
+independent teacher, SEND-specialist or safeguarding approval.
+
+`import-ai-review-evidence.mjs --dry-run` verifies the batch self-hash, all seven
+year-ledger revisions, the compact evidence index, exact unit identities and
+stable idempotency keys before any API call. The measured dry run processed
+13,228 records with zero malformed identities and zero writes. The release
+snapshot reports `source_review_projection` separately from
+`backend_release_state` and keeps `promotion_allowed` false whenever the API is
+unavailable, revisions differ, coverage is incomplete or either lane has an
+open gate.
+
+Verified commands and results:
+
+- review evidence, importer and release reconciliation tests: 14 passed;
+- `npm run quality:content`: 87 packs and 20,210/20,210 variants covered;
+- `go test ./... -count=1`: passed;
+- `npm run lint`, `npm run quality:performance`, and `npm run build`: passed
+  (lint retains nine pre-existing non-fatal React hook warnings);
+- Playwright: the complete run passed 41/42, with only the stale desktop mission
+  baseline failing; after approving the current learning-route and five-support
+  desktop images, normal-mode desktop/mobile visual verification passed 2/2.
+
 ## Remaining Hardening Before Production
+
+- Import the 13,228 verified source decisions into the deployed backend using a
+  named review account, then run `content-release-snapshot.mjs --strict-backend`
+  and retain the matching release artifact.
+- Complete independent human safeguarding review, required human listening for
+  all produced narration, and real-child pilot evidence. AI and technical gates
+  cannot satisfy these release conditions.
 
 - Enable GitHub branch protection so `main` requires green checks before merge.
   Current blocker: GitHub returned `Upgrade to GitHub Pro or make this

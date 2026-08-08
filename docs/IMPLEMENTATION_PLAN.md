@@ -34,6 +34,14 @@ nexuslearn/
 **Hosting:** Vercel (web), Render (API + managed PostgreSQL).
 **Audio strategy (tiered):** Produced, human-listened audio is required for child-facing narration and phonics. Years 1–2 use SSP-reviewed phoneme/word recordings and warm UK narration; companion and narrator batches may use a studio neural voice or human actor only after listening, safeguarding and accessibility approval. Every activity carries an optional `audio_url`; null shows an honest unavailable/preparation state and never silently falls back to browser TTS.
 
+**Current governed content state (8 August 2026):** 87 Year 1-7 English,
+Mathematics and Science packs; 20,210 authored review variants; 6,614 immutable
+review units; and 13,228/13,228 current AI Curriculum Lead/AI SEND Lead
+decisions. The importer dry run is complete, but deployed-backend import and
+strict reconciliation are still required. These AI decisions do not replace
+independent human safeguarding, produced-audio listening or real-child pilot
+evidence, so public production remains blocked.
+
 ## 3. Art & Animation Strategy (no asset packs required)
 
 Perceived quality in children's apps is ~70% motion/feedback, ~30% static art. Strategy:
@@ -141,7 +149,7 @@ PRD §28's 18 criteria adopted verbatim as the programme-level definition of don
 | Decision | Choice | Why |
 |---|---|---|
 | Art | Code-drawn (SVG rigs + procedural PixiJS) first | £0, animatable per-part, swap-in path for commissioned art later |
-| Audio | Browser TTS → Piper MP3s → ElevenLabs character voices | Narration is pre-generated; cost is pennies per content batch |
+| Audio | Produced neural or human MP3s with immutable manifests and human listening | Child runtime never uses browser TTS; voice/model/script/audio hashes preserve review validity and allow providers to change safely |
 | Adaptive v1 | Rules + Elo-style mastery | Explainable to teachers; ML needs data we don't have yet |
 | MVP cut | One world, maths-first, full architecture | Prove the loop; content scales after engine |
 | Repo | Private monorepo | Single deploy story, shared types via content package |
