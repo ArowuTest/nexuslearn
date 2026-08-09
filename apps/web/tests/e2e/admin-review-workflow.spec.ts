@@ -2,6 +2,8 @@ import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
 test("reviewer filters the SEND queue and sees honest release gates", async ({ page }) => {
+  test.setTimeout(60_000);
+  let narrationApproved = false;
   await page.addInitScript(() => {
     sessionStorage.setItem("nexuslearn_account_session", "reviewer-session-token");
     sessionStorage.setItem("nexuslearn_account_role", "content_reviewer");
@@ -96,7 +98,40 @@ test("reviewer filters the SEND queue and sees honest release gates", async ({ p
       await route.fulfill({ contentType: "application/json", body: JSON.stringify({ parent_invitations: [] }) });
       return;
     }
+    if (url.pathname === "/v1/admin/content/narration-queue") {
+      const status = url.searchParams.get("status") ?? "awaiting";
+      const item = {
+        rank: 1,
+        asset_id: "en-y1-phonics-form-lowercase-letters--lesson--finger-warm-up",
+        pack_id: "en-y1-phonics-form-lowercase-letters",
+        year: 1,
+        subject: "English",
+        kind: "lesson",
+        source_id: "finger-warm-up",
+        text_preview: "Follow the path slowly. Start at the glowing dot.",
+        file: "/audio/narration/alice/en-y1-phonics-form-lowercase-letters/lesson/finger-warm-up.mp3",
+        text_sha256: "a".repeat(64),
+        audio_sha256: "b".repeat(64),
+        voice_name: "Alice - Clear, Engaging Educator",
+        model_id: "eleven_multilingual_v2",
+        status: narrationApproved ? "approved" : "awaiting",
+        rationale: ["early-years audio clarity has the highest child-impact risk"],
+      };
+      const visible = status === "all" || status === item.status ? [item] : [];
+      await route.fulfill({
+        contentType: "application/json",
+        body: JSON.stringify({ items: visible, total: visible.length, counts: { awaiting: narrationApproved ? 873 : 874, approved: narrationApproved ? 1 : 0, rejected: 0, stale: 0 }, limit: 20, offset: 0, next_offset: null, served_by: "api" }),
+      });
+      return;
+    }
     if (url.pathname === "/v1/admin/content/narration-reviews") {
+      if (route.request().method() === "POST") {
+        const payload = route.request().postDataJSON();
+        expect(payload.criteria).toEqual({ natural: true, clear: true, pronunciation: true, age_suitable: true });
+        narrationApproved = true;
+        await route.fulfill({ contentType: "application/json", body: JSON.stringify({ ...payload, id: "audio-review-1", created_at: "2026-08-09T10:00:00Z", updated_at: "2026-08-09T10:00:00Z" }) });
+        return;
+      }
       await route.fulfill({ contentType: "application/json", body: JSON.stringify({ reviews: [] }) });
       return;
     }
@@ -105,13 +140,23 @@ test("reviewer filters the SEND queue and sees honest release gates", async ({ p
       return;
     }
     if (url.pathname === "/v1/admin/content/reviews") {
-      await route.fulfill({ contentType: "application/json", body: JSON.stringify({ reviews: [], release_gate: null }) });
+      await route.fulfill({ contentType: "application/json", body: "null" });
+      return;
+    }
+    if (url.pathname.startsWith("/v1/admin/content/reports/")) {
+      await route.fulfill({ contentType: "application/json", body: "null" });
       return;
     }
     await route.fulfill({ contentType: "application/json", body: JSON.stringify({}) });
   });
 
-  await page.goto("/admin?section=reviews");
+  await page.goto("/admin?section=reviews", { waitUntil: "domcontentloaded" });
+  await page.evaluate(() => {
+    sessionStorage.setItem("nexuslearn_account_session", "reviewer-session-token");
+    sessionStorage.setItem("nexuslearn_account_role", "content_reviewer");
+    sessionStorage.setItem("nexuslearn_account_session_expires", "2099-01-01T00:00:00Z");
+  });
+  await page.reload({ waitUntil: "domcontentloaded" });
   await expect(page.getByRole("heading", { name: "Curriculum and SEND review" })).toBeVisible();
   await page.getByLabel("Review lane").selectOption("ai_send_lead");
   const selectedEvidence = page.getByRole("region", { name: "Selected AI review evidence" });
@@ -128,4 +173,17 @@ test("reviewer filters the SEND queue and sees honest release gates", async ({ p
     .withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"])
     .analyze();
   expect(accessibility.violations.filter((item) => item.impact === "critical" || item.impact === "serious")).toEqual([]);
+
+  await page.getByRole("button", { name: "Readiness" }).click();
+  await expect(page.getByText("Governed listening QA queue")).toBeVisible();
+  await expect(page.getByText("874", { exact: true }).first()).toBeVisible();
+  await expect(page.getByText("Follow the path slowly. Start at the glowing dot.")).toBeVisible();
+  await page.getByLabel("natural").check();
+  await page.getByLabel("clear").check();
+  await page.getByLabel("pronunciation").check();
+  await page.getByLabel("age suitable").check();
+  await page.getByLabel("Reviewer name").fill("A. Audio Reviewer");
+  await page.getByRole("button", { name: "Approve listening" }).click();
+  await expect(page.getByText(/marked approved.*server-side review ledger/i)).toBeVisible();
+  await expect(page.getByText(/No recordings match these filters/)).toBeVisible();
 });

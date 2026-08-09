@@ -179,6 +179,11 @@ Verified commands and results:
   switch-access journeys passed across desktop and mobile, including WCAG
   scanning of the completed-check evidence view. Mission visual baselines
   remain a required GitHub check.
+- Narration operations: the authenticated admin serves a live paginated queue
+  across the complete 874-asset production manifest, with year, subject, type,
+  status and text filters. Approval is disabled when playback fails; decisions
+  remain append-only, idempotent and bound to current script/audio hashes. The
+  queue joins latest review state in one bounded database query.
 
 ## Remaining Hardening Before Production
 

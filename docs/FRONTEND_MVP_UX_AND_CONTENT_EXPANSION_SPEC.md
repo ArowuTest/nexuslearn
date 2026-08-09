@@ -254,8 +254,8 @@ as helpful tools, never as labels that define them.
 
 ### Audio listening QA
 
-The admin UI should provide a first-class queue backed by the generated
-narration priority report. Each item includes:
+The admin UI provides a first-class queue backed by the full production
+manifest and server-side review ledger. Each item includes:
 
 - Year, subject pack and lesson/vocabulary label;
 - text preview;
@@ -266,17 +266,20 @@ narration priority report. Each item includes:
 - rejection reasons and re-record recommendation;
 - a visible distinction between technical pass and listening approval.
 
-The current generated report identifies 874 technically valid assets awaiting
-human listening approval. No asset should be treated as production-approved
-because its MP3 merely exists.
+The operating UI exposes all 874 technically valid assets through a live,
+paginated backend queue rather than stopping after the generated 40-item first
+pass. Reviewers can filter by decision state, subject, year, asset type or
+search text; the next awaiting item appears automatically after a decision. No
+asset is treated as production-approved because its MP3 merely exists.
 
 ### Persistence requirement
 
-The development UI may save review drafts locally while the backend review-ledger
-endpoint is being completed. Production approval must be persisted server-side
-with reviewer identity, timestamp, criteria, notes and a content/audio binding
-hash. A stale review must be invalidated automatically if the script, voice or
-MP3 changes.
+Draft fields remain local until submission. Production decisions are persisted
+server-side with reviewer identity, timestamp, criteria, notes and a
+content/audio binding hash. A stale review is invalidated automatically if the
+script or MP3 changes. The API rejects mismatched hashes, loads the full
+production binding manifest rather than the stripped browser manifest, and
+joins latest decisions in one bounded query instead of one query per asset.
 
 ### Teacher verification
 

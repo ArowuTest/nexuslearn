@@ -43,7 +43,10 @@ func ValidateNarrationReview(review NarrationReview) error {
 }
 
 func (r *PostgresRepository) ListNarrationReviews(ctx context.Context, assetID string, limit int) ([]NarrationReview, error) {
-	if limit <= 0 || limit > 200 {
+	// The governed listening queue joins one latest decision per manifest asset
+	// in a single bounded query. This avoids an asset-by-asset N+1 while leaving
+	// enough headroom for the current 874-asset catalogue and future MVP growth.
+	if limit <= 0 || limit > 5000 {
 		limit = 100
 	}
 	assetID = strings.TrimSpace(assetID)

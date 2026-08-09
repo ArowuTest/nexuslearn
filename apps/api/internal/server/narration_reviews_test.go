@@ -19,9 +19,20 @@ type narrationReviewTestRepository struct {
 	reviews []learning.NarrationReview
 	saved   []learning.NarrationReview
 	keys    []string
+	limits  []int
 }
 
-func (r *narrationReviewTestRepository) ListNarrationReviews(context.Context, string, int) ([]learning.NarrationReview, error) {
+func (r *narrationReviewTestRepository) ListNarrationReviews(_ context.Context, assetID string, limit int) ([]learning.NarrationReview, error) {
+	r.limits = append(r.limits, limit)
+	if assetID != "" {
+		filtered := []learning.NarrationReview{}
+		for _, review := range r.reviews {
+			if review.AssetID == assetID {
+				filtered = append(filtered, review)
+			}
+		}
+		return filtered, nil
+	}
 	return append([]learning.NarrationReview(nil), r.reviews...), nil
 }
 
@@ -30,6 +41,76 @@ func (r *narrationReviewTestRepository) SaveNarrationReview(_ context.Context, r
 	r.keys = append(r.keys, idempotencyKey)
 	r.reviews = append(r.reviews, review)
 	return review, nil
+}
+
+func TestNarrationReviewQueuePaginatesAndFiltersTheWholeManifest(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "test-admin")
+	manifestPath := filepath.Join(t.TempDir(), "narration-manifest.json")
+	approvedTextHash := strings.Repeat("a", 64)
+	approvedAudioHash := strings.Repeat("b", 64)
+	rejectedTextHash := strings.Repeat("c", 64)
+	rejectedAudioHash := strings.Repeat("d", 64)
+	awaitingTextHash := strings.Repeat("e", 64)
+	awaitingAudioHash := strings.Repeat("f", 64)
+	manifest, err := json.Marshal(map[string]any{
+		"provider": "ElevenLabs",
+		"voice":    map[string]string{"name": "Alice", "model_id": "eleven_multilingual_v2"},
+		"items": []map[string]any{
+			{"id": "en-y1-phonics--lesson--blend", "pack_id": "en-y1-phonics", "kind": "lesson", "source_id": "blend", "text": "Blend the sounds.", "text_sha256": approvedTextHash, "sha256": approvedAudioHash, "file": "/audio/blend.mp3", "technical_pass": true},
+			{"id": "ma-y3-number--lesson--place-value", "pack_id": "ma-y3-number", "kind": "lesson", "source_id": "place-value", "text": "Build the number.", "text_sha256": awaitingTextHash, "sha256": awaitingAudioHash, "file": "/audio/place-value.mp3", "technical_pass": true},
+			{"id": "sc-y4-sound--vocabulary--pitch", "pack_id": "sc-y4-sound", "kind": "vocabulary", "source_id": "pitch", "text": "Pitch.", "text_sha256": rejectedTextHash, "sha256": rejectedAudioHash, "file": "/audio/pitch.mp3", "technical_pass": true},
+		},
+	})
+	if err != nil {
+		t.Fatalf("marshal manifest: %v", err)
+	}
+	if err := os.WriteFile(manifestPath, manifest, 0o600); err != nil {
+		t.Fatalf("write manifest: %v", err)
+	}
+	t.Setenv("NARRATION_MANIFEST_PATH", manifestPath)
+
+	repo := &narrationReviewTestRepository{
+		fakeRepository: &fakeRepository{},
+		reviews: []learning.NarrationReview{
+			{AssetID: "en-y1-phonics--lesson--blend", TextSHA256: approvedTextHash, AudioSHA256: approvedAudioHash, Decision: "approved", ReviewerName: "A. Reviewer"},
+			{AssetID: "sc-y4-sound--vocabulary--pitch", TextSHA256: rejectedTextHash, AudioSHA256: rejectedAudioHash, Decision: "rejected", ReviewerName: "A. Reviewer", Notes: "Pronunciation needs another take."},
+		},
+	}
+	srv := New(repo, "postgres")
+
+	request := httptest.NewRequest(http.MethodGet, "/v1/admin/content/narration-queue?status=awaiting&subject=Mathematics&year=3&limit=1&offset=0", nil)
+	request.Header.Set("X-Admin-Key", "test-admin")
+	response := httptest.NewRecorder()
+	srv.ServeHTTP(response, request)
+	if response.Code != http.StatusOK {
+		t.Fatalf("expected queue to load, got %d: %s", response.Code, response.Body.String())
+	}
+	var payload struct {
+		Items []struct {
+			AssetID string `json:"asset_id"`
+			Subject string `json:"subject"`
+			Year    int    `json:"year"`
+			Status  string `json:"status"`
+		} `json:"items"`
+		Total      int            `json:"total"`
+		NextOffset *int           `json:"next_offset"`
+		Counts     map[string]int `json:"counts"`
+	}
+	if err := json.Unmarshal(response.Body.Bytes(), &payload); err != nil {
+		t.Fatalf("decode queue: %v", err)
+	}
+	if payload.Total != 1 || len(payload.Items) != 1 || payload.Items[0].AssetID != "ma-y3-number--lesson--place-value" {
+		t.Fatalf("expected the filtered awaiting asset, got %#v", payload)
+	}
+	if payload.Items[0].Subject != "Mathematics" || payload.Items[0].Year != 3 || payload.Items[0].Status != "awaiting" {
+		t.Fatalf("expected curriculum metadata and awaiting status, got %#v", payload.Items[0])
+	}
+	if payload.NextOffset != nil || payload.Counts["approved"] != 1 || payload.Counts["rejected"] != 1 || payload.Counts["awaiting"] != 1 {
+		t.Fatalf("expected complete queue counts and no next page, got %#v", payload)
+	}
+	if len(repo.limits) != 1 || repo.limits[0] != 3 {
+		t.Fatalf("expected one bounded review query for the three manifest assets, got limits %#v", repo.limits)
+	}
 }
 
 func TestNarrationReviewEndpointsEnforceAudioBindingAndCriteria(t *testing.T) {

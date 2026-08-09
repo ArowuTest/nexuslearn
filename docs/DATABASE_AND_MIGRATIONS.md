@@ -296,6 +296,9 @@ PUT /v1/admin/content/activities/{id}
 GET /v1/admin/content/questions
 PUT /v1/admin/content/questions/{id}
 GET /v1/admin/content/readiness
+GET /v1/admin/content/narration-queue
+GET /v1/admin/content/narration-reviews
+POST /v1/admin/content/narration-reviews
 GET /v1/admin/content/versions
 POST /v1/admin/content/versions?id={id}
 POST /v1/admin/content/versions/{id}/restore
@@ -327,6 +330,15 @@ compatibility, but the Admin Console uses the flat query-param route because it
 is more conservative across deploy targets. Restore creates fresh audit/version
 records; it does not bypass required objective, activity, question, world or
 reward-rule validation.
+
+`GET /v1/admin/content/narration-queue` reads the full production narration
+manifest, joins the latest append-only decision for every current asset in one
+bounded query, and returns a paginated operating queue. It supports `status`,
+`subject`, `year`, `kind`, `search`, `limit` and `offset`. Queue statuses are
+`awaiting`, `approved`, `rejected` and `stale`; stale means the recorded script
+or MP3 hash no longer matches the production binding. The separate review list
+and save endpoints preserve audit/history compatibility, while the queue is the
+normal reviewer surface.
 
 Public onboarding endpoint:
 
