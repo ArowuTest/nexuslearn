@@ -2,13 +2,43 @@ package learning
 
 import (
 	"context"
+	"encoding/base64"
 	"encoding/json"
 	"errors"
 	"strings"
 	"time"
 
 	"github.com/jackc/pgx/v5"
+	"github.com/jackc/pgx/v5/pgtype"
 )
+
+func EncodeMockAssessmentCursor(createdAt time.Time, id string) string {
+	payload, _ := json.Marshal(map[string]string{"created_at": createdAt.UTC().Format(time.RFC3339Nano), "id": id})
+	return base64.RawURLEncoding.EncodeToString(payload)
+}
+
+func DecodeMockAssessmentCursor(cursor string) (time.Time, string, error) {
+	raw, err := base64.RawURLEncoding.DecodeString(strings.TrimSpace(cursor))
+	if err != nil {
+		return time.Time{}, "", invalidConfig("invalid mock assessment cursor")
+	}
+	var value struct {
+		CreatedAt string `json:"created_at"`
+		ID        string `json:"id"`
+	}
+	if err := json.Unmarshal(raw, &value); err != nil || strings.TrimSpace(value.ID) == "" {
+		return time.Time{}, "", invalidConfig("invalid mock assessment cursor")
+	}
+	var cursorID pgtype.UUID
+	if err := cursorID.Scan(value.ID); err != nil || !cursorID.Valid {
+		return time.Time{}, "", invalidConfig("invalid mock assessment cursor")
+	}
+	createdAt, err := time.Parse(time.RFC3339Nano, value.CreatedAt)
+	if err != nil {
+		return time.Time{}, "", invalidConfig("invalid mock assessment cursor")
+	}
+	return createdAt, value.ID, nil
+}
 
 func (r *PostgresRepository) prepareMockAssessmentAttempt(ctx context.Context, exec queryExecutor, attempt Attempt, studentUUID string) error {
 	var status string
@@ -148,8 +178,24 @@ func (r *PostgresRepository) updateMockAssessmentProgress(ctx context.Context, e
 type MockAssessmentStore interface {
 	CreateMockAssessment(context.Context, MockAssessment) (MockAssessment, error)
 	ListMockAssessments(context.Context, string, string, int) ([]MockAssessment, error)
+	ListMockAssessmentPage(context.Context, MockAssessmentQuery) (MockAssessmentPage, error)
 	GetMockAssessment(context.Context, string, string, string) (MockAssessment, bool, error)
 	ListMockAssessmentQuestions(context.Context, string, string) ([]QuestionConfig, error)
+}
+
+type MockAssessmentQuery struct {
+	StudentExternalRef string
+	SchoolURN          string
+	Subject            string
+	Status             string
+	Limit              int
+	BeforeCreatedAt    time.Time
+	BeforeID           string
+}
+
+type MockAssessmentPage struct {
+	Assessments []MockAssessment `json:"mock_assessments"`
+	NextCursor  string           `json:"next_cursor,omitempty"`
 }
 
 func (r *PostgresRepository) CreateMockAssessment(ctx context.Context, assessment MockAssessment) (MockAssessment, error) {
@@ -272,8 +318,47 @@ func (r *PostgresRepository) CreateMockAssessment(ctx context.Context, assessmen
 }
 
 func (r *PostgresRepository) ListMockAssessments(ctx context.Context, studentExternalRef string, schoolURN string, limit int) ([]MockAssessment, error) {
-	if limit <= 0 || limit > 100 {
-		limit = 50
+	page, err := r.ListMockAssessmentPage(ctx, MockAssessmentQuery{
+		StudentExternalRef: studentExternalRef,
+		SchoolURN:          schoolURN,
+		Limit:              limit,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return page.Assessments, nil
+}
+
+func (r *PostgresRepository) ListMockAssessmentPage(ctx context.Context, query MockAssessmentQuery) (MockAssessmentPage, error) {
+	query.StudentExternalRef = strings.TrimSpace(query.StudentExternalRef)
+	query.SchoolURN = strings.TrimSpace(query.SchoolURN)
+	query.Subject = strings.TrimSpace(query.Subject)
+	query.Status = strings.TrimSpace(query.Status)
+	if query.StudentExternalRef == "" {
+		return MockAssessmentPage{}, invalidConfig("student is required")
+	}
+	if query.Subject != "" && query.Subject != "English" && query.Subject != "Mathematics" && query.Subject != "Science" {
+		return MockAssessmentPage{}, invalidConfig("invalid mock assessment subject filter")
+	}
+	switch query.Status {
+	case "", "ready", "in_progress", "completed", "cancelled":
+	default:
+		return MockAssessmentPage{}, invalidConfig("invalid mock assessment status filter")
+	}
+	if query.BeforeCreatedAt.IsZero() != (query.BeforeID == "") {
+		return MockAssessmentPage{}, invalidConfig("mock assessment cursor must include a timestamp and id")
+	}
+	if query.Limit <= 0 {
+		query.Limit = 50
+	} else if query.Limit > 100 {
+		query.Limit = 100
+	}
+	queryLimit := query.Limit + 1
+	var beforeCreatedAt any
+	var beforeID any
+	if !query.BeforeCreatedAt.IsZero() {
+		beforeCreatedAt = query.BeforeCreatedAt.UTC()
+		beforeID = query.BeforeID
 	}
 	rows, err := r.db.Query(ctx, `
 		SELECT ma.id::text, st.external_ref, st.display_name, COALESCE(sch.urn,''),
@@ -296,22 +381,39 @@ func (r *PostgresRepository) ListMockAssessments(ctx context.Context, studentExt
 		) stats ON TRUE
 		WHERE st.external_ref=$1
 		  AND ($2='' OR sch.urn=$2)
-		ORDER BY ma.created_at DESC, ma.id
-		LIMIT $3
-	`, studentExternalRef, schoolURN, limit)
+		  AND ($3='' OR ma.subject=$3)
+		  AND ($4='' OR ma.status=$4)
+		  AND ($5::timestamptz IS NULL OR (ma.created_at, ma.id) < ($5::timestamptz, $6::uuid))
+		ORDER BY ma.created_at DESC, ma.id DESC
+		LIMIT $7
+	`, query.StudentExternalRef, query.SchoolURN, query.Subject, query.Status,
+		beforeCreatedAt, beforeID, queryLimit)
 	if err != nil {
-		return nil, err
+		return MockAssessmentPage{}, err
 	}
 	defer rows.Close()
 	out := []MockAssessment{}
 	for rows.Next() {
 		assessment, err := scanMockAssessment(rows)
 		if err != nil {
-			return nil, err
+			return MockAssessmentPage{}, err
 		}
 		out = append(out, assessment)
 	}
-	return out, rows.Err()
+	if err := rows.Err(); err != nil {
+		return MockAssessmentPage{}, err
+	}
+	page := MockAssessmentPage{Assessments: out}
+	if len(out) > query.Limit {
+		last := out[query.Limit-1]
+		createdAt, err := time.Parse(time.RFC3339Nano, last.CreatedAt)
+		if err != nil {
+			return MockAssessmentPage{}, err
+		}
+		page.NextCursor = EncodeMockAssessmentCursor(createdAt, last.ID)
+		page.Assessments = out[:query.Limit]
+	}
+	return page, nil
 }
 
 func (r *PostgresRepository) GetMockAssessment(ctx context.Context, id string, studentExternalRef string, schoolURN string) (MockAssessment, bool, error) {
@@ -450,8 +552,8 @@ func scanMockAssessmentRow(row mockAssessmentRow) (MockAssessment, error) {
 	if err != nil {
 		return MockAssessment{}, err
 	}
-	assessment.CreatedAt = createdAt.UTC().Format(time.RFC3339)
-	assessment.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+	assessment.CreatedAt = createdAt.UTC().Format(time.RFC3339Nano)
+	assessment.UpdatedAt = updatedAt.UTC().Format(time.RFC3339Nano)
 	if completedAt != nil {
 		assessment.CompletedAt = completedAt.UTC().Format(time.RFC3339)
 	}

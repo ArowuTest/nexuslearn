@@ -1,6 +1,21 @@
 package learning
 
-import "testing"
+import (
+	"testing"
+	"time"
+)
+
+func TestMockAssessmentCursorRoundTrip(t *testing.T) {
+	createdAt := time.Date(2026, time.August, 9, 9, 30, 12, 456000000, time.UTC)
+	cursor := EncodeMockAssessmentCursor(createdAt, "7b20d33f-10c4-4918-b53e-b95f2c28cb7c")
+	decodedAt, decodedID, err := DecodeMockAssessmentCursor(cursor)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !decodedAt.Equal(createdAt) || decodedID != "7b20d33f-10c4-4918-b53e-b95f2c28cb7c" {
+		t.Fatalf("unexpected cursor round trip: %s %s", decodedAt, decodedID)
+	}
+}
 
 func TestMockAssessmentSummaryCarriesCompletionEvidence(t *testing.T) {
 	assessment := MockAssessment{

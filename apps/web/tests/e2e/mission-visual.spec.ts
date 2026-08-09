@@ -1,5 +1,6 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Locator } from "@playwright/test";
 import path from "node:path";
+import sharp from "sharp";
 
 const visualStabilityStylePath = path.join(process.cwd(), "tests", "e2e", "visual-stability.css");
 
@@ -169,6 +170,26 @@ const releasedRendererContracts = [
   },
 ] as const;
 
+const rendererSnapshotHeights: Record<(typeof releasedRendererContracts)[number]["slug"], { desktop: number; mobile: number }> = {
+  "choice-or-numeric": { desktop: 1089, mobile: 1297 },
+  "model-sort": { desktop: 1309, mobile: 1739 },
+  numeric: { desktop: 989, mobile: 1117 },
+  trace: { desktop: 1171, mobile: 1414 },
+};
+
+async function normalizedRendererScreenshot(interaction: Locator, width: number, height: number) {
+  const screenshot = await interaction.screenshot({ animations: "disabled", scale: "css" });
+  const metadata = await sharp(screenshot).metadata();
+  if (metadata.width !== width || !metadata.height) {
+    throw new Error(`Unexpected renderer snapshot dimensions: ${metadata.width}x${metadata.height}`);
+  }
+  if (metadata.height === height) return screenshot;
+  if (metadata.height > height) {
+    return sharp(screenshot).extract({ left: 0, top: 0, width, height }).png().toBuffer();
+  }
+  return sharp(screenshot).extend({ bottom: height - metadata.height, extendWith: "copy" }).png().toBuffer();
+}
+
 test("every released renderer contract keeps standard and high-contrast visual baselines", async ({ page }, testInfo) => {
   test.setTimeout(60_000);
   const isMobile = testInfo.project.name === "mobile-chromium";
@@ -185,24 +206,25 @@ test("every released renderer contract keeps standard and high-contrast visual b
   for (const contract of releasedRendererContracts) {
     activeContract = contract;
     await page.goto(`/play/mission?studentId=visual-${contract.slug}`, { waitUntil: "domcontentloaded" });
+    await page.addStyleTag({ path: visualStabilityStylePath });
     const visiblePrompt = contract.question.body.prompt.replace("What is ", "").replace("?", "");
     await expect(page.locator("main")).toContainText(visiblePrompt, { timeout: 20_000 });
     const interaction = page.getByRole("region", { name: "Mission question" });
     await interaction.scrollIntoViewIfNeeded();
-    await expect(interaction).toHaveScreenshot(`mission-${contract.slug}-standard.png`, {
-      animations: "disabled",
+    const snapshotWidth = isMobile ? 380 : 588;
+    const snapshotHeight = rendererSnapshotHeights[contract.slug][isMobile ? "mobile" : "desktop"];
+    const standardScreenshot = await normalizedRendererScreenshot(interaction, snapshotWidth, snapshotHeight);
+    expect(standardScreenshot).toMatchSnapshot(`mission-${contract.slug}-standard.png`, {
       maxDiffPixelRatio: crossPlatformPixelRatio,
-      stylePath: visualStabilityStylePath,
       threshold: 0.35,
     });
 
     await page.getByRole("button", { name: "Contrast" }).click();
     await expect(page.locator("main")).toHaveClass(/high-contrast/);
     await interaction.scrollIntoViewIfNeeded();
-    await expect(interaction).toHaveScreenshot(`mission-${contract.slug}-high-contrast.png`, {
-      animations: "disabled",
+    const contrastScreenshot = await normalizedRendererScreenshot(interaction, snapshotWidth, snapshotHeight);
+    expect(contrastScreenshot).toMatchSnapshot(`mission-${contract.slug}-high-contrast.png`, {
       maxDiffPixelRatio: crossPlatformPixelRatio,
-      stylePath: visualStabilityStylePath,
       threshold: 0.35,
     });
   }

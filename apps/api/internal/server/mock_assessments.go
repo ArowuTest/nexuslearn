@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net/http"
 	"sort"
+	"strconv"
 	"strings"
 
 	"github.com/ArowuTest/nexuslearn/apps/api/internal/learning"
@@ -39,12 +40,7 @@ func (s *Server) handleAdminStudentMockAssessments(w http.ResponseWriter, r *htt
 		return
 	}
 	studentID := r.PathValue("externalRef")
-	items, err := store.ListMockAssessments(r.Context(), studentID, "", 100)
-	if err != nil {
-		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not load mock assessments"})
-		return
-	}
-	writeJSON(w, http.StatusOK, map[string]any{"mock_assessments": items})
+	s.writeMockAssessmentPage(w, r, store, studentID, "", 100)
 }
 
 func (s *Server) handlePupilCreateMockAssessment(w http.ResponseWriter, r *http.Request) {
@@ -72,12 +68,7 @@ func (s *Server) handlePupilMockAssessments(w http.ResponseWriter, r *http.Reque
 		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "mock assessments are not available"})
 		return
 	}
-	items, err := store.ListMockAssessments(r.Context(), studentID, "", 50)
-	if err != nil {
-		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not load mock assessments"})
-		return
-	}
-	writeJSON(w, http.StatusOK, map[string]any{"mock_assessments": items})
+	s.writeMockAssessmentPage(w, r, store, studentID, "", 50)
 }
 
 func (s *Server) handleParentCreateMockAssessment(w http.ResponseWriter, r *http.Request) {
@@ -115,12 +106,7 @@ func (s *Server) handleParentMockAssessments(w http.ResponseWriter, r *http.Requ
 		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "mock assessments are not available"})
 		return
 	}
-	items, err := store.ListMockAssessments(r.Context(), studentID, "", 50)
-	if err != nil {
-		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not load mock assessments"})
-		return
-	}
-	writeJSON(w, http.StatusOK, map[string]any{"mock_assessments": items})
+	s.writeMockAssessmentPage(w, r, store, studentID, "", 50)
 }
 
 func (s *Server) handleSchoolCreateMockAssessment(w http.ResponseWriter, r *http.Request) {
@@ -165,12 +151,60 @@ func (s *Server) handleSchoolMockAssessments(w http.ResponseWriter, r *http.Requ
 		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "mock assessments are not available"})
 		return
 	}
-	items, err := store.ListMockAssessments(r.Context(), studentID, user.SchoolURN, 50)
+	s.writeMockAssessmentPage(w, r, store, studentID, user.SchoolURN, 50)
+}
+
+func (s *Server) writeMockAssessmentPage(w http.ResponseWriter, r *http.Request, store mockAssessmentStore, studentID string, schoolURN string, defaultLimit int) {
+	query, err := mockAssessmentPageQuery(r, studentID, schoolURN, defaultLimit)
+	if err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+		return
+	}
+	page, err := store.ListMockAssessmentPage(r.Context(), query)
 	if err != nil {
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not load mock assessments"})
 		return
 	}
-	writeJSON(w, http.StatusOK, map[string]any{"mock_assessments": items})
+	writeJSON(w, http.StatusOK, page)
+}
+
+func mockAssessmentPageQuery(r *http.Request, studentID string, schoolURN string, defaultLimit int) (learning.MockAssessmentQuery, error) {
+	query := learning.MockAssessmentQuery{
+		StudentExternalRef: studentID,
+		SchoolURN:          schoolURN,
+		Limit:              defaultLimit,
+	}
+	if rawLimit := strings.TrimSpace(r.URL.Query().Get("limit")); rawLimit != "" {
+		limit, err := strconv.Atoi(rawLimit)
+		if err != nil || limit < 1 {
+			return query, fmt.Errorf("limit must be a positive whole number")
+		}
+		if limit > 100 {
+			limit = 100
+		}
+		query.Limit = limit
+	}
+	if rawSubject := strings.TrimSpace(r.URL.Query().Get("subject")); rawSubject != "" {
+		query.Subject = normaliseMockSubject(rawSubject)
+		if query.Subject == "" {
+			return query, fmt.Errorf("subject must be English, Mathematics or Science")
+		}
+	}
+	query.Status = strings.ToLower(strings.TrimSpace(r.URL.Query().Get("status")))
+	switch query.Status {
+	case "", "ready", "in_progress", "completed", "cancelled":
+	default:
+		return query, fmt.Errorf("status must be ready, in_progress, completed or cancelled")
+	}
+	if cursor := strings.TrimSpace(r.URL.Query().Get("cursor")); cursor != "" {
+		createdAt, id, err := learning.DecodeMockAssessmentCursor(cursor)
+		if err != nil {
+			return query, fmt.Errorf("cursor is invalid")
+		}
+		query.BeforeCreatedAt = createdAt
+		query.BeforeID = id
+	}
+	return query, nil
 }
 
 func (s *Server) writeMockAssessmentResult(w http.ResponseWriter, assessment learning.MockAssessment, err error) {

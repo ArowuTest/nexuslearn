@@ -6,13 +6,27 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
+	"time"
 
 	"github.com/ArowuTest/nexuslearn/apps/api/internal/learning"
 )
 
 type fakeMockAssessmentStore struct {
 	fakeRepository
-	created learning.MockAssessment
+	created     learning.MockAssessment
+	page        learning.MockAssessmentPage
+	pageQueries []learning.MockAssessmentQuery
+}
+
+func (f *fakeMockAssessmentStore) ListMockAssessmentPage(_ context.Context, query learning.MockAssessmentQuery) (learning.MockAssessmentPage, error) {
+	f.pageQueries = append(f.pageQueries, query)
+	if f.page.Assessments == nil {
+		f.page.Assessments = []learning.MockAssessment{}
+		if f.created.ID != "" {
+			f.page.Assessments = append(f.page.Assessments, f.created)
+		}
+	}
+	return f.page, nil
 }
 
 func (f *fakeMockAssessmentStore) CreateMockAssessment(_ context.Context, assessment learning.MockAssessment) (learning.MockAssessment, error) {
@@ -124,5 +138,70 @@ func TestAdminCanReadLearnerMockAssessmentHistory(t *testing.T) {
 	}
 	if len(body.Assessments) != 1 || body.Assessments[0].Score != 80 {
 		t.Fatalf("expected completed mock evidence in admin response, got %#v", body.Assessments)
+	}
+}
+
+func TestAdminMockHistoryForwardsBoundedFiltersAndCursor(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "test-admin")
+	cursorTime := time.Date(2026, time.August, 9, 9, 30, 0, 0, time.UTC)
+	cursor := learning.EncodeMockAssessmentCursor(cursorTime, "7b20d33f-10c4-4918-b53e-b95f2c28cb7c")
+	repo := &fakeMockAssessmentStore{page: learning.MockAssessmentPage{
+		Assessments: []learning.MockAssessment{{ID: "mock-2", StudentExternalRef: "ava-y3", Subject: "Mathematics", Status: "completed"}},
+		NextCursor:  "next-page",
+	}}
+	srv := New(repo, "postgres")
+	req := httptest.NewRequest(http.MethodGet, "/v1/admin/students/ava-y3/mock-assessments?limit=25&status=completed&subject=Mathematics&cursor="+cursor, nil)
+	req.Header.Set("X-Admin-Key", "test-admin")
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected paginated admin mock history, got %d: %s", res.Code, res.Body.String())
+	}
+	if len(repo.pageQueries) != 1 {
+		t.Fatalf("expected one page query, got %#v", repo.pageQueries)
+	}
+	query := repo.pageQueries[0]
+	if query.StudentExternalRef != "ava-y3" || query.Limit != 25 || query.Status != "completed" || query.Subject != "Mathematics" {
+		t.Fatalf("unexpected mock history query: %#v", query)
+	}
+	if !query.BeforeCreatedAt.Equal(cursorTime) || query.BeforeID != "7b20d33f-10c4-4918-b53e-b95f2c28cb7c" {
+		t.Fatalf("cursor was not forwarded: %#v", query)
+	}
+	var body learning.MockAssessmentPage
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if body.NextCursor != "next-page" || len(body.Assessments) != 1 {
+		t.Fatalf("unexpected page response: %#v", body)
+	}
+}
+
+func TestMockHistoryQueryClampsLimitAndPreservesSchoolScope(t *testing.T) {
+	req := httptest.NewRequest(http.MethodGet, "/v1/school/mock-assessments?studentId=ava-y3&limit=500&subject=maths&status=in_progress", nil)
+	query, err := mockAssessmentPageQuery(req, "ava-y3", "urn-100", 50)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if query.StudentExternalRef != "ava-y3" || query.SchoolURN != "urn-100" {
+		t.Fatalf("learner or tenant scope was lost: %#v", query)
+	}
+	if query.Limit != 100 || query.Subject != "Mathematics" || query.Status != "in_progress" {
+		t.Fatalf("filters were not normalised and bounded: %#v", query)
+	}
+}
+
+func TestAdminMockHistoryRejectsMalformedCursor(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "test-admin")
+	repo := &fakeMockAssessmentStore{}
+	srv := New(repo, "postgres")
+	req := httptest.NewRequest(http.MethodGet, "/v1/admin/students/ava-y3/mock-assessments?cursor=not-a-cursor", nil)
+	req.Header.Set("X-Admin-Key", "test-admin")
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusBadRequest {
+		t.Fatalf("expected invalid cursor to be rejected, got %d: %s", res.Code, res.Body.String())
+	}
+	if len(repo.pageQueries) != 0 {
+		t.Fatalf("invalid cursor should not reach persistence: %#v", repo.pageQueries)
 	}
 }

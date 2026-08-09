@@ -151,12 +151,6 @@ test("reviewer filters the SEND queue and sees honest release gates", async ({ p
   });
 
   await page.goto("/admin?section=reviews", { waitUntil: "domcontentloaded" });
-  await page.evaluate(() => {
-    sessionStorage.setItem("nexuslearn_account_session", "reviewer-session-token");
-    sessionStorage.setItem("nexuslearn_account_role", "content_reviewer");
-    sessionStorage.setItem("nexuslearn_account_session_expires", "2099-01-01T00:00:00Z");
-  });
-  await page.reload({ waitUntil: "domcontentloaded" });
   await expect(page.getByRole("heading", { name: "Curriculum and SEND review" })).toBeVisible();
   await page.getByLabel("Review lane").selectOption("ai_send_lead");
   const selectedEvidence = page.getByRole("region", { name: "Selected AI review evidence" });

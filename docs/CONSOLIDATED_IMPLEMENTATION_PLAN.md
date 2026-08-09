@@ -106,7 +106,10 @@ Acceptance criteria:
   satisfied; SEND response modes remain equivalent evidence (implemented).
 - School progress and mock-history reads carry the authenticated school tenant
   through to persistence queries (implemented).
-- Query budgets, indexes, pagination and audit events for all operational lists.
+- Mock-history reads now use bounded keyset pagination, role/tenant-safe filters
+  and a composite learner/time/ID index. The remaining admin operational lists
+  still need the same query-budget and pagination audit before this item is
+  complete.
 
 ### Slice D - curriculum depth and expansion
 
@@ -134,6 +137,12 @@ Generation is a practice/evidence workflow, not a high-stakes exam. Incorrect
 answers should trigger repair and revision guidance, not punitive rewards or
 loss of access. A mock must be safe to resume and safe to repeat with a new
 request key.
+
+Mock-history endpoints accept `limit` (maximum 100), opaque `cursor`, `subject`
+and `status` filters. Responses retain `mock_assessments` for compatibility and
+add `next_cursor` when another page exists. Pupil, parent, school and platform
+admin routes all use this shared contract after their existing ownership or
+tenant checks.
 
 ## 5. Role model
 

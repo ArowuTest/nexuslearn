@@ -1,0 +1,1 @@
+DROP INDEX IF EXISTS mock_assessments_student_created_id_idx;

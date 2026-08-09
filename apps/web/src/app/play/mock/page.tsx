@@ -5,12 +5,15 @@ import { useEffect, useState } from "react";
 import ChildJourneyChrome, { ApiStateCard } from "@/components/ChildJourneyChrome";
 import MockAssessmentBuilder from "@/components/MockAssessmentBuilder";
 import MockObjectiveGuidance from "@/components/MockObjectiveGuidance";
-import { getPupilMockAssessments, getStudentProfile, type MockAssessment } from "@/lib/api";
+import { getPupilMockAssessmentPage, getStudentProfile, type MockAssessment } from "@/lib/api";
 
 export default function PupilMockPage() {
   const [studentId, setStudentId] = useState("");
   const [yearGroup, setYearGroup] = useState(1);
   const [assessments, setAssessments] = useState<MockAssessment[]>([]);
+  const [nextCursor, setNextCursor] = useState("");
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [historyError, setHistoryError] = useState(false);
   const [assessmentState, setAssessmentState] = useState<"loading" | "ready" | "unavailable">("loading");
   useEffect(() => {
     let active = true;
@@ -26,12 +29,13 @@ export default function PupilMockPage() {
       }
       const [profileResult, assessmentResult] = await Promise.allSettled([
         getStudentProfile(resolvedStudent),
-        getPupilMockAssessments(resolvedStudent),
+        getPupilMockAssessmentPage(resolvedStudent, { limit: 10 }),
       ]);
       if (!active) return;
       if (profileResult.status === "fulfilled" && profileResult.value?.year_group) setYearGroup(profileResult.value.year_group);
       if (assessmentResult.status === "fulfilled") {
-        setAssessments(assessmentResult.value);
+        setAssessments(assessmentResult.value.mock_assessments);
+        setNextCursor(assessmentResult.value.next_cursor ?? "");
         setAssessmentState("ready");
       } else {
         setAssessmentState("unavailable");
@@ -39,6 +43,21 @@ export default function PupilMockPage() {
     });
     return () => { active = false; };
   }, []);
+
+  async function loadOlderChecks() {
+    if (!studentId || !nextCursor || loadingMore) return;
+    setLoadingMore(true);
+    setHistoryError(false);
+    try {
+      const page = await getPupilMockAssessmentPage(studentId, { limit: 10, cursor: nextCursor });
+      setAssessments((current) => [...current, ...page.mock_assessments]);
+      setNextCursor(page.next_cursor ?? "");
+    } catch {
+      setHistoryError(true);
+    } finally {
+      setLoadingMore(false);
+    }
+  }
 
   return (
     <main className="min-h-screen bg-[#111a33] px-5 py-6 text-white">
@@ -62,8 +81,8 @@ export default function PupilMockPage() {
             )}
           </div>
           {studentId && assessments.length > 0 && (
-            <section className="mt-6 rounded-lg border border-[#15213d]/10 bg-[#f7f0df] p-5" aria-label="Ready mock assessments">
-              <h2 className="font-display text-xl font-semibold">Ready checks</h2>
+            <section className="mt-6 rounded-lg border border-[#15213d]/10 bg-[#f7f0df] p-5" aria-label="Saved subject checks">
+              <h2 className="font-display text-xl font-semibold">Saved checks</h2>
               <div className="mt-3 grid gap-2">
                 {assessments.map((assessment) => (
                   <article key={assessment.id} className="rounded-lg bg-white p-3">
@@ -87,6 +106,18 @@ export default function PupilMockPage() {
                   </article>
                 ))}
               </div>
+              {historyError && <p className="mt-3 text-sm font-medium text-[#9b4c15]" role="alert">Older checks could not be loaded. Your saved history is still available.</p>}
+              {nextCursor && (
+                <button
+                  type="button"
+                  className="mt-4 min-h-11 rounded-lg border border-[#7357c9]/30 bg-white px-4 py-2 text-sm font-semibold text-[#5a3ca8] disabled:cursor-wait disabled:opacity-60"
+                  disabled={loadingMore}
+                  aria-busy={loadingMore}
+                  onClick={() => void loadOlderChecks()}
+                >
+                  {loadingMore ? "Loading older checks…" : "Load older checks"}
+                </button>
+              )}
             </section>
           )}
           {studentId && assessmentState === "loading" && (

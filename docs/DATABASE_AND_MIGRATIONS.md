@@ -205,6 +205,12 @@ counts grouped by curriculum objective. API responses derive “review next”,
 completed subject-check evidence durable and listable without N+1 queries;
 mock evidence still does not update adaptive mastery or progression routes.
 
+The forty-first migration adds the composite learner, creation-time and ID
+index used by stable keyset pagination of mock-assessment history. Pupil,
+parent, school and platform-admin reads share the same bounded query contract;
+their existing learner ownership and school-tenant checks remain in front of
+the query.
+
 ## Applying Migrations
 
 The API includes an explicit migration command. For paid Render plans, this can be run as a one-off job. Render free web services do not support one-off jobs, so the current prototype path is `AUTO_MIGRATE=true`.

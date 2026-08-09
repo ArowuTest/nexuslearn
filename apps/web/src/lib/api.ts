@@ -328,6 +328,11 @@ export type MockAssessment = {
   completed_at?: string;
 };
 
+export type MockAssessmentPage = {
+  mock_assessments: MockAssessment[];
+  next_cursor?: string;
+};
+
 export type MockAssessmentSummary = {
   id: string;
   subject: string;
@@ -654,15 +659,25 @@ export async function createSchoolMockAssessment(studentId: string, request: Moc
   return createMockAssessment("/v1/school/mock-assessments", { ...request, student_external_ref: studentId }, accountSessionHeaders(["school_admin", "teacher"]));
 }
 
-export async function getPupilMockAssessments(studentId: string): Promise<MockAssessment[]> {
-  if (!API) return [];
-  const res = await fetch(`${API}/v1/students/${encodeURIComponent(studentId)}/mock-assessments`, {
+export async function getPupilMockAssessmentPage(
+  studentId: string,
+  options: { cursor?: string; limit?: number } = {},
+): Promise<MockAssessmentPage> {
+  if (!API) return { mock_assessments: [] };
+  const params = new URLSearchParams();
+  if (options.cursor) params.set("cursor", options.cursor);
+  if (options.limit) params.set("limit", String(options.limit));
+  const suffix = params.size > 0 ? `?${params.toString()}` : "";
+  const res = await fetch(`${API}/v1/students/${encodeURIComponent(studentId)}/mock-assessments${suffix}`, {
     headers: pupilSessionHeaders(studentId),
     cache: "no-store",
   });
   const body = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error(body.error ?? "Could not load mock assessments.");
-  return (body.mock_assessments ?? []) as MockAssessment[];
+  return {
+    mock_assessments: (body.mock_assessments ?? []) as MockAssessment[],
+    next_cursor: body.next_cursor,
+  };
 }
 
 async function createMockAssessment(path: string, request: MockAssessmentRequest, authHeaders: Record<string, string>): Promise<MockAssessment> {

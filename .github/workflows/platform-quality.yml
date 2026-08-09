@@ -59,6 +59,7 @@ jobs:
           test "$(psql "$DATABASE_URL" -Atc "select count(*) from information_schema.tables where table_name in ('account_sessions','parent_invitations')")" -eq 2
           test "$(psql "$DATABASE_URL" -Atc "select count(*) from information_schema.tables where table_name in ('diagnostic_baselines','diagnostic_baseline_items')")" -eq 2
           test "$(psql "$DATABASE_URL" -Atc "select count(*) from information_schema.columns where table_name in ('question_attempts','mastery_history') and column_name='response_mode'")" -eq 2
+          test "$(psql "$DATABASE_URL" -Atc "select count(*) from pg_indexes where indexname='mock_assessments_student_created_id_idx'")" -eq 1
 
   web-quality:
     runs-on: ubuntu-latest

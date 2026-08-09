@@ -451,7 +451,7 @@ test("saved completed check opens its evidence instead of a locked assessment", 
   await page.route("http://api.test/v1/students/sam-y3/profile", async (route) => {
     await route.fulfill({ contentType: "application/json", body: JSON.stringify({ external_ref: "sam-y3", display_name: "Sam", year_group: 3 }) });
   });
-  await page.route("http://api.test/v1/students/sam-y3/mock-assessments", async (route) => {
+  await page.route("http://api.test/v1/students/sam-y3/mock-assessments**", async (route) => {
     await route.fulfill({
       contentType: "application/json",
       body: JSON.stringify({
