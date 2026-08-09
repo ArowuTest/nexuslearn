@@ -477,6 +477,10 @@ Current Phase 3 runtime position:
 - Writing formats can show sentence/theme cards and paragraph grouping choices.
 - Science model formats can show particle chambers, movement states and
   model-sort/explain-choice panels.
+- The five currently released renderer contracts have standard and
+  high-contrast visual baselines on desktop and mobile. Registry promotion of
+  any additional contract must add equivalent baselines before it can be
+  treated as runtime-ready.
 - These are code-native first-pass renderers. Production still needs real art,
   touch-tested drag/drop, stroke recognition, richer simulation controls, Rive
   companions, audio narration and per-world asset libraries.

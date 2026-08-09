@@ -175,10 +175,16 @@ Verified commands and results:
 - `npm run lint`, `npm run quality:performance`, and `npm run build`: passed;
   the nine prior React lifecycle/dependency warnings are resolved with no lint
   suppression.
-- Playwright: 42 family, learner, SEND, mock-evidence, renderer, keyboard and
+- Playwright: 48 family, learner, SEND, mock-evidence, renderer, keyboard and
   switch-access journeys passed across desktop and mobile, including WCAG
-  scanning of the completed-check evidence view. Mission visual baselines
-  remain a required GitHub check.
+  scanning of the completed-check evidence view. Visual baselines now cover
+  every currently released interaction contract (`choice_ready`,
+  `choice_or_numeric_ready`, `model_sort_ready`, `numeric_ready` and
+  `trace_ready`) in standard and high-contrast modes on desktop and mobile.
+  The screenshot harness waits for cold mission loading and disables motion
+  through a Shadow-DOM-aware stability stylesheet. Mission visual baselines
+  remain a required GitHub check; each newly released renderer contract must
+  add its baseline before registry promotion.
 - Narration operations: the authenticated admin serves a live paginated queue
   across the complete 874-asset production manifest, with year, subject, type,
   status and text filters. Approval is disabled when playback fails; decisions
@@ -199,5 +205,3 @@ Verified commands and results:
   repository public to enable this feature` for this private repository. Until
   the repo is public or on a paid plan, GitHub can run checks but cannot enforce
   branch protection on `main`.
-- Expand visual regression from the flagship mission states to every released
-  interaction renderer and high-contrast mode.

@@ -1142,7 +1142,7 @@ export default function Mission() {
             )}
           </div>
         ) : !done ? (
-          <div className={`rounded-blob border border-white/10 bg-white/10 p-6 shadow-[0_24px_70px_rgba(0,0,0,0.22)] backdrop-blur md:p-8 ${wrongFlash ? "anim-shake" : ""}`}>
+          <div role="region" aria-label="Mission question" className={`rounded-blob border border-white/10 bg-white/10 p-6 shadow-[0_24px_70px_rgba(0,0,0,0.22)] backdrop-blur md:p-8 ${wrongFlash ? "anim-shake" : ""}`}>
             <div className="flex items-center justify-between text-sm text-white/60">
               <span className="font-display">
               Mission: {mission?.activity?.title || "Configured Mission"} - Q{idx + 1}/{total}
