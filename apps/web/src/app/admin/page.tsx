@@ -1,11 +1,36 @@
 "use client";
 
-import type { ReactNode } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import dynamic from "next/dynamic";
-import Link from "next/link";
 import ProgressSnapshot from "@/components/ProgressSnapshot";
 import AdminLedgerControls from "@/components/admin/AdminLedgerControls";
+import { Actions, AdminListPager, EditorGrid, Field, Info, JsonField, Panel, PickRow, Select, Toggle } from "@/components/admin/AdminEditorPrimitives";
+import {
+  assetBadgeClass,
+  contentVersionDiffFields,
+  currentPayloadForVersion,
+  nextContentStatus,
+  parseJSON,
+  pilotLaneBadgeClass,
+  pretty,
+  readinessBadgeClass,
+  releaseBadgeClass,
+  rendererBadgeClass,
+  requireNumberArray,
+  requireObject,
+  requireRange,
+  requireStringArray,
+  requireText,
+  safeDate,
+  slug,
+} from "@/components/admin/adminPageUtilities";
+import AdminSignInSurface from "@/components/admin/AdminSignInSurface";
+import AdminWorkspaceShell from "@/components/admin/AdminWorkspaceShell";
+import {
+  adminSectionFromQuery,
+  type AdminSectionId,
+  visibleAdminSections,
+} from "@/components/admin/adminSectionModel";
 import { accountSessionHeaders, accountSessionRole, logoutAccount, storeAccountSession, type AccountSession, type ProgressReport } from "@/lib/api";
 
 const AdminReviewWorkspace = dynamic(() => import("@/components/admin/AdminReviewWorkspace"), {
@@ -626,8 +651,7 @@ type AdminConfig = {
 const API = process.env.NEXT_PUBLIC_API_URL;
 const EMPTY_OBJECT = "{}";
 const EMPTY_ARRAY = "[]";
-const TABS = ["Access", "Schools", "Learners", "Progress", "Groups", "Parents", "Worlds", "Reviews", "Readiness", "Activities", "Questions", "Rewards", "Objectives", "Flags", "Audit"] as const;
-type Tab = (typeof TABS)[number];
+type Tab = AdminSectionId;
 const ADMIN_PAGE_SIZE = 25;
 const ADMIN_LEDGER_PAGE_SIZE = 25;
 
@@ -813,7 +837,7 @@ export default function AdminPage() {
   const [message, setMessage] = useState("Sign in with a named platform account. The temporary API key remains available only for bootstrap migration.");
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState("");
-  const [tab, setTab] = useState<Tab>("Worlds");
+  const [tab, setTab] = useState<Tab>("Overview");
   const [listPages, setListPages] = useState<Record<string, number>>({});
 
   useEffect(() => {
@@ -822,7 +846,9 @@ export default function AdminPage() {
     void Promise.resolve().then(() => {
       setAccountRole(role);
       const requestedSection = new URLSearchParams(window.location.search).get("section");
-      setTab(role === "content_reviewer" || requestedSection === "reviews" ? "Reviews" : "Worlds");
+      const defaultSection: Tab = role === "content_reviewer" ? "Reviews" : "Overview";
+      const requestedTab = adminSectionFromQuery(requestedSection, defaultSection);
+      setTab(visibleAdminSections(role).includes(requestedTab) ? requestedTab : defaultSection);
       return loadConfig();
     });
     // The session is hydrated once on mount; loadConfig is intentionally not a reactive dependency.
@@ -835,7 +861,7 @@ export default function AdminPage() {
       void loadAuditLogs(false);
       void loadContentVersions(false);
     }
-    if (tab === "Readiness") void loadContentReleases(false);
+    if (tab === "Readiness" || tab === "Releases") void loadContentReleases(false);
     // Section changes intentionally reset each operational ledger to its first bounded page.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [config, tab]);
@@ -978,7 +1004,7 @@ export default function AdminPage() {
       const session = body.session as AccountSession;
       storeAccountSession(session);
       setAccountRole(session.role);
-      setTab(session.role === "content_reviewer" ? "Reviews" : "Worlds");
+      setTab(session.role === "content_reviewer" ? "Reviews" : "Overview");
       setAdminLogin({ login_id: adminLogin.login_id, password: "" });
       await loadConfig();
     } catch (error) {
@@ -1689,11 +1715,14 @@ export default function AdminPage() {
     }
   }
 
-  const visibleTabs: Tab[] = accountRole === "content_reviewer"
-    ? ["Reviews", "Readiness"]
-    : accountRole === "content_editor"
-      ? ["Worlds", "Reviews", "Readiness", "Activities", "Questions", "Rewards", "Objectives"]
-      : [...TABS];
+  const visibleTabs = visibleAdminSections(accountRole);
+
+  function selectAdminSection(section: Tab) {
+    setTab(section);
+    const url = new URL(window.location.href);
+    url.searchParams.set("section", section.toLowerCase());
+    window.history.replaceState({}, "", url);
+  }
 
   function paginate<T>(key: string, items: T[]) {
     const totalPages = Math.max(1, Math.ceil(items.length / ADMIN_PAGE_SIZE));
@@ -1714,111 +1743,37 @@ export default function AdminPage() {
   const pagedLearners = paginate("learners", config?.students ?? []);
   const pagedCredentials = paginate("credentials", config?.student_credentials ?? []);
 
+  if (!config) {
+    return (
+      <AdminSignInSurface
+        adminKey={adminKey}
+        login={adminLogin}
+        loading={loading}
+        message={message}
+        onAdminKeyChange={setAdminKey}
+        onLoginChange={setAdminLogin}
+        onSignIn={() => void signInAdmin()}
+        onBootstrap={() => void loadConfig()}
+      />
+    );
+  }
+
+  const roleLabel = accountRole === "content_reviewer"
+    ? "Content reviewer"
+    : accountRole === "content_editor"
+      ? "Content editor"
+      : "Platform administrator";
+
   return (
-    <main className="min-h-screen bg-[#f6f3ea] px-5 py-8 text-[#1d1a3e]">
-      <div className="mx-auto max-w-7xl">
-        <div className="flex flex-wrap items-start justify-between gap-4">
-          <div>
-            <p className="font-display text-sm uppercase tracking-[0.18em] text-[#7357c9]">Platform admin</p>
-            <h1 className="font-display mt-2 text-4xl font-semibold">Configuration control room</h1>
-            <p className="mt-2 max-w-2xl text-sm leading-6 text-[#565267]">
-              Edit curriculum, worlds, activities, questions and feature flags that drive the learner runtime.
-            </p>
-          </div>
-          <Link href="/" className="btn-pop bg-white px-5 py-3 text-sm shadow-card">
-            Home
-          </Link>
-        </div>
-
-        {!config && (
-          <div className="fixed inset-0 z-50 overflow-y-auto bg-[#f6f3ea] px-5 py-8 text-[#1d1a3e]" role="dialog" aria-modal="true" aria-labelledby="admin-sign-in-title">
-            <div className="mx-auto flex min-h-[80vh] max-w-md flex-col justify-center">
-              <div className="mb-8 text-center">
-                <p className="font-display text-sm uppercase tracking-[0.18em] text-[#7357c9]">NexusLearn platform</p>
-                <h1 id="admin-sign-in-title" className="font-display mt-3 text-4xl font-semibold">Admin sign in</h1>
-                <p className="mt-3 text-sm leading-6 text-[#1d1a3e]/62">Sign in with your named platform account to continue to the functions assigned to your role.</p>
-              </div>
-              <form className="bg-white p-6 shadow-card" onSubmit={(event) => { event.preventDefault(); void signInAdmin(); }}>
-                <label className="block">
-                  <span className="text-sm font-semibold">Login ID</span>
-                  <input value={adminLogin.login_id} onChange={(event) => setAdminLogin({ ...adminLogin, login_id: event.target.value })} className="mt-2 w-full border border-[#1d1a3e]/15 px-4 py-3 outline-none focus:border-[#7357c9]" placeholder="name@example.com" autoComplete="username" autoFocus />
-                </label>
-                <label className="mt-4 block">
-                  <span className="text-sm font-semibold">Password</span>
-                  <input value={adminLogin.password} onChange={(event) => setAdminLogin({ ...adminLogin, password: event.target.value })} type="password" className="mt-2 w-full border border-[#1d1a3e]/15 px-4 py-3 outline-none focus:border-[#7357c9]" placeholder="Password" autoComplete="current-password" />
-                </label>
-                <button type="submit" disabled={loading || !adminLogin.login_id || !adminLogin.password} className="btn-pop mt-6 w-full bg-[#ffbf45] px-6 py-3 text-[#1d1a3e] disabled:cursor-not-allowed disabled:opacity-50">{loading ? "Signing in" : "Sign in"}</button>
-                <p className="mt-4 text-center text-xs leading-5 text-[#1d1a3e]/54">Access is role-controlled. Reviewers see review tools; platform administrators see the full control room.</p>
-              </form>
-              <p className="mt-4 bg-white/70 px-4 py-3 text-sm text-[#1d1a3e]/66" role="status">{message}</p>
-              <details className="mt-6 text-xs text-[#1d1a3e]/55">
-                <summary className="cursor-pointer text-center font-semibold">First-time platform setup</summary>
-                <div className="mt-3 border border-[#1d1a3e]/10 bg-white p-4">
-                  <p className="leading-5">The bootstrap key is only for creating the first named administrator during deployment. It is not part of normal sign in and should be removed after setup.</p>
-                  <label className="mt-3 block"><span className="font-semibold">Temporary bootstrap API key</span><input value={adminKey} onChange={(event) => setAdminKey(event.target.value)} type="password" className="mt-2 w-full border border-[#1d1a3e]/10 px-3 py-2 outline-none focus:border-[#7357c9]" placeholder="Deployment bootstrap key" autoComplete="off" /></label>
-                  <button type="button" onClick={loadConfig} disabled={loading || !adminKey} className="btn-pop mt-3 bg-[#55cbd3] px-4 py-2 text-xs disabled:opacity-50">Load setup workspace</button>
-                </div>
-              </details>
-            </div>
-          </div>
-        )}
-
-        {config && (
-          <div className="mt-8 flex flex-wrap items-center justify-between gap-4 bg-white p-4 shadow-card">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#565267]">Authenticated workspace</p>
-              <p className="mt-1 text-sm font-semibold">{accountRole === "content_reviewer" ? "Content reviewer" : accountRole === "content_editor" ? "Content editor" : "Platform administrator"}</p>
-            </div>
-            <button onClick={signOutAdmin} className="btn-pop bg-[#1d1a3e] px-5 py-3 text-sm text-white">Sign out</button>
-          </div>
-        )}
-
-        <div className={config ? "" : "hidden"}>
-        <p className="mt-4 bg-white/70 px-4 py-3 text-sm text-[#565267]">{message}</p>
-
-        <section className="mt-6 grid gap-4 md:grid-cols-4">
-          {totals.map((item) => (
-            <article key={item.label} className="bg-white p-5 shadow-card">
-              <p className="font-display text-3xl font-semibold">{item.value}</p>
-              <p className="mt-1 text-sm text-[#565267]">{item.label}</p>
-            </article>
-          ))}
-        </section>
-
-        <nav className="mt-6 space-y-4" aria-label="Admin sections">
-          {[
-            { label: "People & organisations", items: ["Access", "Schools", "Learners", "Groups", "Parents"] },
-            { label: "Learning operations", items: ["Progress", "Worlds"] },
-            { label: "Product configuration", items: ["Activities", "Questions", "Rewards", "Objectives", "Flags"] },
-            { label: "Governance", items: ["Reviews", "Readiness", "Audit"] },
-          ].map((group) => {
-            const groupTabs = group.items.filter((item) => visibleTabs.includes(item as Tab));
-            if (groupTabs.length === 0) return null;
-            const groupID = "admin-nav-" + group.label.replaceAll(" ", "-").toLowerCase();
-            return (
-              <section key={group.label} aria-labelledby={groupID}>
-                <h2 id={groupID} className="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#565267]">{group.label}</h2>
-                <div className="flex flex-wrap gap-2">
-                  {groupTabs.map((item) => (
-                    <button key={item} onClick={() => setTab(item as Tab)} className={"btn-pop px-4 py-2 text-sm " + (tab === item ? "bg-[#7357c9] text-white" : "bg-white text-[#1d1a3e]")}>{item}</button>
-                  ))}
-                </div>
-              </section>
-            );
-          })}
-        </nav>
-
-        <div className="hidden mt-6 flex-wrap gap-2">
-          {TABS.map((item) => (
-            <button
-              key={item}
-              onClick={() => setTab(item)}
-              className={`btn-pop px-4 py-2 text-sm ${tab === item ? "bg-[#7357c9] text-white" : "bg-white text-[#1d1a3e]"}`}
-            >
-              {item}
-            </button>
-          ))}
-        </div>
+    <AdminWorkspaceShell
+      activeSection={tab}
+      visibleSections={visibleTabs}
+      roleLabel={roleLabel}
+      message={message}
+      totals={totals}
+      onSelect={selectAdminSection}
+      onSignOut={() => void signOutAdmin()}
+    >
 
         {tab === "Access" && (
           <EditorGrid
@@ -2198,7 +2153,7 @@ export default function AdminPage() {
 
         {tab === "Reviews" && <AdminReviewWorkspace />}
 
-        {tab === "Readiness" && (
+        {(tab === "Readiness" || tab === "Releases") && (
           <section className="mt-6 grid gap-6">
             <section className="grid gap-4 md:grid-cols-4">
               {[
@@ -3338,302 +3293,6 @@ export default function AdminPage() {
             }
           />
         )}
-        </div>
-      </div>
-    </main>
+    </AdminWorkspaceShell>
   );
-}
-
-function EditorGrid({ left, right }: { left: ReactNode; right: ReactNode }) {
-  return <section className="mt-6 grid items-start gap-6 lg:grid-cols-[0.9fr_1.1fr]">{left}{right}</section>;
-}
-
-function Panel({ title, children }: { title: string; children: ReactNode }) {
-  return (
-    <section className="overflow-hidden bg-white shadow-card">
-      <div className="border-b border-[#1d1a3e]/8 p-5">
-        <h2 className="font-display text-2xl font-semibold">{title}</h2>
-      </div>
-      <div className="divide-y divide-[#1d1a3e]/8">{children}</div>
-    </section>
-  );
-}
-
-function PickRow({ title, meta, body, onClick }: { title: string; meta: string; body: string; onClick: () => void }) {
-  return (
-    <button onClick={onClick} className="block w-full p-5 text-left transition-colors hover:bg-[#f6f3ea]">
-      <div className="flex items-start justify-between gap-3">
-        <p className="font-semibold">{title}</p>
-        <span className="bg-[#55cbd3]/20 px-3 py-1 text-xs font-semibold text-[#155d64]">{meta}</span>
-      </div>
-      <p className="mt-2 text-sm leading-6 text-[#1d1a3e]/58">{body}</p>
-    </button>
-  );
-}
-
-function AdminListPager({ page, totalPages, onChange }: { page: number; totalPages: number; onChange: (page: number) => void }) {
-  if (totalPages <= 1) return null;
-  return (
-    <nav className="flex items-center justify-between gap-3 border-t border-[#1d1a3e]/8 p-4 text-xs" aria-label="List pagination">
-      <span className="text-[#1d1a3e]/58">Page {page + 1} of {totalPages}</span>
-      <div className="flex gap-2">
-        <button type="button" onClick={() => onChange(page - 1)} disabled={page === 0} className="btn-pop bg-[#f6f3ea] px-3 py-2 disabled:cursor-not-allowed disabled:opacity-45">Previous</button>
-        <button type="button" onClick={() => onChange(page + 1)} disabled={page >= totalPages - 1} className="btn-pop bg-[#f6f3ea] px-3 py-2 disabled:cursor-not-allowed disabled:opacity-45">Next</button>
-      </div>
-    </nav>
-  );
-}
-
-function Info({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="rounded-lg border border-[#1d1a3e]/10 bg-white p-3">
-      <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#1d1a3e]/42">{label}</p>
-      <p className="mt-1 break-words font-semibold text-[#1d1a3e]/78">{value}</p>
-    </div>
-  );
-}
-
-function Field({ label, value, onChange, type = "text" }: { label: string; value: string | number; onChange: (value: string) => void; type?: "text" | "number" | "password" }) {
-  return (
-    <label className="block p-5">
-      <span className="text-sm font-semibold text-[#1d1a3e]/70">{label}</span>
-      <input
-        type={type}
-        value={value}
-        onChange={(event) => onChange(event.target.value)}
-        className="mt-2 w-full border border-[#1d1a3e]/14 bg-white px-4 py-3 text-sm outline-none focus:border-[#7357c9]"
-      />
-    </label>
-  );
-}
-
-function JsonField({ label, value, onChange }: { label: string; value: string; onChange: (value: string) => void }) {
-  return (
-    <label className="block p-5">
-      <span className="text-sm font-semibold text-[#1d1a3e]/70">{label}</span>
-      <textarea
-        value={value}
-        onChange={(event) => onChange(event.target.value)}
-        rows={6}
-        spellCheck={false}
-        className="mt-2 w-full resize-y border border-[#1d1a3e]/14 bg-[#fbfaf6] px-4 py-3 font-mono text-xs leading-5 outline-none focus:border-[#7357c9]"
-      />
-    </label>
-  );
-}
-
-function Select({ label, value, values, onChange }: { label: string; value: string; values: string[]; onChange: (value: string) => void }) {
-  return (
-    <label className="block p-5">
-      <span className="text-sm font-semibold text-[#1d1a3e]/70">{label}</span>
-      <select value={value} onChange={(event) => onChange(event.target.value)} className="mt-2 w-full border border-[#1d1a3e]/14 bg-white px-4 py-3 text-sm outline-none focus:border-[#7357c9]">
-        {values.map((item) => <option key={item} value={item}>{item}</option>)}
-      </select>
-    </label>
-  );
-}
-
-function Toggle({ label, checked, onChange }: { label: string; checked: boolean; onChange: (checked: boolean) => void }) {
-  return (
-    <label className="flex items-center justify-between gap-4 p-5">
-      <span className="text-sm font-semibold text-[#1d1a3e]/70">{label}</span>
-      <input type="checkbox" checked={checked} onChange={(event) => onChange(event.target.checked)} className="h-5 w-5 accent-[#7357c9]" />
-    </label>
-  );
-}
-
-function Actions({ disabled, onSave, onNew }: { disabled: boolean; onSave: () => void; onNew: () => void }) {
-  return (
-    <div className="flex flex-wrap justify-end gap-3 p-5">
-      <button onClick={onNew} className="btn-pop bg-[#f6f3ea] px-5 py-3 text-sm">
-        New
-      </button>
-      <button onClick={onSave} disabled={disabled} className="btn-pop bg-[#ffbf45] px-5 py-3 text-sm text-[#1d1a3e] disabled:cursor-not-allowed disabled:opacity-50">
-        Save
-      </button>
-    </div>
-  );
-}
-
-function parseJSON<T>(value: string, fallback: string, label: string): T {
-  try {
-    return JSON.parse(value || fallback) as T;
-  } catch {
-    throw new Error(`${label} must be valid JSON.`);
-  }
-}
-
-function requireText(value: string, label: string) {
-  if (!value.trim()) throw new Error(`${label} is required.`);
-}
-
-function requireRange(value: number, min: number, max: number, label: string) {
-  if (!Number.isFinite(value) || value < min || value > max) {
-    throw new Error(`${label} must be between ${min} and ${max}.`);
-  }
-}
-
-function requireObject(value: Record<string, unknown>, label: string) {
-  if (!value || Object.keys(value).length === 0) throw new Error(`${label} is required.`);
-}
-
-function requireStringArray(value: unknown[], label: string, requireItem = false) {
-  if (!Array.isArray(value) || (requireItem && value.length === 0) || value.some((item) => typeof item !== "string" || !item.trim())) {
-    throw new Error(`${label} must be a JSON array of text values${requireItem ? " with at least one item" : ""}.`);
-  }
-}
-
-function requireNumberArray(value: unknown[], label: string, requireItem = false) {
-  if (!Array.isArray(value) || (requireItem && value.length === 0) || value.some((item) => typeof item !== "number" || item < 1)) {
-    throw new Error(`${label} must be a JSON array of positive numbers${requireItem ? " with at least one item" : ""}.`);
-  }
-}
-
-function pretty(value: unknown) {
-  return JSON.stringify(value ?? {}, null, 2);
-}
-
-function slug(value: string) {
-  return value.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
-}
-
-function safeDate(value: string) {
-  if (!value) return "";
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return value;
-  return date.toLocaleString("en-GB");
-}
-
-function currentPayloadForVersion(version: ContentVersion, config: AdminConfig | null, objectives: Objective[]): Record<string, unknown> | null {
-  let payload: unknown;
-  switch (version.content_type) {
-    case "curriculum_objective":
-      payload = objectives.find((objective) => objective.id === version.content_key);
-      break;
-    case "world":
-      payload = config?.worlds?.find((world) => world.key === version.content_key);
-      break;
-    case "activity":
-      payload = config?.activities?.find((activity) => activity.id === version.content_key);
-      break;
-    case "question":
-      payload = config?.questions?.find((question) => question.id === version.content_key);
-      break;
-    case "reward_rule":
-      payload = config?.reward_rules?.find((rule) => rule.id === version.content_key);
-      break;
-    default:
-      return null;
-  }
-  if (!payload || typeof payload !== "object") return null;
-  return payload as Record<string, unknown>;
-}
-
-function contentVersionDiffFields(version: ContentVersion, current: Record<string, unknown> | null) {
-  if (!current || !version.payload) return [];
-  return deepDiffPaths(version.payload, current);
-}
-
-function deepDiffPaths(left: unknown, right: unknown, path = ""): string[] {
-  if (stableJSON(left) === stableJSON(right)) return [];
-  if (Array.isArray(left) || Array.isArray(right)) return [path || "(root)"];
-  if (left && right && typeof left === "object" && typeof right === "object") {
-    const ignored = new Set(["created_at", "updated_at", "published_at"]);
-    const leftRecord = left as Record<string, unknown>;
-    const rightRecord = right as Record<string, unknown>;
-    const keys = new Set([...Object.keys(leftRecord), ...Object.keys(rightRecord)]);
-    return [...keys]
-      .filter((key) => !ignored.has(key))
-      .flatMap((key) => deepDiffPaths(leftRecord[key], rightRecord[key], path ? `${path}.${key}` : key))
-      .sort();
-  }
-  return [path || "(root)"];
-}
-
-function nextContentStatus(status: string) {
-  return ({
-    draft: "review",
-    review: "pilot",
-    pilot: "approved",
-    approved: "published",
-    published: "live",
-  } as Record<string, string>)[status] ?? "";
-}
-
-function stableJSON(value: unknown): string {
-  if (Array.isArray(value)) {
-    return `[${value.map(stableJSON).join(",")}]`;
-  }
-  if (value && typeof value === "object") {
-    return `{${Object.entries(value as Record<string, unknown>)
-      .sort(([left], [right]) => left.localeCompare(right))
-      .map(([key, nested]) => `${JSON.stringify(key)}:${stableJSON(nested)}`)
-      .join(",")}}`;
-  }
-  return JSON.stringify(value ?? null);
-}
-
-function readinessBadgeClass(status: string) {
-  switch (status) {
-    case "ready":
-      return "bg-[#dff7e7] text-[#17633a]";
-    case "pilot":
-      return "bg-[#e8e2ff] text-[#4e33a4]";
-    case "draft":
-      return "bg-[#fff4d5] text-[#725100]";
-    case "blocked":
-      return "bg-[#ffe8e8] text-[#8b2b2b]";
-    default:
-      return "bg-[#f6f3ea] text-[#1d1a3e]/62";
-  }
-}
-
-function rendererBadgeClass(format: RendererReadinessFormat) {
-  if (format.runtime_failures > 0) return "bg-[#ffe8e8] text-[#8b2b2b]";
-  if (format.current_runtime.includes("ready")) return "bg-[#dff7e7] text-[#17633a]";
-  if (format.current_runtime === "preview_only") return "bg-[#fff4d5] text-[#725100]";
-  return "bg-[#e8e2ff] text-[#4e33a4]";
-}
-
-function assetBadgeClass(status: string) {
-  switch (status) {
-    case "production":
-      return "bg-[#dff7e7] text-[#17633a]";
-    case "pilot":
-      return "bg-[#e8e2ff] text-[#4e33a4]";
-    case "prototype":
-      return "bg-[#dff4ff] text-[#155d64]";
-    case "planned":
-      return "bg-[#fff4d5] text-[#725100]";
-    default:
-      return "bg-[#f6f3ea] text-[#1d1a3e]/62";
-  }
-}
-
-function pilotLaneBadgeClass(status: string) {
-  switch (status) {
-    case "required":
-      return "bg-[#ffe8e8] text-[#8b2b2b]";
-    case "conditional":
-      return "bg-[#fff4d5] text-[#725100]";
-    case "sample":
-      return "bg-[#dff4ff] text-[#155d64]";
-    default:
-      return "bg-[#f6f3ea] text-[#1d1a3e]/62";
-  }
-}
-
-function releaseBadgeClass(channel: string) {
-  switch (channel) {
-    case "release":
-      return "bg-[#dff7e7] text-[#17633a]";
-    case "pilot":
-      return "bg-[#e8e2ff] text-[#4e33a4]";
-    case "review":
-      return "bg-[#dff4ff] text-[#155d64]";
-    case "authoring":
-      return "bg-[#fff4d5] text-[#725100]";
-    default:
-      return "bg-[#f6f3ea] text-[#1d1a3e]/62";
-  }
 }
