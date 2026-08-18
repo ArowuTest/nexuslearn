@@ -166,7 +166,9 @@ type Repository interface {
 	ListRewardRules(ctx context.Context) ([]RewardRule, error)
 	UpsertRewardRule(ctx context.Context, rule RewardRule) (RewardRule, error)
 	ListAuditLogs(ctx context.Context, limit int) ([]AuditLog, error)
+	ListAuditLogPage(ctx context.Context, query AdminPageQuery) (AuditLogPage, error)
 	ListContentVersions(ctx context.Context, limit int) ([]ContentVersion, error)
+	ListContentVersionPage(ctx context.Context, query AdminPageQuery) (ContentVersionPage, error)
 	RestoreContentVersion(ctx context.Context, id string) (ContentVersion, error)
 }
 
@@ -464,8 +466,16 @@ func (NoopRepository) ListAuditLogs(context.Context, int) ([]AuditLog, error) {
 	return []AuditLog{}, nil
 }
 
+func (NoopRepository) ListAuditLogPage(context.Context, AdminPageQuery) (AuditLogPage, error) {
+	return AuditLogPage{AuditLogs: []AuditLog{}}, nil
+}
+
 func (NoopRepository) ListContentVersions(context.Context, int) ([]ContentVersion, error) {
 	return []ContentVersion{}, nil
+}
+
+func (NoopRepository) ListContentVersionPage(context.Context, AdminPageQuery) (ContentVersionPage, error) {
+	return ContentVersionPage{ContentVersions: []ContentVersion{}}, nil
 }
 
 func (NoopRepository) RestoreContentVersion(_ context.Context, id string) (ContentVersion, error) {

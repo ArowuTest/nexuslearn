@@ -23,7 +23,7 @@ export default defineConfig({
     { name: "mobile-chromium", use: { ...devices["Pixel 7"] } },
   ],
   webServer: {
-    command: `npm run dev -- --hostname 127.0.0.1 --port ${port}`,
+    command: `npx next dev --webpack --hostname 127.0.0.1 --port ${port}`,
     env: {
       NEXT_PUBLIC_API_URL: "http://api.test",
     },

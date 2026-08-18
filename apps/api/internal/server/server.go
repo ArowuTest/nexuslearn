@@ -23,6 +23,7 @@ import (
 	"time"
 
 	"github.com/ArowuTest/nexuslearn/apps/api/internal/learning"
+	"github.com/jackc/pgx/v5/pgtype"
 	"golang.org/x/sync/errgroup"
 )
 
@@ -2285,26 +2286,36 @@ func (s *Server) handleAuditLogs(w http.ResponseWriter, r *http.Request) {
 	if !s.requireAdmin(w, r) {
 		return
 	}
-	logs, err := s.repo.ListAuditLogs(r.Context(), 50)
+	query, err := adminPageQuery(r, true)
+	if err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+		return
+	}
+	page, err := s.repo.ListAuditLogPage(r.Context(), query)
 	if err != nil {
 		slog.Warn("failed to read audit logs", "error", err)
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read audit logs"})
 		return
 	}
-	writeJSON(w, http.StatusOK, map[string]any{"audit_logs": logs})
+	writeJSON(w, http.StatusOK, page)
 }
 
 func (s *Server) handleContentVersions(w http.ResponseWriter, r *http.Request) {
 	if !s.requireAdmin(w, r) {
 		return
 	}
-	versions, err := s.repo.ListContentVersions(r.Context(), 100)
+	query, err := adminPageQuery(r, true)
+	if err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+		return
+	}
+	page, err := s.repo.ListContentVersionPage(r.Context(), query)
 	if err != nil {
 		slog.Warn("failed to read content versions", "error", err)
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read content versions"})
 		return
 	}
-	writeJSON(w, http.StatusOK, map[string]any{"content_versions": versions})
+	writeJSON(w, http.StatusOK, page)
 }
 
 func (s *Server) contentReleaseStore(w http.ResponseWriter) (contentReleaseRepository, bool) {
@@ -2320,17 +2331,51 @@ func (s *Server) handleContentReleases(w http.ResponseWriter, r *http.Request) {
 	if !s.requireAdmin(w, r) {
 		return
 	}
+	query, err := adminPageQuery(r)
+	if err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+		return
+	}
 	store, ok := s.contentReleaseStore(w)
 	if !ok {
 		return
 	}
-	items, err := store.ListContentReleases(r.Context(), 100)
+	page, err := store.ListContentReleasePage(r.Context(), query)
 	if err != nil {
 		slog.Warn("failed to list content releases", "error", err)
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read content releases"})
 		return
 	}
-	writeJSON(w, http.StatusOK, map[string]any{"content_releases": items})
+	writeJSON(w, http.StatusOK, page)
+}
+
+func adminPageQuery(r *http.Request, requireUUID ...bool) (learning.AdminPageQuery, error) {
+	query := learning.AdminPageQuery{Limit: 100}
+	if rawLimit := strings.TrimSpace(r.URL.Query().Get("limit")); rawLimit != "" {
+		limit, err := strconv.Atoi(rawLimit)
+		if err != nil || limit < 1 {
+			return query, errors.New("limit must be a positive whole number")
+		}
+		if limit > 100 {
+			limit = 100
+		}
+		query.Limit = limit
+	}
+	if cursor := strings.TrimSpace(r.URL.Query().Get("cursor")); cursor != "" {
+		createdAt, id, err := learning.DecodeAdminCursor(cursor)
+		if err != nil {
+			return query, errors.New("cursor is invalid")
+		}
+		if len(requireUUID) > 0 && requireUUID[0] {
+			var uuid pgtype.UUID
+			if err := uuid.Scan(id); err != nil || !uuid.Valid {
+				return query, errors.New("cursor is invalid")
+			}
+		}
+		query.BeforeCreatedAt = createdAt
+		query.BeforeID = id
+	}
+	return query, nil
 }
 
 func (s *Server) handleStageContentRelease(w http.ResponseWriter, r *http.Request) {
@@ -2530,7 +2575,8 @@ func (s *Server) handleCurriculumMap(w http.ResponseWriter, r *http.Request) {
 func (s *Server) handleCurriculumReleaseStatus(w http.ResponseWriter, r *http.Request) {
 	group, ctx := errgroup.WithContext(r.Context())
 	var objectives []learning.Objective
-	var releases []learning.ContentReleaseManifest
+	var activeRelease learning.ContentReleaseManifest
+	var hasActiveRelease bool
 	group.Go(func() error {
 		var err error
 		objectives, err = s.repo.ListObjectives(ctx)
@@ -2540,7 +2586,7 @@ func (s *Server) handleCurriculumReleaseStatus(w http.ResponseWriter, r *http.Re
 	if hasReleaseStore {
 		group.Go(func() error {
 			var err error
-			releases, err = store.ListContentReleases(ctx, 100)
+			activeRelease, hasActiveRelease, err = store.ActiveContentRelease(ctx, "live")
 			return err
 		})
 	}
@@ -2554,23 +2600,17 @@ func (s *Server) handleCurriculumReleaseStatus(w http.ResponseWriter, r *http.Re
 		"runtime_objectives": len(objectives),
 		"generated_at":       time.Now().UTC().Format(time.RFC3339),
 	}
-	if hasReleaseStore {
-		for _, release := range releases {
-			if release.Channel != "live" || release.Status != "applied" {
-				continue
-			}
-			response["state"] = "live_release"
-			response["active_release"] = publicCurriculumRelease{
-				ID:                     release.ID,
-				Channel:                release.Channel,
-				Status:                 release.Status,
-				ExpectedPackCount:      release.ExpectedPackCount,
-				ExpectedObjectiveCount: release.ExpectedObjectiveCount,
-				ExpectedActivityCount:  release.ExpectedActivityCount,
-				ExpectedQuestionCount:  release.ExpectedQuestionCount,
-				AppliedAt:              release.AppliedAt,
-			}
-			break
+	if hasReleaseStore && hasActiveRelease {
+		response["state"] = "live_release"
+		response["active_release"] = publicCurriculumRelease{
+			ID:                     activeRelease.ID,
+			Channel:                activeRelease.Channel,
+			Status:                 activeRelease.Status,
+			ExpectedPackCount:      activeRelease.ExpectedPackCount,
+			ExpectedObjectiveCount: activeRelease.ExpectedObjectiveCount,
+			ExpectedActivityCount:  activeRelease.ExpectedActivityCount,
+			ExpectedQuestionCount:  activeRelease.ExpectedQuestionCount,
+			AppliedAt:              activeRelease.AppliedAt,
 		}
 	}
 	writeJSON(w, http.StatusOK, response)

@@ -26,6 +26,28 @@ type mockAssessmentRequest struct {
 	IdempotencyKey     string         `json:"idempotency_key,omitempty"`
 }
 
+// parentMockAssessmentHistoryEntry is the parent-facing evidence contract.
+// It intentionally excludes actor, school, learner identifier, accessibility,
+// item-bank and generation fields that the parent history UI does not display.
+type parentMockAssessmentHistoryEntry struct {
+	ID               string                         `json:"id"`
+	Subject          string                         `json:"subject"`
+	YearGroup        int                            `json:"year_group"`
+	Title            string                         `json:"title"`
+	Status           string                         `json:"status"`
+	QuestionCount    int                            `json:"question_count"`
+	AnsweredCount    int                            `json:"answered_count"`
+	CorrectCount     int                            `json:"correct_count"`
+	Score            int                            `json:"score"`
+	ObjectiveResults []learning.MockObjectiveResult `json:"objective_results"`
+	CreatedAt        string                         `json:"created_at,omitempty"`
+}
+
+type parentMockAssessmentHistoryPage struct {
+	Assessments []parentMockAssessmentHistoryEntry `json:"mock_assessments"`
+	NextCursor  string                             `json:"next_cursor,omitempty"`
+}
+
 type mockAssessmentStore interface {
 	learning.MockAssessmentStore
 }
@@ -106,7 +128,7 @@ func (s *Server) handleParentMockAssessments(w http.ResponseWriter, r *http.Requ
 		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "mock assessments are not available"})
 		return
 	}
-	s.writeMockAssessmentPage(w, r, store, studentID, "", 50)
+	s.writeParentMockAssessmentPage(w, r, store, studentID)
 }
 
 func (s *Server) handleSchoolCreateMockAssessment(w http.ResponseWriter, r *http.Request) {
@@ -166,6 +188,32 @@ func (s *Server) writeMockAssessmentPage(w http.ResponseWriter, r *http.Request,
 		return
 	}
 	writeJSON(w, http.StatusOK, page)
+}
+
+func (s *Server) writeParentMockAssessmentPage(w http.ResponseWriter, r *http.Request, store mockAssessmentStore, studentID string) {
+	query, err := mockAssessmentPageQuery(r, studentID, "", 50)
+	if err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+		return
+	}
+	page, err := store.ListMockAssessmentPage(r.Context(), query)
+	if err != nil {
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not load mock assessments"})
+		return
+	}
+	projected := parentMockAssessmentHistoryPage{
+		Assessments: make([]parentMockAssessmentHistoryEntry, 0, len(page.Assessments)),
+		NextCursor:  page.NextCursor,
+	}
+	for _, assessment := range page.Assessments {
+		projected.Assessments = append(projected.Assessments, parentMockAssessmentHistoryEntry{
+			ID: assessment.ID, Subject: assessment.Subject, YearGroup: assessment.YearGroup,
+			Title: assessment.Title, Status: assessment.Status, QuestionCount: assessment.QuestionCount,
+			AnsweredCount: assessment.AnsweredCount, CorrectCount: assessment.CorrectCount, Score: assessment.Score,
+			ObjectiveResults: assessment.ObjectiveResults, CreatedAt: assessment.CreatedAt,
+		})
+	}
+	writeJSON(w, http.StatusOK, projected)
 }
 
 func mockAssessmentPageQuery(r *http.Request, studentID string, schoolURN string, defaultLimit int) (learning.MockAssessmentQuery, error) {

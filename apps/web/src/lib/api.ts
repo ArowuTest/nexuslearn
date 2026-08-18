@@ -333,6 +333,32 @@ export type MockAssessmentPage = {
   next_cursor?: string;
 };
 
+export type ParentMockAssessmentHistoryEntry = {
+  id: string;
+  subject: string;
+  year_group: number;
+  title: string;
+  status: "ready" | "in_progress" | "completed" | "cancelled";
+  question_count: number;
+  answered_count: number;
+  correct_count: number;
+  score: number;
+  objective_results: MockObjectiveResult[];
+  created_at?: string;
+};
+
+export type MockAssessmentHistoryPage = {
+  mock_assessments: ParentMockAssessmentHistoryEntry[];
+  next_cursor?: string;
+};
+
+export type MockAssessmentPageOptions = {
+  cursor?: string;
+  limit?: number;
+  subject?: MockAssessmentRequest["subject"];
+  status?: MockAssessment["status"];
+};
+
 export type MockAssessmentSummary = {
   id: string;
   subject: string;
@@ -661,21 +687,62 @@ export async function createSchoolMockAssessment(studentId: string, request: Moc
 
 export async function getPupilMockAssessmentPage(
   studentId: string,
-  options: { cursor?: string; limit?: number } = {},
+  options: MockAssessmentPageOptions = {},
 ): Promise<MockAssessmentPage> {
   if (!API) return { mock_assessments: [] };
+  return getMockAssessmentPage<MockAssessment>(
+    `/v1/students/${encodeURIComponent(studentId)}/mock-assessments`,
+    options,
+    pupilSessionHeaders(studentId),
+  );
+}
+
+export async function getParentMockAssessmentPage(
+  studentId: string,
+  options: MockAssessmentPageOptions = {},
+): Promise<MockAssessmentHistoryPage> {
+  if (!API) throw new Error("The NexusLearn API is not configured yet.");
+  return getMockAssessmentPage<ParentMockAssessmentHistoryEntry>(
+    `/v1/parent/children/${encodeURIComponent(studentId)}/mock-assessments`,
+    options,
+    accountSessionHeaders(["parent"]),
+  );
+}
+
+export async function getSchoolMockAssessmentPage(
+  studentId: string,
+  options: MockAssessmentPageOptions = {},
+): Promise<MockAssessmentHistoryPage> {
+  if (!API) throw new Error("The NexusLearn API is not configured yet.");
+  return getMockAssessmentPage<ParentMockAssessmentHistoryEntry>(
+    "/v1/school/mock-assessments",
+    options,
+    accountSessionHeaders(["school_admin", "teacher"]),
+    { studentId },
+  );
+}
+
+async function getMockAssessmentPage<T extends ParentMockAssessmentHistoryEntry = MockAssessment>(
+  path: string,
+  options: MockAssessmentPageOptions,
+  headers: Record<string, string>,
+  scope: Record<string, string> = {},
+): Promise<{ mock_assessments: T[]; next_cursor?: string }> {
   const params = new URLSearchParams();
+  Object.entries(scope).forEach(([key, value]) => params.set(key, value));
   if (options.cursor) params.set("cursor", options.cursor);
   if (options.limit) params.set("limit", String(options.limit));
+  if (options.subject) params.set("subject", options.subject);
+  if (options.status) params.set("status", options.status);
   const suffix = params.size > 0 ? `?${params.toString()}` : "";
-  const res = await fetch(`${API}/v1/students/${encodeURIComponent(studentId)}/mock-assessments${suffix}`, {
-    headers: pupilSessionHeaders(studentId),
+  const res = await fetch(`${API}${path}${suffix}`, {
+    headers,
     cache: "no-store",
   });
   const body = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error(body.error ?? "Could not load mock assessments.");
   return {
-    mock_assessments: (body.mock_assessments ?? []) as MockAssessment[],
+    mock_assessments: (body.mock_assessments ?? []) as T[],
     next_cursor: body.next_cursor,
   };
 }

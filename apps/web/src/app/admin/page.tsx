@@ -1,10 +1,11 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import ProgressSnapshot from "@/components/ProgressSnapshot";
+import AdminLedgerControls from "@/components/admin/AdminLedgerControls";
 import { accountSessionHeaders, accountSessionRole, logoutAccount, storeAccountSession, type AccountSession, type ProgressReport } from "@/lib/api";
 
 const AdminReviewWorkspace = dynamic(() => import("@/components/admin/AdminReviewWorkspace"), {
@@ -420,6 +421,14 @@ type BackendContentRelease = {
   created_at: string;
   applied_at?: string;
 };
+type AdminLedgerState<T extends { id: string }> = {
+  items: T[];
+  nextCursor: string;
+  liveApplied: boolean;
+  loaded: boolean;
+  loading: boolean;
+  error: string;
+};
 type VariantProductionItem = {
   rank: number;
   pack_id: string;
@@ -620,6 +629,22 @@ const EMPTY_ARRAY = "[]";
 const TABS = ["Access", "Schools", "Learners", "Progress", "Groups", "Parents", "Worlds", "Reviews", "Readiness", "Activities", "Questions", "Rewards", "Objectives", "Flags", "Audit"] as const;
 type Tab = (typeof TABS)[number];
 const ADMIN_PAGE_SIZE = 25;
+const ADMIN_LEDGER_PAGE_SIZE = 25;
+
+function emptyAdminLedger<T extends { id: string }>(): AdminLedgerState<T> {
+  return { items: [], nextCursor: "", liveApplied: false, loaded: false, loading: false, error: "" };
+}
+
+function appendUniqueByID<T extends { id: string }>(current: T[], incoming: T[]) {
+  const seen = new Set(current.map((item) => item.id));
+  const merged = [...current];
+  for (const item of incoming) {
+    if (seen.has(item.id)) continue;
+    seen.add(item.id);
+    merged.push(item);
+  }
+  return merged;
+}
 
 async function reviewIdempotencyKey(scope: string, payload: Record<string, unknown>) {
   const serialized = JSON.stringify(payload);
@@ -771,7 +796,7 @@ export default function AdminPage() {
   const [packDepthReadiness, setPackDepthReadiness] = useState<PackDepthReadiness | null>(null);
   const [curriculumCoverage, setCurriculumCoverage] = useState<CurriculumAreaCoverage | null>(null);
   const [releaseSnapshot, setReleaseSnapshot] = useState<ContentReleaseSnapshot | null>(null);
-  const [backendReleases, setBackendReleases] = useState<BackendContentRelease[] | null>(null);
+  const [releaseLedger, setReleaseLedger] = useState<AdminLedgerState<BackendContentRelease>>(() => emptyAdminLedger());
   const [variantQueue, setVariantQueue] = useState<VariantProductionQueue | null>(null);
   const [runtimeSpine, setRuntimeSpine] = useState<RuntimeSpineEnhancement | null>(null);
   const [pilotReviewBatch, setPilotReviewBatch] = useState<PilotReviewBatch | null>(null);
@@ -780,8 +805,11 @@ export default function AdminPage() {
   const [contentReviewLedger, setContentReviewLedger] = useState<ContentReviewLedger | null>(null);
   const [contentReviewDrafts, setContentReviewDrafts] = useState<Record<string, { reviewer_name: string; evidence_notes: string; candidate_ids: string; revision_actions: string }>>({});
   const [flagshipReview, setFlagshipReview] = useState<FlagshipReviewReport | null>(null);
-  const [auditLogs, setAuditLogs] = useState<AuditLog[]>([]);
-  const [contentVersions, setContentVersions] = useState<ContentVersion[]>([]);
+  const [auditLedger, setAuditLedger] = useState<AdminLedgerState<AuditLog>>(() => emptyAdminLedger());
+  const [versionLedger, setVersionLedger] = useState<AdminLedgerState<ContentVersion>>(() => emptyAdminLedger());
+  const auditLedgerRequest = useRef(0);
+  const versionLedgerRequest = useRef(0);
+  const releaseLedgerRequest = useRef(0);
   const [message, setMessage] = useState("Sign in with a named platform account. The temporary API key remains available only for bootstrap migration.");
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState("");
@@ -800,6 +828,17 @@ export default function AdminPage() {
     // The session is hydrated once on mount; loadConfig is intentionally not a reactive dependency.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (!config) return;
+    if (tab === "Audit") {
+      void loadAuditLogs(false);
+      void loadContentVersions(false);
+    }
+    if (tab === "Readiness") void loadContentReleases(false);
+    // Section changes intentionally reset each operational ledger to its first bounded page.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [config, tab]);
 
   const [worldDraft, setWorldDraft] = useState({ ...newWorld, configText: pretty(newWorld.config) });
   const [activityDraft, setActivityDraft] = useState({
@@ -872,6 +911,58 @@ export default function AdminPage() {
     return body;
   }
 
+  async function loadAdminLedgerPage<T extends { id: string }>(
+    state: AdminLedgerState<T>,
+    setState: (update: (current: AdminLedgerState<T>) => AdminLedgerState<T>) => void,
+    requestSequence: { current: number },
+    path: string,
+    collectionKey: string,
+    append: boolean,
+  ) {
+    if (append && !state.nextCursor) return;
+    const requestID = ++requestSequence.current;
+    const query = new URLSearchParams({ limit: String(ADMIN_LEDGER_PAGE_SIZE) });
+    if (append) query.set("cursor", state.nextCursor);
+    setState((current) => append
+      ? { ...current, loading: true, error: "" }
+      : { ...emptyAdminLedger<T>(), loading: true });
+    try {
+      const data = await adminFetch(`${path}?${query.toString()}`) as Record<string, unknown>;
+      const page = data[collectionKey];
+      if (!Array.isArray(page)) throw new Error(`The ${collectionKey.replaceAll("_", " ")} ledger returned an invalid response.`);
+      if (requestID !== requestSequence.current) return;
+      const incoming = page as T[];
+      setState((current) => ({
+        items: append ? appendUniqueByID(current.items, incoming) : appendUniqueByID([], incoming),
+        nextCursor: typeof data.next_cursor === "string" ? data.next_cursor : "",
+        liveApplied: typeof data.live_applied === "boolean" ? data.live_applied : current.liveApplied,
+        loaded: true,
+        loading: false,
+        error: "",
+      }));
+    } catch (error) {
+      if (requestID !== requestSequence.current) return;
+      setState((current) => ({
+        ...current,
+        loaded: true,
+        loading: false,
+        error: error instanceof Error ? error.message : "The ledger could not be loaded.",
+      }));
+    }
+  }
+
+  async function loadAuditLogs(append: boolean) {
+    await loadAdminLedgerPage(auditLedger, setAuditLedger, auditLedgerRequest, "/v1/admin/audit", "audit_logs", append);
+  }
+
+  async function loadContentVersions(append: boolean) {
+    await loadAdminLedgerPage(versionLedger, setVersionLedger, versionLedgerRequest, "/v1/admin/content/versions", "content_versions", append);
+  }
+
+  async function loadContentReleases(append: boolean) {
+    await loadAdminLedgerPage(releaseLedger, setReleaseLedger, releaseLedgerRequest, "/v1/admin/content/releases", "content_releases", append);
+  }
+
   async function signInAdmin() {
     if (!API) throw new Error("NEXT_PUBLIC_API_URL is not configured.");
     setLoading(true);
@@ -910,6 +1001,12 @@ export default function AdminPage() {
     setNarrationPlaybackErrors({});
     setContentReviewLedger(null);
     setContentReviewDrafts({});
+    auditLedgerRequest.current += 1;
+    versionLedgerRequest.current += 1;
+    releaseLedgerRequest.current += 1;
+    setAuditLedger(emptyAdminLedger());
+    setVersionLedger(emptyAdminLedger());
+    setReleaseLedger(emptyAdminLedger());
     setMessage("Signed out securely.");
   }
 
@@ -1079,12 +1176,10 @@ export default function AdminPage() {
     setMessage("Loading live configuration...");
     setAdminProgress(null);
     try {
-      const [loadedConfig, objectiveData, readinessData, auditData, versionsData, invitationData, rendererData, assetData, narrationData, narrationQueueData, packDepthData, curriculumCoverageData, releaseData, backendReleaseData, variantQueueData, runtimeSpineData, pilotReviewBatchData, pilotReviewEvidenceData, pilotReviewEvidenceCheckData, contentReviewLedgerData, flagshipReviewData] = await Promise.all([
+      const [loadedConfig, objectiveData, readinessData, invitationData, rendererData, assetData, narrationData, narrationQueueData, packDepthData, curriculumCoverageData, releaseData, variantQueueData, runtimeSpineData, pilotReviewBatchData, pilotReviewEvidenceData, pilotReviewEvidenceCheckData, contentReviewLedgerData, flagshipReviewData] = await Promise.all([
         adminFetch("/v1/admin/config"),
         fetch(`${API}/v1/curriculum/objectives`).then((res) => res.json()),
         adminFetch("/v1/admin/content/readiness"),
-        adminFetch("/v1/admin/audit"),
-        adminFetch("/v1/admin/content/versions"),
         adminFetch("/v1/admin/parent-invitations"),
         loadGeneratedContentReport("interaction-renderer-readiness"),
         loadGeneratedContentReport("asset-production-readiness"),
@@ -1093,7 +1188,6 @@ export default function AdminPage() {
         loadGeneratedContentReport("pack-depth-readiness"),
         loadGeneratedContentReport("curriculum-area-coverage"),
         loadGeneratedContentReport("content-release-snapshot"),
-        adminFetch("/v1/admin/content/releases").catch(() => ({ content_releases: [] })),
         loadGeneratedContentReport("variant-production-queue"),
         loadGeneratedContentReport("runtime-spine-enhancement"),
         loadGeneratedContentReport("pilot-review-batch"),
@@ -1114,7 +1208,6 @@ export default function AdminPage() {
       setPackDepthReadiness(packDepthData as PackDepthReadiness | null);
       setCurriculumCoverage(curriculumCoverageData as CurriculumAreaCoverage | null);
       setReleaseSnapshot(releaseData as ContentReleaseSnapshot | null);
-      setBackendReleases((backendReleaseData.content_releases ?? []) as BackendContentRelease[]);
       setVariantQueue(variantQueueData as VariantProductionQueue | null);
       setRuntimeSpine(runtimeSpineData as RuntimeSpineEnhancement | null);
       setPilotReviewBatch(pilotReviewBatchData as PilotReviewBatch | null);
@@ -1123,8 +1216,6 @@ export default function AdminPage() {
       setContentReviewLedger(contentReviewLedgerData as ContentReviewLedger | null);
       setContentReviewDrafts({});
       setFlagshipReview(flagshipReviewData as FlagshipReviewReport | null);
-      setAuditLogs(auditData.audit_logs ?? []);
-      setContentVersions(versionsData.content_versions ?? []);
       setParentInvitations(invitationData.parent_invitations ?? []);
       setMessage("Live configuration loaded. Select a row to edit, or create a new item.");
     } catch (error) {
@@ -1139,7 +1230,6 @@ export default function AdminPage() {
       setPackDepthReadiness(null);
       setCurriculumCoverage(null);
       setReleaseSnapshot(null);
-      setBackendReleases(null);
       setVariantQueue(null);
       setRuntimeSpine(null);
       setPilotReviewBatch(null);
@@ -1148,8 +1238,6 @@ export default function AdminPage() {
       setContentReviewLedger(null);
       setContentReviewDrafts({});
       setFlagshipReview(null);
-      setAuditLogs([]);
-      setContentVersions([]);
       setMessage(error instanceof Error ? error.message : "Could not reach the API.");
       setAdminProgress(null);
     } finally {
@@ -1623,8 +1711,6 @@ export default function AdminPage() {
   const pagedRewards = paginate("rewards", config?.reward_rules ?? []);
   const pagedObjectives = paginate("objectives", objectives);
   const pagedFlags = paginate("flags", config?.feature_flags ?? []);
-  const pagedVersions = paginate("content-versions", contentVersions);
-  const pagedAuditLogs = paginate("audit-logs", auditLogs);
   const pagedLearners = paginate("learners", config?.students ?? []);
   const pagedCredentials = paginate("credentials", config?.student_credentials ?? []);
 
@@ -2798,14 +2884,18 @@ export default function AdminPage() {
                       This is the learner-runtime truth. A generated pack report is not live until a complete backend release is applied.
                     </p>
                   </div>
-                  {backendReleases?.some((release) => release.channel === "live" && release.status === "applied") ? (
+                  {!releaseLedger.error && releaseLedger.loaded && releaseLedger.liveApplied ? (
                     <span className="bg-[#dff7e7] px-3 py-1 text-xs font-semibold text-[#28613c]">live release applied</span>
-                  ) : (
+                  ) : releaseLedger.error ? (
+                    <span className="bg-[#fde4e4] px-3 py-1 text-xs font-semibold text-[#8b2b2b]">release ledger unavailable</span>
+                  ) : releaseLedger.loaded ? (
                     <span className="bg-[#fff4d5] px-3 py-1 text-xs font-semibold text-[#725100]">no live release applied</span>
+                  ) : (
+                    <span className="bg-[#f6f3ea] px-3 py-1 text-xs font-semibold text-[#565267]">loading release ledger</span>
                   )}
                 </div>
                 <div className="mt-4 grid gap-3 lg:grid-cols-2">
-                  {(backendReleases ?? []).slice(0, 6).map((release) => (
+                  {releaseLedger.items.map((release) => (
                     <article key={release.id} className="border border-[#1d1a3e]/8 bg-white p-4">
                       <div className="flex flex-wrap items-center justify-between gap-2">
                         <p className="font-semibold">{release.channel} / {release.status}</p>
@@ -2819,13 +2909,22 @@ export default function AdminPage() {
                       </p>
                     </article>
                   ))}
-                  {backendReleases?.length === 0 && (
-                    <p className="text-sm leading-6 text-[#725100]">No release has been staged in the connected backend yet.</p>
-                  )}
-                  {!backendReleases && (
-                    <p className="text-sm leading-6 text-[#725100]">The backend release ledger is unavailable. Check the API connection before treating content as live.</p>
-                  )}
                 </div>
+                <AdminLedgerControls
+                  itemCount={releaseLedger.items.length}
+                  loaded={releaseLedger.loaded}
+                  loading={releaseLedger.loading}
+                  error={releaseLedger.error}
+                  hasMore={Boolean(releaseLedger.nextCursor)}
+                  loadingLabel={releaseLedger.items.length > 0 ? "Loading older backend releases…" : "Loading backend releases…"}
+                  emptyLabel="No release has been staged in the connected backend yet."
+                  endLabel="All backend releases are loaded."
+                  loadMoreLabel="Load older releases"
+                  retryLabel="Retry backend releases"
+                  retryMoreLabel="Retry older releases"
+                  onLoadMore={() => void loadContentReleases(true)}
+                  onRetry={() => void loadContentReleases(releaseLedger.items.length > 0)}
+                />
               </div>
               <div className="grid gap-3 p-5 lg:grid-cols-2">
                 {(releaseSnapshot?.packs ?? []).slice(0, 12).map((pack) => (
@@ -3146,7 +3245,7 @@ export default function AdminPage() {
           <EditorGrid
             left={
           <Panel title="Content Version Snapshots">
-                {pagedVersions.items.map((version) => {
+                {versionLedger.items.map((version) => {
                   const currentPayload = currentPayloadForVersion(version, config, objectives);
                   const diffFields = contentVersionDiffFields(version, currentPayload);
                   return (
@@ -3192,13 +3291,26 @@ export default function AdminPage() {
                     </article>
                   );
                 })}
-                <AdminListPager page={pagedVersions.page} totalPages={pagedVersions.totalPages} onChange={(page) => changePage("content-versions", page)} />
-                {contentVersions.length === 0 && <p className="p-5 text-sm text-[#1d1a3e]/58">No content snapshots have been recorded yet.</p>}
+                <AdminLedgerControls
+                  itemCount={versionLedger.items.length}
+                  loaded={versionLedger.loaded}
+                  loading={versionLedger.loading}
+                  error={versionLedger.error}
+                  hasMore={Boolean(versionLedger.nextCursor)}
+                  loadingLabel={versionLedger.items.length > 0 ? "Loading older content snapshots…" : "Loading content snapshots…"}
+                  emptyLabel="No content snapshots have been recorded yet."
+                  endLabel="All content snapshots are loaded."
+                  loadMoreLabel="Load older content snapshots"
+                  retryLabel="Retry content snapshots"
+                  retryMoreLabel="Retry older content snapshots"
+                  onLoadMore={() => void loadContentVersions(true)}
+                  onRetry={() => void loadContentVersions(versionLedger.items.length > 0)}
+                />
               </Panel>
             }
             right={
           <Panel title="Recent Audit Events">
-                {pagedAuditLogs.items.map((log) => (
+                {auditLedger.items.map((log) => (
                   <article key={log.id} className="grid gap-2 p-5 md:grid-cols-[160px_1fr]">
                     <p className="font-semibold">{log.action}</p>
                     <div>
@@ -3207,8 +3319,21 @@ export default function AdminPage() {
                     </div>
                   </article>
                 ))}
-                <AdminListPager page={pagedAuditLogs.page} totalPages={pagedAuditLogs.totalPages} onChange={(page) => changePage("audit-logs", page)} />
-                {auditLogs.length === 0 && <p className="p-5 text-sm text-[#1d1a3e]/58">No audit events have been recorded yet.</p>}
+                <AdminLedgerControls
+                  itemCount={auditLedger.items.length}
+                  loaded={auditLedger.loaded}
+                  loading={auditLedger.loading}
+                  error={auditLedger.error}
+                  hasMore={Boolean(auditLedger.nextCursor)}
+                  loadingLabel={auditLedger.items.length > 0 ? "Loading older audit events…" : "Loading audit events…"}
+                  emptyLabel="No audit events have been recorded yet."
+                  endLabel="All audit events are loaded."
+                  loadMoreLabel="Load older audit events"
+                  retryLabel="Retry audit events"
+                  retryMoreLabel="Retry older audit events"
+                  onLoadMore={() => void loadAuditLogs(true)}
+                  onRetry={() => void loadAuditLogs(auditLedger.items.length > 0)}
+                />
               </Panel>
             }
           />

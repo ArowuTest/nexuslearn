@@ -288,6 +288,7 @@ export default function FamilyPage() {
                   {portal.children.map((item) => {
                     const pupilRef = pupilRefFor(item);
                     const loginHref = `/login?pupil=${encodeURIComponent(pupilRef)}&code=${encodeURIComponent(item.credential.login_code)}`;
+                    const historyHref = `/parents?child=${encodeURIComponent(pupilRef)}`;
                     const evidence = evidenceByChild[pupilRef];
                     const evidenceConfidence = weakestEvidenceConfidence(evidence?.mastery ?? []);
                     return (
@@ -302,6 +303,7 @@ export default function FamilyPage() {
                         <p className="mt-3 text-xs leading-5 text-[#15213d]/62">{item.engagement.declared_support_needs.join(", ") || "No declared support needs selected"}</p>
                         <div className="mt-4 flex flex-wrap items-center gap-2">
                           <Link href={loginHref} className="rounded-lg bg-[#15213d] px-3 py-2 text-xs font-semibold text-white">Open child login</Link>
+                          <Link href={historyHref} className="rounded-lg bg-[#7357c9] px-3 py-2 text-xs font-semibold text-white">View {item.student.display_name}&apos;s subject check history</Link>
                           <button onClick={() => loadEvidence(pupilRef)} disabled={saving} className="rounded-lg bg-white px-3 py-2 text-xs font-semibold text-[#15213d] disabled:opacity-50">Load evidence</button>
                           <span className="text-xs text-[#15213d]/52">Picture password still required.</span>
                         </div>

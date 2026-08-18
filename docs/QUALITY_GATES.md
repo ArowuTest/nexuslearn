@@ -51,10 +51,15 @@ Checks:
 - frontend dependency install from lockfile
 - frontend production build
 - Chromebook-oriented production asset budgets:
-  - total emitted JavaScript at or below 1.35 MB;
-  - no JavaScript chunk above 250 KB;
-  - total emitted CSS at or below 120 KB;
-- no individual public asset above 600 KB.
+  - per-route initial uncompressed JavaScript at or below 750,000 bytes;
+  - aggregate emitted JavaScript at or below 1,400,000 bytes;
+  - no JavaScript chunk above 250,000 bytes;
+  - total emitted CSS at or below 120,000 bytes;
+- no individual public asset above 600,000 bytes.
+- every JavaScript chunk referenced by emitted static HTML or a route client
+  reference manifest must exist in the built static map; missing references
+  fail the gate, and the gate reports the number of HTML and manifest route
+  evidence files it inspected.
 - deterministic desktop and mobile visual snapshots for the flagship mission's
   standard and calm states, with animations disabled before capture. Desktop
   comparison remains tight; mobile allows additional pixel tolerance for
@@ -67,6 +72,15 @@ Checks:
 
 This catches broken code, TypeScript/build errors and API regressions before a
 deployment is trusted.
+
+The 1,400,000-byte aggregate JavaScript ceiling is an explicitly approved
+metric change from the earlier repository-wide total. It remains a secondary
+repository-health cap for runaway dependency growth; it is not a claim that a
+browser downloads all emitted route-isolated chunks. The 750,000-byte
+per-route initial JavaScript ceiling is the user-facing payload boundary and
+therefore remains the stricter release decision. Emitted static HTML extraction
+is the authoritative cross-check for static routes, while client-reference
+manifests cover route evidence that is not represented by static HTML.
 
 ### Deployment Checks
 

@@ -2481,17 +2481,33 @@ func (r *PostgresRepository) classStudents(ctx context.Context, classID string) 
 }
 
 func (r *PostgresRepository) ListAuditLogs(ctx context.Context, limit int) ([]AuditLog, error) {
-	if limit <= 0 || limit > 100 {
-		limit = 50
+	page, err := r.ListAuditLogPage(ctx, AdminPageQuery{Limit: limit})
+	if err != nil {
+		return nil, err
+	}
+	return page.AuditLogs, nil
+}
+
+func (r *PostgresRepository) ListAuditLogPage(ctx context.Context, query AdminPageQuery) (AuditLogPage, error) {
+	bounds, err := newAdminPageBounds(query)
+	if err != nil {
+		return AuditLogPage{}, err
+	}
+	var beforeCreatedAt any
+	var beforeID any
+	if !bounds.BeforeCreatedAt.IsZero() {
+		beforeCreatedAt = bounds.BeforeCreatedAt
+		beforeID = bounds.BeforeID
 	}
 	rows, err := r.db.Query(ctx, `
 		SELECT id::text, action, entity_type, entity_id, payload, created_at
 		FROM audit_logs
-		ORDER BY created_at DESC
-		LIMIT $1
-	`, limit)
+		WHERE ($1::timestamptz IS NULL OR (created_at, id) < ($1::timestamptz, $2::uuid))
+		ORDER BY created_at DESC, id DESC
+		LIMIT $3
+	`, beforeCreatedAt, beforeID, bounds.QueryLimit)
 	if err != nil {
-		return nil, err
+		return AuditLogPage{}, err
 	}
 	defer rows.Close()
 	logs := []AuditLog{}
@@ -2500,28 +2516,47 @@ func (r *PostgresRepository) ListAuditLogs(ctx context.Context, limit int) ([]Au
 		var raw []byte
 		var createdAt time.Time
 		if err := rows.Scan(&item.ID, &item.Action, &item.EntityType, &item.EntityID, &raw, &createdAt); err != nil {
-			return nil, err
+			return AuditLogPage{}, err
 		}
 		item.Payload = map[string]any{}
 		_ = json.Unmarshal(raw, &item.Payload)
-		item.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+		item.CreatedAt = formatAdminTimestamp(createdAt)
 		logs = append(logs, item)
 	}
-	return logs, rows.Err()
+	if err := rows.Err(); err != nil {
+		return AuditLogPage{}, err
+	}
+	return newAuditLogPage(logs, bounds.Limit)
 }
 
 func (r *PostgresRepository) ListContentVersions(ctx context.Context, limit int) ([]ContentVersion, error) {
-	if limit <= 0 || limit > 200 {
-		limit = 100
+	page, err := r.ListContentVersionPage(ctx, AdminPageQuery{Limit: limit})
+	if err != nil {
+		return nil, err
+	}
+	return page.ContentVersions, nil
+}
+
+func (r *PostgresRepository) ListContentVersionPage(ctx context.Context, query AdminPageQuery) (ContentVersionPage, error) {
+	bounds, err := newAdminPageBounds(query)
+	if err != nil {
+		return ContentVersionPage{}, err
+	}
+	var beforeCreatedAt any
+	var beforeID any
+	if !bounds.BeforeCreatedAt.IsZero() {
+		beforeCreatedAt = bounds.BeforeCreatedAt
+		beforeID = bounds.BeforeID
 	}
 	rows, err := r.db.Query(ctx, `
 		SELECT id::text, content_key, content_type, status, version, payload, created_at, published_at
 		FROM content_versions
-		ORDER BY created_at DESC
-		LIMIT $1
-	`, limit)
+		WHERE ($1::timestamptz IS NULL OR (created_at, id) < ($1::timestamptz, $2::uuid))
+		ORDER BY created_at DESC, id DESC
+		LIMIT $3
+	`, beforeCreatedAt, beforeID, bounds.QueryLimit)
 	if err != nil {
-		return nil, err
+		return ContentVersionPage{}, err
 	}
 	defer rows.Close()
 	versions := []ContentVersion{}
@@ -2531,17 +2566,20 @@ func (r *PostgresRepository) ListContentVersions(ctx context.Context, limit int)
 		var createdAt time.Time
 		var publishedAt *time.Time
 		if err := rows.Scan(&item.ID, &item.ContentKey, &item.ContentType, &item.Status, &item.Version, &raw, &createdAt, &publishedAt); err != nil {
-			return nil, err
+			return ContentVersionPage{}, err
 		}
 		item.Payload = map[string]any{}
 		_ = json.Unmarshal(raw, &item.Payload)
-		item.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+		item.CreatedAt = formatAdminTimestamp(createdAt)
 		if publishedAt != nil {
 			item.PublishedAt = publishedAt.UTC().Format(time.RFC3339)
 		}
 		versions = append(versions, item)
 	}
-	return versions, rows.Err()
+	if err := rows.Err(); err != nil {
+		return ContentVersionPage{}, err
+	}
+	return newContentVersionPage(versions, bounds.Limit)
 }
 
 func (r *PostgresRepository) RestoreContentVersion(ctx context.Context, id string) (ContentVersion, error) {

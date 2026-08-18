@@ -383,8 +383,16 @@ func (f fakeRepository) ListAuditLogs(context.Context, int) ([]learning.AuditLog
 	return f.auditLogs, nil
 }
 
+func (f fakeRepository) ListAuditLogPage(context.Context, learning.AdminPageQuery) (learning.AuditLogPage, error) {
+	return learning.AuditLogPage{AuditLogs: f.auditLogs}, nil
+}
+
 func (f fakeRepository) ListContentVersions(context.Context, int) ([]learning.ContentVersion, error) {
 	return f.versions, nil
+}
+
+func (f fakeRepository) ListContentVersionPage(context.Context, learning.AdminPageQuery) (learning.ContentVersionPage, error) {
+	return learning.ContentVersionPage{ContentVersions: f.versions}, nil
 }
 
 func (f fakeRepository) RestoreContentVersion(_ context.Context, id string) (learning.ContentVersion, error) {

@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 import { useMemo, useState } from "react";
 import QRCode from "qrcode";
 import MockAssessmentBuilder from "@/components/MockAssessmentBuilder";
+import MockAssessmentHistory from "@/components/MockAssessmentHistory";
 import ProgressSnapshot from "@/components/ProgressSnapshot";
 import { accountSessionHeaders, logoutAccount, storeAccountSession, type AccountSession, type ProgressReport } from "@/lib/api";
 
@@ -684,6 +685,15 @@ export default function SchoolAdminPage() {
                 <button onClick={loadProgressReport} disabled={!engagementPupil || saving} className="btn-pop bg-[#7357c9] px-5 py-3 text-sm text-white disabled:opacity-50">Load progress</button>
               </div>
               <ProgressSnapshot progress={progressReport} tone="navy" empty="Choose a pupil above, then load their progress evidence." />
+              {selectedEngagementStudent && (
+                <div className="border-t border-[#17233f]/10 p-5">
+                  <MockAssessmentHistory
+                    role="school"
+                    studentId={selectedEngagementStudent.external_ref}
+                    studentName={selectedEngagementStudent.display_name}
+                  />
+                </div>
+              )}
             </Panel>
             <Panel title="Create Class">
               <Field label="Class ID" value={classDraft.id ?? ""} onChange={(id) => setClassDraft({ ...classDraft, id: slug(id) })} />

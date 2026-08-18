@@ -205,3 +205,72 @@ func TestAdminMockHistoryRejectsMalformedCursor(t *testing.T) {
 		t.Fatalf("invalid cursor should not reach persistence: %#v", repo.pageQueries)
 	}
 }
+
+func TestParentMockHistoryProjectsOnlyDisplayedEvidenceFields(t *testing.T) {
+	repo := &fakeMockAssessmentStore{
+		fakeRepository: fakeRepository{
+			verifyParent: true,
+			parentPortal: learning.ParentPortalConfig{
+				Parent: learning.ParentAccountConfig{LoginID: "parent@example.test"},
+				Children: []learning.ParentChildConfig{{
+					Student: learning.StudentProfileConfig{ExternalRef: "ava-y3", DisplayName: "Ava", YearGroup: 3},
+				}},
+			},
+		},
+		page: learning.MockAssessmentPage{
+			Assessments: []learning.MockAssessment{{
+				ID: "mock-school-created", StudentExternalRef: "ava-y3", StudentDisplayName: "Ava",
+				SchoolURN: "123456", CreatedByRole: "school_admin", CreatedBy: "staff-login-id",
+				Subject: "Science", YearGroup: 3, YearFrom: 2, YearTo: 4, Title: "Science check",
+				Status: "completed", QuestionCount: 10, AnsweredCount: 10, CorrectCount: 8, Score: 80,
+				DurationMinutes: 20, IncludeRevision: true, IncludeStretch: true,
+				Accessibility:    map[string]any{"runtime_adaptations": map[string]any{"support_needs": []string{"dyslexia"}}},
+				Items:            []learning.MockAssessmentItem{{Position: 1, QuestionID: "question-internal", ObjectiveID: "science-objective"}},
+				ObjectiveResults: []learning.MockObjectiveResult{{ObjectiveID: "science-objective", Statement: "Describe rocks.", Score: 80}},
+				CreatedAt:        "2026-08-18T10:00:00Z", UpdatedAt: "2026-08-18T10:30:00Z", CompletedAt: "2026-08-18T10:30:00Z",
+			}},
+			NextCursor: "older-parent-history",
+		},
+	}
+	srv := New(repo, "postgres")
+	req := httptest.NewRequest(http.MethodGet, "/v1/parent/children/ava-y3/mock-assessments", nil)
+	req.Header.Set("X-Parent-Login", "parent@example.test")
+	req.Header.Set("X-Parent-Password", "parent-password")
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected parent history, got %d: %s", res.Code, res.Body.String())
+	}
+	var body struct {
+		Assessments []map[string]json.RawMessage `json:"mock_assessments"`
+		NextCursor  string                       `json:"next_cursor"`
+	}
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if len(body.Assessments) != 1 || body.NextCursor != "older-parent-history" {
+		t.Fatalf("parent history page shape was not preserved: %s", res.Body.String())
+	}
+	wantKeys := []string{
+		"id", "subject", "year_group", "title", "status", "question_count", "answered_count",
+		"correct_count", "score", "objective_results", "created_at",
+	}
+	assessment := body.Assessments[0]
+	if len(assessment) != len(wantKeys) {
+		t.Fatalf("parent history contains unexpected fields: %v", assessment)
+	}
+	for _, key := range wantKeys {
+		if _, ok := assessment[key]; !ok {
+			t.Fatalf("parent history is missing displayed field %q: %s", key, res.Body.String())
+		}
+	}
+	for _, forbidden := range []string{
+		"student_external_ref", "student_display_name", "school_urn", "created_by_role", "created_by",
+		"year_from", "year_to", "duration_minutes", "include_revision", "include_stretch", "accessibility",
+		"items", "updated_at", "completed_at",
+	} {
+		if _, ok := assessment[forbidden]; ok {
+			t.Fatalf("parent history leaked %q: %s", forbidden, res.Body.String())
+		}
+	}
+}

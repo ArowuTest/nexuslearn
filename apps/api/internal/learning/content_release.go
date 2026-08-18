@@ -248,6 +248,8 @@ type ContentReleaseStore interface {
 	PutContentReleaseChunk(context.Context, string, ContentReleaseChunk) (ContentReleaseManifest, error)
 	ApplyContentRelease(context.Context, string) (ContentReleaseManifest, error)
 	ListContentReleases(context.Context, int) ([]ContentReleaseManifest, error)
+	ListContentReleasePage(context.Context, AdminPageQuery) (ContentReleasePage, error)
+	ActiveContentRelease(context.Context, string) (ContentReleaseManifest, bool, error)
 }
 
 func (r *PostgresRepository) StageContentRelease(ctx context.Context, manifest ContentReleaseManifest) (ContentReleaseManifest, error) {
@@ -502,8 +504,32 @@ func (r *PostgresRepository) ApplyContentRelease(ctx context.Context, releaseID 
 }
 
 func (r *PostgresRepository) ListContentReleases(ctx context.Context, limit int) ([]ContentReleaseManifest, error) {
-	if limit <= 0 || limit > 200 {
-		limit = 50
+	page, err := r.ListContentReleasePage(ctx, AdminPageQuery{Limit: limit})
+	if err != nil {
+		return nil, err
+	}
+	return page.ContentReleases, nil
+}
+
+func (r *PostgresRepository) ListContentReleasePage(ctx context.Context, query AdminPageQuery) (ContentReleasePage, error) {
+	bounds, err := newAdminPageBounds(query)
+	if err != nil {
+		return ContentReleasePage{}, err
+	}
+	var beforeCreatedAt any
+	var beforeID any
+	if !bounds.BeforeCreatedAt.IsZero() {
+		beforeCreatedAt = bounds.BeforeCreatedAt
+		beforeID = bounds.BeforeID
+	}
+	var liveApplied bool
+	if err := r.db.QueryRow(ctx, `
+		SELECT EXISTS (
+			SELECT 1 FROM content_releases
+			WHERE channel='live' AND status='applied'
+		)
+	`).Scan(&liveApplied); err != nil {
+		return ContentReleasePage{}, err
 	}
 	rows, err := r.db.Query(ctx, `
 		SELECT r.id,r.schema_version,r.channel,r.source_revision,r.manifest_sha256,r.complete_snapshot,
@@ -511,21 +537,50 @@ func (r *PostgresRepository) ListContentReleases(ctx context.Context, limit int)
 		       r.expected_question_count,r.expected_reward_rule_count,r.status,r.packs,r.metadata,
 		       r.created_at,r.updated_at,r.applied_at,
 		       (SELECT count(*) FROM content_release_chunks c WHERE c.release_id=r.id)
-		FROM content_releases r ORDER BY r.created_at DESC LIMIT $1
-	`, limit)
+		FROM content_releases r
+		WHERE ($1::timestamptz IS NULL OR (r.created_at, r.id) < ($1::timestamptz, $2::text))
+		ORDER BY r.created_at DESC, r.id DESC
+		LIMIT $3
+	`, beforeCreatedAt, beforeID, bounds.QueryLimit)
 	if err != nil {
-		return nil, err
+		return ContentReleasePage{}, err
 	}
 	defer rows.Close()
 	items := []ContentReleaseManifest{}
 	for rows.Next() {
 		item, err := scanRelease(rows)
 		if err != nil {
-			return nil, err
+			return ContentReleasePage{}, err
 		}
 		items = append(items, item)
 	}
-	return items, rows.Err()
+	if err := rows.Err(); err != nil {
+		return ContentReleasePage{}, err
+	}
+	page, err := newContentReleasePage(items, bounds.Limit)
+	if err != nil {
+		return ContentReleasePage{}, err
+	}
+	page.LiveApplied = liveApplied
+	return page, nil
+}
+
+func (r *PostgresRepository) ActiveContentRelease(ctx context.Context, channel string) (ContentReleaseManifest, bool, error) {
+	item, err := scanRelease(r.db.QueryRow(ctx, `
+		SELECT r.id,r.schema_version,r.channel,r.source_revision,r.manifest_sha256,r.complete_snapshot,
+		       r.expected_pack_count,r.expected_objective_count,r.expected_activity_count,
+		       r.expected_question_count,r.expected_reward_rule_count,r.status,r.packs,r.metadata,
+		       r.created_at,r.updated_at,r.applied_at,
+		       (SELECT count(*) FROM content_release_chunks c WHERE c.release_id=r.id)
+		FROM content_releases r
+		WHERE r.channel=$1 AND r.status='applied'
+		ORDER BY r.applied_at DESC NULLS LAST, r.id DESC
+		LIMIT 1
+	`, channel))
+	if errors.Is(err, pgx.ErrNoRows) {
+		return ContentReleaseManifest{}, false, nil
+	}
+	return item, err == nil, err
 }
 
 func (r *PostgresRepository) contentRelease(ctx context.Context, id string) (ContentReleaseManifest, error) {
@@ -554,7 +609,7 @@ func scanRelease(row releaseScanner) (ContentReleaseManifest, error) {
 	}
 	_ = json.Unmarshal(packs, &item.Packs)
 	_ = json.Unmarshal(metadata, &item.Metadata)
-	item.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+	item.CreatedAt = formatAdminTimestamp(createdAt)
 	item.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
 	if appliedAt != nil {
 		item.AppliedAt = appliedAt.UTC().Format(time.RFC3339)

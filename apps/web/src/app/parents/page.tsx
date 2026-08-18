@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ParentMockHistoryPortal from "@/app/parents/ParentMockHistoryPortal";
 import { DEFAULT_STUDENT_ID, getEvidenceSummary, getMastery, getNextActivity, getObjectives, getProgress, getRecentAttempts, getRuntimeFlags, getStudentProfile, type ProgressReport, type ProgressSubject } from "@/lib/api";
 
 export const dynamic = "force-dynamic";
@@ -17,6 +18,7 @@ export default async function Parents() {
   if (!publicDemoLearnerEnabled) {
     return (
       <main className="min-h-screen bg-[#f7f0df] px-6 py-10 text-[#162244]">
+        <ParentMockHistoryPortal />
         <div className="mx-auto grid min-h-[calc(100vh-5rem)] max-w-6xl items-center gap-8 lg:grid-cols-[0.82fr_1.18fr]">
           <section>
             <p className="font-display text-sm uppercase tracking-[0.18em] text-[#7357c9]">Parent evidence</p>
@@ -97,6 +99,7 @@ export default async function Parents() {
 
   return (
     <main className="min-h-screen bg-cream px-6 py-10">
+      <ParentMockHistoryPortal />
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
