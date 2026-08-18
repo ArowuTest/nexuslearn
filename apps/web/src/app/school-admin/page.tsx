@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import type { ReactNode } from "react";
 import { useMemo, useState } from "react";
-import QRCode from "qrcode";
 import MockAssessmentBuilder from "@/components/MockAssessmentBuilder";
 import MockAssessmentHistory from "@/components/MockAssessmentHistory";
 import ProgressSnapshot from "@/components/ProgressSnapshot";
+import { Actions, BooleanField, ChoiceGrid, Field, LabeledSelect, LearnerScopeNotice, LoginCard, Panel, PurposeSelect, Row, TextArea } from "@/components/role-workspaces/SchoolWorkspacePrimitives";
+import { WorkspaceNavigation, WorkspaceState } from "@/components/role-workspaces/WorkspaceNavigation";
 import { accountSessionHeaders, logoutAccount, storeAccountSession, type AccountSession, type ProgressReport } from "@/lib/api";
 
 type Student = { external_ref: string; display_name: string; year_group: number };
@@ -200,6 +200,10 @@ export default function SchoolAdminPage() {
     (portal?.classes ?? []).forEach((item) => (item.students ?? []).forEach((learner) => byID.set(learner.external_ref, learner)));
     return Array.from(byID.values()).sort((left, right) => left.display_name.localeCompare(right.display_name));
   }, [portal]);
+  const schoolStudentLabels = useMemo(
+    () => Object.fromEntries(schoolStudents.map((item) => [item.external_ref, `${item.display_name} / Year ${item.year_group}`])),
+    [schoolStudents],
+  );
   const selectedEngagementStudent = schoolStudents.find((item) => item.external_ref === engagementPupil);
 
   const totals = useMemo(() => {
@@ -468,7 +472,17 @@ export default function SchoolAdminPage() {
           <Link href="/" className="btn-pop bg-white px-5 py-3 text-sm shadow-card">Home</Link>
         </div>
 
-        <section className="mt-8 grid gap-4 rounded-lg bg-white p-5 shadow-card md:grid-cols-[1fr_1fr_1fr_auto]">
+        <WorkspaceNavigation
+          label="School workspace sections"
+          items={[
+            { href: "#school-setup", label: "Setup & access", detail: "sign-in and login cards" },
+            { href: "#school-people", label: "Groups & pupils", detail: "classes and teaching groups" },
+            { href: "#school-learning", label: "Learning & evidence", detail: "progress, assignments and mocks" },
+            { href: "#school-support", label: "Support & interventions", detail: "SEND access and reassessment" },
+          ]}
+        />
+
+        <section id="school-setup" className="scroll-mt-28 mt-8 grid gap-4 rounded-lg bg-white p-5 shadow-card md:grid-cols-[1fr_1fr_1fr_auto]">
           <Field label="School URN" value={schoolURN} onChange={setSchoolURN} />
           <Field label="Login ID" value={loginID} onChange={setLoginID} />
           <Field label="Temporary password" value={password} onChange={setPassword} type="password" />
@@ -477,7 +491,7 @@ export default function SchoolAdminPage() {
           </button>
         </section>
 
-        <p className="mt-4 rounded-lg bg-white/72 px-4 py-3 text-sm text-[#17233f]/66">{message}</p>
+        <div className="mt-4"><WorkspaceState tone={saving ? "loading" : portal ? "success" : "neutral"}>{message}</WorkspaceState></div>
         {portal?.current_user && (
           <div className="mt-3 flex items-center justify-between gap-3 rounded-lg bg-[#17233f] px-4 py-3 text-sm font-semibold text-white">
             <p>Signed in as {portal.current_user.display_name || portal.current_user.login_id} / {portal.current_user.role === "school_admin" ? "School admin" : "Teacher"}</p>
@@ -496,7 +510,7 @@ export default function SchoolAdminPage() {
 
         <section className="mt-6 grid items-start gap-6 lg:grid-cols-[0.95fr_1.05fr]">
           <div className="grid gap-6">
-            <Panel title="Classes">
+            <Panel id="school-people" title="Classes">
               {(portal?.classes ?? []).map((item) => (
                 <Row key={item.id} title={item.name} meta={`Year ${item.year_group}`} body={`${(item.students ?? []).length} pupils / ID ${item.id}`} onClick={() => {
                   setClassDraft({ ...item });
@@ -526,7 +540,7 @@ export default function SchoolAdminPage() {
                 </div>
               )}
             </Panel>
-            <Panel title="Active Learning Assignments">
+            <Panel id="school-learning" title="Active Learning Assignments">
               {learningAssignments.filter((item) => item.status === "active").map((item) => (
                 <Row
                   key={item.id}
@@ -541,7 +555,7 @@ export default function SchoolAdminPage() {
                 </div>
               )}
             </Panel>
-            <Panel title="Active Interventions">
+            <Panel id="school-support" title="Active Interventions">
               {interventions.filter((item) => item.status === "active" || item.status === "monitoring").map((item) => (
                 <Row
                   key={item.id}
@@ -598,15 +612,18 @@ export default function SchoolAdminPage() {
             </Panel>
             <Panel title="SENCO Pupil Support Profile">
               <LabeledSelect
-                label="Pupil"
+                label="Selected school learner"
                 value={engagementPupil}
                 values={["", ...schoolStudents.map((item) => item.external_ref)]}
-                labels={Object.fromEntries(schoolStudents.map((item) => [item.external_ref, `${item.display_name} / Year ${item.year_group}`]))}
+                labels={schoolStudentLabels}
                 onChange={(studentExternalRef) => {
                   setEngagementPupil(studentExternalRef);
                   setEngagementProfile(emptyEngagementProfile(studentExternalRef));
                   setEngagementInterests("");
                   setProgressReport(null);
+                  setLearningAssignment((current) => ({ ...current, student_external_ref: studentExternalRef }));
+                  setEvidenceDraft((current) => ({ ...current, student_external_ref: studentExternalRef }));
+                  setInterventionDraft((current) => ({ ...current, student_external_ref: studentExternalRef }));
                 }}
               />
               <div className="flex justify-end border-b border-[#17233f]/10 p-5">
@@ -684,7 +701,9 @@ export default function SchoolAdminPage() {
                 </p>
                 <button onClick={loadProgressReport} disabled={!engagementPupil || saving} className="btn-pop bg-[#7357c9] px-5 py-3 text-sm text-white disabled:opacity-50">Load progress</button>
               </div>
-              <ProgressSnapshot progress={progressReport} tone="navy" empty="Choose a pupil above, then load their progress evidence." />
+              <div className="[&_p]:!text-[#42506b]">
+                <ProgressSnapshot progress={progressReport} tone="navy" empty="Choose a pupil above, then load their progress evidence." />
+              </div>
               {selectedEngagementStudent && (
                 <div className="border-t border-[#17233f]/10 p-5">
                   <MockAssessmentHistory
@@ -713,11 +732,11 @@ export default function SchoolAdminPage() {
               <Field label="Group ID" value={group.id ?? ""} onChange={(id) => setGroup({ ...group, id: slug(id) })} />
               <Field label="Class ID" value={group.class_id} onChange={(class_id) => setGroup({ ...group, class_id })} />
               <Field label="Group name" value={group.name} onChange={(name) => setGroup({ ...group, name })} />
-              <Select value={group.purpose} values={["intervention", "challenge", "phonics", "fluency", "senco", "teacher-defined"]} onChange={(purpose) => setGroup({ ...group, purpose })} />
+              <PurposeSelect value={group.purpose} values={["intervention", "challenge", "phonics", "fluency", "senco", "teacher-defined"]} onChange={(purpose) => setGroup({ ...group, purpose })} />
               <Actions label="Save group" disabled={!group.class_id || !group.name || saving} onClick={saveGroup} />
             </Panel>
             <Panel title="Assign Learning Priority">
-              <Field label="Pupil ID" value={learningAssignment.student_external_ref} onChange={(student_external_ref) => setLearningAssignment({ ...learningAssignment, student_external_ref: slug(student_external_ref) })} />
+              <LearnerScopeNotice purpose="assignment" learner={selectedEngagementStudent} />
               <Field label="Objective ID" value={learningAssignment.objective_id} onChange={(objective_id) => setLearningAssignment({ ...learningAssignment, objective_id })} />
               <Field label="Activity ID (optional)" value={learningAssignment.activity_id ?? ""} onChange={(activity_id) => setLearningAssignment({ ...learningAssignment, activity_id })} />
               <Field label="Teacher note/title" value={learningAssignment.title} onChange={(title) => setLearningAssignment({ ...learningAssignment, title })} />
@@ -730,7 +749,7 @@ export default function SchoolAdminPage() {
               />
             </Panel>
             <Panel title="Generate Subject Mock">
-              <Field label="Pupil ID" value={learningAssignment.student_external_ref} onChange={(student_external_ref) => setLearningAssignment({ ...learningAssignment, student_external_ref: slug(student_external_ref) })} />
+              <LearnerScopeNotice purpose="mock" learner={selectedEngagementStudent} />
               {(() => {
                 const target = (portal?.classes ?? []).flatMap((item) => item.students ?? []).find((item) => item.external_ref === learningAssignment.student_external_ref);
                 return target ? (
@@ -741,7 +760,7 @@ export default function SchoolAdminPage() {
               })()}
             </Panel>
             <Panel title="Record Teacher Evidence">
-              <Field label="Pupil ID" value={evidenceDraft.student_external_ref} onChange={(student_external_ref) => setEvidenceDraft({ ...evidenceDraft, student_external_ref: slug(student_external_ref) })} />
+              <LearnerScopeNotice purpose="teacher evidence" learner={selectedEngagementStudent} />
               <Field label="Objective ID" value={evidenceDraft.objective_id} onChange={(objective_id) => setEvidenceDraft({ ...evidenceDraft, objective_id })} />
               <LabeledSelect label="Evidence type" value={evidenceDraft.evidence_type} values={["observation", "work_sample", "conversation", "assessment", "external"]} onChange={(evidence_type) => setEvidenceDraft({ ...evidenceDraft, evidence_type })} />
               <LabeledSelect label="Outcome" value={evidenceDraft.outcome} values={["secure", "developing", "needs_support", "inconclusive"]} onChange={(outcome) => setEvidenceDraft({ ...evidenceDraft, outcome })} />
@@ -750,7 +769,7 @@ export default function SchoolAdminPage() {
               <Actions label="Save teacher evidence" disabled={!evidenceDraft.student_external_ref || !evidenceDraft.objective_id || !evidenceDraft.note || saving} onClick={saveTeacherEvidence} />
             </Panel>
             <Panel title="Create Intervention Plan">
-              <Field label="Pupil ID" value={interventionDraft.student_external_ref} onChange={(student_external_ref) => setInterventionDraft({ ...interventionDraft, student_external_ref: slug(student_external_ref) })} />
+              <LearnerScopeNotice purpose="intervention" learner={selectedEngagementStudent} />
               <Field label="Objective ID" value={interventionDraft.objective_id} onChange={(objective_id) => setInterventionDraft({ ...interventionDraft, objective_id })} />
               <Field label="Plan title" value={interventionDraft.title} onChange={(title) => setInterventionDraft({ ...interventionDraft, title })} />
               <Field label="Identified learning need" value={interventionDraft.need} onChange={(need) => setInterventionDraft({ ...interventionDraft, need })} />
@@ -792,186 +811,6 @@ export default function SchoolAdminPage() {
         </section>
       </div>
     </main>
-  );
-}
-
-function Panel({ title, children, action = null }: { title: string; children: ReactNode; action?: ReactNode }) {
-  return (
-    <section className="overflow-hidden rounded-lg bg-white shadow-card">
-      <div className="flex items-center justify-between gap-3 border-b border-[#17233f]/10 p-5">
-        <h2 className="font-display text-2xl font-semibold">{title}</h2>
-        {action}
-      </div>
-      <div className="divide-y divide-[#17233f]/10">{children}</div>
-    </section>
-  );
-}
-
-function LoginCard({ credential, schoolName }: { credential: StudentCredential; schoolName: string }) {
-  const picturePassword = credential.picture_password ?? [];
-  const loginURL = loginCardURL(credential);
-  return (
-    <article className="break-inside-avoid rounded-lg border-2 border-[#17233f] bg-white p-5 text-[#17233f]">
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <p className="font-display text-xs uppercase tracking-[0.16em] text-[#7357c9]">NexusLearn</p>
-          <h3 className="font-display mt-1 text-2xl font-semibold">{credential.display_name || credential.student_external_ref}</h3>
-          <p className="mt-1 text-xs text-[#17233f]/56">{schoolName}</p>
-        </div>
-        <QRCodeMark value={loginURL} />
-      </div>
-
-      <div className="mt-5 grid grid-cols-2 gap-3">
-        <Info label="Login code" value={credential.login_code || "Picture login"} />
-        <Info label="Pupil ID" value={credential.student_external_ref} />
-      </div>
-
-      <div className="mt-4 rounded-lg bg-[#f7f0df] p-4">
-        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#17233f]/50">Picture password</p>
-        <div className="mt-3 flex flex-wrap gap-2">
-          {picturePassword.length > 0 ? picturePassword.map((item, index) => (
-            <span key={`${item}-${index}`} className="rounded-lg bg-white px-3 py-2 text-sm font-semibold shadow-sm">{labelForPicture(item)}</span>
-          )) : (
-            <span className="text-sm text-[#17233f]/58">Use the login code shown above.</span>
-          )}
-        </div>
-      </div>
-
-      <p className="mt-4 text-xs leading-5 text-[#17233f]/58">Scan the QR code or go to NexusLearn, enter the code, then choose the pictures in order. Do not share this card outside the learner&apos;s trusted adults.</p>
-    </article>
-  );
-}
-
-function QRCodeMark({ value }: { value: string }) {
-  const qr = QRCode.create(value, { errorCorrectionLevel: "M" });
-  const size = qr.modules.size;
-  const cells: Array<[number, number]> = [];
-  for (let y = 0; y < size; y += 1) {
-    for (let x = 0; x < size; x += 1) {
-      if (qr.modules.get(x, y)) cells.push([x, y]);
-    }
-  }
-  return (
-    <svg viewBox={`0 0 ${size} ${size}`} className="h-24 w-24 shrink-0 rounded-lg border border-[#17233f]/20 bg-white p-1" role="img" aria-label="QR login code">
-      <rect width={size} height={size} fill="#ffffff" />
-      {cells.map(([x, y]) => <rect key={`${x}-${y}`} x={x} y={y} width="1" height="1" fill="#17233f" />)}
-    </svg>
-  );
-}
-
-function loginCardURL(credential: StudentCredential) {
-  const params = new URLSearchParams({
-    pupil: credential.student_external_ref,
-    code: credential.login_code || "",
-  });
-  if (credential.qr_secret_hash) params.set("card", credential.qr_secret_hash);
-  return `https://nexuslearn-woad.vercel.app/login?${params.toString()}`;
-}
-
-function Info({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="rounded-lg border border-[#17233f]/12 p-3">
-      <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#17233f]/48">{label}</p>
-      <p className="mt-1 break-words font-display text-lg font-semibold">{value}</p>
-    </div>
-  );
-}
-
-function labelForPicture(value: string) {
-  return value.replace(/_/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
-}
-
-function Field({ label, value, onChange, type = "text" }: { label: string; value: string | number; onChange: (value: string) => void; type?: "text" | "number" | "password" | "datetime-local" }) {
-  return (
-    <label className="block p-5">
-      <span className="text-sm font-semibold text-[#17233f]/70">{label}</span>
-      <input type={type} value={value} onChange={(event) => onChange(event.target.value)} className="mt-2 w-full rounded-lg border border-[#17233f]/14 px-4 py-3 text-sm outline-none focus:border-[#7357c9]" />
-    </label>
-  );
-}
-
-function Select({ value, values, onChange }: { value: string; values: string[]; onChange: (value: string) => void }) {
-  return (
-    <label className="block p-5">
-      <span className="text-sm font-semibold text-[#17233f]/70">Purpose</span>
-      <select value={value} onChange={(event) => onChange(event.target.value)} className="mt-2 w-full rounded-lg border border-[#17233f]/14 px-4 py-3 text-sm outline-none focus:border-[#7357c9]">
-        {values.map((item) => <option key={item} value={item}>{item}</option>)}
-      </select>
-    </label>
-  );
-}
-
-function LabeledSelect({ label, value, values, labels = {}, onChange }: { label: string; value: string; values: string[]; labels?: Record<string, string>; onChange: (value: string) => void }) {
-  return (
-    <label className="block p-5">
-      <span className="text-sm font-semibold text-[#17233f]/70">{label}</span>
-      <select value={value} onChange={(event) => onChange(event.target.value)} className="mt-2 w-full rounded-lg border border-[#17233f]/14 px-4 py-3 text-sm outline-none focus:border-[#7357c9]">
-        {values.map((item) => <option key={item || "blank"} value={item}>{labels[item] || item.replaceAll("_", " ") || "Select..."}</option>)}
-      </select>
-    </label>
-  );
-}
-
-function ChoiceGrid({ label, hint, values, selected, onChange }: { label: string; hint?: string; values: string[]; selected: string[]; onChange: (values: string[]) => void }) {
-  return (
-    <fieldset className="p-5">
-      <legend className="text-sm font-semibold text-[#17233f]/70">{label}</legend>
-      {hint && <p className="mt-1 text-xs leading-5 text-[#17233f]/52">{hint}</p>}
-      <div className="mt-3 grid gap-2 sm:grid-cols-2">
-        {values.map((value) => (
-          <label key={value} className="flex items-center gap-3 rounded-lg border border-[#17233f]/12 px-3 py-2 text-sm">
-            <input
-              type="checkbox"
-              checked={selected.includes(value)}
-              onChange={(event) => onChange(event.target.checked ? [...selected, value] : selected.filter((item) => item !== value))}
-              className="h-4 w-4 accent-[#7357c9]"
-            />
-            <span>{labelForPicture(value)}</span>
-          </label>
-        ))}
-      </div>
-    </fieldset>
-  );
-}
-
-function BooleanField({ label, checked, onChange }: { label: string; checked: boolean; onChange: (checked: boolean) => void }) {
-  return (
-    <label className="flex items-center gap-3 p-5 text-sm font-semibold text-[#17233f]/70">
-      <input type="checkbox" checked={checked} onChange={(event) => onChange(event.target.checked)} className="h-5 w-5 accent-[#7357c9]" />
-      {label}
-    </label>
-  );
-}
-
-function TextArea({ label, value, onChange }: { label: string; value: string; onChange: (value: string) => void }) {
-  return (
-    <label className="block p-5">
-      <span className="text-sm font-semibold text-[#17233f]/70">{label}</span>
-      <textarea value={value} onChange={(event) => onChange(event.target.value)} rows={4} className="mt-2 w-full rounded-lg border border-[#17233f]/14 px-4 py-3 text-sm outline-none focus:border-[#7357c9]" />
-    </label>
-  );
-}
-
-function Row({ title, meta, body, onClick, action = null }: { title: string; meta: string; body: string; onClick?: () => void; action?: ReactNode }) {
-  return (
-    <div className="flex w-full flex-wrap items-start justify-between gap-4 p-5 text-left hover:bg-[#f7f0df]">
-      <button onClick={onClick} disabled={!onClick} className="min-w-0 flex-1 text-left disabled:cursor-default">
-        <div className="flex items-start justify-between gap-3">
-          <p className="font-semibold">{title}</p>
-          <span className="rounded-lg bg-[#7357c9]/12 px-3 py-1 text-xs font-semibold text-[#4d3690]">{meta}</span>
-        </div>
-        <p className="mt-2 text-sm text-[#17233f]/58">{body}</p>
-      </button>
-      {action}
-    </div>
-  );
-}
-
-function Actions({ label, disabled, onClick }: { label: string; disabled: boolean; onClick: () => void }) {
-  return (
-    <div className="flex justify-end p-5">
-      <button onClick={onClick} disabled={disabled} className="btn-pop bg-[#ffbf45] px-5 py-3 text-sm disabled:opacity-50">{label}</button>
-    </div>
   );
 }
 
