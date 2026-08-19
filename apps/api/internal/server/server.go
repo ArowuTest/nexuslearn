@@ -384,8 +384,8 @@ func (s *Server) handlePersistence(w http.ResponseWriter, _ *http.Request) {
 func (s *Server) requireAdmin(w http.ResponseWriter, r *http.Request) bool {
 	if bearerToken(r) != "" {
 		payload, ok := s.requireAccountSession(w, r, "platform_admin", "content_editor", "content_reviewer")
-		if ok && r.Method != http.MethodGet && payload.Role == "content_reviewer" {
-			writeJSON(w, http.StatusForbidden, map[string]string{"error": "content reviewers may only use review workflows"})
+		if ok && !adminRouteAllowed(payload.Role, r.Method, r.URL.Path) {
+			writeAdminCapabilityDenied(w)
 			return false
 		}
 		return ok
@@ -905,6 +905,15 @@ func (s *Server) handleAdminConfig(w http.ResponseWriter, r *http.Request) {
 	if !s.requireAdmin(w, r) {
 		return
 	}
+	fields, ok := adminConfigFields(s.authenticatedAdminRole(r), r.URL.Query().Get("section"))
+	if !ok {
+		writeAdminCapabilityDenied(w)
+		return
+	}
+	requested := make(map[string]bool, len(fields))
+	for _, field := range fields {
+		requested[field] = true
+	}
 	var data struct {
 		featureFlags   []learning.FeatureFlag
 		worlds         []learning.WorldConfig
@@ -921,39 +930,91 @@ func (s *Server) handleAdminConfig(w http.ResponseWriter, r *http.Request) {
 		accessRequests []learning.AccessRequestConfig
 	}
 	group, ctx := errgroup.WithContext(r.Context())
-	group.Go(func() error { var err error; data.featureFlags, err = s.repo.ListFeatureFlags(ctx); return err })
-	group.Go(func() error { var err error; data.worlds, err = s.repo.ListWorlds(ctx); return err })
-	group.Go(func() error { var err error; data.activities, err = s.repo.ListActivities(ctx); return err })
-	group.Go(func() error { var err error; data.questions, err = s.repo.ListQuestions(ctx); return err })
-	group.Go(func() error { var err error; data.rewardRules, err = s.repo.ListRewardRules(ctx); return err })
-	group.Go(func() error { var err error; data.students, err = s.repo.ListStudents(ctx); return err })
-	group.Go(func() error { var err error; data.schools, err = s.repo.ListSchools(ctx); return err })
-	group.Go(func() error { var err error; data.schoolUsers, err = s.repo.ListSchoolUsers(ctx); return err })
-	group.Go(func() error { var err error; data.classes, err = s.repo.ListClasses(ctx); return err })
-	group.Go(func() error { var err error; data.credentials, err = s.repo.ListStudentCredentials(ctx); return err })
-	group.Go(func() error { var err error; data.groups, err = s.repo.ListGroups(ctx); return err })
-	group.Go(func() error { var err error; data.parentLinks, err = s.repo.ListParentLinks(ctx); return err })
-	group.Go(func() error { var err error; data.accessRequests, err = s.repo.ListAccessRequests(ctx, ""); return err })
+	if requested["feature_flags"] {
+		group.Go(func() error { var err error; data.featureFlags, err = s.repo.ListFeatureFlags(ctx); return err })
+	}
+	if requested["worlds"] {
+		group.Go(func() error { var err error; data.worlds, err = s.repo.ListWorlds(ctx); return err })
+	}
+	if requested["activities"] {
+		group.Go(func() error { var err error; data.activities, err = s.repo.ListActivities(ctx); return err })
+	}
+	if requested["questions"] {
+		group.Go(func() error { var err error; data.questions, err = s.repo.ListQuestions(ctx); return err })
+	}
+	if requested["reward_rules"] {
+		group.Go(func() error { var err error; data.rewardRules, err = s.repo.ListRewardRules(ctx); return err })
+	}
+	if requested["students"] {
+		group.Go(func() error { var err error; data.students, err = s.repo.ListStudents(ctx); return err })
+	}
+	if requested["schools"] {
+		group.Go(func() error { var err error; data.schools, err = s.repo.ListSchools(ctx); return err })
+	}
+	if requested["school_users"] {
+		group.Go(func() error { var err error; data.schoolUsers, err = s.repo.ListSchoolUsers(ctx); return err })
+	}
+	if requested["classes"] {
+		group.Go(func() error { var err error; data.classes, err = s.repo.ListClasses(ctx); return err })
+	}
+	if requested["student_credentials"] {
+		group.Go(func() error { var err error; data.credentials, err = s.repo.ListStudentCredentials(ctx); return err })
+	}
+	if requested["groups"] {
+		group.Go(func() error { var err error; data.groups, err = s.repo.ListGroups(ctx); return err })
+	}
+	if requested["parent_links"] {
+		group.Go(func() error { var err error; data.parentLinks, err = s.repo.ListParentLinks(ctx); return err })
+	}
+	if requested["access_requests"] {
+		group.Go(func() error { var err error; data.accessRequests, err = s.repo.ListAccessRequests(ctx, ""); return err })
+	}
 	if err := group.Wait(); err != nil {
 		slog.Warn("failed to read admin configuration", "error", err)
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read admin configuration"})
 		return
 	}
-	writeJSON(w, http.StatusOK, map[string]any{
-		"feature_flags":       data.featureFlags,
-		"worlds":              data.worlds,
-		"activities":          data.activities,
-		"questions":           data.questions,
-		"reward_rules":        data.rewardRules,
-		"students":            data.students,
-		"schools":             data.schools,
-		"school_users":        data.schoolUsers,
-		"classes":             data.classes,
-		"student_credentials": data.credentials,
-		"groups":              data.groups,
-		"parent_links":        data.parentLinks,
-		"access_requests":     data.accessRequests,
-	})
+	response := map[string]any{}
+	if requested["feature_flags"] {
+		response["feature_flags"] = data.featureFlags
+	}
+	if requested["worlds"] {
+		response["worlds"] = data.worlds
+	}
+	if requested["activities"] {
+		response["activities"] = data.activities
+	}
+	if requested["questions"] {
+		response["questions"] = data.questions
+	}
+	if requested["reward_rules"] {
+		response["reward_rules"] = data.rewardRules
+	}
+	if requested["students"] {
+		response["students"] = data.students
+	}
+	if requested["schools"] {
+		response["schools"] = data.schools
+	}
+	if requested["school_users"] {
+		response["school_users"] = data.schoolUsers
+	}
+	if requested["classes"] {
+		response["classes"] = data.classes
+	}
+	if requested["student_credentials"] {
+		response["student_credentials"] = data.credentials
+	}
+	if requested["groups"] {
+		response["groups"] = data.groups
+	}
+	if requested["parent_links"] {
+		response["parent_links"] = data.parentLinks
+	}
+	if requested["access_requests"] {
+		response["access_requests"] = data.accessRequests
+	}
+	writeJSON(w, http.StatusOK, response)
 }
 
 func (s *Server) handleFeatureFlags(w http.ResponseWriter, r *http.Request) {

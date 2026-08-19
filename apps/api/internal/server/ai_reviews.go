@@ -13,7 +13,7 @@ import (
 )
 
 func (s *Server) requireAIReviewRole(w http.ResponseWriter, r *http.Request) (accountSessionPayload, bool) {
-	return s.requireAccountSession(w, r, "platform_admin", "content_editor", "content_reviewer")
+	return s.requireAccountSession(w, r, "platform_admin", "content_reviewer")
 }
 
 func (s *Server) aiReviewStore(w http.ResponseWriter) (learning.AIReviewStore, bool) {

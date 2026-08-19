@@ -48,7 +48,7 @@ export function adminSectionFromQuery(value: string | null, fallback: AdminSecti
 export function visibleAdminSections(role: string | null): AdminSectionId[] {
   if (role === "content_reviewer") return ["Reviews", "Readiness", "Releases"];
   if (role === "content_editor") {
-    return ["Overview", "Objectives", "Activities", "Questions", "Reviews", "Readiness", "Releases", "Worlds", "Rewards"];
+    return ["Overview", "Objectives", "Activities", "Questions"];
   }
   return [...ADMIN_SECTION_IDS];
 }

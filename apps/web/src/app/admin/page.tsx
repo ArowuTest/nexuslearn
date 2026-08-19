@@ -26,6 +26,8 @@ import {
 } from "@/components/admin/adminPageUtilities";
 import AdminSignInSurface from "@/components/admin/AdminSignInSurface";
 import AdminWorkspaceShell from "@/components/admin/AdminWorkspaceShell";
+import { adminSectionLoadPlan, type AdminAccountRole } from "@/components/admin/adminSectionLoadPlan";
+import { useAdminSectionLoader } from "@/components/admin/useAdminSectionLoader";
 import {
   adminSectionFromQuery,
   type AdminSectionId,
@@ -843,17 +845,20 @@ export default function AdminPage() {
   useEffect(() => {
     const role = accountSessionRole();
     if (!role) return;
-    void Promise.resolve().then(() => {
-      setAccountRole(role);
-      const requestedSection = new URLSearchParams(window.location.search).get("section");
-      const defaultSection: Tab = role === "content_reviewer" ? "Reviews" : "Overview";
-      const requestedTab = adminSectionFromQuery(requestedSection, defaultSection);
-      setTab(visibleAdminSections(role).includes(requestedTab) ? requestedTab : defaultSection);
-      return loadConfig();
-    });
-    // The session is hydrated once on mount; loadConfig is intentionally not a reactive dependency.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    setAccountRole(role);
+    setConfig({});
+    const requestedSection = new URLSearchParams(window.location.search).get("section");
+    const defaultSection: Tab = role === "content_reviewer" ? "Reviews" : "Overview";
+    const requestedTab = adminSectionFromQuery(requestedSection, defaultSection);
+    setTab(visibleAdminSections(role).includes(requestedTab) ? requestedTab : defaultSection);
   }, []);
+
+  useAdminSectionLoader({
+    enabled: config !== null,
+    role: accountRole as AdminAccountRole | null,
+    section: tab,
+    load: loadAdminSection,
+  });
 
   useEffect(() => {
     if (!config) return;
@@ -1005,8 +1010,8 @@ export default function AdminPage() {
       storeAccountSession(session);
       setAccountRole(session.role);
       setTab(session.role === "content_reviewer" ? "Reviews" : "Overview");
+      setConfig({});
       setAdminLogin({ login_id: adminLogin.login_id, password: "" });
-      await loadConfig();
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Administrator login failed.");
     } finally {
@@ -1197,78 +1202,74 @@ export default function AdminPage() {
     }
   }
 
-  async function loadConfig() {
+  async function loadAdminSection(section: Tab, role: AdminAccountRole) {
+    const plan = adminSectionLoadPlan(role, section);
     setLoading(true);
-    setMessage("Loading live configuration...");
+    setMessage(`Loading ${section.toLowerCase()} workspace...`);
     setAdminProgress(null);
     try {
-      const [loadedConfig, objectiveData, readinessData, invitationData, rendererData, assetData, narrationData, narrationQueueData, packDepthData, curriculumCoverageData, releaseData, variantQueueData, runtimeSpineData, pilotReviewBatchData, pilotReviewEvidenceData, pilotReviewEvidenceCheckData, contentReviewLedgerData, flagshipReviewData] = await Promise.all([
-        adminFetch("/v1/admin/config"),
-        fetch(`${API}/v1/curriculum/objectives`).then((res) => res.json()),
-        adminFetch("/v1/admin/content/readiness"),
-        adminFetch("/v1/admin/parent-invitations"),
-        loadGeneratedContentReport("interaction-renderer-readiness"),
-        loadGeneratedContentReport("asset-production-readiness"),
-        loadGeneratedContentReport("narration-readiness"),
-        adminFetch("/v1/admin/content/narration-queue?status=awaiting&limit=20&offset=0").catch(() => null),
-        loadGeneratedContentReport("pack-depth-readiness"),
-        loadGeneratedContentReport("curriculum-area-coverage"),
-        loadGeneratedContentReport("content-release-snapshot"),
-        loadGeneratedContentReport("variant-production-queue"),
-        loadGeneratedContentReport("runtime-spine-enhancement"),
-        loadGeneratedContentReport("pilot-review-batch"),
-        loadGeneratedContentReport("pilot-review-evidence-template"),
-        loadGeneratedContentReport("pilot-review-evidence-check"),
-        adminFetch("/v1/admin/content/reviews").catch(() => null),
-        loadGeneratedContentReport("flagship-review"),
-      ]);
-      setConfig(loadedConfig as AdminConfig);
-      setObjectives(objectiveData.objectives ?? []);
-      setReadiness(readinessData as ContentReadinessReport);
-      setRendererReadiness(rendererData as RendererReadinessReport | null);
-      setAssetReadiness(assetData as AssetReadinessReport | null);
-      setNarrationReadiness(narrationData as NarrationReadinessReport | null);
-      setNarrationQueue(Array.isArray((narrationQueueData as NarrationQueuePage | null)?.items) ? narrationQueueData as NarrationQueuePage : null);
-      setNarrationReviewDrafts({});
-      setNarrationPlaybackErrors({});
-      setPackDepthReadiness(packDepthData as PackDepthReadiness | null);
-      setCurriculumCoverage(curriculumCoverageData as CurriculumAreaCoverage | null);
-      setReleaseSnapshot(releaseData as ContentReleaseSnapshot | null);
-      setVariantQueue(variantQueueData as VariantProductionQueue | null);
-      setRuntimeSpine(runtimeSpineData as RuntimeSpineEnhancement | null);
-      setPilotReviewBatch(pilotReviewBatchData as PilotReviewBatch | null);
-      setPilotReviewEvidence(pilotReviewEvidenceData as PilotReviewEvidenceTemplate | null);
-      setPilotReviewEvidenceCheck(pilotReviewEvidenceCheckData as PilotReviewEvidenceCheck | null);
-      setContentReviewLedger(contentReviewLedgerData as ContentReviewLedger | null);
-      setContentReviewDrafts({});
-      setFlagshipReview(flagshipReviewData as FlagshipReviewReport | null);
-      setParentInvitations(invitationData.parent_invitations ?? []);
-      setMessage("Live configuration loaded. Select a row to edit, or create a new item.");
+      if (plan.configSection) {
+        const loaded = await adminFetch(`/v1/admin/config?section=${encodeURIComponent(plan.configSection)}`) as AdminConfig;
+        setConfig((current) => ({ ...(current ?? {}), ...loaded }));
+      }
+      if (plan.objectives) {
+        const objectiveData = await fetch(`${API}/v1/curriculum/objectives`).then((res) => res.json());
+        setObjectives(objectiveData.objectives ?? []);
+      }
+      if (plan.parentInvitations) {
+        const invitationData = await adminFetch("/v1/admin/parent-invitations");
+        setParentInvitations(invitationData.parent_invitations ?? []);
+      }
+      if (plan.readinessWorkspace) {
+        const [readinessData, rendererData, assetData, narrationData, narrationQueueData, packDepthData, curriculumCoverageData, releaseData, variantQueueData, runtimeSpineData, pilotReviewBatchData, pilotReviewEvidenceData, pilotReviewEvidenceCheckData, contentReviewLedgerData, flagshipReviewData] = await Promise.all([
+          adminFetch("/v1/admin/content/readiness"),
+          loadGeneratedContentReport("interaction-renderer-readiness"),
+          loadGeneratedContentReport("asset-production-readiness"),
+          loadGeneratedContentReport("narration-readiness"),
+          adminFetch("/v1/admin/content/narration-queue?status=awaiting&limit=20&offset=0").catch(() => null),
+          loadGeneratedContentReport("pack-depth-readiness"),
+          loadGeneratedContentReport("curriculum-area-coverage"),
+          loadGeneratedContentReport("content-release-snapshot"),
+          loadGeneratedContentReport("variant-production-queue"),
+          loadGeneratedContentReport("runtime-spine-enhancement"),
+          loadGeneratedContentReport("pilot-review-batch"),
+          loadGeneratedContentReport("pilot-review-evidence-template"),
+          loadGeneratedContentReport("pilot-review-evidence-check"),
+          adminFetch("/v1/admin/content/reviews").catch(() => null),
+          loadGeneratedContentReport("flagship-review"),
+        ]);
+        setReadiness(readinessData as ContentReadinessReport);
+        setRendererReadiness(rendererData as RendererReadinessReport | null);
+        setAssetReadiness(assetData as AssetReadinessReport | null);
+        setNarrationReadiness(narrationData as NarrationReadinessReport | null);
+        setNarrationQueue(Array.isArray((narrationQueueData as NarrationQueuePage | null)?.items) ? narrationQueueData as NarrationQueuePage : null);
+        setPackDepthReadiness(packDepthData as PackDepthReadiness | null);
+        setCurriculumCoverage(curriculumCoverageData as CurriculumAreaCoverage | null);
+        setReleaseSnapshot(releaseData as ContentReleaseSnapshot | null);
+        setVariantQueue(variantQueueData as VariantProductionQueue | null);
+        setRuntimeSpine(runtimeSpineData as RuntimeSpineEnhancement | null);
+        setPilotReviewBatch(pilotReviewBatchData as PilotReviewBatch | null);
+        setPilotReviewEvidence(pilotReviewEvidenceData as PilotReviewEvidenceTemplate | null);
+        setPilotReviewEvidenceCheck(pilotReviewEvidenceCheckData as PilotReviewEvidenceCheck | null);
+        setContentReviewLedger(contentReviewLedgerData as ContentReviewLedger | null);
+        setFlagshipReview(flagshipReviewData as FlagshipReviewReport | null);
+        setNarrationReviewDrafts({});
+        setNarrationPlaybackErrors({});
+        setContentReviewDrafts({});
+      }
+      setMessage(`${section} workspace loaded.`);
     } catch (error) {
-      setConfig(null);
-      setReadiness(null);
-      setRendererReadiness(null);
-      setAssetReadiness(null);
-      setNarrationReadiness(null);
-      setNarrationQueue(null);
-      setNarrationReviewDrafts({});
-      setNarrationPlaybackErrors({});
-      setPackDepthReadiness(null);
-      setCurriculumCoverage(null);
-      setReleaseSnapshot(null);
-      setVariantQueue(null);
-      setRuntimeSpine(null);
-      setPilotReviewBatch(null);
-      setPilotReviewEvidence(null);
-      setPilotReviewEvidenceCheck(null);
-      setContentReviewLedger(null);
-      setContentReviewDrafts({});
-      setFlagshipReview(null);
       setMessage(error instanceof Error ? error.message : "Could not reach the API.");
       setAdminProgress(null);
     } finally {
       setLoading(false);
     }
+  }
+
+  async function loadConfig() {
+    const role = (accountRole ?? "platform_admin") as AdminAccountRole;
+    if (!config) setConfig({});
+    await loadAdminSection(tab, role);
   }
 
   async function savePlatformUser() {

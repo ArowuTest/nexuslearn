@@ -121,7 +121,7 @@ func TestAIReviewListRequiresNamedReviewRoleAndReturnsCursorPage(t *testing.T) {
 }
 
 func TestAIReviewSummaryReturnsRepositoryCoverageAndReleaseState(t *testing.T) {
-	srv, repo, token := newAIReviewTestServer(t, "content_editor")
+	srv, repo, token := newAIReviewTestServer(t, "content_reviewer")
 	repo.summary = learning.AIReviewSummary{
 		Total: 13228, PackCount: 87, VariantCount: 20210,
 		ByLane:     map[string]int{learning.AIReviewLaneCurriculum: 6614, learning.AIReviewLaneSEND: 6614},
