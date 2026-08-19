@@ -230,21 +230,23 @@ export default function FamilyPage() {
           </div>
         </nav>
 
-        <WorkspaceNavigation
-          label="Family workspace sections"
-          items={[
-            { href: "#family-account", label: "Account", detail: "sign in securely" },
-            { href: "#family-children", label: "Children & progress", detail: "linked learning picture" },
-            { href: "#family-support", label: "Access & SEND", detail: "support without reduced entitlement" },
-          ]}
-        />
+        {portal ? (
+          <WorkspaceNavigation
+            label="Family workspace sections"
+            items={[
+              { href: "#family-account", label: "Account", detail: "sign in securely" },
+              { href: "#family-children", label: "Children & progress", detail: "linked learning picture" },
+              { href: "#family-support", label: "Access & SEND", detail: "support without reduced entitlement" },
+            ]}
+          />
+        ) : null}
 
         <div className="mt-4">
           <WorkspaceState tone={saving ? "loading" : portal ? "success" : "neutral"}>{message}</WorkspaceState>
         </div>
 
-        <section className="grid gap-6 py-8 lg:grid-cols-[0.62fr_1.38fr]">
-          <aside className="self-start rounded-lg bg-[#15213d] p-6 text-white shadow-[0_24px_70px_rgba(21,33,61,0.22)]">
+        <section className={`grid gap-6 py-8 ${portal ? "lg:grid-cols-[0.62fr_1.38fr]" : "mx-auto max-w-4xl"}`}>
+          {portal ? <aside className="self-start rounded-lg bg-[#15213d] p-6 text-white shadow-[0_24px_70px_rgba(21,33,61,0.22)]">
             <p className="font-display text-sm uppercase tracking-[0.18em] text-[#ffdf8a]">Family workspace</p>
             <h1 className="font-display mt-3 text-4xl font-semibold leading-tight md:text-5xl">Set up learning around the child.</h1>
             <p className="mt-4 leading-7 text-white/72">
@@ -263,7 +265,7 @@ export default function FamilyPage() {
                 {recommendations.map((item) => <li key={item}>{item}</li>)}
               </ul>
             </div>
-          </aside>
+          </aside> : null}
 
           <div className="grid gap-5">
             {invitation && (
@@ -296,7 +298,7 @@ export default function FamilyPage() {
               </div>
             </section>
 
-            <section id="family-children" className="scroll-mt-28 overflow-hidden rounded-lg bg-white shadow-[0_22px_60px_rgba(21,33,61,0.14)]">
+            {portal ? <section id="family-children" className="scroll-mt-28 overflow-hidden rounded-lg bg-white shadow-[0_22px_60px_rgba(21,33,61,0.14)]">
               <SectionHeader eyebrow="Step 2" title="Children" detail="Generated pupil-style credentials keep the child login simple and school-safe." />
               {portal && portal.children.length > 0 ? (
                 <div className="grid gap-3 border-t border-[#15213d]/10 p-5 md:grid-cols-2 xl:grid-cols-3">
@@ -348,9 +350,9 @@ export default function FamilyPage() {
                   Load a workspace to see children here, or create the first child profile below.
                 </div>
               )}
-            </section>
+            </section> : null}
 
-            <section id="family-support" className="scroll-mt-28 overflow-hidden rounded-lg bg-white shadow-[0_22px_60px_rgba(21,33,61,0.14)]">
+            {portal ? <section id="family-support" className="scroll-mt-28 overflow-hidden rounded-lg bg-white shadow-[0_22px_60px_rgba(21,33,61,0.14)]">
               <SectionHeader eyebrow="Step 3" title="Adaptive child profile" detail="Everything here is configurable support, not a label forced on the child." />
               <div className="grid gap-0 border-t border-[#15213d]/10 md:grid-cols-3">
                 <Field label="Child ID" value={child.external_ref} onChange={(external_ref) => setChild({ ...child, external_ref: slug(external_ref) })} />
@@ -383,7 +385,7 @@ export default function FamilyPage() {
                 <p className="max-w-xl text-sm leading-6 text-[#15213d]/62">The runtime already uses this profile to tune mission length, scaffolds, audio, reading support and animation intensity.</p>
                 <button onClick={createChild} disabled={!login.login_id || !login.password || !child.display_name || saving} className="btn-pop bg-[#ffbf45] px-6 py-3 text-sm disabled:opacity-50">Create child profile</button>
               </div>
-            </section>
+            </section> : null}
           </div>
         </section>
       </div>

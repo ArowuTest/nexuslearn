@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import MockAssessmentBuilder from "@/components/MockAssessmentBuilder";
 import MockAssessmentHistory from "@/components/MockAssessmentHistory";
 import ProgressSnapshot from "@/components/ProgressSnapshot";
@@ -192,6 +192,7 @@ export default function SchoolAdminPage() {
   const [engagementProfile, setEngagementProfile] = useState<StudentEngagementProfile>(emptyEngagementProfile());
   const [engagementInterests, setEngagementInterests] = useState("");
   const [progressReport, setProgressReport] = useState<ProgressReport | null>(null);
+  const workspaceLoadVersion = useRef(0);
   const credentials = portal?.student_credentials ?? [];
   const isSchoolAdmin = portal?.current_user?.role === "school_admin";
   const runtimePreview = runtimePreviewItems(engagementProfile);
@@ -224,6 +225,27 @@ export default function SchoolAdminPage() {
     };
   }
 
+  function resetWorkspace() {
+    workspaceLoadVersion.current += 1;
+    setPortal(null);
+    setStudent({ external_ref: "", display_name: "", year_group: 1 });
+    setClassDraft({ id: "", name: "", year_group: 1, students: [] });
+    setAssignment({ class_id: "", student_external_ref: "" });
+    setLearningAssignments([]);
+    setLearningAssignment({ student_external_ref: "", objective_id: "", activity_id: "", title: "", priority: 70, due_at: "" });
+    setTeacherEvidence([]);
+    setEvidenceDraft({ student_external_ref: "", objective_id: "", evidence_type: "observation", outcome: "developing", note: "", source_ref: "" });
+    setInterventions([]);
+    setInterventionReviews([]);
+    setReviewDraft({ intervention_id: "", outcome: "monitor", evidence_note: "", next_review_due_at: "" });
+    setInterventionDraft({ student_external_ref: "", objective_id: "", title: "", need: "", strategy: "", priority: 85, review_due_at: "" });
+    setGroup({ id: "", class_id: "", name: "", purpose: "intervention", students: [] });
+    setEngagementPupil("");
+    setEngagementProfile(emptyEngagementProfile());
+    setEngagementInterests("");
+    setProgressReport(null);
+  }
+
   async function apiFetch(path: string, options: RequestInit = {}) {
     if (!API) throw new Error("API is not configured.");
     const requestHeaders: Record<string, string> = { ...headers(), ...(options.headers ?? {}) as Record<string, string> };
@@ -237,18 +259,28 @@ export default function SchoolAdminPage() {
   }
 
   async function loadWorkspace() {
-    const [data, assignmentData, evidenceData, interventionData, reviewData] = await Promise.all([
-      apiFetch("/v1/school/config"),
-      apiFetch("/v1/school/assignments"),
-      apiFetch("/v1/school/evidence"),
-      apiFetch("/v1/school/interventions"),
-      apiFetch("/v1/school/intervention-reviews"),
-    ]);
-    setPortal(data as SchoolPortal);
-    setLearningAssignments(assignmentData.assignments ?? []);
-    setTeacherEvidence(evidenceData.teacher_evidence ?? []);
-    setInterventions(interventionData.interventions ?? []);
-    setInterventionReviews(reviewData.intervention_reviews ?? []);
+    const loadVersion = workspaceLoadVersion.current + 1;
+    workspaceLoadVersion.current = loadVersion;
+    try {
+      const [data, assignmentData, evidenceData, interventionData, reviewData] = await Promise.all([
+        apiFetch("/v1/school/config"),
+        apiFetch("/v1/school/assignments"),
+        apiFetch("/v1/school/evidence"),
+        apiFetch("/v1/school/interventions"),
+        apiFetch("/v1/school/intervention-reviews"),
+      ]);
+      if (loadVersion !== workspaceLoadVersion.current) return;
+      const loadedPortal = data as SchoolPortal;
+      if (!loadedPortal.current_user) throw new Error("School workspace authentication could not be verified.");
+      setPortal(loadedPortal);
+      setLearningAssignments(assignmentData.assignments ?? []);
+      setTeacherEvidence(evidenceData.teacher_evidence ?? []);
+      setInterventions(interventionData.interventions ?? []);
+      setInterventionReviews(reviewData.intervention_reviews ?? []);
+    } catch (error) {
+      if (loadVersion === workspaceLoadVersion.current) resetWorkspace();
+      throw error;
+    }
   }
 
   async function load() {
@@ -260,6 +292,7 @@ export default function SchoolAdminPage() {
 
   async function signIn() {
     await guarded("Signing in...", async () => {
+      resetWorkspace();
       if (!API) throw new Error("API is not configured.");
       const res = await fetch(`${API}/v1/auth/school-login`, {
         method: "POST",
@@ -276,9 +309,13 @@ export default function SchoolAdminPage() {
   }
 
   async function logout() {
-    await logoutAccount();
-    setPortal(null);
-    setMessage("Signed out securely.");
+    resetWorkspace();
+    setMessage("Signing out securely...");
+    try {
+      await logoutAccount();
+    } finally {
+      setMessage("Signed out securely.");
+    }
   }
 
   async function saveStudent() {
@@ -293,32 +330,35 @@ export default function SchoolAdminPage() {
   }
 
   async function loadEngagementProfile() {
-    if (!engagementPupil) return;
+    const studentExternalRef = selectedEngagementStudent?.external_ref;
+    if (!studentExternalRef) return;
     await guarded("Loading pupil support profile...", async () => {
-      const profile = await apiFetch(`/v1/school/students/${encodeURIComponent(engagementPupil)}/engagement`);
-      setEngagementProfile({ ...emptyEngagementProfile(engagementPupil), ...profile, student_external_ref: engagementPupil });
+      const profile = await apiFetch(`/v1/school/students/${encodeURIComponent(studentExternalRef)}/engagement`);
+      setEngagementProfile({ ...emptyEngagementProfile(studentExternalRef), ...profile, student_external_ref: studentExternalRef });
       setEngagementInterests((profile.interests ?? []).join(", "));
       setMessage("Pupil support profile loaded.");
     });
   }
 
   async function loadProgressReport() {
-    if (!engagementPupil) return;
+    const studentExternalRef = selectedEngagementStudent?.external_ref;
+    if (!studentExternalRef) return;
     setProgressReport(null);
     await guarded("Loading learner progress...", async () => {
-      const data = await apiFetch(`/v1/school/students/${encodeURIComponent(engagementPupil)}/progress`);
+      const data = await apiFetch(`/v1/school/students/${encodeURIComponent(studentExternalRef)}/progress`);
       setProgressReport(data as ProgressReport);
     });
   }
 
   async function saveEngagementProfile() {
-    if (!engagementPupil) return;
+    const studentExternalRef = selectedEngagementStudent?.external_ref;
+    if (!studentExternalRef) return;
     await guarded("Saving pupil support profile...", async () => {
-      const profile = await apiFetch(`/v1/school/students/${encodeURIComponent(engagementPupil)}/engagement`, {
+      const profile = await apiFetch(`/v1/school/students/${encodeURIComponent(studentExternalRef)}/engagement`, {
         method: "PUT",
-        body: JSON.stringify({ ...engagementProfile, student_external_ref: engagementPupil, interests: commaValues(engagementInterests) }),
+        body: JSON.stringify({ ...engagementProfile, student_external_ref: studentExternalRef, interests: commaValues(engagementInterests) }),
       });
-      setEngagementProfile({ ...emptyEngagementProfile(engagementPupil), ...profile, student_external_ref: engagementPupil });
+      setEngagementProfile({ ...emptyEngagementProfile(studentExternalRef), ...profile, student_external_ref: studentExternalRef });
       setEngagementInterests((profile.interests ?? []).join(", "));
       setMessage("Pupil support profile saved.");
     });
@@ -472,15 +512,17 @@ export default function SchoolAdminPage() {
           <Link href="/" className="btn-pop bg-white px-5 py-3 text-sm shadow-card">Home</Link>
         </div>
 
-        <WorkspaceNavigation
-          label="School workspace sections"
-          items={[
-            { href: "#school-setup", label: "Setup & access", detail: "sign-in and login cards" },
-            { href: "#school-people", label: "Groups & pupils", detail: "classes and teaching groups" },
-            { href: "#school-learning", label: "Learning & evidence", detail: "progress, assignments and mocks" },
-            { href: "#school-support", label: "Support & interventions", detail: "SEND access and reassessment" },
-          ]}
-        />
+        {portal?.current_user ? (
+          <WorkspaceNavigation
+            label="School workspace sections"
+            items={[
+              { href: "#school-setup", label: "Setup & access", detail: "sign-in and login cards" },
+              { href: "#school-people", label: "Groups & pupils", detail: "classes and teaching groups" },
+              { href: "#school-learning", label: "Learning & evidence", detail: "progress, assignments and mocks" },
+              { href: "#school-support", label: "Support & interventions", detail: "SEND access and reassessment" },
+            ]}
+          />
+        ) : null}
 
         <section id="school-setup" className="scroll-mt-28 mt-8 grid gap-4 rounded-lg bg-white p-5 shadow-card md:grid-cols-[1fr_1fr_1fr_auto]">
           <Field label="School URN" value={schoolURN} onChange={setSchoolURN} />
@@ -499,6 +541,7 @@ export default function SchoolAdminPage() {
           </div>
         )}
 
+        {portal?.current_user ? <>
         <section className="mt-6 grid gap-4 md:grid-cols-4">
           {totals.map(([label, value]) => (
             <article key={label} className="rounded-lg bg-white p-5 shadow-card">
@@ -617,17 +660,18 @@ export default function SchoolAdminPage() {
                 values={["", ...schoolStudents.map((item) => item.external_ref)]}
                 labels={schoolStudentLabels}
                 onChange={(studentExternalRef) => {
-                  setEngagementPupil(studentExternalRef);
-                  setEngagementProfile(emptyEngagementProfile(studentExternalRef));
+                  const scopedStudentRef = schoolStudents.some((item) => item.external_ref === studentExternalRef) ? studentExternalRef : "";
+                  setEngagementPupil(scopedStudentRef);
+                  setEngagementProfile(emptyEngagementProfile(scopedStudentRef));
                   setEngagementInterests("");
                   setProgressReport(null);
-                  setLearningAssignment((current) => ({ ...current, student_external_ref: studentExternalRef }));
-                  setEvidenceDraft((current) => ({ ...current, student_external_ref: studentExternalRef }));
-                  setInterventionDraft((current) => ({ ...current, student_external_ref: studentExternalRef }));
+                  setLearningAssignment((current) => ({ ...current, student_external_ref: scopedStudentRef }));
+                  setEvidenceDraft((current) => ({ ...current, student_external_ref: scopedStudentRef }));
+                  setInterventionDraft((current) => ({ ...current, student_external_ref: scopedStudentRef }));
                 }}
               />
               <div className="flex justify-end border-b border-[#17233f]/10 p-5">
-                <button onClick={loadEngagementProfile} disabled={!engagementPupil || saving} className="btn-pop bg-[#55cbd3] px-5 py-3 text-sm disabled:opacity-50">Load profile</button>
+                <button onClick={loadEngagementProfile} disabled={!selectedEngagementStudent || saving} className="btn-pop bg-[#55cbd3] px-5 py-3 text-sm disabled:opacity-50">Load profile</button>
               </div>
               <ChoiceGrid
                 label="Declared support needs"
@@ -690,7 +734,7 @@ export default function SchoolAdminPage() {
               <Field label="Interests (comma separated)" value={engagementInterests} onChange={setEngagementInterests} />
               <TextArea label="Operational notes" value={engagementProfile.notes} onChange={(notes) => setEngagementProfile({ ...engagementProfile, notes })} />
               {engagementProfile.updated_at && <p className="px-5 pb-2 text-xs text-[#17233f]/52">Last updated {new Date(engagementProfile.updated_at).toLocaleString()}</p>}
-              <Actions label="Save support profile" disabled={!engagementPupil || saving} onClick={saveEngagementProfile} />
+              <Actions label="Save support profile" disabled={!selectedEngagementStudent || saving} onClick={saveEngagementProfile} />
             </Panel>
             <Panel title="Learner Progress Snapshot">
               <div className="flex flex-wrap items-center justify-between gap-3 p-5">
@@ -699,7 +743,7 @@ export default function SchoolAdminPage() {
                     ? `Showing ${selectedEngagementStudent.display_name} (${selectedEngagementStudent.external_ref}). Progress is subject-specific, so Mathematics can stretch while English remains on its own support route.`
                     : "Choose a pupil above. Progress is subject-specific: a pupil may work ahead in Mathematics while English remains on its own support route."}
                 </p>
-                <button onClick={loadProgressReport} disabled={!engagementPupil || saving} className="btn-pop bg-[#7357c9] px-5 py-3 text-sm text-white disabled:opacity-50">Load progress</button>
+                <button onClick={loadProgressReport} disabled={!selectedEngagementStudent || saving} className="btn-pop bg-[#7357c9] px-5 py-3 text-sm text-white disabled:opacity-50">Load progress</button>
               </div>
               <div className="[&_p]:!text-[#42506b]">
                 <ProgressSnapshot progress={progressReport} tone="navy" empty="Choose a pupil above, then load their progress evidence." />
@@ -809,6 +853,7 @@ export default function SchoolAdminPage() {
             ))}
           </div>
         </section>
+        </> : null}
       </div>
     </main>
   );

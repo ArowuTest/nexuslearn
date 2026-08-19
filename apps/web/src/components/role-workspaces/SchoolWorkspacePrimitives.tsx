@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 import QRCode from "qrcode";
+import { loginCardURL } from "@/components/role-workspaces/loginCardURL.mjs";
 
 type StudentCredential = {
   student_external_ref: string;
@@ -25,7 +26,11 @@ export function Panel({ id, title, children, action = null }: { id?: string; tit
 
 export function LoginCard({ credential, schoolName }: { credential: StudentCredential; schoolName: string }) {
   const picturePassword = credential.picture_password ?? [];
-  const loginURL = loginCardURL(credential);
+  const loginURL = loginCardURL(
+    credential,
+    typeof window === "undefined" ? "" : window.location.origin,
+    process.env.NEXT_PUBLIC_APP_ORIGIN,
+  );
   return (
     <article className="break-inside-avoid rounded-lg border-2 border-[#17233f] bg-white p-5 text-[#17233f]">
       <div className="flex items-start justify-between gap-4">
@@ -56,13 +61,7 @@ function QRCodeMark({ value }: { value: string }) {
   const size = qr.modules.size;
   const cells: Array<[number, number]> = [];
   for (let y = 0; y < size; y += 1) for (let x = 0; x < size; x += 1) if (qr.modules.get(x, y)) cells.push([x, y]);
-  return <svg viewBox={`0 0 ${size} ${size}`} className="h-24 w-24 shrink-0 rounded-lg border border-[#17233f]/20 bg-white p-1" role="img" aria-label="QR login code"><rect width={size} height={size} fill="#ffffff" />{cells.map(([x, y]) => <rect key={`${x}-${y}`} x={x} y={y} width="1" height="1" fill="#17233f" />)}</svg>;
-}
-
-function loginCardURL(credential: StudentCredential) {
-  const params = new URLSearchParams({ pupil: credential.student_external_ref, code: credential.login_code || "" });
-  if (credential.qr_secret_hash) params.set("card", credential.qr_secret_hash);
-  return `https://nexuslearn-woad.vercel.app/login?${params.toString()}`;
+  return <svg viewBox={`0 0 ${size} ${size}`} className="h-24 w-24 shrink-0 rounded-lg border border-[#17233f]/20 bg-white p-1" role="img" aria-label="QR login code" data-login-url={value}><rect width={size} height={size} fill="#ffffff" />{cells.map(([x, y]) => <rect key={`${x}-${y}`} x={x} y={y} width="1" height="1" fill="#17233f" />)}</svg>;
 }
 
 function Info({ label, value }: { label: string; value: string }) {

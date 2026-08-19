@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import MockAssessmentBuilder from "@/components/MockAssessmentBuilder";
 import MockAssessmentHistory from "@/components/MockAssessmentHistory";
@@ -11,8 +12,10 @@ type LoadState = "inactive" | "checking" | "ready" | "error";
 type EvidenceState = "idle" | "loading" | "ready" | "empty" | "error";
 
 export default function ParentMockHistoryPortal() {
+  const pathname = usePathname();
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [portal, setPortal] = useState<ParentPortal | null>(null);
-  const [selectedChild, setSelectedChild] = useState("");
   const [state, setState] = useState<LoadState>("inactive");
   const [error, setError] = useState("");
   const [evidence, setEvidence] = useState<ParentChildEvidence | null>(null);
@@ -26,10 +29,7 @@ export default function ParentMockHistoryPortal() {
     getParentPortal()
       .then((loaded) => {
         if (!active) return;
-        const requestedChild = new URLSearchParams(window.location.search).get("child") ?? "";
-        const linkedChild = loaded.children.find((item) => externalRefFor(item) === requestedChild);
         setPortal(loaded);
-        setSelectedChild(externalRefFor(linkedChild ?? loaded.children[0]));
         setState("ready");
       })
       .catch((reason) => {
@@ -40,8 +40,21 @@ export default function ParentMockHistoryPortal() {
     return () => { active = false; };
   }, []);
 
+  const requestedChild = searchParams.get("child") ?? "";
+  const children = portal?.children ?? [];
+  const linkedChild = children.find((item) => externalRefFor(item) === requestedChild);
+  const scopedChild = linkedChild ?? children[0];
+  const scopedChildRef = externalRefFor(scopedChild);
+
   useEffect(() => {
-    if (!selectedChild || state !== "ready") return;
+    if (state !== "ready" || !scopedChildRef || requestedChild === scopedChildRef) return;
+    const canonical = new URLSearchParams(searchParams.toString());
+    canonical.set("child", scopedChildRef);
+    router.replace(`${pathname}?${canonical.toString()}`, { scroll: false });
+  }, [pathname, requestedChild, router, scopedChildRef, searchParams, state]);
+
+  useEffect(() => {
+    if (!scopedChildRef || state !== "ready") return;
     let active = true;
     queueMicrotask(() => {
       if (!active) return;
@@ -49,7 +62,7 @@ export default function ParentMockHistoryPortal() {
       setEvidenceError("");
       setEvidenceState("loading");
     });
-    getParentChildEvidence(selectedChild)
+    getParentChildEvidence(scopedChildRef)
       .then((loaded) => {
         if (!active) return;
         setEvidence(loaded);
@@ -61,13 +74,12 @@ export default function ParentMockHistoryPortal() {
         setEvidenceState("error");
       });
     return () => { active = false; };
-  }, [selectedChild, state]);
+  }, [scopedChildRef, state]);
 
   if (state === "inactive") return null;
   if (state === "checking") return <WorkspaceState tone="loading">Loading linked-child history...</WorkspaceState>;
   if (state === "error") return <WorkspaceState tone="error">{error}</WorkspaceState>;
 
-  const children = portal?.children ?? [];
   if (children.length === 0) {
     return (
       <WorkspaceSection id="parent-children" eyebrow="Linked parent" title="No linked children yet" detail="Only children linked to this parent account can appear here.">
@@ -76,9 +88,17 @@ export default function ParentMockHistoryPortal() {
     );
   }
 
-  const child = children.find((item) => externalRefFor(item) === selectedChild) ?? children[0];
-  const childRef = externalRefFor(child);
+  const child = scopedChild;
+  const childRef = scopedChildRef;
   const progress = evidence?.progress ?? null;
+
+  function selectChild(nextChild: string) {
+    if (!children.some((item) => externalRefFor(item) === nextChild)) return;
+    const next = new URLSearchParams(searchParams.toString());
+    next.set("child", nextChild);
+    router.push(`${pathname}?${next.toString()}`, { scroll: false });
+  }
+
   return (
     <div className="mb-8 grid gap-6" aria-label="Authenticated parent workspace">
       <WorkspaceNavigation
@@ -100,7 +120,7 @@ export default function ParentMockHistoryPortal() {
           </div>
           <label className="min-w-64 text-xs font-semibold text-[#17233f]">
             Linked child
-            <select value={childRef} onChange={(event) => setSelectedChild(event.target.value)} className="mt-1 w-full rounded-lg border border-[#17233f]/14 bg-white px-3 py-3 text-sm font-normal outline-none focus:border-[#7357c9]">
+            <select value={childRef} onChange={(event) => selectChild(event.target.value)} className="mt-1 w-full rounded-lg border border-[#17233f]/14 bg-white px-3 py-3 text-sm font-normal outline-none focus:border-[#7357c9]">
               {children.map((item) => {
                 const externalRef = externalRefFor(item);
                 return <option key={externalRef} value={externalRef}>{item.student.display_name} / Year {item.student.year_group}</option>;
