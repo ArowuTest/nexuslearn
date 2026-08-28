@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { useSyncExternalStore, type ReactNode } from "react";
 import QRCode from "qrcode";
 import { loginCardURL } from "@/components/role-workspaces/loginCardURL.mjs";
 
@@ -11,6 +11,8 @@ type StudentCredential = {
   picture_password: string[];
   qr_secret_hash?: string;
 };
+
+const subscribeToStaticOrigin = () => () => {};
 
 export function Panel({ id, title, children, action = null }: { id?: string; title: string; children: ReactNode; action?: ReactNode }) {
   return (
@@ -26,11 +28,8 @@ export function Panel({ id, title, children, action = null }: { id?: string; tit
 
 export function LoginCard({ credential, schoolName }: { credential: StudentCredential; schoolName: string }) {
   const picturePassword = credential.picture_password ?? [];
-  const loginURL = loginCardURL(
-    credential,
-    typeof window === "undefined" ? "" : window.location.origin,
-    process.env.NEXT_PUBLIC_APP_ORIGIN,
-  );
+  const currentOrigin = useSyncExternalStore(subscribeToStaticOrigin, () => window.location.origin, () => "");
+  const loginURL = loginCardURL(credential, currentOrigin, process.env.NEXT_PUBLIC_APP_ORIGIN);
   return (
     <article className="break-inside-avoid rounded-lg border-2 border-[#17233f] bg-white p-5 text-[#17233f]">
       <div className="flex items-start justify-between gap-4">
@@ -39,7 +38,7 @@ export function LoginCard({ credential, schoolName }: { credential: StudentCrede
           <h3 className="font-display mt-1 text-2xl font-semibold">{credential.display_name || credential.student_external_ref}</h3>
           <p className="mt-1 text-xs text-[#17233f]/56">{schoolName}</p>
         </div>
-        <QRCodeMark value={loginURL} />
+        {loginURL ? <QRCodeMark value={loginURL} /> : <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-lg border border-[#17233f]/20 bg-[#f7f0df] p-2 text-center text-[10px] font-semibold text-[#17233f]/58" role="status">QR available after secure page load</div>}
       </div>
       <div className="mt-5 grid grid-cols-2 gap-3">
         <Info label="Login code" value={credential.login_code || "Picture login"} />

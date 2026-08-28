@@ -16,3 +16,8 @@ test("login cards reject unsafe configured origins and use the current applicati
   assert.equal(loginCardURL(credential, "http://127.0.0.1:3145", "javascript:alert(1)"), fallback);
   assert.equal(loginCardURL(credential, "http://127.0.0.1:3145", "https://user:secret@learn.nexus.example"), fallback);
 });
+
+test("login cards fail closed until an absolute application origin is available", () => {
+  assert.equal(loginCardURL(credential, "", undefined), "");
+  assert.equal(loginCardURL(credential, "/relative", undefined), "");
+});

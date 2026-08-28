@@ -174,7 +174,7 @@ test("audit ledgers expose independent empty, error and retry outcomes", async (
   await expect(page.getByText("All content snapshots are loaded.")).toBeVisible();
 });
 
-test("release ledger loads in Readiness and preserves the first page when continuation fails", async ({ page }) => {
+test("release ledger loads in Releases and preserves the first page when continuation fails", async ({ page }) => {
   const releaseRequests: URL[] = [];
   let olderAttempts = 0;
   await openAuthenticatedAdmin(page, async (route, url) => {
@@ -211,7 +211,7 @@ test("release ledger loads in Readiness and preserves the first page when contin
   });
 
   expect(releaseRequests).toEqual([]);
-  await page.getByRole("button", { name: "Readiness", exact: true }).click();
+  await page.getByRole("button", { name: "Releases", exact: true }).click();
   await expect(page.getByText("review / staged", { exact: true })).toBeVisible();
   await expect(page.getByText("live release applied", { exact: true })).toBeVisible();
   expect(releaseRequests).toHaveLength(1);

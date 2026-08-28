@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, type PointerEvent } from "react";
-import { asStringArray, choiceOptions, type Option, type StudioQuestion, type StudioRendererProps, type StudioRendererRegistry } from "./types";
+import type { LiteracyFormat } from "./formats";
+import { asStringArray, choiceOptions, type Option, type StudioQuestion, type StudioRendererDefinition, type StudioRendererProps, type StudioRendererRegistry } from "./types";
 
 function WordBuilder({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
   const [built, setBuilt] = useState<string[]>([]);
@@ -422,7 +423,7 @@ function CohesionContextCard({ question }: { question: StudioQuestion }) {
   return <aside className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Cohesion repair context"><p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Clarity desk</p><p className="mt-3 rounded-xl bg-[#fff7df] p-4 text-center text-sm font-semibold text-ink">{context}</p><p className="mt-3 text-center text-sm text-white/80">Choose the edit that keeps this meaning clear for the reader.</p></aside>;
 }
 
-export const literacyRendererRegistry: StudioRendererRegistry = {
+export const literacyRendererRegistry = {
   "word-build": { family: "literacy", Renderer: ({ question, input, onChoose }) => <WordBuilder key={`word-${question.id}`} question={question} input={input} onChoose={onChoose} /> },
   "noun-phrase-builder": { family: "literacy", Renderer: ({ question, input, onChoose }) => <NounPhraseBuilder key={`noun-${question.id}`} question={question} input={input} onChoose={onChoose} /> },
   "trace-path": { family: "literacy", Renderer: ({ question, onChoose }) => <TraceTrail letter={String(question.body.letter || "")} expected={String(question.expected)} onComplete={onChoose} /> },
@@ -450,9 +451,9 @@ export const literacyRendererRegistry: StudioRendererRegistry = {
   "paragraph-order": { family: "literacy", Renderer: ({ question }) => <ParagraphRelationshipCard question={question} /> },
   "claim-evidence-explain": { family: "literacy", Renderer: ({ question }) => <ClaimEvidenceTray question={question} /> },
   "cohesion-edit": { family: "literacy", Renderer: ({ question }) => <CohesionContextCard question={question} /> },
-};
+} satisfies Record<LiteracyFormat, StudioRendererDefinition>;
 
 export function LiteracyRenderer(props: StudioRendererProps) {
-  const Renderer = literacyRendererRegistry[props.question.format.toLowerCase()]?.Renderer;
+  const Renderer = (literacyRendererRegistry as StudioRendererRegistry)[props.question.format.toLowerCase()]?.Renderer;
   return Renderer ? <Renderer {...props} /> : null;
 }

@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { asStringArray, choiceOptions, ENERGY_SIMULATOR, type StudioQuestion, type StudioRendererProps, type StudioRendererRegistry } from "./types";
+import type { ScienceFormat } from "./formats";
+import { asStringArray, choiceOptions, ENERGY_SIMULATOR, type StudioQuestion, type StudioRendererDefinition, type StudioRendererProps, type StudioRendererRegistry } from "./types";
 
 function SequenceBoard({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
   const format = question.format.toLowerCase();
@@ -364,7 +365,7 @@ function ParticleLab({ question, input, onChoose }: { question: StudioQuestion; 
   );
 }
 
-export const scienceRendererRegistry: StudioRendererRegistry = {
+export const scienceRendererRegistry = {
   "audio-sequence": { family: "science", Renderer: ({ question, input, onChoose }) => <SequenceBoard key={`sequence-${question.id}`} question={question} input={input} onChoose={onChoose} /> },
   [ENERGY_SIMULATOR]: { family: "science", Renderer: ({ question, input, onChoose }) => <SequenceBoard key={`sequence-${question.id}`} question={question} input={input} onChoose={onChoose} /> },
   "fossil-sequence": { family: "science", Renderer: ({ question, input, onChoose }) => <SequenceBoard key={`sequence-${question.id}`} question={question} input={input} onChoose={onChoose} /> },
@@ -399,16 +400,16 @@ export const scienceRendererRegistry: StudioRendererRegistry = {
   "particle-simulation": { family: "science", Renderer: ({ question, input, onChoose }) => <ParticleLab question={question} input={input} onChoose={onChoose} /> },
   "model-sort": { family: "science", Renderer: ({ question, input, onChoose }) => <ParticleLab question={question} input={input} onChoose={onChoose} /> },
   "explain-choice": { family: "science", Renderer: ({ question, input, onChoose }) => <ParticleLab question={question} input={input} onChoose={onChoose} /> },
-};
+} satisfies Record<ScienceFormat, StudioRendererDefinition>;
 
 export function ScienceRenderer(props: StudioRendererProps) {
-  const Renderer = scienceRendererRegistry[props.question.format.toLowerCase()]?.Renderer;
+  const Renderer = (scienceRendererRegistry as StudioRendererRegistry)[props.question.format.toLowerCase()]?.Renderer;
   return Renderer ? <Renderer {...props} /> : null;
 }
 
 export function CompatibilityRenderer(props: StudioRendererProps) {
   const format = props.question.format.toLowerCase();
-  const PrimaryRenderer = scienceRendererRegistry[format]?.Renderer;
+  const PrimaryRenderer = (scienceRendererRegistry as StudioRendererRegistry)[format]?.Renderer;
   return (
     <>
       {format.endsWith("sort") && PrimaryRenderer !== RoleAssignmentBoard && <RoleAssignmentBoard {...props} />}

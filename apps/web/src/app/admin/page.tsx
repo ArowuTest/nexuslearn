@@ -866,7 +866,7 @@ export default function AdminPage() {
       void loadAuditLogs(false);
       void loadContentVersions(false);
     }
-    if (tab === "Readiness" || tab === "Releases") void loadContentReleases(false);
+    if (tab === "Releases") void loadContentReleases(false);
     // Section changes intentionally reset each operational ledger to its first bounded page.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [config, tab]);
@@ -1220,8 +1220,8 @@ export default function AdminPage() {
         const invitationData = await adminFetch("/v1/admin/parent-invitations");
         setParentInvitations(invitationData.parent_invitations ?? []);
       }
-      if (plan.readinessWorkspace) {
-        const [readinessData, rendererData, assetData, narrationData, narrationQueueData, packDepthData, curriculumCoverageData, releaseData, variantQueueData, runtimeSpineData, pilotReviewBatchData, pilotReviewEvidenceData, pilotReviewEvidenceCheckData, contentReviewLedgerData, flagshipReviewData] = await Promise.all([
+      if (plan.reportWorkspace === "readiness") {
+        const [readinessData, rendererData, assetData, narrationData, narrationQueueData, packDepthData, curriculumCoverageData, flagshipReviewData] = await Promise.all([
           adminFetch("/v1/admin/content/readiness"),
           loadGeneratedContentReport("interaction-renderer-readiness"),
           loadGeneratedContentReport("asset-production-readiness"),
@@ -1229,13 +1229,6 @@ export default function AdminPage() {
           adminFetch("/v1/admin/content/narration-queue?status=awaiting&limit=20&offset=0").catch(() => null),
           loadGeneratedContentReport("pack-depth-readiness"),
           loadGeneratedContentReport("curriculum-area-coverage"),
-          loadGeneratedContentReport("content-release-snapshot"),
-          loadGeneratedContentReport("variant-production-queue"),
-          loadGeneratedContentReport("runtime-spine-enhancement"),
-          loadGeneratedContentReport("pilot-review-batch"),
-          loadGeneratedContentReport("pilot-review-evidence-template"),
-          loadGeneratedContentReport("pilot-review-evidence-check"),
-          adminFetch("/v1/admin/content/reviews").catch(() => null),
           loadGeneratedContentReport("flagship-review"),
         ]);
         setReadiness(readinessData as ContentReadinessReport);
@@ -1245,6 +1238,22 @@ export default function AdminPage() {
         setNarrationQueue(Array.isArray((narrationQueueData as NarrationQueuePage | null)?.items) ? narrationQueueData as NarrationQueuePage : null);
         setPackDepthReadiness(packDepthData as PackDepthReadiness | null);
         setCurriculumCoverage(curriculumCoverageData as CurriculumAreaCoverage | null);
+        setFlagshipReview(flagshipReviewData as FlagshipReviewReport | null);
+        setNarrationReviewDrafts({});
+        setNarrationPlaybackErrors({});
+      }
+      if (plan.reportWorkspace === "releases") {
+        const [readinessData, releaseData, variantQueueData, runtimeSpineData, pilotReviewBatchData, pilotReviewEvidenceData, pilotReviewEvidenceCheckData, contentReviewLedgerData] = await Promise.all([
+          adminFetch("/v1/admin/content/readiness"),
+          loadGeneratedContentReport("content-release-snapshot"),
+          loadGeneratedContentReport("variant-production-queue"),
+          loadGeneratedContentReport("runtime-spine-enhancement"),
+          loadGeneratedContentReport("pilot-review-batch"),
+          loadGeneratedContentReport("pilot-review-evidence-template"),
+          loadGeneratedContentReport("pilot-review-evidence-check"),
+          adminFetch("/v1/admin/content/reviews").catch(() => null),
+        ]);
+        setReadiness(readinessData as ContentReadinessReport);
         setReleaseSnapshot(releaseData as ContentReleaseSnapshot | null);
         setVariantQueue(variantQueueData as VariantProductionQueue | null);
         setRuntimeSpine(runtimeSpineData as RuntimeSpineEnhancement | null);
@@ -1252,9 +1261,6 @@ export default function AdminPage() {
         setPilotReviewEvidence(pilotReviewEvidenceData as PilotReviewEvidenceTemplate | null);
         setPilotReviewEvidenceCheck(pilotReviewEvidenceCheckData as PilotReviewEvidenceCheck | null);
         setContentReviewLedger(contentReviewLedgerData as ContentReviewLedger | null);
-        setFlagshipReview(flagshipReviewData as FlagshipReviewReport | null);
-        setNarrationReviewDrafts({});
-        setNarrationPlaybackErrors({});
         setContentReviewDrafts({});
       }
       setMessage(`${section} workspace loaded.`);
@@ -2170,6 +2176,7 @@ export default function AdminPage() {
               ))}
             </section>
 
+            {tab === "Readiness" && (<>
             <section className="bg-white shadow-card">
               <div className="border-b border-[#1d1a3e]/8 p-5">
                 <div className="flex flex-wrap items-start justify-between gap-3">
@@ -2591,6 +2598,8 @@ export default function AdminPage() {
               </div>
             </section>
 
+            </>)}
+            {tab === "Releases" && (<>
             <section className="bg-white shadow-card">
               <div className="border-b border-[#1d1a3e]/8 p-5">
                 <h2 className="font-display text-2xl font-semibold">Reviewed Variant Production Queue</h2>
@@ -2912,6 +2921,8 @@ export default function AdminPage() {
               </div>
             </section>
 
+            </>)}
+            {tab === "Readiness" && (
             <section className="bg-white shadow-card">
               <div className="border-b border-[#1d1a3e]/8 p-5">
                 <h2 className="font-display text-2xl font-semibold">Curriculum Content Readiness</h2>
@@ -3007,6 +3018,7 @@ export default function AdminPage() {
                 )}
               </div>
             </section>
+            )}
           </section>
         )}
 

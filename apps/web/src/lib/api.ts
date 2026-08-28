@@ -574,14 +574,14 @@ export function accountSessionHeaders(roles: string[] = []): Record<string, stri
 }
 
 export async function logoutAccount() {
-  if (!API) return;
   const headers = accountSessionHeaders();
+  clearAccountSession();
+  if (!API || !headers.Authorization) return;
   try {
-    if (headers.Authorization) {
-      await fetch(`${API}/v1/auth/logout`, { method: "POST", headers });
-    }
-  } finally {
-    clearAccountSession();
+    await fetch(`${API}/v1/auth/logout`, { method: "POST", headers });
+  } catch {
+    // Local privacy state is authoritative on sign-out. A transient network
+    // failure must never keep private workspace data mounted in the browser.
   }
 }
 

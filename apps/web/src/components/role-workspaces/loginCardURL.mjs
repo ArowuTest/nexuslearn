@@ -17,6 +17,7 @@ export function loginCardURL(credential, currentOrigin, configuredOrigin) {
   const params = new URLSearchParams({ pupil: credential.student_external_ref, code: credential.login_code || "" });
   if (credential.qr_secret_hash) params.set("card", credential.qr_secret_hash);
   const appOrigin = validHTTPOrigin(configuredOrigin) || validHTTPOrigin(currentOrigin);
+  if (!appOrigin) return "";
   return `${appOrigin}/login?${params.toString()}`;
 }
 

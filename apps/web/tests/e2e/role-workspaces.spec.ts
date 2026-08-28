@@ -84,6 +84,39 @@ test("family workspace mounts linked children and SEND controls only after a val
   await expect(page.getByText(/SEND\/support needs/)).toBeVisible();
 });
 
+test("family logout clears private state even when the logout request fails", async ({ page }) => {
+  await page.route("http://api.test/**", async (route) => {
+    const url = new URL(route.request().url());
+    if (url.pathname === "/v1/auth/parent-login") {
+      await route.fulfill({ contentType: "application/json", body: JSON.stringify({ parent: parentPortal.parent, session: { token: "parent-token", role: "parent", expires_at: "2099-01-01T00:00:00Z" } }) });
+      return;
+    }
+    if (url.pathname === "/v1/parent/config") {
+      await route.fulfill({ contentType: "application/json", body: JSON.stringify(parentPortal) });
+      return;
+    }
+    if (/^\/v1\/parent\/children\/[^/]+\/evidence$/.test(url.pathname)) {
+      await route.fulfill({ contentType: "application/json", body: JSON.stringify({ child: parentPortal.children[0], mastery: [], attempts: [], summary: {}, progress: null }) });
+      return;
+    }
+    if (url.pathname === "/v1/auth/logout") {
+      await route.abort("connectionfailed");
+      return;
+    }
+    await route.fulfill({ status: 404, contentType: "application/json", body: JSON.stringify({ error: "Unhandled request" }) });
+  });
+
+  await page.goto("/family");
+  await page.getByLabel("Login ID").fill("ava-parent");
+  await page.getByLabel("Password").last().fill("temporary-password");
+  await page.getByRole("button", { name: "Sign in" }).click();
+  await expect(page.getByText("Ava", { exact: true })).toBeVisible();
+  await page.getByRole("button", { name: "Sign out" }).click();
+  await expect(page.getByRole("navigation", { name: "Family workspace sections" })).toHaveCount(0);
+  await expect(page.getByText("Ava", { exact: true })).toHaveCount(0);
+  expect(await page.evaluate(() => sessionStorage.getItem("nexuslearn_account_session"))).toBeNull();
+});
+
 test("parent workspace canonicalises linked-child scope across selection, refresh and browser history", async ({ page }) => {
   const evidenceRequests: string[] = [];
   const mockRequests: string[] = [];

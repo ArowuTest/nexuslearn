@@ -71,7 +71,7 @@ type narrationQueueYearSummary struct {
 }
 
 func (s *Server) handleNarrationReviewQueue(w http.ResponseWriter, r *http.Request) {
-	if !s.requireAdmin(w, r) {
+	if _, ok := s.requireNarrationReviewer(w, r); !ok {
 		return
 	}
 	repository, ok := s.repo.(narrationReviewRepository)
@@ -277,7 +277,7 @@ func containsAnyFold(value string, candidates ...string) bool {
 }
 
 func (s *Server) handleNarrationReviews(w http.ResponseWriter, r *http.Request) {
-	if !s.requireAdmin(w, r) {
+	if _, ok := s.requireNarrationReviewer(w, r); !ok {
 		return
 	}
 	repository, ok := s.repo.(narrationReviewRepository)

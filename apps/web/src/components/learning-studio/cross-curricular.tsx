@@ -1,6 +1,7 @@
 "use client";
 
-import { asStringArray, type StudioQuestion, type StudioRendererProps, type StudioRendererRegistry } from "./types";
+import type { CrossCurricularFormat } from "./formats";
+import { asStringArray, type StudioQuestion, type StudioRendererDefinition, type StudioRendererProps, type StudioRendererRegistry } from "./types";
 
 function ContextChoiceBoard({ question, input, onChoose, onSubmit }: { question: StudioQuestion; input: string; onChoose: (value: string) => void; onSubmit: () => void }) {
   const format = question.format.toLowerCase();
@@ -50,20 +51,20 @@ function StructuredChoiceBoard({ question, input, onChoose, onSubmit }: { questi
   </section>;
 }
 
-export const crossCurricularRendererRegistry: StudioRendererRegistry = {
+export const crossCurricularRendererRegistry = {
   "meaning-substitute": { family: "cross-curricular", Renderer: ({ question, input, onChoose, onSubmit }) => <ContextChoiceBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} /> },
   "reference-map": { family: "cross-curricular", Renderer: ({ question, input, onChoose, onSubmit }) => <ContextChoiceBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} /> },
   "observation-record": { family: "cross-curricular", Renderer: ({ question, input, onChoose, onSubmit }) => <ContextChoiceBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} /> },
   "noun-pronoun-repair": { family: "cross-curricular", Renderer: ({ question, input, onChoose, onSubmit }) => <ContextChoiceBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} /> },
   "habitat-evidence-map": { family: "cross-curricular", Renderer: ({ question, input, onChoose, onSubmit }) => <ContextChoiceBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} /> },
   "register-slider": { family: "cross-curricular", Renderer: ({ question, input, onChoose, onSubmit }) => <ContextChoiceBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} /> },
-  "balance-equation": { family: "mathematics", Renderer: ({ question, input, onChoose, onSubmit }) => <StructuredChoiceBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} /> },
-  "weather-sort": { family: "science", Renderer: ({ question, input, onChoose, onSubmit }) => <StructuredChoiceBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} /> },
-  "scale-read": { family: "mathematics", Renderer: ({ question, input, onChoose, onSubmit }) => <StructuredChoiceBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} /> },
-  "fraction-bar-match": { family: "mathematics", Renderer: ({ question, input, onChoose, onSubmit }) => <StructuredChoiceBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} /> },
-};
+  "balance-equation": { family: "cross-curricular", Renderer: ({ question, input, onChoose, onSubmit }) => <StructuredChoiceBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} /> },
+  "weather-sort": { family: "cross-curricular", Renderer: ({ question, input, onChoose, onSubmit }) => <StructuredChoiceBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} /> },
+  "scale-read": { family: "cross-curricular", Renderer: ({ question, input, onChoose, onSubmit }) => <StructuredChoiceBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} /> },
+  "fraction-bar-match": { family: "cross-curricular", Renderer: ({ question, input, onChoose, onSubmit }) => <StructuredChoiceBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} /> },
+} satisfies Record<CrossCurricularFormat, StudioRendererDefinition>;
 
 export function CrossCurricularRenderer(props: StudioRendererProps) {
-  const Renderer = crossCurricularRendererRegistry[props.question.format.toLowerCase()]?.Renderer;
+  const Renderer = (crossCurricularRendererRegistry as StudioRendererRegistry)[props.question.format.toLowerCase()]?.Renderer;
   return Renderer ? <Renderer {...props} /> : null;
 }

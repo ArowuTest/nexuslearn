@@ -12,13 +12,29 @@ async function openAdminAs(page: Page, role: AdminRole, section: string) {
     if (url.pathname === "/v1/admin/config") {
       const selected = url.searchParams.get("section");
       const body = selected === "learners"
-        ? { students: [], student_credentials: [] }
+        ? { students: [{ external_ref: "private-learner", display_name: "Private Learner", year_group: 3 }], student_credentials: [] }
         : selected === "activities"
           ? { activities: [] }
           : selected === "questions"
             ? { questions: [] }
             : {};
       await route.fulfill({ contentType: "application/json", body: JSON.stringify(body) });
+      return;
+    }
+    if (url.pathname === "/v1/admin/content/readiness") {
+      await route.fulfill({ contentType: "application/json", body: JSON.stringify({ totals: { ready: 0, pilot: 0, draft: 0, blocked: 0 }, items: [] }) });
+      return;
+    }
+    if (url.pathname === "/v1/admin/content/narration-queue") {
+      await route.fulfill({ contentType: "application/json", body: JSON.stringify({ items: [], total: 0, counts: { awaiting: 0, approved: 0, rejected: 0, stale: 0 }, years: [], limit: 20, offset: 0, next_offset: null }) });
+      return;
+    }
+    if (url.pathname.startsWith("/v1/admin/content/reports/") || url.pathname === "/v1/admin/content/reviews") {
+      await route.fulfill({ contentType: "application/json", body: "null" });
+      return;
+    }
+    if (url.pathname === "/v1/admin/content/releases") {
+      await route.fulfill({ contentType: "application/json", body: JSON.stringify({ content_releases: [], live_applied: false }) });
       return;
     }
     if (url.pathname === "/v1/admin/ai-reviews") {
@@ -101,4 +117,42 @@ test("platform administrator loads one operational section at a time", async ({ 
     "/v1/admin/config?section=learners",
     "/v1/admin/config?section=flags",
   ]);
+});
+
+test("readiness and release workspaces load only their own report families", async ({ page }) => {
+  const readinessRequests = await openAdminAs(page, "platform_admin", "Readiness");
+  await expect.poll(() => [...new Set(readinessRequests.map((url) => url.pathname))].sort()).toEqual([
+    "/v1/admin/content/narration-queue",
+    "/v1/admin/content/readiness",
+    "/v1/admin/content/reports/asset-production-readiness",
+    "/v1/admin/content/reports/curriculum-area-coverage",
+    "/v1/admin/content/reports/flagship-review",
+    "/v1/admin/content/reports/interaction-renderer-readiness",
+    "/v1/admin/content/reports/narration-readiness",
+    "/v1/admin/content/reports/pack-depth-readiness",
+  ]);
+
+  const releasePage = await page.context().newPage();
+  const releaseRequests = await openAdminAs(releasePage, "platform_admin", "Releases");
+  await expect.poll(() => [...new Set(releaseRequests.map((url) => url.pathname))].sort()).toEqual([
+    "/v1/admin/content/readiness",
+    "/v1/admin/content/releases",
+    "/v1/admin/content/reports/content-release-snapshot",
+    "/v1/admin/content/reports/pilot-review-batch",
+    "/v1/admin/content/reports/pilot-review-evidence-check",
+    "/v1/admin/content/reports/pilot-review-evidence-template",
+    "/v1/admin/content/reports/runtime-spine-enhancement",
+    "/v1/admin/content/reports/variant-production-queue",
+    "/v1/admin/content/reviews",
+  ]);
+});
+
+test("admin logout clears private state even when the logout request fails", async ({ page }) => {
+  await openAdminAs(page, "platform_admin", "Learners");
+  await expect(page.getByText("Private Learner", { exact: true })).toBeVisible();
+  await page.route("http://api.test/v1/auth/logout", (route) => route.abort("connectionfailed"));
+  await page.getByRole("button", { name: "Sign out" }).click();
+  await expect(page.getByRole("navigation", { name: "Admin sections" })).toHaveCount(0);
+  await expect(page.getByText("Private Learner", { exact: true })).toHaveCount(0);
+  expect(await page.evaluate(() => sessionStorage.getItem("nexuslearn_account_session"))).toBeNull();
 });

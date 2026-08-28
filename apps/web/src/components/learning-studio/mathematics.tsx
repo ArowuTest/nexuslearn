@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { asStringArray, type StudioQuestion, type StudioRendererProps, type StudioRendererRegistry } from "./types";
+import type { MathematicsFormat } from "./formats";
+import { asStringArray, type StudioQuestion, type StudioRendererDefinition, type StudioRendererProps, type StudioRendererRegistry } from "./types";
 
 function ArrayForge({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
   const [rows, setRows] = useState(1);
@@ -349,7 +350,7 @@ function ProblemMapBoard({ question, input, onChoose }: { question: StudioQuesti
   return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Multi-step problem map"><p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Problem map</p><p className="mt-2 text-center text-sm text-white/80">Label the quantities, find the intermediate amount, then check the final target. Correct steps stay visible.</p><div className="mt-4 flex flex-wrap justify-center gap-2">{cards.map((card) => <span key={card} className={`rounded-xl px-3 py-2 text-sm font-semibold ${card === target ? 'bg-sun text-ink ring-2 ring-leaf' : 'bg-[#fff7df] text-ink'}`}>{card}</span>)}</div>{plan.length > 0 && <ol className="mt-4 grid gap-2">{plan.map((step, index) => <li key={step} className="rounded-xl bg-white/10 p-3 text-sm text-white"><span className="font-display mr-2 text-xs text-sun">Step {index + 1}</span>{step}</li>)}</ol>}<label className="mt-4 block text-sm font-semibold text-white">Final answer<input type="number" value={input} onChange={(event) => onChoose(event.target.value)} className="mt-2 min-h-12 w-full rounded-xl bg-[#fff7df] px-3 text-lg text-ink" /></label></section>;
 }
 
-export const mathematicsRendererRegistry: StudioRendererRegistry = {
+export const mathematicsRendererRegistry = {
   "array-build": { family: "mathematics", Renderer: ({ question, input, onChoose }) => <ArrayForge key={`array-${question.id}`} question={question} input={input} onChoose={onChoose} /> },
   "coordinate-plot": { family: "mathematics", Renderer: ({ question, input, onChoose }) => <CoordinateBoard key={`coordinate-${question.id}`} question={question} input={input} onChoose={onChoose} /> },
   "coordinate-read": { family: "mathematics", Renderer: ({ question }) => <CoordinateMap question={question} /> },
@@ -370,9 +371,9 @@ export const mathematicsRendererRegistry: StudioRendererRegistry = {
   "column-calculate": { family: "mathematics", Renderer: ({ question, input, onChoose }) => <ColumnCalculationBoard question={question} input={input} onChoose={onChoose} /> },
   "operation-model": { family: "mathematics", Renderer: ({ question, input, onChoose }) => <OperationModelBoard key={question.id} question={question} input={input} onChoose={onChoose} /> },
   "problem-map": { family: "mathematics", Renderer: ({ question, input, onChoose }) => <ProblemMapBoard question={question} input={input} onChoose={onChoose} /> },
-};
+} satisfies Record<MathematicsFormat, StudioRendererDefinition>;
 
 export function MathematicsRenderer(props: StudioRendererProps) {
-  const Renderer = mathematicsRendererRegistry[props.question.format.toLowerCase()]?.Renderer;
+  const Renderer = (mathematicsRendererRegistry as StudioRendererRegistry)[props.question.format.toLowerCase()]?.Renderer;
   return Renderer ? <Renderer {...props} /> : null;
 }

@@ -103,6 +103,40 @@ test("dispatches an English format to the literacy renderer with keyboard-operab
   await expect(page.getByRole("button", { name: "Submit answer" })).toBeEnabled();
 });
 
+test("does not mount the science compatibility renderer for a registered literacy sort", async ({ page }) => {
+  await routeStudioMission(page, {
+    id: "registry-literacy-sort",
+    subject: "English",
+    format: "sentence-sort",
+    prompt: "Choose the sentence that belongs first.",
+    body: {
+      choices: ["First, collect the evidence.", "Finally, explain the conclusion."],
+      cards: ["First, collect the evidence.", "Finally, explain the conclusion."],
+      categories: ["opening", "conclusion"],
+    },
+    expected: "First, collect the evidence.",
+  });
+
+  await page.goto("/play/mission?studentId=studio-registry-learner");
+  await expect(page.getByRole("group", { name: "Sentence and paragraph cards" })).toBeVisible();
+  await expect(page.getByRole("region", { name: "Argument role map" })).toHaveCount(0);
+});
+
+test("dispatches shared curriculum formats to their implemented cross-curricular renderer", async ({ page }) => {
+  await routeStudioMission(page, {
+    id: "registry-shared-balance",
+    subject: "Mathematics",
+    format: "balance-equation",
+    prompt: "Keep both sides balanced.",
+    body: { known_fact: "7 + 3 = 10", choices: ["17 + 3 = 20", "17 + 3 = 10"] },
+    expected: "17 + 3 = 20",
+  });
+
+  await page.goto("/play/mission?studentId=studio-registry-learner");
+  await expect(page.getByRole("region", { name: "Balance and transfer" })).toBeVisible();
+  await expect(page.getByRole("group", { name: "Structured choices" })).toBeVisible();
+});
+
 test("dispatches a Mathematics format to the maths renderer", async ({ page }) => {
   await routeStudioMission(page, {
     id: "registry-mathematics",

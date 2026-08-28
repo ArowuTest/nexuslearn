@@ -10,11 +10,12 @@ test("public entry keeps learning behind structured access", async ({ page }) =>
   expect(accessibility.violations.filter((item) => item.impact === "critical" || item.impact === "serious")).toEqual([]);
 });
 
-test("family workspace exposes secure signup, invitation and support controls", async ({ page }) => {
+test("family workspace keeps child and support controls behind parent authentication", async ({ page }) => {
   await page.goto("/family?invitation=test-invitation");
-  await expect(page.getByRole("heading", { name: /set up learning around the child/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /join your child's learning workspace/i })).toBeVisible();
   await expect(page.getByLabel("Your name")).toBeVisible();
-  await expect(page.getByText("SEND/support needs")).toBeVisible();
+  await expect(page.getByText("SEND/support needs")).toHaveCount(0);
+  await expect(page.getByRole("heading", { name: "Children", exact: true })).toHaveCount(0);
   await expect(page.getByRole("button", { name: "Accept invitation" })).toBeDisabled();
 });
 

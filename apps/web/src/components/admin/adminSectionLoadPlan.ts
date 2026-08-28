@@ -6,7 +6,7 @@ export type AdminSectionLoadPlan = {
   configSection?: string;
   objectives?: boolean;
   parentInvitations?: boolean;
-  readinessWorkspace?: boolean;
+  reportWorkspace?: "readiness" | "releases";
 };
 
 const PLATFORM_CONFIG_SECTIONS: Partial<Record<AdminSectionId, string>> = {
@@ -33,13 +33,15 @@ export function adminSectionLoadPlan(role: AdminAccountRole, section: AdminSecti
   }
 
   if (role === "content_reviewer") {
-    return section === "Readiness" || section === "Releases" ? { readinessWorkspace: true } : {};
+    if (section === "Readiness") return { reportWorkspace: "readiness" };
+    if (section === "Releases") return { reportWorkspace: "releases" };
+    return {};
   }
 
   return {
     configSection: PLATFORM_CONFIG_SECTIONS[section],
-    objectives: section === "Objectives" || section === "Readiness" || section === "Releases",
+    objectives: section === "Objectives",
     parentInvitations: section === "Parents",
-    readinessWorkspace: section === "Readiness" || section === "Releases",
+    reportWorkspace: section === "Readiness" ? "readiness" : section === "Releases" ? "releases" : undefined,
   };
 }

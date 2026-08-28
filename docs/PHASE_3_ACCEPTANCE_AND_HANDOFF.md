@@ -113,6 +113,10 @@ Required for the deployed API:
 Required for the deployed web app:
 
 - `NEXT_PUBLIC_API_URL=https://nexuslearn-api.onrender.com`
+- `NEXT_PUBLIC_APP_ORIGIN=https://<the-production-vercel-domain>` so printed pupil
+  login QR cards are absolute and remain usable outside the browser session. The
+  UI fails closed with a preparation placeholder until either this value or a
+  validated browser origin is available.
 - `NEXT_PUBLIC_DEMO_STUDENT_ID` only for a deliberately controlled demo learner
 
 ## Phase 4 Entry Criteria

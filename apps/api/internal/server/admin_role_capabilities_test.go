@@ -160,3 +160,19 @@ func TestContentEditorCannotUseReviewEndpointsDirectly(t *testing.T) {
 		}
 	}
 }
+
+func TestContentReviewerCanUseNarrationReviewWorkflow(t *testing.T) {
+	srv, _, token := newAIReviewTestServer(t, "content_reviewer")
+	for _, path := range []string{
+		"/v1/admin/content/narration-queue?status=awaiting&limit=1",
+		"/v1/admin/content/narration-reviews?limit=1",
+	} {
+		request := httptest.NewRequest(http.MethodGet, path, nil)
+		request.Header.Set("Authorization", "Bearer "+token)
+		response := httptest.NewRecorder()
+		srv.ServeHTTP(response, request)
+		if response.Code == http.StatusForbidden || response.Code == http.StatusUnauthorized {
+			t.Errorf("GET %s must remain available to content reviewers: status=%d body=%s", path, response.Code, response.Body.String())
+		}
+	}
+}
