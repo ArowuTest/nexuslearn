@@ -4,6 +4,8 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { inspectMP3Buffer } from "./lib/mp3-inspection.mjs";
+import { buildVariantAudioCatalog } from "./lib/variant-audio-catalog.mjs";
+import { catalogAssetsToProductionItems, selectProductionItems } from "./lib/narration-manifest-v2.mjs";
 
 const toolDir = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(toolDir, "../../..");
@@ -23,6 +25,9 @@ const only = argValue("--only") ?? "all";
 const packFilter = argValue("--pack");
 const yearFilter = argValue("--year");
 const limitValue = argValue("--limit");
+if (!dryRun && only === "variants") {
+  throw new Error("variant production is fail-closed until manifest v2 backend import is active; use --dry-run to inspect the canonical batch");
+}
 const narrationPacingPolicy = {
   version: 1,
   year_1: { lesson: 0.92, vocabulary: 0.90, rationale: "slightly slower early-reader pacing" },
@@ -102,102 +107,27 @@ async function collect() {
 
 async function collectVariantItems() {
   const files = (await fs.readdir(packDir)).filter((file) => file.endsWith(".json")).sort();
-  const byAssetID = new Map();
+  const packs = [];
   for (const file of files) {
-    const pack = await readJSON(path.join(packDir, file));
-    for (const [index, variant] of (pack.question_variants ?? []).entries()) {
-      walkAudioReferenceFields(variant, (key, value, owner, location) => {
-        const assetID = typeof value === "string" ? value.trim() : "";
-        const { text, textSource } = variantNarrationText(variant, owner, key);
-        if (!assetID || !text) return;
-        const item = makeVariantItem(pack, variant, index, assetID, text, textSource, key, location);
-        const previous = byAssetID.get(assetID);
-        if (previous && previous.text_sha256 !== item.text_sha256) {
-          throw new Error(`variant audio asset ${assetID} is declared with conflicting spoken text`);
-        }
-        if (!previous) byAssetID.set(assetID, item);
-      });
-    }
+    packs.push(await readJSON(path.join(packDir, file)));
   }
-  return [...byAssetID.values()].sort((left, right) => left.id.localeCompare(right.id));
-}
-
-function variantNarrationText(variant, owner, referenceField) {
-  const candidates = [owner, variant, variant?.body]
-    .map((candidate) => candidate && typeof candidate === "object" ? candidate : {});
-  const authoredScript = [owner, variant, variant?.body]
-    .map((candidate) => candidate && typeof candidate === "object" ? candidate : {})
-    .map((candidate) => typeof candidate.narration_script === "string" ? candidate.narration_script.trim() : typeof candidate.audio_script === "string" ? candidate.audio_script.trim() : "")
-    .find(Boolean);
-  if (authoredScript) return { text: authoredScript, textSource: "authored_narration_script" };
-  if (candidates.some((candidate) => candidate.pure_phoneme_audio_referenced === true)) {
-    return { text: "", textSource: "" };
-  }
-  if (referenceField !== "whole_audio_asset_id") {
-    const spokenWord = candidates
-      .map((candidate) => typeof candidate.target_word === "string" ? candidate.target_word.trim() : typeof candidate.word === "string" ? candidate.word.trim() : "")
-      .find(Boolean);
-    if (spokenWord) return { text: spokenWord, textSource: "authored_spoken_word_fallback" };
-  }
-  const authoredPrompt = candidates
-    .map((candidate) => typeof candidate.prompt === "string" ? candidate.prompt.trim() : typeof candidate.verbal_route === "string" ? candidate.verbal_route.trim() : "")
-    .find(Boolean);
-  return {
-    text: authoredPrompt ? canonicaliseVariantPrompt(authoredPrompt) : "",
-    textSource: authoredPrompt ? "authored_variant_prompt_fallback" : "",
-  };
-}
-
-function canonicaliseVariantPrompt(value) {
-  return value
-    .replace(/\bmission\s+\d+\s*:?/gi, "Mission:")
-    .replace(/\bquestion\s+\d+\s*:?/gi, "Question:")
-    .replace(/\s{2,}/g, " ")
-    .trim();
-}
-
-function walkAudioReferenceFields(value, visit, location = "question_variant", seen = new Set()) {
-  if (!value || typeof value !== "object" || seen.has(value)) return;
-  seen.add(value);
-  if (Array.isArray(value)) {
-    value.forEach((entry, index) => walkAudioReferenceFields(entry, visit, `${location}[${index}]`, seen));
-    return;
-  }
-  for (const [key, entry] of Object.entries(value)) {
-    const next = `${location}.${key}`;
-    if (["audio_asset_id", "audio_ref", "whole_audio_asset_id", "whole_word_audio_asset_id"].includes(key)) visit(key, entry, value, next);
-    if (entry && typeof entry === "object") walkAudioReferenceFields(entry, visit, next, seen);
-  }
-}
-
-function makeVariantItem(pack, variant, index, assetID, text, textSource, referenceField, referenceLocation) {
-  const year = Number(pack.source_alignment?.year);
-  if (!Number.isInteger(year) || year < 1 || year > 7) {
-    throw new Error(`${pack.pack_id}: variant narration requires a valid source-alignment year`);
-  }
-  const relativeFile = `${pack.pack_id}/variant/${slug(assetID)}.mp3`;
-  const pacing = pacingFor(year, "variant");
-  return {
-    id: assetID,
-    pack_id: pack.pack_id,
-    kind: "variant",
-    source_id: variant.variant_id ?? variant.id ?? variant.question_variant_id ?? `index-${index}`,
-    source_variant_id: variant.variant_id ?? variant.id ?? variant.question_variant_id ?? `index-${index}`,
-    reference_field: referenceField,
-    reference_location: referenceLocation,
-    text,
-    text_source: textSource,
-    text_sha256: textHash(text),
+  const catalog = buildVariantAudioCatalog(packs, {
+    provider: "ElevenLabs",
     voice_id: voiceId,
-    voice_name: "Alice - Clear, Engaging Educator",
     model_id: modelId,
-    year,
-    pacing_profile: pacing.profile,
-    voice_settings: pacing.voiceSettings,
-    file: `/audio/narration/alice/${relativeFile.replaceAll("\\", "/")}`,
-    relative_file: relativeFile,
-    production_status: "generated_pending_human_listening",
-  };
+    output_format: "mp3_44100_128",
+    voice_settings: {
+      stability: 0.55,
+      similarity_boost: 0.75,
+      style: 0.15,
+      use_speaker_boost: true,
+    },
+    speed_by_year: Object.fromEntries(
+      Array.from({ length: 7 }, (_, index) => index + 1)
+        .map((year) => [year, year === 1 ? narrationPacingPolicy.year_1.lesson : year === 2 ? narrationPacingPolicy.year_2.lesson : narrationPacingPolicy.year_3_to_7.lesson]),
+    ),
+  });
+  return catalogAssetsToProductionItems(catalog);
 }
 
 function selectItems(items) {
@@ -212,12 +142,10 @@ function selectItems(items) {
   if (parsedLimit !== undefined && (!Number.isInteger(parsedLimit) || parsedLimit < 1)) {
     throw new Error("--limit must be a positive integer");
   }
-  let selected = items.filter((item) => {
+  let selected = selectProductionItems(items, { pack: packFilter, year: parsedYear }).filter((item) => {
     if (only === "lessons" && item.kind !== "lesson") return false;
     if (only === "vocabulary" && item.kind !== "vocabulary") return false;
     if (only === "variants" && item.kind !== "variant") return false;
-    if (packFilter && item.pack_id !== packFilter) return false;
-    if (parsedYear !== undefined && !item.pack_id.includes(`-y${parsedYear}-`)) return false;
     return true;
   });
   if (parsedLimit !== undefined) selected = selected.slice(0, parsedLimit);
