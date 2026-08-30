@@ -130,30 +130,30 @@ Expected: deterministic plan, no network request, no manifest mutation.
 - Produces: bounded queue rows with profile hash, reuse count and exact stale-state calculation.
 - Produces: idempotent review decisions bound to text, audio and profile hashes.
 
-- [ ] **Step 1: Write failing Go contract and migration tests**
+- [x] **Step 1: Write failing Go contract and migration tests**
 
 Test v2 validation, alias resolution, unsupported version rejection, profile
 change staleness, bounded pagination, role enforcement and idempotency replay
 versus payload conflict.
 
-- [ ] **Step 2: Run focused Go tests and witness RED**
+- [x] **Step 2: Run focused Go tests and witness RED**
 
 Run: `go test ./internal/server ./internal/learning ./internal/database`
 
 Working directory: `apps/api`
 
-- [ ] **Step 3: Implement schema and repository changes**
+- [x] **Step 3: Implement schema and repository changes**
 
 Add immutable profile-hash binding while preserving historical review rows.
 Use indexed manifest asset/reference columns or bounded import tables; never
 scan all reviews once per request.
 
-- [ ] **Step 4: Implement v2 parser and bounded queue**
+- [x] **Step 4: Implement v2 parser and bounded queue**
 
 Reject incomplete hashes, duplicate aliases, unsupported schema versions and
 unsafe file URLs. Return safe metadata only.
 
-- [ ] **Step 5: Run focused and complete Go tests**
+- [x] **Step 5: Run focused and complete Go tests**
 
 Run: `go test ./...`
 

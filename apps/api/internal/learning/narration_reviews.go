@@ -17,6 +17,9 @@ func validateNarrationReview(review NarrationReview) error {
 	if !narrationSHA256Pattern.MatchString(review.TextSHA256) || !narrationSHA256Pattern.MatchString(review.AudioSHA256) {
 		return invalidConfig("narration review hashes must be lowercase sha256 values")
 	}
+	if review.ProductionProfileSHA256 != "" && !narrationSHA256Pattern.MatchString(review.ProductionProfileSHA256) {
+		return invalidConfig("narration production profile hash must be a lowercase sha256 value")
+	}
 	if review.Decision != "approved" && review.Decision != "rejected" {
 		return invalidConfig("narration review decision must be approved or rejected")
 	}
@@ -51,12 +54,13 @@ func (r *PostgresRepository) ListNarrationReviews(ctx context.Context, assetID s
 	}
 	assetID = strings.TrimSpace(assetID)
 	rows, err := r.db.Query(ctx, `
-		SELECT id, asset_id, text_sha256, audio_sha256, decision,
+		SELECT id, asset_id, text_sha256, audio_sha256, production_profile_sha256, decision,
 		       reviewer_id, reviewer_name, criteria, rejection_reasons, notes,
 		       created_at, updated_at
 		FROM (
 			SELECT DISTINCT ON (asset_id)
-			       id::text AS id, asset_id, text_sha256, audio_sha256, decision,
+			       id::text AS id, asset_id, text_sha256, audio_sha256,
+			       COALESCE(production_profile_sha256, '') AS production_profile_sha256, decision,
 			       reviewer_id, reviewer_name, criteria, rejection_reasons, notes,
 			       created_at, updated_at
 			FROM narration_reviews
@@ -76,7 +80,7 @@ func (r *PostgresRepository) ListNarrationReviews(ctx context.Context, assetID s
 		var criteriaRaw, reasonsRaw []byte
 		var createdAt, updatedAt time.Time
 		if err := rows.Scan(
-			&review.ID, &review.AssetID, &review.TextSHA256, &review.AudioSHA256,
+			&review.ID, &review.AssetID, &review.TextSHA256, &review.AudioSHA256, &review.ProductionProfileSHA256,
 			&review.Decision, &review.ReviewerID, &review.ReviewerName,
 			&criteriaRaw, &reasonsRaw, &review.Notes, &createdAt, &updatedAt,
 		); err != nil {
@@ -135,12 +139,12 @@ func (r *PostgresRepository) SaveNarrationReview(ctx context.Context, review Nar
 	var createdAt, updatedAt time.Time
 	if err := tx.QueryRow(ctx, `
 		INSERT INTO narration_reviews(
-			asset_id, text_sha256, audio_sha256, decision, reviewer_id,
+			asset_id, text_sha256, audio_sha256, production_profile_sha256, decision, reviewer_id,
 			reviewer_name, criteria, rejection_reasons, notes
 		)
-		VALUES($1,$2,$3,$4,$5,$6,$7::jsonb,$8::jsonb,$9)
+		VALUES($1,$2,$3,NULLIF($4,''),$5,$6,$7,$8::jsonb,$9::jsonb,$10)
 		RETURNING id::text, created_at, updated_at
-	`, review.AssetID, review.TextSHA256, review.AudioSHA256, review.Decision,
+	`, review.AssetID, review.TextSHA256, review.AudioSHA256, review.ProductionProfileSHA256, review.Decision,
 		review.ReviewerID, review.ReviewerName, criteria, reasons, review.Notes,
 	).Scan(&review.ID, &createdAt, &updatedAt); err != nil {
 		return review, err
@@ -152,7 +156,7 @@ func (r *PostgresRepository) SaveNarrationReview(ctx context.Context, review Nar
 		VALUES('review', 'narration_asset', $1, $2::jsonb)
 	`, review.AssetID, mustJSON(map[string]any{
 		"asset_id": review.AssetID, "text_sha256": review.TextSHA256,
-		"audio_sha256": review.AudioSHA256, "decision": review.Decision,
+		"audio_sha256": review.AudioSHA256, "production_profile_sha256": review.ProductionProfileSHA256, "decision": review.Decision,
 		"reviewer_name": review.ReviewerName,
 	})); err != nil {
 		return review, err

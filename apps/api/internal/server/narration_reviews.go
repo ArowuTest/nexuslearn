@@ -2,9 +2,11 @@ package server
 
 import (
 	"context"
+	"crypto/sha256"
 	"encoding/hex"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"net/http"
 	"os"
 	"sort"
@@ -20,47 +22,93 @@ type narrationReviewRepository interface {
 }
 
 type narrationManifestItem struct {
-	ID            string `json:"id"`
-	PackID        string `json:"pack_id"`
-	Kind          string `json:"kind"`
-	SourceID      string `json:"source_id"`
-	Text          string `json:"text"`
-	TextSHA256    string `json:"text_sha256"`
-	SHA256        string `json:"sha256"`
-	File          string `json:"file"`
-	RelativeFile  string `json:"relative_file"`
-	VoiceName     string `json:"voice_name"`
-	ModelID       string `json:"model_id"`
-	TechnicalPass bool   `json:"technical_pass"`
+	ID                       string         `json:"id"`
+	ProductionAssetID        string         `json:"production_asset_id"`
+	ProductionIdentitySHA256 string         `json:"production_identity_sha256"`
+	ProductionProfileSHA256  string         `json:"production_profile_sha256"`
+	PackID                   string         `json:"pack_id"`
+	PackIDs                  []string       `json:"pack_ids"`
+	Year                     int            `json:"year"`
+	Years                    []int          `json:"years"`
+	Kind                     string         `json:"kind"`
+	SourceID                 string         `json:"source_id"`
+	Text                     string         `json:"text"`
+	TextSHA256               string         `json:"text_sha256"`
+	SHA256                   string         `json:"sha256"`
+	Bytes                    int64          `json:"bytes"`
+	File                     string         `json:"file"`
+	RelativeFile             string         `json:"relative_file"`
+	Provider                 string         `json:"provider"`
+	VoiceName                string         `json:"voice_name"`
+	VoiceID                  string         `json:"voice_id"`
+	ModelID                  string         `json:"model_id"`
+	OutputFormat             string         `json:"output_format"`
+	VoiceSettings            map[string]any `json:"voice_settings"`
+	ReferenceIDs             []string       `json:"reference_ids"`
+	ReuseCount               int            `json:"reuse_count"`
+	ProductionStatus         string         `json:"production_status"`
+	TechnicalPass            bool           `json:"technical_pass"`
+}
+
+type narrationManifestReference struct {
+	ReferenceID              string `json:"reference_id"`
+	Status                   string `json:"status"`
+	Text                     string `json:"text"`
+	TextSHA256               string `json:"text_sha256"`
+	ProductionAssetID        string `json:"production_asset_id"`
+	ProductionIdentitySHA256 string `json:"production_identity_sha256"`
+	ProductionProfileSHA256  string `json:"production_profile_sha256"`
+}
+
+type narrationManifestTotals struct {
+	ExpectedAssets     int `json:"expected_assets"`
+	ProducedAssets     int `json:"produced_assets"`
+	ReferenceIDs       int `json:"reference_ids"`
+	SpecialistRequired int `json:"specialist_required"`
+	Unresolved         int `json:"unresolved"`
 }
 
 type narrationManifest struct {
-	Provider string `json:"provider"`
-	Voice    struct {
+	Schema          string `json:"schema"`
+	Version         int    `json:"version"`
+	CatalogueID     string `json:"catalogue_id"`
+	CatalogueSHA256 string `json:"catalogue_sha256"`
+	ReleaseID       string `json:"release_id"`
+	ReleaseSHA256   string `json:"release_sha256"`
+	Provider        string `json:"provider"`
+	Status          string `json:"status"`
+	Voice           struct {
 		Name    string `json:"name"`
 		ModelID string `json:"model_id"`
 	} `json:"voice"`
-	Items []narrationManifestItem `json:"items"`
+	Items      []narrationManifestItem      `json:"items"`
+	Assets     []narrationManifestItem      `json:"assets"`
+	References []narrationManifestReference `json:"references"`
+	Totals     narrationManifestTotals      `json:"totals"`
 }
 
 type narrationQueueItem struct {
-	Rank        int                       `json:"rank"`
-	AssetID     string                    `json:"asset_id"`
-	PackID      string                    `json:"pack_id"`
-	Year        int                       `json:"year"`
-	Subject     string                    `json:"subject"`
-	Kind        string                    `json:"kind"`
-	SourceID    string                    `json:"source_id"`
-	TextPreview string                    `json:"text_preview"`
-	File        string                    `json:"file"`
-	TextSHA256  string                    `json:"text_sha256"`
-	AudioSHA256 string                    `json:"audio_sha256"`
-	VoiceName   string                    `json:"voice_name,omitempty"`
-	ModelID     string                    `json:"model_id,omitempty"`
-	Status      string                    `json:"status"`
-	Review      *learning.NarrationReview `json:"review,omitempty"`
-	Priority    int                       `json:"priority"`
-	Rationale   []string                  `json:"rationale"`
+	Rank                     int                       `json:"rank"`
+	AssetID                  string                    `json:"asset_id"`
+	PackID                   string                    `json:"pack_id"`
+	Year                     int                       `json:"year"`
+	Subject                  string                    `json:"subject"`
+	Kind                     string                    `json:"kind"`
+	SourceID                 string                    `json:"source_id"`
+	TextPreview              string                    `json:"text_preview"`
+	File                     string                    `json:"file"`
+	TextSHA256               string                    `json:"text_sha256"`
+	AudioSHA256              string                    `json:"audio_sha256"`
+	ProductionIdentitySHA256 string                    `json:"production_identity_sha256,omitempty"`
+	ProductionProfileSHA256  string                    `json:"production_profile_sha256,omitempty"`
+	ReuseCount               int                       `json:"reuse_count,omitempty"`
+	ReferenceCount           int                       `json:"reference_count,omitempty"`
+	VoiceName                string                    `json:"voice_name,omitempty"`
+	ModelID                  string                    `json:"model_id,omitempty"`
+	Status                   string                    `json:"status"`
+	Review                   *learning.NarrationReview `json:"review,omitempty"`
+	Priority                 int                       `json:"priority"`
+	Rationale                []string                  `json:"rationale"`
 }
 
 type narrationQueueYearSummary struct {
@@ -106,6 +154,9 @@ func (s *Server) handleNarrationReviewQueue(w http.ResponseWriter, r *http.Reque
 		year, subject := narrationCurriculumIdentity(asset.PackID)
 		voiceName := asset.VoiceName
 		if voiceName == "" {
+			voiceName = asset.VoiceID
+		}
+		if voiceName == "" {
 			voiceName = manifest.Voice.Name
 		}
 		modelID := asset.ModelID
@@ -115,7 +166,7 @@ func (s *Server) handleNarrationReviewQueue(w http.ResponseWriter, r *http.Reque
 		status := "awaiting"
 		var currentReview *learning.NarrationReview
 		if review, exists := latestReview[asset.ID]; exists {
-			review.Stale = review.TextSHA256 != asset.TextSHA256 || review.AudioSHA256 != asset.SHA256
+			review.Stale = narrationReviewIsStale(review, asset)
 			currentReview = &review
 			if review.Stale {
 				status = "stale"
@@ -133,6 +184,9 @@ func (s *Server) handleNarrationReviewQueue(w http.ResponseWriter, r *http.Reque
 			AssetID: asset.ID, PackID: asset.PackID, Year: year, Subject: subject,
 			Kind: asset.Kind, SourceID: asset.SourceID, TextPreview: asset.Text, File: asset.File,
 			TextSHA256: asset.TextSHA256, AudioSHA256: asset.SHA256, VoiceName: voiceName,
+			ProductionIdentitySHA256: asset.ProductionIdentitySHA256,
+			ProductionProfileSHA256:  asset.ProductionProfileSHA256,
+			ReuseCount:               asset.ReuseCount, ReferenceCount: len(asset.ReferenceIDs),
 			ModelID: modelID, Status: status, Review: currentReview, Priority: priority, Rationale: rationale,
 		})
 	}
@@ -300,7 +354,7 @@ func (s *Server) handleNarrationReviews(w http.ResponseWriter, r *http.Request) 
 	if manifestErr == nil {
 		for i := range reviews {
 			binding, exists := bindings[reviews[i].AssetID]
-			reviews[i].Stale = !exists || binding.TextSHA256 != reviews[i].TextSHA256 || binding.SHA256 != reviews[i].AudioSHA256
+			reviews[i].Stale = !exists || narrationReviewIsStale(reviews[i], binding)
 		}
 	}
 	writeJSON(w, http.StatusOK, map[string]any{"reviews": reviews, "served_by": "api", "manifest_available": manifestErr == nil})
@@ -317,14 +371,15 @@ func (s *Server) handleSaveNarrationReview(w http.ResponseWriter, r *http.Reques
 		return
 	}
 	var in struct {
-		AssetID          string          `json:"asset_id"`
-		TextSHA256       string          `json:"text_sha256"`
-		AudioSHA256      string          `json:"audio_sha256"`
-		Decision         string          `json:"decision"`
-		ReviewerName     string          `json:"reviewer_name"`
-		Criteria         map[string]bool `json:"criteria"`
-		RejectionReasons []string        `json:"rejection_reasons"`
-		Notes            string          `json:"notes"`
+		AssetID                 string          `json:"asset_id"`
+		TextSHA256              string          `json:"text_sha256"`
+		AudioSHA256             string          `json:"audio_sha256"`
+		ProductionProfileSHA256 string          `json:"production_profile_sha256"`
+		Decision                string          `json:"decision"`
+		ReviewerName            string          `json:"reviewer_name"`
+		Criteria                map[string]bool `json:"criteria"`
+		RejectionReasons        []string        `json:"rejection_reasons"`
+		Notes                   string          `json:"notes"`
 	}
 	if err := json.NewDecoder(r.Body).Decode(&in); err != nil {
 		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid narration review body"})
@@ -333,6 +388,7 @@ func (s *Server) handleSaveNarrationReview(w http.ResponseWriter, r *http.Reques
 	in.AssetID = strings.TrimSpace(in.AssetID)
 	in.TextSHA256 = strings.ToLower(strings.TrimSpace(in.TextSHA256))
 	in.AudioSHA256 = strings.ToLower(strings.TrimSpace(in.AudioSHA256))
+	in.ProductionProfileSHA256 = strings.ToLower(strings.TrimSpace(in.ProductionProfileSHA256))
 	in.Decision = strings.ToLower(strings.TrimSpace(in.Decision))
 	in.ReviewerName = strings.TrimSpace(in.ReviewerName)
 	bindings, _, err := readNarrationBindings()
@@ -345,16 +401,18 @@ func (s *Server) handleSaveNarrationReview(w http.ResponseWriter, r *http.Reques
 		writeJSON(w, http.StatusNotFound, map[string]string{"error": "narration asset is not registered"})
 		return
 	}
-	if binding.TextSHA256 != in.TextSHA256 || binding.SHA256 != in.AudioSHA256 {
+	if binding.TextSHA256 != in.TextSHA256 || binding.SHA256 != in.AudioSHA256 || (binding.ProductionProfileSHA256 != "" && binding.ProductionProfileSHA256 != in.ProductionProfileSHA256) {
 		writeJSON(w, http.StatusConflict, map[string]any{
 			"error":    "narration asset changed; refresh the review queue before saving",
 			"asset_id": in.AssetID, "text_sha256": binding.TextSHA256, "audio_sha256": binding.SHA256,
+			"production_profile_sha256": binding.ProductionProfileSHA256,
 		})
 		return
 	}
 	reviewInput := learning.NarrationReview{
 		AssetID: in.AssetID, TextSHA256: in.TextSHA256, AudioSHA256: in.AudioSHA256,
-		Decision: in.Decision, ReviewerID: reviewerID, ReviewerName: in.ReviewerName,
+		ProductionProfileSHA256: in.ProductionProfileSHA256,
+		Decision:                in.Decision, ReviewerID: reviewerID, ReviewerName: in.ReviewerName,
 		Criteria: in.Criteria, RejectionReasons: in.RejectionReasons, Notes: strings.TrimSpace(in.Notes),
 	}
 	if err := learning.ValidateNarrationReview(reviewInput); err != nil {
@@ -367,6 +425,13 @@ func (s *Server) handleSaveNarrationReview(w http.ResponseWriter, r *http.Reques
 		return
 	}
 	writeJSON(w, http.StatusOK, review)
+}
+
+func narrationReviewIsStale(review learning.NarrationReview, asset narrationManifestItem) bool {
+	if review.TextSHA256 != asset.TextSHA256 || review.AudioSHA256 != asset.SHA256 {
+		return true
+	}
+	return asset.ProductionProfileSHA256 != "" && review.ProductionProfileSHA256 != asset.ProductionProfileSHA256
 }
 
 func (s *Server) requireNarrationReviewer(w http.ResponseWriter, r *http.Request) (string, bool) {
@@ -410,8 +475,8 @@ func readNarrationManifest() (narrationManifest, string, error) {
 			lastErr = err
 			continue
 		}
-		var manifest narrationManifest
-		if err := json.Unmarshal(body, &manifest); err != nil {
+		manifest, err := decodeNarrationManifest(body)
+		if err != nil {
 			return narrationManifest{}, candidate, err
 		}
 		complete := len(manifest.Items) > 0
@@ -431,6 +496,231 @@ func readNarrationManifest() (narrationManifest, string, error) {
 		lastErr = errors.New("narration manifest not found")
 	}
 	return narrationManifest{}, "", lastErr
+}
+
+func decodeNarrationManifest(body []byte) (narrationManifest, error) {
+	var manifest narrationManifest
+	if err := json.Unmarshal(body, &manifest); err != nil {
+		return narrationManifest{}, err
+	}
+	switch {
+	case manifest.Schema == "" && (manifest.Version == 0 || manifest.Version == 1):
+		return manifest, nil
+	case manifest.Schema == "nexuslearn.narration-manifest.v2" && manifest.Version == 2:
+		if err := validateNarrationManifestV2(body, &manifest); err != nil {
+			return narrationManifest{}, err
+		}
+		manifest.Items = append([]narrationManifestItem(nil), manifest.Assets...)
+		return manifest, nil
+	default:
+		return narrationManifest{}, fmt.Errorf("unsupported narration manifest schema %q version %d", manifest.Schema, manifest.Version)
+	}
+}
+
+func validateNarrationManifestV2(body []byte, manifest *narrationManifest) error {
+	if manifest.Schema != "nexuslearn.narration-manifest.v2" || manifest.Version != 2 {
+		return errors.New("narration manifest v2 schema and version must match")
+	}
+	if !isLowerSHA256(manifest.CatalogueSHA256) || manifest.CatalogueID != "variant-audio-catalog-v1-"+manifest.CatalogueSHA256[:24] {
+		return errors.New("narration manifest v2 catalogue identity is invalid")
+	}
+	if !isLowerSHA256(manifest.ReleaseSHA256) || manifest.ReleaseID != "narration-release-v2-"+manifest.ReleaseSHA256[:24] {
+		return errors.New("narration manifest v2 release identity is invalid")
+	}
+	if len(manifest.Items) != 0 {
+		return errors.New("narration manifest v2 cannot mix legacy items with canonical assets")
+	}
+
+	var raw map[string]any
+	if err := json.Unmarshal(body, &raw); err != nil {
+		return err
+	}
+	identity := map[string]any{}
+	for _, key := range []string{"schema", "version", "catalogue_id", "catalogue_sha256", "provenance", "assets", "references", "blockers"} {
+		value, exists := raw[key]
+		if !exists {
+			return fmt.Errorf("narration manifest v2 identity field %s is missing", key)
+		}
+		identity[key] = value
+	}
+	releaseSHA, err := canonicalSHA256(identity)
+	if err != nil {
+		return err
+	}
+	if releaseSHA != manifest.ReleaseSHA256 {
+		return errors.New("narration manifest v2 release signature does not match its canonical payload")
+	}
+	if len(manifest.Assets) == 0 {
+		return errors.New("narration manifest v2 has no produced assets")
+	}
+	if manifest.Totals.ProducedAssets != len(manifest.Assets) || manifest.Totals.ExpectedAssets < manifest.Totals.ProducedAssets {
+		return errors.New("narration manifest v2 asset totals do not match")
+	}
+	if manifest.Totals.ReferenceIDs != len(manifest.References) {
+		return errors.New("narration manifest v2 reference totals do not match")
+	}
+
+	assets := make(map[string]narrationManifestItem, len(manifest.Assets))
+	declaredReferences := make(map[string]map[string]struct{}, len(manifest.Assets))
+	for _, asset := range manifest.Assets {
+		if err := validateNarrationManifestV2Asset(asset, manifest.Provider); err != nil {
+			return err
+		}
+		if _, exists := assets[asset.ID]; exists {
+			return fmt.Errorf("duplicate narration production asset %s", asset.ID)
+		}
+		assets[asset.ID] = asset
+		declaredReferences[asset.ID] = stringSet(asset.ReferenceIDs)
+		if len(declaredReferences[asset.ID]) != len(asset.ReferenceIDs) {
+			return fmt.Errorf("%s: duplicate declared narration reference", asset.ID)
+		}
+	}
+
+	aliases := make(map[string]string, len(manifest.References))
+	boundReferences := make(map[string]map[string]struct{}, len(manifest.Assets))
+	specialistRequired := 0
+	unresolved := 0
+	for _, reference := range manifest.References {
+		reference.ReferenceID = strings.TrimSpace(reference.ReferenceID)
+		if reference.ReferenceID == "" {
+			return errors.New("narration manifest v2 reference id is required")
+		}
+		if _, exists := aliases[reference.ReferenceID]; exists {
+			return fmt.Errorf("duplicate narration reference %s", reference.ReferenceID)
+		}
+		aliases[reference.ReferenceID] = reference.ProductionAssetID
+		if reference.Status != "production_required" {
+			if reference.Status != "specialist_required" && reference.Status != "unresolved" {
+				return fmt.Errorf("%s: narration reference status is invalid", reference.ReferenceID)
+			}
+			if reference.ProductionAssetID != "" {
+				return fmt.Errorf("%s: non-production narration reference cannot bind an asset", reference.ReferenceID)
+			}
+			if reference.Status == "specialist_required" {
+				specialistRequired++
+			} else {
+				unresolved++
+			}
+			continue
+		}
+		asset, exists := assets[reference.ProductionAssetID]
+		if !exists {
+			if manifest.Totals.ProducedAssets == manifest.Totals.ExpectedAssets {
+				return fmt.Errorf("%s: narration reference target is not produced", reference.ReferenceID)
+			}
+			continue
+		}
+		if reference.TextSHA256 != asset.TextSHA256 || reference.ProductionIdentitySHA256 != asset.ProductionIdentitySHA256 || reference.ProductionProfileSHA256 != asset.ProductionProfileSHA256 {
+			return fmt.Errorf("%s: narration reference binding hashes do not match its production asset", reference.ReferenceID)
+		}
+		if reference.Text != "" && sha256String(reference.Text) != reference.TextSHA256 {
+			return fmt.Errorf("%s: narration reference transcript hash does not match", reference.ReferenceID)
+		}
+		if boundReferences[asset.ID] == nil {
+			boundReferences[asset.ID] = map[string]struct{}{}
+		}
+		boundReferences[asset.ID][reference.ReferenceID] = struct{}{}
+	}
+	for assetID, expected := range declaredReferences {
+		if !equalStringSets(expected, boundReferences[assetID]) {
+			return fmt.Errorf("%s: declared narration references do not match the signed alias bindings", assetID)
+		}
+	}
+	if specialistRequired != manifest.Totals.SpecialistRequired || unresolved != manifest.Totals.Unresolved {
+		return errors.New("narration manifest v2 blocker totals do not match its references")
+	}
+	return nil
+}
+
+func validateNarrationManifestV2Asset(asset narrationManifestItem, manifestProvider string) error {
+	if strings.TrimSpace(asset.ID) == "" || asset.ID != asset.ProductionAssetID {
+		return errors.New("narration manifest v2 production asset id is invalid")
+	}
+	for label, value := range map[string]string{
+		"text": asset.TextSHA256, "audio": asset.SHA256,
+		"production identity": asset.ProductionIdentitySHA256, "production profile": asset.ProductionProfileSHA256,
+	} {
+		if !isLowerSHA256(value) {
+			return fmt.Errorf("%s: %s sha256 is invalid", asset.ID, label)
+		}
+	}
+	if sha256String(asset.Text) != asset.TextSHA256 {
+		return fmt.Errorf("%s: transcript hash does not match", asset.ID)
+	}
+	profile := map[string]any{
+		"provider": asset.Provider, "voice_id": asset.VoiceID, "model_id": asset.ModelID,
+		"output_format": asset.OutputFormat, "voice_settings": asset.VoiceSettings,
+	}
+	profileSHA, err := canonicalSHA256(profile)
+	if err != nil {
+		return err
+	}
+	if profileSHA != asset.ProductionProfileSHA256 {
+		return fmt.Errorf("%s: production profile does not match its sha256", asset.ID)
+	}
+	identitySHA, err := canonicalSHA256(map[string]any{
+		"version": 1, "text_sha256": asset.TextSHA256, "production_profile_sha256": profileSHA,
+	})
+	if err != nil {
+		return err
+	}
+	if identitySHA != asset.ProductionIdentitySHA256 || asset.ID != "narration-v1-"+identitySHA[:24] {
+		return fmt.Errorf("%s: production identity does not match transcript and profile", asset.ID)
+	}
+	if asset.Provider == "" || asset.Provider != manifestProvider || asset.VoiceID == "" || asset.ModelID == "" || asset.OutputFormat == "" || asset.VoiceSettings == nil {
+		return fmt.Errorf("%s: production profile fields are incomplete", asset.ID)
+	}
+	if asset.Bytes <= 0 || !asset.TechnicalPass || !validNarrationProductionStatus(asset.ProductionStatus) {
+		return fmt.Errorf("%s: produced audio is not technically reviewable", asset.ID)
+	}
+	expectedRelativeFile := "canonical/variant/" + asset.ID + ".mp3"
+	unsafeFile := strings.Contains(asset.File, "..") || strings.ContainsAny(asset.File, "?#\\%") || strings.Contains(asset.RelativeFile, "..")
+	if unsafeFile || asset.RelativeFile != expectedRelativeFile || !strings.HasSuffix(asset.File, "/"+expectedRelativeFile) || !strings.HasPrefix(asset.File, "/audio/narration/") {
+		return fmt.Errorf("%s: canonical narration file binding is invalid", asset.ID)
+	}
+	return nil
+}
+
+func validNarrationProductionStatus(status string) bool {
+	switch strings.TrimSpace(status) {
+	case "required_human_listening_review", "human_listening_approved", "approved", "production_approved", "released", "rejected", "re_record_required":
+		return true
+	default:
+		return false
+	}
+}
+
+func canonicalSHA256(value any) (string, error) {
+	body, err := json.Marshal(value)
+	if err != nil {
+		return "", err
+	}
+	return sha256String(string(body)), nil
+}
+
+func sha256String(value string) string {
+	sum := sha256.Sum256([]byte(value))
+	return hex.EncodeToString(sum[:])
+}
+
+func stringSet(values []string) map[string]struct{} {
+	result := make(map[string]struct{}, len(values))
+	for _, value := range values {
+		result[value] = struct{}{}
+	}
+	return result
+}
+
+func equalStringSets(left, right map[string]struct{}) bool {
+	if len(left) != len(right) {
+		return false
+	}
+	for value := range left {
+		if _, exists := right[value]; !exists {
+			return false
+		}
+	}
+	return true
 }
 
 func isLowerSHA256(value string) bool {

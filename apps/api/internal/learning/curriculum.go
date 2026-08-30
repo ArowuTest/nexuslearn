@@ -418,19 +418,20 @@ type AuditLog struct {
 }
 
 type NarrationReview struct {
-	ID               string          `json:"id"`
-	AssetID          string          `json:"asset_id"`
-	TextSHA256       string          `json:"text_sha256"`
-	AudioSHA256      string          `json:"audio_sha256"`
-	Decision         string          `json:"decision"`
-	ReviewerID       string          `json:"reviewer_id,omitempty"`
-	ReviewerName     string          `json:"reviewer_name"`
-	Criteria         map[string]bool `json:"criteria"`
-	RejectionReasons []string        `json:"rejection_reasons,omitempty"`
-	Notes            string          `json:"notes,omitempty"`
-	CreatedAt        string          `json:"created_at"`
-	UpdatedAt        string          `json:"updated_at"`
-	Stale            bool            `json:"stale,omitempty"`
+	ID                      string          `json:"id"`
+	AssetID                 string          `json:"asset_id"`
+	TextSHA256              string          `json:"text_sha256"`
+	AudioSHA256             string          `json:"audio_sha256"`
+	ProductionProfileSHA256 string          `json:"production_profile_sha256,omitempty"`
+	Decision                string          `json:"decision"`
+	ReviewerID              string          `json:"reviewer_id,omitempty"`
+	ReviewerName            string          `json:"reviewer_name"`
+	Criteria                map[string]bool `json:"criteria"`
+	RejectionReasons        []string        `json:"rejection_reasons,omitempty"`
+	Notes                   string          `json:"notes,omitempty"`
+	CreatedAt               string          `json:"created_at"`
+	UpdatedAt               string          `json:"updated_at"`
+	Stale                   bool            `json:"stale,omitempty"`
 }
 
 // ContentReviewDecision is an append-only decision for one governed review
