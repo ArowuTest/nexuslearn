@@ -174,20 +174,20 @@ Working directory: `apps/api`
 - Produces: `POST /v1/admin/audio/assets/{id}/rerecord-request` with immutable audit event.
 - Produces: bounded batch outcome `{accepted, rejected, replayed, errors}`.
 
-- [ ] **Step 1: Write failing import, permission and retry tests**
+- [x] **Step 1: Write failing import, permission and retry tests**
 
 Assert exact content identity, payload conflict, role boundary, batch maximum,
 transaction rollback for malformed manifests, and safe retry of partial
 production operations.
 
-- [ ] **Step 2: Witness RED with focused Go tests**
+- [x] **Step 2: Witness RED with focused Go tests**
 
-- [ ] **Step 3: Implement minimal repository and HTTP operations**
+- [x] **Step 3: Implement minimal repository and HTTP operations**
 
 Store no provider key. Preserve prior manifests and decisions. Emit audit
 events containing safe IDs and hashes only.
 
-- [ ] **Step 4: Witness GREEN and run `go test ./...`**
+- [x] **Step 4: Witness GREEN and run `go test ./...`**
 
 ### Task 5: Admin listening and regeneration workspace
 

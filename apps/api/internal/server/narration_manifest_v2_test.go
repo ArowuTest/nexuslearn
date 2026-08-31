@@ -147,6 +147,19 @@ func TestReadNarrationManifestRejectsUnsafeSignedV2FileURL(t *testing.T) {
 	}
 }
 
+func TestReadNarrationManifestRejectsSecretShapedSignedFields(t *testing.T) {
+	manifestPath := writeNarrationManifestV2Fixture(t, func(identity map[string]any) {
+		provenance := identity["provenance"].(map[string]any)
+		provenance["provider_api_key"] = "must-never-be-persisted"
+	})
+	t.Setenv("NARRATION_MANIFEST_PATH", manifestPath)
+
+	_, _, err := readNarrationManifest()
+	if err == nil || !strings.Contains(err.Error(), "credential-shaped") {
+		t.Fatalf("expected credential-shaped manifest data to fail closed, got %v", err)
+	}
+}
+
 func TestReadNarrationManifestRejectsUnsupportedSchemaVersion(t *testing.T) {
 	manifestPath := filepath.Join(t.TempDir(), "unsupported-manifest.json")
 	body, err := json.Marshal(map[string]any{

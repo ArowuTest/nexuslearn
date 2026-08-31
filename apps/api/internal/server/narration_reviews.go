@@ -535,6 +535,9 @@ func validateNarrationManifestV2(body []byte, manifest *narrationManifest) error
 	if err := json.Unmarshal(body, &raw); err != nil {
 		return err
 	}
+	if err := rejectCredentialShapedFields(raw, "manifest"); err != nil {
+		return err
+	}
 	identity := map[string]any{}
 	for _, key := range []string{"schema", "version", "catalogue_id", "catalogue_sha256", "provenance", "assets", "references", "blockers"} {
 		value, exists := raw[key]
@@ -628,6 +631,30 @@ func validateNarrationManifestV2(body []byte, manifest *narrationManifest) error
 	}
 	if specialistRequired != manifest.Totals.SpecialistRequired || unresolved != manifest.Totals.Unresolved {
 		return errors.New("narration manifest v2 blocker totals do not match its references")
+	}
+	return nil
+}
+
+func rejectCredentialShapedFields(value any, location string) error {
+	switch typed := value.(type) {
+	case map[string]any:
+		for key, entry := range typed {
+			normalised := strings.ToLower(strings.ReplaceAll(key, "-", "_"))
+			for _, forbidden := range []string{"api_key", "apikey", "token", "password", "secret", "credential", "private_key"} {
+				if strings.Contains(normalised, forbidden) {
+					return fmt.Errorf("%s.%s: credential-shaped field is not allowed", location, key)
+				}
+			}
+			if err := rejectCredentialShapedFields(entry, location+"."+key); err != nil {
+				return err
+			}
+		}
+	case []any:
+		for index, entry := range typed {
+			if err := rejectCredentialShapedFields(entry, fmt.Sprintf("%s[%d]", location, index)); err != nil {
+				return err
+			}
+		}
 	}
 	return nil
 }

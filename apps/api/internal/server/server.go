@@ -239,6 +239,8 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("GET /v1/admin/content/narration-queue", s.handleNarrationReviewQueue)
 	s.mux.HandleFunc("GET /v1/admin/content/narration-reviews", s.handleNarrationReviews)
 	s.mux.HandleFunc("POST /v1/admin/content/narration-reviews", s.handleSaveNarrationReview)
+	s.mux.HandleFunc("POST /v1/admin/audio/manifests/import", s.handleImportAudioManifest)
+	s.mux.HandleFunc("POST /v1/admin/audio/assets/{id}/rerecord-request", s.handleRequestAudioRerecord)
 	s.mux.HandleFunc("GET /v1/admin/ai-reviews", s.handleListAIReviews)
 	s.mux.HandleFunc("GET /v1/admin/ai-reviews/summary", s.handleAIReviewSummary)
 	s.mux.HandleFunc("POST /v1/admin/ai-reviews", s.handleSaveAIReview)
