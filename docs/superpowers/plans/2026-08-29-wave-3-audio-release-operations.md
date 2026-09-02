@@ -203,25 +203,25 @@ events containing safe IDs and hashes only.
 - Consumes: paginated queue, review-save and rerecord endpoints.
 - Produces: role-scoped playback/review UI with URL-synchronised filters and bounded pagination.
 
-- [ ] **Step 1: Write failing Playwright journey**
+- [x] **Step 1: Write failing Playwright journey**
 
 Cover sign-in boundary, filter restoration, exact transcript/audio binding,
 approval criteria, structured rejection, stale warning, re-record request,
 keyboard operation and narrow viewport.
 
-- [ ] **Step 2: Witness RED in desktop Chromium**
+- [x] **Step 2: Witness RED in desktop Chromium**
 
 Run: `npx playwright test tests/e2e/admin-audio-workspace.spec.ts --project=desktop-chromium`
 
 Working directory: `apps/web`
 
-- [ ] **Step 3: Implement API client and focused workspace**
+- [x] **Step 3: Implement API client and focused workspace**
 
 Use semantic controls and native audio playback. Display profile identity,
 reuse count, technical state and human state separately. Require all approval
 criteria and a reviewer name; require reasons or notes on rejection.
 
-- [ ] **Step 4: Witness GREEN on desktop and mobile Chromium**
+- [x] **Step 4: Witness GREEN on desktop and mobile Chromium**
 
 ### Task 6: Exact release gate and full verification
 

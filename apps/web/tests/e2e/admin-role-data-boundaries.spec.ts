@@ -122,7 +122,6 @@ test("platform administrator loads one operational section at a time", async ({ 
 test("readiness and release workspaces load only their own report families", async ({ page }) => {
   const readinessRequests = await openAdminAs(page, "platform_admin", "Readiness");
   await expect.poll(() => [...new Set(readinessRequests.map((url) => url.pathname))].sort()).toEqual([
-    "/v1/admin/content/narration-queue",
     "/v1/admin/content/readiness",
     "/v1/admin/content/reports/asset-production-readiness",
     "/v1/admin/content/reports/curriculum-area-coverage",
@@ -130,6 +129,13 @@ test("readiness and release workspaces load only their own report families", asy
     "/v1/admin/content/reports/interaction-renderer-readiness",
     "/v1/admin/content/reports/narration-readiness",
     "/v1/admin/content/reports/pack-depth-readiness",
+  ]);
+
+  const audioPage = await page.context().newPage();
+  const audioRequests = await openAdminAs(audioPage, "platform_admin", "Audio");
+  await expect.poll(() => [...new Set(audioRequests.map((url) => url.pathname))].sort()).toEqual([
+    "/v1/admin/content/narration-queue",
+    "/v1/admin/content/reports/narration-readiness",
   ]);
 
   const releasePage = await page.context().newPage();

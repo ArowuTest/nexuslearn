@@ -34,9 +34,15 @@ import {
   visibleAdminSections,
 } from "@/components/admin/adminSectionModel";
 import { accountSessionHeaders, accountSessionRole, logoutAccount, storeAccountSession, type AccountSession, type ProgressReport } from "@/lib/api";
+import type { NarrationReadinessReport } from "@/lib/admin-audio";
 
 const AdminReviewWorkspace = dynamic(() => import("@/components/admin/AdminReviewWorkspace"), {
   loading: () => <p role="status">Loading governed review workspace…</p>,
+  ssr: false,
+});
+
+const AdminAudioWorkspace = dynamic(() => import("@/components/admin/AdminAudioWorkspace"), {
+  loading: () => <p role="status">Loading audio listening workspace…</p>,
   ssr: false,
 });
 
@@ -282,76 +288,6 @@ type AssetReadinessReport = {
     warnings: number;
   };
   asset_families: AssetFamily[];
-};
-type NarrationReadinessReport = {
-  status: "ready" | "gaps_present";
-  totals: {
-    expected_assets: number;
-    technical_pass: number;
-    listening_approved: number;
-    missing: number;
-    unreviewed: number;
-    variant_references: number;
-    variant_manifest_items: number;
-    unresolved_variant_references: number;
-    nonconforming_variant_references: number;
-  };
-  years: Array<{
-    year: number;
-    expected_assets: number;
-    technical_pass: number;
-    listening_approved: number;
-    missing: number;
-    unreviewed: number;
-    variant_references: number;
-    unresolved_variant_references: number;
-  }>;
-};
-type NarrationReview = {
-  id: string;
-  asset_id: string;
-  text_sha256: string;
-  audio_sha256: string;
-  decision: "approved" | "rejected";
-  reviewer_id?: string;
-  reviewer_name: string;
-  criteria: Record<string, boolean>;
-  rejection_reasons?: string[];
-  notes?: string;
-  created_at: string;
-  updated_at: string;
-  stale?: boolean;
-};
-type NarrationQueueItem = {
-  rank: number;
-  asset_id: string;
-  pack_id: string;
-  year: number;
-  subject: string;
-  kind: string;
-  source_id: string;
-  text_preview: string;
-  file: string;
-  text_sha256: string;
-  audio_sha256: string;
-  voice_name?: string;
-  model_id?: string;
-  status: "awaiting" | "approved" | "rejected" | "stale";
-  review?: NarrationReview;
-  rationale: string[];
-};
-type NarrationQueuePage = {
-  items: NarrationQueueItem[];
-  total: number;
-  counts: Record<"awaiting" | "approved" | "rejected" | "stale", number>;
-  years: Array<{ year: number; counts: Record<"awaiting" | "approved" | "rejected" | "stale", number>; reviewed: number; pending: number }>;
-  limit: number;
-  offset: number;
-  next_offset: number | null;
-  served_by: "api";
-  provider?: string;
-  voice_name?: string;
-  model_id?: string;
 };
 type PackDepthReadiness = {
   status: string;
@@ -815,10 +751,6 @@ export default function AdminPage() {
   const [rendererReadiness, setRendererReadiness] = useState<RendererReadinessReport | null>(null);
   const [assetReadiness, setAssetReadiness] = useState<AssetReadinessReport | null>(null);
   const [narrationReadiness, setNarrationReadiness] = useState<NarrationReadinessReport | null>(null);
-  const [narrationQueue, setNarrationQueue] = useState<NarrationQueuePage | null>(null);
-  const [narrationQueueFilters, setNarrationQueueFilters] = useState({ status: "awaiting", subject: "", year: "", kind: "", search: "" });
-  const [narrationReviewDrafts, setNarrationReviewDrafts] = useState<Record<string, { reviewer_name: string; notes: string; criteria: Record<string, boolean> }>>({});
-  const [narrationPlaybackErrors, setNarrationPlaybackErrors] = useState<Record<string, boolean>>({});
   const [packDepthReadiness, setPackDepthReadiness] = useState<PackDepthReadiness | null>(null);
   const [curriculumCoverage, setCurriculumCoverage] = useState<CurriculumAreaCoverage | null>(null);
   const [releaseSnapshot, setReleaseSnapshot] = useState<ContentReleaseSnapshot | null>(null);
@@ -1027,9 +959,6 @@ export default function AdminPage() {
     setAdminProgress(null);
     setProgressStudentID("");
     setAdminKey("");
-    setNarrationQueue(null);
-    setNarrationReviewDrafts({});
-    setNarrationPlaybackErrors({});
     setContentReviewLedger(null);
     setContentReviewDrafts({});
     auditLedgerRequest.current += 1;
@@ -1045,28 +974,6 @@ export default function AdminPage() {
     return adminFetch(`/v1/admin/content/reports/${encodeURIComponent(name)}`).catch(() =>
       fetch(`/content/${name}.json`, { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
     );
-  }
-
-  const narrationQueueItems = narrationQueue?.items ?? [];
-
-  function narrationDraftFor(item: NarrationQueueItem) {
-    return narrationReviewDrafts[item.asset_id] ?? {
-      reviewer_name: item.review?.reviewer_name ?? "",
-      notes: item.review?.notes ?? "",
-      criteria: item.review?.criteria ?? {},
-    };
-  }
-
-  async function loadNarrationQueue(filters = narrationQueueFilters, offset = 0) {
-    const query = new URLSearchParams({ status: filters.status, limit: "20", offset: String(offset) });
-    if (filters.subject) query.set("subject", filters.subject);
-    if (filters.year) query.set("year", filters.year);
-    if (filters.kind) query.set("kind", filters.kind);
-    if (filters.search.trim()) query.set("search", filters.search.trim());
-    const data = await adminFetch(`/v1/admin/content/narration-queue?${query.toString()}`) as NarrationQueuePage;
-    if (!Array.isArray(data.items) || typeof data.total !== "number") throw new Error("The narration review queue returned an invalid response.");
-    setNarrationQueue(data);
-    return data;
   }
 
   function contentReviewKey(packID: string, laneID: string) {
@@ -1142,66 +1049,6 @@ export default function AdminPage() {
     }
   }
 
-  function updateNarrationDraft(assetID: string, patch: Partial<{ reviewer_name: string; notes: string; criteria: Record<string, boolean> }>) {
-    setNarrationReviewDrafts((current) => ({
-      ...current,
-      [assetID]: {
-        reviewer_name: current[assetID]?.reviewer_name ?? "",
-        notes: current[assetID]?.notes ?? "",
-        criteria: current[assetID]?.criteria ?? {},
-        ...patch,
-      },
-    }));
-  }
-
-  async function saveNarrationReview(item: NarrationQueueItem, decision: NarrationReview["decision"]) {
-    const draft = narrationDraftFor(item);
-    const criteria = {
-      natural: Boolean(draft.criteria.natural),
-      clear: Boolean(draft.criteria.clear),
-      pronunciation: Boolean(draft.criteria.pronunciation),
-      age_suitable: Boolean(draft.criteria.age_suitable),
-    };
-    if (decision === "approved" && (!draft.reviewer_name.trim() || Object.values(criteria).some((value) => !value))) {
-      setMessage("Add the reviewer name and confirm all four listening criteria before approval.");
-      return;
-    }
-    if (decision === "rejected" && !draft.notes.trim()) {
-      setMessage("Add a short note explaining what needs re-recording before rejecting audio.");
-      return;
-    }
-    const saveKey = `narration:${item.asset_id}`;
-    if (saving === saveKey) return;
-    setSaving(saveKey);
-    try {
-      const reviewPayload = {
-        asset_id: item.asset_id,
-        text_sha256: item.text_sha256,
-        audio_sha256: item.audio_sha256,
-        decision,
-        reviewer_name: draft.reviewer_name.trim(),
-        criteria,
-        rejection_reasons: decision === "rejected" ? ["listening_review"] : [],
-        notes: draft.notes.trim(),
-      };
-      await adminFetch("/v1/admin/content/narration-reviews", {
-        method: "POST",
-        headers: { "Idempotency-Key": await reviewIdempotencyKey(`narration-${item.asset_id}`, reviewPayload) },
-        body: JSON.stringify(reviewPayload),
-      }) as NarrationReview;
-      const refreshOffset = narrationQueue?.items.length === 1 && (narrationQueue?.offset ?? 0) > 0
-        ? Math.max(0, (narrationQueue?.offset ?? 0) - (narrationQueue?.limit ?? 20))
-        : narrationQueue?.offset ?? 0;
-      await loadNarrationQueue(narrationQueueFilters, refreshOffset);
-      setNarrationReviewDrafts((current) => Object.fromEntries(Object.entries(current).filter(([assetID]) => assetID !== item.asset_id)));
-      setMessage(`${item.asset_id} marked ${decision}. The decision is now recorded in the server-side review ledger.`);
-    } catch (error) {
-      setMessage(error instanceof Error ? error.message : "Could not save narration review.");
-    } finally {
-      setSaving("");
-    }
-  }
-
   async function loadAdminSection(section: Tab, role: AdminAccountRole) {
     const plan = adminSectionLoadPlan(role, section);
     setLoading(true);
@@ -1221,12 +1068,11 @@ export default function AdminPage() {
         setParentInvitations(invitationData.parent_invitations ?? []);
       }
       if (plan.reportWorkspace === "readiness") {
-        const [readinessData, rendererData, assetData, narrationData, narrationQueueData, packDepthData, curriculumCoverageData, flagshipReviewData] = await Promise.all([
+        const [readinessData, rendererData, assetData, narrationData, packDepthData, curriculumCoverageData, flagshipReviewData] = await Promise.all([
           adminFetch("/v1/admin/content/readiness"),
           loadGeneratedContentReport("interaction-renderer-readiness"),
           loadGeneratedContentReport("asset-production-readiness"),
           loadGeneratedContentReport("narration-readiness"),
-          adminFetch("/v1/admin/content/narration-queue?status=awaiting&limit=20&offset=0").catch(() => null),
           loadGeneratedContentReport("pack-depth-readiness"),
           loadGeneratedContentReport("curriculum-area-coverage"),
           loadGeneratedContentReport("flagship-review"),
@@ -1235,12 +1081,13 @@ export default function AdminPage() {
         setRendererReadiness(rendererData as RendererReadinessReport | null);
         setAssetReadiness(assetData as AssetReadinessReport | null);
         setNarrationReadiness(narrationData as NarrationReadinessReport | null);
-        setNarrationQueue(Array.isArray((narrationQueueData as NarrationQueuePage | null)?.items) ? narrationQueueData as NarrationQueuePage : null);
         setPackDepthReadiness(packDepthData as PackDepthReadiness | null);
         setCurriculumCoverage(curriculumCoverageData as CurriculumAreaCoverage | null);
         setFlagshipReview(flagshipReviewData as FlagshipReviewReport | null);
-        setNarrationReviewDrafts({});
-        setNarrationPlaybackErrors({});
+      }
+      if (plan.reportWorkspace === "audio") {
+        const narrationData = await loadGeneratedContentReport("narration-readiness");
+        setNarrationReadiness(narrationData as NarrationReadinessReport | null);
       }
       if (plan.reportWorkspace === "releases") {
         const [readinessData, releaseData, variantQueueData, runtimeSpineData, pilotReviewBatchData, pilotReviewEvidenceData, pilotReviewEvidenceCheckData, contentReviewLedgerData] = await Promise.all([
@@ -2159,6 +2006,7 @@ export default function AdminPage() {
         )}
 
         {tab === "Reviews" && <AdminReviewWorkspace />}
+        {tab === "Audio" && <AdminAudioWorkspace request={adminFetch} readiness={narrationReadiness} />}
 
         {(tab === "Readiness" || tab === "Releases") && (
           <section className="mt-6 grid gap-6">
@@ -2258,8 +2106,8 @@ export default function AdminPage() {
                 <Info label="Scripts" value={String(narrationReadiness?.totals.expected_assets ?? 0)} />
                 <Info label="Technical pass" value={String(narrationReadiness?.totals.technical_pass ?? 0)} />
                 <Info label="Missing MP3s" value={String(narrationReadiness?.totals.missing ?? 0)} />
-                <Info label="Listening approved" value={String(narrationQueue?.counts.approved ?? narrationReadiness?.totals.listening_approved ?? 0)} />
-                <Info label="Need decision/rework" value={String(narrationQueue ? narrationQueue.counts.awaiting + narrationQueue.counts.rejected + narrationQueue.counts.stale : narrationReadiness?.totals.unreviewed ?? 0)} />
+                <Info label="Listening approved" value={String(narrationReadiness?.totals.listening_approved ?? 0)} />
+                <Info label="Need decision/rework" value={String(narrationReadiness?.totals.unreviewed ?? 0)} />
                 <Info label="Variant audio refs" value={String(narrationReadiness?.totals.variant_references ?? 0)} />
                 <Info label="Registered variants" value={String(narrationReadiness?.totals.variant_manifest_items ?? 0)} />
                 <Info label="Unresolved refs" value={String(narrationReadiness?.totals.unresolved_variant_references ?? 0)} />
@@ -2270,7 +2118,7 @@ export default function AdminPage() {
                     <article className="rounded-2xl border border-[#f0b35a]/35 bg-white p-4">
                       <p className="font-display text-sm font-semibold text-[#725100]">Release interpretation</p>
                       <p className="mt-2 text-sm leading-6 text-[#1d1a3e]/68">
-                        {narrationReadiness.totals.technical_pass}/{narrationReadiness.totals.expected_assets} files are technically valid, but {narrationQueue ? narrationQueue.counts.awaiting + narrationQueue.counts.rejected + narrationQueue.counts.stale : narrationReadiness.totals.unreviewed} still need a current human listening approval before they can be treated as production narration.
+                        {narrationReadiness.totals.technical_pass}/{narrationReadiness.totals.expected_assets} files are technically valid, but {narrationReadiness.totals.unreviewed} still need a current human listening approval before they can be treated as production narration.
                       </p>
                     </article>
                     <article className="rounded-2xl border border-[#f0b35a]/35 bg-white p-4">
@@ -2288,147 +2136,15 @@ export default function AdminPage() {
                   </div>
                 </div>
               )}
-              {narrationQueue && (
-                <div className="border-b border-[#1d1a3e]/8 bg-[#f8fbff] p-5">
-                  <div className="flex flex-wrap items-start justify-between gap-3">
-                    <div>
-                      <p className="font-display text-xs uppercase tracking-[0.14em] text-[#155d64]">Governed listening QA queue</p>
-                      <p className="mt-2 max-w-3xl text-sm leading-6 text-[#1d1a3e]/68">
-                        This live backend queue covers every technically valid recording, keeps decisions bound to the current script and MP3 hashes, and automatically prioritises early-years, phonics and listening work.
-                      </p>
-                    </div>
-                    <span className="rounded-full bg-[#fff4d5] px-3 py-1 text-xs font-semibold text-[#725100]">
-                      {narrationQueue.total} matching assets
-                    </span>
-                  </div>
-                  <div className="mt-4 grid gap-3 text-sm md:grid-cols-4">
-                    <Info label="Awaiting listening" value={String(narrationQueue.counts.awaiting)} />
-                    <Info label="Approved" value={String(narrationQueue.counts.approved)} />
-                    <Info label="Re-record" value={String(narrationQueue.counts.rejected)} />
-                    <Info label="Stale decisions" value={String(narrationQueue.counts.stale)} />
-                  </div>
-                  <form className="mt-4 grid gap-3 rounded-2xl border border-[#1d1a3e]/8 bg-white p-4 md:grid-cols-6" onSubmit={(event) => { event.preventDefault(); void loadNarrationQueue(narrationQueueFilters, 0); }}>
-                    <label className="text-xs font-semibold text-[#1d1a3e]/68">Decision status
-                      <select aria-label="Narration decision status" value={narrationQueueFilters.status} onChange={(event) => setNarrationQueueFilters((current) => ({ ...current, status: event.target.value }))} className="mt-1 min-h-11 w-full rounded-xl border border-[#1d1a3e]/12 bg-white px-3 text-sm font-normal">
-                        <option value="awaiting">Awaiting listening</option><option value="rejected">Re-record required</option><option value="stale">Stale decisions</option><option value="approved">Approved</option><option value="all">All statuses</option>
-                      </select>
-                    </label>
-                    <label className="text-xs font-semibold text-[#1d1a3e]/68">Subject
-                      <select aria-label="Narration subject" value={narrationQueueFilters.subject} onChange={(event) => setNarrationQueueFilters((current) => ({ ...current, subject: event.target.value }))} className="mt-1 min-h-11 w-full rounded-xl border border-[#1d1a3e]/12 bg-white px-3 text-sm font-normal">
-                        <option value="">All subjects</option><option>English</option><option>Mathematics</option><option>Science</option>
-                      </select>
-                    </label>
-                    <label className="text-xs font-semibold text-[#1d1a3e]/68">Year
-                      <select aria-label="Narration year" value={narrationQueueFilters.year} onChange={(event) => setNarrationQueueFilters((current) => ({ ...current, year: event.target.value }))} className="mt-1 min-h-11 w-full rounded-xl border border-[#1d1a3e]/12 bg-white px-3 text-sm font-normal">
-                        <option value="">All years</option>{[1, 2, 3, 4, 5, 6, 7].map((year) => <option key={year} value={year}>Year {year}</option>)}
-                      </select>
-                    </label>
-                    <label className="text-xs font-semibold text-[#1d1a3e]/68">Asset type
-                      <select aria-label="Narration asset type" value={narrationQueueFilters.kind} onChange={(event) => setNarrationQueueFilters((current) => ({ ...current, kind: event.target.value }))} className="mt-1 min-h-11 w-full rounded-xl border border-[#1d1a3e]/12 bg-white px-3 text-sm font-normal">
-                        <option value="">Lessons and vocabulary</option><option value="lesson">Lessons</option><option value="vocabulary">Vocabulary</option>
-                      </select>
-                    </label>
-                    <label className="text-xs font-semibold text-[#1d1a3e]/68">Search
-                      <input aria-label="Search narration queue" value={narrationQueueFilters.search} onChange={(event) => setNarrationQueueFilters((current) => ({ ...current, search: event.target.value }))} placeholder="Pack, script or asset" className="mt-1 min-h-11 w-full rounded-xl border border-[#1d1a3e]/12 px-3 text-sm font-normal" />
-                    </label>
-                    <button type="submit" disabled={loading} className="btn-pop mt-auto min-h-11 rounded-xl bg-[#155d64] px-4 text-sm font-semibold text-white disabled:opacity-50">Apply filters</button>
-                  </form>
-                  {narrationQueueItems.length === 0 && <p className="mt-4 rounded-2xl border border-[#64b983]/35 bg-[#effaf3] p-4 text-sm text-[#28613c]">No recordings match these filters. Change the status or curriculum filters to continue reviewing.</p>}
-                  <div className="mt-4 grid gap-3 lg:grid-cols-2">
-                    {narrationQueueItems.map((item) => {
-                      const draft = narrationDraftFor(item);
-                      const savedReview = item.review;
-                      return (
-                        <article key={item.asset_id} className={`rounded-2xl border bg-white p-4 ${savedReview?.decision === "approved" ? "border-[#64b983]" : savedReview?.decision === "rejected" ? "border-[#c86a6a]" : "border-[#1d1a3e]/8"}`}>
-                          <div className="flex flex-wrap items-start justify-between gap-2">
-                            <div>
-                              <p className="font-semibold">{item.asset_id}</p>
-                              <p className="mt-2 text-xs leading-5 text-[#1d1a3e]/62">Year {item.year || "?"} · {item.subject} · {item.kind} · {item.pack_id}</p>
-                            </div>
-                            <span className="rounded-full bg-[#55cbd3]/12 px-3 py-1 text-xs font-semibold text-[#155d64]">#{item.rank}</span>
-                          </div>
-                          <audio
-                            className="mt-4 w-full"
-                            controls
-                            preload="metadata"
-                            src={item.file}
-                            aria-label={`Listen to ${item.asset_id}`}
-                            onError={() => setNarrationPlaybackErrors((current) => ({ ...current, [item.asset_id]: true }))}
-                            onCanPlay={() => setNarrationPlaybackErrors((current) => ({ ...current, [item.asset_id]: false }))}
-                          />
-                          {narrationPlaybackErrors[item.asset_id] && (
-                            <div className="mt-3 rounded-xl border border-[#c86a6a]/35 bg-[#fff1f1] p-3 text-xs leading-5 text-[#8b2b2b]" role="alert">
-                              <p className="font-semibold">This recording could not be played in the review browser.</p>
-                              <p className="mt-1">Do not approve it until the produced asset is reachable and audible. <a href={item.file} target="_blank" rel="noreferrer" className="font-semibold underline">Open the asset directly</a> or flag it for re-recording.</p>
-                            </div>
-                          )}
-                          <p className="mt-3 rounded-xl border-l-4 border-[#f0b35a] bg-[#fffaf0] p-3 text-xs leading-5 text-[#1d1a3e]/68"><strong>Script:</strong> {item.text_preview}</p>
-                          <details className="mt-3 text-[11px] leading-5 text-[#1d1a3e]/55">
-                            <summary className="cursor-pointer font-semibold">Technical trace</summary>
-                            <p className="mt-2 break-all">Voice: {item.voice_name ?? "registered manifest voice"} · Model: {item.model_id ?? "registered manifest model"}</p>
-                            <p className="break-all">Text SHA-256: {item.text_sha256}</p>
-                            <p className="break-all">Audio SHA-256: {item.audio_sha256}</p>
-                          </details>
-                          <div className="mt-4 grid gap-2 sm:grid-cols-2">
-                            {(["natural", "clear", "pronunciation", "age_suitable"] as const).map((criterion) => (
-                              <label key={criterion} className="text-xs text-[#1d1a3e]/68">
-                                <input
-                                  type="checkbox"
-                                  checked={Boolean(draft.criteria[criterion])}
-                                  onChange={(event) => updateNarrationDraft(item.asset_id, { criteria: { ...draft.criteria, [criterion]: event.target.checked } })}
-                                  className="mr-2 accent-[#155d64]"
-                                />
-                                {criterion.replace("_", " ")}
-                              </label>
-                            ))}
-                          </div>
-                          <label className="mt-4 block text-xs font-semibold text-[#1d1a3e]/68">Reviewer name
-                            <input
-                              value={draft.reviewer_name}
-                              onChange={(event) => updateNarrationDraft(item.asset_id, { reviewer_name: event.target.value })}
-                              className="mt-1 w-full rounded-xl border border-[#1d1a3e]/12 px-3 py-2 text-sm font-normal outline-none focus:border-[#7357c9]"
-                              autoComplete="name"
-                            />
-                          </label>
-                          <label className="mt-3 block text-xs font-semibold text-[#1d1a3e]/68">Review notes
-                            <textarea
-                              value={draft.notes}
-                              onChange={(event) => updateNarrationDraft(item.asset_id, { notes: event.target.value })}
-                              placeholder="Required when flagging a re-record"
-                              className="mt-1 min-h-16 w-full rounded-xl border border-[#1d1a3e]/12 px-3 py-2 text-sm font-normal outline-none focus:border-[#7357c9]"
-                            />
-                          </label>
-                          <div className="mt-4 flex flex-wrap items-center gap-2">
-                            <button type="button" onClick={() => void saveNarrationReview(item, "approved")} disabled={loading || saving === `narration:${item.asset_id}` || narrationPlaybackErrors[item.asset_id]} className="btn-pop rounded-full bg-[#dff7e7] px-4 py-2 text-xs font-semibold text-[#28613c] disabled:opacity-50">Approve listening</button>
-                            <button type="button" onClick={() => void saveNarrationReview(item, "rejected")} disabled={loading || saving === `narration:${item.asset_id}`} className="btn-pop rounded-full bg-[#fde4e4] px-4 py-2 text-xs font-semibold text-[#8b2b2b] disabled:opacity-50">Flag re-record</button>
-                            <span className="text-xs text-[#1d1a3e]/55">
-                              {savedReview ? `${savedReview.stale ? "Stale" : "Server"} decision: ${savedReview.decision}` : "Not reviewed"}
-                            </span>
-                          </div>
-                          <p className="mt-3 text-xs leading-5 text-[#1d1a3e]/55">{item.rationale.slice(0, 2).join("; ")}</p>
-                        </article>
-                      );
-                    })}
-                  </div>
-                  <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
-                    <p className="text-xs text-[#1d1a3e]/62">Showing {narrationQueue.total === 0 ? 0 : narrationQueue.offset + 1}–{Math.min(narrationQueue.offset + narrationQueue.items.length, narrationQueue.total)} of {narrationQueue.total}</p>
-                    <div className="flex gap-2">
-                      <button type="button" disabled={narrationQueue.offset === 0 || loading} onClick={() => void loadNarrationQueue(narrationQueueFilters, Math.max(0, narrationQueue.offset - narrationQueue.limit))} className="btn-pop rounded-full border border-[#1d1a3e]/12 bg-white px-4 py-2 text-xs font-semibold disabled:opacity-40">Previous page</button>
-                      <button type="button" disabled={narrationQueue.next_offset === null || loading} onClick={() => void loadNarrationQueue(narrationQueueFilters, narrationQueue.next_offset ?? 0)} className="btn-pop rounded-full bg-[#17233f] px-4 py-2 text-xs font-semibold text-white disabled:opacity-40">Next page</button>
-                    </div>
-                  </div>
-                </div>
-              )}
               <div className="grid gap-3 p-5 md:grid-cols-2 xl:grid-cols-4">
                 {(narrationReadiness?.years ?? []).map((year) => {
-                  const liveYear = narrationQueue?.years?.find((item) => item.year === year.year);
                   return <article key={year.year} className="border border-[#1d1a3e]/8 bg-[#fffdf7] p-4">
                     <div className="flex items-center justify-between gap-3">
                       <p className="font-display text-lg font-semibold">Year {year.year}</p>
-                      <span className="bg-[#fff4d5] px-3 py-1 text-xs font-semibold text-[#725100]">{liveYear?.pending ?? year.unreviewed} pending</span>
+                      <span className="bg-[#fff4d5] px-3 py-1 text-xs font-semibold text-[#725100]">{year.unreviewed} pending</span>
                     </div>
                     <p className="mt-3 text-xs leading-5 text-[#1d1a3e]/62">
-                      {year.technical_pass}/{year.expected_assets} technical · {liveYear?.reviewed ?? year.listening_approved} listening approved · {year.unresolved_variant_references}/{year.variant_references} variant references unresolved.
+                      {year.technical_pass}/{year.expected_assets} technical · {year.listening_approved} listening approved · {year.unresolved_variant_references}/{year.variant_references} variant references unresolved.
                     </p>
                   </article>;
                 })}

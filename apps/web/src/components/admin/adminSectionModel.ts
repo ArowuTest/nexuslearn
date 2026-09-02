@@ -11,6 +11,7 @@ export const ADMIN_SECTION_IDS = [
   "Questions",
   "Reviews",
   "Readiness",
+  "Audio",
   "Releases",
   "Worlds",
   "Rewards",
@@ -30,7 +31,7 @@ export const ADMIN_NAVIGATION_GROUPS: readonly AdminNavigationGroup[] = [
   { label: "Organisations", items: ["Access", "Schools", "Groups", "Parents"] },
   { label: "Learners & Progress", items: ["Learners", "Progress"] },
   { label: "Curriculum & Review", items: ["Objectives", "Activities", "Questions", "Reviews"] },
-  { label: "Audio & Assets", items: ["Readiness"] },
+  { label: "Audio & Assets", items: ["Readiness", "Audio"] },
   { label: "Releases", items: ["Releases"] },
   { label: "Engagement", items: ["Worlds", "Rewards"] },
   { label: "System & Audit", items: ["Flags", "Audit"] },
@@ -46,7 +47,7 @@ export function adminSectionFromQuery(value: string | null, fallback: AdminSecti
 }
 
 export function visibleAdminSections(role: string | null): AdminSectionId[] {
-  if (role === "content_reviewer") return ["Reviews", "Readiness", "Releases"];
+  if (role === "content_reviewer") return ["Reviews", "Readiness", "Audio", "Releases"];
   if (role === "content_editor") {
     return ["Overview", "Objectives", "Activities", "Questions"];
   }

@@ -41,13 +41,18 @@ func TestNarrationV2ReviewRequiresExactProfileBinding(t *testing.T) {
 		t.Fatalf("expected v2 queue, got %d: %s", queueResponse.Code, queueResponse.Body.String())
 	}
 	var queue struct {
-		Items []map[string]any `json:"items"`
+		ReleaseID   string           `json:"release_id"`
+		CatalogueID string           `json:"catalogue_id"`
+		Items       []map[string]any `json:"items"`
 	}
 	if err := json.Unmarshal(queueResponse.Body.Bytes(), &queue); err != nil {
 		t.Fatal(err)
 	}
 	if len(queue.Items) != 1 || queue.Items[0]["production_profile_sha256"] != asset.ProductionProfileSHA256 || queue.Items[0]["production_identity_sha256"] != asset.ProductionIdentitySHA256 || queue.Items[0]["reuse_count"] != float64(1) {
 		t.Fatalf("expected safe v2 production metadata in queue, got %#v", queue.Items)
+	}
+	if queue.ReleaseID != manifest.ReleaseID || queue.CatalogueID != manifest.CatalogueID {
+		t.Fatalf("expected queue to bind release %q and catalogue %q, got %#v", manifest.ReleaseID, manifest.CatalogueID, queue)
 	}
 	if queue.Items[0]["status"] != "stale" {
 		t.Fatalf("expected a legacy approval without the v2 profile hash to be stale, got %#v", queue.Items[0])

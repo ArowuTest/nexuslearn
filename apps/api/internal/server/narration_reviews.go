@@ -253,6 +253,7 @@ func (s *Server) handleNarrationReviewQueue(w http.ResponseWriter, r *http.Reque
 	writeJSON(w, http.StatusOK, map[string]any{
 		"items": page, "total": len(filtered), "counts": counts, "years": years, "limit": limit,
 		"offset": offset, "next_offset": nextOffset, "served_by": "api", "manifest_available": true,
+		"release_id": manifest.ReleaseID, "catalogue_id": manifest.CatalogueID,
 		"provider": manifest.Provider, "voice_name": manifest.Voice.Name, "model_id": manifest.Voice.ModelID,
 	})
 }

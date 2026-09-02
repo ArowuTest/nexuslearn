@@ -168,16 +168,16 @@ test("reviewer filters the SEND queue and sees honest release gates", async ({ p
     .analyze();
   expect(accessibility.violations.filter((item) => item.impact === "critical" || item.impact === "serious")).toEqual([]);
 
-  await page.getByRole("button", { name: "Readiness" }).click();
-  await expect(page.getByText("Governed listening QA queue")).toBeVisible();
+  await page.getByRole("button", { name: "Audio", exact: true }).click();
+  await expect(page.getByRole("heading", { name: "Audio listening QA" })).toBeVisible();
   await expect(page.getByText("874", { exact: true }).first()).toBeVisible();
   await expect(page.getByText("Follow the path slowly. Start at the glowing dot.")).toBeVisible();
-  await page.getByLabel("natural").check();
-  await page.getByLabel("clear").check();
-  await page.getByLabel("pronunciation").check();
-  await page.getByLabel("age suitable").check();
+  await page.getByLabel("Natural, warm voice").check();
+  await page.getByLabel("Clear and intelligible").check();
+  await page.getByLabel("Accurate pronunciation").check();
+  await page.getByLabel("Age-suitable pace and tone").check();
   await page.getByLabel("Reviewer name").fill("A. Audio Reviewer");
   await page.getByRole("button", { name: "Approve listening" }).click();
-  await expect(page.getByText(/marked approved.*server-side review ledger/i)).toBeVisible();
+  await expect(page.getByText(/approved against the current transcript, audio and production profile/i)).toBeVisible();
   await expect(page.getByText(/No recordings match these filters/)).toBeVisible();
 });
