@@ -75,20 +75,28 @@ type ContentReleasePackPayload struct {
 // never inferred from AI decisions or a request-body boolean.
 type HumanReleaseEvidence struct {
 	SafeguardingApproved           bool `json:"safeguarding_approved"`
+	ExactAudioReleaseApproved      bool `json:"exact_audio_release_approved"`
 	RequiredAudioListeningApproved bool `json:"required_audio_listening_approved"`
 	ChildPilotEvidenceApproved     bool `json:"child_pilot_evidence_approved"`
 }
 
 type ReleaseAudioEvidenceIdentity struct {
-	AssetID     string `json:"asset_id"`
-	TextSHA256  string `json:"text_sha256"`
-	AudioSHA256 string `json:"audio_sha256"`
+	AssetID                  string `json:"asset_id"`
+	TextSHA256               string `json:"text_sha256"`
+	AudioSHA256              string `json:"audio_sha256"`
+	ProductionIdentitySHA256 string `json:"production_identity_sha256"`
+	ProductionProfileSHA256  string `json:"production_profile_sha256"`
 }
 
 type ReleaseEvidenceMetadata struct {
 	AIReviewIdentities   []ReviewIdentity               `json:"ai_review_identities"`
 	HumanReviewBatchID   string                         `json:"human_review_batch_id"`
 	HumanReviewBatchHash string                         `json:"human_review_batch_sha256"`
+	AudioReleaseID       string                         `json:"audio_release_id"`
+	AudioReleaseSHA256   string                         `json:"audio_release_sha256"`
+	AudioCatalogueID     string                         `json:"audio_catalogue_id"`
+	AudioCatalogueSHA256 string                         `json:"audio_catalogue_sha256"`
+	AudioLicenceID       string                         `json:"audio_licence_id"`
 	RequiredAudioAssets  []ReleaseAudioEvidenceIdentity `json:"required_audio_assets"`
 }
 
@@ -107,6 +115,9 @@ func ValidateReleaseEvidence(channel string, ai AIReviewEligibility, human Human
 		}
 		if !human.SafeguardingApproved {
 			return fmt.Errorf("%w: live release requires independent human safeguarding approval", ErrContentReleaseIncomplete)
+		}
+		if !human.ExactAudioReleaseApproved {
+			return fmt.Errorf("%w: live release requires the exact technically valid audio release and catalogue", ErrContentReleaseIncomplete)
 		}
 		if !human.RequiredAudioListeningApproved {
 			return fmt.Errorf("%w: live release requires human listening approval for every required audio asset", ErrContentReleaseIncomplete)
@@ -157,17 +168,107 @@ func releaseEvidenceMetadata(manifest ContentReleaseManifest) (ReleaseEvidenceMe
 	if strings.TrimSpace(evidence.HumanReviewBatchID) == "" || !validSHA256(evidence.HumanReviewBatchHash) {
 		return evidence, fmt.Errorf("%w: release metadata requires an exact human review batch identity", ErrInvalidConfiguration)
 	}
+	if !audioReleaseIDPattern.MatchString(evidence.AudioReleaseID) || !validLowerAudioSHA(evidence.AudioReleaseSHA256) || !strings.HasSuffix(evidence.AudioReleaseID, evidence.AudioReleaseSHA256[:24]) ||
+		!strings.HasPrefix(evidence.AudioCatalogueID, "variant-audio-catalog-v1-") || !validLowerAudioSHA(evidence.AudioCatalogueSHA256) || !strings.HasSuffix(evidence.AudioCatalogueID, evidence.AudioCatalogueSHA256[:24]) {
+		return evidence, fmt.Errorf("%w: release metadata requires exact audio release and catalogue identities", ErrInvalidConfiguration)
+	}
+	if evidence.AudioLicenceID != "provider_terms" {
+		return evidence, fmt.Errorf("%w: release metadata requires a supported audio licence", ErrInvalidConfiguration)
+	}
 	if len(evidence.RequiredAudioAssets) == 0 {
 		return evidence, fmt.Errorf("%w: release metadata requires exact audio assets for listening approval", ErrInvalidConfiguration)
 	}
 	seenAudio := map[string]bool{}
 	for _, asset := range evidence.RequiredAudioAssets {
-		if strings.TrimSpace(asset.AssetID) == "" || !validSHA256(asset.TextSHA256) || !validSHA256(asset.AudioSHA256) || seenAudio[asset.AssetID] {
+		if !audioAssetIDPattern.MatchString(asset.AssetID) || !validLowerAudioSHA(asset.TextSHA256) || !validLowerAudioSHA(asset.AudioSHA256) ||
+			!validLowerAudioSHA(asset.ProductionIdentitySHA256) || !validLowerAudioSHA(asset.ProductionProfileSHA256) || seenAudio[asset.AssetID] {
 			return evidence, fmt.Errorf("%w: release audio identities must be complete and unique", ErrInvalidConfiguration)
 		}
 		seenAudio[asset.AssetID] = true
 	}
 	return evidence, nil
+}
+
+type audioReleaseLedgerEvidence struct {
+	ReleaseID          string
+	ReleaseSHA256      string
+	CatalogueID        string
+	CatalogueSHA256    string
+	LicenceID          string
+	Status             string
+	ExpectedAssets     int
+	ProducedAssets     int
+	SpecialistRequired int
+	Unresolved         int
+}
+
+type audioAssetLedgerEvidence struct {
+	AssetID                  string
+	TextSHA256               string
+	AudioSHA256              string
+	ProductionIdentitySHA256 string
+	ProductionProfileSHA256  string
+	ProductionStatus         string
+	TechnicalPass            bool
+}
+
+type audioReviewLedgerEvidence struct {
+	AssetID                 string
+	TextSHA256              string
+	AudioSHA256             string
+	ProductionProfileSHA256 string
+	Decision                string
+}
+
+func approvedAudioProductionStatus(status string) bool {
+	switch strings.TrimSpace(status) {
+	case "human_listening_approved", "approved", "production_approved", "released":
+		return true
+	default:
+		return false
+	}
+}
+
+func evaluateExactAudioReleaseEvidence(metadata ReleaseEvidenceMetadata, release audioReleaseLedgerEvidence, assets []audioAssetLedgerEvidence, reviews []audioReviewLedgerEvidence) HumanReleaseEvidence {
+	result := HumanReleaseEvidence{}
+	result.ExactAudioReleaseApproved = release.ReleaseID == metadata.AudioReleaseID &&
+		release.ReleaseSHA256 == metadata.AudioReleaseSHA256 && release.CatalogueID == metadata.AudioCatalogueID &&
+		release.CatalogueSHA256 == metadata.AudioCatalogueSHA256 && release.LicenceID == metadata.AudioLicenceID &&
+		release.ExpectedAssets > 0 && release.ExpectedAssets == release.ProducedAssets &&
+		release.ExpectedAssets == len(metadata.RequiredAudioAssets) && len(assets) == len(metadata.RequiredAudioAssets) &&
+		release.SpecialistRequired == 0 && release.Unresolved == 0 && validAudioManifestStatus(release.Status) && release.Status != "incomplete_review_inventory"
+
+	expectedAssets := make(map[string]ReleaseAudioEvidenceIdentity, len(metadata.RequiredAudioAssets))
+	for _, asset := range metadata.RequiredAudioAssets {
+		expectedAssets[asset.AssetID] = asset
+	}
+	storedAssets := make(map[string]audioAssetLedgerEvidence, len(assets))
+	for _, asset := range assets {
+		expected, ok := expectedAssets[asset.AssetID]
+		if !ok || !asset.TechnicalPass || !approvedAudioProductionStatus(asset.ProductionStatus) || asset.TextSHA256 != expected.TextSHA256 || asset.AudioSHA256 != expected.AudioSHA256 ||
+			asset.ProductionIdentitySHA256 != expected.ProductionIdentitySHA256 || asset.ProductionProfileSHA256 != expected.ProductionProfileSHA256 {
+			result.ExactAudioReleaseApproved = false
+		}
+		storedAssets[asset.AssetID] = asset
+	}
+	for assetID := range expectedAssets {
+		if _, ok := storedAssets[assetID]; !ok {
+			result.ExactAudioReleaseApproved = false
+		}
+	}
+
+	approvedReviews := make(map[string]bool, len(reviews))
+	for _, review := range reviews {
+		expected, ok := expectedAssets[review.AssetID]
+		approvedReviews[review.AssetID] = ok && review.Decision == "approved" &&
+			review.TextSHA256 == expected.TextSHA256 && review.AudioSHA256 == expected.AudioSHA256 &&
+			review.ProductionProfileSHA256 == expected.ProductionProfileSHA256
+	}
+	result.RequiredAudioListeningApproved = result.ExactAudioReleaseApproved && len(approvedReviews) == len(expectedAssets)
+	for assetID := range expectedAssets {
+		result.RequiredAudioListeningApproved = result.RequiredAudioListeningApproved && approvedReviews[assetID]
+	}
+	return result
 }
 
 func loadHumanReleaseEvidence(ctx context.Context, tx pgx.Tx, manifest ContentReleaseManifest, metadata ReleaseEvidenceMetadata) (HumanReleaseEvidence, error) {
@@ -207,13 +308,53 @@ func loadHumanReleaseEvidence(ctx context.Context, tx pgx.Tx, manifest ContentRe
 	}
 
 	assetIDs := make([]string, 0, len(metadata.RequiredAudioAssets))
-	expectedAudio := map[string]ReleaseAudioEvidenceIdentity{}
 	for _, asset := range metadata.RequiredAudioAssets {
 		assetIDs = append(assetIDs, asset.AssetID)
-		expectedAudio[asset.AssetID] = asset
 	}
+	var release audioReleaseLedgerEvidence
+	err = tx.QueryRow(ctx, `
+		SELECT release_id,release_sha256,catalogue_id,catalogue_sha256,
+		       COALESCE(licence_id,''),status,expected_assets,produced_assets,specialist_required,unresolved
+		FROM audio_manifests
+		WHERE release_id=$1
+	`, metadata.AudioReleaseID).Scan(
+		&release.ReleaseID, &release.ReleaseSHA256, &release.CatalogueID, &release.CatalogueSHA256,
+		&release.LicenceID, &release.Status, &release.ExpectedAssets, &release.ProducedAssets,
+		&release.SpecialistRequired, &release.Unresolved,
+	)
+	if err != nil && !errors.Is(err, pgx.ErrNoRows) {
+		return result, err
+	}
+
 	rows, err = tx.Query(ctx, `
-		SELECT DISTINCT ON (asset_id) asset_id,text_sha256,audio_sha256,decision
+		SELECT asset_id,text_sha256,audio_sha256,production_identity_sha256,
+		       production_profile_sha256,production_status,technical_pass
+		FROM audio_manifest_assets
+		WHERE release_id=$1 AND asset_id=ANY($2)
+		ORDER BY asset_id
+	`, metadata.AudioReleaseID, assetIDs)
+	if err != nil {
+		return result, err
+	}
+	storedAssets := []audioAssetLedgerEvidence{}
+	for rows.Next() {
+		var asset audioAssetLedgerEvidence
+		if err := rows.Scan(&asset.AssetID, &asset.TextSHA256, &asset.AudioSHA256, &asset.ProductionIdentitySHA256,
+			&asset.ProductionProfileSHA256, &asset.ProductionStatus, &asset.TechnicalPass); err != nil {
+			rows.Close()
+			return result, err
+		}
+		storedAssets = append(storedAssets, asset)
+	}
+	if err := rows.Err(); err != nil {
+		rows.Close()
+		return result, err
+	}
+	rows.Close()
+
+	rows, err = tx.Query(ctx, `
+		SELECT DISTINCT ON (asset_id) asset_id,text_sha256,audio_sha256,
+		       COALESCE(production_profile_sha256,''),decision
 		FROM narration_reviews
 		WHERE asset_id=ANY($1)
 		ORDER BY asset_id,created_at DESC,id DESC
@@ -221,25 +362,23 @@ func loadHumanReleaseEvidence(ctx context.Context, tx pgx.Tx, manifest ContentRe
 	if err != nil {
 		return result, err
 	}
-	approvedAudio := map[string]bool{}
+	storedReviews := []audioReviewLedgerEvidence{}
 	for rows.Next() {
-		var assetID, textHash, audioHash, decision string
-		if err := rows.Scan(&assetID, &textHash, &audioHash, &decision); err != nil {
+		var review audioReviewLedgerEvidence
+		if err := rows.Scan(&review.AssetID, &review.TextSHA256, &review.AudioSHA256, &review.ProductionProfileSHA256, &review.Decision); err != nil {
 			rows.Close()
 			return result, err
 		}
-		expected, ok := expectedAudio[assetID]
-		approvedAudio[assetID] = ok && strings.EqualFold(textHash, expected.TextSHA256) && strings.EqualFold(audioHash, expected.AudioSHA256) && decision == "approved"
+		storedReviews = append(storedReviews, review)
 	}
 	if err := rows.Err(); err != nil {
 		rows.Close()
 		return result, err
 	}
 	rows.Close()
-	result.RequiredAudioListeningApproved = len(assetIDs) > 0
-	for _, assetID := range assetIDs {
-		result.RequiredAudioListeningApproved = result.RequiredAudioListeningApproved && approvedAudio[assetID]
-	}
+	audioEvidence := evaluateExactAudioReleaseEvidence(metadata, release, storedAssets, storedReviews)
+	result.ExactAudioReleaseApproved = audioEvidence.ExactAudioReleaseApproved
+	result.RequiredAudioListeningApproved = audioEvidence.RequiredAudioListeningApproved
 	return result, nil
 }
 

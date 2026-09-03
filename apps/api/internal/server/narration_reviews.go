@@ -76,6 +76,7 @@ type narrationManifest struct {
 	ReleaseID       string `json:"release_id"`
 	ReleaseSHA256   string `json:"release_sha256"`
 	Provider        string `json:"provider"`
+	LicenceID       string `json:"licence_id"`
 	Status          string `json:"status"`
 	Voice           struct {
 		Name    string `json:"name"`

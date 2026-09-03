@@ -62,6 +62,7 @@ type AudioManifestImport struct {
 	CatalogueID        string                   `json:"catalogue_id"`
 	CatalogueSHA256    string                   `json:"catalogue_sha256"`
 	Provider           string                   `json:"provider"`
+	LicenceID          string                   `json:"licence_id"`
 	Status             string                   `json:"status"`
 	ExpectedAssets     int                      `json:"expected_assets"`
 	ProducedAssets     int                      `json:"produced_assets"`
@@ -104,7 +105,7 @@ func ValidateAudioManifestImport(manifest AudioManifestImport) error {
 	if !strings.HasPrefix(manifest.CatalogueID, "variant-audio-catalog-v1-") || !validLowerAudioSHA(manifest.CatalogueSHA256) || !strings.HasSuffix(manifest.CatalogueID, manifest.CatalogueSHA256[:24]) {
 		return invalidConfig("audio manifest catalogue identity is invalid")
 	}
-	if manifest.Provider == "" || strings.TrimSpace(manifest.Status) == "" || manifest.ProducedAssets != len(manifest.Assets) || manifest.ReferenceIDs != len(manifest.References) || manifest.ExpectedAssets < manifest.ProducedAssets {
+	if manifest.Provider == "" || manifest.LicenceID != "provider_terms" || !validAudioManifestStatus(manifest.Status) || manifest.ProducedAssets != len(manifest.Assets) || manifest.ReferenceIDs != len(manifest.References) || manifest.ExpectedAssets < manifest.ProducedAssets {
 		return invalidConfig("audio manifest totals are invalid")
 	}
 	if len(manifest.Assets) == 0 || len(manifest.Assets) > maxAudioManifestAssets || len(manifest.References) > maxAudioManifestReferences {
@@ -223,6 +224,15 @@ func validAudioProductionStatus(status string) bool {
 	}
 }
 
+func validAudioManifestStatus(status string) bool {
+	switch strings.TrimSpace(status) {
+	case "incomplete_review_inventory", "generated_pending_human_listening", "human_listening_approved", "production_approved", "released":
+		return true
+	default:
+		return false
+	}
+}
+
 func ValidateAudioRerecordRequest(request AudioRerecordRequest) error {
 	if !audioReleaseIDPattern.MatchString(strings.TrimSpace(request.ReleaseID)) || !audioAssetIDPattern.MatchString(strings.TrimSpace(request.AssetID)) {
 		return invalidConfig("rerecord request must bind a valid release and asset")
@@ -294,11 +304,11 @@ func (r *PostgresRepository) ImportAudioManifest(ctx context.Context, manifest A
 
 	if _, err := tx.Exec(ctx, `
 		INSERT INTO audio_manifests(
-			release_id, release_sha256, catalogue_id, catalogue_sha256, provider, status,
+			release_id, release_sha256, catalogue_id, catalogue_sha256, provider, licence_id, status,
 			expected_assets, produced_assets, reference_ids, specialist_required, unresolved, imported_by
-		) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)
+		) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13)
 	`, manifest.ReleaseID, manifest.ReleaseSHA256, manifest.CatalogueID, manifest.CatalogueSHA256,
-		manifest.Provider, manifest.Status, manifest.ExpectedAssets, manifest.ProducedAssets,
+		manifest.Provider, manifest.LicenceID, manifest.Status, manifest.ExpectedAssets, manifest.ProducedAssets,
 		manifest.ReferenceIDs, manifest.SpecialistRequired, manifest.Unresolved, actor); err != nil {
 		return outcome, err
 	}
@@ -353,7 +363,7 @@ func (r *PostgresRepository) ImportAudioManifest(ctx context.Context, manifest A
 		VALUES('import', 'audio_manifest', $1, $2::jsonb)
 	`, manifest.ReleaseID, mustJSON(map[string]any{
 		"release_id": manifest.ReleaseID, "release_sha256": manifest.ReleaseSHA256,
-		"catalogue_id": manifest.CatalogueID, "assets": len(manifest.Assets),
+		"catalogue_id": manifest.CatalogueID, "licence_id": manifest.LicenceID, "assets": len(manifest.Assets),
 		"references": len(manifest.References), "imported_by": actor,
 	})); err != nil {
 		return outcome, err

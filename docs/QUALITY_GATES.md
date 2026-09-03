@@ -132,6 +132,25 @@ into an ordered first-pass listening queue. It prioritises Year 1-2,
 phonics/listening and high-impact referenced assets, and includes the exact
 review commands needed to approve or reject an asset after human listening.
 
+The exact Wave 3 audio release gate is separate from the legacy inventory
+report. It consumes the private v2 manifest, its content-derived release and
+catalogue identities, provider-terms licence and current listening ledger. It
+fails closed for missing assets, unresolved aliases, specialist-required
+recordings, invalid technical evidence, unapproved or stale listening
+decisions, unsupported licences and any release/catalogue digest mismatch.
+Diagnostics provide bounded samples and complete blocker counts by cause, year
+and subject. The release snapshot allows promotion only when both the dual AI
+review reconciliation and this exact audio gate are current; it never claims a
+production release because independent safeguarding and real-child pilot
+evidence remain API-enforced human gates.
+
+Live API activation independently repeats the exact check against PostgreSQL.
+It resolves the manifest and all required assets with bounded set queries,
+matches transcript/audio/profile/identity hashes, requires technical success
+and verifies the latest append-only listening decision. Legacy imported audio
+rows without a recorded supported licence remain deliberately ineligible until
+they are re-imported through the governed manifest path.
+
 Pack depth is also a release gate, not a vanity metric. The generated
 `pack-depth-readiness.json` report checks every Year 1-7 pack for minimum
 teaching stages, manipulatives, practice formats, variant blueprints, authored

@@ -74,6 +74,7 @@ func TestValidateReleaseEvidenceMatrix(t *testing.T) {
 
 	human = HumanReleaseEvidence{
 		SafeguardingApproved:           true,
+		ExactAudioReleaseApproved:      true,
 		RequiredAudioListeningApproved: true,
 		ChildPilotEvidenceApproved:     true,
 	}
@@ -102,8 +103,14 @@ func TestReleaseEvidenceMetadataBindsEveryPackAndAudioHash(t *testing.T) {
 			}},
 			"human_review_batch_id":     "batch-1",
 			"human_review_batch_sha256": stringOf('b', 64),
+			"audio_release_id":          "narration-release-v2-111111111111111111111111",
+			"audio_release_sha256":      stringOf('1', 64),
+			"audio_catalogue_id":        "variant-audio-catalog-v1-222222222222222222222222",
+			"audio_catalogue_sha256":    stringOf('2', 64),
+			"audio_licence_id":          "provider_terms",
 			"required_audio_assets": []map[string]any{{
-				"asset_id": "audio-1", "text_sha256": stringOf('c', 64), "audio_sha256": stringOf('d', 64),
+				"asset_id": "narration-v1-333333333333333333333333", "text_sha256": stringOf('c', 64), "audio_sha256": stringOf('d', 64),
+				"production_identity_sha256": stringOf('e', 64), "production_profile_sha256": stringOf('f', 64),
 			}},
 		},
 	}
@@ -115,6 +122,105 @@ func TestReleaseEvidenceMetadataBindsEveryPackAndAudioHash(t *testing.T) {
 	manifest.Packs[0].PayloadSHA256 = stringOf('e', 64)
 	if _, err := releaseEvidenceMetadata(manifest); !errors.Is(err, ErrInvalidConfiguration) {
 		t.Fatalf("changed pack payload must invalidate review identity: %v", err)
+	}
+}
+
+func TestReleaseEvidenceMetadataRejectsIncompleteExactAudioRelease(t *testing.T) {
+	base := map[string]any{
+		"ai_review_identities": []map[string]any{{
+			"content_id": "pack-1", "content_hash": stringOf('a', 64),
+			"rubric_revision": "rubric-v1", "source_set_revision": "sources-v1", "reviewer_implementation": "reviewer-v1",
+		}},
+		"human_review_batch_id": "batch-1", "human_review_batch_sha256": stringOf('b', 64),
+		"audio_release_id": "narration-release-v2-111111111111111111111111", "audio_release_sha256": stringOf('1', 64),
+		"audio_catalogue_id": "variant-audio-catalog-v1-222222222222222222222222", "audio_catalogue_sha256": stringOf('2', 64),
+		"audio_licence_id": "provider_terms",
+		"required_audio_assets": []map[string]any{{
+			"asset_id": "narration-v1-333333333333333333333333", "text_sha256": stringOf('c', 64), "audio_sha256": stringOf('d', 64),
+			"production_identity_sha256": stringOf('e', 64), "production_profile_sha256": stringOf('f', 64),
+		}},
+	}
+	manifest := ContentReleaseManifest{Channel: "live", Packs: []ContentReleasePackDescriptor{{PackID: "pack-1", PayloadSHA256: stringOf('a', 64)}}, Metadata: base}
+
+	for _, field := range []string{"audio_release_id", "audio_release_sha256", "audio_catalogue_id", "audio_catalogue_sha256", "audio_licence_id"} {
+		copyMetadata := map[string]any{}
+		for key, value := range base {
+			copyMetadata[key] = value
+		}
+		delete(copyMetadata, field)
+		manifest.Metadata = copyMetadata
+		if _, err := releaseEvidenceMetadata(manifest); !errors.Is(err, ErrInvalidConfiguration) {
+			t.Fatalf("missing %s must fail closed: %v", field, err)
+		}
+	}
+
+	copyMetadata := map[string]any{}
+	for key, value := range base {
+		copyMetadata[key] = value
+	}
+	copyMetadata["audio_licence_id"] = "unsupported_terms"
+	manifest.Metadata = copyMetadata
+	if _, err := releaseEvidenceMetadata(manifest); !errors.Is(err, ErrInvalidConfiguration) {
+		t.Fatalf("unsupported audio licence must fail closed: %v", err)
+	}
+}
+
+func TestEvaluateExactAudioReleaseEvidenceRejectsLedgerDrift(t *testing.T) {
+	assetID := "narration-v1-333333333333333333333333"
+	metadata := ReleaseEvidenceMetadata{
+		AudioReleaseID: "narration-release-v2-111111111111111111111111", AudioReleaseSHA256: stringOf('1', 64),
+		AudioCatalogueID: "variant-audio-catalog-v1-222222222222222222222222", AudioCatalogueSHA256: stringOf('2', 64), AudioLicenceID: "provider_terms",
+		RequiredAudioAssets: []ReleaseAudioEvidenceIdentity{{
+			AssetID: assetID, TextSHA256: stringOf('a', 64), AudioSHA256: stringOf('b', 64),
+			ProductionIdentitySHA256: stringOf('c', 64), ProductionProfileSHA256: stringOf('d', 64),
+		}},
+	}
+	release := audioReleaseLedgerEvidence{
+		ReleaseID: metadata.AudioReleaseID, ReleaseSHA256: metadata.AudioReleaseSHA256,
+		CatalogueID: metadata.AudioCatalogueID, CatalogueSHA256: metadata.AudioCatalogueSHA256,
+		LicenceID: "provider_terms", Status: "generated_pending_human_listening",
+		ExpectedAssets: 1, ProducedAssets: 1, SpecialistRequired: 0, Unresolved: 0,
+	}
+	asset := audioAssetLedgerEvidence{
+		AssetID: assetID, TextSHA256: stringOf('a', 64), AudioSHA256: stringOf('b', 64),
+		ProductionIdentitySHA256: stringOf('c', 64), ProductionProfileSHA256: stringOf('d', 64),
+		ProductionStatus: "human_listening_approved", TechnicalPass: true,
+	}
+	review := audioReviewLedgerEvidence{
+		AssetID: assetID, TextSHA256: stringOf('a', 64), AudioSHA256: stringOf('b', 64),
+		ProductionProfileSHA256: stringOf('d', 64), Decision: "approved",
+	}
+	result := evaluateExactAudioReleaseEvidence(metadata, release, []audioAssetLedgerEvidence{asset}, []audioReviewLedgerEvidence{review})
+	if !result.ExactAudioReleaseApproved || !result.RequiredAudioListeningApproved {
+		t.Fatalf("exact current release should pass: %#v", result)
+	}
+
+	driftedRelease := release
+	driftedRelease.CatalogueSHA256 = stringOf('e', 64)
+	result = evaluateExactAudioReleaseEvidence(metadata, driftedRelease, []audioAssetLedgerEvidence{asset}, []audioReviewLedgerEvidence{review})
+	if result.ExactAudioReleaseApproved {
+		t.Fatal("catalogue drift must invalidate the exact audio release")
+	}
+
+	driftedAsset := asset
+	driftedAsset.TechnicalPass = false
+	result = evaluateExactAudioReleaseEvidence(metadata, release, []audioAssetLedgerEvidence{driftedAsset}, []audioReviewLedgerEvidence{review})
+	if result.ExactAudioReleaseApproved {
+		t.Fatal("technical failure must invalidate the exact audio release")
+	}
+
+	driftedAsset = asset
+	driftedAsset.ProductionStatus = "re_record_required"
+	result = evaluateExactAudioReleaseEvidence(metadata, release, []audioAssetLedgerEvidence{driftedAsset}, []audioReviewLedgerEvidence{review})
+	if result.ExactAudioReleaseApproved || result.RequiredAudioListeningApproved {
+		t.Fatal("an asset awaiting re-record must invalidate exact release and listening approval")
+	}
+
+	driftedReview := review
+	driftedReview.ProductionProfileSHA256 = stringOf('f', 64)
+	result = evaluateExactAudioReleaseEvidence(metadata, release, []audioAssetLedgerEvidence{asset}, []audioReviewLedgerEvidence{driftedReview})
+	if result.RequiredAudioListeningApproved {
+		t.Fatal("stale production-profile review must invalidate listening approval")
 	}
 }
 

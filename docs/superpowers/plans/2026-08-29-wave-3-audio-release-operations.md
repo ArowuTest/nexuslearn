@@ -238,27 +238,27 @@ criteria and a reviewer name; require reasons or notes on rejection.
 - Consumes: catalogue ID, manifest release ID and current listening evidence.
 - Produces: fail-closed release readiness with explicit blocker counts by year, subject and cause.
 
-- [ ] **Step 1: Write failing release-gate tests**
+- [x] **Step 1: Write failing release-gate tests**
 
 Test missing, unresolved, specialist-required, stale, technically invalid,
 unapproved and unsupported-licence identities, plus a completely current
 review/pilot fixture.
 
-- [ ] **Step 2: Witness RED with Node and Go focused tests**
+- [x] **Step 2: Witness RED with Node and Go focused tests**
 
-- [ ] **Step 3: Implement exact release binding and diagnostics**
+- [x] **Step 3: Implement exact release binding and diagnostics**
 
 Review and pilot reports may expose blockers; live activation rejects them.
 Runtime status never exposes transcript banks or operational credentials.
 
-- [ ] **Step 4: Run the complete verification matrix**
+- [x] **Step 4: Run the complete verification matrix**
 
 Run from `apps/web`: `npm run lint`, `npx tsc --noEmit`, `npm run quality:content`,
 `npm run quality:performance`, `npm run build`, and `npm run test:e2e`.
 
 Run from `apps/api`: `go test ./...`.
 
-- [ ] **Step 5: Inspect exact diff, update FS V2B and commit one coherent wave**
+- [x] **Step 5: Inspect exact diff, update FS V2B and commit one coherent wave**
 
 Record commands, exit codes, test counts, branch and HEAD. Stage exact intended
 paths; exclude `.agent`, generated reports, local build metadata and secrets.

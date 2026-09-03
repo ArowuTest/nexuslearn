@@ -3,6 +3,7 @@ import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { evaluateExactAudioReleaseGate } from "./narration-readiness.mjs";
 
 const toolDir = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(toolDir, "../../..");
@@ -11,6 +12,8 @@ const generatedDir = path.join(repoRoot, "packages/content/generated");
 const previewsDir = path.join(generatedDir, "previews");
 const policyPath = path.join(repoRoot, "packages/content/roadmaps/content-release-policy.json");
 const aiEvidencePath = path.join(repoRoot, "packages/content/generated/coverage/ai-review-evidence.json");
+const defaultAudioManifestPath = path.join(repoRoot, "packages/content/audio/narration-manifest-v2.json");
+const defaultAudioReviewsPath = path.join(repoRoot, "packages/content/audio/narration-listening-reviews-v2.json");
 const webContentDir = path.join(repoRoot, "apps/web/public/content");
 const outArg = argValue("--out");
 const outDir = outArg ? path.resolve(process.cwd(), outArg) : path.join(repoRoot, "packages/content/generated/coverage");
@@ -63,6 +66,24 @@ export function reconcileReviewGate(source, backend) {
   };
 }
 
+export function reconcileReleaseGate(source, backend, audioGate) {
+  const reviewGate = reconcileReviewGate(source, backend);
+  const audioReady = audioGate?.release_ready === true;
+  const promotionAllowed = reviewGate.promotion_allowed && audioReady;
+  return {
+    backend_release_state: reviewGate,
+    audio_release_state: audioGate ?? { release_ready: false, blockers_by_cause: { unavailable: 1 } },
+    promotion_allowed: promotionAllowed,
+    promotion_reason: promotionAllowed
+      ? "AI review and exact audio release gates are current"
+      : !reviewGate.promotion_allowed
+        ? reviewGate.reason
+        : "exact audio release gate is blocked",
+    production_release_allowed: false,
+    production_reason: "independent human safeguarding and real-child pilot evidence remain backend activation requirements",
+  };
+}
+
 function sourceReviewProjection() {
   if (!fileExists(aiEvidencePath)) return { available: false, controlled_pilot_allowed: false };
   const evidence = readJSON(aiEvidencePath);
@@ -80,6 +101,20 @@ function sourceReviewProjection() {
     stale: evidence.totals?.stale_decisions ?? 0,
     controlled_pilot_allowed: evidence.controlled_pilot_allowed === true,
   };
+}
+
+function sourceAudioProjection() {
+  const manifestArg = argValue("--audio-manifest");
+  const reviewsArg = argValue("--audio-reviews");
+  const manifestPath = manifestArg ? path.resolve(process.cwd(), manifestArg) : defaultAudioManifestPath;
+  const reviewsPath = reviewsArg ? path.resolve(process.cwd(), reviewsArg) : defaultAudioReviewsPath;
+  const manifest = fileExists(manifestPath) ? readJSON(manifestPath) : undefined;
+  const reviewLedger = fileExists(reviewsPath) ? readJSON(reviewsPath) : { reviews: [] };
+  return evaluateExactAudioReleaseGate({
+    manifest,
+    reviews: Array.isArray(reviewLedger) ? reviewLedger : reviewLedger.reviews,
+    supportedLicences: ["provider_terms"],
+  });
 }
 
 function collect(backendState) {
@@ -155,7 +190,7 @@ function collect(backendState) {
   }
 
   const sourceProjection = sourceReviewProjection();
-  const reconciledBackend = reconcileReviewGate(sourceProjection, backendState);
+  const reconciled = reconcileReleaseGate(sourceProjection, backendState, sourceAudioProjection());
   return {
     version: policy.version,
     status: policy.status,
@@ -163,9 +198,12 @@ function collect(backendState) {
     generated_at: new Date().toISOString(),
     policy: policy.policy,
     source_review_projection: sourceProjection,
-    backend_release_state: reconciledBackend,
-    promotion_allowed: reconciledBackend.promotion_allowed,
-    production_release_allowed: false,
+    backend_release_state: reconciled.backend_release_state,
+    audio_release_state: reconciled.audio_release_state,
+    promotion_allowed: reconciled.promotion_allowed,
+    promotion_reason: reconciled.promotion_reason,
+    production_release_allowed: reconciled.production_release_allowed,
+    production_reason: reconciled.production_reason,
     totals: {
       packs: rows.length,
       authoring: channelCounts.authoring ?? 0,

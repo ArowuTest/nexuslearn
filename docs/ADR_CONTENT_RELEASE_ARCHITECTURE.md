@@ -60,6 +60,16 @@ rules, then upserts objectives, activities, questions and reward rules in one
 database transaction. For complete snapshots, content owned by an older
 release is archived only inside that successful transaction.
 
+The same transaction fails closed unless its release metadata names one exact
+imported narration release and catalogue. The API verifies their
+content-derived IDs and SHA-256 digests, supported provider-terms licence,
+complete asset count, zero unresolved or specialist-required references, and
+every required asset's transcript, audio, production-identity and
+production-profile hashes. It then joins the latest append-only listening
+decision for those assets in bounded set queries. A changed transcript, audio
+file, voice profile, manifest, catalogue or licence invalidates the prior
+evidence; an asset ID on its own is never sufficient for activation.
+
 If validation or any write fails, PostgreSQL rolls back the whole activation.
 The previous release remains active.
 
@@ -124,6 +134,9 @@ per channel. Live activation must require repository-environment approval.
   whitelisting and future storage changes remain backend-governed. Static
   `/content/*.json` files are a compatibility fallback, not the production
   ownership boundary.
+- The public narration projection contains only approved reference-to-file
+  aliases. Transcript banks, private manifest provenance, reviewer evidence and
+  operational credentials never enter the pupil runtime contract.
 
 ## Consequences
 

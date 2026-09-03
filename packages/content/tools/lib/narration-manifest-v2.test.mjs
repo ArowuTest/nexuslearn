@@ -99,6 +99,7 @@ test("manifest release identity is stable across generated time and input orderi
   assert.equal(first.release_id, second.release_id);
   assert.equal(first.version, 2);
   assert.equal(first.catalogue_id, catalog().catalogue_id);
+  assert.equal(first.licence_id, "provider_terms");
   assert.equal(first.assets[0].reuse_count, 3);
   assert.equal(first.references[0].reference_id, "fraction-second");
   assert.equal(first.blockers[0].reference_id, "phoneme-sh");

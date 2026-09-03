@@ -42,6 +42,26 @@ func TestValidateAudioManifestImportRejectsDatabaseIncompatibleHashes(t *testing
 	}
 }
 
+func TestValidateAudioManifestImportRequiresSupportedLicence(t *testing.T) {
+	manifest := validAudioManifestImport(t)
+	manifest.LicenceID = ""
+	if err := ValidateAudioManifestImport(manifest); err == nil {
+		t.Fatal("missing provider licence must fail before persistence")
+	}
+	manifest.LicenceID = "unsupported_terms"
+	if err := ValidateAudioManifestImport(manifest); err == nil {
+		t.Fatal("unsupported provider licence must fail before persistence")
+	}
+}
+
+func TestValidateAudioManifestImportRejectsUnknownReleaseStatus(t *testing.T) {
+	manifest := validAudioManifestImport(t)
+	manifest.Status = "trust_me_its_ready"
+	if err := ValidateAudioManifestImport(manifest); err == nil {
+		t.Fatal("unknown release status must fail before persistence")
+	}
+}
+
 func TestValidateAudioRerecordRequestRequiresGovernedReasonAndNotes(t *testing.T) {
 	request := AudioRerecordRequest{
 		ReleaseID: "narration-release-v2-" + strings.Repeat("a", 24),
@@ -79,7 +99,7 @@ func validAudioManifestImport(t *testing.T) AudioManifestImport {
 	return AudioManifestImport{
 		ReleaseID: "narration-release-v2-" + releaseSHA[:24], ReleaseSHA256: releaseSHA,
 		CatalogueID: "variant-audio-catalog-v1-" + catalogueSHA[:24], CatalogueSHA256: catalogueSHA,
-		Provider: "ElevenLabs", Status: "generated_pending_human_listening",
+		Provider: "ElevenLabs", LicenceID: "provider_terms", Status: "generated_pending_human_listening",
 		ExpectedAssets: 1, ProducedAssets: 1, ReferenceIDs: 1,
 		Assets: []AudioManifestAsset{{
 			AssetID: assetID, Text: text, TextSHA256: textSHA, AudioSHA256: strings.Repeat("d", 64),

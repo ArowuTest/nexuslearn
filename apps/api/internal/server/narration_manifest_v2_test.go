@@ -259,7 +259,7 @@ func writeNarrationManifestV2Fixture(t *testing.T, mutate func(map[string]any)) 
 		"schema": "nexuslearn.narration-manifest.v2", "version": 2,
 		"catalogue_id":     "variant-audio-catalog-v1-" + strings.Repeat("a", 24),
 		"catalogue_sha256": strings.Repeat("a", 64),
-		"provenance":       map[string]any{"producer": "test"},
+		"provenance":       map[string]any{"producer": "test", "licence": "provider_terms"},
 		"assets":           []map[string]any{asset}, "references": []map[string]any{reference}, "blockers": []map[string]any{},
 	}
 	if mutate != nil {
@@ -272,6 +272,7 @@ func writeNarrationManifestV2Fixture(t *testing.T, mutate func(map[string]any)) 
 	manifest["generated_at"] = "2026-08-30T00:00:00Z"
 	manifest["status"] = "generated_pending_human_listening"
 	manifest["provider"] = "ElevenLabs"
+	manifest["licence_id"] = "provider_terms"
 	productionTargets := map[string]struct{}{}
 	for _, item := range identity["references"].([]map[string]any) {
 		if target, ok := item["production_asset_id"].(string); ok && target != "" {

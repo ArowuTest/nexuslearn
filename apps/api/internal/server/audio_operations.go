@@ -92,7 +92,7 @@ func audioManifestImport(manifest narrationManifest) learning.AudioManifestImpor
 	result := learning.AudioManifestImport{
 		ReleaseID: manifest.ReleaseID, ReleaseSHA256: manifest.ReleaseSHA256,
 		CatalogueID: manifest.CatalogueID, CatalogueSHA256: manifest.CatalogueSHA256,
-		Provider: manifest.Provider, Status: manifest.Status,
+		Provider: manifest.Provider, LicenceID: manifest.LicenceID, Status: manifest.Status,
 		ExpectedAssets: manifest.Totals.ExpectedAssets, ProducedAssets: manifest.Totals.ProducedAssets,
 		ReferenceIDs: manifest.Totals.ReferenceIDs, SpecialistRequired: manifest.Totals.SpecialistRequired,
 		Unresolved: manifest.Totals.Unresolved,

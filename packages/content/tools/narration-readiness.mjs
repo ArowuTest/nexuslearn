@@ -20,6 +20,8 @@ const expectedProvider = "ElevenLabs";
 const pendingStatuses = new Set(["generated_pending_human_listening", "required_human_listening_review"]);
 const approvedStatuses = new Set(["human_listening_approved", "approved", "production_approved", "released"]);
 const validProductionStatuses = new Set([...pendingStatuses, ...approvedStatuses]);
+const exactApprovalCriteria = ["natural", "clear", "pronunciation", "age_suitable"];
+const sha256Pattern = /^[a-f0-9]{64}$/;
 
 function readJSON(file) {
   return JSON.parse(fs.readFileSync(file, "utf8"));
@@ -71,6 +73,128 @@ function bounded(values) {
     shown: Math.min(sorted.length, sampleLimit),
     truncated: sorted.length > sampleLimit,
     samples: sorted.slice(0, sampleLimit),
+  };
+}
+
+export function evaluateExactAudioReleaseGate({ manifest, reviews = [], supportedLicences = [] } = {}) {
+  const entries = [];
+  const entryKeys = new Set();
+  const add = (cause, details = {}) => {
+    const key = [cause, details.asset_id, details.reference_id, details.expected_index, details.message, details.licence].join("\u0000");
+    if (entryKeys.has(key)) return;
+    entryKeys.add(key);
+    entries.push({ cause, ...details });
+  };
+  const assets = asArray(manifest?.assets);
+  const references = asArray(manifest?.references);
+  const expectedAssets = Number(manifest?.totals?.expected_assets ?? 0);
+  const supported = new Set(supportedLicences.map(String));
+  const licence = typeof manifest?.provenance?.licence === "string"
+    ? manifest.provenance.licence
+    : manifest?.provenance?.licence?.id;
+
+  const releaseSHA = String(manifest?.release_sha256 ?? "");
+  const catalogueSHA = String(manifest?.catalogue_sha256 ?? "");
+  if (manifest?.schema !== "nexuslearn.narration-manifest.v2" || manifest?.version !== 2 ||
+      !sha256Pattern.test(releaseSHA) || manifest?.release_id !== `narration-release-v2-${releaseSHA.slice(0, 24)}` ||
+      !sha256Pattern.test(catalogueSHA) || manifest?.catalogue_id !== `variant-audio-catalog-v1-${catalogueSHA.slice(0, 24)}`) {
+    add("invalid_manifest", { message: "signed v2 release and catalogue identities are required" });
+  }
+  if (!licence || !supported.has(licence)) add("unsupported_licence", { licence: licence ?? null });
+
+  if (!Number.isInteger(expectedAssets) || expectedAssets <= 0) add("invalid_manifest", { message: "expected asset total must be positive" });
+  if (manifest?.totals?.produced_assets !== assets.length || manifest?.totals?.reference_ids !== references.length) {
+    add("invalid_manifest", { message: "manifest totals do not match contained assets and references" });
+  }
+
+  const referenceContext = new Map();
+  for (const reference of references) {
+    const occurrence = asArray(reference.occurrences)[0] ?? {};
+    const context = { reference_id: reference.reference_id ?? null, pack_id: occurrence.pack_id ?? null, year: Number.isInteger(occurrence.year) ? occurrence.year : null, subject: occurrence.subject ?? null };
+    if (reference.production_asset_id && !referenceContext.has(reference.production_asset_id)) referenceContext.set(reference.production_asset_id, context);
+    if (reference.status === "specialist_required") add("specialist_required", context);
+    if (reference.status === "unresolved") add("unresolved", context);
+    if (!new Set(["production_required", "specialist_required", "unresolved"]).has(reference.status)) add("invalid_manifest", { ...context, message: "unsupported reference status" });
+  }
+  for (const blocker of asArray(manifest?.blockers)) {
+    const reference = references.find((item) => item.reference_id === blocker.reference_id);
+    const occurrence = asArray(reference?.occurrences)[0] ?? {};
+    add(String(blocker.code ?? "").includes("specialist") ? "specialist_required" : "unresolved", {
+      reference_id: blocker.reference_id ?? null,
+      pack_id: occurrence.pack_id ?? null,
+      year: Number.isInteger(occurrence.year) ? occurrence.year : null,
+      subject: occurrence.subject ?? null,
+    });
+  }
+  if ((manifest?.totals?.specialist_required ?? 0) > 0 && !entries.some((item) => item.cause === "specialist_required")) add("specialist_required", { count: manifest.totals.specialist_required });
+  if ((manifest?.totals?.unresolved ?? 0) > 0 && !entries.some((item) => item.cause === "unresolved")) add("unresolved", { count: manifest.totals.unresolved });
+
+  const latestReviews = new Map();
+  for (const review of asArray(reviews)) latestReviews.set(review.asset_id, review);
+  const assetIDs = new Set();
+  let currentApprovals = 0;
+  for (const asset of assets) {
+    const referenced = referenceContext.get(asset.id) ?? {};
+    const context = { asset_id: asset.id ?? null, pack_id: asset.pack_id ?? referenced.pack_id ?? null, year: Number.isInteger(asset.year) ? asset.year : referenced.year ?? null, subject: referenced.subject ?? null };
+    if (!asset.id || assetIDs.has(asset.id) || !sha256Pattern.test(String(asset.text_sha256 ?? "")) || !sha256Pattern.test(String(asset.sha256 ?? "")) ||
+        !sha256Pattern.test(String(asset.production_identity_sha256 ?? "")) || !sha256Pattern.test(String(asset.production_profile_sha256 ?? ""))) {
+      add("invalid_manifest", { ...context, message: "asset identity is incomplete or duplicated" });
+    }
+    assetIDs.add(asset.id);
+    if (asset.technical_pass !== true) add("technical_invalid", context);
+    const review = latestReviews.get(asset.id);
+    if (!review || review.decision !== "approved" || !approvedStatuses.has(String(asset.production_status ?? "")) || exactApprovalCriteria.some((criterion) => review.criteria?.[criterion] !== true)) {
+      add("unapproved", context);
+      continue;
+    }
+    if (review.text_sha256 !== asset.text_sha256 || review.audio_sha256 !== asset.sha256 || review.production_profile_sha256 !== asset.production_profile_sha256) {
+      add("stale", context);
+      continue;
+    }
+    currentApprovals += 1;
+  }
+
+  const missingProductionAssets = new Set();
+  for (const reference of references.filter((item) => item.status === "production_required")) {
+    const asset = assets.find((item) => item.id === reference.production_asset_id);
+    const occurrence = asArray(reference.occurrences)[0] ?? {};
+    const context = { reference_id: reference.reference_id ?? null, pack_id: occurrence.pack_id ?? null, year: occurrence.year ?? null, subject: occurrence.subject ?? null };
+    if (!asset) {
+      if (!missingProductionAssets.has(reference.production_asset_id)) add("missing", { ...context, asset_id: reference.production_asset_id ?? null });
+      missingProductionAssets.add(reference.production_asset_id);
+    }
+    else if (asset.text_sha256 !== reference.text_sha256 || asset.production_identity_sha256 !== reference.production_identity_sha256 || asset.production_profile_sha256 !== reference.production_profile_sha256) add("stale", context);
+  }
+  const unreferencedMissingCount = Math.max(0, expectedAssets - assets.length - missingProductionAssets.size);
+  if (unreferencedMissingCount > 0) add("missing", { count: unreferencedMissingCount, message: "expected assets absent without a production reference" });
+
+  const blockersByCause = {};
+  const blockersByYear = {};
+  const blockersBySubject = {};
+  for (const entry of entries) {
+    blockersByCause[entry.cause] = (blockersByCause[entry.cause] ?? 0) + (entry.count ?? 1);
+    if (entry.year !== null && entry.year !== undefined) blockersByYear[entry.year] = (blockersByYear[entry.year] ?? 0) + 1;
+    if (entry.subject) blockersBySubject[entry.subject] = (blockersBySubject[entry.subject] ?? 0) + 1;
+  }
+  return {
+    release_ready: entries.length === 0 && currentApprovals === expectedAssets,
+    release_id: manifest?.release_id ?? null,
+    release_sha256: manifest?.release_sha256 ?? null,
+    catalogue_id: manifest?.catalogue_id ?? null,
+    catalogue_sha256: manifest?.catalogue_sha256 ?? null,
+    licence: licence ?? null,
+    required_audio_assets: assets.map((asset) => ({
+      asset_id: asset.id,
+      text_sha256: asset.text_sha256,
+      audio_sha256: asset.sha256,
+      production_identity_sha256: asset.production_identity_sha256,
+      production_profile_sha256: asset.production_profile_sha256,
+    })).sort((left, right) => compareText(left.asset_id, right.asset_id)),
+    totals: { required_assets: expectedAssets, produced_assets: assets.length, current_approvals: currentApprovals, blockers: entries.length },
+    blockers_by_cause: blockersByCause,
+    blockers_by_year: blockersByYear,
+    blockers_by_subject: blockersBySubject,
+    blocker_samples: bounded(entries),
   };
 }
 
@@ -468,9 +592,11 @@ function writeReports(report) {
   fs.writeFileSync(path.join(publicDir, "narration-readiness.html"), html);
 }
 
-const report = buildReport();
-writeReports(report);
-console.log(`narration-readiness packs=${report.totals.packs} expected=${report.totals.expected_assets} manifest=${report.totals.manifest_items} technical=${report.totals.technical_pass} approved=${report.totals.listening_approved} unreviewed=${report.totals.unreviewed}`);
-console.log(`narration-readiness variant_refs=${report.totals.variant_references} unique=${report.totals.unique_variant_references} unresolved=${report.totals.unresolved_variant_references} unique_unresolved=${report.totals.unique_unresolved_variant_references} nonconforming=${report.totals.nonconforming_variant_references}`);
-console.log(`narration-readiness missing=${report.totals.missing} stale=${report.totals.stale} invalid=${report.totals.invalid} orphan_manifest=${report.totals.orphan_manifest_items} orphan_files=${report.totals.orphan_files} duplicate_ids=${report.totals.duplicate_ids} duplicate_paths=${report.totals.duplicate_paths}`);
-if (strict && report.totals.strict_gaps > 0) process.exitCode = 1;
+if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(fileURLToPath(import.meta.url))) {
+  const report = buildReport();
+  writeReports(report);
+  console.log(`narration-readiness packs=${report.totals.packs} expected=${report.totals.expected_assets} manifest=${report.totals.manifest_items} technical=${report.totals.technical_pass} approved=${report.totals.listening_approved} unreviewed=${report.totals.unreviewed}`);
+  console.log(`narration-readiness variant_refs=${report.totals.variant_references} unique=${report.totals.unique_variant_references} unresolved=${report.totals.unresolved_variant_references} unique_unresolved=${report.totals.unique_unresolved_variant_references} nonconforming=${report.totals.nonconforming_variant_references}`);
+  console.log(`narration-readiness missing=${report.totals.missing} stale=${report.totals.stale} invalid=${report.totals.invalid} orphan_manifest=${report.totals.orphan_manifest_items} orphan_files=${report.totals.orphan_files} duplicate_ids=${report.totals.duplicate_ids} duplicate_paths=${report.totals.duplicate_paths}`);
+  if (strict && report.totals.strict_gaps > 0) process.exitCode = 1;
+}

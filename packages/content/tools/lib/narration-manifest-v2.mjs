@@ -72,6 +72,8 @@ export function buildNarrationManifestV2({
 }) {
   validateCatalog(catalog);
   rejectSecretFields(provenance, "manifest provenance");
+  const licenceID = typeof provenance.licence === "string" ? provenance.licence : provenance.licence?.id;
+  if (licenceID !== "provider_terms") throw new Error("supported provider licence evidence is required");
   const expectedItems = catalogAssetsToProductionItems(catalog);
   const expectedByID = new Map(expectedItems.map((item) => [item.id, item]));
   const assets = [...producedAssets]
@@ -97,6 +99,7 @@ export function buildNarrationManifestV2({
   const releaseSHA256 = sha256(canonicalJSONStringify(identityPayload));
   return {
     ...identityPayload,
+    licence_id: licenceID,
     release_id: `narration-release-v2-${releaseSHA256.slice(0, 24)}`,
     release_sha256: releaseSHA256,
     generated_at: generatedAt,
