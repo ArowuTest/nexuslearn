@@ -104,6 +104,27 @@ node packages/content/tools/objective-pack.mjs bundle --all \
 node packages/content/tools/content-release.mjs validate <release-dir>
 ```
 
+The review bundle is the immutable input to AI and human release review. After
+those reviews and the exact audio release are current, build the live bundle
+with a private, versioned evidence document:
+
+```sh
+node packages/content/tools/objective-pack.mjs bundle --all \
+  --channel live --source-revision <git-sha> \
+  --release-evidence <private-release-evidence.json> --out <live-release-dir>
+node packages/content/tools/content-release.mjs validate <live-release-dir>
+```
+
+The evidence document uses schema `nexuslearn.content-release-evidence.v1` and
+contains only immutable IDs and hashes: one AI review identity for every pack
+payload, the human review-batch identity, the signed audio release/catalogue,
+its supported licence and every required audio asset identity. Live bundle
+creation fails when the file is absent, partial, stale, duplicated or bound to
+a different pack/audio hash. Review and pilot bundles may omit evidence; if it
+is supplied, the same validation applies. Offline `content-release validate`
+repeats the check before any network request, and the API repeats it against
+the authoritative database during activation.
+
 Stage without activation:
 
 ```sh
@@ -126,6 +147,9 @@ per channel. Live activation must require repository-environment approval.
 - The release API is administrator-only.
 - Credentials are supplied through protected secrets and are never included in
   bundles or logs.
+- Release-evidence documents reject credential-, token-, secret-, password- and
+  transcript-shaped fields. They contain review identities, not review notes or
+  the narration script bank.
 - Pack chunks contain curriculum content, not learner data.
 - Learner progress, SEND adaptations, attempts, mastery and selection remain
   server-side.

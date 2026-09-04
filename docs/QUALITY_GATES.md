@@ -151,6 +151,23 @@ and verifies the latest append-only listening decision. Legacy imported audio
 rows without a recorded supported licence remain deliberately ineligible until
 they are re-imported through the governed manifest path.
 
+Live curriculum bundles must also carry a versioned private release-evidence
+document supplied to `objective-pack.mjs` with `--release-evidence`. The bundle
+gate requires exact one-to-one AI review identities for its pack payload
+hashes, one signed human review batch, the signed narration release/catalogue,
+`provider_terms` licence and unique audio identities bound to their production
+identity hashes. Missing, partial, duplicate, stale or secret-shaped evidence
+fails locally. `content-release.mjs validate` repeats this gate before upload;
+the backend then derives human safeguarding, listening and pilot approval from
+its ledgers rather than trusting booleans in the bundle. The API independently
+enforces one identity per pack, one review policy per release, the bounded audio
+inventory, production-identity binding and rejection of credential- or
+transcript-shaped metadata.
+
+GitHub Content Quality runs every `packages/content/tools/**/*.test.mjs` suite
+before generating reports or bundles, so evidence-schema, hash-binding and
+importer regressions fail before mutable build outputs can obscure the cause.
+
 Pack depth is also a release gate, not a vanity metric. The generated
 `pack-depth-readiness.json` report checks every Year 1-7 pack for minimum
 teaching stages, manipulatives, practice formats, variant blueprints, authored

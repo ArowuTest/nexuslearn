@@ -217,7 +217,7 @@ func validAudioVoiceSettings(settings map[string]any) bool {
 
 func validAudioProductionStatus(status string) bool {
 	switch strings.TrimSpace(status) {
-	case "required_human_listening_review", "human_listening_approved", "approved", "production_approved", "released", "rejected", "re_record_required":
+	case "generated_pending_human_listening", "required_human_listening_review", "human_listening_approved", "approved", "production_approved", "released", "rejected", "re_record_required":
 		return true
 	default:
 		return false

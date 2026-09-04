@@ -262,3 +262,40 @@ Run from `apps/api`: `go test ./...`.
 
 Record commands, exit codes, test counts, branch and HEAD. Stage exact intended
 paths; exclude `.agent`, generated reports, local build metadata and secrets.
+
+### Task 7: Governed release-evidence bundle handoff
+
+**Files:**
+- Create: `packages/content/tools/lib/content-release-evidence.mjs`
+- Create: `packages/content/tools/lib/content-release-evidence.test.mjs`
+- Modify: `packages/content/tools/objective-pack.mjs`
+- Modify: `packages/content/tools/content-release.mjs`
+- Modify: `apps/api/internal/learning/audio_operations.go`
+- Modify: `apps/api/internal/learning/audio_operations_test.go`
+- Modify: `apps/api/internal/learning/audio_operations_integration_test.go`
+- Modify: `apps/api/internal/learning/content_release.go`
+- Modify: `apps/api/internal/learning/content_release_test.go`
+- Modify: `.github/workflows/content-quality.yml`
+- Modify: `docs/ADR_CONTENT_RELEASE_ARCHITECTURE.md`
+- Modify: `docs/DATABASE_AND_MIGRATIONS.md`
+- Modify: `docs/QUALITY_GATES.md`
+
+**Interfaces:**
+- Consumes: a private, versioned release-evidence document supplied with
+  `--release-evidence`.
+- Produces: release metadata reconciled to every exact pack payload and audio
+  identity, with no reviewer transcript bank, credential or provider key.
+
+- [x] **Step 1: Write failing release-evidence and status-parity tests**
+
+- [x] **Step 2: Witness RED before implementation**
+
+- [x] **Step 3: Implement versioned validation and live-bundle enforcement**
+
+Review and pilot bundles may omit evidence. If evidence is supplied it must be
+valid. Live bundles must include exact evidence and offline validation must
+repeat the same checks before any network request.
+
+- [x] **Step 4: Run focused and repository verification**
+
+- [x] **Step 5: Inspect exact diff, checkpoint and commit one coherent wave**

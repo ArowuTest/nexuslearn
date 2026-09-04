@@ -5,6 +5,7 @@ import { mkdir, readFile, readdir, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
+import { releaseMetadataForBundle } from "./lib/content-release-evidence.mjs";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
 const sourceMapPath = path.join(repoRoot, "packages/content/research/uk-y1-y7-curriculum-source-map.json");
@@ -597,6 +598,7 @@ function parseArgs(args) {
     else if (value === "--version-id") options.versionId = args[++i];
     else if (value === "--channel") options.channel = args[++i];
     else if (value === "--source-revision") options.sourceRevision = args[++i];
+    else if (value === "--release-evidence") options.releaseEvidence = args[++i];
     else if (value === "--all") options.all = true;
     else if (value === "--strict") options.strict = true;
     else if (value === "--strict-promoted") options.strictPromoted = true;
@@ -610,6 +612,7 @@ async function writeReleaseBundle(payloads, options) {
   const channel = options.channel ?? "review";
   if (!["review", "pilot", "live"].includes(channel)) throw new Error("bundle --channel must be review, pilot or live");
   if (payloads.length === 0) throw new Error("bundle requires at least one valid pack");
+  if (channel === "live" && !options.releaseEvidence) throw new Error("live release bundle requires --release-evidence");
   if (channel !== "review") {
     for (const payload of payloads) {
       if (payload.activities.some((activity) => !runtimeStatuses.has(activity.status))) {
@@ -649,6 +652,18 @@ async function writeReleaseBundle(payloads, options) {
   const manifestSHA = sha256(stableStringify(packs));
   const releaseID = `nexuslearn-${channel}-${manifestSHA.slice(0, 16)}`;
   const sum = (key) => packs.reduce((total, pack) => total + pack[key], 0);
+  const evidenceDocument = options.releaseEvidence
+    ? await readJSON(path.resolve(options.releaseEvidence))
+    : undefined;
+  const metadata = releaseMetadataForBundle({
+    channel,
+    packs,
+    evidenceDocument,
+    baseMetadata: {
+      generator: "packages/content/tools/objective-pack.mjs",
+      managed_by: "nexuslearn-content-release",
+    },
+  });
   const manifest = {
     id: releaseID,
     schema_version: "1.0",
@@ -662,10 +677,7 @@ async function writeReleaseBundle(payloads, options) {
     expected_question_count: sum("question_count"),
     expected_reward_rule_count: sum("reward_rule_count"),
     packs,
-    metadata: {
-      generator: "packages/content/tools/objective-pack.mjs",
-      managed_by: "nexuslearn-content-release",
-    },
+    metadata,
   };
   const outDir = path.resolve(options.out ?? `packages/content/generated/releases/${releaseID}`);
   const chunksDir = path.join(outDir, "packs");
@@ -945,7 +957,7 @@ function printHelp() {
   console.log(`Usage:
   node packages/content/tools/objective-pack.mjs validate <pack...>
   node packages/content/tools/objective-pack.mjs compile <pack...> [--out packages/content/generated]
-  node packages/content/tools/objective-pack.mjs bundle <pack...> [--channel review] [--source-revision <sha>] [--out <dir>]
+  node packages/content/tools/objective-pack.mjs bundle <pack...> [--channel review] [--source-revision <sha>] [--release-evidence <private-json>] [--out <dir>]
   node packages/content/tools/objective-pack.mjs preview <pack...> [--out packages/content/generated/previews]
   node packages/content/tools/objective-pack.mjs diff <pack...> --api <url> --admin-key <key>
   node packages/content/tools/objective-pack.mjs publish <pack...> --api <url> --admin-key <key>
@@ -956,6 +968,7 @@ Options:
   --strict          Treat warnings as failures
   --strict-promoted Treat warnings as failures only for pilot/approved/published packs
   --allow-sample    Allow publish for files named *.sample.*
+  --release-evidence  Versioned private evidence document; required for live bundles
   --token           Named administrator bearer session (preferred)
   --version-id      Content version UUID to restore with rollback
 

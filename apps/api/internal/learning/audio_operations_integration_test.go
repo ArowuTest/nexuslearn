@@ -33,7 +33,7 @@ func TestPostgresAudioOperationsAreTransactionalAndIdempotent(t *testing.T) {
 	}
 
 	changedPayload := manifest
-	changedPayload.Status = "changed-after-first-request"
+	changedPayload.Status = "production_approved"
 	if _, err := repo.ImportAudioManifest(ctx, changedPayload, "audio-admin-1", "import-audio-release"); !errors.Is(err, ErrIdempotencyConflict) {
 		t.Fatalf("same transport key with a changed payload must conflict, got %v", err)
 	}

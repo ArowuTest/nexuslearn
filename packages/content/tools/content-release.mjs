@@ -3,6 +3,7 @@ import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
+import { validateReleaseMetadata } from "./lib/content-release-evidence.mjs";
 
 main().catch((error) => {
   console.error(error.message);
@@ -40,6 +41,7 @@ async function readBundle(directory) {
   if (manifest.packs.length !== manifest.expected_pack_count) throw new Error("manifest pack count mismatch");
   const manifestDigest = sha256(stableStringify(manifest.packs));
   if (manifestDigest !== manifest.manifest_sha256) throw new Error("manifest digest mismatch");
+  validateReleaseMetadata({ channel: manifest.channel, packs: manifest.packs, metadata: manifest.metadata ?? {} });
   const chunks = [];
   const totals = { objective_count: 0, activity_count: 0, question_count: 0, reward_rule_count: 0 };
   for (const descriptor of manifest.packs) {

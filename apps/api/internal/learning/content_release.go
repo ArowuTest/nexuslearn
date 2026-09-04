@@ -8,6 +8,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"regexp"
 	"strings"
 	"time"
 
@@ -17,6 +18,8 @@ import (
 var ErrContentReleaseConflict = errors.New("content release conflicts with existing state")
 var ErrContentReleaseIncomplete = errors.New("content release is incomplete")
 var ErrContentReleaseDigest = errors.New("content release digest does not match payload")
+
+var releaseMetadataFieldNormalizer = regexp.MustCompile(`[^a-z0-9]`)
 
 type ContentReleaseManifest struct {
 	ID                      string                         `json:"id"`
@@ -137,26 +140,35 @@ func releaseEvidenceMetadata(manifest ContentReleaseManifest) (ReleaseEvidenceMe
 	if err != nil {
 		return evidence, err
 	}
+	var normalizedMetadata any
+	if err := json.Unmarshal(raw, &normalizedMetadata); err != nil || releaseMetadataContainsSensitiveField(normalizedMetadata) {
+		return evidence, fmt.Errorf("%w: release metadata contains a forbidden credential or transcript field", ErrInvalidConfiguration)
+	}
 	if err := json.Unmarshal(raw, &evidence); err != nil {
 		return evidence, fmt.Errorf("%w: invalid release evidence metadata", ErrInvalidConfiguration)
 	}
-	if len(evidence.AIReviewIdentities) == 0 {
-		return evidence, fmt.Errorf("%w: release metadata requires AI review identities", ErrInvalidConfiguration)
+	if len(evidence.AIReviewIdentities) != len(manifest.Packs) {
+		return evidence, fmt.Errorf("%w: release metadata requires exactly one AI review identity per pack", ErrInvalidConfiguration)
 	}
 	seenIdentities := map[string]bool{}
+	reviewPolicy := ""
 	for _, identity := range evidence.AIReviewIdentities {
-		key := identity.ContentID + "\x00" + identity.ContentHash + "\x00" + identity.RubricRevision + "\x00" + identity.SourceSetRevision + "\x00" + identity.ReviewerImplementation
-		if strings.TrimSpace(identity.ContentID) == "" || !validSHA256(identity.ContentHash) ||
-			strings.TrimSpace(identity.RubricRevision) == "" || strings.TrimSpace(identity.SourceSetRevision) == "" ||
-			strings.TrimSpace(identity.ReviewerImplementation) == "" || seenIdentities[key] {
+		if !validReleaseLabel(identity.ContentID) || !validLowerAudioSHA(identity.ContentHash) ||
+			!validReleaseLabel(identity.RubricRevision) || !validReleaseLabel(identity.SourceSetRevision) ||
+			!validReleaseLabel(identity.ReviewerImplementation) || seenIdentities[identity.ContentID] {
 			return evidence, fmt.Errorf("%w: release AI review identities must be complete and unique", ErrInvalidConfiguration)
 		}
-		seenIdentities[key] = true
+		policy := identity.RubricRevision + "\x00" + identity.SourceSetRevision + "\x00" + identity.ReviewerImplementation
+		if reviewPolicy != "" && policy != reviewPolicy {
+			return evidence, fmt.Errorf("%w: release AI review identities must use one consistent review policy", ErrInvalidConfiguration)
+		}
+		reviewPolicy = policy
+		seenIdentities[identity.ContentID] = true
 	}
 	for _, pack := range manifest.Packs {
 		matched := false
 		for _, identity := range evidence.AIReviewIdentities {
-			if identity.ContentID == pack.PackID && strings.EqualFold(identity.ContentHash, pack.PayloadSHA256) {
+			if identity.ContentID == pack.PackID && identity.ContentHash == pack.PayloadSHA256 {
 				matched = true
 				break
 			}
@@ -165,7 +177,7 @@ func releaseEvidenceMetadata(manifest ContentReleaseManifest) (ReleaseEvidenceMe
 			return evidence, fmt.Errorf("%w: pack %s has no exact AI-reviewed payload identity", ErrInvalidConfiguration, pack.PackID)
 		}
 	}
-	if strings.TrimSpace(evidence.HumanReviewBatchID) == "" || !validSHA256(evidence.HumanReviewBatchHash) {
+	if !validReleaseLabel(evidence.HumanReviewBatchID) || !validLowerAudioSHA(evidence.HumanReviewBatchHash) {
 		return evidence, fmt.Errorf("%w: release metadata requires an exact human review batch identity", ErrInvalidConfiguration)
 	}
 	if !audioReleaseIDPattern.MatchString(evidence.AudioReleaseID) || !validLowerAudioSHA(evidence.AudioReleaseSHA256) || !strings.HasSuffix(evidence.AudioReleaseID, evidence.AudioReleaseSHA256[:24]) ||
@@ -175,7 +187,7 @@ func releaseEvidenceMetadata(manifest ContentReleaseManifest) (ReleaseEvidenceMe
 	if evidence.AudioLicenceID != "provider_terms" {
 		return evidence, fmt.Errorf("%w: release metadata requires a supported audio licence", ErrInvalidConfiguration)
 	}
-	if len(evidence.RequiredAudioAssets) == 0 {
+	if len(evidence.RequiredAudioAssets) == 0 || len(evidence.RequiredAudioAssets) > maxAudioManifestAssets {
 		return evidence, fmt.Errorf("%w: release metadata requires exact audio assets for listening approval", ErrInvalidConfiguration)
 	}
 	seenAudio := map[string]bool{}
@@ -184,9 +196,39 @@ func releaseEvidenceMetadata(manifest ContentReleaseManifest) (ReleaseEvidenceMe
 			!validLowerAudioSHA(asset.ProductionIdentitySHA256) || !validLowerAudioSHA(asset.ProductionProfileSHA256) || seenAudio[asset.AssetID] {
 			return evidence, fmt.Errorf("%w: release audio identities must be complete and unique", ErrInvalidConfiguration)
 		}
+		if !strings.HasSuffix(asset.AssetID, asset.ProductionIdentitySHA256[:24]) {
+			return evidence, fmt.Errorf("%w: release audio asset ID must bind the production identity", ErrInvalidConfiguration)
+		}
 		seenAudio[asset.AssetID] = true
 	}
 	return evidence, nil
+}
+
+func releaseMetadataContainsSensitiveField(value any) bool {
+	switch typed := value.(type) {
+	case map[string]any:
+		for key, child := range typed {
+			normalizedKey := releaseMetadataFieldNormalizer.ReplaceAllString(strings.ToLower(key), "")
+			isSensitive := false
+			for _, forbidden := range []string{"apikey", "token", "secret", "password", "credential", "transcript"} {
+				isSensitive = isSensitive || strings.Contains(normalizedKey, forbidden)
+			}
+			if isSensitive || releaseMetadataContainsSensitiveField(child) {
+				return true
+			}
+		}
+	case []any:
+		for _, child := range typed {
+			if releaseMetadataContainsSensitiveField(child) {
+				return true
+			}
+		}
+	}
+	return false
+}
+
+func validReleaseLabel(value string) bool {
+	return value != "" && value == strings.TrimSpace(value) && len(value) <= 200
 }
 
 type audioReleaseLedgerEvidence struct {

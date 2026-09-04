@@ -62,6 +62,14 @@ func TestValidateAudioManifestImportRejectsUnknownReleaseStatus(t *testing.T) {
 	}
 }
 
+func TestValidateAudioManifestImportAcceptsGeneratedPendingListeningAsset(t *testing.T) {
+	manifest := validAudioManifestImport(t)
+	manifest.Assets[0].ProductionStatus = "generated_pending_human_listening"
+	if err := ValidateAudioManifestImport(manifest); err != nil {
+		t.Fatalf("newly generated production audio must enter the listening queue: %v", err)
+	}
+}
+
 func TestValidateAudioRerecordRequestRequiresGovernedReasonAndNotes(t *testing.T) {
 	request := AudioRerecordRequest{
 		ReleaseID: "narration-release-v2-" + strings.Repeat("a", 24),

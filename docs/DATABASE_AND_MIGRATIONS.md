@@ -211,6 +211,15 @@ parent, school and platform-admin reads share the same bounded query contract;
 their existing learner ownership and school-tenant checks remain in front of
 the query.
 
+The forty-second migration adds matching keyset-pagination indexes for audit,
+content-version and release ledgers. The forty-third binds narration reviews to
+the exact production-profile SHA-256 so a voice/model/settings change makes an
+older listening decision stale. The forty-fourth adds the private signed audio
+release, asset, reference and re-record-request ledgers. The forty-fifth adds
+the supported provider licence identity and release-gate index; existing rows
+remain nullable and therefore fail closed until a governed re-import records
+`provider_terms`.
+
 ## Applying Migrations
 
 The API includes an explicit migration command. For paid Render plans, this can be run as a one-off job. Render free web services do not support one-off jobs, so the current prototype path is `AUTO_MIGRATE=true`.
