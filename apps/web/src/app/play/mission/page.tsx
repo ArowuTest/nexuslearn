@@ -180,6 +180,7 @@ export default function Mission() {
   const [mood, setMood] = useState<DinoMood>("idle");
   const [message, setMessage] = useState("Loading configured mission content...");
   const [showHint, setShowHint] = useState(false);
+  const [rewardMoment, setRewardMoment] = useState<string | null>(null);
   const [wrongFlash, setWrongFlash] = useState(false);
   const [correctFlash, setCorrectFlash] = useState(false);
   const [hatched, setHatched] = useState(false);
@@ -265,6 +266,7 @@ export default function Mission() {
       setResults([]);
       setMockSummary(undefined);
       setHatched(false);
+      setRewardMoment(null);
       setProgressReport(null);
       setProgressState("not-requested");
       setLoadState("loading");
@@ -551,6 +553,7 @@ export default function Mission() {
       setResults((r) => [...r, true]);
       setMood(result.animation_hook || result.reward_hook ? "celebrate" : "happy");
       setMessage(result.feedback);
+      setRewardMoment(result.reward_hook.includes("compass") ? "Compass fragment collected" : "Learning reward advanced");
       setCorrectFlash(true);
       setTimeout(() => setCorrectFlash(false), 450);
       emitSparks();
@@ -565,6 +568,7 @@ export default function Mission() {
       setResults((r) => [...r, false]);
       setMood("encourage");
       setMessage(result.feedback || result.companion_prompt || `Try again: ${q.prompt}`);
+      setRewardMoment("Repair route opened");
       setWrongFlash(true);
       setTimeout(() => setWrongFlash(false), 400);
       if (route.mockAssessmentId) {
@@ -615,6 +619,7 @@ export default function Mission() {
     setShowHint(false);
     setProjectedBand("Unknown");
     setMockSummary(undefined);
+    setRewardMoment(null);
     setLessonIdx(0);
     setLessonComplete(teachingSequence.length === 0);
     setResults([]);
@@ -730,13 +735,15 @@ export default function Mission() {
   const worldAccent = String(mission?.world?.config?.accent || "#ffbf45");
   const realm = String(mission?.world?.config?.realm || mission?.world?.name || "Nexus mission");
   const worldFocus = String(mission?.world?.config?.focus || mission?.world?.theme || "Configured learning mission");
+  const adaptations = mission?.runtime_adaptations;
   const reward = worldReward(Number(mission?.world?.year_group || 0));
+  const rewardStyle = adaptations?.reward_style;
+  const rewardRoute = ({ collecting: "Collection route", story: "Story route", challenge: "Challenge route" } as Record<string, string>)[rewardStyle || ""] || "World growth route";
   const companionName = String(mission?.world?.config?.companion || "Nixi");
   const savedArtefacts = Array.isArray(mission?.world_state?.state?.artefacts) ? mission.world_state.state.artefacts.length : 0;
   const questionAudio = questionAudioURL(q, narrationAssets);
   const questionAudioScriptText = questionAudioScript(q);
   const questionAudioPending = questionHasAudioReference(q);
-  const adaptations = mission?.runtime_adaptations;
   const activeSupportPlan = supportPlanItems(adaptations);
   const supportBadges = activeSupportBadges(adaptations);
   const progressPct = total ? Math.round((charge / total) * 100) : 0;
@@ -997,6 +1004,25 @@ export default function Mission() {
           </div>
         </div>
       </section>
+
+      <section
+        data-testid="mission-reward-track"
+        className="mission-reward-track"
+        aria-label="Learning reward route"
+      >
+        <h2 className="font-display text-xl font-semibold text-white">{rewardRoute}</h2>
+      </section>
+
+      {rewardMoment && (
+        <div
+          data-testid="mission-reward-moment"
+          className="mission-reward-moment"
+          role="status"
+          aria-live="polite"
+        >
+          <p className="font-display text-sm font-semibold text-white">{rewardMoment}</p>
+        </div>
+      )}
 
       <div className={`relative z-10 mx-auto mt-6 grid max-w-6xl items-center gap-8 ${focusMode ? "grid-cols-1" : "md:grid-cols-[0.95fr_1.05fr]"}`}>
         {/* LEFT: incubator scene */}

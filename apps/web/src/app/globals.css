@@ -13,6 +13,33 @@
   color: #fff !important;
 }
 
+.mission-reward-track,
+.mission-reward-moment {
+  position: relative;
+  z-index: 10;
+  margin-inline: auto;
+  max-width: 72rem;
+  border-radius: 1.4rem;
+  padding: 1rem;
+}
+
+.mission-reward-track {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+  border: 1px solid color-mix(in srgb, var(--world-accent), transparent 60%);
+  background: rgba(23, 35, 63, 0.9);
+  box-shadow: 0 14px 45px rgba(0, 0, 0, 0.16);
+}
+
+.mission-reward-moment {
+  margin-top: 0.75rem;
+  border: 1px solid rgba(127, 231, 215, 0.45);
+  background: rgba(16, 47, 58, 0.9);
+}
+
 .high-contrast {
   --world-accent: #ffea00 !important;
   background: #000 !important;
