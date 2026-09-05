@@ -50,6 +50,25 @@ async function stubAdminAPI(page: Page) {
       await route.fulfill({ contentType: "application/json", body: JSON.stringify(emptyReadiness) });
       return;
     }
+    if (url.pathname === "/v1/admin/content/releases/preflight") {
+      await route.fulfill({
+        contentType: "application/json",
+        body: JSON.stringify({
+          release_id: "nexuslearn-live-test",
+          manifest_sha256: "a".repeat(64),
+          evidence_ready: false,
+          ai: { current_ai_curriculum_lead: 0, current_ai_send_lead: 0, missing_lane_count: 2, stale_count: 0 },
+          checks: [
+            { code: "ai_review", passed: false, message: "current approval from both AI review lanes" },
+            { code: "safeguarding", passed: false, message: "independent human safeguarding approval" },
+            { code: "audio_release", passed: false, message: "the exact technically valid audio release and catalogue" },
+            { code: "audio_listening", passed: false, message: "human listening approval for every required audio asset" },
+            { code: "child_pilot", passed: false, message: "recorded real-child pilot evidence" },
+          ],
+        }),
+      });
+      return;
+    }
     if (url.pathname === "/v1/admin/parent-invitations") {
       await route.fulfill({ contentType: "application/json", body: JSON.stringify({ parent_invitations: [] }) });
       return;
@@ -134,4 +153,17 @@ test("admin menu supports roving keyboard navigation and representative section 
   await expect(page.getByRole("heading", { name: "Configured Worlds" })).toBeVisible();
   await navigation.getByRole("button", { name: "Objectives", exact: true }).click();
   await expect(page.getByRole("heading", { name: "Curriculum Objectives" })).toBeVisible();
+});
+
+test("release workspace runs a read-only backend preflight and shows every blocker", async ({ page }) => {
+  await openAuthenticatedAdmin(page);
+  await page.getByRole("button", { name: "Releases", exact: true }).click();
+  await expect(page.getByRole("heading", { name: "Live release preflight" })).toBeVisible();
+  await page.getByLabel("Live release manifest JSON").fill(JSON.stringify({ channel: "live", id: "nexuslearn-live-test", manifest_sha256: "a".repeat(64) }));
+  await page.getByRole("button", { name: "Run read-only preflight" }).click();
+  await expect(page.getByText("Evidence blocked", { exact: true })).toBeVisible();
+  const checks = page.getByRole("list", { name: "Release evidence checks" });
+  for (const code of ["ai review", "safeguarding", "audio release", "audio listening", "child pilot"]) {
+    await expect(checks.getByText(code, { exact: true })).toBeVisible();
+  }
 });

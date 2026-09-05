@@ -46,6 +46,11 @@ const AdminAudioWorkspace = dynamic(() => import("@/components/admin/AdminAudioW
   ssr: false,
 });
 
+const AdminReleasePreflight = dynamic(() => import("@/components/admin/AdminReleasePreflight"), {
+  loading: () => <p role="status">Loading release preflight…</p>,
+  ssr: false,
+});
+
 type FeatureFlag = { key: string; enabled: boolean; description: string; config?: Record<string, unknown>; updated_at?: string };
 type World = { key: string; name: string; year_group: number; theme: string; config?: Record<string, unknown>; enabled: boolean };
 type Activity = {
@@ -2007,6 +2012,7 @@ export default function AdminPage() {
 
         {tab === "Reviews" && <AdminReviewWorkspace />}
         {tab === "Audio" && <AdminAudioWorkspace request={adminFetch} readiness={narrationReadiness} />}
+        {tab === "Releases" && accountRole === "platform_admin" && <AdminReleasePreflight request={adminFetch} />}
 
         {(tab === "Readiness" || tab === "Releases") && (
           <section className="mt-6 grid gap-6">
