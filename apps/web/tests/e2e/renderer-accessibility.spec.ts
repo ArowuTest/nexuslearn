@@ -326,7 +326,7 @@ test("simple text mode removes secondary reading without hiding the task", async
   await expect(page.locator("main")).toHaveClass(/reading-reduced/);
   await expect(page.getByText("Model and explain", { exact: true })).toBeHidden();
   await expect(page.getByText("Why this question?")).toBeHidden();
-  await expect(page.getByText("Choose the first option.", { exact: true })).toBeVisible();
+  await expect(page.locator('[role="region"][aria-label="Mission question"] .leading-tight')).toHaveText("Choose the first option.");
   await expect(page.getByRole("group", { name: "Answer choices" })).toBeVisible();
   await expectNoSeriousAxeViolations(page);
 });

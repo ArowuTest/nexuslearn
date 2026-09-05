@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test("mission renders the learner reward style and backend reward moment", async ({ page }) => {
+test("mission renders the learner reward style and backend reward moment", async ({ page }, testInfo) => {
   await page.route("http://api.test/v1/learning/mission**", async (route) => {
     await route.fulfill({
       contentType: "application/json",
@@ -91,8 +91,11 @@ test("mission renders the learner reward style and backend reward moment", async
 
   await page.goto("/play/mission?studentId=reward-learner");
   await expect(page.getByTestId("mission-reward-track")).toContainText("Collection route");
+  await page.getByTestId("mission-reward-track").scrollIntoViewIfNeeded();
+  await page.screenshot({ path: testInfo.outputPath("journey-start.png"), animations: "disabled" });
   await page.getByRole("button", { name: "Keyboard answer" }).click();
   await page.getByLabel("Keyboard answer").fill("12");
   await page.getByRole("button", { name: "Submit answer" }).click();
   await expect(page.getByTestId("mission-reward-moment")).toContainText("Compass fragment collected");
+  await page.screenshot({ path: testInfo.outputPath("journey-reward.png"), animations: "disabled" });
 });

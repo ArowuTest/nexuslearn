@@ -308,14 +308,17 @@ test("SEND-aware mission teaches before practice and records child confidence", 
   await page.getByRole("button", { name: "cat" }).click();
   await page.getByRole("button", { name: "Think so" }).click();
   await page.getByRole("button", { name: "Submit answer" }).click();
-  await expect(page.getByText("Build the word map.", { exact: true })).toBeVisible();
+  await expect(page.getByTestId("mission-reward-moment")).toContainText("Discovery added");
+  await page.getByRole("button", { name: "Next discovery" }).click();
+  await expect(page.locator('[role="region"][aria-label="Mission question"] .leading-tight')).toHaveText("Build the word map.");
   await page.getByRole("button", { name: "Keyboard answer" }).focus();
   await page.keyboard.press("Enter");
   await page.getByLabel("Keyboard answer").focus();
   await page.keyboard.type("map");
   await page.getByRole("button", { name: "Submit answer" }).focus();
   await page.keyboard.press("Enter");
-  await expect(page.getByText("Build 7 rows of 8.", { exact: true })).toBeVisible();
+  await page.getByRole("button", { name: "Next discovery" }).click();
+  await expect(page.locator('[role="region"][aria-label="Mission question"] .leading-tight')).toHaveText("Build 7 rows of 8.");
   await page.getByRole("button", { name: "Activity controls" }).focus();
   await page.keyboard.press("Enter");
   await expect(page.getByRole("img", { name: "Array showing 1 rows of 1. Product 1." })).toBeVisible();
@@ -324,6 +327,7 @@ test("SEND-aware mission teaches before practice and records child confidence", 
   await ranges.nth(1).fill("8");
   await expect(page.getByRole("img", { name: "Array showing 7 rows of 8. Product 56." })).toBeVisible();
   await page.getByRole("button", { name: "Submit answer" }).click();
+  await page.getByRole("button", { name: "See my discoveries" }).click();
   await expect(page.getByText("Your wonder seed bloomed!")).toBeVisible();
   await expect(page.getByText("1 of 3 checkpoints complete.")).toBeVisible();
   await expect(page.getByRole("link", { name: "Next checkpoint" })).toHaveAttribute("href", /activityId=act-counting.*mode=diagnostic/);
@@ -442,6 +446,7 @@ test("completed subject check explains objective evidence without changing maste
   await page.goto("/play/mission?studentId=sam-y3&mockAssessmentId=mock-1");
   await page.getByRole("button", { name: "6" }).click();
   await page.getByRole("button", { name: "Submit answer" }).click();
+  await page.getByRole("button", { name: "See my discoveries" }).click();
   await expect(page.getByRole("region", { name: "What this check sampled" })).toContainText("Review next");
   await expect(page.getByRole("region", { name: "What this check sampled" })).toContainText("Place value");
   await expect(page.getByRole("region", { name: "What this check sampled" })).toContainText("Secure for now");

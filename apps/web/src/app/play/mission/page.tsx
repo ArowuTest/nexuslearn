@@ -6,6 +6,7 @@ import Link from "next/link";
 import ChildJourneyChrome, { ApiStateCard } from "@/components/ChildJourneyChrome";
 import Dino, { type DinoMood } from "@/components/Dino";
 import LearningStudio from "@/components/LearningStudio";
+import MissionJourney, { type JourneyEntry } from "@/components/MissionJourney";
 import MockObjectiveGuidance from "@/components/MockObjectiveGuidance";
 import ProgressSnapshot from "@/components/ProgressSnapshot";
 import {
@@ -181,7 +182,11 @@ export default function Mission() {
   const [message, setMessage] = useState("Loading configured mission content...");
   const [showHint, setShowHint] = useState(false);
   const [rewardMoment, setRewardMoment] = useState<string | null>(null);
-  const [wrongFlash, setWrongFlash] = useState(false);
+  const [journeyEntries, setJourneyEntries] = useState<JourneyEntry[]>([]);
+  const [awaitingContinue, setAwaitingContinue] = useState(false);
+  const feedbackRef = useRef<HTMLDivElement>(null);
+  const questionRef = useRef<HTMLDivElement>(null);
+  const summaryRef = useRef<HTMLDivElement>(null);
   const [correctFlash, setCorrectFlash] = useState(false);
   const [hatched, setHatched] = useState(false);
   const [results, setResults] = useState<boolean[]>([]);
@@ -267,6 +272,8 @@ export default function Mission() {
       setMockSummary(undefined);
       setHatched(false);
       setRewardMoment(null);
+      setJourneyEntries([]);
+      setAwaitingContinue(false);
       setProgressReport(null);
       setProgressState("not-requested");
       setLoadState("loading");
@@ -492,6 +499,7 @@ export default function Mission() {
 
   function emitSparks() {
     const quietCelebration = mission?.runtime_adaptations?.celebration_intensity === "quiet" || mission?.runtime_adaptations?.animation_tier === "low";
+    if (quietCelebration || reducedMotion || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const burst = Array.from({ length: quietCelebration ? 4 : 10 }, () => ({
       id: sparkId.current++,
       dx: (Math.random() - 0.5) * 180,
@@ -502,7 +510,7 @@ export default function Mission() {
   }
 
   async function submit() {
-    if (done || input === "" || !q || attemptInFlight.current) return;
+    if (done || awaitingContinue || input === "" || !q || attemptInFlight.current) return;
     attemptInFlight.current = true;
     const given = parseInt(input, 10);
     const ms = Date.now() - startRef.current;
@@ -553,30 +561,26 @@ export default function Mission() {
       setResults((r) => [...r, true]);
       setMood(result.animation_hook || result.reward_hook ? "celebrate" : "happy");
       setMessage(result.feedback);
-      setRewardMoment(result.reward_hook.includes("compass") ? "Compass fragment collected" : "Learning reward advanced");
+      setRewardMoment(result.reward_hook?.includes("compass") ? "Compass fragment collected" : "Discovery added to your journey");
+      setJourneyEntries((entries) => [...entries, { prompt: q.prompt, feedback: result!.explanation || result!.feedback, repaired: showHint }]);
       setCorrectFlash(true);
       setTimeout(() => setCorrectFlash(false), 450);
       emitSparks();
       sfx.correct();
       sfx.charge();
-      setInput("");
-      startRef.current = Date.now();
-      setShowHint(false);
-      setConfidence(0);
-      setIdx((i) => i + 1);
+      setAwaitingContinue(true);
     } else {
       setResults((r) => [...r, false]);
       setMood("encourage");
       setMessage(result.feedback || result.companion_prompt || `Try again: ${q.prompt}`);
       setRewardMoment("Repair route opened");
-      setWrongFlash(true);
-      setTimeout(() => setWrongFlash(false), 400);
       if (route.mockAssessmentId) {
         setShowHint(false);
         setMessage(result.feedback || "That answer is saved. Let’s use the next question to build a clearer picture.");
         startRef.current = Date.now();
         setConfidence(0);
         setIdx((i) => i + 1);
+        setJourneyEntries((entries) => [...entries, { prompt: q.prompt, feedback: result!.feedback, repaired: false }]);
       } else {
         setShowHint(true);
         void recordLearningEvent("hint_opened", { question_id: q.id, objective_id: q.objectiveId, reason: "incorrect_response" });
@@ -585,6 +589,21 @@ export default function Mission() {
       setInput("");
     }
     attemptInFlight.current = false;
+  }
+
+  useEffect(() => {
+    if (awaitingContinue) feedbackRef.current?.focus();
+    else if (idx >= total) summaryRef.current?.focus();
+    else if (idx > 0) questionRef.current?.focus();
+  }, [awaitingContinue, idx, total]);
+
+  function continueJourney() {
+    setAwaitingContinue(false);
+    setInput("");
+    setShowHint(false);
+    setConfidence(0);
+    startRef.current = Date.now();
+    setIdx((i) => i + 1);
   }
 
   function key(k: string) {
@@ -620,6 +639,8 @@ export default function Mission() {
     setProjectedBand("Unknown");
     setMockSummary(undefined);
     setRewardMoment(null);
+    setJourneyEntries([]);
+    setAwaitingContinue(false);
     setLessonIdx(0);
     setLessonComplete(teachingSequence.length === 0);
     setResults([]);
@@ -737,8 +758,6 @@ export default function Mission() {
   const worldFocus = String(mission?.world?.config?.focus || mission?.world?.theme || "Configured learning mission");
   const adaptations = mission?.runtime_adaptations;
   const reward = worldReward(Number(mission?.world?.year_group || 0));
-  const rewardStyle = adaptations?.reward_style;
-  const rewardRoute = ({ collecting: "Collection route", story: "Story route", challenge: "Challenge route" } as Record<string, string>)[rewardStyle || ""] || "World growth route";
   const companionName = String(mission?.world?.config?.companion || "Nixi");
   const savedArtefacts = Array.isArray(mission?.world_state?.state?.artefacts) ? mission.world_state.state.artefacts.length : 0;
   const questionAudio = questionAudioURL(q, narrationAssets);
@@ -985,10 +1004,11 @@ export default function Mission() {
         </section>
       )}
 
-      <section
+      <details
         className="relative z-10 mx-auto mt-4 max-w-6xl rounded-[1.4rem] border border-white/12 bg-white/8 p-4 text-sm leading-6 text-white/76"
         aria-label="Fair mission promise"
       >
+        <summary className="cursor-pointer font-semibold text-white">Your pace. Hints when you need them. No lost progress.</summary>
         <div className="grid gap-3 md:grid-cols-3">
           <div className="rounded-2xl bg-[#17233f]/85 p-4">
             <p className="font-display text-sm font-semibold text-[#ffdf8a]">No timer pressure</p>
@@ -1003,31 +1023,19 @@ export default function Mission() {
             <p className="mt-1 text-xs leading-5 text-white/72">Touch, keyboard, switch, pointing, AAC or partner help can all show the same learning.</p>
           </div>
         </div>
-      </section>
+      </details>
 
-      <section
-        data-testid="mission-reward-track"
-        className="mission-reward-track"
-        aria-label="Learning reward route"
-      >
-        <h2 className="font-display text-xl font-semibold text-white">{rewardRoute}</h2>
-      </section>
-
-      {rewardMoment && (
-        <div
-          data-testid="mission-reward-moment"
-          className="mission-reward-moment"
-          role="status"
-          aria-live="polite"
-        >
-          <p className="font-display text-sm font-semibold text-white">{rewardMoment}</p>
-        </div>
-      )}
-
-      <div className={`relative z-10 mx-auto mt-6 grid max-w-6xl items-center gap-8 ${focusMode ? "grid-cols-1" : "md:grid-cols-[0.95fr_1.05fr]"}`}>
-        {/* LEFT: incubator scene */}
+      <div className={`relative z-10 mx-auto mt-6 grid max-w-6xl items-start gap-8 ${focusMode ? "grid-cols-1" : "md:grid-cols-[0.95fr_1.05fr]"}`}>
         <div className={`relative flex flex-col items-center ${focusMode ? "hidden" : ""}`}>
-          {/* sparks */}
+          <MissionJourney
+            key={mission?.activity?.id}
+            style={adaptations?.reward_style}
+            year={Number(mission?.world?.year_group || 1)}
+            total={total}
+            entries={journeyEntries}
+            currentPrompt={q?.prompt || "Your discoveries are ready to revisit."}
+            quiet={reducedMotion || adaptations?.celebration_intensity === "quiet"}
+          />
           <div className="pointer-events-none absolute inset-0 z-10" aria-hidden>
             {sparks.map((s) => (
               <span
@@ -1048,56 +1056,20 @@ export default function Mission() {
             <span className="anim-orbit absolute left-1/2 top-1/2 h-3 w-3 rounded-full bg-[var(--world-accent)] shadow-[0_0_24px_var(--world-accent)]" />
           </div>
 
-          {/* incubator */}
           <div className="relative z-10">
             <svg width="280" height="300" viewBox="0 0 280 300" aria-hidden>
-              {/* glass dome */}
-              <path
-                d="M40 190 A100 105 0 0 1 240 190 L240 230 L40 230 Z"
-                fill="rgba(140,200,255,0.12)"
-                stroke="rgba(140,200,255,0.45)"
-                strokeWidth="3"
-              />
-              {/* energy fill */}
-              <clipPath id="dome">
-                <path d="M40 190 A100 105 0 0 1 240 190 L240 230 L40 230 Z" />
-              </clipPath>
-              <rect
-                clipPath="url(#dome)"
-                x="40"
-                y={230 - (145 * charge) / total}
-                width="200"
-                height={(145 * charge) / total}
-                fill="color-mix(in srgb, var(--world-accent), transparent 65%)"
-                style={{ transition: "all 0.6s cubic-bezier(0.34,1.56,0.64,1)" }}
-              />
+              <path d="M40 190 A100 105 0 0 1 240 190 L240 230 L40 230 Z" fill="rgba(140,200,255,0.12)" stroke="rgba(140,200,255,0.45)" strokeWidth="3" />
+              <clipPath id="dome"><path d="M40 190 A100 105 0 0 1 240 190 L240 230 L40 230 Z" /></clipPath>
+              <rect clipPath="url(#dome)" x="40" y={230 - (145 * charge) / total} width="200" height={(145 * charge) / total} fill="color-mix(in srgb, var(--world-accent), transparent 65%)" style={{ transition: "all 0.6s cubic-bezier(0.34,1.56,0.64,1)" }} />
               <rect className="anim-scan-line" clipPath="url(#dome)" x="48" y="70" width="184" height="18" fill="rgba(255,255,255,0.18)" />
-              {/* base */}
               <rect x="20" y="228" width="240" height="34" rx="12" fill="#3b3470" />
               <rect x="36" y="262" width="208" height="14" rx="7" fill="#2c2757" />
-              {/* charge lights */}
               {Array.from({ length: total }).map((_, i) => (
-                <circle
-                  key={i}
-                  cx={56 + i * 24}
-                  cy="245"
-                  r="6"
-                  fill={i < charge ? worldAccent : "#1d1a3e"}
-                  className={i < charge ? "anim-glow" : ""}
-                />
+                <circle key={i} cx={56 + i * 24} cy="245" r="6" fill={i < charge ? worldAccent : "#1d1a3e"} className={i < charge ? "anim-glow" : ""} />
               ))}
             </svg>
-
-            {/* age-specific world reward inside the energy vessel */}
             <div className="absolute left-1/2 top-[108px] -translate-x-1/2">
-              <div
-                key={`${charge}-${hatched}`}
-                className={`flex h-28 w-28 items-center justify-center rounded-full bg-white/85 text-6xl shadow-[0_18px_48px_rgba(0,0,0,0.22)] ${
-                  charge > 0 ? "anim-egg-rock" : ""
-                } ${hatched ? "anim-pop anim-glow" : ""}`}
-                role="img"
-                aria-label={hatched ? reward.complete : `${reward.building}, ${progressPct}% complete`}
-              >
+              <div key={`${charge}-${hatched}`} className={`flex h-28 w-28 items-center justify-center rounded-full bg-white/85 text-6xl shadow-[0_18px_48px_rgba(0,0,0,0.22)] ${charge > 0 ? "anim-egg-rock" : ""} ${hatched ? "anim-pop anim-glow" : ""}`} role="img" aria-label={hatched ? reward.complete : `${reward.building}, ${progressPct}% complete`}>
                 {reward.symbol}
               </div>
             </div>
@@ -1167,8 +1139,20 @@ export default function Mission() {
               </p>
             )}
           </div>
+        ) : awaitingContinue ? (
+          <div ref={feedbackRef} tabIndex={-1} className="journey-feedback" data-testid="mission-reward-moment" aria-label="Discovery saved">
+            <p className="journey-eyebrow">Step {idx + 1} explored</p>
+            <h2>{rewardMoment}</h2>
+            <p>{message}</p>
+            {journeyEntries.at(-1)?.feedback !== message && <p>{journeyEntries.at(-1)?.feedback}</p>}
+            {hasQuestionAudio && <button type="button" className="btn-pop bg-white/15 px-4 py-3 text-white" onClick={() => readAloud(questionAudio)}>Listen to the question again</button>}
+            <button type="button" className="btn-pop bg-sun px-6 py-3 text-ink" onClick={continueJourney}>
+              {idx + 1 >= total ? "See my discoveries" : "Next discovery"}
+            </button>
+          </div>
         ) : !done ? (
-          <div role="region" aria-label="Mission question" className={`rounded-blob border border-white/10 bg-white/10 p-6 shadow-[0_24px_70px_rgba(0,0,0,0.22)] backdrop-blur md:p-8 ${wrongFlash ? "anim-shake" : ""}`}>
+          <div ref={questionRef} tabIndex={-1} role="region" aria-label="Mission question" className="rounded-blob border border-white/10 bg-white/10 p-6 shadow-[0_24px_70px_rgba(0,0,0,0.22)] backdrop-blur md:p-8">
+            {showHint && <p className="journey-repair" data-testid="mission-reward-moment" role="status">Repair route opened. Take a hint and try again.</p>}
             <div className="flex items-center justify-between text-sm text-white/60">
               <span className="font-display">
               Mission: {mission?.activity?.title || "Configured Mission"} - Q{idx + 1}/{total}
@@ -1182,7 +1166,7 @@ export default function Mission() {
                 <div
                   key={i}
                   className={`h-2 flex-1 rounded-full transition-colors ${
-                    i < results.length ? (results[i] ? "bg-leaf" : "bg-sun") : "bg-white/15"
+                    i < idx ? "bg-leaf" : i === idx && showHint ? "bg-sun" : "bg-white/15"
                   }`}
                 />
               ))}
@@ -1302,7 +1286,7 @@ export default function Mission() {
             </div>
           </div>
         ) : (
-          <div className="anim-pop rounded-blob bg-white p-8 text-ink shadow-card">
+          <div ref={summaryRef} tabIndex={-1} className="anim-pop rounded-blob bg-white p-8 text-ink shadow-card">
             <h2 className="font-display text-center text-3xl font-semibold">
               {hatched ? reward.complete : "Saving your world progress..."}
             </h2>

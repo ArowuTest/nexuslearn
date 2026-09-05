@@ -77,7 +77,7 @@ test("flagship mission visual states remain stable", async ({ page }, testInfo) 
   });
 
   await page.goto("/play/mission?studentId=ava-y1");
-  await expect(page.getByText("Blend c-a-t.", { exact: true })).toBeVisible();
+  await expect(page.locator('[role="region"][aria-label="Mission question"] .leading-tight')).toHaveText("Blend c-a-t.");
   await expect(page).toHaveScreenshot("mission-standard.png", {
     animations: "disabled",
     fullPage: false,

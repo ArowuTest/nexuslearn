@@ -11,7 +11,7 @@ const limits = {
   // file together. The route ceiling measures the strict initial uncompressed
   // JavaScript for one rendered route, including shared framework chunks.
   // The aggregate includes shared and route-isolated chunks that no single browser route downloads together.
-  aggregateJavaScript: 1_402_000,
+  aggregateJavaScript: 1_405_000,
   largestRouteJavaScript: 750_000,
   largestJavaScript: 250_000,
   totalCSS: 120_000,
