@@ -253,6 +253,7 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("POST /v1/admin/content/versions/{id}/promote", s.handlePromoteContentVersion)
 	s.mux.HandleFunc("GET /v1/admin/content/releases", s.handleContentReleases)
 	s.mux.HandleFunc("POST /v1/admin/content/releases", s.handleStageContentRelease)
+	s.mux.HandleFunc("POST /v1/admin/content/releases/preflight", s.handleReleasePreflight)
 	s.mux.HandleFunc("PUT /v1/admin/content/releases/{id}/packs/{packId}", s.handlePutContentReleaseChunk)
 	s.mux.HandleFunc("POST /v1/admin/content/releases/{id}/activate", s.handleActivateContentRelease)
 	s.mux.HandleFunc("GET /v1/admin/reward-rules", s.handleRewardRules)
@@ -2449,7 +2450,7 @@ func (s *Server) handleStageContentRelease(w http.ResponseWriter, r *http.Reques
 	if !ok {
 		return
 	}
-	r.Body = http.MaxBytesReader(w, r.Body, 1<<20)
+	r.Body = http.MaxBytesReader(w, r.Body, maxReleaseManifestBytes)
 	var manifest learning.ContentReleaseManifest
 	if err := json.NewDecoder(r.Body).Decode(&manifest); err != nil {
 		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid content release manifest"})

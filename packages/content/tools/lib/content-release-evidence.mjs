@@ -3,6 +3,7 @@ const audioReleaseIDPattern = /^narration-release-v2-[a-f0-9]{24}$/;
 const audioCatalogueIDPattern = /^variant-audio-catalog-v1-[a-f0-9]{24}$/;
 const audioAssetIDPattern = /^narration-v1-[a-f0-9]{24}$/;
 const sensitiveFieldPattern = /api[^a-z0-9]*key|token|secret|password|credential|transcript/i;
+const maxRequiredAudioAssets = 5000;
 const evidenceKeys = [
   "ai_review_identities",
   "human_review_batch_id",
@@ -83,8 +84,8 @@ function validateEvidenceMetadata(metadata, packs) {
   requireSignedID(metadata.audio_release_id, metadata.audio_release_sha256, audioReleaseIDPattern, "narration-release-v2-", "audio release");
   requireSignedID(metadata.audio_catalogue_id, metadata.audio_catalogue_sha256, audioCatalogueIDPattern, "variant-audio-catalog-v1-", "audio catalogue");
   if (metadata.audio_licence_id !== "provider_terms") throw new Error("audio licence must be provider_terms");
-  if (!Array.isArray(metadata.required_audio_assets) || metadata.required_audio_assets.length === 0 || metadata.required_audio_assets.length > 25000) {
-    throw new Error("required audio assets must contain between 1 and 25000 identities");
+  if (!Array.isArray(metadata.required_audio_assets) || metadata.required_audio_assets.length === 0 || metadata.required_audio_assets.length > maxRequiredAudioAssets) {
+    throw new Error(`required audio assets must contain between 1 and ${maxRequiredAudioAssets} identities`);
   }
   const assets = new Map();
   for (const [index, asset] of metadata.required_audio_assets.entries()) {

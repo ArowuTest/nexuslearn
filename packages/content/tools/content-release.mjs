@@ -13,14 +13,31 @@ main().catch((error) => {
 async function main() {
   const [command, directory, ...rest] = process.argv.slice(2);
   if (!command || command === "help" || command === "--help") return printHelp();
-  if (!["validate", "publish"].includes(command) || !directory) throw new Error("Use validate or publish with a release bundle directory");
+  if (!["validate", "preflight", "publish"].includes(command) || !directory) throw new Error("Use validate, preflight or publish with a release bundle directory");
   const options = parseArgs(rest);
+  if (options.activate && command !== "publish") throw new Error("--activate is only available for publish");
   const bundle = await readBundle(path.resolve(directory));
   console.log(`release valid id=${bundle.manifest.id} packs=${bundle.manifest.expected_pack_count} questions=${bundle.manifest.expected_question_count}`);
   if (command === "validate") return;
   const api = options.api ?? process.env.NEXUSLEARN_API_URL ?? process.env.NEXT_PUBLIC_API_URL;
   const auth = adminAuth(options);
-  if (!api || !auth) throw new Error("publish requires --api and --token or --admin-key");
+  if (!api || !auth) throw new Error(`${command} requires --api and --token or --admin-key`);
+  if (command === "preflight") {
+    if (bundle.manifest.channel !== "live") throw new Error("preflight requires a live bundle");
+    const report = await request(api, "/v1/admin/content/releases/preflight", "POST", auth, bundle.manifest);
+    if (report.release_id !== bundle.manifest.id || report.manifest_sha256 !== bundle.manifest.manifest_sha256) {
+      throw new Error("preflight response does not match the requested release");
+    }
+    if (!Array.isArray(report.checks) || report.checks.length === 0) throw new Error("preflight response is missing evidence checks");
+    for (const check of report.checks) console.log(`${check.passed === true ? "PASS" : "BLOCKED"} ${check.code}: ${check.message}`);
+    const requiredChecks = ["ai_review", "safeguarding", "audio_release", "audio_listening", "child_pilot"];
+    if (report.checks.length !== requiredChecks.length || requiredChecks.some(code => report.checks.filter(check => check.code === code).length !== 1)) {
+      throw new Error("preflight response does not contain every required evidence check exactly once");
+    }
+    if (report.evidence_ready !== true || report.checks.some(check => check.passed !== true)) throw new Error("release evidence is blocked");
+    console.log("Release evidence is current. Activation will recheck evidence and uploaded content.");
+    return;
+  }
   await request(api, "/v1/admin/content/releases", "POST", auth, bundle.manifest);
   console.log(`release staged ${bundle.manifest.id}`);
   for (const chunk of bundle.chunks) {
@@ -103,6 +120,7 @@ function sha256(value) { return createHash("sha256").update(value).digest("hex")
 function printHelp() {
   console.log(`Usage:
   node packages/content/tools/content-release.mjs validate <bundle-directory>
+  node packages/content/tools/content-release.mjs preflight <bundle-directory> --api <url>
   node packages/content/tools/content-release.mjs publish <bundle-directory> --api <url> --token <session> [--activate]
 
 Publishing is staged and idempotent. Activation is a separate, explicit operation.`);

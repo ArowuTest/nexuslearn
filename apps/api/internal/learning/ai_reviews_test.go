@@ -144,6 +144,12 @@ func TestEvaluateReviewSetRequiresBothCurrentAILanes(t *testing.T) {
 	if !got.ControlledPilotAllowed || got.MissingLaneCount != 0 {
 		t.Fatalf("unexpected gate %#v", got)
 	}
+	reviews[1].Stale = true
+	got = EvaluateReviewSet([]ReviewIdentity{identity}, reviews)
+	if got.ControlledPilotAllowed || got.StaleCount != 1 {
+		t.Fatalf("superseded approval must block release eligibility: %#v", got)
+	}
+	reviews[1].Stale = false
 
 	reviews[1].ContentHash = strings.Repeat("b", 64)
 	got = EvaluateReviewSet([]ReviewIdentity{identity}, reviews)

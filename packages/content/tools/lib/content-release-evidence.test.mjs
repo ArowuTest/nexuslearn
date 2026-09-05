@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import test from "node:test";
 import {
   releaseMetadataForBundle,
@@ -108,5 +109,24 @@ test("offline manifest validation repeats evidence checks and rejects secret-sha
       baseMetadata: { audit: { providerApiKey: "must-not-enter-release-metadata" } },
     }),
     /credential|forbidden/i,
+  );
+});
+
+test("release audio evidence cannot exceed the backend manifest import bound", () => {
+  const document = evidenceDocument();
+  document.metadata.required_audio_assets = Array.from({ length: 5001 }, (_, index) => {
+    const identity = createHash("sha256").update(`production-${index}`).digest("hex");
+    return {
+      asset_id: `narration-v1-${identity.slice(0, 24)}`,
+      text_sha256: hash("1"),
+      audio_sha256: hash("2"),
+      production_identity_sha256: identity,
+      production_profile_sha256: hash("4"),
+    };
+  });
+
+  assert.throws(
+    () => releaseMetadataForBundle({ channel: "live", packs, evidenceDocument: document, baseMetadata: {} }),
+    /between 1 and 5000/i,
   );
 });

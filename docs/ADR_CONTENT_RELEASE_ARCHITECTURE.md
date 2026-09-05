@@ -104,6 +104,20 @@ node packages/content/tools/objective-pack.mjs bundle --all \
 node packages/content/tools/content-release.mjs validate <release-dir>
 ```
 
+For a live bundle, operators can inspect the authoritative release gates before
+staging it:
+
+```sh
+node packages/content/tools/content-release.mjs preflight <live-release-dir> \
+  --api <api-url> --token <admin-session>
+```
+
+This is a read-only, administrator-only check. PostgreSQL evaluates the exact
+manifest in one repeatable-read transaction and returns stable blockers for
+current AI review, safeguarding, audio release, audio listening and child pilot
+evidence. It does not stage, upload or activate a release, and activation
+rechecks the same ledgers after upload.
+
 The review bundle is the immutable input to AI and human release review. After
 those reviews and the exact audio release are current, build the live bundle
 with a private, versioned evidence document:

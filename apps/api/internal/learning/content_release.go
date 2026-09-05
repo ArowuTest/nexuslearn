@@ -104,34 +104,20 @@ type ReleaseEvidenceMetadata struct {
 }
 
 func ValidateReleaseEvidence(channel string, ai AIReviewEligibility, human HumanReleaseEvidence) error {
-	switch strings.TrimSpace(channel) {
-	case "review":
-		return nil
-	case "pilot":
-		if !ai.ControlledPilotAllowed {
-			return fmt.Errorf("%w: controlled pilot requires current approval from both AI review lanes", ErrContentReleaseIncomplete)
-		}
-		return nil
-	case "live":
-		if !ai.ControlledPilotAllowed {
-			return fmt.Errorf("%w: live release requires current approval from both AI review lanes", ErrContentReleaseIncomplete)
-		}
-		if !human.SafeguardingApproved {
-			return fmt.Errorf("%w: live release requires independent human safeguarding approval", ErrContentReleaseIncomplete)
-		}
-		if !human.ExactAudioReleaseApproved {
-			return fmt.Errorf("%w: live release requires the exact technically valid audio release and catalogue", ErrContentReleaseIncomplete)
-		}
-		if !human.RequiredAudioListeningApproved {
-			return fmt.Errorf("%w: live release requires human listening approval for every required audio asset", ErrContentReleaseIncomplete)
-		}
-		if !human.ChildPilotEvidenceApproved {
-			return fmt.Errorf("%w: live release requires recorded real-child pilot evidence", ErrContentReleaseIncomplete)
-		}
-		return nil
-	default:
+	channel = strings.TrimSpace(channel)
+	if channel != "review" && channel != "pilot" && channel != "live" {
 		return fmt.Errorf("%w: invalid release evidence channel", ErrInvalidConfiguration)
 	}
+	label := "live release"
+	if channel == "pilot" {
+		label = "controlled pilot"
+	}
+	for _, check := range releaseEvidenceChecks(channel, ai, human) {
+		if !check.Passed {
+			return fmt.Errorf("%w: %s requires %s", ErrContentReleaseIncomplete, label, check.Message)
+		}
+	}
+	return nil
 }
 
 func releaseEvidenceMetadata(manifest ContentReleaseManifest) (ReleaseEvidenceMetadata, error) {

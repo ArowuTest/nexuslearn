@@ -146,7 +146,7 @@ func EvaluateReviewSet(identities []ReviewIdentity, reviews []AIReviewEvidence) 
 					continue
 				}
 				hasHistoricalReview = true
-				if ReviewEvidenceCurrent(*review, identity) {
+				if !review.Stale && ReviewEvidenceCurrent(*review, identity) {
 					current = review
 					break
 				}

@@ -151,6 +151,21 @@ and verifies the latest append-only listening decision. Legacy imported audio
 rows without a recorded supported licence remain deliberately ineligible until
 they are re-imported through the governed manifest path.
 
+Before an operator stages a live bundle, the read-only preflight can expose all
+current evidence blockers in one response:
+
+```sh
+node packages/content/tools/content-release.mjs preflight <live-release-dir> \
+  --api <api-url> --token <admin-session>
+```
+
+The API evaluates the exact manifest against the authoritative AI review,
+safeguarding, audio release, listening and child-pilot ledgers in one
+repeatable-read transaction. It returns stable check codes and aggregate AI
+counts, never review notes, transcripts or credentials. Preflight does not
+stage or activate anything; activation repeats the checks after upload so a
+report cannot become a stale approval.
+
 Live curriculum bundles must also carry a versioned private release-evidence
 document supplied to `objective-pack.mjs` with `--release-evidence`. The bundle
 gate requires exact one-to-one AI review identities for its pack payload
