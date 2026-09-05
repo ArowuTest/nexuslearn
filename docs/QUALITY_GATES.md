@@ -166,6 +166,13 @@ counts, never review notes, transcripts or credentials. Preflight does not
 stage or activate anything; activation repeats the checks after upload so a
 report cannot become a stale approval.
 
+Platform administrators can run the same check from the authenticated Admin
+Releases workspace by pasting the exact live manifest. The UI verifies the
+returned release identity and the complete five-code response before showing a
+result. Content reviewers may inspect release reports, but the operational
+preflight remains platform-admin-only; neither surface converts AI evidence or
+a preflight report into human approval.
+
 Live curriculum bundles must also carry a versioned private release-evidence
 document supplied to `objective-pack.mjs` with `--release-evidence`. The bundle
 gate requires exact one-to-one AI review identities for its pack payload
