@@ -24,6 +24,9 @@ func TestVersionAdvertisesCanonicalGradingForDeploymentChecks(t *testing.T) {
 	if version["pupil_question_contract"] != "render-v1" {
 		t.Fatalf("pupil-safe projection deployment cannot be verified: %+v", version)
 	}
+	if version["attempt_submission_contract"] != "typed-versioned-v1" {
+		t.Fatalf("legacy retirement deployment cannot be verified: %+v", version)
+	}
 }
 
 func TestAttemptCanonicalFailuresHaveActionableStatus(t *testing.T) {

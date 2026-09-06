@@ -20,8 +20,9 @@ var ErrInvalidResponse = errors.New("answer does not match the question response
 var ErrQuestionNeedsReview = errors.New("this activity needs review before it can be marked automatically")
 var ErrGradingUnavailable = errors.New("answer marking requires database persistence")
 
-// AnswerResponse is learner evidence, never an answer key. Legacy Given/Text
-// remain readable during rolling deployment, but Expected/Text are never trusted.
+// AnswerResponse is learner evidence, never an answer key. New submissions must
+// include this envelope and the served question version. Legacy fields remain
+// decodable only so completed pre-upgrade requests keep their replay fingerprint.
 type AnswerResponse struct {
 	Kind  string          `json:"kind"`
 	Value json.RawMessage `json:"value"`
@@ -70,6 +71,12 @@ func canonicalAnswer(q QuestionConfig) (string, any, error) {
 	if _, rubric := e["rubric"]; rubric {
 		return "review", nil, ErrQuestionNeedsReview
 	}
+	// Authored semantic-equivalence markers currently delegate judgement to a
+	// reviewer. Matching the example verbatim does not remove that requirement;
+	// unsupported future policy shapes must also fail closed, not be ignored.
+	if _, semanticPolicy := e["accepted_semantic_equivalents"]; semanticPolicy {
+		return "review", nil, ErrQuestionNeedsReview
+	}
 	if q.Format == "fair-test-plan" {
 		change, c := e["change"].(string)
 		measure, m := e["measure"].(string)
@@ -116,33 +123,19 @@ func gradeCanonicalAttempt(a Attempt, q QuestionConfig) (Attempt, AttemptResult,
 	if a.ObjectiveID != q.ObjectiveID || a.QuestionID != q.ID || (a.Format != "" && a.Format != q.Format) {
 		return a, AttemptResult{}, ErrQuestionUnavailable
 	}
-	if (a.Response != nil && a.QuestionVersion == "") || (a.QuestionVersion != "" && a.QuestionVersion != questionContractVersion(q)) {
+	if a.QuestionVersion == "" || a.QuestionVersion != questionContractVersion(q) {
 		return a, AttemptResult{}, ErrQuestionVersion
+	}
+	if a.Response == nil {
+		return a, AttemptResult{}, ErrInvalidResponse
 	}
 	kind, expected, err := canonicalAnswer(q)
 	if err != nil {
 		return a, AttemptResult{}, err
 	}
 	var given any
-	if a.Response != nil {
-		if a.Response.Kind != kind || json.Unmarshal(a.Response.Value, &given) != nil {
-			return a, AttemptResult{}, ErrInvalidResponse
-		}
-	} else {
-		// Decode according to the database contract, never Expected or ExpectedText.
-		switch kind {
-		case "number":
-			if a.decodedFromJSON && !a.givenPresent {
-				return a, AttemptResult{}, ErrInvalidResponse
-			}
-			given = float64(a.Given)
-		case "text":
-			given = a.GivenText
-		default:
-			if json.Unmarshal([]byte(a.GivenText), &given) != nil {
-				return a, AttemptResult{}, ErrInvalidResponse
-			}
-		}
+	if a.Response.Kind != kind || json.Unmarshal(a.Response.Value, &given) != nil {
+		return a, AttemptResult{}, ErrInvalidResponse
 	}
 	if !validResponseShape(kind, given) {
 		return a, AttemptResult{}, ErrInvalidResponse

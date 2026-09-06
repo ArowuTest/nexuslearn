@@ -1,13 +1,10 @@
 package learning
 
 import (
-	"encoding/json"
 	"strings"
 )
 
 type Attempt struct {
-	decodedFromJSON  bool
-	givenPresent     bool
 	ID               string          `json:"id,omitempty"`
 	IdempotencyKey   string          `json:"-"`
 	StudentID        string          `json:"student_id"`
@@ -25,26 +22,6 @@ type Attempt struct {
 	MS               int             `json:"ms"`
 	HintUsed         bool            `json:"hint_used"`
 	Confidence       int             `json:"confidence"`
-}
-
-// Track legacy numeric presence without altering JSON serialization or the
-// historical idempotency fingerprint. Explicit zero is evidence; null is not.
-func (a *Attempt) UnmarshalJSON(data []byte) error {
-	type wire Attempt
-	var decoded wire
-	if err := json.Unmarshal(data, &decoded); err != nil {
-		return err
-	}
-	var presence struct {
-		Given *int `json:"given"`
-	}
-	if err := json.Unmarshal(data, &presence); err != nil {
-		return err
-	}
-	*a = Attempt(decoded)
-	a.decodedFromJSON = true
-	a.givenPresent = presence.Given != nil
-	return nil
 }
 
 type AttemptResult struct {

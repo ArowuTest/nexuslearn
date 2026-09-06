@@ -372,11 +372,12 @@ func (s *Server) handleHealth(w http.ResponseWriter, _ *http.Request) {
 
 func (s *Server) handleVersion(w http.ResponseWriter, _ *http.Request) {
 	writeJSON(w, http.StatusOK, map[string]string{
-		"name":                    "nexuslearn-api",
-		"version":                 "0.4.0",
-		"slice":                   "3-configurable-platform-closure",
-		"grading_contract":        "canonical-v1",
-		"pupil_question_contract": "render-v1",
+		"name":                        "nexuslearn-api",
+		"version":                     "0.4.0",
+		"slice":                       "3-configurable-platform-closure",
+		"grading_contract":            "canonical-v1",
+		"pupil_question_contract":     "render-v1",
+		"attempt_submission_contract": "typed-versioned-v1",
 	})
 }
 

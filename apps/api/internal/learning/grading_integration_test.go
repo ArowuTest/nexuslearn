@@ -25,6 +25,7 @@ func TestPostgresAttemptDoesNotTrustClientAnswerKey(t *testing.T) {
 		t.Fatal(err)
 	}
 	a := Attempt{StudentID: "grading-child", ObjectiveID: "grading-objective", QuestionID: "grading-question", Format: "number-input", Given: 99, Expected: 99, IdempotencyKey: "forged-key"}
+	a = servedNumericAttempt(t, ctx, repo, a, `99`)
 	result, err := repo.RecordAttempt(ctx, a)
 	if err != nil {
 		t.Fatal(err)
@@ -74,7 +75,7 @@ func TestPostgresCanonicalGradingIntegrity(t *testing.T) {
 		t.Helper()
 		exec(`INSERT INTO students(external_ref,display_name,year_group) VALUES ($1,'Test pupil',3)`, name)
 		exec(`INSERT INTO questions(id,objective_id,format,body,expected_answer,status) VALUES ($1,'grading-objective','number-input','{"prompt":"2+3"}','{"value":5}','approved')`, name)
-		return Attempt{StudentID: name, ObjectiveID: "grading-objective", QuestionID: name, Format: "number-input", IdempotencyKey: name, Given: 5, Expected: 999}
+		return servedNumericAttempt(t, ctx, repo, Attempt{StudentID: name, ObjectiveID: "grading-objective", QuestionID: name, Format: "number-input", IdempotencyKey: name, Given: 5, Expected: 999}, `5`)
 	}
 	assertNoEvidence := func(a Attempt) {
 		t.Helper()
@@ -123,6 +124,35 @@ func TestPostgresCanonicalGradingIntegrity(t *testing.T) {
 			t.Fatalf("got %v", err)
 		}
 		assertNoEvidence(a)
+	})
+	t.Run("authored semantic review cannot write automatic evidence", func(t *testing.T) {
+		a := fresh("semantic-review")
+		exec(`UPDATE questions SET format='evidence-link',expected_answer='{"value":"Mina is cautious","accepted_semantic_equivalents":"teacher_review_required"}' WHERE id=$1`, a.QuestionID)
+		questions, err := repo.ListQuestionsForActivity(ctx, "", a.ObjectiveID, 500)
+		if err != nil {
+			t.Fatal(err)
+		}
+		for _, q := range questions {
+			if q.ID == a.QuestionID {
+				a.QuestionVersion = q.QuestionVersion
+			}
+		}
+		a.Format = "evidence-link"
+		a.Response = &AnswerResponse{Kind: "text", Value: json.RawMessage(`"Mina is cautious"`)}
+		if _, err := repo.RecordAttempt(ctx, a); !errors.Is(err, ErrQuestionNeedsReview) {
+			t.Fatalf("teacher review marker ignored: %v", err)
+		}
+		assertNoEvidence(a)
+		var writes int
+		if err := pool.QueryRow(ctx, `SELECT
+ (SELECT count(*) FROM student_objective_mastery m JOIN students s ON s.id=m.student_id WHERE s.external_ref='semantic-review') +
+ (SELECT count(*) FROM mastery_history WHERE question_id='semantic-review') +
+ (SELECT count(*) FROM request_idempotency WHERE request_key='semantic-review')`).Scan(&writes); err != nil {
+			t.Fatal(err)
+		}
+		if writes != 0 {
+			t.Fatalf("review-gated request left %d writes", writes)
+		}
 	})
 	t.Run("concurrent retries award once and replay after withdrawal", func(t *testing.T) {
 		a := fresh("concurrent")
@@ -183,7 +213,7 @@ func TestPostgresCanonicalGradingIntegrity(t *testing.T) {
 		if err != nil || !reflect.DeepEqual(replay, results[0]) {
 			t.Fatalf("withdrawal broke acknowledged replay: %+v %v", replay, err)
 		}
-		a.Given = 9
+		a.Response = &AnswerResponse{Kind: "number", Value: json.RawMessage(`9`)}
 		if _, err := repo.RecordAttempt(ctx, a); !errors.Is(err, ErrIdempotencyConflict) {
 			t.Fatalf("conflicting retry: %v", err)
 		}
@@ -254,6 +284,25 @@ func TestPostgresCanonicalGradingIntegrity(t *testing.T) {
 			t.Fatalf("active release answer failed: %+v %v", result, err)
 		}
 	})
+}
+
+// Obtain the version through the same pupil projection used by the client;
+// the answer itself is an independently authored fixture, not read from the key.
+func servedNumericAttempt(t *testing.T, ctx context.Context, repo *PostgresRepository, a Attempt, value string) Attempt {
+	t.Helper()
+	questions, err := repo.ListQuestionsForActivity(ctx, "", a.ObjectiveID, 500)
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, q := range questions {
+		if q.ID == a.QuestionID {
+			a.QuestionVersion = q.QuestionVersion
+			a.Response = &AnswerResponse{Kind: "number", Value: json.RawMessage(value)}
+			return a
+		}
+	}
+	t.Fatalf("fixture question %q was not served", a.QuestionID)
+	return a
 }
 
 func TestNoopRepositoryCannotCertifyAnswers(t *testing.T) {

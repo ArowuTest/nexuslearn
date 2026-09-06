@@ -7,7 +7,14 @@ test("real canonical decimal grading survives a lost acknowledgement without dup
   expect(["127.0.0.1", "localhost"]).toContain(url.hostname);
   const student = `grading-${info.project.name}`;
   const token = info.project.name === "desktop-chromium" ? process.env.GRADING_TOKEN_DESKTOP! : process.env.GRADING_TOKEN_MOBILE!;
+  const legacy = { student_id: student, objective_id: "grading-browser-objective", question_id: "grading-browser-question", given: 1, expected: 1 };
+  const retired = await page.request.post(`${api}/v1/learning/attempt`, {
+    headers: { "X-Pupil-Session": token }, data: legacy,
+  });
+  expect(retired.status()).toBe(409);
+  expect((await retired.json()).code).toBe("question_changed");
   const attempts: string[] = [];
+  let checkedTypedRequirement = false;
   await page.route("http://api.test/**", async route => {
     const request = route.request();
     const target = request.url().replace("http://api.test", api!);
@@ -17,6 +24,15 @@ test("real canonical decimal grading survives a lost acknowledgement without dup
       expect(mission.questions[0]).not.toHaveProperty("expected_answer");
       expect(mission.questions[0]).not.toHaveProperty("explanation");
       expect(mission.questions[0].response_kind).toBe("number");
+      if (!checkedTypedRequirement) {
+        const missingResponse = await page.request.post(`${api}/v1/learning/attempt`, {
+          headers: { "X-Pupil-Session": token },
+          data: { ...legacy, question_version: mission.questions[0].question_version },
+        });
+        expect(missingResponse.status()).toBe(422);
+        expect((await missingResponse.json()).code).toBe("answer_not_marked");
+        checkedTypedRequirement = true;
+      }
     }
     if (request.url().endsWith("/v1/learning/attempt")) {
       attempts.push(request.postData()!);
@@ -37,6 +53,7 @@ test("real canonical decimal grading survives a lost acknowledgement without dup
   await page.getByRole("button", { name: "Retry saving answer" }).click();
   await expect(page.getByRole("button", { name: "See my discoveries" })).toBeVisible();
   expect(attempts).toHaveLength(2);
+  expect(checkedTypedRequirement).toBe(true);
   expect(attempts[0]).toBe(attempts[1]);
   expect(JSON.parse(attempts[0]).response).toEqual({ kind: "number", value: 1.25 });
   await page.screenshot({ path: info.outputPath("canonical-decimal-saved.png"), animations: "disabled" });
