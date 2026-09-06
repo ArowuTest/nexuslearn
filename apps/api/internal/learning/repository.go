@@ -99,7 +99,7 @@ func completeIdempotency(ctx context.Context, tx pgx.Tx, scope string, actor str
 }
 
 type Repository interface {
-	RecordAttempt(ctx context.Context, attempt Attempt, result AttemptResult) (AttemptResult, error)
+	RecordAttempt(ctx context.Context, attempt Attempt) (AttemptResult, error)
 	ListMastery(ctx context.Context, studentID string) ([]StudentMastery, error)
 	RecentAttempts(ctx context.Context, studentID string, limit int) ([]RecentAttempt, error)
 	WarmUpItems(ctx context.Context, studentID string, limit int) ([]WarmUpItem, error)
@@ -174,8 +174,8 @@ type Repository interface {
 
 type NoopRepository struct{}
 
-func (NoopRepository) RecordAttempt(_ context.Context, _ Attempt, result AttemptResult) (AttemptResult, error) {
-	return result, nil
+func (NoopRepository) RecordAttempt(_ context.Context, _ Attempt) (AttemptResult, error) {
+	return AttemptResult{}, ErrGradingUnavailable
 }
 
 func (NoopRepository) ListMastery(_ context.Context, studentID string) ([]StudentMastery, error) {
@@ -493,9 +493,10 @@ func NewRepository(db *pgxpool.Pool) Repository {
 	return &PostgresRepository{db: db}
 }
 
-func (r *PostgresRepository) RecordAttempt(ctx context.Context, attempt Attempt, result AttemptResult) (AttemptResult, error) {
+func (r *PostgresRepository) RecordAttempt(ctx context.Context, attempt Attempt) (AttemptResult, error) {
+	var result AttemptResult
 	if attempt.StudentID == "" || attempt.ObjectiveID == "" {
-		return result, nil
+		return AttemptResult{}, ErrInvalidResponse
 	}
 
 	studentUUID, err := r.studentUUID(ctx, attempt.StudentID)
@@ -521,25 +522,25 @@ func (r *PostgresRepository) RecordAttempt(ctx context.Context, attempt Attempt,
 		}
 		return result, nil
 	}
+	question, err := canonicalQuestion(ctx, tx, attempt.QuestionID)
+	if err != nil {
+		return AttemptResult{}, err
+	}
+	attempt, result, err = gradeCanonicalAttempt(attempt, question)
+	if err != nil {
+		return AttemptResult{}, err
+	}
 	var priorScore int
 	if attempt.MockAssessmentID != "" {
 		if err := r.prepareMockAssessmentAttempt(ctx, tx, attempt, studentUUID); err != nil {
 			return result, err
 		}
-		if err := r.ensureObjective(ctx, tx, attempt.ObjectiveID); err != nil {
-			return result, err
-		}
-		// A mock is a sampled subject check, not mastery evidence. Keep its
-		// response and reward hooks, but do not create/update mastery, review,
-		// misconception or world-state rows from this one-off check.
-		result, err = r.applyRewardPolicy(ctx, tx, attempt.ObjectiveID, result)
-		if err != nil {
-			return result, err
-		}
+		// Mock results never claim mastery/energy that was not awarded.
+		result.MasteryGain, result.MasteryDelta, result.ProjectedScore, result.NextReviewDays = 0, 0, 0, 0
+		result.RewardHook, result.AnimationHook = "assessment-progress", "quiet-progress"
+		result.Feedback = "Your mock answer is recorded."
+		result.Explanation = "This mock answer is recorded separately from mastery and spaced review."
 	} else {
-		if err := r.ensureObjective(ctx, tx, attempt.ObjectiveID); err != nil {
-			return result, err
-		}
 		if _, err := tx.Exec(ctx, `
 			INSERT INTO student_objective_mastery (student_id, objective_id, score, band, updated_at)
 			VALUES ($1,$2,0,$3,now())
@@ -566,17 +567,23 @@ func (r *PostgresRepository) RecordAttempt(ctx context.Context, attempt Attempt,
 		}
 	}
 
+	if _, err := tx.Exec(ctx, `
+		INSERT INTO question_grading_versions(version,question_id,snapshot)
+		VALUES ($1,$2,$3::jsonb) ON CONFLICT (version) DO NOTHING
+	`, attempt.QuestionVersion, question.ID, mustJSON(question)); err != nil {
+		return result, err
+	}
 	_, err = tx.Exec(ctx, `
 		INSERT INTO question_attempts (
 			student_id, objective_id, question_id, format, expected_answer, given_answer,
 			correct, response_ms, hint_used, confidence, mastery_delta, explanation, response_mode,
-			mock_assessment_id
+			mock_assessment_id, question_version
 		)
-		VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,NULLIF($10,0),$11,$12,$13,NULLIF($14,'')::uuid)
+		VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,NULLIF($10,0),$11,$12,$13,NULLIF($14,'')::uuid,$15)
 	`, studentUUID, attempt.ObjectiveID, attempt.QuestionID, attemptFormat(attempt),
 		expectedAnswerText(attempt), givenAnswerText(attempt),
 		result.Correct, attempt.MS, attempt.HintUsed, attempt.Confidence,
-		result.MasteryDelta, result.Explanation, attemptResponseMode(attempt), attempt.MockAssessmentID)
+		result.MasteryDelta, result.Explanation, attemptResponseMode(attempt), attempt.MockAssessmentID, attempt.QuestionVersion)
 	if err != nil {
 		return result, err
 	}

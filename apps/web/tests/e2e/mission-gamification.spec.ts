@@ -47,6 +47,7 @@ test("mission renders the learner reward style and backend reward moment", async
           objective_id: "ma-y3-number-recall-3-4-8-tables",
           format: "timed-recall",
           body: { prompt: "What is 3 × 4?", a: 3, b: 4, input: "number" },
+          question_version: "fixture-version",
           expected_answer: { value: 12 },
           hints: ["Think of three groups of four."],
           explanation: "Three groups of four make twelve.",

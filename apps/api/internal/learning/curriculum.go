@@ -394,6 +394,8 @@ type ActivityConfig struct {
 }
 
 type QuestionConfig struct {
+	QuestionVersion string         `json:"question_version,omitempty"`
+	ResponseKind    string         `json:"response_kind,omitempty"`
 	ID              string         `json:"id"`
 	ActivityID      string         `json:"activity_id"`
 	ObjectiveID     string         `json:"objective_id"`

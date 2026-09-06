@@ -1,23 +1,50 @@
 package learning
 
-import "strings"
+import (
+	"encoding/json"
+	"strings"
+)
 
 type Attempt struct {
-	ID               string `json:"id,omitempty"`
-	IdempotencyKey   string `json:"-"`
-	StudentID        string `json:"student_id"`
-	MockAssessmentID string `json:"mock_assessment_id,omitempty"`
-	ObjectiveID      string `json:"objective_id"`
-	QuestionID       string `json:"question_id"`
-	Format           string `json:"format"`
-	ResponseMode     string `json:"response_mode"`
-	Given            int    `json:"given"`
-	Expected         int    `json:"expected"`
-	GivenText        string `json:"given_text"`
-	ExpectedText     string `json:"expected_text"`
-	MS               int    `json:"ms"`
-	HintUsed         bool   `json:"hint_used"`
-	Confidence       int    `json:"confidence"`
+	decodedFromJSON  bool
+	givenPresent     bool
+	ID               string          `json:"id,omitempty"`
+	IdempotencyKey   string          `json:"-"`
+	StudentID        string          `json:"student_id"`
+	MockAssessmentID string          `json:"mock_assessment_id,omitempty"`
+	ObjectiveID      string          `json:"objective_id"`
+	QuestionID       string          `json:"question_id"`
+	QuestionVersion  string          `json:"question_version,omitempty"`
+	Response         *AnswerResponse `json:"response,omitempty"`
+	Format           string          `json:"format"`
+	ResponseMode     string          `json:"response_mode"`
+	Given            int             `json:"given"`
+	Expected         int             `json:"expected"`
+	GivenText        string          `json:"given_text"`
+	ExpectedText     string          `json:"expected_text"`
+	MS               int             `json:"ms"`
+	HintUsed         bool            `json:"hint_used"`
+	Confidence       int             `json:"confidence"`
+}
+
+// Track legacy numeric presence without altering JSON serialization or the
+// historical idempotency fingerprint. Explicit zero is evidence; null is not.
+func (a *Attempt) UnmarshalJSON(data []byte) error {
+	type wire Attempt
+	var decoded wire
+	if err := json.Unmarshal(data, &decoded); err != nil {
+		return err
+	}
+	var presence struct {
+		Given *int `json:"given"`
+	}
+	if err := json.Unmarshal(data, &presence); err != nil {
+		return err
+	}
+	*a = Attempt(decoded)
+	a.decodedFromJSON = true
+	a.givenPresent = presence.Given != nil
+	return nil
 }
 
 type AttemptResult struct {
@@ -38,7 +65,11 @@ type AttemptResult struct {
 
 // ScoreAttempt applies the v1 explainable scoring rules.
 func ScoreAttempt(a Attempt) AttemptResult {
-	if !attemptCorrect(a) {
+	return scoreCorrectness(a, attemptCorrect(a))
+}
+
+func scoreCorrectness(a Attempt, correct bool) AttemptResult {
+	if !correct {
 		return AttemptResult{
 			Correct:         false,
 			MasteryGain:     0,

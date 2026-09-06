@@ -372,9 +372,10 @@ func (s *Server) handleHealth(w http.ResponseWriter, _ *http.Request) {
 
 func (s *Server) handleVersion(w http.ResponseWriter, _ *http.Request) {
 	writeJSON(w, http.StatusOK, map[string]string{
-		"name":    "nexuslearn-api",
-		"version": "0.4.0",
-		"slice":   "3-configurable-platform-closure",
+		"name":             "nexuslearn-api",
+		"version":          "0.4.0",
+		"slice":            "3-configurable-platform-closure",
+		"grading_contract": "canonical-v1",
 	})
 }
 
@@ -3654,9 +3655,22 @@ func (s *Server) handleAttempt(w http.ResponseWriter, r *http.Request) {
 	if !s.requirePupilSession(w, r, in.StudentID) {
 		return
 	}
-	result := learning.ScoreAttempt(in)
-	adjusted, err := s.repo.RecordAttempt(r.Context(), in, result)
+	result, err := s.repo.RecordAttempt(r.Context(), in)
 	if err != nil {
+		switch {
+		case errors.Is(err, learning.ErrQuestionUnavailable):
+			writeJSON(w, http.StatusNotFound, map[string]string{"code": "question_unavailable", "error": err.Error()})
+			return
+		case errors.Is(err, learning.ErrQuestionVersion):
+			writeJSON(w, http.StatusConflict, map[string]string{"code": "question_changed", "error": err.Error()})
+			return
+		case errors.Is(err, learning.ErrInvalidResponse), errors.Is(err, learning.ErrQuestionNeedsReview):
+			writeJSON(w, http.StatusUnprocessableEntity, map[string]string{"code": "answer_not_marked", "error": err.Error()})
+			return
+		case errors.Is(err, learning.ErrGradingUnavailable):
+			writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": err.Error()})
+			return
+		}
 		if errors.Is(err, learning.ErrIdempotencyConflict) {
 			writeJSON(w, http.StatusConflict, map[string]string{"error": "idempotency key was reused with a different attempt"})
 			return
@@ -3681,7 +3695,6 @@ func (s *Server) handleAttempt(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "answer could not be saved"})
 		return
 	}
-	result = adjusted
 	writeJSON(w, http.StatusOK, result)
 }
 

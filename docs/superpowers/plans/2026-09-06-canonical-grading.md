@@ -1,8 +1,8 @@
 # Canonical grading and trustworthy progression — next repair batch
 
-Status: implementation plan, **not implemented or approved for release**. Follows G01/G06 in the September game audit and the mission integrity/access repair batch.
+Status: **partially implemented** in the canonical grading remediation batch. The transaction boundary, typed/versioned response path, durable deduplicated contract snapshots, mock separation and recovery tests are implemented. Public answer-key decoupling, retirement of legacy unversioned requests and richer authored marking policies remain open. See `docs/reviews/2026-09-06-canonical-grading-batch.md` for evidence and limits. Follows G01/G06 in the September game audit and mission integrity/access repair batch.
 
-## Verified current boundary
+## Verified pre-remediation boundary
 
 `internal/server/server.go:handleAttempt` decodes browser-supplied `expected` / `expected_text`, calls `learning.ScoreAttempt`, then hands the result to `PostgresRepository.RecordAttempt`. The repository begins an idempotent transaction before applying mastery, mock results and world rewards. Mock membership is checked, but ordinary attempts do not currently load a canonical question for grading. `ListQuestionsForActivity` already restricts mission candidates by runtime status and active release; the grading path must not bypass that governance.
 

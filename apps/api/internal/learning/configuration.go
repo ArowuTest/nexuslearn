@@ -2982,7 +2982,9 @@ func scanQuestion(row pgx.Row) (QuestionConfig, error) {
 	_ = json.Unmarshal(bodyRaw, &question.Body)
 	_ = json.Unmarshal(expectedRaw, &question.ExpectedAnswer)
 	_ = json.Unmarshal(hintsRaw, &question.Hints)
-	question.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+	question.UpdatedAt = updatedAt.UTC().Format(time.RFC3339Nano)
+	question.QuestionVersion = questionContractVersion(question)
+	question.ResponseKind, _, _ = canonicalAnswer(question)
 	return question, nil
 }
 

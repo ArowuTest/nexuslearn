@@ -1,6 +1,6 @@
 import { expect, test, type Page } from "@playwright/test";
 
-type Fixture = { format: string; body: Record<string, unknown>; expected: string | number; hints?: string[]; switchAccess?: boolean };
+type Fixture = { format: string; body: Record<string, unknown>; expected: string | number; hints?: string[]; switchAccess?: boolean; responseKind?: string; version?: string | null };
 async function mission(page: Page, fixture: Fixture) {
   await page.route("http://api.test/**", async route => {
     // Unconfigured reports are unavailable, not malformed successful reports.
@@ -11,7 +11,7 @@ async function mission(page: Page, fixture: Fixture) {
       objective: { id: "integrity-objective", year: 3, subject: "Mathematics", strand: "Number", topic: "Learning", statement: "Explore a learning model.", prerequisites: [], misconceptions: [], mastery: { expected: 80, secure: 90, retention_days: [1, 7, 30], required_formats: [fixture.format] }, parent_explanation: "", teacher_evidence: "" },
       world: { key: "explorer-islands", name: "Explorer Islands", year_group: 3, config: { accent: "#55cbd3", companion: "Nixi" }, enabled: true },
       world_state: { student_id: "integrity-learner", world_key: "explorer-islands", state: { artefacts: [] } },
-      questions: [{ id: "integrity-question", objective_id: "integrity-objective", activity_id: "integrity-activity", format: fixture.format, body: fixture.body, expected_answer: { value: fixture.expected }, hints: fixture.hints ?? [], explanation: "Look at the evidence.", status: "published" }],
+      questions: [{ id: "integrity-question", question_version: fixture.version === null ? undefined : "version-1", response_kind: fixture.responseKind, objective_id: "integrity-objective", activity_id: "integrity-activity", format: fixture.format, body: fixture.body, expected_answer: { value: fixture.expected }, hints: fixture.hints ?? [], explanation: "Look at the evidence.", status: "published" }],
       runtime_adaptations: { animation_tier: "static", reduced_motion: true, celebration_intensity: "quiet", question_limit: 1, scaffold_level: "standard", audio_support: false, reading_support: false, reward_style: "collecting", switch_access: fixture.switchAccess ?? false, reasons: [] },
     } });
   });
@@ -27,6 +27,67 @@ async function typeNumber(page: Page, value: string) {
   await page.getByLabel("Keyboard answer", { exact: true }).fill(value);
 }
 
+test("decimal answers send typed learner evidence and version, never an answer key", async ({ page }) => {
+  await mission(page, { ...numberFixture, expected: 1.25, responseKind: "number" });
+  let sent: Record<string, unknown> | undefined;
+  await page.route("http://api.test/v1/learning/attempt", async route => { sent = route.request().postDataJSON(); await route.fulfill({ json: result() }); });
+  await open(page);
+  await typeNumber(page, "1.25");
+  await page.getByRole("button", { name: "Submit answer", exact: true }).click();
+  await expect(page.getByRole("button", { name: "See my discoveries" })).toBeVisible();
+  expect(sent?.response).toEqual({ kind: "number", value: 1.25 });
+  expect(sent?.question_version).toBe("version-1");
+  expect(sent).not.toHaveProperty("expected");
+  expect(sent).not.toHaveProperty("expected_text");
+});
+
+test("a stale question offers recovery without pretending a save is still pending", async ({ page }) => {
+  await mission(page, numberFixture);
+  let calls = 0;
+  await page.route("http://api.test/v1/learning/attempt", async route => { calls++; await route.fulfill({ status: 409, json: { code: "question_changed", error: "question changed; reload the mission before answering" } }); });
+  await open(page);
+  await typeNumber(page, "12");
+  await page.getByRole("button", { name: "Submit answer", exact: true }).click();
+  await expect(page.getByRole("alert", { name: "Answer saving" })).toContainText("question changed");
+  await expect(page.getByRole("button", { name: "Retry saving answer" })).toHaveCount(0);
+  await expect(page.getByRole("link", { name: "Choose another mission" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "See my discoveries" })).toHaveCount(0);
+  expect(calls).toBe(1);
+});
+
+test("a malformed local structured answer stays editable and never starts a save", async ({ page }) => {
+  await mission(page, { format: "sound-box-build", responseKind: "sequence", body: { prompt: "Build dog.", sounds: ["d", "o", "g"], tiles: ["d", "o", "g"], sound_boxes: 3 }, expected: '["d","o","g"]' });
+  let calls = 0;
+  await page.route("http://api.test/v1/learning/attempt", async route => { calls++; await route.fulfill({ json: result() }); });
+  await open(page);
+  await typeNumber(page, "dog");
+  await page.getByRole("button", { name: "Submit answer", exact: true }).click();
+  await expect(page.getByLabel("Keyboard answer", { exact: true })).toBeEnabled();
+  await expect(page.getByRole("button", { name: "Retry saving answer" })).toHaveCount(0);
+  expect(calls).toBe(0);
+  for (const invalid of ["null", "[]", "{}"] ) {
+    await page.getByLabel("Keyboard answer", { exact: true }).fill(invalid);
+    await page.getByRole("button", { name: "Submit answer", exact: true }).click();
+    await expect(page.getByLabel("Keyboard answer", { exact: true })).toBeEnabled();
+    expect(calls).toBe(0);
+  }
+  await page.getByLabel("Keyboard answer", { exact: true }).fill('["d","o","g"]');
+  await page.getByRole("button", { name: "Submit answer", exact: true }).click();
+  await expect(page.getByRole("button", { name: "See my discoveries" })).toBeVisible();
+  expect(calls).toBe(1);
+});
+
+test("a client never submits to an older unversioned grading API", async ({ page }) => {
+  await mission(page, { ...numberFixture, version: null });
+  let calls = 0;
+  await page.route("http://api.test/v1/learning/attempt", async route => { calls++; await route.fulfill({ json: result() }); });
+  await open(page);
+  await typeNumber(page, "12");
+  await page.getByRole("button", { name: "Submit answer", exact: true }).click();
+  await expect(page.getByRole("alert", { name: "Answer saving" })).toContainText("updated");
+  expect(calls).toBe(0);
+});
+
 test("sound-box construction reaches submission without changing response mode", async ({ page }) => {
   await mission(page, { format: "sound-box-build", body: { prompt: "Build dog.", sounds: ["d", "o", "g"], tiles: ["g", "d", "o"], sound_boxes: 3 }, expected: '["d","o","g"]' });
   let sent: Record<string, unknown> | undefined;
@@ -40,7 +101,7 @@ test("sound-box construction reaches submission without changing response mode",
   await builder.getByRole("button", { name: "Use these boxes" }).click();
   await page.getByRole("button", { name: "Submit answer", exact: true }).click();
   await expect(page.getByRole("button", { name: "See my discoveries" })).toBeVisible();
-  expect(sent?.given_text).toBe('["d","o","g"]');
+  expect(sent?.response).toEqual({ kind: "text", value: '["d","o","g"]' });
 });
 
 test("noun-phrase construction can send the built phrase", async ({ page }) => {
@@ -52,7 +113,7 @@ test("noun-phrase construction can send the built phrase", async ({ page }) => {
   for (const word of ["the", "small", "dog"]) await builder.getByRole("button", { name: word, exact: true }).click();
   await page.getByRole("button", { name: "Submit answer", exact: true }).click();
   await expect(page.getByRole("button", { name: "See my discoveries" })).toBeVisible();
-  expect(sent?.given_text).toBe("the small dog");
+  expect(sent?.response).toEqual({ kind: "text", value: "the small dog" });
 });
 
 test("authored hints open progressively and actual support is recorded", async ({ page }) => {
@@ -152,7 +213,7 @@ test("specialist keyboard responses retain one validated submission path", async
   await page.getByRole("group", { name: "Grammar edit choices" }).getByRole("button", { name: /The dog runs\./ }).click();
   await page.getByRole("button", { name: "Submit grammar answer" }).click();
   await expect(page.getByRole("button", { name: "See my discoveries" })).toBeVisible();
-  expect(sent?.given_text).toBe("The dog runs.");
+  expect(sent?.response).toEqual({ kind: "text", value: "The dog runs." });
 });
 
 test("support toggles record one event per pupil action", async ({ page }) => {

@@ -59,7 +59,8 @@ type fakeRepository struct {
 	hasBaseline         bool
 }
 
-func (f fakeRepository) RecordAttempt(_ context.Context, _ learning.Attempt, result learning.AttemptResult) (learning.AttemptResult, error) {
+func (f fakeRepository) RecordAttempt(_ context.Context, _ learning.Attempt) (learning.AttemptResult, error) {
+	result := learning.AttemptResult{}
 	if f.recordAttemptErr != nil {
 		return result, f.recordAttemptErr
 	}

@@ -25,8 +25,16 @@ import {
 import { playProducedAudio, sfx, setMuted } from "@/lib/sound";
 import { resolveNarrationFields, useNarrationAssets } from "@/lib/narration";
 
+// Shared class groups keep repeated mission surfaces visually consistent.
+const missionSubheadingClass = "font-display text-sm font-semibold uppercase tracking-[0.14em] text-[#5a3ca8]";
+const missionPanelClass = "rounded-blob border border-white/10 bg-white/10 p-6 shadow-[0_24px_70px_rgba(0,0,0,0.22)] backdrop-blur md:p-8";
+const missionUnavailableClass = "flex min-h-screen items-center justify-center bg-gradient-to-b from-[#241f56] to-[#1a3a3d] px-6 text-white";
+const missionStatusClass = "mission-status-pill rounded-full bg-white/10 px-4 py-1.5 text-white/75";
+
 type Q = {
   id: string;
+  questionVersion?: string;
+  responseKind?: string;
   a?: number;
   b?: number;
   expected: number | string;
@@ -182,7 +190,7 @@ export default function Mission() {
   const [message, setMessage] = useState("Loading configured mission content...");
   const [hintCount, setHintCount] = useState(0);
   const showHint = hintCount > 0;
-  const [saveState, setSaveState] = useState<"idle" | "saving" | "uncertain">("idle");
+  const [saveState, setSaveState] = useState<"idle" | "saving" | "uncertain" | "rejected">("idle");
   const [rewardMoment, setRewardMoment] = useState<string | null>(null);
   const [journeyEntries, setJourneyEntries] = useState<JourneyEntry[]>([]);
   const [awaitingContinue, setAwaitingContinue] = useState(false);
@@ -238,24 +246,19 @@ export default function Mission() {
   }, [clientRequestId, studentId]);
 
   function expectedValue(question: MissionConfig["questions"][number]) {
-    const value = question.expected_answer?.value;
+    const answer = question.expected_answer;
+    const value = answer?.value;
     if (typeof value === "number" || typeof value === "string") return value;
-    const sequence = question.expected_answer?.sequence;
+    const sequence = answer?.sequence ?? value;
     if (Array.isArray(sequence) && sequence.every((item) => typeof item === "string" || typeof item === "number")) {
-      return JSON.stringify(sequence.map(String));
+      if (!answer?.sequence && question.format === "word-build") return sequence.join("");
+      return JSON.stringify(question.format === "coordinate-plot" ? sequence : sequence.map(String));
     }
-    if (question.format === "coordinate-plot" && Array.isArray(value) && value.length === 2 && value.every((item) => typeof item === "number" && Number.isFinite(item))) {
-      return JSON.stringify(value);
+    if (question.format === "fair-test-plan" && typeof answer?.change === "string" && typeof answer?.measure === "string" && Array.isArray(answer?.keep_same)) {
+      return JSON.stringify({ change: answer.change, measure: answer.measure, keep_same: answer.keep_same.map(String).sort() });
     }
-    if (question.format === "fair-test-plan" && typeof question.expected_answer?.change === "string" && typeof question.expected_answer?.measure === "string" && Array.isArray(question.expected_answer?.keep_same)) {
-      return JSON.stringify({ change: question.expected_answer.change, measure: question.expected_answer.measure, keep_same: question.expected_answer.keep_same.map(String).sort() });
-    }
-    if (Array.isArray(value) && value.every((item) => typeof item === "string" || typeof item === "number")) {
-      return question.format === "word-build" ? value.join("") : JSON.stringify(value.map(String));
-    }
-    if (question.format === "pattern-sort" && value && typeof value === "object" && !Array.isArray(value)) return JSON.stringify(value);
-    if (question.format === "fraction-wall" && value && typeof value === "object" && !Array.isArray(value)) return JSON.stringify(value);
-    if (question.format === "trace-path" && Array.isArray(question.expected_answer?.rubric)) return "trace-path-complete";
+    if (["pattern-sort", "fraction-wall"].includes(question.format) && value && typeof value === "object" && !Array.isArray(value)) return JSON.stringify(value);
+    if (question.format === "trace-path" && Array.isArray(answer?.rubric)) return "trace-path-complete";
     return undefined;
   }
 
@@ -319,31 +322,34 @@ export default function Mission() {
             const data = (await res.json()) as MissionConfig;
             const configured = (data.questions || [])
               .map((question) => {
-                const a = Number(question.body?.a);
-                const b = Number(question.body?.b);
+                const body = question.body || {};
+                const a = Number(body.a);
+                const b = Number(body.b);
                 const rawExpected = expectedValue(question);
                 const expected = typeof rawExpected === "number" || typeof rawExpected === "string" ? rawExpected : Number(rawExpected);
-                const choices = Array.isArray(question.body?.choices) ? question.body.choices.filter((choice) => typeof choice === "number" || typeof choice === "string") as Array<number | string> : [];
+                const choices = Array.isArray(body.choices) ? body.choices.filter((choice) => typeof choice === "number" || typeof choice === "string") as Array<number | string> : [];
                 const hasTextInteraction = typeof expected === "string";
-                const hasExplicitNumberInput = question.body?.input === "number" || question.body?.response === "number";
-                const hasGraphData = ["graph-reader", "graph-table-investigation"].includes(question.format) && (Array.isArray(question.body?.data) || Array.isArray(question.body?.data_points) || Array.isArray(question.body?.data_table));
-                const hasColumnCalculation = question.format === "column-calculate" && Array.isArray(question.body?.operands) && question.body.operands.length === 2;
-                const hasOperationModel = question.format === "operation-model" && (Number.isFinite(Number(question.body?.start)) || typeof question.body?.expression === "string");
-                const hasProblemMap = question.format === "problem-map" && Array.isArray(question.body?.quantity_cards) && question.body.quantity_cards.length > 0;
-                const hasPartWholeModel = question.format === "part-whole-build" && Number.isFinite(Number(question.body?.whole)) && Number.isFinite(Number(question.body?.given_part));
+                const hasExplicitNumberInput = body.input === "number" || body.response === "number";
+                const hasGraphData = ["graph-reader", "graph-table-investigation"].includes(question.format) && (Array.isArray(body.data) || Array.isArray(body.data_points) || Array.isArray(body.data_table));
+                const hasColumnCalculation = question.format === "column-calculate" && Array.isArray(body.operands) && body.operands.length === 2;
+                const hasOperationModel = question.format === "operation-model" && (Number.isFinite(Number(body.start)) || typeof body.expression === "string");
+                const hasProblemMap = question.format === "problem-map" && Array.isArray(body.quantity_cards) && body.quantity_cards.length > 0;
+                const hasPartWholeModel = question.format === "part-whole-build" && Number.isFinite(Number(body.whole)) && Number.isFinite(Number(body.given_part));
                 const hasNumericInteraction = Number.isFinite(expected) && ((Number.isFinite(a) && Number.isFinite(b)) || choices.length > 0 || hasExplicitNumberInput || hasGraphData || hasColumnCalculation || hasOperationModel || hasProblemMap || hasPartWholeModel);
                 if (!hasTextInteraction && !hasNumericInteraction) return null;
                 return {
                   id: question.id,
+                  questionVersion: question.question_version,
+                  responseKind: question.response_kind,
                   a: Number.isFinite(a) ? a : undefined,
                   b: Number.isFinite(b) ? b : undefined,
                   expected,
-                  prompt: String(question.body?.prompt || `${a} x ${b}`),
+                  prompt: String(body.prompt || `${a} x ${b}`),
                   objectiveId: question.objective_id,
                   format: question.format,
                   choices,
                   hints: question.hints || [],
-                  body: question.body || {},
+                  body,
                   explanation: question.explanation || "",
                   selectionReason: question.selection_reason || "Chosen to balance challenge, coverage and fresh evidence.",
                 };
@@ -528,27 +534,43 @@ export default function Mission() {
 
   async function submit() {
     if (done || awaitingContinue || input === "" || !q || attemptInFlight.current) return;
+    if (!q.questionVersion) {
+      setMessage("This mission is being updated. Please reopen it shortly.");
+      setSaveState("rejected");
+      return;
+    }
+    const given = Number(input);
+    const isTextAnswer = typeof q.expected === "string";
+    const kind = q.responseKind || (isTextAnswer ? "text" : "number");
+    let value: unknown;
+    if (!pendingAttempt.current) {
+      try {
+        value = kind === "number" ? given : ["sequence", "mapping"].includes(kind) ? JSON.parse(input) : input;
+        if (kind === "number" && (!input.trim() || !Number.isFinite(given))) throw new Error();
+        if (kind === "sequence" && (!Array.isArray(value) || !value.length)) throw new Error();
+        if (kind === "mapping" && (!value || typeof value !== "object" || Array.isArray(value) || !Object.keys(value).length)) throw new Error();
+      } catch {
+        setMessage("Please check your answer, or use the activity controls to build it.");
+        return;
+      }
+    }
     attemptInFlight.current = true;
     setSaveState("saving");
-    const given = parseInt(input, 10);
     const ms = Date.now() - startRef.current;
     let result: AttemptResult | null = null;
 
     if (API) {
       try {
-        const isTextAnswer = typeof q.expected === "string";
         if (!pendingAttempt.current) pendingAttempt.current = JSON.stringify({
             id: clientRequestId("attempt"),
             student_id: studentId,
             objective_id: q.objectiveId,
             question_id: q.id,
+            question_version: q.questionVersion,
+            response: { kind, value },
             mock_assessment_id: route.mockAssessmentId || undefined,
             format: q.format,
             response_mode: responseMode,
-            given: isTextAnswer ? 0 : given,
-            expected: isTextAnswer ? 0 : Number(q.expected),
-            given_text: isTextAnswer ? input : "",
-            expected_text: isTextAnswer ? String(q.expected) : "",
             ms,
             hint_used: showHint,
             confidence,
@@ -562,6 +584,12 @@ export default function Mission() {
         if (res.ok) {
           const body = await res.json();
           if (typeof body?.correct === "boolean") result = body as AttemptResult;
+        } else if ([400, 401, 403, 404, 409, 422].includes(res.status)) {
+          const body = await res.json();
+          setMessage(typeof body.error === "string" ? body.error : "This answer could not be marked. Please choose another mission.");
+          setSaveState("rejected");
+          attemptInFlight.current = false;
+          return;
         }
       } catch {
         result = null;
@@ -569,7 +597,7 @@ export default function Mission() {
     }
     if (!result) {
       setMood("encourage");
-      setMessage("I could not confirm that your answer was saved. Your answer is still here.");
+      setMessage("I could not confirm that your answer was saved. Your answer is still here. Retry saving before changing it.");
       setSaveState("uncertain");
       attemptInFlight.current = false;
       return;
@@ -759,7 +787,7 @@ export default function Mission() {
   if (!q) {
     if (loadState === "access-required") {
       return (
-        <main className="flex min-h-screen items-center justify-center bg-gradient-to-b from-[#241f56] to-[#1a3a3d] px-6 text-white">
+        <main className={missionUnavailableClass}>
           <section className="max-w-lg rounded-2xl bg-white/10 p-8 text-center backdrop-blur">
             <h1 className="font-display text-3xl font-semibold">Open your child profile first</h1>
             <p className="mt-3 text-sm leading-6 text-white/70">
@@ -773,7 +801,7 @@ export default function Mission() {
       );
     }
     return (
-      <main className="flex min-h-screen items-center justify-center bg-gradient-to-b from-[#241f56] to-[#1a3a3d] px-6 text-white">
+      <main className={missionUnavailableClass}>
         <section className="max-w-lg rounded-2xl bg-white/10 p-8 text-center backdrop-blur">
           <h1 className="font-display text-3xl font-semibold">Mission content unavailable</h1>
           <p className="mt-3 text-sm leading-6 text-white/70">
@@ -855,10 +883,10 @@ export default function Mission() {
         <div className="font-display order-3 flex w-full flex-wrap items-center justify-center gap-2 text-sm md:gap-3">
           <span className="mission-status-pill rounded-full bg-sun/20 px-4 py-1.5 text-sun">{xp} XP</span>
           <span className="mission-status-pill rounded-full bg-white/10 px-4 py-1.5 text-white/80">{progressPct}% charged</span>
-          <span className="mission-status-pill rounded-full bg-white/10 px-4 py-1.5 text-white/75">{savedArtefacts} world artefacts</span>
+          <span className={missionStatusClass}>{savedArtefacts} world artefacts</span>
           {adaptations?.session_length === "short" && <span className="mission-status-pill rounded-full bg-[#55cbd3]/20 px-4 py-1.5 text-[#9df5fa]">Short mission</span>}
-          {(adaptations?.animation_tier === "low" || adaptations?.animation_tier === "static" || adaptations?.reduced_motion) && <span className="mission-status-pill rounded-full bg-white/10 px-4 py-1.5 text-white/75">Calm mode</span>}
-          {adaptations?.large_targets && <span className="mission-status-pill rounded-full bg-white/10 px-4 py-1.5 text-white/75">Large controls</span>}
+          {(adaptations?.animation_tier === "low" || adaptations?.animation_tier === "static" || adaptations?.reduced_motion) && <span className={missionStatusClass}>Calm mode</span>}
+          {adaptations?.large_targets && <span className={missionStatusClass}>Large controls</span>}
           {adaptations?.switch_access && <span className="mission-status-pill rounded-full bg-[#ffdf8a]/18 px-4 py-1.5 text-[#ffdf8a]">Switch ready</span>}
         </div>
         <div className="ml-auto flex max-w-[calc(100%_-_4.5rem)] flex-wrap justify-end gap-2">
@@ -1075,7 +1103,7 @@ export default function Mission() {
 
         {/* RIGHT: question + pad, or summary */}
         {inLesson && lessonStep ? (
-          <div data-switch-region className="rounded-blob border border-white/10 bg-white/10 p-6 shadow-[0_24px_70px_rgba(0,0,0,0.22)] backdrop-blur md:p-8">
+          <div data-switch-region className={missionPanelClass}>
             <div className="flex items-center justify-between gap-4">
               <span className="font-display text-xs uppercase tracking-[0.16em] text-[var(--world-accent)]">
                 {String(lessonStep.kind || "learning step").replaceAll("_", " ")}
@@ -1133,7 +1161,7 @@ export default function Mission() {
             </button>
           </div>
         ) : !done ? (
-          <div ref={questionRef} tabIndex={-1} role="region" aria-label="Mission question" className="rounded-blob border border-white/10 bg-white/10 p-6 shadow-[0_24px_70px_rgba(0,0,0,0.22)] backdrop-blur md:p-8">
+          <div ref={questionRef} tabIndex={-1} role="region" aria-label="Mission question" className={missionPanelClass}>
             {rewardMoment === "Repair route opened" && <p className="journey-repair" data-testid="mission-reward-moment" role="status">{message} You can try again or ask for a hint.</p>}
             <div className="flex items-center justify-between text-sm text-white/60">
               <span className="font-display">
@@ -1255,10 +1283,12 @@ export default function Mission() {
               </p>
             )}
             <div data-switch-region>
-              {saveState === "uncertain" && (
+              {(saveState === "rejected" || saveState === "uncertain") && (
                 <div role="alert" aria-label="Answer saving" className="mt-5 rounded-2xl border border-sun bg-[#17233f] p-4 text-white">
-                  <p>I could not confirm that your answer was saved. Your answer is still here. Retry saving before changing it.</p>
-                  <button type="button" onClick={submit} className="btn-pop mt-3 bg-sun px-5 py-3 text-ink">Retry saving answer</button>
+                  <p>{message}</p>
+                  {saveState === "rejected"
+                    ? <Link href="/play" className="btn-pop mt-3 inline-block bg-sun px-5 py-3 text-ink">Choose another mission</Link>
+                    : <button type="button" onClick={submit} className="btn-pop mt-3 bg-sun px-5 py-3 text-ink">Retry saving answer</button>}
                 </div>
               )}
               {saveState === "saving" && <p role="status" className="mt-4 text-white">Saving your answer…</p>}
@@ -1304,7 +1334,7 @@ export default function Mission() {
             </div>
             {route.mockAssessmentId && mockSummary && (
               <div className="mt-5 rounded-2xl border border-grape/15 bg-[#f3efff] p-4 text-center" aria-label="Mock assessment result">
-                <p className="font-display text-sm font-semibold uppercase tracking-[0.14em] text-[#5a3ca8]">Subject check result</p>
+                <p className={missionSubheadingClass}>Subject check result</p>
                 <p className="mt-2 text-sm text-ink/72">
                   {mockSummary.status === "completed"
                     ? `${mockSummary.correct_count} of ${mockSummary.question_count} answers correct.`
@@ -1321,7 +1351,7 @@ export default function Mission() {
             </p>
             {baselineProgress && (
               <div className="mt-5 rounded-2xl border border-grape/15 bg-[#f3efff] p-4 text-center">
-                <p className="font-display text-sm font-semibold uppercase tracking-[0.14em] text-[#5a3ca8]">
+                <p className={missionSubheadingClass}>
                   {baselineProgress.status === "completed" ? "Baseline complete" : "Baseline journey"}
                 </p>
                 <p className="mt-2 text-sm text-ink/72">
@@ -1355,7 +1385,7 @@ export default function Mission() {
             {progressState === "ready" && progressReport && (
               <div className="mt-5 overflow-hidden rounded-2xl border border-[#17233f]/10 bg-white">
                 <div className="border-b border-[#17233f]/10 bg-[#f3efff] px-5 py-4">
-                  <p className="font-display text-sm font-semibold uppercase tracking-[0.14em] text-[#5a3ca8]">Your growth across subjects</p>
+                  <p className={missionSubheadingClass}>Your growth across subjects</p>
                   <p className="mt-1 text-sm text-ink/70">A strong subject can move ahead independently; another subject can keep its own revision route.</p>
                 </div>
                 <ProgressSnapshot progress={progressReport} empty="No cross-subject evidence is available yet." tone="navy" />

@@ -247,6 +247,8 @@ export type StudentProfile = {
 };
 
 export type MissionQuestion = {
+	question_version?: string;
+	response_kind?: string;
   id: string;
   activity_id: string;
   objective_id: string;
