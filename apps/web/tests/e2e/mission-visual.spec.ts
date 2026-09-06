@@ -1,5 +1,6 @@
 import { expect, test } from "@playwright/test";
 import path from "node:path";
+import { alignVisualBounds } from "./helpers/visual-bounds";
 
 const visualStabilityStylePath = path.join(process.cwd(), "tests", "e2e", "visual-stability.css");
 
@@ -190,6 +191,7 @@ test("every released renderer contract keeps standard and high-contrast visual b
     await expect(page.locator("main")).toContainText(visiblePrompt, { timeout: 20_000 });
     const interaction = page.getByRole("region", { name: "Mission question" });
     await interaction.scrollIntoViewIfNeeded();
+    await alignVisualBounds(interaction);
     // Capture the entire interaction: cropping to an old height can conceal
     // displaced answer controls and submit buttons after a layout regression.
     await expect(interaction).toHaveScreenshot(`mission-${contract.slug}-standard.png`, {
@@ -202,6 +204,7 @@ test("every released renderer contract keeps standard and high-contrast visual b
     await page.getByRole("button", { name: "Contrast" }).click();
     await expect(page.locator("main")).toHaveClass(/high-contrast/);
     await interaction.scrollIntoViewIfNeeded();
+    await alignVisualBounds(interaction);
     await expect(interaction).toHaveScreenshot(`mission-${contract.slug}-high-contrast.png`, {
       animations: "disabled",
       scale: "css",

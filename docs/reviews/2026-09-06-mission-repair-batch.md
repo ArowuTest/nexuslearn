@@ -27,6 +27,14 @@ The first eight mission regression cases passed on Linux desktop/mobile (16 test
 
 Final Linux run: **134/134 passed in 16.6 minutes**, with no retries used, after all product/test changes. Command: `npx playwright test --workers=1 --retries=1 --max-failures=5`. The 134 cases include all ten new integrity regressions on desktop/mobile, role boundaries, admin audio/content review, parent/school journeys, mock history, renderer access and gamification. This was a normal assertion run without snapshot updates, following a separate four-test baseline-generation run. All 22 visual baselines were generated in the Playwright Linux image; representative full-height desktop/mobile images were inspected. Pixel tolerances were not increased.
 
+### Release follow-up: fractional screenshot bounds
+
+The first push (`6b1b1c9`) passed Vercel, content quality, API tests/migrations, frontend build and asset budgets. GitHub's browser run passed 132 cases but failed the two renderer-visual cases: desktop expected 588×1198 and captured 588×1199; mobile expected 380×1407 and captured 380×1406. No trace artifacts were uploaded by the old workflow, so the diagnosis started with the job's screenshot-dimension logs.
+
+A focused synthetic regression reproduced an extra raster row when an otherwise identical element had a fractional vertical origin. The test-only alignment helper rounds the current region's minimum height upwards and aligns its origin, each by less than one CSS pixel. It does not resize the PNG, crop content, set a historical height or widen comparison tolerances. The regression verifies stable complete-image dimensions across four fractional origins and that the bottom submit control remains inside the captured region. Both desktop/mobile checks pass. The complete visual suite plus these regressions passed a separate six-test run with two workers after refreshing the 16 renderer baselines; focused ESLint passed. The workflow now retains failure screenshots and traces for seven days.
+
+This follow-up changes test infrastructure only. Product-source verification and the remaining release blockers above still apply; GitHub must verify the follow-up commit independently.
+
 ## What this does not close
 
 ### Inspected repair screenshots
