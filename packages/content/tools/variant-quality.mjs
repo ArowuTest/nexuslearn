@@ -9,7 +9,7 @@ const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../
 const packRoot = path.join(repoRoot, "packages/content/packs");
 const overlayPath = path.join(repoRoot, "packages/content/generated/coverage/runtime-spine-overlays.json");
 const outDir = path.resolve(argValue("--out") ?? path.join(repoRoot, "packages/content/generated/coverage"));
-const webDir = path.join(repoRoot, "apps/web/public/content");
+const webDir = path.join(repoRoot, "apps/web/private/content");
 const runtimeStatuses = new Set(["approved", "published", "live"]);
 const runtimeSpineOverlays = readRuntimeSpineOverlays();
 

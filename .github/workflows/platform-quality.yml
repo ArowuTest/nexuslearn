@@ -109,6 +109,19 @@ jobs:
       - name: Run critical browser journeys
         run: npm run test:e2e
 
+      # A retry can make the job green while leaving a real intermittent bug.
+      # Upload before the separate backend harness starts a new browser run.
+      - name: Retain browser journey evidence including retries
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-journey-evidence
+          path: |
+            apps/web/test-results/
+            apps/web/playwright-report/
+          if-no-files-found: ignore
+          retention-days: 7
+
       - name: Set up Go for authenticated grading integration
         uses: actions/setup-go@v5
         with:
@@ -123,10 +136,10 @@ jobs:
         run: go test ./internal/server -run TestBrowserCanonicalGrading -count=1 -v
 
       - name: Retain browser failure evidence
-        if: failure()
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: browser-failure-evidence
+          name: browser-grading-evidence
           path: apps/web/test-results/
           if-no-files-found: ignore
           retention-days: 7

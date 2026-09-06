@@ -1,5 +1,6 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import { readFile } from "node:fs/promises";
 
 test("public entry keeps learning behind structured access", async ({ page }) => {
   await page.goto("/");
@@ -39,10 +40,8 @@ test("admin console prefers named accounts and retains explicit bootstrap migrat
   await expect(page.getByRole("navigation", { name: "Admin sections" })).not.toBeVisible();
 });
 
-test("content production reports real reviewed-variant depth", async ({ request }) => {
-  const queueResponse = await request.get("/content/variant-production-queue.json");
-  expect(queueResponse.ok()).toBeTruthy();
-  const queue = await queueResponse.json();
+test("content production reports real reviewed-variant depth", async () => {
+  const queue = JSON.parse(await readFile("private/content/variant-production-queue.json", "utf8"));
   expect(queue.totals.authored_variants).toBeGreaterThan(queue.totals.runtime_variants);
   expect(queue.totals.blocked_from_pilot).toBeGreaterThan(0);
   const queuedPacks = queue.queue.map((item: { pack_id: string }) => item.pack_id);
@@ -72,20 +71,14 @@ test("content production reports real reviewed-variant depth", async ({ request 
     expect.stringMatching(/produced-audio QA/i),
   ]));
 
-  const qualityResponse = await request.get("/content/variant-quality.json");
-  expect(qualityResponse.ok()).toBeTruthy();
-  const quality = await qualityResponse.json();
+  const quality = JSON.parse(await readFile("private/content/variant-quality.json", "utf8"));
   expect(quality.totals.errors).toBe(0);
 
-  const reviewResponse = await request.get("/content/flagship-review.json");
-  expect(reviewResponse.ok()).toBeTruthy();
-  const review = await reviewResponse.json();
+  const review = JSON.parse(await readFile("private/content/flagship-review.json", "utf8"));
   expect(review.totals.internal_pass).toBeGreaterThan(500);
   expect(review.totals.runtime_approved_by_this_review).toBe(0);
 
-  const breadthResponse = await request.get("/content/curriculum-area-coverage.json");
-  expect(breadthResponse.ok()).toBeTruthy();
-  const breadth = await breadthResponse.json();
+  const breadth = JSON.parse(await readFile("private/content/curriculum-area-coverage.json", "utf8"));
   expect(breadth.totals.contract_areas).toBe(90);
   expect(breadth.totals.authored_areas).toBe(90);
   expect(breadth.totals.missing_areas).toBe(0);

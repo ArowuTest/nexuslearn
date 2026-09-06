@@ -9,7 +9,7 @@ const yearSpec = readJSON(path.join(repoRoot, "packages/content/roadmaps/y1-y7-e
 const mapping = readJSON(path.join(repoRoot, "packages/content/roadmaps/curriculum-area-pack-mapping.json"));
 const packDir = path.join(repoRoot, "packages/content/packs");
 const outDir = path.join(repoRoot, "packages/content/generated/coverage");
-const publicDir = path.join(repoRoot, "apps/web/public/content");
+const publicDir = path.join(repoRoot, "apps/web/private/content");
 
 function readJSON(file) {
   return JSON.parse(fs.readFileSync(file, "utf8"));

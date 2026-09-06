@@ -17,7 +17,9 @@ jobs:
           for attempt in $(seq 1 30); do
             api="$(curl -fsS --max-time 30 https://nexuslearn-api.onrender.com/healthz || true)"
             web_status="$(curl -sS -o /tmp/family.html -w '%{http_code}' --max-time 30 https://nexuslearn-woad.vercel.app/family || true)"
-            if echo "$api" | grep -q '"status":"ok"' && test "$web_status" = "200"; then
+            report_status="$(curl -sS -o /dev/null -w '%{http_code}' --max-time 30 https://nexuslearn-woad.vercel.app/content/pilot-review-evidence-template.json || true)"
+            audio_status="$(curl -sS -o /dev/null -w '%{http_code}' --max-time 30 https://nexuslearn-woad.vercel.app/content/narration-manifest.json || true)"
+            if echo "$api" | grep -q '"status":"ok"' && test "$web_status" = "200" && test "$report_status" = "404" && test "$audio_status" = "200"; then
               exit 0
             fi
             echo "Deployment not ready yet (attempt $attempt/30)."

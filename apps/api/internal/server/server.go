@@ -2708,6 +2708,7 @@ func (s *Server) handleContentReadiness(w http.ResponseWriter, r *http.Request) 
 }
 
 func (s *Server) handleNarrationReadiness(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Cache-Control", "private, no-store")
 	if !s.requireAdmin(w, r) {
 		return
 	}
@@ -2725,6 +2726,7 @@ func (s *Server) handleNarrationReadiness(w http.ResponseWriter, r *http.Request
 }
 
 func (s *Server) handleContentReport(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Cache-Control", "private, no-store")
 	if !s.requireAdmin(w, r) {
 		return
 	}
@@ -2800,8 +2802,8 @@ func generatedContentReportCandidates(name string) ([]string, bool) {
 		candidates = append(candidates, configured+"/"+file)
 	}
 	candidates = append(candidates,
-		"apps/web/public/content/"+file,
-		"../../apps/web/public/content/"+file,
+		"apps/web/private/content/"+file,
+		"../../apps/web/private/content/"+file,
 		"packages/content/generated/coverage/"+file,
 		"../../packages/content/generated/coverage/"+file,
 	)

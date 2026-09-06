@@ -12,7 +12,7 @@ const manifestPath = path.join(repoRoot, "packages/content/audio/narration-manif
 const reviewLedgerPath = path.join(repoRoot, "packages/content/audio/narration-listening-reviews.json");
 const audioRoot = path.join(repoRoot, "apps/web/public/audio/narration/alice");
 const coverageDir = path.join(repoRoot, "packages/content/generated/coverage");
-const publicDir = path.join(repoRoot, "apps/web/public/content");
+const publicDir = path.join(repoRoot, "apps/web/private/content");
 const strict = process.argv.includes("--strict");
 const sampleLimit = 50;
 

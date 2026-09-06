@@ -1,4 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
+import { readFile } from "node:fs/promises";
 
 test.describe.configure({ timeout: 60_000 });
 
@@ -166,4 +167,33 @@ test("release workspace runs a read-only backend preflight and shows every block
   for (const code of ["ai review", "safeguarding", "audio release", "audio listening", "child pilot"]) {
     await expect(checks.getByText(code, { exact: true })).toBeVisible();
   }
+});
+
+test("admin downloads reports with authentication and fails closed when the report API rejects access", async ({ page }) => {
+  await openAuthenticatedAdmin(page);
+  await page.route("http://api.test/v1/admin/content/reports/**", async route => {
+    if (route.request().headers().authorization !== "Bearer admin-information-architecture-token") {
+      return route.fulfill({ status: 401, json: { error: "Sign in required" } });
+    }
+    const name = new URL(route.request().url()).pathname.split("/").at(-1);
+    const report = JSON.parse(await readFile(`private/content/${name}.json`, "utf8"));
+    await route.fulfill({ json: report });
+  });
+  await page.getByRole("navigation", { name: "Admin sections" }).getByRole("button", { name: "Readiness", exact: true }).click();
+  const button = page.getByRole("button", { name: "Download depth report" });
+  await expect(button).toBeVisible();
+  const downloaded = page.waitForEvent("download");
+  await button.click();
+  const file = await downloaded;
+  expect(file.suggestedFilename()).toBe("pack-depth-readiness.json");
+  const saved = JSON.parse(await readFile((await file.path())!, "utf8"));
+  expect(saved.totals.packs).toBe(87);
+
+  await page.route("http://api.test/v1/admin/content/reports/pack-depth-readiness", route =>
+    route.fulfill({ status: 401, json: { error: "Session expired" } }));
+  const publicRequests: string[] = [];
+  page.on("request", request => { if (new URL(request.url()).pathname.startsWith("/content/")) publicRequests.push(request.url()); });
+  await button.click();
+  await expect(page.getByText("Report download unavailable. Check your admin session and try again.")).toBeVisible();
+  expect(publicRequests).toEqual([]);
 });

@@ -8,7 +8,7 @@ const manifestPath = path.join(repoRoot, "packages/content/audio/narration-manif
 const ledgerPath = path.join(repoRoot, "packages/content/audio/narration-listening-reviews.json");
 const readinessPath = path.join(repoRoot, "packages/content/generated/coverage/narration-readiness.json");
 const coverageDir = path.join(repoRoot, "packages/content/generated/coverage");
-const publicDir = path.join(repoRoot, "apps/web/public/content");
+const publicDir = path.join(repoRoot, "apps/web/private/content");
 const batchSize = 40;
 
 const manifest = readJSON(manifestPath);

@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
 const outDir = path.join(repoRoot, "packages/content/generated/coverage");
-const webDir = path.join(repoRoot, "apps/web/public/content");
+const webDir = path.join(repoRoot, "apps/web/private/content");
 const queuePath = path.join(outDir, "variant-production-queue.json");
 
 const queueReport = JSON.parse(await readFile(queuePath, "utf8"));

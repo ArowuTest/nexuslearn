@@ -164,7 +164,7 @@ function writeReports(report) {
   fs.mkdirSync(outDir, { recursive: true });
   const jsonPath = path.join(outDir, "asset-production-readiness.json");
   const htmlPath = path.join(outDir, "asset-production-readiness.html");
-  const publicDir = path.join(repoRoot, "apps/web/public/content");
+  const publicDir = path.join(repoRoot, "apps/web/private/content");
   const publicJsonPath = path.join(publicDir, "asset-production-readiness.json");
   const publicHtmlPath = path.join(publicDir, "asset-production-readiness.html");
   fs.writeFileSync(jsonPath, `${JSON.stringify(report, null, 2)}\n`);

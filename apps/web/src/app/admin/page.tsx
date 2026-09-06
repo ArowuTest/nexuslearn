@@ -976,9 +976,21 @@ export default function AdminPage() {
   }
 
   async function loadGeneratedContentReport(name: string) {
-    return adminFetch(`/v1/admin/content/reports/${encodeURIComponent(name)}`).catch(() =>
-      fetch(`/content/${name}.json`, { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
-    );
+    return adminFetch(`/v1/admin/content/reports/${encodeURIComponent(name)}`);
+  }
+
+  async function downloadContentReport(name: string) {
+    try {
+      const report = await loadGeneratedContentReport(name);
+      const url = URL.createObjectURL(new Blob([JSON.stringify(report, null, 2)], { type: "application/json" }));
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `${name}.json`;
+      link.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    } catch {
+      setMessage("Report download unavailable. Check your admin session and try again.");
+    }
   }
 
   function contentReviewKey(packID: string, laneID: string) {
@@ -2040,17 +2052,16 @@ export default function AdminPage() {
                       This separates pilot seed volume from mature/deep curriculum depth. A 180-item pack is acceptable only as a governed pilot seed; mature and deep targets remain visible before scale.
                     </p>
                   </div>
-                  <a
-                    href="/content/pack-depth-readiness.html"
-                    target="_blank"
-                    rel="noreferrer"
+                  <button
+                    type="button"
+                    onClick={() => void downloadContentReport("pack-depth-readiness")}
                     className="inline-flex rounded-full bg-[#155d64] px-4 py-2 text-sm font-semibold text-white"
                   >
-                    Open depth report
-                  </a>
+                    Download depth report
+                  </button>
                 </div>
                 <p className="mt-3 text-xs leading-5 text-[#1d1a3e]/58">
-                  Report source: {packDepthReadiness?.served_by === "api" ? "backend API" : "static fallback"}. Floors cover teaching stages, manipulatives, practice formats, variant blueprints, authored variants, animation states and SEND/equivalent-response policy.
+                  Report source: {packDepthReadiness?.served_by === "api" ? "backend API" : "unavailable"}. Floors cover teaching stages, manipulatives, practice formats, variant blueprints, authored variants, animation states and SEND/equivalent-response policy.
                 </p>
               </div>
               <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-4 xl:grid-cols-6">
@@ -2097,15 +2108,15 @@ export default function AdminPage() {
                   </span>
                 </div>
                 <div className="mt-3 flex flex-wrap gap-2">
-                  <a href="/content/narration-readiness.html" target="_blank" rel="noreferrer" className="inline-flex rounded-full bg-[#8b2b2b] px-4 py-2 text-sm font-semibold text-white">
-                    Open full narration audit
-                  </a>
-                  <a href="/content/listening-qa.html" target="_blank" rel="noreferrer" className="inline-flex rounded-full bg-[#17233f] px-4 py-2 text-sm font-semibold text-white">
+                  <button type="button" onClick={() => void downloadContentReport("narration-readiness")} className="inline-flex rounded-full bg-[#8b2b2b] px-4 py-2 text-sm font-semibold text-white">
+                    Download narration audit
+                  </button>
+                  <button type="button" onClick={() => setTab("Audio")} className="inline-flex rounded-full bg-[#17233f] px-4 py-2 text-sm font-semibold text-white">
                     Open listening QA
-                  </a>
-                  <a href="/content/narration-listening-priority.html" target="_blank" rel="noreferrer" className="inline-flex rounded-full bg-[#155d64] px-4 py-2 text-sm font-semibold text-white">
-                    Open priority queue
-                  </a>
+                  </button>
+                  <button type="button" onClick={() => void downloadContentReport("narration-listening-priority")} className="inline-flex rounded-full bg-[#155d64] px-4 py-2 text-sm font-semibold text-white">
+                    Download priority queue
+                  </button>
                 </div>
               </div>
               <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-4 lg:grid-cols-8">
@@ -2168,14 +2179,13 @@ export default function AdminPage() {
                 <p className="mt-2 max-w-3xl text-sm leading-6 text-[#1d1a3e]/62">
                   This is the honest breadth measure for the declared Year 1–7 English, mathematics and science contract. It does not treat one proof pack per year as complete curriculum coverage.
                 </p>
-                <a
-                  href="/content/curriculum-area-coverage.html"
-                  target="_blank"
-                  rel="noreferrer"
+                <button
+                  type="button"
+                  onClick={() => void downloadContentReport("curriculum-area-coverage")}
                   className="mt-3 inline-flex rounded-full bg-[#8b2b2b] px-4 py-2 text-sm font-semibold text-white"
                 >
-                  Open full missing-area matrix
-                </a>
+                  Download missing-area matrix
+                </button>
               </div>
               <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-4">
                 <Info label="Contract areas" value={String(curriculumCoverage?.totals.contract_areas ?? 0)} />
@@ -2251,14 +2261,13 @@ export default function AdminPage() {
                 <p className="mt-2 max-w-3xl text-sm leading-6 text-[#1d1a3e]/62">
                   Produced companions, world art, manipulatives and narration need accessibility, year coverage and release status before they become part of the scaled child experience.
                 </p>
-                <a
-                  href="/content/listening-qa.html"
-                  target="_blank"
-                  rel="noreferrer"
+                <button
+                  type="button"
+                  onClick={() => setTab("Audio")}
                   className="mt-3 inline-flex rounded-full bg-[#17233f] px-4 py-2 text-sm font-semibold text-white"
                 >
                   Open narration listening QA
-                </a>
+                </button>
               </div>
               <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-4">
                 <Info label="Asset families" value={String(assetReadiness?.totals.families ?? 0)} />
@@ -2414,9 +2423,9 @@ export default function AdminPage() {
                     </p>
                   </div>
                   <div className="flex flex-wrap gap-2">
-                    <a href="/content/pilot-review-evidence-template.html" target="_blank" rel="noreferrer" className="inline-flex rounded-full bg-[#17233f] px-4 py-2 text-sm font-semibold text-white">
-                      Open evidence template
-                    </a>
+                    <button type="button" onClick={() => void downloadContentReport("pilot-review-evidence-template")} className="inline-flex rounded-full bg-[#17233f] px-4 py-2 text-sm font-semibold text-white">
+                      Download evidence template
+                    </button>
                     <span className="bg-[#fff4d5] px-3 py-2 text-xs font-semibold text-[#725100]">
                       {pilotReviewBatch?.status?.replaceAll("_", " ") ?? "batch pending"}
                     </span>

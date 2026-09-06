@@ -14,7 +14,7 @@ const publicRoot = path.join(repoRoot, "apps/web/public/audio/narration/alice");
 const manifestPath = path.join(repoRoot, "packages/content/audio/narration-manifest.json");
 const publicManifestPath = path.join(repoRoot, "apps/web/public/content/narration-manifest.json");
 const reviewPath = path.join(repoRoot, "packages/content/generated/audio/narration-review.html");
-const publicReviewPath = path.join(repoRoot, "apps/web/public/content/narration-review.html");
+const publicReviewPath = path.join(repoRoot, "apps/web/private/content/narration-review.html");
 const apiKey = process.env.ELEVENLABS_API_KEY ?? "";
 const voiceId = process.env.ELEVENLABS_VOICE_ID ?? "Xb7hH8MSUJpSbSDYk0k2";
 const modelId = process.env.ELEVENLABS_MODEL_ID ?? "eleven_multilingual_v2";
@@ -393,6 +393,7 @@ async function writeManifest(items, summary, expectedAssets, selectedAssets) {
   const review = renderReview(manifest);
   await fs.mkdir(path.dirname(reviewPath), { recursive: true });
   await fs.writeFile(reviewPath, review);
+  await fs.mkdir(path.dirname(publicReviewPath), { recursive: true });
   await fs.writeFile(publicReviewPath, review);
 }
 

@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
 const packRoot = path.join(repoRoot, "packages/content/packs");
 const outDir = path.join(repoRoot, "packages/content/generated/coverage");
-const webDir = path.join(repoRoot, "apps/web/public/content");
+const webDir = path.join(repoRoot, "apps/web/private/content");
 const runtimeSpinePath = path.join(outDir, "runtime-spine-enhancement.json");
 const runtimeStatuses = new Set(["approved", "published", "live"]);
 const runtimeSpine = await readOptionalRuntimeSpine(runtimeSpinePath);

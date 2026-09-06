@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
 const packsDir = path.join(repoRoot, "packages/content/packs");
 const coverageDir = path.join(repoRoot, "packages/content/generated/coverage");
-const publicDir = path.join(repoRoot, "apps/web/public/content");
+const publicDir = path.join(repoRoot, "apps/web/private/content");
 
 const requiredAnimationStates = [
   "intro",

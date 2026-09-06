@@ -7,7 +7,7 @@ const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../
 const evidencePath = path.join(repoRoot, "packages/content/generated/coverage/pilot-review-evidence-template.json");
 const batchPath = path.join(repoRoot, "packages/content/generated/coverage/pilot-review-batch.json");
 const outDir = path.join(repoRoot, "packages/content/generated/coverage");
-const webDir = path.join(repoRoot, "apps/web/public/content");
+const webDir = path.join(repoRoot, "apps/web/private/content");
 
 const evidence = JSON.parse(await readFile(evidencePath, "utf8"));
 const batch = JSON.parse(await readFile(batchPath, "utf8"));

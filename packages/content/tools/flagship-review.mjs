@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
 const outDir = path.join(repoRoot, "packages/content/generated/coverage");
-const webDir = path.join(repoRoot, "apps/web/public/content");
+const webDir = path.join(repoRoot, "apps/web/private/content");
 const packPaths = [
   "packages/content/packs/en-y1-phonics-blend-cvc-words.pack.sample.json",
   "packages/content/packs/ma-y4-number-multiplication-12x12.pack.sample.json",

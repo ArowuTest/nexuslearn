@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
 const outDir = path.join(repoRoot, "packages/content/generated/coverage");
-const webDir = path.join(repoRoot, "apps/web/public/content");
+const webDir = path.join(repoRoot, "apps/web/private/content");
 const batchPath = path.join(outDir, "pilot-review-batch.json");
 
 const batch = JSON.parse(await readFile(batchPath, "utf8"));

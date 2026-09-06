@@ -12,3 +12,4 @@ apps/api/.gocache/
 apps/api/.gomodcache/
 apps/api/*.exe
 apps/web/test-results/
+apps/web/playwright-report/

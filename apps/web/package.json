@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --webpack",
-    "prebuild": "npm run quality:content",
+    "prebuild": "npm run quality:content && node --test tools/public-content-boundary.test.mjs",
     "build": "next build --webpack",
     "quality:performance": "node --test tools/performance-budget.test.mjs && node tools/performance-budget.mjs",
     "quality:narration": "node ../../packages/content/tools/narration-readiness.mjs",

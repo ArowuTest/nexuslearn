@@ -14,7 +14,7 @@ const policyPath = path.join(repoRoot, "packages/content/roadmaps/content-releas
 const aiEvidencePath = path.join(repoRoot, "packages/content/generated/coverage/ai-review-evidence.json");
 const defaultAudioManifestPath = path.join(repoRoot, "packages/content/audio/narration-manifest-v2.json");
 const defaultAudioReviewsPath = path.join(repoRoot, "packages/content/audio/narration-listening-reviews-v2.json");
-const webContentDir = path.join(repoRoot, "apps/web/public/content");
+const webContentDir = path.join(repoRoot, "apps/web/private/content");
 const outArg = argValue("--out");
 const outDir = outArg ? path.resolve(process.cwd(), outArg) : path.join(repoRoot, "packages/content/generated/coverage");
 
