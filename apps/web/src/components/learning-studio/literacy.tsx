@@ -66,7 +66,7 @@ function NounPhraseBuilder({ question, input, onChoose }: { question: StudioQues
     <div className="mt-4 flex gap-3"><button type="button" onClick={() => publish(built.slice(0, -1), used.slice(0, -1))} disabled={!built.length} className="min-h-12 flex-1 rounded-xl bg-white/15 px-4 font-semibold text-white disabled:opacity-35">Undo</button><button type="button" onClick={() => publish([], [])} disabled={!built.length} className="min-h-12 flex-1 rounded-xl bg-white/15 px-4 font-semibold text-white disabled:opacity-35">Start again</button></div>
   </section>;
 }
-function TraceTrail({ letter, expected, onComplete }: { letter: string; expected: string; onComplete: (value: string) => void }) {
+function TraceTrail({ letter, onComplete }: { letter: string; onComplete: (value: string) => void }) {
   const shown = letter || "c";
   const [drawing, setDrawing] = useState(false);
   const [points, setPoints] = useState<Array<{ x: number; y: number }>>([]);
@@ -92,7 +92,7 @@ function TraceTrail({ letter, expected, onComplete }: { letter: string; expected
 
   function finish() {
     setDrawing(false);
-    if (points.length >= 8) onComplete(expected);
+    if (points.length >= 8) onComplete(JSON.stringify({ points }));
   }
 
   return (
@@ -221,45 +221,40 @@ function EvidenceCard({ question }: { question: StudioQuestion }) {
 }
 
 function EvidenceSpanSelector({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
+  const [firstWord, setFirstWord] = useState(0);
+  const [lastWord, setLastWord] = useState(0);
   const format = question.format.toLowerCase();
   if (!['evidence-highlight', 'clue-highlight', 'evidence-link', 'evidence-rank'].includes(format)) return null;
   const choices = asStringArray(question.body.choices);
   const selectable = asStringArray(question.body.selectable_spans);
-  const accepted = asStringArray(question.body.accepted_spans);
   const chunks = asStringArray(question.body.chunks);
-  const candidates = choices.length >= 2 ? choices : selectable.length >= 2 ? selectable : accepted.length >= 2 ? accepted : chunks;
+  const candidates = choices.length >= 2 ? choices : selectable.length >= 2 ? selectable : chunks;
   const source = typeof question.body.extract === 'string' ? question.body.extract : typeof question.body.text === 'string' ? question.body.text : '';
   const inference = typeof question.body.inference === 'string' ? question.body.inference : typeof question.body.target_inference === 'string' ? question.body.target_inference : typeof question.body.target_mood === 'string' ? question.body.target_mood : '';
-  let expectedArray: string[] = [];
-  try { const value = JSON.parse(String(question.expected)); if (Array.isArray(value) && value.every((item) => typeof item === 'string')) expectedArray = value; } catch { /* scalar answer */ }
-  const multi = expectedArray.length > 0;
+  const multi = question.responseKind === 'sequence';
+  const words = source.match(/\S+/g) || [];
+  const preciseWords = !multi && words.length > 0 ? <fieldset className="mt-4 rounded-xl bg-white/10 p-4">
+    <legend className="text-sm font-semibold text-white">Choose an exact phrase from the text</legend>
+    <div className="grid gap-3 sm:grid-cols-2">
+      <label className="text-sm text-white">First word of evidence<select value={firstWord} onChange={(event) => setFirstWord(Number(event.target.value))} className="mt-2 min-h-12 w-full rounded-xl bg-[#fff7df] px-3 text-ink">{words.map((word, index) => <option key={index} value={index}>{index + 1}. {word}</option>)}</select></label>
+      <label className="text-sm text-white">Last word of evidence<select value={lastWord} onChange={(event) => setLastWord(Number(event.target.value))} className="mt-2 min-h-12 w-full rounded-xl bg-[#fff7df] px-3 text-ink">{words.map((word, index) => <option key={index} value={index}>{index + 1}. {word}</option>)}</select></label>
+    </div>
+    <button type="button" disabled={lastWord < firstWord} onClick={() => onChoose(words.slice(firstWord, lastWord + 1).join(' ').replace(/^[“"']+|[.,!?;:”"']+$/g, ''))} className="mt-3 min-h-12 w-full rounded-xl bg-sun px-3 font-semibold text-ink disabled:opacity-50">Use selected words</button>
+    <label className="mt-3 block text-sm text-white">Your evidence phrase<textarea aria-label="Your evidence phrase" rows={3} value={input} onChange={(event) => onChoose(event.target.value)} className="mt-2 min-h-12 w-full rounded-xl bg-[#fff7df] p-3 text-ink" /></label>
+  </fieldset> : null;
   let selected: string[] = [];
   if (multi) {
     try { const value = JSON.parse(input); if (Array.isArray(value) && value.every((item) => typeof item === 'string')) selected = value; } catch { /* no selection yet */ }
   } else if (input) {
     selected = [input];
   }
-  const expected = String(question.expected);
-  const mappedValue = (candidate: string) => {
-    if (multi) return candidate;
-    if (accepted.length >= 2 && accepted.includes(candidate)) {
-      const next = selected.includes(candidate) ? selected.filter((item) => item !== candidate) : [...selected, candidate];
-      return next.length === accepted.length && accepted.every((item) => next.includes(item)) ? expected : '';
-    }
-    return source.toLowerCase().includes(expected.toLowerCase()) && candidate.toLowerCase().includes(expected.toLowerCase()) ? expected : candidate;
-  };
   const toggle = (candidate: string) => {
     if (multi) {
       const next = selected.includes(candidate) ? selected.filter((item) => item !== candidate) : [...selected, candidate];
       onChoose(JSON.stringify(candidates.filter((item) => next.includes(item))));
       return;
     }
-    if (accepted.length >= 2 && accepted.includes(candidate)) {
-      const next = selected.includes(candidate) ? selected.filter((item) => item !== candidate) : [...selected, candidate];
-      onChoose(next.length === accepted.length && accepted.every((item) => next.includes(item)) ? expected : '');
-      return;
-    }
-    onChoose(mappedValue(candidate));
+    onChoose(candidate);
   };
   const title = format === 'evidence-rank' ? 'Evidence strength desk' : format === 'evidence-link' ? 'Clue-to-inference link' : format === 'clue-highlight' ? 'Clue finder' : 'Evidence finder';
   const instruction = multi ? 'Select every precise phrase that supports the idea. The order does not matter.' : format === 'evidence-rank' ? 'Choose the evidence that best supports the claim. Re-read before you decide.' : 'Select the most precise evidence. You can revise your choice at any time; there is no timer.';
@@ -267,9 +262,10 @@ function EvidenceSpanSelector({ question, input, onChoose }: { question: StudioQ
     <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">{title}</p>
     {inference && <p className="mt-2 rounded-2xl bg-[#fff7df] p-4 text-sm font-semibold leading-6 text-ink">Claim or idea: {inference}</p>}
     {source && <p className="mt-4 rounded-2xl bg-[#fff7df] p-4 text-sm leading-6 text-ink"><span className="font-display text-xs uppercase">Text to inspect</span><br />{source}</p>}
-    <label className="mt-4 block text-sm font-semibold text-white">Type the exact evidence phrase
+    {preciseWords}
+    {!preciseWords && <label className="mt-4 block text-sm font-semibold text-white">Type the exact evidence phrase
       <input value={input} onChange={(event) => onChoose(event.target.value)} className="mt-2 min-h-14 w-full rounded-xl bg-[#fff7df] px-4 text-lg text-ink" aria-label="Evidence phrase" />
-    </label>
+    </label>}
   </section>;
   return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label={title}>
     <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">{title}</p>
@@ -277,9 +273,10 @@ function EvidenceSpanSelector({ question, input, onChoose }: { question: StudioQ
     {inference && <p className="mt-4 rounded-2xl bg-[#fff7df] p-4 text-sm font-semibold leading-6 text-ink"><span className="font-display text-xs uppercase">Claim or idea</span><br />{inference}</p>}
     {source && <p className="mt-4 rounded-2xl bg-[#fff7df] p-4 text-sm leading-6 text-ink"><span className="font-display text-xs uppercase">Text to inspect</span><br />{source}</p>}
     <div className="mt-5 grid gap-3" role="group" aria-label="Evidence choices">{candidates.map((candidate, index) => {
-      const active = multi ? selected.includes(candidate) : (selected.includes(candidate) || (input === expected && candidate.toLowerCase().includes(expected.toLowerCase())));
+      const active = selected.includes(candidate);
       return <button key={`${candidate}-${index}`} type="button" onClick={() => toggle(candidate)} aria-pressed={active} className={`rounded-2xl border-2 p-4 text-left ${active ? 'border-sun bg-[#fff7df] text-ink ring-2 ring-sun' : 'border-white/15 bg-white/5 text-white'}`}><span className="mr-2 font-display text-xs opacity-70">{index + 1}.</span>{candidate}</button>;
     })}</div>
+    {preciseWords}
     <p className="mt-4 text-center text-xs text-white/70">Touch, keyboard, switch scanning and a spoken/AAC partner route all use the same numbered choices. No fine dragging is required.</p>
   </section>;
 }
@@ -426,7 +423,7 @@ function CohesionContextCard({ question }: { question: StudioQuestion }) {
 export const literacyRendererRegistry = {
   "word-build": { family: "literacy", Renderer: ({ question, input, onChoose }) => <WordBuilder key={`word-${question.id}`} question={question} input={input} onChoose={onChoose} /> },
   "noun-phrase-builder": { family: "literacy", Renderer: ({ question, input, onChoose }) => <NounPhraseBuilder key={`noun-${question.id}`} question={question} input={input} onChoose={onChoose} /> },
-  "trace-path": { family: "literacy", Renderer: ({ question, onChoose }) => <TraceTrail letter={String(question.body.letter || "")} expected={String(question.expected)} onComplete={onChoose} /> },
+  "trace-path": { family: "literacy", Renderer: ({ question, onChoose }) => <TraceTrail letter={String(question.body.letter || "")} onComplete={onChoose} /> },
   "sentence-sort": { family: "literacy", Renderer: ({ question, input, onChoose }) => <SentenceBoard question={question} options={choiceOptions(question)} input={input} onChoose={onChoose} /> },
   "paragraph-build": { family: "literacy", Renderer: ({ question, input, onChoose }) => <SentenceBoard question={question} options={choiceOptions(question)} input={input} onChoose={onChoose} /> },
   "theme-choice": { family: "literacy", Renderer: ({ question, input, onChoose }) => <SentenceBoard question={question} options={choiceOptions(question)} input={input} onChoose={onChoose} /> },

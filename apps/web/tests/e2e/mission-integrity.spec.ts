@@ -11,7 +11,7 @@ async function mission(page: Page, fixture: Fixture) {
       objective: { id: "integrity-objective", year: 3, subject: "Mathematics", strand: "Number", topic: "Learning", statement: "Explore a learning model.", prerequisites: [], misconceptions: [], mastery: { expected: 80, secure: 90, retention_days: [1, 7, 30], required_formats: [fixture.format] }, parent_explanation: "", teacher_evidence: "" },
       world: { key: "explorer-islands", name: "Explorer Islands", year_group: 3, config: { accent: "#55cbd3", companion: "Nixi" }, enabled: true },
       world_state: { student_id: "integrity-learner", world_key: "explorer-islands", state: { artefacts: [] } },
-      questions: [{ id: "integrity-question", question_version: fixture.version === null ? undefined : "version-1", response_kind: fixture.responseKind, objective_id: "integrity-objective", activity_id: "integrity-activity", format: fixture.format, body: fixture.body, expected_answer: { value: fixture.expected }, hints: fixture.hints ?? [], explanation: "Look at the evidence.", status: "published" }],
+      questions: [{ id: "integrity-question", question_version: fixture.version === null ? undefined : "version-1", response_kind: fixture.responseKind ?? (typeof fixture.expected === "number" ? "number" : "text"), objective_id: "integrity-objective", activity_id: "integrity-activity", format: fixture.format, body: fixture.body, hints: fixture.hints ?? [], status: "published" }],
       runtime_adaptations: { animation_tier: "static", reduced_motion: true, celebration_intensity: "quiet", question_limit: 1, scaffold_level: "standard", audio_support: false, reading_support: false, reward_style: "collecting", switch_access: fixture.switchAccess ?? false, reasons: [] },
     } });
   });

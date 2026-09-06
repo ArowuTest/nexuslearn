@@ -30,7 +30,7 @@ export default function LearningStudio({
     "healthy-choice-explain", "circuit-builder", "reader-effect-choice"].includes(format);
   const isForceModel = format.startsWith("fo") || format === "mechanism-model";
   const ownsSubmission = rendererOwnsSubmission(format);
-  const isNumeric = typeof question.expected === "number" && !options.length && !isArrayBuild && !ownsSubmission;
+  const isNumeric = question.responseKind === "number" && !options.length && !isArrayBuild && !ownsSubmission;
   const isChoice = options.length > 0 && !ownsSubmission && !isSentence && !isParticle && !isWordBuild && !hasGuidedChoices && !isForceModel;
   const needsBuilderSubmit = Boolean(resolveStudioRenderer(format)) && !ownsSubmission
     && !isTrace && !isSentence && !isParticle && !isChoice && !isWordBuild && !isArrayBuild && !isNumeric;
@@ -109,7 +109,7 @@ export default function LearningStudio({
             <button
               id={`keyboard-answer-${question.id}`}
               type="button"
-              onClick={() => onChoose(String(question.expected))}
+              onClick={() => onChoose("partner-recorded-trace")}
               className={`mt-3 min-h-14 w-full rounded-xl px-4 font-semibold ${input ? "bg-leaf text-white" : "bg-white text-ink"}`}
             >
               Mark trace complete
@@ -121,8 +121,8 @@ export default function LearningStudio({
           ) : (
             <input
               id={`keyboard-answer-${question.id}`}
-              type={typeof question.expected === "number" ? "number" : "text"}
-              inputMode={typeof question.expected === "number" ? "numeric" : "text"}
+              type={question.responseKind === "number" ? "number" : "text"}
+              inputMode={question.responseKind === "number" ? "decimal" : "text"}
               value={input}
               onChange={(event) => onChoose(event.target.value)}
               className="mt-3 min-h-14 w-full rounded-xl border border-white/20 bg-[#fff7df] px-4 text-lg text-ink"
@@ -143,7 +143,7 @@ export default function LearningStudio({
 
       {responseMode === "interactive" && isTrace && (
         <div className="mx-auto mt-6 grid max-w-md gap-3 sm:grid-cols-2">
-          <button onClick={() => onChoose(String(question.expected))} className={`btn-pop bg-white/15 px-4 py-4 text-white ${input ? "ring-4 ring-[var(--world-accent)]" : ""}`}>
+          <button onClick={() => onChoose("partner-recorded-trace")} className={`btn-pop bg-white/15 px-4 py-4 text-white ${input ? "ring-4 ring-[var(--world-accent)]" : ""}`}>
             Complete with keyboard
           </button>
           <button onClick={onSubmit} disabled={!input} className="btn-pop bg-sun px-4 py-4 text-ink disabled:opacity-50">

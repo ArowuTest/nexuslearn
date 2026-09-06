@@ -35,16 +35,15 @@ type Q = {
   id: string;
   questionVersion?: string;
   responseKind?: string;
+  selectionCount?: number;
   a?: number;
   b?: number;
-  expected: number | string;
   prompt: string;
   objectiveId: string;
   format: string;
   choices: Array<number | string>;
   hints: string[];
   body: Record<string, unknown>;
-  explanation: string;
   selectionReason: string;
 };
 
@@ -245,23 +244,6 @@ export default function Mission() {
     }
   }, [clientRequestId, studentId]);
 
-  function expectedValue(question: MissionConfig["questions"][number]) {
-    const answer = question.expected_answer;
-    const value = answer?.value;
-    if (typeof value === "number" || typeof value === "string") return value;
-    const sequence = answer?.sequence ?? value;
-    if (Array.isArray(sequence) && sequence.every((item) => typeof item === "string" || typeof item === "number")) {
-      if (!answer?.sequence && question.format === "word-build") return sequence.join("");
-      return JSON.stringify(question.format === "coordinate-plot" ? sequence : sequence.map(String));
-    }
-    if (question.format === "fair-test-plan" && typeof answer?.change === "string" && typeof answer?.measure === "string" && Array.isArray(answer?.keep_same)) {
-      return JSON.stringify({ change: answer.change, measure: answer.measure, keep_same: answer.keep_same.map(String).sort() });
-    }
-    if (["pattern-sort", "fraction-wall"].includes(question.format) && value && typeof value === "object" && !Array.isArray(value)) return JSON.stringify(value);
-    if (question.format === "trace-path" && Array.isArray(answer?.rubric)) return "trace-path-complete";
-    return undefined;
-  }
-
   useEffect(() => {
     let active = true;
     queueMicrotask(() => { if (active) setRoute(readMissionRoute()); });
@@ -325,32 +307,22 @@ export default function Mission() {
                 const body = question.body || {};
                 const a = Number(body.a);
                 const b = Number(body.b);
-                const rawExpected = expectedValue(question);
-                const expected = typeof rawExpected === "number" || typeof rawExpected === "string" ? rawExpected : Number(rawExpected);
                 const choices = Array.isArray(body.choices) ? body.choices.filter((choice) => typeof choice === "number" || typeof choice === "string") as Array<number | string> : [];
-                const hasTextInteraction = typeof expected === "string";
-                const hasExplicitNumberInput = body.input === "number" || body.response === "number";
-                const hasGraphData = ["graph-reader", "graph-table-investigation"].includes(question.format) && (Array.isArray(body.data) || Array.isArray(body.data_points) || Array.isArray(body.data_table));
-                const hasColumnCalculation = question.format === "column-calculate" && Array.isArray(body.operands) && body.operands.length === 2;
-                const hasOperationModel = question.format === "operation-model" && (Number.isFinite(Number(body.start)) || typeof body.expression === "string");
-                const hasProblemMap = question.format === "problem-map" && Array.isArray(body.quantity_cards) && body.quantity_cards.length > 0;
-                const hasPartWholeModel = question.format === "part-whole-build" && Number.isFinite(Number(body.whole)) && Number.isFinite(Number(body.given_part));
-                const hasNumericInteraction = Number.isFinite(expected) && ((Number.isFinite(a) && Number.isFinite(b)) || choices.length > 0 || hasExplicitNumberInput || hasGraphData || hasColumnCalculation || hasOperationModel || hasProblemMap || hasPartWholeModel);
-                if (!hasTextInteraction && !hasNumericInteraction) return null;
+                // The server supplies the response shape, never the answer key.
+                const responseKind = question.response_kind || (body.input === "number" || body.response === "number" || (Number.isFinite(a) && Number.isFinite(b)) ? "number" : "text");
                 return {
                   id: question.id,
                   questionVersion: question.question_version,
-                  responseKind: question.response_kind,
+                  responseKind,
+                  selectionCount: question.selection_count,
                   a: Number.isFinite(a) ? a : undefined,
                   b: Number.isFinite(b) ? b : undefined,
-                  expected,
                   prompt: String(body.prompt || `${a} x ${b}`),
                   objectiveId: question.objective_id,
                   format: question.format,
                   choices,
                   hints: question.hints || [],
                   body,
-                  explanation: question.explanation || "",
                   selectionReason: question.selection_reason || "Chosen to balance challenge, coverage and fresh evidence.",
                 };
               })
@@ -540,8 +512,7 @@ export default function Mission() {
       return;
     }
     const given = Number(input);
-    const isTextAnswer = typeof q.expected === "string";
-    const kind = q.responseKind || (isTextAnswer ? "text" : "number");
+    const kind = q.responseKind || "text";
     let value: unknown;
     if (!pendingAttempt.current) {
       try {

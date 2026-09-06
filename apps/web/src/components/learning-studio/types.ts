@@ -4,7 +4,8 @@ export type StudioQuestion = {
   id: string;
   a?: number;
   b?: number;
-  expected: number | string;
+  responseKind?: string;
+  selectionCount?: number;
   prompt: string;
   format: string;
   choices: Array<number | string>;
@@ -56,24 +57,21 @@ export function formatLabel(format: string) {
 export function choiceOptions(question: StudioQuestion): Option[] {
   const format = question.format.toLowerCase();
   const bodyChoices = asStringArray(question.body.choices);
-  const expected = String(question.expected);
-
-  if (format === "model-sort" && bodyChoices.every((choice) => /^[A-C]$/.test(choice)) && !bodyChoices.includes(expected)) {
-    const correctLabel = expected.includes("far") || expected.includes("gas") ? "C" : expected.includes("slide") || expected.includes("liquid") ? "B" : "A";
+  if (format === "model-sort" && bodyChoices.length === 3 && bodyChoices.every((choice) => /^[A-C]$/.test(choice))) {
     return [
       {
         label: "A",
-        value: correctLabel === "A" ? expected : "model_with_close_fixed_particles",
+        value: "model_with_close_fixed_particles",
         detail: "Particles close together in a fixed pattern.",
       },
       {
         label: "B",
-        value: correctLabel === "B" ? expected : "model_with_close_sliding_particles",
+        value: "model_with_close_sliding_particles",
         detail: "Particles close together and able to slide.",
       },
       {
         label: "C",
-        value: correctLabel === "C" ? expected : "model_with_far_apart_random_particles",
+        value: "model_with_far_apart_random_particles",
         detail: "Particles far apart and moving freely.",
       },
     ];

@@ -100,7 +100,7 @@ export function LearningActivityRenderer(props: StudioRendererProps) {
   const includeCompatibilityRenderer =
     !PrimaryRenderer && (hasRoleAssignmentFallback || hasForceModelFallback);
   const hasGenericFallback =
-    choiceOptions(props.question).length > 0 || typeof props.question.expected === "number";
+    choiceOptions(props.question).length > 0 || props.question.responseKind === "number";
 
   return (
     <>

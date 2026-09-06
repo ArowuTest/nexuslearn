@@ -154,7 +154,7 @@ function MethodChoiceBoard({ question, input, onChoose }: { question: StudioQues
   const strategies = asStringArray(question.body.choices);
   const steps = asStringArray(question.body.strategy_steps);
   const calculation = typeof question.body.calculation === 'string' ? question.body.calculation : '';
-  const expectsNumber = typeof question.expected === 'number';
+  const expectsNumber = question.responseKind === 'number';
   return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Calculation strategy board">
     <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Number workshop</p>
     {calculation && <p className="mt-3 rounded-2xl bg-[#fff7df] p-4 text-center text-2xl font-bold text-ink">{calculation}</p>}
@@ -227,14 +227,15 @@ function NumberModelBoard({ question, input, onChoose, onSubmit }: { question: S
 function FactFamilyBoard({ question, input, onChoose, onSubmit }: { question: StudioQuestion; input: string; onChoose: (value: string) => void; onSubmit: () => void }) {
   const planner = question.format[0] === 'i';
   if (!planner && question.format !== 'fact-family-choice') return null;
-  const choices = asStringArray(question.body[planner ? 'planner_cards' : 'choices']);
+  const cards = asStringArray(question.body.planner_cards);
+  const choices = planner && cards.length ? cards : asStringArray(question.body.choices);
   const parts = Array.isArray(question.body.parts) ? question.body.parts.filter((value): value is number => typeof value === 'number' && Number.isFinite(value)) : [];
   const groups = Number(question.body.groups); const groupSize = Number(question.body.group_size); const total = Number(question.body.total);
   let selectCount = Number(question.body.select_count);
-  if (planner) { try { selectCount = JSON.parse(question.expected as string).length || 0; } catch { selectCount = 0; } }
+  if (planner) selectCount = question.selectionCount || selectCount;
   let selected: string[] = [];
   try { const parsed = JSON.parse(input); selected = Array.isArray(parsed) ? parsed.map(String) : input ? [input] : []; } catch { if (input) selected = [input]; }
-  const multi = selectCount > 1;
+  const multi = question.responseKind === 'sequence' || selectCount > 1;
   const publish = (choice: string) => { const next = multi ? (selected.includes(choice) ? selected.filter((item) => item !== choice) : [...selected, choice]) : [choice]; const ordered = choices.filter((item) => next.includes(item)); onChoose(multi ? JSON.stringify(ordered) : choice); };
   return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Choice board">
     <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Fact workshop</p>

@@ -372,10 +372,11 @@ func (s *Server) handleHealth(w http.ResponseWriter, _ *http.Request) {
 
 func (s *Server) handleVersion(w http.ResponseWriter, _ *http.Request) {
 	writeJSON(w, http.StatusOK, map[string]string{
-		"name":             "nexuslearn-api",
-		"version":          "0.4.0",
-		"slice":            "3-configurable-platform-closure",
-		"grading_contract": "canonical-v1",
+		"name":                    "nexuslearn-api",
+		"version":                 "0.4.0",
+		"slice":                   "3-configurable-platform-closure",
+		"grading_contract":        "canonical-v1",
+		"pupil_question_contract": "render-v1",
 	})
 }
 
@@ -3284,13 +3285,17 @@ func (s *Server) handleConfiguredMission(w http.ResponseWriter, r *http.Request)
 		}
 		filtered, blueprint = selectMissionQuestions(candidates, attempts, masteryForObjective(mastery, activity.ObjectiveID), mode, questionLimit, activity.Difficulty, adaptations)
 	}
+	publicQuestions := make([]learning.PupilQuestionConfig, 0, len(filtered))
+	for _, question := range filtered {
+		publicQuestions = append(publicQuestions, learning.PupilQuestion(question))
+	}
 	writeJSON(w, http.StatusOK, map[string]any{
 		"student_id":           studentID,
 		"activity":             activity,
 		"objective":            objective,
 		"world":                world,
 		"world_state":          worldState,
-		"questions":            filtered,
+		"questions":            publicQuestions,
 		"assessment_blueprint": blueprint,
 		"runtime_adaptations":  adaptations,
 	})

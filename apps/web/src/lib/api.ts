@@ -247,18 +247,16 @@ export type StudentProfile = {
 };
 
 export type MissionQuestion = {
-	question_version?: string;
-	response_kind?: string;
+  question_version?: string;
+  response_kind?: string;
+  selection_count?: number;
   id: string;
   activity_id: string;
   objective_id: string;
   format: string;
   body: Record<string, unknown>;
-  expected_answer: Record<string, unknown>;
   hints: string[];
-  explanation: string;
   difficulty: number;
-  status: string;
   selection_reason?: string;
 };
 

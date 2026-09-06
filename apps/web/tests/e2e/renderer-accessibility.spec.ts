@@ -56,7 +56,7 @@ async function routeMission(page: Page, question: RendererQuestion) {
           objective_id: "renderer-objective",
           format: question.format,
           body: { prompt: question.prompt, ...question.body },
-          expected_answer: { value: question.expected },
+          response_kind: typeof question.expected === "number" ? "number" : "text",
           hints: ["Inspect the model carefully."],
           explanation: "The model provides evidence for the answer.",
           difficulty: 3,

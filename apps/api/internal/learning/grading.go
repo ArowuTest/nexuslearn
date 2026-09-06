@@ -61,6 +61,9 @@ func questionContractVersion(q QuestionConfig) string {
 
 func canonicalAnswer(q QuestionConfig) (string, any, error) {
 	e := q.ExpectedAnswer
+	if q.Format == "trace-path" {
+		return "review", nil, ErrQuestionNeedsReview
+	}
 	if required, _ := e["moderation_required"].(bool); required {
 		return "review", nil, ErrQuestionNeedsReview
 	}

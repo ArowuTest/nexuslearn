@@ -12,6 +12,12 @@ test("real canonical decimal grading survives a lost acknowledgement without dup
     const request = route.request();
     const target = request.url().replace("http://api.test", api!);
     const response = await route.fetch({ url: target, headers: { ...request.headers(), "X-Pupil-Session": token } });
+    if (request.url().includes("/v1/learning/mission")) {
+      const mission = await response.json();
+      expect(mission.questions[0]).not.toHaveProperty("expected_answer");
+      expect(mission.questions[0]).not.toHaveProperty("explanation");
+      expect(mission.questions[0].response_kind).toBe("number");
+    }
     if (request.url().endsWith("/v1/learning/attempt")) {
       attempts.push(request.postData()!);
       expect(response.status()).toBe(200);

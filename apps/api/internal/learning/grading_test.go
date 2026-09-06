@@ -27,6 +27,7 @@ func TestCanonicalResponseContracts(t *testing.T) {
 		{"mapping extra field", "fraction-wall", `{"value":{"numerator":1}}`, "mapping", `{"numerator":1,"x":2}`, false, nil},
 		{"word build joins letters", "word-build", `{"value":["c","a","t"]}`, "text", `"cat"`, true, nil},
 		{"rubric is not binary evidence", "trace-path", `{"rubric":["follows_path"]}`, "text", `"trace-path-complete"`, false, ErrQuestionNeedsReview},
+		{"letter token is not tracing evidence", "trace-path", `{"value":"c"}`, "text", `"c"`, false, ErrQuestionNeedsReview},
 		{"moderated answers stay gated", "teach-back", `{"value":"cat","moderation_required":true}`, "text", `"cat"`, false, ErrQuestionNeedsReview},
 		{"authored controls unordered", "fair-test-plan", `{"change":"area","measure":"time","keep_same":["mass","height"]}`, "mapping", `{"measure":"time","keep_same":["height","mass"],"change":"area"}`, true, nil},
 		{"duplicate controls rejected", "fair-test-plan", `{"change":"area","measure":"time","keep_same":["mass","height"]}`, "mapping", `{"measure":"time","keep_same":["mass","mass"],"change":"area"}`, false, nil},

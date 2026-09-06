@@ -253,8 +253,14 @@ function CircuitCompletionBoard({ question, input, onChoose }: { question: Studi
   if (question.format.toLowerCase() !== 'circuit-builder') return null;
   const components = asStringArray(question.body.components);
   if (components.length < 2) return null;
-  const complete = input === String(question.expected);
-  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Circuit completion board"><p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Safe circuit lab</p><div className="mt-4 flex flex-wrap items-center justify-center gap-2">{components.map((component, index) => <span key={`${component}-${index}`} className="rounded-xl bg-[#fff7df] px-3 py-2 text-sm font-semibold text-ink">{component}</span>)}</div><p className="mt-4 text-center text-sm text-white/80">Connect the return path so the circuit is a closed loop. No real electricity or fine dragging is required.</p><button type="button" onClick={() => onChoose(String(question.expected))} className={`mt-4 min-h-12 w-full rounded-xl px-4 font-semibold ${complete ? 'bg-leaf text-white' : 'bg-sun text-ink'}`}>{complete ? 'Closed loop recorded' : 'Complete closed loop'}</button></section>;
+  const complete = input === 'closed_loop';
+  const options = choiceOptions(question);
+  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Circuit completion board">
+    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Safe circuit lab</p>
+    <div className="mt-4 flex flex-wrap items-center justify-center gap-2">{components.map((component, index) => <span key={`${component}-${index}`} className="rounded-xl bg-[#fff7df] px-3 py-2 text-sm font-semibold text-ink">{component}</span>)}</div>
+    <p className="mt-4 text-center text-sm text-white/80">Inspect the connections before deciding. No real electricity or fine dragging is required.</p>
+    {options.length ? <div className="mt-4 grid gap-3">{options.map(option => <button key={option.value} type="button" onClick={() => onChoose(option.value)} aria-pressed={input === option.value} className={`min-h-12 rounded-xl px-4 py-3 text-left font-semibold ${input === option.value ? 'bg-leaf text-white' : 'bg-sun text-ink'}`}>{option.label.replaceAll('_', ' ')}</button>)}</div> : <button type="button" onClick={() => onChoose(complete ? 'open_loop' : 'closed_loop')} aria-pressed={complete} className={`mt-4 min-h-12 w-full rounded-xl px-4 font-semibold ${complete ? 'bg-leaf text-white' : 'bg-sun text-ink'}`}>{complete ? 'Closed loop recorded' : 'Complete closed loop'}</button>}
+  </section>;
 }
 
 function GraphDataReader({ question }: { question: StudioQuestion }) {

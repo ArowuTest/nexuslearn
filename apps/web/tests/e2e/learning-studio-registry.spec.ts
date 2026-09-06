@@ -58,7 +58,7 @@ async function routeStudioMission(page: Page, fixture: StudioFixture) {
           objective_id: "studio-registry-objective",
           format: fixture.format,
           body: { prompt: fixture.prompt, ...fixture.body },
-          expected_answer: { value: fixture.expected },
+          response_kind: typeof fixture.expected === "number" ? "number" : "text",
           hints: ["Use the representation and take your time."],
           explanation: "The representation supports the same learning goal.",
           difficulty: 3,
