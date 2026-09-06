@@ -35,6 +35,8 @@ A focused synthetic regression reproduced an extra raster row when an otherwise 
 
 This follow-up changes test infrastructure only. Product-source verification and the remaining release blockers above still apply; GitHub must verify the follow-up commit independently.
 
+The next hosted run (`33a6f9d`) passed 134 cases but retained the one-pixel host/container difference in the two renderer snapshots. The newly retained actual/diff images showed font-edge differences without omitted controls; origin alignment alone was insufficient. The web-quality job is therefore pinned to the exact Playwright 1.61.0 Noble image digest used locally (`sha256:57b65fdc9ceabe0ef613124c7bbe2babcf9362c4d85e382fe3b03604e84b428a`), including its browser and system fonts, rather than installing browser dependencies onto a changing `ubuntu-latest` host. Node 22 and all existing test assertions remain unchanged. Update the image, Playwright lockfile and reviewed baselines together in future maintenance.
+
 ## What this does not close
 
 ### Inspected repair screenshots

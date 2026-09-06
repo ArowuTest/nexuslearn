@@ -63,6 +63,11 @@ jobs:
 
   web-quality:
     runs-on: ubuntu-latest
+    # Match the browser, system fonts and libraries used to author visual baselines.
+    # Refresh this digest together with Playwright and regenerated, reviewed images.
+    container:
+      image: mcr.microsoft.com/playwright:v1.61.0-noble@sha256:57b65fdc9ceabe0ef613124c7bbe2babcf9362c4d85e382fe3b03604e84b428a
+      options: --ipc=host
     defaults:
       run:
         working-directory: apps/web
@@ -86,8 +91,8 @@ jobs:
       - name: Enforce Chromebook-oriented asset budgets
         run: npm run quality:performance
 
-      - name: Install Playwright Chromium
-        run: npx playwright install --with-deps chromium
+      - name: Verify bundled Playwright Chromium
+        run: node -e "const {existsSync}=require('node:fs'); const {chromium}=require('@playwright/test'); if (!existsSync(chromium.executablePath())) throw new Error('Update the pinned Playwright image to match package-lock.json');"
 
       - name: Run critical browser journeys
         run: npm run test:e2e
