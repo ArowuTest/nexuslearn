@@ -1,12 +1,13 @@
 import { expect, test, type Page } from "@playwright/test";
+import AxeBuilder from "@axe-core/playwright";
 
-async function openQuestion(page: Page, question: Record<string, unknown>) {
+async function openQuestion(page: Page, question: Record<string, unknown> | Record<string, unknown>[], waitForQuestion = true) {
   let sent: Record<string, unknown> | undefined;
   await page.route("http://api.test/**", route => {
     if (route.request().url().includes("/v1/learning/mission")) return route.fulfill({ json: {
       student_id: "public-learner", activity: { id: "a", title: "Number discovery", interaction: {} },
       objective: { id: "o", year: 3, subject: "Mathematics" }, world: { key: "explorer-islands", year_group: 3, config: {} },
-      questions: [{ id: "q", question_version: "v1", objective_id: "o", hints: [], ...question }],
+      questions: (Array.isArray(question) ? question : [question]).map((item, index) => ({ id: `q${index}`, question_version: "v1", objective_id: "o", hints: [], ...item })),
     }});
     if (route.request().url().endsWith("/v1/learning/attempt")) {
       sent = route.request().postDataJSON();
@@ -15,9 +16,49 @@ async function openQuestion(page: Page, question: Record<string, unknown>) {
     return route.fulfill({ status: 404, json: {} });
   });
   await page.goto("/play/mission?studentId=public-learner&activityId=a");
-  await expect(page.getByRole("region", { name: "Mission question" })).toBeVisible();
+  if (waitForQuestion) await expect(page.getByRole("region", { name: "Mission question" })).toBeVisible();
   return () => sent;
 }
+
+test("a review-only question explains the boundary before collecting an answer", async ({ page }, info) => {
+  const sent = await openQuestion(page, { response_kind: "review", format: "evidence-link", body: {
+    prompt: "Explain how Mina might feel.", choices: ["cautious", "excited"],
+  }}, false);
+  await expect(page.getByRole("heading", { name: "This question needs a teacher's review" })).toBeVisible();
+  await expect(page.getByRole("region", { name: "Mission question" })).toHaveCount(0);
+  await expect(page.getByRole("button", { name: "Submit answer", exact: true })).toHaveCount(0);
+  const exit = page.getByRole("link", { name: "Back to worlds" });
+  await exit.focus();
+  await expect(exit).toBeFocused();
+  expect(sent()).toBeUndefined();
+  expect((await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze()).violations).toEqual([]);
+  await page.screenshot({ path: info.outputPath("teacher-review-boundary.png"), animations: "disabled" });
+  await exit.press("Enter");
+  await expect(page).toHaveURL(/\/play$/);
+});
+
+test("a review boundary after a saved answer does not complete the mission or record unseen evidence", async ({ page }) => {
+  let attempts = 0;
+  const events: { event_type: string; payload: { question_id?: string } }[] = [];
+  page.on("request", request => {
+    if (request.url().endsWith("/v1/learning/attempt")) attempts++;
+    if (request.url().endsWith("/v1/learning/event")) events.push(request.postDataJSON());
+  });
+  await openQuestion(page, [
+    { response_kind: "number", format: "number-input", body: { prompt: "One plus a quarter?", input: "number" } },
+    { response_kind: "review", format: "trace-path", body: { prompt: "Trace the letter." } },
+  ]);
+  await page.getByRole("button", { name: "Keyboard answer", exact: true }).click();
+  await page.getByLabel("Keyboard answer", { exact: true }).fill("1.25");
+  await page.getByRole("button", { name: "Submit answer", exact: true }).click();
+  await page.getByRole("button", { name: "Next discovery" }).click();
+  await expect(page.getByRole("heading", { name: "This question needs a teacher's review" })).toBeVisible();
+  await expect(page.getByText(/this question has not been marked/)).toBeVisible();
+  await expect(page.getByRole("button", { name: "See my discoveries" })).toHaveCount(0);
+  expect(attempts).toBe(1);
+  expect(events.filter(event => event.event_type === "assessment_completed")).toEqual([]);
+  expect(events.filter(event => event.event_type === "question_seen").map(event => event.payload.question_id)).toEqual(["q0"]);
+});
 
 test("a mission renders and sends a decimal without receiving an answer key", async ({ page }) => {
   const sent = await openQuestion(page, { response_kind: "number", format: "number-input", body: { prompt: "What is 1 + 0.25?", input: "number" } });

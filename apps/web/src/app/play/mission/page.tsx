@@ -445,7 +445,7 @@ export default function Mission() {
   const inLesson = teachingSequence.length > 0 && !lessonComplete;
 
   useEffect(() => {
-    if (q) void recordLearningEvent("question_seen", { question_id: q.id, objective_id: q.objectiveId, position: idx + 1 });
+    if (q && q.responseKind !== "review") void recordLearningEvent("question_seen", { question_id: q.id, objective_id: q.objectiveId, position: idx + 1 });
   }, [idx, q, recordLearningEvent]);
 
   useEffect(() => {
@@ -617,8 +617,8 @@ export default function Mission() {
     if (switchAccess) return;
     if (awaitingContinue) feedbackRef.current?.focus();
     else if (idx >= total) summaryRef.current?.focus();
-    else if (idx > 0) questionRef.current?.focus();
-  }, [awaitingContinue, idx, total, switchAccess]);
+    else if (idx > 0 || q?.responseKind === "review") questionRef.current?.focus();
+  }, [awaitingContinue, idx, total, switchAccess, q?.responseKind]);
 
   function revealHint() {
     if (!q || pendingAttempt.current || attemptInFlight.current || route.mockAssessmentId || hintCount >= q.hints.length) return;
@@ -755,7 +755,7 @@ export default function Mission() {
     );
   }
 
-  if (!q) {
+  if (!q || q.responseKind === "review") {
     if (loadState === "access-required") {
       return (
         <main className={missionUnavailableClass}>
@@ -773,15 +773,15 @@ export default function Mission() {
     }
     return (
       <main className={missionUnavailableClass}>
-        <section className="max-w-lg rounded-2xl bg-white/10 p-8 text-center backdrop-blur">
-          <h1 className="font-display text-3xl font-semibold">Mission content unavailable</h1>
+        <div ref={questionRef} tabIndex={-1} role="region" aria-labelledby="mission-boundary" data-switch-region className="max-w-lg rounded-2xl bg-white/10 p-8 text-center backdrop-blur">
+          <h1 id="mission-boundary" className="font-display text-3xl font-semibold">{q ? "This question needs a teacher's review" : "Mission content unavailable"}</h1>
           <p className="mt-3 text-sm leading-6 text-white/70">
-            This learner needs a published configured activity with playable numeric questions before the mission can start.
+            {q ? "Choose another mission for now. Any earlier answers you saved are safe; this question has not been marked." : "This mission needs a published activity with ready-to-play questions before it can start."}
           </p>
           <Link href="/play" className="btn-pop mt-6 inline-block bg-sun px-6 py-3 text-ink">
             Back to worlds
           </Link>
-        </section>
+        </div>
       </main>
     );
   }

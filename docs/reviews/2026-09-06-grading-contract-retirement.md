@@ -9,6 +9,7 @@ Follow-on to the canonical grading plan, based on main `f2819a7`. No curriculum 
 - Completed actor-scoped idempotent requests are still replayed **before** canonical lookup and new-submission validation, including after content withdrawal. Changed payloads remain conflicts. No historical evidence is regraded or relabelled.
 - `accepted_semantic_equivalents` is an explicit review gate, like a rubric. An exact match with the example does not waive required judgement; other unsupported semantic-policy shapes also fail closed. This does not implement semantic grading or a review-submission inbox.
 - `/v1/version` advertises `attempt_submission_contract: typed-versioned-v1`, separately from the existing canonical-grading and pupil-projection capability markers.
+- The pupil UI handles `response_kind: review` before showing answer controls: it explains that teacher review is needed and offers a keyboard-accessible route back to worlds. An encounter after an earlier saved answer does not complete the mission, submit the review question or log it as a seen question. This boundary is not a teacher-marking inbox and does not discard earlier saved answers.
 
 ## Authored-policy inventory
 
@@ -33,10 +34,14 @@ This inventory found no justification for blanket fuzzy matching. Next policy wo
 - Existing forged-key, decimal, sequence/mapping, concurrent retry, immutable snapshot, rollback, release-boundary and closed-mock replay tests now exercise the served typed/versioned path.
 - Test-first semantic-review cases reproduced both false automatic acceptance and automatic rejection; a real database case checks no automatic evidence or consumed key.
 - Real-backend desktop/mobile Playwright adds authenticated 409/422 checks before completing a typed decimal answer, a lost-acknowledgement retry, and authenticated adult evidence inspection. The Go harness asserts exactly one saved answer and six mastery points per disposable learner.
+- Additional desktop/mobile test-first pupil checks reproduce both the missing review boundary and false `question_seen` telemetry; first-question and mid-mission review cases exercise the actual UI and submission/event requests.
+- A bounded UI review found two accessibility gaps in the initial boundary: switch scanning had no exit target, and mid-mission focus was lost. Both were reproduced on desktop/mobile before adding the scan region and labelled focus handoff. Dedicated tests use Space-only activation and natural Tab/Enter navigation, not imperative focus, for these paths. The review screen also receives an automated WCAG accessibility check.
 - Full test/build/review and hosted results are recorded in the FS V2B release checkpoint after verification; this document alone is not a deployment-success claim.
 
 ## Deployment and limits
 
 Deploy the existing typed/versioned pupil client before or alongside this API. Old open tabs with genuinely unsaved legacy answers must reopen the mission; they must not be silently graded against unseen content. Completed retries continue to work. No schema migration is needed.
+
+Backend commit `7866c9d` passed Platform quality `34047332850` (170 browser tests plus 2 real API/database tests), Content quality `34047332997`, Deployment smoke `34047593917` and Vercel. The live Render version endpoint advertised `typed-versioned-v1`. These checks predate the pupil boundary follow-on; its separate verification is in the release checkpoint.
 
 Outstanding: explicit alternatives/unit/tolerance/case policies, richer subject-specific feedback, raw/verbatim evidence, grader-policy versioning, paginated full-history audit, authentic tracing evidence, and independent educational/SEND/safeguarding/audio-listening/pilot review. The latest-ten adult evidence panel remains a bounded preview, not full history. This batch does not certify the entire curriculum or games as complete.
