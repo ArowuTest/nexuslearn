@@ -40,4 +40,22 @@ test("real canonical decimal grading survives a lost acknowledgement without dup
   expect(attempts[0]).toBe(attempts[1]);
   expect(JSON.parse(attempts[0]).response).toEqual({ kind: "number", value: 1.25 });
   await page.screenshot({ path: info.outputPath("canonical-decimal-saved.png"), animations: "disabled" });
+  // Follow the saved pupil attempt into the real authenticated adult UI. This
+  // token belongs only to the disposable schema created by the Go harness.
+  await page.evaluate((adminToken) => {
+    sessionStorage.setItem("nexuslearn_account_session", adminToken);
+    sessionStorage.setItem("nexuslearn_account_role", "platform_admin");
+    sessionStorage.setItem("nexuslearn_account_session_expires", new Date(Date.now() + 3_600_000).toISOString());
+  }, process.env.GRADING_ADMIN_TOKEN!);
+  await page.goto("/admin?section=Progress");
+  await page.getByLabel("Learner external ref").fill(student);
+  await page.getByRole("button", { name: "Load progress", exact: true }).click();
+  const evidence = page.getByRole("region", { name: "Recent learning evidence" });
+  await expect(evidence.locator("details")).toHaveCount(1);
+  await evidence.locator("summary").click();
+  await expect(evidence.getByText("1.25", { exact: true })).toBeVisible();
+  await expect(evidence).toContainText("What is 1 + 0.25?");
+  await expect(evidence).toContainText(JSON.parse(attempts[0]).question_version);
+  await expect(evidence).toContainText("+6 points");
+  await page.screenshot({ path: info.outputPath("canonical-adult-evidence.png"), animations: "disabled" });
 });

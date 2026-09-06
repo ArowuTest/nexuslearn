@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import MockAssessmentBuilder from "@/components/MockAssessmentBuilder";
 import MockAssessmentHistory from "@/components/MockAssessmentHistory";
 import ProgressSnapshot from "@/components/ProgressSnapshot";
+import AttemptEvidencePanel from "@/components/AttemptEvidencePanel";
 import { WorkspaceNavigation, WorkspaceSection, WorkspaceState } from "@/components/role-workspaces/WorkspaceNavigation";
 import { accountSessionRole, getParentChildEvidence, getParentPortal, type ParentChildEvidence, type ParentPortal, type ProgressTopic } from "@/lib/api";
 
@@ -134,7 +135,7 @@ export default function ParentMockHistoryPortal() {
         {evidenceState === "loading" ? <div className="p-5"><WorkspaceState tone="loading">Loading progress, strengths and practice priorities...</WorkspaceState></div> : null}
         {evidenceState === "error" ? <div className="p-5"><WorkspaceState tone="error">{evidenceError}</WorkspaceState></div> : null}
         {evidenceState === "empty" ? <div className="p-5"><WorkspaceState>No sampled progress is available yet. It will appear after learning evidence is stored.</WorkspaceState></div> : null}
-        {evidenceState === "ready" ? <div className="[&_p]:!text-[#42506b]"><ProgressSnapshot progress={progress} tone="navy" empty="No sampled progress is available yet." /></div> : null}
+        {evidenceState === "ready" ? <div className="[&_p]:!text-[#42506b]"><ProgressSnapshot progress={progress} tone="navy" empty="No sampled progress is available yet." /><AttemptEvidencePanel items={progress?.attempt_evidence} /></div> : null}
       </WorkspaceSection>
 
       <WorkspaceSection id="parent-priorities" eyebrow="What to do next" title="Strengths and practice" detail="Celebrate secure learning and revisit practice areas without pressure. Mock scores remain separate from adaptive mastery.">

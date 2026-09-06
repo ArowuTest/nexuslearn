@@ -1,4 +1,5 @@
 import type { ProgressReport, ProgressSubject, ProgressTopic } from "@/lib/api";
+import AttemptEvidencePanel from "@/components/AttemptEvidencePanel";
 
 export default function FamilyProgressReport({ progress }: { progress?: ProgressReport | null }) {
   if (!progress) {
@@ -19,6 +20,7 @@ export default function FamilyProgressReport({ progress }: { progress?: Progress
         <TopicList title="Practise next" topics={progress.practice.slice(0, 3)} tone="practice" empty="No current practice gap has been sampled." />
         <TopicList title="Strengths to retain" topics={progress.strengths.slice(0, 3)} tone="strength" empty="Strengths will appear as varied evidence is collected." />
       </div>
+      <AttemptEvidencePanel items={progress.attempt_evidence} />
     </section>
   );
 }

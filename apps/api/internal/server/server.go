@@ -2044,6 +2044,7 @@ func (s *Server) handleParentConfig(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *Server) handleParentChildEvidence(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Cache-Control", "private, no-store")
 	parent, ok := s.requireParentUser(w, r)
 	if !ok {
 		return
@@ -2090,6 +2091,10 @@ func (s *Server) handleParentChildEvidence(w http.ResponseWriter, r *http.Reques
 		return
 	}
 	progress := learning.BuildProgressReport(externalRef, child.Student.YearGroup, objectives, mastery)
+	if err := s.addAdultAttemptEvidence(r.Context(), externalRef, &progress); err != nil {
+		writeProgressReportError(w, err)
+		return
+	}
 	if err := s.addMockAssessmentSummaries(r.Context(), externalRef, "", &progress); err != nil {
 		slog.Warn("failed to read parent child mock assessments", "student_id", externalRef, "error", err)
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read progress"})

@@ -5,6 +5,7 @@ import { useMemo, useRef, useState } from "react";
 import MockAssessmentBuilder from "@/components/MockAssessmentBuilder";
 import MockAssessmentHistory from "@/components/MockAssessmentHistory";
 import ProgressSnapshot from "@/components/ProgressSnapshot";
+import AttemptEvidencePanel from "@/components/AttemptEvidencePanel";
 import { Actions, BooleanField, ChoiceGrid, Field, LabeledSelect, LearnerScopeNotice, LoginCard, Panel, PurposeSelect, Row, TextArea } from "@/components/role-workspaces/SchoolWorkspacePrimitives";
 import { WorkspaceNavigation, WorkspaceState } from "@/components/role-workspaces/WorkspaceNavigation";
 import { accountSessionHeaders, logoutAccount, storeAccountSession, type AccountSession, type ProgressReport } from "@/lib/api";
@@ -193,6 +194,7 @@ export default function SchoolAdminPage() {
   const [engagementInterests, setEngagementInterests] = useState("");
   const [progressReport, setProgressReport] = useState<ProgressReport | null>(null);
   const workspaceLoadVersion = useRef(0);
+  const progressRequest = useRef(0);
   const credentials = portal?.student_credentials ?? [];
   const isSchoolAdmin = portal?.current_user?.role === "school_admin";
   const runtimePreview = runtimePreviewItems(engagementProfile);
@@ -243,7 +245,7 @@ export default function SchoolAdminPage() {
     setEngagementPupil("");
     setEngagementProfile(emptyEngagementProfile());
     setEngagementInterests("");
-    setProgressReport(null);
+    clearProgressReport();
   }
 
   async function apiFetch(path: string, options: RequestInit = {}) {
@@ -340,13 +342,23 @@ export default function SchoolAdminPage() {
     });
   }
 
+  function clearProgressReport() {
+    progressRequest.current += 1;
+    setProgressReport(null);
+  }
+
   async function loadProgressReport() {
     const studentExternalRef = selectedEngagementStudent?.external_ref;
     if (!studentExternalRef) return;
-    setProgressReport(null);
+    clearProgressReport();
+    const request = progressRequest.current;
     await guarded("Loading learner progress...", async () => {
-      const data = await apiFetch(`/v1/school/students/${encodeURIComponent(studentExternalRef)}/progress`);
-      setProgressReport(data as ProgressReport);
+      try {
+        const data = await apiFetch(`/v1/school/students/${encodeURIComponent(studentExternalRef)}/progress`);
+        if (request === progressRequest.current) setProgressReport(data as ProgressReport);
+      } catch (error) {
+        if (request === progressRequest.current) throw error;
+      }
     });
   }
 
@@ -664,7 +676,7 @@ export default function SchoolAdminPage() {
                   setEngagementPupil(scopedStudentRef);
                   setEngagementProfile(emptyEngagementProfile(scopedStudentRef));
                   setEngagementInterests("");
-                  setProgressReport(null);
+                  clearProgressReport();
                   setLearningAssignment((current) => ({ ...current, student_external_ref: scopedStudentRef }));
                   setEvidenceDraft((current) => ({ ...current, student_external_ref: scopedStudentRef }));
                   setInterventionDraft((current) => ({ ...current, student_external_ref: scopedStudentRef }));
@@ -747,6 +759,7 @@ export default function SchoolAdminPage() {
               </div>
               <div className="[&_p]:!text-[#42506b]">
                 <ProgressSnapshot progress={progressReport} tone="navy" empty="Choose a pupil above, then load their progress evidence." />
+                <AttemptEvidencePanel items={progressReport?.attempt_evidence} />
               </div>
               {selectedEngagementStudent && (
                 <div className="border-t border-[#17233f]/10 p-5">

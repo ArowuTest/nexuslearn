@@ -176,6 +176,22 @@ export type ProgressSubject = {
   practice: ProgressTopic[];
 };
 
+export type AttemptEvidence = {
+  id: string;
+  objective_id: string;
+  question_id: string;
+  question_version?: string;
+  question_prompt?: string;
+  format: string;
+  recorded_answer: string;
+  response_mode: string;
+  correct: boolean;
+  hint_used: boolean;
+  mastery_delta: number;
+  explanation: string;
+  attempted_at: string;
+};
+
 export type ProgressReport = {
   student_id: string;
   year_group: number;
@@ -187,6 +203,7 @@ export type ProgressReport = {
   strengths: ProgressTopic[];
   practice: ProgressTopic[];
   mock_assessments: MockAssessmentSummary[];
+  attempt_evidence?: AttemptEvidence[];
   updated_at?: string;
 };
 

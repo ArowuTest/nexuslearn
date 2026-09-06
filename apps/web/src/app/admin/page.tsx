@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import ProgressSnapshot from "@/components/ProgressSnapshot";
+import AttemptEvidencePanel from "@/components/AttemptEvidencePanel";
 import AdminLedgerControls from "@/components/admin/AdminLedgerControls";
 import { Actions, AdminListPager, EditorGrid, Field, Info, JsonField, Panel, PickRow, Select, Toggle } from "@/components/admin/AdminEditorPrimitives";
 import {
@@ -773,6 +774,7 @@ export default function AdminPage() {
   const auditLedgerRequest = useRef(0);
   const versionLedgerRequest = useRef(0);
   const releaseLedgerRequest = useRef(0);
+  const progressRequest = useRef(0);
   const [message, setMessage] = useState("Sign in with a named platform account. The temporary API key remains available only for bootstrap migration.");
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState("");
@@ -957,11 +959,11 @@ export default function AdminPage() {
   }
 
   async function signOutAdmin() {
+    clearAdminProgress();
     await logoutAccount();
     setConfig(null);
     setAccountRole(null);
     setObjectives([]);
-    setAdminProgress(null);
     setProgressStudentID("");
     setAdminKey("");
     setContentReviewLedger(null);
@@ -1070,7 +1072,7 @@ export default function AdminPage() {
     const plan = adminSectionLoadPlan(role, section);
     setLoading(true);
     setMessage(`Loading ${section.toLowerCase()} workspace...`);
-    setAdminProgress(null);
+    clearAdminProgress();
     try {
       if (plan.configSection) {
         const loaded = await adminFetch(`/v1/admin/config?section=${encodeURIComponent(plan.configSection)}`) as AdminConfig;
@@ -1130,7 +1132,7 @@ export default function AdminPage() {
       setMessage(`${section} workspace loaded.`);
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Could not reach the API.");
-      setAdminProgress(null);
+      clearAdminProgress();
     } finally {
       setLoading(false);
     }
@@ -1152,16 +1154,23 @@ export default function AdminPage() {
     setPlatformUserDraft({ email: "", display_name: "", login_id: "", password: "", role: "platform_admin" });
   }
 
+  function clearAdminProgress() {
+    progressRequest.current += 1;
+    setAdminProgress(null);
+  }
+
   async function loadAdminProgress() {
     if (!progressStudentID) return;
-    setAdminProgress(null);
+    clearAdminProgress();
+    const request = progressRequest.current;
     setSaving("progress");
     try {
       const data = await adminFetch(`/v1/admin/students/${encodeURIComponent(progressStudentID)}/progress`);
+      if (request !== progressRequest.current) return;
       setAdminProgress(data as ProgressReport);
       setMessage("Learner progress loaded with platform-admin scope.");
     } catch (error) {
-      setMessage(error instanceof Error ? error.message : "Could not load learner progress.");
+      if (request === progressRequest.current) setMessage(error instanceof Error ? error.message : "Could not load learner progress.");
     } finally {
       setSaving("");
     }
@@ -1964,7 +1973,7 @@ export default function AdminPage() {
                     body={student.external_ref}
                     onClick={() => {
                       setProgressStudentID(student.external_ref);
-                      setAdminProgress(null);
+                      clearAdminProgress();
                     }}
                   />
                 ))}
@@ -1975,7 +1984,7 @@ export default function AdminPage() {
                   <Panel title="Platform progress report">
                     <Field label="Learner external ref" value={progressStudentID} onChange={(value) => {
                       setProgressStudentID(slug(value));
-                      setAdminProgress(null);
+                      clearAdminProgress();
                     }} />
                     <p className="px-5 pt-4 text-sm leading-6 text-[#1d1a3e]/62">
                       {selectedProgressStudent
@@ -1986,6 +1995,7 @@ export default function AdminPage() {
                     <button onClick={loadAdminProgress} disabled={!progressStudentID || !!saving} className="btn-pop bg-[#7357c9] px-5 py-3 text-sm text-white disabled:opacity-50">Load progress</button>
                   </div>
                   <ProgressSnapshot progress={adminProgress} empty="Select a learner to inspect subject-independent progress, revision and stretch routes." />
+                  <AttemptEvidencePanel items={adminProgress?.attempt_evidence} />
                 </Panel>
               </div>
             }

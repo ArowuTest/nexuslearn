@@ -2,7 +2,7 @@
 
 Status: **partially implemented** in the canonical grading remediation batch. The transaction boundary, typed/versioned response path, durable deduplicated contract snapshots, mock separation and recovery tests are implemented. Public answer-key decoupling, retirement of legacy unversioned requests and richer authored marking policies remain open. See `docs/reviews/2026-09-06-canonical-grading-batch.md` for evidence and limits. Follows G01/G06 in the September game audit and mission integrity/access repair batch.
 
-Follow-on: public mission-question decoupling is implemented with local acceptance evidence in `docs/reviews/2026-09-06-pupil-question-contract.md`; hosted release status is recorded in the FS V2B delivery checkpoint. That scope removes marking keys from mission questions, not all authored learning hints or every public static content artifact. Legacy retirement, richer marking policies and adult provenance remain open.
+Follow-on: public mission-question decoupling is implemented with acceptance evidence in `docs/reviews/2026-09-06-pupil-question-contract.md`; private generated-report delivery is recorded in `docs/reviews/2026-09-06-private-content-reports.md`. Adult recent-attempt provenance is implemented in `docs/reviews/2026-09-06-adult-attempt-evidence.md`, with hosted release status in the FS V2B checkpoint. That reporting scope is a latest-10 frozen-evidence preview, not an all-time audit or verbatim response archive. Legacy retirement, richer marking policies, raw evidence and grader-policy versioning remain open.
 
 ## Verified pre-remediation boundary
 

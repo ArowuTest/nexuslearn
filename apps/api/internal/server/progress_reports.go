@@ -8,6 +8,7 @@ import (
 )
 
 func (s *Server) handleAdminStudentProgress(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Cache-Control", "private, no-store")
 	if !s.requireAdmin(w, r) {
 		return
 	}
@@ -21,6 +22,7 @@ func (s *Server) handleAdminStudentProgress(w http.ResponseWriter, r *http.Reque
 }
 
 func (s *Server) handleSchoolStudentProgress(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Cache-Control", "private, no-store")
 	user, ok := s.requireSchoolUser(w, r)
 	if !ok {
 		return
@@ -58,7 +60,27 @@ func (s *Server) buildProgressReport(r *http.Request, studentID, schoolURN strin
 	if err := s.addMockAssessmentSummaries(r.Context(), studentID, schoolURN, &progress); err != nil {
 		return learning.ProgressReport{}, err
 	}
+	if err := s.addAdultAttemptEvidence(r.Context(), studentID, &progress); err != nil {
+		return learning.ProgressReport{}, err
+	}
 	return progress, nil
+}
+
+// Only call after adult authentication and learner ownership checks. Pupil
+// progress is built separately and never invokes this reader.
+func (s *Server) addAdultAttemptEvidence(ctx context.Context, studentID string, progress *learning.ProgressReport) error {
+	store, ok := s.repo.(interface {
+		AdultAttemptEvidence(context.Context, string, int) ([]learning.AttemptEvidence, error)
+	})
+	if !ok {
+		return nil
+	}
+	items, err := store.AdultAttemptEvidence(ctx, studentID, 10)
+	if err != nil {
+		return err
+	}
+	progress.AttemptEvidence = items
+	return nil
 }
 
 func (s *Server) addMockAssessmentSummaries(ctx context.Context, studentID, schoolURN string, progress *learning.ProgressReport) error {

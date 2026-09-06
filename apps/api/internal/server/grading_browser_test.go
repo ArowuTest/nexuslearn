@@ -68,7 +68,18 @@ func TestBrowserCanonicalGrading(t *testing.T) {
 	}
 	t.Setenv("REQUIRE_PUPIL_SESSION", "true")
 	t.Setenv("PUPIL_SESSION_SECRET", "local-disposable-grading-qa-only")
+	t.Setenv("ACCOUNT_SESSION_SECRET", "local-disposable-adult-evidence-qa-only")
 	srv := New(learning.NewRepository(pool), "postgres")
+	user, err := srv.repo.(platformUserRepository).UpsertPlatformUser(ctx, learning.PlatformUserConfig{
+		Email: "grading-reviewer@example.test", LoginID: "grading-reviewer", DisplayName: "Disposable QA administrator", Roles: []string{"platform_admin"},
+	}, "local-disposable-password-only")
+	if err != nil {
+		t.Fatal(err)
+	}
+	adultSession, err := srv.createAccountSession(ctx, user.ID, user.LoginID, "platform_admin", "", time.Hour)
+	if err != nil {
+		t.Fatal(err)
+	}
 	httpServer := httptest.NewServer(srv)
 	defer httpServer.Close()
 	tokens := map[string]string{}
@@ -77,7 +88,7 @@ func TestBrowserCanonicalGrading(t *testing.T) {
 	}
 	cmd := exec.CommandContext(ctx, "node", "node_modules/@playwright/test/cli.js", "test", "tests/e2e/grading-backend.spec.ts", "--workers=1", "--retries=0")
 	cmd.Dir = filepath.Join("..", "..", "..", "web")
-	cmd.Env = append(os.Environ(), "PLAYWRIGHT_PORT=3109", "GRADING_API_URL="+httpServer.URL, "GRADING_TOKEN_DESKTOP="+tokens["desktop-chromium"], "GRADING_TOKEN_MOBILE="+tokens["mobile-chromium"])
+	cmd.Env = append(os.Environ(), "PLAYWRIGHT_PORT=3109", "GRADING_API_URL="+httpServer.URL, "GRADING_TOKEN_DESKTOP="+tokens["desktop-chromium"], "GRADING_TOKEN_MOBILE="+tokens["mobile-chromium"], "GRADING_ADMIN_TOKEN="+adultSession.Token)
 	output, err := cmd.CombinedOutput()
 	t.Log(string(output))
 	if err != nil {

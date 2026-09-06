@@ -20,6 +20,7 @@ type ProgressReport struct {
 	Practice        []ProgressTopic         `json:"practice"`
 	MockAssessments []MockAssessmentSummary `json:"mock_assessments"`
 	UpdatedAt       string                  `json:"updated_at,omitempty"`
+	AttemptEvidence []AttemptEvidence       `json:"attempt_evidence,omitempty"`
 }
 
 type ProgressSubject struct {
