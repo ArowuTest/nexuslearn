@@ -82,6 +82,9 @@ func TestAdultEvidenceRoleAndLearnerBoundaries(t *testing.T) {
 				t.Fatalf("status=%d %s", res.Code, res.Body.String())
 			}
 			if role == "pupil" {
+				if res := request("LINKED", true); res.Code != http.StatusForbidden {
+					t.Fatalf("pupil token authorized a different case-sensitive ID: %d", res.Code)
+				}
 				if len(repo.calls) != 0 || strings.Contains(res.Body.String(), "attempt_evidence") {
 					t.Fatal("adult evidence exposed through pupil progress")
 				}
@@ -96,6 +99,9 @@ func TestAdultEvidenceRoleAndLearnerBoundaries(t *testing.T) {
 			}
 			before := len(repo.calls)
 			if role != "admin" {
+				if res := request("LINKED", true); res.Code != http.StatusForbidden || len(repo.calls) != before {
+					t.Fatalf("case-only ID bypassed scope: %d %+v", res.Code, repo.calls)
+				}
 				if res := request("outside", true); res.Code != 403 || len(repo.calls) != before {
 					t.Fatalf("outside scope read: %d %+v", res.Code, repo.calls)
 				}

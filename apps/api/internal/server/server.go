@@ -833,7 +833,7 @@ func (s *Server) handlePupilLogin(w http.ResponseWriter, r *http.Request) {
 	}
 	var credential learning.StudentCredentialConfig
 	for _, item := range credentials {
-		if strings.EqualFold(item.StudentExternalRef, studentRef) {
+		if item.StudentExternalRef == studentRef {
 			credential = item
 			break
 		}
@@ -859,7 +859,7 @@ func (s *Server) handlePupilLogin(w http.ResponseWriter, r *http.Request) {
 	}
 	var student learning.StudentProfileConfig
 	for _, item := range students {
-		if strings.EqualFold(item.ExternalRef, credential.StudentExternalRef) {
+		if item.ExternalRef == credential.StudentExternalRef {
 			student = item
 			break
 		}
@@ -2057,7 +2057,7 @@ func (s *Server) handleParentChildEvidence(w http.ResponseWriter, r *http.Reques
 	}
 	var child learning.ParentChildConfig
 	for _, item := range portal.Children {
-		if strings.EqualFold(item.Student.ExternalRef, externalRef) {
+		if item.Student.ExternalRef == externalRef {
 			child = item
 			break
 		}
@@ -4686,7 +4686,7 @@ func (s *Server) studentBelongsToSchool(ctx context.Context, schoolURN string, s
 	}
 	for _, classConfig := range config.Classes {
 		for _, student := range classConfig.Students {
-			if strings.EqualFold(student.ExternalRef, studentExternalRef) {
+			if student.ExternalRef == studentExternalRef {
 				return true
 			}
 		}
@@ -4737,7 +4737,7 @@ func (s *Server) studentSchoolURN(ctx context.Context, studentID string) (string
 	}
 	for _, classConfig := range classes {
 		for _, student := range classConfig.Students {
-			if strings.EqualFold(student.ExternalRef, studentID) {
+			if student.ExternalRef == studentID {
 				return classConfig.SchoolURN, classConfig.SchoolURN != ""
 			}
 		}
@@ -4796,7 +4796,7 @@ func (s *Server) requirePupilSession(w http.ResponseWriter, r *http.Request, stu
 		writeJSON(w, http.StatusUnauthorized, map[string]string{"error": "valid pupil session required"})
 		return false
 	}
-	if !strings.EqualFold(payload.StudentExternalRef, studentExternalRef) {
+	if payload.StudentExternalRef != studentExternalRef {
 		writeJSON(w, http.StatusForbidden, map[string]string{"error": "pupil session does not match learner"})
 		return false
 	}
