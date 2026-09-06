@@ -65,6 +65,24 @@ export function resolveStudioRenderer(format: string): StudioRendererDefinition 
   return rendererRegistry[format.toLowerCase()] ?? null;
 }
 
+// These renderers validate their own multi-part responses before submission.
+// Other registered builders publish an answer and rely on the studio to send it.
+const rendererSubmitFormats = new Set([
+  "sentence-editor", "clause-link-map", "relative-clause-editor", "sentence-combiner",
+  "discipline-context-sort", "sentence-build", "function-machine", "part-whole-build",
+  "part-whole-family", "place-value-chart", "fact-family-choice", "investigation-planner",
+  "fraction-wall", "scale-build", "pattern-sort", "shape-evidence-map", "evidence-explain-choice",
+  "function-choice", "component-output-table", "symbol-diagram-build", "inheritance-sort",
+  "population-simulation", "fossil-evidence", "cell-label", "force-arrow-model", "force-simulator",
+  "mechanism-model", "meaning-substitute", "reference-map", "observation-record",
+  "noun-pronoun-repair", "habitat-evidence-map", "register-slider", "balance-equation",
+  "weather-sort", "scale-read", "fraction-bar-match",
+]);
+
+export function rendererOwnsSubmission(format: string) {
+  return rendererSubmitFormats.has(format.toLowerCase());
+}
+
 export function LearningActivityRenderer(props: StudioRendererProps) {
   const format = props.question.format.toLowerCase();
   const definition = resolveStudioRenderer(format);

@@ -180,7 +180,9 @@ export default function Mission() {
   const [focusMode, setFocusMode] = useState(false);
   const [mood, setMood] = useState<DinoMood>("idle");
   const [message, setMessage] = useState("Loading configured mission content...");
-  const [showHint, setShowHint] = useState(false);
+  const [hintCount, setHintCount] = useState(0);
+  const showHint = hintCount > 0;
+  const [saveState, setSaveState] = useState<"idle" | "saving" | "uncertain">("idle");
   const [rewardMoment, setRewardMoment] = useState<string | null>(null);
   const [journeyEntries, setJourneyEntries] = useState<JourneyEntry[]>([]);
   const [awaitingContinue, setAwaitingContinue] = useState(false);
@@ -209,6 +211,9 @@ export default function Mission() {
   const sparkId = useRef(0);
   const requestSequence = useRef(0);
   const attemptInFlight = useRef(false);
+  // A retry is the same evidence, not a new attempt. Keep the serialized payload
+  // (including timing, confidence and support) unchanged until acknowledged.
+  const pendingAttempt = useRef<string | null>(null);
   const lessonStepInFlight = useRef(false);
   const completionInFlight = useRef(false);
 
@@ -266,6 +271,10 @@ export default function Mission() {
       setQuestions(null);
       setMission(null);
       completionInFlight.current = false;
+      pendingAttempt.current = null;
+      attemptInFlight.current = false;
+      setSaveState("idle");
+      setHintCount(0);
       setIdx(0);
       setInput("");
       setResults([]);
@@ -401,20 +410,24 @@ export default function Mission() {
     }
 
     let activeIndex = 0;
+    let highlightedTarget: HTMLElement | null = null;
+    const region = paused ? "[role='dialog']" : "[data-switch-region]";
     const targets = () =>
       Array.from(
         document.querySelectorAll<HTMLElement>(
-          "[data-switch-region] button:not(:disabled), [data-switch-region] [tabindex='0']",
+          `${region} button:not(:disabled), ${region} a[href], ${region} [tabindex='0']`,
         ),
-      ).filter((target) => target.offsetParent !== null);
+      ).filter((target) => target.offsetParent !== null && !target.closest("[inert], fieldset[disabled]") && target.getAttribute("aria-disabled") !== "true");
     const focusTarget = () => {
       const available = targets();
       if (!available.length) {
+        highlightedTarget = null;
         setSwitchLabel("No available controls");
         return;
       }
       activeIndex %= available.length;
       const target = available[activeIndex];
+      highlightedTarget = target;
       target.focus({ preventScroll: true });
       setSwitchLabel(target.getAttribute("aria-label") || target.textContent?.trim() || "Current control");
     };
@@ -426,7 +439,11 @@ export default function Mission() {
       }
       if (event.code === "Space") {
         event.preventDefault();
-        targets()[activeIndex]?.click();
+        if (!event.repeat) {
+          const available = targets();
+          if (highlightedTarget && available.includes(highlightedTarget)) highlightedTarget.click();
+          else focusTarget(); // A removed/disabled control must not activate its replacement.
+        }
       }
     };
 
@@ -440,7 +457,7 @@ export default function Mission() {
       window.clearInterval(scan);
       window.removeEventListener("keydown", onKeyDown, true);
     };
-  }, [switchAccess, q?.id]);
+  }, [switchAccess, q?.id, awaitingContinue, idx, lessonIdx, lessonComplete, saveState, paused]);
   const done = idx >= total;
   const teachingSequence = Array.isArray(mission?.activity?.interaction?.teaching_sequence)
     ? (mission.activity.interaction.teaching_sequence as LessonStep[])
@@ -512,6 +529,7 @@ export default function Mission() {
   async function submit() {
     if (done || awaitingContinue || input === "" || !q || attemptInFlight.current) return;
     attemptInFlight.current = true;
+    setSaveState("saving");
     const given = parseInt(input, 10);
     const ms = Date.now() - startRef.current;
     let result: AttemptResult | null = null;
@@ -519,10 +537,7 @@ export default function Mission() {
     if (API) {
       try {
         const isTextAnswer = typeof q.expected === "string";
-        const res = await fetch(`${API}/v1/learning/attempt`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json", ...pupilSessionHeaders(studentId) },
-          body: JSON.stringify({
+        if (!pendingAttempt.current) pendingAttempt.current = JSON.stringify({
             id: clientRequestId("attempt"),
             student_id: studentId,
             objective_id: q.objectiveId,
@@ -537,20 +552,31 @@ export default function Mission() {
             ms,
             hint_used: showHint,
             confidence,
-          }),
+          });
+        const res = await fetch(`${API}/v1/learning/attempt`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", ...pupilSessionHeaders(studentId) },
+          body: pendingAttempt.current,
+          signal: AbortSignal.timeout(15_000),
         });
-        if (res.ok) result = (await res.json()) as AttemptResult;
+        if (res.ok) {
+          const body = await res.json();
+          if (typeof body?.correct === "boolean") result = body as AttemptResult;
+        }
       } catch {
         result = null;
       }
     }
     if (!result) {
       setMood("encourage");
-      setMessage("I could not save that answer. Please try again in a moment.");
-      setInput("");
+      setMessage("I could not confirm that your answer was saved. Your answer is still here.");
+      setSaveState("uncertain");
       attemptInFlight.current = false;
       return;
     }
+
+    pendingAttempt.current = null;
+    setSaveState("idle");
 
     const correct = result.correct;
     if (result.mock_assessment) setMockSummary(result.mock_assessment);
@@ -575,15 +601,12 @@ export default function Mission() {
       setMessage(result.feedback || result.companion_prompt || `Try again: ${q.prompt}`);
       setRewardMoment("Repair route opened");
       if (route.mockAssessmentId) {
-        setShowHint(false);
+        setHintCount(0);
         setMessage(result.feedback || "That answer is saved. Let’s use the next question to build a clearer picture.");
         startRef.current = Date.now();
         setConfidence(0);
         setIdx((i) => i + 1);
         setJourneyEntries((entries) => [...entries, { prompt: q.prompt, feedback: result!.feedback, repaired: false }]);
-      } else {
-        setShowHint(true);
-        void recordLearningEvent("hint_opened", { question_id: q.id, objective_id: q.objectiveId, reason: "incorrect_response" });
       }
       sfx.gentle();
       setInput("");
@@ -592,32 +615,43 @@ export default function Mission() {
   }
 
   useEffect(() => {
+    if (switchAccess) return;
     if (awaitingContinue) feedbackRef.current?.focus();
     else if (idx >= total) summaryRef.current?.focus();
     else if (idx > 0) questionRef.current?.focus();
-  }, [awaitingContinue, idx, total]);
+  }, [awaitingContinue, idx, total, switchAccess]);
+
+  function revealHint() {
+    if (!q || pendingAttempt.current || attemptInFlight.current || route.mockAssessmentId || hintCount >= q.hints.length) return;
+    setHintCount(count => count + 1);
+    void recordLearningEvent("hint_opened", { question_id: q.id, objective_id: q.objectiveId, hint_index: hintCount, reason: "pupil_requested" });
+  }
 
   function continueJourney() {
     setAwaitingContinue(false);
     setInput("");
-    setShowHint(false);
+    setHintCount(0);
+    setRewardMoment(null);
     setConfidence(0);
     startRef.current = Date.now();
     setIdx((i) => i + 1);
   }
 
   function key(k: string) {
+    if (pendingAttempt.current || attemptInFlight.current) return;
     sfx.tap();
     if (k === "back") setInput((v) => v.slice(0, -1));
     else if (input.length < 4) setInput((v) => v + k);
   }
 
   function choose(choice: number | string) {
+    if (pendingAttempt.current || attemptInFlight.current) return;
     sfx.tap();
     setInput(String(choice));
   }
 
   function changeResponseMode(mode: "interactive" | "keyboard") {
+    if (pendingAttempt.current || attemptInFlight.current) return;
     setResponseMode(mode);
     setInput("");
     void recordLearningEvent("response_mode_changed", {
@@ -635,7 +669,7 @@ export default function Mission() {
     setCharge(0);
     setXp(0);
     setConfidence(0);
-    setShowHint(false);
+    setHintCount(0);
     setProjectedBand("Unknown");
     setMockSummary(undefined);
     setRewardMoment(null);
@@ -837,84 +871,32 @@ export default function Mission() {
           >
             Pause
           </button>
-          <button
-            onClick={() => setFocusMode((value) => {
-              const enabled = !value;
-              void recordLearningEvent("support_changed", { support: "focus_mode", enabled, source: "child_control" });
-              return enabled;
-            })}
-            className={`btn-pop px-3 py-2 text-sm ${focusMode ? "bg-sun text-ink" : "bg-[#3b386f]"}`}
-            aria-pressed={focusMode}
-          >
-            Focus
-          </button>
-          <button
-            onClick={() => setMute((value) => {
-              const enabled = !value;
-              void recordLearningEvent("support_changed", { support: "mute", enabled, source: "child_control" });
-              return enabled;
-            })}
-            className="btn-pop bg-[#3b386f] px-3 py-2 text-sm"
-            aria-label={mute ? "Unmute sounds" : "Mute sounds"}
-          >
-            {mute ? "Sound off" : "Sound on"}
-          </button>
-          <button
-            onClick={() => setReducedMotion((value) => {
-              const enabled = !value;
-              void recordLearningEvent("support_changed", { support: "reduced_motion", enabled, source: "child_control" });
-              return enabled;
-            })}
-            className={`btn-pop px-3 py-2 text-sm ${reducedMotion ? "bg-sun text-ink" : "bg-[#3b386f]"}`}
-            aria-pressed={reducedMotion}
-            title="Reduced motion"
-          >
-            Calm
-          </button>
-          <button
-            onClick={() => setHighContrast((value) => {
-              const enabled = !value;
-              void recordLearningEvent("support_changed", { support: "high_contrast", enabled, source: "child_control" });
-              return enabled;
-            })}
-            className={`btn-pop px-3 py-2 text-sm ${highContrast ? "bg-white text-black" : "bg-[#3b386f]"}`}
-            aria-pressed={highContrast}
-          >
-            Contrast
-          </button>
-          <button
-            onClick={() => setReadingReduced((value) => {
-              const enabled = !value;
-              void recordLearningEvent("support_changed", { support: "simple_text", enabled, source: "child_control" });
-              return enabled;
-            })}
-            className={`btn-pop px-3 py-2 text-sm ${readingReduced ? "bg-[#55cbd3] text-ink" : "bg-[#3b386f]"}`}
-            aria-pressed={readingReduced}
-          >
-            Simple text
-          </button>
-          <button
-            onClick={() => setVisualGuide((value) => {
-              const enabled = !value;
-              void recordLearningEvent("support_changed", { support: "visual_guide", enabled, source: "child_control" });
-              return enabled;
-            })}
-            className={`btn-pop px-3 py-2 text-sm ${visualGuide ? "bg-[#7fe7d7] text-ink" : "bg-[#3b386f]"}`}
-            aria-pressed={visualGuide}
-          >
-            Visual guide
-          </button>
-          <button
-            onClick={() => setSwitchAccess((value) => {
-              const enabled = !value;
-              void recordLearningEvent("support_changed", { support: "switch_access", enabled, source: "child_control" });
-              return enabled;
-            })}
-            className={`btn-pop px-3 py-2 text-sm ${switchAccess ? "bg-[#ffdf8a] text-ink" : "bg-[#3b386f]"}`}
-            aria-pressed={switchAccess}
-          >
-            Switch access
-          </button>
+          {[
+            { support: "focus_mode", label: "Focus", enabled: focusMode, update: setFocusMode, activeClass: "bg-sun text-ink" },
+            { support: "mute", label: mute ? "Sound off" : "Sound on", enabled: mute, update: setMute, activeClass: "bg-[#3b386f]", ariaLabel: mute ? "Unmute sounds" : "Mute sounds" },
+            { support: "reduced_motion", label: "Calm", enabled: reducedMotion, update: setReducedMotion, activeClass: "bg-sun text-ink", title: "Reduced motion" },
+            { support: "high_contrast", label: "Contrast", enabled: highContrast, update: setHighContrast, activeClass: "bg-white text-black" },
+            { support: "simple_text", label: "Simple text", enabled: readingReduced, update: setReadingReduced, activeClass: "bg-[#55cbd3] text-ink" },
+            { support: "visual_guide", label: "Visual guide", enabled: visualGuide, update: setVisualGuide, activeClass: "bg-[#7fe7d7] text-ink" },
+            { support: "switch_access", label: "Switch access", enabled: switchAccess, update: setSwitchAccess, activeClass: "bg-[#ffdf8a] text-ink" },
+          ].map(control => (
+            <button
+              key={control.support}
+              type="button"
+              onClick={() => {
+                const enabled = !control.enabled;
+                control.update(enabled);
+                // State updaters must remain pure; log once in the user event.
+                void recordLearningEvent("support_changed", { support: control.support, enabled, source: "child_control" });
+              }}
+              className={`btn-pop px-3 py-2 text-sm ${control.enabled ? control.activeClass : "bg-[#3b386f]"}`}
+              aria-pressed={control.support === "mute" ? undefined : control.enabled}
+              aria-label={control.ariaLabel}
+              title={control.title}
+            >
+              {control.label}
+            </button>
+          ))}
         </div>
       </div>
 
@@ -1093,7 +1075,7 @@ export default function Mission() {
 
         {/* RIGHT: question + pad, or summary */}
         {inLesson && lessonStep ? (
-          <div className="rounded-blob border border-white/10 bg-white/10 p-6 shadow-[0_24px_70px_rgba(0,0,0,0.22)] backdrop-blur md:p-8">
+          <div data-switch-region className="rounded-blob border border-white/10 bg-white/10 p-6 shadow-[0_24px_70px_rgba(0,0,0,0.22)] backdrop-blur md:p-8">
             <div className="flex items-center justify-between gap-4">
               <span className="font-display text-xs uppercase tracking-[0.16em] text-[var(--world-accent)]">
                 {String(lessonStep.kind || "learning step").replaceAll("_", " ")}
@@ -1140,7 +1122,7 @@ export default function Mission() {
             )}
           </div>
         ) : awaitingContinue ? (
-          <div ref={feedbackRef} tabIndex={-1} className="journey-feedback" data-testid="mission-reward-moment" aria-label="Discovery saved">
+          <div data-switch-region ref={feedbackRef} tabIndex={-1} className="journey-feedback" data-testid="mission-reward-moment" aria-label="Discovery saved">
             <p className="journey-eyebrow">Step {idx + 1} explored</p>
             <h2>{rewardMoment}</h2>
             <p>{message}</p>
@@ -1152,7 +1134,7 @@ export default function Mission() {
           </div>
         ) : !done ? (
           <div ref={questionRef} tabIndex={-1} role="region" aria-label="Mission question" className="rounded-blob border border-white/10 bg-white/10 p-6 shadow-[0_24px_70px_rgba(0,0,0,0.22)] backdrop-blur md:p-8">
-            {showHint && <p className="journey-repair" data-testid="mission-reward-moment" role="status">Repair route opened. Take a hint and try again.</p>}
+            {rewardMoment === "Repair route opened" && <p className="journey-repair" data-testid="mission-reward-moment" role="status">{message} You can try again or ask for a hint.</p>}
             <div className="flex items-center justify-between text-sm text-white/60">
               <span className="font-display">
               Mission: {mission?.activity?.title || "Configured Mission"} - Q{idx + 1}/{total}
@@ -1273,20 +1255,36 @@ export default function Mission() {
               </p>
             )}
             <div data-switch-region>
+              {saveState === "uncertain" && (
+                <div role="alert" aria-label="Answer saving" className="mt-5 rounded-2xl border border-sun bg-[#17233f] p-4 text-white">
+                  <p>I could not confirm that your answer was saved. Your answer is still here. Retry saving before changing it.</p>
+                  <button type="button" onClick={submit} className="btn-pop mt-3 bg-sun px-5 py-3 text-ink">Retry saving answer</button>
+                </div>
+              )}
+              {saveState === "saving" && <p role="status" className="mt-4 text-white">Saving your answer…</p>}
+              <fieldset disabled={saveState !== "idle"} aria-label="Answer controls" className="min-w-0">
               <LearningStudio
+                key={`${q.id}-${responseMode}`}
                 question={q}
                 input={input}
                 showHint={showHint}
+                hintPanel={!route.mockAssessmentId && q.hints.length > 0 ? (
+                  <section aria-label="Question hints" className="mx-auto mt-5 max-w-lg rounded-2xl border border-white/20 bg-[#17233f] p-4 text-white">
+                    {hintCount > 0 && <ol className="space-y-2" aria-live="polite">{q.hints.slice(0, hintCount).map((hint, index) => <li key={index}>{hint}</li>)}</ol>}
+                    {hintCount < q.hints.length && <button type="button" onClick={revealHint} className="btn-pop mt-2 bg-white px-4 py-3 text-ink">{hintCount ? "Show next hint" : "Show a hint"}</button>}
+                  </section>
+                ) : undefined}
                 onChoose={choose}
                 onKey={key}
                 onSubmit={submit}
                 responseMode={responseMode}
                 onResponseModeChange={changeResponseMode}
               />
+              </fieldset>
             </div>
           </div>
         ) : (
-          <div ref={summaryRef} tabIndex={-1} className="anim-pop rounded-blob bg-white p-8 text-ink shadow-card">
+          <div data-switch-region ref={summaryRef} tabIndex={-1} className="anim-pop rounded-blob bg-white p-8 text-ink shadow-card">
             <h2 className="font-display text-center text-3xl font-semibold">
               {hatched ? reward.complete : "Saving your world progress..."}
             </h2>

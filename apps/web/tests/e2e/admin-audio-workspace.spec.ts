@@ -91,13 +91,14 @@ async function openAudioWorkspace(page: Page) {
     await route.fulfill({ contentType: "application/json", body: JSON.stringify({}) });
   });
 
-  await page.goto("/admin", { waitUntil: "domcontentloaded" });
-  await page.evaluate(() => {
+  // Install the fake account before hydration and navigate only once. Starting
+  // assertions at DOMContentLoaded can race loading the authenticated workspace.
+  await page.addInitScript(() => {
     sessionStorage.setItem("nexuslearn_account_session", "audio-reviewer-session");
     sessionStorage.setItem("nexuslearn_account_role", "content_reviewer");
     sessionStorage.setItem("nexuslearn_account_session_expires", "2099-01-01T00:00:00Z");
   });
-  await page.goto("/admin?section=audio&audio_status=stale&audio_subject=English&audio_year=1", { waitUntil: "domcontentloaded" });
+  await page.goto("/admin?section=audio&audio_status=stale&audio_subject=English&audio_year=1");
   await expect(page.getByRole("heading", { name: "Audio listening QA" })).toBeVisible();
 
   return {

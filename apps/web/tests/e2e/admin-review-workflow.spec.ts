@@ -150,7 +150,7 @@ test("reviewer filters the SEND queue and sees honest release gates", async ({ p
     await route.fulfill({ contentType: "application/json", body: JSON.stringify({}) });
   });
 
-  await page.goto("/admin?section=reviews", { waitUntil: "domcontentloaded" });
+  await page.goto("/admin?section=reviews");
   await expect(page.getByRole("heading", { name: "Curriculum and SEND review" })).toBeVisible();
   await page.getByLabel("Review lane").selectOption("ai_send_lead");
   const selectedEvidence = page.getByRole("region", { name: "Selected AI review evidence" });

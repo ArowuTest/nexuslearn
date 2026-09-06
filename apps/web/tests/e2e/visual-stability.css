@@ -5,3 +5,8 @@
   caret-color: transparent !important;
   transition: none !important;
 }
+
+/* Next's development indicator is tool chrome, not pupil-facing content. */
+nextjs-portal {
+  display: none !important;
+}

@@ -1,4 +1,4 @@
-import type { ComponentType } from "react";
+import type { ComponentType, ReactNode } from "react";
 
 export type StudioQuestion = {
   id: string;
@@ -22,6 +22,7 @@ export type LearningStudioProps = {
   question: StudioQuestion;
   input: string;
   showHint: boolean;
+  hintPanel?: ReactNode;
   onChoose: (value: string) => void;
   onKey: (key: string) => void;
   onSubmit: () => void;

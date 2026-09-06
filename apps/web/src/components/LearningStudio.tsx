@@ -1,6 +1,6 @@
 "use client";
 
-import { LearningActivityRenderer } from "./learning-studio/registry";
+import { LearningActivityRenderer, rendererOwnsSubmission, resolveStudioRenderer } from "./learning-studio/registry";
 import { NumericArray } from "./learning-studio/primitives";
 import { ENERGY_SIMULATOR, choiceOptions, formatLabel, type LearningStudioProps } from "./learning-studio/types";
 
@@ -8,6 +8,7 @@ export default function LearningStudio({
   question,
   input,
   showHint,
+  hintPanel,
   onChoose,
   onKey,
   onSubmit,
@@ -23,37 +24,24 @@ export default function LearningStudio({
   const isSentence = ["sentence-sort", "paragraph-build", "theme-choice"].includes(format);
   const isSequence = ["audio-sequence", ENERGY_SIMULATOR, "fossil-sequence", "growth-sequence", "hygiene-step-order", "life-cycle-sequence", "picture-sequence", "time-interval-sequence"].includes(format);
   const isCoordinatePlot = format === "coordinate-plot";
-  const isCoordinateMap = ["coordinate-read", "movement-translation"].includes(format);
-  const isPhonemeCount = format === "phoneme-count";
   const isSoundBoxBuild = ["sound-box-build", "oral-segment"].includes(format);
-  const isMethodChoice = format === "method-choice";
-  const isErrorAnalysis = format === "error-analysis";
-  const isPredictionEvidence = format === "prediction-observation-explanation";
-  const isFairTestPlan = format === "fair-test-plan";
-  const isCompareModel = format === "compare-model";
-  const isColumnCalculate = format === "column-calculate";
-  const isOperationModel = format === "operation-model";
-  const isProblemMap = format === "problem-map";
-  const isHealthyChoice = format === "healthy-choice-explain";
-  const isCircuitBuilder = format === "circuit-builder";
-  const isEvolutionEvidence = ["inheritance-sort", "population-simulation", "fossil-evidence"].includes(format);
-  const isCellLabel = format === "cell-label";
+  const hasGuidedChoices = ["method-choice", "error-analysis", "prediction-observation-explanation",
+    "fair-test-plan", "compare-model", "column-calculate", "operation-model", "problem-map",
+    "healthy-choice-explain", "circuit-builder", "reader-effect-choice"].includes(format);
   const isForceModel = format.startsWith("fo") || format === "mechanism-model";
-  const isReaderEffect = format === "reader-effect-choice";
-  const isGrammarWorkshop = ["sentence-editor", "clause-link-map", "relative-clause-editor", "sentence-combiner"].includes(format);
-  const isContextChoice = ["meaning-substitute", "reference-map", "observation-record", "noun-pronoun-repair", "habitat-evidence-map", "register-slider"].includes(format);
-  const isDisciplineContext = format === "discipline-context-sort";
-  const isReasoningChoice = ["shape-evidence-map", "evidence-explain-choice", "function-choice"].includes(format);
-  const isFunctionMachine = format === "function-machine";
-  const isNumberModel = ["part-whole-build", "part-whole-family", "place-value-chart"].includes(format);
-  const isSentenceBuild = format === "sentence-build";
-  const isFactFamily = format === "fact-family-choice" || format === "investigation-planner";
-  const isStructuredChoice = ["balance-equation", "weather-sort", "scale-read", "fraction-bar-match"].includes(format);
-  const isFractionWall = format === "fraction-wall";
-  const isRatioScale = format === "scale-build";
-  const isPatternSort = format === "pattern-sort";
-  const isNumeric = typeof question.expected === "number" && !options.length && !isArrayBuild;
-  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isContextChoice && !isDisciplineContext && !isReasoningChoice && !isFunctionMachine && !isNumberModel && !isSentenceBuild && !isFactFamily && !isStructuredChoice && !isPatternSort && !isFractionWall && !isRatioScale && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isCircuitBuilder && !isEvolutionEvidence && !isCellLabel && !isForceModel;
+  const ownsSubmission = rendererOwnsSubmission(format);
+  const isNumeric = typeof question.expected === "number" && !options.length && !isArrayBuild && !ownsSubmission;
+  const isChoice = options.length > 0 && !ownsSubmission && !isSentence && !isParticle && !isWordBuild && !hasGuidedChoices && !isForceModel;
+  const needsBuilderSubmit = Boolean(resolveStudioRenderer(format)) && !ownsSubmission
+    && !isTrace && !isSentence && !isParticle && !isChoice && !isWordBuild && !isArrayBuild && !isNumeric;
+  let builderAnswerReady = Boolean(input.trim()) && input !== "[]" && input !== "{}";
+  if (isSoundBoxBuild) {
+    try {
+      const sounds: unknown = JSON.parse(input);
+      builderAnswerReady = Array.isArray(sounds) && sounds.length === Number(question.body.sound_boxes)
+        && sounds.every(sound => typeof sound === "string" && sound.trim().length > 0);
+    } catch { builderAnswerReady = false; }
+  }
 
   return (
     <>
@@ -71,25 +59,22 @@ export default function LearningStudio({
         <span className="rounded-full bg-[#17233f] px-3 py-1 text-xs font-semibold text-white">{formatLabel(question.format)}</span>
       </div>
 
+      {hintPanel}
+
       <fieldset className="mx-auto mt-5 max-w-lg">
         <legend className="text-center text-sm font-semibold text-white/75">How would you like to answer?</legend>
         <div className="mt-2 grid grid-cols-2 gap-2 rounded-2xl bg-white/8 p-2">
-          <button
-            type="button"
-            onClick={() => onResponseModeChange("interactive")}
-            className={`rounded-xl px-4 py-3 text-sm font-semibold ${responseMode === "interactive" ? "bg-sun text-ink" : "bg-white/8 text-white"}`}
-            aria-pressed={responseMode === "interactive"}
-          >
-            Activity controls
-          </button>
-          <button
-            type="button"
-            onClick={() => onResponseModeChange("keyboard")}
-            className={`rounded-xl px-4 py-3 text-sm font-semibold ${responseMode === "keyboard" ? "bg-sun text-ink" : "bg-white/8 text-white"}`}
-            aria-pressed={responseMode === "keyboard"}
-          >
-            Keyboard answer
-          </button>
+          {(["interactive", "keyboard"] as const).map(mode => (
+            <button
+              key={mode}
+              type="button"
+              onClick={() => onResponseModeChange(mode)}
+              className={`rounded-xl px-4 py-3 text-sm font-semibold ${responseMode === mode ? "bg-sun text-ink" : "bg-white/8 text-white"}`}
+              aria-pressed={responseMode === mode}
+            >
+              {mode === "interactive" ? "Activity controls" : "Keyboard answer"}
+            </button>
+          ))}
         </div>
       </fieldset>
 
@@ -103,12 +88,12 @@ export default function LearningStudio({
 
       {showHint && responseMode === "interactive" && !isTrace && !isSentence && !isParticle && <NumericArray a={question.a} b={question.b} />}
 
-      {responseMode === "keyboard" && (
+      {responseMode === "keyboard" && !ownsSubmission && (
         <div className="mx-auto mt-6 max-w-lg rounded-3xl border border-white/10 bg-white/10 p-5">
           <label className="block text-sm font-semibold text-white" htmlFor={`keyboard-answer-${question.id}`}>
             Keyboard answer
           </label>
-          {options.length && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isContextChoice && !isDisciplineContext && !isReasoningChoice && !isFunctionMachine && !isNumberModel && !isSentenceBuild && !isFactFamily && !isStructuredChoice && !isPatternSort && !isFractionWall && !isRatioScale && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isCircuitBuilder ? (
+          {options.length && !hasGuidedChoices ? (
             <select
               id={`keyboard-answer-${question.id}`}
               value={input}
@@ -120,10 +105,6 @@ export default function LearningStudio({
                 <option key={option.value} value={option.value}>{option.label}</option>
               ))}
             </select>
-          ) : isGrammarWorkshop || isContextChoice || isDisciplineContext || isReasoningChoice || isFunctionMachine || isNumberModel || isSentenceBuild || isFactFamily || isStructuredChoice || isPatternSort || isFractionWall || isRatioScale ? (
-            <p className="mt-3 rounded-xl bg-white/8 p-4 text-sm leading-6 text-white/80">
-              Use the accessible grammar workshop above. Its labelled choices work with keyboard, switch scanning and touch.
-            </p>
           ) : isTrace ? (
             <button
               id={`keyboard-answer-${question.id}`}
@@ -196,11 +177,11 @@ export default function LearningStudio({
         </div>
       )}
 
-      {responseMode === "interactive" && (isWordBuild || isArrayBuild) && (
+      {responseMode === "interactive" && (isWordBuild || isArrayBuild || needsBuilderSubmit) && (
         <div className="mx-auto mt-6 max-w-lg">
           <button
             onClick={onSubmit}
-            disabled={!input}
+            disabled={needsBuilderSubmit ? !builderAnswerReady : !input}
             className="btn-pop min-h-16 w-full bg-sun px-4 py-4 text-xl text-ink disabled:opacity-50"
             aria-label="Submit answer"
           >
