@@ -96,6 +96,14 @@ test("pupil login remains email-free and card-led", async ({ page }) => {
 });
 
 test("SEND-aware mission teaches before practice and records child confidence", async ({ page }) => {
+  // Three answer modes, lesson/audio/pause controls and a full accessibility
+  // scan need a whole-journey budget on loaded mobile runners. Element waits
+  // and the explicit no-reload/evidence assertions keep their normal limits.
+  test.setTimeout(60_000);
+  let documentLoads = 0;
+  page.on("request", request => {
+    if (request.isNavigationRequest() && request.frame() === page.mainFrame()) documentLoads++;
+  });
   await page.route("http://api.test/v1/learning/mission**", async (route) => {
     await route.fulfill({
       contentType: "application/json",
@@ -329,6 +337,7 @@ test("SEND-aware mission teaches before practice and records child confidence", 
   await expect(page.getByRole("link", { name: "Next checkpoint" })).toHaveAttribute("href", /activityId=act-counting.*mode=diagnostic/);
   expect(submittedConfidence).toEqual([3, 0, 0]);
   expect(submittedResponseModes).toEqual(["interactive", "keyboard", "interactive"]);
+  expect(documentLoads, "A completed journey must not be reset by a page reload").toBe(1);
   const accessibility = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"]).analyze();
   expect(accessibility.violations.filter((item) => item.impact === "critical" || item.impact === "serious")).toEqual([]);
 });

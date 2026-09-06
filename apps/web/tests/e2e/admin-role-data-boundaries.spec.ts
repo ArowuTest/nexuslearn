@@ -92,8 +92,11 @@ test("content reviewer enters review without configuration or personal-data requ
     "/v1/admin/ai-reviews",
     "/v1/admin/ai-reviews/summary",
   ]);
-  expect(requests.filter((url) => url.pathname === "/v1/admin/ai-reviews")).toHaveLength(2);
-  expect(requests.filter((url) => url.pathname === "/v1/admin/ai-reviews/summary")).toHaveLength(2);
+  // React Strict Mode replays mount effects only in development. Production
+  // must make one read per resource, without adding any personal-data request.
+  const mountReads = process.env.PLAYWRIGHT_SERVER_MODE === "production" ? 1 : 2;
+  expect(requests.filter((url) => url.pathname === "/v1/admin/ai-reviews")).toHaveLength(mountReads);
+  expect(requests.filter((url) => url.pathname === "/v1/admin/ai-reviews/summary")).toHaveLength(mountReads);
   expect(requests.some((url) => [
     "/v1/admin/config",
     "/v1/admin/students",

@@ -3,6 +3,7 @@ import { defineConfig, devices } from "@playwright/test";
 const port = process.env.PLAYWRIGHT_PORT ?? "3000";
 const baseURL = `http://127.0.0.1:${port}`;
 const executablePath = process.env.PLAYWRIGHT_EXECUTABLE_PATH;
+const productionServer = process.env.PLAYWRIGHT_SERVER_MODE === "production";
 
 export default defineConfig({
   testDir: "./tests/e2e",
@@ -23,12 +24,12 @@ export default defineConfig({
     { name: "mobile-chromium", use: { ...devices["Pixel 7"] } },
   ],
   webServer: {
-    command: `npx next dev --webpack --hostname 127.0.0.1 --port ${port}`,
+    command: `npx next ${productionServer ? "start" : "dev --webpack"} --hostname 127.0.0.1 --port ${port}`,
     env: {
       NEXT_PUBLIC_API_URL: "http://api.test",
     },
     url: baseURL,
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: !process.env.CI && !productionServer,
     timeout: 120_000,
   },
 });

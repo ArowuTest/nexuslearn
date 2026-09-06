@@ -25,6 +25,19 @@ The pupil mission DTO was separated from canonical answer keys in `ea06a13`, but
 - Hosted before deployment: legacy report JSON and listening-QA HTML returned 200 without authentication. Post-deployment results and exact commit/workflow identities are retained in FS V2B.
 - One initial browser invocation timed out starting its local dev server before any tests ran. Starting the owned server directly and running one browser worker completed all acceptance cases; no assertions or timeouts were relaxed.
 
+## Follow-on: production-browser CI
+
+Hosted run 34040245213 passed but retried two desktop tests. The newly retained artifact (9991554444) now supplies the missing evidence:
+
+- SEND trace: three attempt requests returned 200, followed by a second document request for the same mission at 14:50:03.660 UTC, immediately after the third attempt. The final snapshot had reset to zero discoveries and the teaching step; the trace also records development Fast Refresh.
+- Decimal-contract trace: the page failed in Next's `loadManifest` / `app-page.runtime.dev.js` with `Unexpected end of JSON input`, before the learning renderer was available.
+
+CI now builds with the fixture API origin and uses `next start` for both fixture browser tests and the separate real-API/database harness. Ordinary local Playwright retains dev mode; `PLAYWRIGHT_SERVER_MODE=production` opts into a previously built production server and never silently reuses a dev server. The SEND test additionally rejects unexpected document reloads. Screenshot baselines, element waits and functional/accessibility assertions are unchanged. This addresses the observed development-server interference, not every possible future test flake.
+
+The first broad local production run passed 155 cases. Two role tests still required development Strict Mode's duplicate mount reads; they now require exactly one read in production and two in development. A separate local SEND timeout occurred with a correct completed journey in the captured snapshot during observed 100% CPU utilisation; another focused run exceeded the same 30-second total budget. This long three-answer teaching/pause/audio/keyboard journey plus accessibility scan now has a 60-second total test budget. This does not increase individual element waits or bypass the saved-evidence, no-reload or accessibility assertions.
+
+Final focused production acceptance: all four role/SEND desktop/mobile cases passed without retries in 42.4 seconds; the SEND journeys took 11.2 and 9.9 seconds. Combined with the broad run, 158 distinct non-snapshot browser cases passed. This is not a claim that the initial broad run was entirely green. Production test build, lint and unchanged asset gate also passed (1,404,472 JavaScript bytes with the fixture API origin). Hosted Linux visual and real-database acceptance for the follow-up is recorded in FS V2B.
+
 ## Limits and follow-on work
 
-This governs the current app deployment, not repository history, downloaded copies or old immutable deployment URLs. It is not a mechanism for retracting already-published artifacts. Generated reports still require educational review; moving files does not approve their claims. The one previously flaky SEND completion test remains unresolved until trace evidence establishes the cause. Adult immutable grading-evidence reporting, legacy unversioned grading retirement, richer marking policies and human listening/pilot gates remain separate follow-on work.
+This governs the current app deployment, not repository history, downloaded copies or old immutable deployment URLs. It is not a mechanism for retracting already-published artifacts. Generated reports still require educational review; moving files does not approve their claims. Adult immutable grading-evidence reporting, legacy unversioned grading retirement, richer marking policies and human listening/pilot gates remain separate follow-on work.

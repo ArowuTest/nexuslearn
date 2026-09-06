@@ -63,6 +63,11 @@ jobs:
 
   web-quality:
     runs-on: ubuntu-latest
+    # Compile the test API origin into the production client bundle. Both the
+    # fixture suite and the real-backend harness intercept this origin.
+    env:
+      NEXT_PUBLIC_API_URL: http://api.test
+      PLAYWRIGHT_SERVER_MODE: production
     services:
       grading-postgres:
         image: postgres:16
