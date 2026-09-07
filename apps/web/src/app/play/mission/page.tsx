@@ -555,9 +555,9 @@ export default function Mission() {
         if (res.ok) {
           const body = await res.json();
           if (typeof body?.correct === "boolean") result = body as AttemptResult;
-        } else if ([400, 401, 403, 404, 409, 422].includes(res.status)) {
-          const body = await res.json();
-          setMessage(typeof body.error === "string" ? body.error : "This answer could not be marked. Please choose another mission.");
+        } else if ([400, 401, 403, 404, 409, 413, 422].includes(res.status)) {
+          const body = await res.json().catch(() => ({}));
+          setMessage(typeof body?.error === "string" ? body.error : "This answer could not be marked. Please choose another mission.");
           setSaveState("rejected");
           attemptInFlight.current = false;
           return;

@@ -63,6 +63,9 @@ func TestBrowserCanonicalGrading(t *testing.T) {
   INSERT INTO curriculum_objectives(id,year_group,subject,strand,topic,statement) VALUES ('grading-browser-objective',3,'Mathematics','Number','Decimal addition','Add decimals');
   INSERT INTO activities(id,objective_id,world_key,title,prompt,interaction,status) VALUES ('grading-browser-activity','grading-browser-objective','explorer-islands','Decimal discovery','Explore decimal addition','{}','published');
   INSERT INTO questions(id,activity_id,objective_id,format,body,expected_answer,status) VALUES ('grading-browser-question','grading-browser-activity','grading-browser-objective','number-input','{"prompt":"What is 1 + 0.25?","input":"number"}','{"value":1.25}','published');
+  INSERT INTO curriculum_objectives(id,year_group,subject,strand,topic,statement) VALUES ('repair-browser-objective',3,'English','Spelling','Words','Build a word');
+  INSERT INTO activities(id,objective_id,world_key,title,prompt,interaction,status) VALUES ('repair-browser-activity','repair-browser-objective','explorer-islands','Word discovery','Build a word','{}','published');
+  INSERT INTO questions(id,activity_id,objective_id,format,body,expected_answer,status) VALUES ('repair-browser-question','repair-browser-activity','repair-browser-objective','word-build','{"prompt":"Build the word cat.","letters":["c","a","t"]}','{"value":"cat"}','published');
  `); err != nil {
 		t.Fatal(err)
 	}
@@ -96,7 +99,7 @@ func TestBrowserCanonicalGrading(t *testing.T) {
 	}
 	for _, project := range []string{"desktop-chromium", "mobile-chromium"} {
 		var count, score int
-		if err := pool.QueryRow(ctx, `SELECT count(*) FROM question_attempts qa JOIN students s ON s.id=qa.student_id WHERE s.external_ref=$1`, "grading-"+project).Scan(&count); err != nil {
+		if err := pool.QueryRow(ctx, `SELECT count(*) FROM question_attempts qa JOIN students s ON s.id=qa.student_id WHERE s.external_ref=$1 AND qa.objective_id='grading-browser-objective'`, "grading-"+project).Scan(&count); err != nil {
 			t.Fatal(err)
 		}
 		if err := pool.QueryRow(ctx, `SELECT score FROM student_objective_mastery m JOIN students s ON s.id=m.student_id WHERE s.external_ref=$1 AND objective_id='grading-browser-objective'`, "grading-"+project).Scan(&score); err != nil {
@@ -104,6 +107,9 @@ func TestBrowserCanonicalGrading(t *testing.T) {
 		}
 		if count != 1 || score != 6 {
 			t.Fatalf("%s lost acknowledgement awarded incorrectly: attempts=%d score=%d", project, count, score)
+		}
+		if err := pool.QueryRow(ctx, `SELECT count(*) FROM question_attempts qa JOIN students s ON s.id=qa.student_id WHERE s.external_ref=$1 AND qa.question_id='repair-browser-question' AND NOT correct AND given_answer='dog' AND submitted_response->>'value'='dog' AND explanation LIKE '%sounds one at a time%'`, "grading-"+project).Scan(&count); err != nil || count != 1 {
+			t.Fatalf("%s repair evidence was lost or duplicated: %d %v", project, count, err)
 		}
 	}
 }

@@ -571,6 +571,9 @@ func (r *PostgresRepository) RecordAttempt(ctx context.Context, attempt Attempt)
 		if err != nil {
 			return result, err
 		}
+		// World configuration still controls rewards/animation, but cannot replace
+		// task-specific repair guidance with generic praise or speed pressure.
+		result = applyQuestionRepairFeedback(question, result)
 	}
 
 	if _, err := tx.Exec(ctx, `

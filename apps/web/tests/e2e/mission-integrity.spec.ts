@@ -55,6 +55,52 @@ test("a stale question offers recovery without pretending a save is still pendin
   expect(calls).toBe(1);
 });
 
+test("an oversized request is rejected without trapping the pupil in an uncertain retry", async ({ page }) => {
+  await mission(page, numberFixture);
+  await page.route("http://api.test/v1/learning/attempt", route => route.fulfill({ status: 413, json: { error: "answer request is too large" } }));
+  await open(page);
+  await typeNumber(page, "12");
+  await page.getByRole("button", { name: "Submit answer", exact: true }).click();
+  await expect(page.getByRole("alert", { name: "Answer saving" })).toContainText("answer request is too large");
+  await expect(page.getByRole("button", { name: "Retry saving answer" })).toHaveCount(0);
+  await expect(page.getByRole("link", { name: "Choose another mission" })).toBeVisible();
+});
+
+test("a proxy rejection with HTML still offers a safe exit", async ({ page }) => {
+  await mission(page, numberFixture);
+  await page.route("http://api.test/v1/learning/attempt", route => route.fulfill({ status: 413, contentType: "text/html", body: "<h1>Request too large</h1>" }));
+  await open(page);
+  await typeNumber(page, "12");
+  await page.getByRole("button", { name: "Submit answer", exact: true }).click();
+  await expect(page.getByRole("alert", { name: "Answer saving" })).toContainText("This answer could not be marked");
+  await expect(page.getByRole("button", { name: "Retry saving answer" })).toHaveCount(0);
+  await expect(page.getByRole("link", { name: "Choose another mission" })).toBeVisible();
+});
+
+test("a definitive rejection with a null JSON body still offers a safe exit", async ({ page }) => {
+  await mission(page, numberFixture);
+  await page.route("http://api.test/v1/learning/attempt", route => route.fulfill({ status: 413, contentType: "application/json", body: "null" }));
+  await open(page);
+  await typeNumber(page, "12");
+  await page.getByRole("button", { name: "Submit answer", exact: true }).click();
+  await expect(page.getByRole("alert", { name: "Answer saving" })).toContainText("This answer could not be marked");
+  await expect(page.getByRole("button", { name: "Retry saving answer" })).toHaveCount(0);
+  await expect(page.getByRole("link", { name: "Choose another mission" })).toBeVisible();
+});
+
+test("an incorrect answer shows saved task guidance without completing the mission", async ({ page }) => {
+  await mission(page, { format: "word-build", body: { prompt: "Build the word cat.", letters: ["c", "a", "t"] }, expected: "cat" });
+  const guidance = "Not yet. Check the sounds one at a time, then blend them together.";
+  await page.route("http://api.test/v1/learning/attempt", route => route.fulfill({ json: { ...result(false), feedback: guidance } }));
+  await open(page);
+  await typeNumber(page, "dog");
+  await page.getByRole("button", { name: "Submit answer", exact: true }).click();
+  await expect(page.getByTestId("mission-reward-moment")).toBeVisible();
+  await expect(page.getByTestId("mission-reward-moment")).toContainText(guidance);
+  await expect(page.getByRole("button", { name: "See my discoveries" })).toHaveCount(0);
+  await expect(page.getByLabel("Keyboard answer", { exact: true })).toBeEnabled();
+});
+
 test("a malformed local structured answer stays editable and never starts a save", async ({ page }) => {
   await mission(page, { format: "sound-box-build", responseKind: "sequence", body: { prompt: "Build dog.", sounds: ["d", "o", "g"], tiles: ["d", "o", "g"], sound_boxes: 3 }, expected: '["d","o","g"]' });
   let calls = 0;

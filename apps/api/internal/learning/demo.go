@@ -56,10 +56,10 @@ func scoreCorrectness(a Attempt, correct bool) AttemptResult {
 			NextReviewDays:  0,
 			RewardHook:      "mistake-museum-progress",
 			AnimationHook:   "array-scaffold",
-			Feedback:        "Almost. Let's build it together.",
-			Explanation:     "Incorrect recall suggests this fact should be repaired with a visual array before returning to timed practice.",
+			Feedback:        "Not yet. Let's check one step at a time.",
+			Explanation:     "This answer did not match the marking rule. One answer alone does not explain why.",
 			EvidenceEvent:   "attempt.incorrect.scaffold",
-			CompanionPrompt: "Let's make the groups first, then try the fact again.",
+			CompanionPrompt: "Take your time. Check the question and your answer.",
 		}
 	}
 
@@ -86,10 +86,10 @@ func scoreCorrectness(a Attempt, correct bool) AttemptResult {
 		NextReviewDays:  nextReviewDays(gain),
 		RewardHook:      "dino-lab-power-core",
 		AnimationHook:   "machine-charge",
-		Feedback:        "Brilliant recall!",
-		Explanation:     "Correct recall increases mastery; the fact will return through spaced review so it sticks over time.",
+		Feedback:        "That answer is correct.",
+		Explanation:     "This answer adds learning evidence. Progress also depends on varied, independent and retained evidence.",
 		EvidenceEvent:   "attempt.correct.mastery_gain",
-		CompanionPrompt: "Great. Can you teach me why that fact works?",
+		CompanionPrompt: "You can explore why your answer works.",
 	}
 }
 

@@ -78,3 +78,35 @@ test("real canonical decimal grading survives a lost acknowledgement without dup
   await expect(evidence).toContainText("+6 points");
   await page.screenshot({ path: info.outputPath("canonical-adult-evidence.png"), animations: "disabled" });
 });
+
+test("real English repair guidance reaches the pupil and survives a repeated acknowledgement", async ({ page }, info) => {
+  const api = process.env.GRADING_API_URL;
+  test.skip(!api, "Run via the API TestBrowserCanonicalGrading disposable-database harness.");
+  expect(["127.0.0.1", "localhost"]).toContain(new URL(api!).hostname);
+  const student = `grading-${info.project.name}`;
+  const token = info.project.name === "desktop-chromium" ? process.env.GRADING_TOKEN_DESKTOP! : process.env.GRADING_TOKEN_MOBILE!;
+  let saved: unknown;
+  let payload = "";
+  await page.route("http://api.test/**", async route => {
+    const request = route.request();
+    const response = await route.fetch({ url: request.url().replace("http://api.test", api!), headers: { ...request.headers(), "X-Pupil-Session": token } });
+    if (request.url().endsWith("/v1/learning/attempt")) {
+      expect(response.status()).toBe(200);
+      saved = await response.json();
+      payload = request.postData()!;
+    }
+    await route.fulfill({ response });
+  });
+  await page.goto(`/play/mission?studentId=${student}&activityId=repair-browser-activity&mode=practice`);
+  await page.getByRole("button", { name: "Keyboard answer", exact: true }).click();
+  await page.getByLabel("Keyboard answer", { exact: true }).fill("dog");
+  await page.getByRole("button", { name: "Submit answer", exact: true }).click();
+  await expect(page.getByTestId("mission-reward-moment")).toBeVisible();
+  await expect(page.getByTestId("mission-reward-moment")).toContainText("Not yet. Check the sounds one at a time, then blend them together.");
+  await expect(page.getByRole("button", { name: "See my discoveries" })).toHaveCount(0);
+  expect(saved).toMatchObject({ correct: false, mastery_gain: 0 });
+  const replay = await page.request.post(`${api}/v1/learning/attempt`, { headers: { "X-Pupil-Session": token, "Content-Type": "application/json" }, data: payload });
+  expect(replay.status()).toBe(200);
+  expect(await replay.json()).toEqual(saved);
+  await page.screenshot({ path: info.outputPath("canonical-english-repair.png"), animations: "disabled" });
+});

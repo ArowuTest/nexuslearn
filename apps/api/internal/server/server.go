@@ -379,6 +379,7 @@ func (s *Server) handleVersion(w http.ResponseWriter, _ *http.Request) {
 		"pupil_question_contract":     "render-v1",
 		"attempt_submission_contract": "typed-versioned-v1",
 		"attempt_evidence_contract":   "submitted-v1",
+		"feedback_contract":           "task-repair-v1",
 	})
 }
 

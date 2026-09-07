@@ -12,6 +12,8 @@ The client sends integers using `parseInt` and serializes many structured answer
 
 ## Implementation order
 
+September 7 follow-on: canonical task-level incorrect guidance and definite-error recovery are implemented in `docs/reviews/2026-09-07-task-repair-feedback.md`. This addresses the generic timed-arithmetic repair language; authored objective-specific feedback and richer marking policies remain open.
+
 1. Add adversarial repository/API tests before changing the grading path: forged expected values; unknown question IDs; mismatched objectives/formats; draft or out-of-release content; mock non-members; duplicate attempts; concurrent replay; persistence failure. Use disposable PostgreSQL as well as handler fakes.
 2. Keep replay lookup **before** new-content lookup and grading. A byte-identical retry after an answer was committed must return the stored outcome, even after content changes or the mock closes. Conflicting payloads with the same key must remain conflicts. Perform lookup, grading and evidence writes within one transaction; do not reintroduce a read/write race in the handler.
 3. Query the canonical question by indexed ID, with objective/release/status validation. Do not list the entire question bank on every attempt. Define explicit errors for unavailable content, stale versions and invalid response shapes; do not silently create objectives or accept a client answer key.
