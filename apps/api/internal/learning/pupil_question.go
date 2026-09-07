@@ -34,7 +34,7 @@ const pupilBodyFields = `prompt a b input response choices
  source_sentences stage_cards start start_time starting_counts stated_purpose strategy_steps structures
  suggested_jumps table target target_inference target_mood target_shaded text text_model theme tiles
  total transfer_context variable_options versions whole words x_axis y_axis tolerance
- response_mode supported_interaction`
+ response_mode supported_interaction assistance_policy`
 
 var pupilBodyKeys = pupilFieldSet(pupilBodyFields)
 

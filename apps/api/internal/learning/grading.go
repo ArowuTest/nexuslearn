@@ -22,7 +22,7 @@ var ErrGradingUnavailable = errors.New("answer marking requires database persist
 
 // Bump when matching/normalization semantics change. This identifies the
 // correctness algorithm, not configurable rewards or mastery policy.
-const canonicalGraderRevision = "canonical-policy-v3"
+const canonicalGraderRevision = "canonical-policy-v4"
 
 // AnswerResponse is learner evidence, never an answer key. New submissions must
 // include this envelope and the served question version. Legacy fields remain

@@ -246,6 +246,28 @@ test("decimal answers send typed learner evidence and version, never an answer k
   expect(sent).not.toHaveProperty("expected_text");
 });
 
+test("attempts preserve answer help separately from access support context", async ({ page }) => {
+  await audioHarness(page);
+  await mission(page, {
+    ...numberFixture,
+    format: "audio-blend",
+    body: { ...numberFixture.body, sounds: ["c"], audio_assets: { c: "/qa-c.mp3" }, prompt_audio_url: "/qa-prompt.mp3" },
+  });
+  let sent: Record<string, unknown> | undefined;
+  await page.route("http://api.test/v1/learning/attempt", async route => { sent = route.request().postDataJSON(); await route.fulfill({ json: result() }); });
+  await open(page);
+  await page.getByRole("button", { name: "Calm", exact: true }).click();
+  await page.getByRole("button", { name: "Hear question", exact: true }).click();
+  await page.getByRole("button", { name: "Hear c", exact: true }).click();
+  await page.getByRole("button", { name: "Show a hint", exact: true }).click();
+  await typeNumber(page, "12");
+  await page.getByRole("button", { name: "Submit answer", exact: true }).click();
+  await expect(page.getByRole("button", { name: "See my discoveries" })).toBeVisible();
+  expect(sent?.assistance_used).toEqual(expect.arrayContaining(["audio_replay"]));
+  expect(sent?.hint_used).toBe(true);
+  expect(sent?.response_mode).toBe("keyboard");
+});
+
 test("a stale question offers recovery without pretending a save is still pending", async ({ page }) => {
   await mission(page, numberFixture);
   let calls = 0;

@@ -20,7 +20,7 @@ jobs:
             web_status="$(curl -sS -o /tmp/family.html -w '%{http_code}' --max-time 30 https://nexuslearn-woad.vercel.app/family || true)"
             report_status="$(curl -sS -o /dev/null -w '%{http_code}' --max-time 30 https://nexuslearn-woad.vercel.app/content/pilot-review-evidence-template.json || true)"
             audio_status="$(curl -sS -o /dev/null -w '%{http_code}' --max-time 30 https://nexuslearn-woad.vercel.app/content/narration-manifest.json || true)"
-            if echo "$api" | grep -q '"status":"ok"' && echo "$version" | grep -q '"attempt_evidence_contract":"submitted-v1"' && echo "$version" | grep -q '"feedback_contract":"task-repair-v1"' && echo "$version" | grep -q '"marking_policy_contract":"authored-v1"' && echo "$version" | grep -q '"pupil_audio_contract":"aliases-v1"' && echo "$version" | grep -q '"required_listening_contract":"ledger-v1"' && test "$web_status" = "200" && test "$report_status" = "404" && test "$audio_status" = "200"; then
+            if echo "$api" | grep -q '"status":"ok"' && echo "$version" | grep -q '"attempt_evidence_contract":"submitted-v1"' && echo "$version" | grep -q '"assistance_policy_contract":"assistance-policy-v1"' && echo "$version" | grep -q '"feedback_contract":"task-repair-v1"' && echo "$version" | grep -q '"marking_policy_contract":"authored-v1"' && echo "$version" | grep -q '"pupil_audio_contract":"aliases-v1"' && echo "$version" | grep -q '"required_listening_contract":"ledger-v1"' && test "$web_status" = "200" && test "$report_status" = "404" && test "$audio_status" = "200"; then
               exit 0
             fi
             echo "Deployment not ready yet (attempt $attempt/30)."

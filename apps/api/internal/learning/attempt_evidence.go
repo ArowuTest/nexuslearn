@@ -19,14 +19,16 @@ type AttemptEvidence struct {
 	RecordedAnswer    string          `json:"recorded_answer"`
 	SubmittedResponse *AnswerResponse `json:"submitted_response,omitempty"`
 	// Preserve number lexemes through clients that parse JSON numbers as floats.
-	SubmittedValueJSON string `json:"submitted_value_json,omitempty"`
-	GraderRevision     string `json:"grader_revision,omitempty"`
-	ResponseMode       string `json:"response_mode"`
-	Correct            bool   `json:"correct"`
-	HintUsed           bool   `json:"hint_used"`
-	MasteryDelta       int    `json:"mastery_delta"`
-	Explanation        string `json:"explanation"`
-	AttemptedAt        string `json:"attempted_at"`
+	SubmittedValueJSON string   `json:"submitted_value_json,omitempty"`
+	GraderRevision     string   `json:"grader_revision,omitempty"`
+	ResponseMode       string   `json:"response_mode"`
+	Correct            bool     `json:"correct"`
+	HintUsed           bool     `json:"hint_used"`
+	AssistanceUsed     []string `json:"assistance_used,omitempty"`
+	Independent        bool     `json:"independent"`
+	MasteryDelta       int      `json:"mastery_delta"`
+	Explanation        string   `json:"explanation"`
+	AttemptedAt        string   `json:"attempted_at"`
 }
 
 // AdultAttemptEvidence must only be used after adult role and learner scope
@@ -43,7 +45,7 @@ func (r *PostgresRepository) AdultAttemptEvidence(ctx context.Context, studentID
 	rows, err := r.db.Query(ctx, `
  SELECT a.id::text, COALESCE(a.objective_id,''), a.question_id,
         COALESCE(a.question_version,''), COALESCE(v.snapshot->'body'->>'prompt',''),
-	        a.format,a.given_answer,a.response_mode,a.correct,a.hint_used,a.mastery_delta,a.explanation,a.created_at,
+        a.format,a.given_answer,a.response_mode,a.correct,a.hint_used,a.assistance_used,a.mastery_delta,a.explanation,a.created_at,
 	        a.submitted_response,COALESCE(a.grader_revision,'')
  FROM question_attempts a
  JOIN students s ON s.id=a.student_id
@@ -59,9 +61,11 @@ func (r *PostgresRepository) AdultAttemptEvidence(ctx context.Context, studentID
 		var item AttemptEvidence
 		var at time.Time
 		var submitted []byte
-		if err := rows.Scan(&item.ID, &item.ObjectiveID, &item.QuestionID, &item.QuestionVersion, &item.QuestionPrompt, &item.Format, &item.RecordedAnswer, &item.ResponseMode, &item.Correct, &item.HintUsed, &item.MasteryDelta, &item.Explanation, &at, &submitted, &item.GraderRevision); err != nil {
+		if err := rows.Scan(&item.ID, &item.ObjectiveID, &item.QuestionID, &item.QuestionVersion, &item.QuestionPrompt, &item.Format, &item.RecordedAnswer, &item.ResponseMode, &item.Correct, &item.HintUsed, &item.AssistanceUsed, &item.MasteryDelta, &item.Explanation, &at, &submitted, &item.GraderRevision); err != nil {
 			return nil, err
 		}
+		item.AssistanceUsed = normaliseAssistance(item.AssistanceUsed, item.HintUsed)
+		item.Independent = !usesAnswerRevealingAssistance(item.AssistanceUsed, item.HintUsed)
 		if len(submitted) > 0 {
 			if err := json.Unmarshal(submitted, &item.SubmittedResponse); err != nil {
 				return nil, err

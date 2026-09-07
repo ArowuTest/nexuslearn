@@ -19,7 +19,7 @@ export default function AttemptEvidencePanel({ items }: { items?: AttemptEvidenc
                 ["Submitted response", item.submitted_response ? `${item.submitted_response.kind}: ${item.submitted_value_json ?? JSON.stringify(item.submitted_response.value)}` : "Original submission unavailable"],
                 ["Recorded answer", item.recorded_answer || "No answer value recorded"],
                 ["Grader revision", item.grader_revision || "Grader revision unavailable"],
-                ["Support and response", `${item.hint_used ? "Hint used" : "No hint recorded"} · ${item.response_mode || "Response method unavailable"} · ${item.format}`],
+                ["Support and response", `${item.independent ? "Independent" : "Supported; answer-revealing help recorded"} · ${item.assistance_used?.length ? item.assistance_used.join(", ") : item.hint_used ? "hint" : "No support recorded"} · ${item.response_mode || "Response method unavailable"} · ${item.format}`],
                 ["Evidence score change", `${item.mastery_delta > 0 ? "+" : ""}${item.mastery_delta} points at this attempt. Progress also depends on varied, independent and retained evidence.`],
                 ["Saved feedback", item.explanation || "No feedback recorded"],
                 ["Question provenance", item.question_version ? `Frozen question version: ${item.question_version}` : "Historical record: question version unavailable. The current question is not substituted."],

@@ -223,6 +223,7 @@ export default function Mission() {
   // A retry is the same evidence, not a new attempt. Keep the serialized payload
   // (including timing, confidence and support) unchanged until acknowledged.
   const pendingAttempt = useRef<string | null>(null);
+  const assistanceUsed = useRef<string[]>([]);
   const lessonStepInFlight = useRef(false);
   const completionInFlight = useRef(false);
 
@@ -246,6 +247,10 @@ export default function Mission() {
     }
   }, [clientRequestId, studentId]);
 
+  function noteAssistance(kind: string) {
+    if (kind) assistanceUsed.current.push(kind);
+  }
+
   useEffect(() => {
     let active = true;
     queueMicrotask(() => { if (active) setRoute(readMissionRoute()); });
@@ -259,6 +264,7 @@ export default function Mission() {
       setMission(null);
       completionInFlight.current = false;
       pendingAttempt.current = null;
+      assistanceUsed.current = [];
       attemptInFlight.current = false;
       setSaveState("idle");
       setHintCount(0);
@@ -554,6 +560,7 @@ export default function Mission() {
             response_mode: responseMode,
             ms,
             hint_used: showHint,
+            assistance_used: assistanceUsed.current,
             confidence,
           });
         const res = await fetch(`${API}/v1/learning/attempt`, {
@@ -585,6 +592,7 @@ export default function Mission() {
     }
 
     pendingAttempt.current = null;
+    assistanceUsed.current = [];
     setSaveState("idle");
 
     const correct = result.correct;
@@ -638,6 +646,7 @@ export default function Mission() {
 
   function continueJourney() {
     setAwaitingContinue(false);
+    assistanceUsed.current = [];
     setInput("");
     setHintCount(0);
     setRewardMoment(null);
@@ -672,6 +681,7 @@ export default function Mission() {
 
   function again() {
     completionInFlight.current = false;
+    assistanceUsed.current = [];
     startRef.current = Date.now();
     setIdx(0);
     setInput("");
@@ -696,6 +706,7 @@ export default function Mission() {
 
   async function readAloud(audioURL: string) {
     if (!audioURL.trim()) return;
+    noteAssistance("audio_replay");
     void recordLearningEvent("audio_replay", { activity_id: mission?.activity?.id || "", question_id: q?.id || "", lesson_step: lessonStep?.step_id || "" });
     const played = await playProducedAudio(audioURL);
     if (played === false) {
@@ -897,6 +908,7 @@ export default function Mission() {
               onClick={() => {
                 const enabled = !control.enabled;
                 control.update(enabled);
+                if (control.support !== "mute") noteAssistance(control.support);
                 // State updaters must remain pure; log once in the user event.
                 void recordLearningEvent("support_changed", { support: control.support, enabled, source: "child_control" });
               }}

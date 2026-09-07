@@ -21,6 +21,7 @@ type Attempt struct {
 	ExpectedText     string          `json:"expected_text"`
 	MS               int             `json:"ms"`
 	HintUsed         bool            `json:"hint_used"`
+	AssistanceUsed   []string        `json:"assistance_used,omitempty"`
 	Confidence       int             `json:"confidence"`
 }
 
@@ -67,7 +68,7 @@ func scoreCorrectness(a Attempt, correct bool) AttemptResult {
 	if a.MS > 0 && a.MS < 6000 {
 		gain += 2
 	}
-	if a.HintUsed {
+	if usesAnswerRevealingAssistance(a.AssistanceUsed, a.HintUsed) {
 		gain -= 4
 	}
 	if a.Confidence > 0 && a.Confidence < 3 {

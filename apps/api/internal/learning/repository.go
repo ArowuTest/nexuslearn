@@ -506,6 +506,11 @@ func (r *PostgresRepository) RecordAttempt(ctx context.Context, attempt Attempt)
 	if err != nil {
 		return result, err
 	}
+	attempt.AssistanceUsed = normaliseAssistance(attempt.AssistanceUsed, attempt.HintUsed)
+	attempt.HintUsed = attempt.HintUsed || containsAssistance(attempt.AssistanceUsed, "hint")
+	if attemptResponseMode(attempt) == "keyboard" && !containsAssistance(attempt.AssistanceUsed, "keyboard_response") {
+		attempt.AssistanceUsed = append(attempt.AssistanceUsed, "keyboard_response")
+	}
 	tx, err := r.db.Begin(ctx)
 	if err != nil {
 		return result, err
@@ -585,13 +590,13 @@ func (r *PostgresRepository) RecordAttempt(ctx context.Context, attempt Attempt)
 	_, err = tx.Exec(ctx, `
 		INSERT INTO question_attempts (
 			student_id, objective_id, question_id, format, expected_answer, given_answer,
-			correct, response_ms, hint_used, confidence, mastery_delta, explanation, response_mode,
+			correct, response_ms, hint_used, assistance_used, confidence, mastery_delta, explanation, response_mode,
 			mock_assessment_id, question_version, submitted_response, grader_revision
 		)
-		VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,NULLIF($10,0),$11,$12,$13,NULLIF($14,'')::uuid,$15,$16::json,$17)
+		VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,NULLIF($11,0),$12,$13,$14,NULLIF($15,'')::uuid,$16,$17::json,$18)
 	`, studentUUID, attempt.ObjectiveID, attempt.QuestionID, attemptFormat(attempt),
 		expectedAnswerText(attempt), givenAnswerText(attempt),
-		result.Correct, attempt.MS, attempt.HintUsed, attempt.Confidence,
+		result.Correct, attempt.MS, attempt.HintUsed, attempt.AssistanceUsed, attempt.Confidence,
 		result.MasteryDelta, result.Explanation, attemptResponseMode(attempt), attempt.MockAssessmentID, attempt.QuestionVersion, string(submittedResponse), canonicalGraderRevision)
 	if err != nil {
 		return result, err
@@ -615,12 +620,12 @@ func (r *PostgresRepository) RecordAttempt(ctx context.Context, attempt Attempt)
 	err = tx.QueryRow(ctx, `
 		INSERT INTO mastery_history (
 			student_id, objective_id, question_id, prior_score, new_score, mastery_delta,
-			correct, hint_used, confidence, response_format, response_mode
+			correct, hint_used, assistance_used, confidence, response_format, response_mode
 		)
-		VALUES ($1,$2,NULLIF($3,''),$4,$5,$6,$7,$8,NULLIF($9,0),$10,$11)
+		VALUES ($1,$2,NULLIF($3,''),$4,$5,$6,$7,$8,$9,NULLIF($10,0),$11,$12)
 		RETURNING id::text
 	`, studentUUID, attempt.ObjectiveID, attempt.QuestionID, priorScore, result.ProjectedScore,
-		result.MasteryDelta, result.Correct, attempt.HintUsed, attempt.Confidence, attemptFormat(attempt), attemptResponseMode(attempt)).Scan(&historyID)
+		result.MasteryDelta, result.Correct, attempt.HintUsed, attempt.AssistanceUsed, attempt.Confidence, attemptFormat(attempt), attemptResponseMode(attempt)).Scan(&historyID)
 	if err != nil {
 		return result, err
 	}
@@ -781,7 +786,7 @@ func (r *PostgresRepository) RecentAttempts(ctx context.Context, studentID strin
 	}
 
 	rows, err := r.db.Query(ctx, `
-		SELECT a.objective_id, a.question_id, a.response_mode, a.correct, a.response_ms, a.hint_used, a.mastery_delta, a.explanation, a.created_at
+		SELECT a.objective_id, a.question_id, a.response_mode, a.correct, a.response_ms, a.hint_used, a.assistance_used, a.mastery_delta, a.explanation, a.created_at
 		FROM question_attempts a
 		JOIN students s ON s.id=a.student_id
 		WHERE s.external_ref=$1 AND a.mock_assessment_id IS NULL
@@ -804,12 +809,15 @@ func (r *PostgresRepository) RecentAttempts(ctx context.Context, studentID strin
 			&item.Correct,
 			&item.ResponseMS,
 			&item.HintUsed,
+			&item.AssistanceUsed,
 			&item.MasteryDelta,
 			&item.Explanation,
 			&attemptedAt,
 		); err != nil {
 			return nil, err
 		}
+		item.AssistanceUsed = normaliseAssistance(item.AssistanceUsed, item.HintUsed)
+		item.Independent = !usesAnswerRevealingAssistance(item.AssistanceUsed, item.HintUsed)
 		item.StudentID = studentID
 		item.AttemptedAt = attemptedAt.UTC().Format(time.RFC3339)
 		if item.Correct {
@@ -2003,7 +2011,7 @@ func (r *PostgresRepository) completeMatchingReview(ctx context.Context, exec qu
 
 func (r *PostgresRepository) refreshEvidenceConfidence(ctx context.Context, exec queryExecutor, studentUUID string, objectiveID string, score int) (string, string, error) {
 	rows, err := exec.Query(ctx, `
-		SELECT correct, hint_used, retention_review, response_format, recorded_at
+		SELECT correct, hint_used, assistance_used, retention_review, response_format, recorded_at
 		FROM mastery_history
 		WHERE student_id=$1 AND objective_id=$2
 		ORDER BY recorded_at DESC
@@ -2015,7 +2023,7 @@ func (r *PostgresRepository) refreshEvidenceConfidence(ctx context.Context, exec
 	signals := []evidenceSignal{}
 	for rows.Next() {
 		var signal evidenceSignal
-		if err := rows.Scan(&signal.Correct, &signal.HintUsed, &signal.RetentionReview, &signal.Format, &signal.RecordedAt); err != nil {
+		if err := rows.Scan(&signal.Correct, &signal.HintUsed, &signal.AssistanceUsed, &signal.RetentionReview, &signal.Format, &signal.RecordedAt); err != nil {
 			return "", "", err
 		}
 		signals = append(signals, signal)
@@ -2047,6 +2055,7 @@ func (r *PostgresRepository) refreshEvidenceConfidence(ctx context.Context, exec
 type evidenceSignal struct {
 	Correct         bool
 	HintUsed        bool
+	AssistanceUsed  []string
 	RetentionReview bool
 	Format          string
 	RecordedAt      time.Time
@@ -2074,7 +2083,7 @@ func summariseEvidence(signals []evidenceSignal, now time.Time) evidenceRecencyS
 		if signal.Format != "" {
 			formats[signal.Format] = true
 		}
-		if signal.Correct && !signal.HintUsed {
+		if signal.Correct && !usesAnswerRevealingAssistance(signal.AssistanceUsed, signal.HintUsed) {
 			summary.IndependentCorrect++
 		}
 		if signal.Correct && signal.RetentionReview {
@@ -2371,6 +2380,9 @@ func cumulativeDelta(attempt Attempt, result AttemptResult) int {
 			delta--
 		}
 		return delta
+	}
+	if usesAnswerRevealingAssistance(attempt.AssistanceUsed, attempt.HintUsed) {
+		return maxInt(result.MasteryDelta, 1)
 	}
 	delta := 6
 	if attempt.HintUsed {

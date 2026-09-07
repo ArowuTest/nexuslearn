@@ -64,17 +64,19 @@ type StudentMastery struct {
 }
 
 type RecentAttempt struct {
-	StudentID     string `json:"student_id"`
-	ObjectiveID   string `json:"objective_id"`
-	QuestionID    string `json:"question_id"`
-	ResponseMode  string `json:"response_mode"`
-	Correct       bool   `json:"correct"`
-	ResponseMS    int    `json:"response_ms"`
-	HintUsed      bool   `json:"hint_used"`
-	MasteryDelta  int    `json:"mastery_delta"`
-	Explanation   string `json:"explanation"`
-	AttemptedAt   string `json:"attempted_at"`
-	AnimationHook string `json:"animation_hook"`
+	StudentID      string   `json:"student_id"`
+	ObjectiveID    string   `json:"objective_id"`
+	QuestionID     string   `json:"question_id"`
+	ResponseMode   string   `json:"response_mode"`
+	Correct        bool     `json:"correct"`
+	ResponseMS     int      `json:"response_ms"`
+	HintUsed       bool     `json:"hint_used"`
+	AssistanceUsed []string `json:"assistance_used,omitempty"`
+	Independent    bool     `json:"independent"`
+	MasteryDelta   int      `json:"mastery_delta"`
+	Explanation    string   `json:"explanation"`
+	AttemptedAt    string   `json:"attempted_at"`
+	AnimationHook  string   `json:"animation_hook"`
 }
 
 type DiagnosticBaseline struct {

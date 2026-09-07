@@ -76,6 +76,8 @@ export type RecentAttempt = {
   correct: boolean;
   response_ms: number;
   hint_used: boolean;
+  assistance_used?: string[];
+  independent: boolean;
   mastery_delta: number;
   explanation: string;
   attempted_at: string;
@@ -190,6 +192,8 @@ export type AttemptEvidence = {
   response_mode: string;
   correct: boolean;
   hint_used: boolean;
+  assistance_used?: string[];
+  independent: boolean;
   mastery_delta: number;
   explanation: string;
   attempted_at: string;

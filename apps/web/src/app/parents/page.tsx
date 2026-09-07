@@ -209,6 +209,7 @@ export default async function Parents() {
                 <div>
                   <p className="font-semibold">{objective?.statement ?? attempt.objective_id}</p>
                   <p className="mt-1 text-sm leading-6 text-ink/60">{attempt.explanation}</p>
+                  <p className="mt-2 text-xs text-ink/48">{attempt.independent ? "Independent evidence" : "Supported evidence"}</p>
                 </div>
                 <div className="text-left md:text-right">
                   <p className="font-display text-lg font-semibold">{attempt.mastery_delta > 0 ? `+${attempt.mastery_delta}` : attempt.mastery_delta}</p>
