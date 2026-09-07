@@ -111,6 +111,19 @@ jobs:
       - name: Verify bundled Playwright Chromium
         run: node -e "const {existsSync}=require('node:fs'); const {chromium}=require('@playwright/test'); if (!existsSync(chromium.executablePath())) throw new Error('Update the pinned Playwright image to match package-lock.json');"
 
+      - name: Decode and audit the complete narration catalogue
+        run: npm run quality:audio-audit
+
+      - name: Retain private audio audit evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: narration-audio-audit
+          path: |
+            packages/content/generated/coverage/narration-full-audit.json
+            packages/content/generated/coverage/narration-full-audit.html
+          retention-days: 14
+
       - name: Run critical browser journeys
         run: npm run test:e2e
 
