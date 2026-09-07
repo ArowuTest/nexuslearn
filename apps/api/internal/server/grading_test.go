@@ -27,6 +27,9 @@ func TestVersionAdvertisesCanonicalGradingForDeploymentChecks(t *testing.T) {
 	if version["attempt_submission_contract"] != "typed-versioned-v1" {
 		t.Fatalf("legacy retirement deployment cannot be verified: %+v", version)
 	}
+	if version["attempt_evidence_contract"] != "submitted-v1" {
+		t.Fatalf("submitted evidence deployment cannot be verified: %+v", version)
+	}
 }
 
 func TestAttemptCanonicalFailuresHaveActionableStatus(t *testing.T) {
@@ -44,6 +47,27 @@ func TestAttemptCanonicalFailuresHaveActionableStatus(t *testing.T) {
 			srv.ServeHTTP(res, req)
 			if res.Code != tt.status {
 				t.Fatalf("status=%d want=%d body=%s", res.Code, tt.status, res.Body.String())
+			}
+		})
+	}
+}
+
+func TestAttemptRequestIsBoundedAndSingleJSON(t *testing.T) {
+	for _, tc := range []struct {
+		name, body string
+		status     int
+	}{
+		{"oversized input", `{"student_id":"alex-demo","given_text":"` + strings.Repeat("x", 1<<20) + `"}`, http.StatusRequestEntityTooLarge},
+		{"oversized trailing padding", `{"student_id":"alex-demo"}` + strings.Repeat(" ", 1<<20), http.StatusRequestEntityTooLarge},
+		{"second document", `{"student_id":"alex-demo"} {}`, http.StatusBadRequest},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			// If validation reaches the repository, this fake returns 503.
+			srv := New(fakeRepository{recordAttemptErr: learning.ErrGradingUnavailable}, "postgres")
+			res := httptest.NewRecorder()
+			srv.ServeHTTP(res, httptest.NewRequest(http.MethodPost, "/v1/learning/attempt", strings.NewReader(tc.body)))
+			if res.Code != tc.status {
+				t.Fatalf("status=%d want=%d", res.Code, tc.status)
 			}
 		})
 	}

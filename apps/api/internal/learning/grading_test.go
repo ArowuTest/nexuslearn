@@ -62,6 +62,28 @@ func TestTypedAnswerRequiresServedVersion(t *testing.T) {
 	}
 }
 
+func TestQuestionVersionBindsGraderRevision(t *testing.T) {
+	q := QuestionConfig{ID: "q", ObjectiveID: "o", Format: "number-input", ExpectedAnswer: map[string]any{"value": float64(5)}}
+	// This is the pre-revision contract, independently spelled out so removing
+	// Grader from the current hash cannot make both sides of the test agree.
+	old, err := requestHash(struct {
+		ID, Objective, Format, Updated string
+		Body, Answer                   map[string]any
+		Hints                          []string
+		Explanation                    string
+	}{q.ID, q.ObjectiveID, q.Format, q.UpdatedAt, q.Body, q.ExpectedAnswer, q.Hints, q.Explanation})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if old == questionContractVersion(q) {
+		t.Fatal("grader revision is not bound to the served contract")
+	}
+	a := Attempt{QuestionID: "q", ObjectiveID: "o", QuestionVersion: old, Response: &AnswerResponse{Kind: "number", Value: json.RawMessage(`5`)}}
+	if _, _, err := gradeCanonicalAttempt(a, q); !errors.Is(err, ErrQuestionVersion) {
+		t.Fatalf("old unsaved contract accepted: %v", err)
+	}
+}
+
 func TestTypedSequenceNumericTilesRemainCompatible(t *testing.T) {
 	q := QuestionConfig{ID: "q", ObjectiveID: "o", Format: "sequence-build", ExpectedAnswer: map[string]any{"value": []any{float64(1), float64(2)}}}
 	a := Attempt{QuestionID: "q", ObjectiveID: "o", QuestionVersion: questionContractVersion(q), Response: &AnswerResponse{Kind: "sequence", Value: json.RawMessage(`["1","2"]`)}}

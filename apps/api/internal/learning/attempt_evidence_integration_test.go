@@ -62,7 +62,7 @@ func TestPostgresAdultAttemptEvidenceSurvivesContentEdits(t *testing.T) {
 		t.Fatalf("limit/order: %+v %v", items, err)
 	}
 	items, err = store.AdultAttemptEvidence(ctx, "evidence-child", 10)
-	if err != nil || len(items) != 2 || items[1].QuestionVersion != "" || items[1].QuestionPrompt != "" || items[1].RecordedAnswer != "4" {
+	if err != nil || len(items) != 2 || items[1].QuestionVersion != "" || items[1].QuestionPrompt != "" || items[1].RecordedAnswer != "4" || items[1].SubmittedResponse != nil || items[1].GraderRevision != "" {
 		t.Fatalf("historical provenance invented: %+v %v", items, err)
 	}
 	exec(`INSERT INTO mock_assessments(id,student_id,created_by_role,subject,year_group,year_from,year_to,title,question_count)

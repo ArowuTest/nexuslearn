@@ -2,6 +2,7 @@ package server
 
 import (
 	"context"
+	"encoding/json"
 	"errors"
 	"net/http"
 	"net/http/httptest"
@@ -25,7 +26,7 @@ func (r *attemptEvidenceRepository) AdultAttemptEvidence(_ context.Context, stud
 	if r.fail {
 		return nil, errors.New("database unavailable")
 	}
-	return []learning.AttemptEvidence{{ID: "immutable-evidence", QuestionID: "q1", QuestionVersion: strings.Repeat("a", 64), RecordedAnswer: "2.5", MasteryDelta: 4}}, nil
+	return []learning.AttemptEvidence{{ID: "immutable-evidence", QuestionID: "q1", QuestionVersion: strings.Repeat("a", 64), RecordedAnswer: "2.5", SubmittedResponse: &learning.AnswerResponse{Kind: "number", Value: json.RawMessage(`2.500`)}, GraderRevision: "canonical-exact-v1", MasteryDelta: 4}}, nil
 }
 
 func TestAdultEvidenceRoleAndLearnerBoundaries(t *testing.T) {
@@ -92,6 +93,9 @@ func TestAdultEvidenceRoleAndLearnerBoundaries(t *testing.T) {
 			}
 			if !strings.Contains(res.Body.String(), "immutable-evidence") || !strings.Contains(res.Body.String(), `"recorded_answer":"2.5"`) || res.Header().Get("Cache-Control") != "private, no-store" {
 				t.Fatalf("missing private adult evidence: headers=%v body=%s", res.Header(), res.Body.String())
+			}
+			if !strings.Contains(res.Body.String(), `"submitted_response":{"kind":"number","value":2.500}`) || !strings.Contains(res.Body.String(), `"grader_revision":"canonical-exact-v1"`) {
+				t.Fatalf("original input or revision lost: %s", res.Body.String())
 			}
 			repo.fail = true
 			if res := request("linked", true); res.Code != 500 || strings.Contains(res.Body.String(), "immutable-evidence") {

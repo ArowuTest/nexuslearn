@@ -13,7 +13,7 @@ const report = {
   student_id: student.external_ref, year_group: 3, working_year: 3, stretch_year: 0, stretch_allowed: false,
   summary: "Subjects progress independently.", subjects: [], strengths: [], practice: [], mock_assessments: [],
   attempt_evidence: [
-    { id: "attempt-one", objective_id: "ma-decimals", question_id: "decimal-one", question_version: "a".repeat(64), question_prompt: "What is 1.5 + 1?", format: "number-input", recorded_answer: "2.5", response_mode: "keyboard", correct: true, hint_used: true, mastery_delta: 4, explanation: "Saved marking feedback.", attempted_at: "2026-09-06T10:00:00Z" },
+    { id: "attempt-one", objective_id: "ma-decimals", question_id: "decimal-one", question_version: "a".repeat(64), question_prompt: "What is 1.5 + 1?", format: "number-input", recorded_answer: "2.5", submitted_response: { kind: "number", value: 2.5 }, submitted_value_json: "2.500", grader_revision: "canonical-exact-v1", response_mode: "keyboard", correct: true, hint_used: true, mastery_delta: 4, explanation: "Saved marking feedback.", attempted_at: "2026-09-06T10:00:00Z" },
     { id: "attempt-old", objective_id: "ma-decimals", question_id: "decimal-old", format: "number-input", recorded_answer: "4", response_mode: "standard", correct: false, hint_used: false, mastery_delta: -2, explanation: "Earlier recorded feedback.", attempted_at: "2026-08-01T10:00:00Z" },
   ],
 };
@@ -65,7 +65,9 @@ for (const workspace of ["parents", "family", "school-admin", "admin"]) {
     const first = evidence.locator("details").first();
     await first.locator("summary").focus();
     await page.keyboard.press("Enter");
-    await expect(first.getByText("2.5", { exact: true })).toBeVisible();
+    await expect(first.locator("div").filter({ has: page.locator("dt", { hasText: /^Recorded answer$/ }) }).locator("dd")).toHaveText("2.5");
+    await expect(first.locator("div").filter({ has: page.locator("dt", { hasText: /^Submitted response$/ }) }).locator("dd")).toHaveText("number: 2.500");
+    await expect(first).toContainText("canonical-exact-v1");
     await expect(first).toContainText("Hint used");
     await expect(first).toContainText("+4");
     await expect(first).toContainText("a".repeat(64));
@@ -73,6 +75,8 @@ for (const workspace of ["parents", "family", "school-admin", "admin"]) {
     const historical = evidence.locator("details").nth(1);
     await historical.locator("summary").click();
     await expect(historical).toContainText("Historical record: question version unavailable");
+    await expect(historical).toContainText("Original submission unavailable");
+    await expect(historical).toContainText("Grader revision unavailable");
     await expect(historical).toContainText("-2");
     const accessibility = await new AxeBuilder({ page }).include('[aria-label="Recent learning evidence"]').withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"]).analyze();
     expect(accessibility.violations).toEqual([]);

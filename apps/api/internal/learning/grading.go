@@ -20,6 +20,10 @@ var ErrInvalidResponse = errors.New("answer does not match the question response
 var ErrQuestionNeedsReview = errors.New("this activity needs review before it can be marked automatically")
 var ErrGradingUnavailable = errors.New("answer marking requires database persistence")
 
+// Bump when matching/normalization semantics change. This identifies the
+// correctness algorithm, not configurable rewards or mastery policy.
+const canonicalGraderRevision = "canonical-exact-v1"
+
 // AnswerResponse is learner evidence, never an answer key. New submissions must
 // include this envelope and the served question version. Legacy fields remain
 // decodable only so completed pre-upgrade requests keep their replay fingerprint.
@@ -55,8 +59,8 @@ func questionContractVersion(q QuestionConfig) string {
 		ID, Objective, Format, Updated string
 		Body, Answer                   map[string]any
 		Hints                          []string
-		Explanation                    string
-	}{q.ID, q.ObjectiveID, q.Format, q.UpdatedAt, q.Body, q.ExpectedAnswer, q.Hints, q.Explanation})
+		Explanation, Grader            string
+	}{q.ID, q.ObjectiveID, q.Format, q.UpdatedAt, q.Body, q.ExpectedAnswer, q.Hints, q.Explanation, canonicalGraderRevision})
 	return version
 }
 

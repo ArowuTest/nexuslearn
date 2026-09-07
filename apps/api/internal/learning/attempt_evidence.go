@@ -2,6 +2,7 @@ package learning
 
 import (
 	"context"
+	"encoding/json"
 	"time"
 )
 
@@ -9,19 +10,23 @@ import (
 // RecordedAnswer is the normalized value used by marking, not a raw transcript.
 // An absent version means historical provenance is unavailable, never inferred.
 type AttemptEvidence struct {
-	ID              string `json:"id"`
-	ObjectiveID     string `json:"objective_id"`
-	QuestionID      string `json:"question_id"`
-	QuestionVersion string `json:"question_version,omitempty"`
-	QuestionPrompt  string `json:"question_prompt,omitempty"`
-	Format          string `json:"format"`
-	RecordedAnswer  string `json:"recorded_answer"`
-	ResponseMode    string `json:"response_mode"`
-	Correct         bool   `json:"correct"`
-	HintUsed        bool   `json:"hint_used"`
-	MasteryDelta    int    `json:"mastery_delta"`
-	Explanation     string `json:"explanation"`
-	AttemptedAt     string `json:"attempted_at"`
+	ID                string          `json:"id"`
+	ObjectiveID       string          `json:"objective_id"`
+	QuestionID        string          `json:"question_id"`
+	QuestionVersion   string          `json:"question_version,omitempty"`
+	QuestionPrompt    string          `json:"question_prompt,omitempty"`
+	Format            string          `json:"format"`
+	RecordedAnswer    string          `json:"recorded_answer"`
+	SubmittedResponse *AnswerResponse `json:"submitted_response,omitempty"`
+	// Preserve number lexemes through clients that parse JSON numbers as floats.
+	SubmittedValueJSON string `json:"submitted_value_json,omitempty"`
+	GraderRevision     string `json:"grader_revision,omitempty"`
+	ResponseMode       string `json:"response_mode"`
+	Correct            bool   `json:"correct"`
+	HintUsed           bool   `json:"hint_used"`
+	MasteryDelta       int    `json:"mastery_delta"`
+	Explanation        string `json:"explanation"`
+	AttemptedAt        string `json:"attempted_at"`
 }
 
 // AdultAttemptEvidence must only be used after adult role and learner scope
@@ -38,7 +43,8 @@ func (r *PostgresRepository) AdultAttemptEvidence(ctx context.Context, studentID
 	rows, err := r.db.Query(ctx, `
  SELECT a.id::text, COALESCE(a.objective_id,''), a.question_id,
         COALESCE(a.question_version,''), COALESCE(v.snapshot->'body'->>'prompt',''),
-        a.format,a.given_answer,a.response_mode,a.correct,a.hint_used,a.mastery_delta,a.explanation,a.created_at
+	        a.format,a.given_answer,a.response_mode,a.correct,a.hint_used,a.mastery_delta,a.explanation,a.created_at,
+	        a.submitted_response,COALESCE(a.grader_revision,'')
  FROM question_attempts a
  JOIN students s ON s.id=a.student_id
  LEFT JOIN question_grading_versions v ON v.version=a.question_version AND v.question_id=a.question_id
@@ -52,8 +58,15 @@ func (r *PostgresRepository) AdultAttemptEvidence(ctx context.Context, studentID
 	for rows.Next() {
 		var item AttemptEvidence
 		var at time.Time
-		if err := rows.Scan(&item.ID, &item.ObjectiveID, &item.QuestionID, &item.QuestionVersion, &item.QuestionPrompt, &item.Format, &item.RecordedAnswer, &item.ResponseMode, &item.Correct, &item.HintUsed, &item.MasteryDelta, &item.Explanation, &at); err != nil {
+		var submitted []byte
+		if err := rows.Scan(&item.ID, &item.ObjectiveID, &item.QuestionID, &item.QuestionVersion, &item.QuestionPrompt, &item.Format, &item.RecordedAnswer, &item.ResponseMode, &item.Correct, &item.HintUsed, &item.MasteryDelta, &item.Explanation, &at, &submitted, &item.GraderRevision); err != nil {
 			return nil, err
+		}
+		if len(submitted) > 0 {
+			if err := json.Unmarshal(submitted, &item.SubmittedResponse); err != nil {
+				return nil, err
+			}
+			item.SubmittedValueJSON = string(item.SubmittedResponse.Value)
 		}
 		item.AttemptedAt = at.UTC().Format(time.RFC3339Nano)
 		items = append(items, item)

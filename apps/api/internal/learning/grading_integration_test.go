@@ -256,6 +256,10 @@ func TestPostgresCanonicalGradingIntegrity(t *testing.T) {
 		if result.MasteryGain != 0 || result.MasteryDelta != 0 || result.ProjectedScore != 0 {
 			t.Fatalf("mock response claims mastery: %+v", result)
 		}
+		var submitted, revision string
+		if err := pool.QueryRow(ctx, `SELECT submitted_response->>'value',grader_revision FROM question_attempts WHERE question_id='mock'`).Scan(&submitted, &revision); err != nil || submitted != "5" || revision != canonicalGraderRevision {
+			t.Fatalf("mock original evidence missing: %q %q %v", submitted, revision, err)
+		}
 		var count int
 		if err := pool.QueryRow(ctx, `SELECT count(*) FROM mastery_history WHERE question_id='mock'`).Scan(&count); err != nil {
 			t.Fatal(err)

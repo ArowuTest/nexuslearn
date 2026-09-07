@@ -378,6 +378,7 @@ func (s *Server) handleVersion(w http.ResponseWriter, _ *http.Request) {
 		"grading_contract":            "canonical-v1",
 		"pupil_question_contract":     "render-v1",
 		"attempt_submission_contract": "typed-versioned-v1",
+		"attempt_evidence_contract":   "submitted-v1",
 	})
 }
 
@@ -3659,8 +3660,20 @@ func (s *Server) handleLearningEvent(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *Server) handleAttempt(w http.ResponseWriter, r *http.Request) {
+	// Bound the whole request, including unknown fields/trailing padding, before
+	// decoding. Saved original input has a tighter repository/archive limit.
+	body, err := io.ReadAll(http.MaxBytesReader(w, r.Body, 1<<20))
+	if err != nil {
+		var tooLarge *http.MaxBytesError
+		if errors.As(err, &tooLarge) {
+			writeJSON(w, http.StatusRequestEntityTooLarge, map[string]string{"error": "answer request is too large"})
+		} else {
+			writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		}
+		return
+	}
 	var in learning.Attempt
-	if err := json.NewDecoder(r.Body).Decode(&in); err != nil {
+	if err := json.Unmarshal(body, &in); err != nil {
 		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
 		return
 	}

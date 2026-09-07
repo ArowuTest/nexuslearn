@@ -184,6 +184,9 @@ export type AttemptEvidence = {
   question_prompt?: string;
   format: string;
   recorded_answer: string;
+  submitted_response?: { kind: "text" | "number" | "sequence" | "mapping"; value: unknown };
+  submitted_value_json?: string;
+  grader_revision?: string;
   response_mode: string;
   correct: boolean;
   hint_used: boolean;

@@ -71,6 +71,8 @@ test("real canonical decimal grading survives a lost acknowledgement without dup
   await expect(evidence.locator("details")).toHaveCount(1);
   await evidence.locator("summary").click();
   await expect(evidence.getByText("1.25", { exact: true })).toBeVisible();
+  await expect(evidence.getByText("number: 1.25", { exact: true })).toBeVisible();
+  await expect(evidence).toContainText("canonical-exact-v1");
   await expect(evidence).toContainText("What is 1 + 0.25?");
   await expect(evidence).toContainText(JSON.parse(attempts[0]).question_version);
   await expect(evidence).toContainText("+6 points");

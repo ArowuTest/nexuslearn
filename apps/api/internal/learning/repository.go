@@ -526,6 +526,12 @@ func (r *PostgresRepository) RecordAttempt(ctx context.Context, attempt Attempt)
 	if err != nil {
 		return AttemptResult{}, err
 	}
+	// Capture the typed value before normalization, but after historical replay.
+	// This is not an HTTP transcript or a recording of keystrokes/speech.
+	submittedResponse, err := json.Marshal(attempt.Response)
+	if err != nil || len(submittedResponse) > 65536 {
+		return AttemptResult{}, ErrInvalidResponse
+	}
 	attempt, result, err = gradeCanonicalAttempt(attempt, question)
 	if err != nil {
 		return AttemptResult{}, err
@@ -577,13 +583,13 @@ func (r *PostgresRepository) RecordAttempt(ctx context.Context, attempt Attempt)
 		INSERT INTO question_attempts (
 			student_id, objective_id, question_id, format, expected_answer, given_answer,
 			correct, response_ms, hint_used, confidence, mastery_delta, explanation, response_mode,
-			mock_assessment_id, question_version
+			mock_assessment_id, question_version, submitted_response, grader_revision
 		)
-		VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,NULLIF($10,0),$11,$12,$13,NULLIF($14,'')::uuid,$15)
+		VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,NULLIF($10,0),$11,$12,$13,NULLIF($14,'')::uuid,$15,$16::json,$17)
 	`, studentUUID, attempt.ObjectiveID, attempt.QuestionID, attemptFormat(attempt),
 		expectedAnswerText(attempt), givenAnswerText(attempt),
 		result.Correct, attempt.MS, attempt.HintUsed, attempt.Confidence,
-		result.MasteryDelta, result.Explanation, attemptResponseMode(attempt), attempt.MockAssessmentID, attempt.QuestionVersion)
+		result.MasteryDelta, result.Explanation, attemptResponseMode(attempt), attempt.MockAssessmentID, attempt.QuestionVersion, string(submittedResponse), canonicalGraderRevision)
 	if err != nil {
 		return result, err
 	}
