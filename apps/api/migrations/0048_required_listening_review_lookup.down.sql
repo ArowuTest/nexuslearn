@@ -1,0 +1,1 @@
+DROP INDEX IF EXISTS idx_narration_reviews_asset_created_id;

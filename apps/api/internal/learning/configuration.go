@@ -559,7 +559,11 @@ func (r *PostgresRepository) ListQuestionsForActivity(ctx context.Context, activ
 		}
 		questions = append(questions, question)
 	}
-	return questions, rows.Err()
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	rows.Close()
+	return questions, resolveRequiredListening(ctx, r.db, questions)
 }
 
 func (r *PostgresRepository) UpsertQuestion(ctx context.Context, question QuestionConfig) (QuestionConfig, error) {

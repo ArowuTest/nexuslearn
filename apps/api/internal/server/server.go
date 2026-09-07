@@ -382,6 +382,7 @@ func (s *Server) handleVersion(w http.ResponseWriter, _ *http.Request) {
 		"feedback_contract":           "task-repair-v1",
 		"marking_policy_contract":     "authored-v1",
 		"pupil_audio_contract":        "aliases-v1",
+		"required_listening_contract": "ledger-v1",
 	})
 }
 

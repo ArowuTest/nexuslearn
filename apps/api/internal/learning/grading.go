@@ -22,7 +22,7 @@ var ErrGradingUnavailable = errors.New("answer marking requires database persist
 
 // Bump when matching/normalization semantics change. This identifies the
 // correctness algorithm, not configurable rewards or mastery policy.
-const canonicalGraderRevision = "canonical-policy-v2"
+const canonicalGraderRevision = "canonical-policy-v3"
 
 // AnswerResponse is learner evidence, never an answer key. New submissions must
 // include this envelope and the served question version. Legacy fields remain
@@ -49,6 +49,11 @@ func canonicalQuestion(ctx context.Context, tx pgx.Tx, id string) (QuestionConfi
 	if errors.Is(err, pgx.ErrNoRows) {
 		return q, ErrQuestionUnavailable
 	}
+	if err == nil {
+		questions := []QuestionConfig{q}
+		err = resolveRequiredListening(ctx, tx, questions)
+		q = questions[0]
+	}
 	return q, err
 }
 
@@ -60,7 +65,8 @@ func questionContractVersion(q QuestionConfig) string {
 		Body, Answer                   map[string]any
 		Hints                          []string
 		Explanation, Grader            string
-	}{q.ID, q.ObjectiveID, q.Format, q.UpdatedAt, q.Body, q.ExpectedAnswer, q.Hints, q.Explanation, canonicalGraderRevision})
+		Listening                      []RequiredListeningAsset
+	}{q.ID, q.ObjectiveID, q.Format, q.UpdatedAt, q.Body, q.ExpectedAnswer, q.Hints, q.Explanation, canonicalGraderRevision, q.RequiredListening})
 	return version
 }
 
@@ -77,6 +83,9 @@ func canonicalAnswer(q QuestionConfig) (string, any, error) {
 
 func canonicalBaseAnswer(q QuestionConfig) (string, any, error) {
 	e := q.ExpectedAnswer
+	if requiresListening(q) && !listeningReady(q) {
+		return "review", nil, ErrQuestionNeedsReview
+	}
 	if q.Format == "trace-path" {
 		return "review", nil, ErrQuestionNeedsReview
 	}

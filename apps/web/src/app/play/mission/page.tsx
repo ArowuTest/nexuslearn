@@ -22,7 +22,7 @@ import {
   type NextActivityDecision,
   type ProgressReport,
 } from "@/lib/api";
-import { playProducedAudio, sfx, setMuted, stopProducedAudio } from "@/lib/sound";
+import { onAudioOutcome, playProducedAudio, sfx, setMuted, stopProducedAudio } from "@/lib/sound";
 import { resolveNarrationFields, useNarrationAssets } from "@/lib/narration";
 
 // Shared class groups keep repeated mission surfaces visually consistent.
@@ -210,6 +210,8 @@ export default function Mission() {
   const [switchAccess, setSwitchAccess] = useState(false);
   const [switchLabel, setSwitchLabel] = useState("");
   const [mute, setMute] = useState(false);
+  const [failedListening, setFailedListening] = useState("");
+  const [completedListening, setCompletedListening] = useState("");
   const [sparks, setSparks] = useState<{ id: number; dx: number; dy: number }[]>([]);
   const narrationAssets = useNarrationAssets();
   const startRef = useRef(0);
@@ -381,6 +383,13 @@ export default function Mission() {
 
   const total = questions?.length ?? 0;
   const q = questions ? questions[Math.min(idx, total - 1)] : null;
+  const questionAudio = questionAudioURL(q, narrationAssets);
+  const listeningKey = `${studentId}:${q?.id}:${q?.questionVersion}:${questionAudio}`;
+  const listeningUnavailable = q?.body.audio_required === true && (!q.body.audio_url || !questionAudio || failedListening === listeningKey);
+  const listeningPending = q?.body.audio_required === true && completedListening !== listeningKey;
+  useEffect(() => onAudioOutcome((src, completed) => {
+    if (q?.body.audio_required === true && src === questionAudio) (completed ? setCompletedListening : setFailedListening)(listeningKey);
+  }), [q, questionAudio, listeningKey]);
 
   useEffect(() => {
     if (!switchAccess) {
@@ -445,8 +454,8 @@ export default function Mission() {
   const inLesson = teachingSequence.length > 0 && !lessonComplete;
 
   useEffect(() => {
-    if (q && q.responseKind !== "review") void recordLearningEvent("question_seen", { question_id: q.id, objective_id: q.objectiveId, position: idx + 1 });
-  }, [idx, q, recordLearningEvent]);
+    if (q && q.responseKind !== "review" && !listeningUnavailable) void recordLearningEvent("question_seen", { question_id: q.id, objective_id: q.objectiveId, position: idx + 1 });
+  }, [idx, q, listeningUnavailable, recordLearningEvent]);
 
   useEffect(() => {
     lessonStartRef.current = Date.now();
@@ -506,7 +515,7 @@ export default function Mission() {
   }
 
   async function submit() {
-    if (done || awaitingContinue || input === "" || !q || attemptInFlight.current) return;
+    if (done || awaitingContinue || input === "" || !q || listeningUnavailable || listeningPending || attemptInFlight.current) return;
     if (!q.questionVersion) {
       setMessage("This mission is being updated. Please reopen it shortly.");
       setSaveState("rejected");
@@ -618,8 +627,8 @@ export default function Mission() {
     if (switchAccess) return;
     if (awaitingContinue) feedbackRef.current?.focus();
     else if (idx >= total) summaryRef.current?.focus();
-    else if (idx > 0 || q?.responseKind === "review") questionRef.current?.focus();
-  }, [awaitingContinue, idx, total, switchAccess, q?.responseKind]);
+    else if (idx > 0 || q?.responseKind === "review" || listeningUnavailable) questionRef.current?.focus();
+  }, [awaitingContinue, idx, total, switchAccess, q?.responseKind, listeningUnavailable]);
 
   function revealHint() {
     if (!q || pendingAttempt.current || attemptInFlight.current || route.mockAssessmentId || hintCount >= q.hints.length) return;
@@ -756,7 +765,7 @@ export default function Mission() {
     );
   }
 
-  if (!q || q.responseKind === "review") {
+  if (!q || q.responseKind === "review" || listeningUnavailable) {
     if (loadState === "access-required") {
       return (
         <main className={missionUnavailableClass}>
@@ -775,7 +784,7 @@ export default function Mission() {
     return (
       <main className={missionUnavailableClass}>
         <div ref={questionRef} tabIndex={-1} role="region" aria-labelledby="mission-boundary" data-switch-region className="max-w-lg rounded-2xl bg-white/10 p-8 text-center backdrop-blur">
-          <h1 id="mission-boundary" className="font-display text-3xl font-semibold">{q ? "This question needs a teacher's review" : "Mission content unavailable"}</h1>
+          <h1 id="mission-boundary" className="font-display text-3xl font-semibold">{listeningUnavailable ? "Listening recording unavailable" : q ? "This question needs a teacher's review" : "Mission content unavailable"}</h1>
           <p className="mt-3 text-sm leading-6 text-white/70">
             {q ? "Choose another mission for now. Any earlier answers you saved are safe; this question has not been marked." : "This mission needs a published activity with ready-to-play questions before it can start."}
           </p>
@@ -794,7 +803,6 @@ export default function Mission() {
   const reward = worldReward(Number(mission?.world?.year_group || 0));
   const companionName = String(mission?.world?.config?.companion || "Nixi");
   const savedArtefacts = Array.isArray(mission?.world_state?.state?.artefacts) ? mission.world_state.state.artefacts.length : 0;
-  const questionAudio = questionAudioURL(q, narrationAssets);
   const questionAudioScriptText = questionAudioScript(q);
   const questionAudioPending = questionHasAudioReference(q);
   const activeSupportPlan = supportPlanItems(adaptations);
@@ -1188,7 +1196,7 @@ export default function Mission() {
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div>
                     <p className="font-display text-sm font-semibold text-[#7fe7d7]">Listen to the question</p>
-                    <p className="mt-1 text-xs leading-5 text-white/70">Replay the approved studio narration as often as you need.</p>
+                    <p className="mt-1 text-xs leading-5 text-white/70">{listeningPending ? "Listen to the full recording before answering." : "Replay whenever you need."}</p>
                   </div>
                   {questionAudio && (
                     <button type="button" onClick={() => void readAloud(questionAudio)} className="btn-pop bg-white/12 px-4 py-2 text-sm text-white">
@@ -1198,7 +1206,7 @@ export default function Mission() {
                 </div>
                 {!questionAudio && (questionAudioScriptText || questionAudioPending) && (
                   <p className="mt-3 rounded-xl border border-white/10 bg-white/8 p-3 text-xs leading-5 text-white/75">
-                    Studio narration is being prepared for this question. The text and visual route remain available; browser text-to-speech is not used as a robotic fallback.
+                    Optional narration is not ready yet. You can use the text and pictures.
                   </p>
                 )}
               </div>
@@ -1267,7 +1275,7 @@ export default function Mission() {
                 </div>
               )}
               {saveState === "saving" && <p role="status" className="mt-4 text-white">Saving your answer…</p>}
-              <fieldset disabled={saveState !== "idle"} aria-label="Answer controls" className="min-w-0">
+              <fieldset disabled={saveState !== "idle" || listeningPending} aria-label="Answer controls" className="min-w-0">
               <LearningStudio
                 key={`${q.id}-${responseMode}`}
                 question={q}

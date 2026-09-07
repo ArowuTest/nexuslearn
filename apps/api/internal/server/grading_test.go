@@ -36,6 +36,9 @@ func TestVersionAdvertisesCanonicalGradingForDeploymentChecks(t *testing.T) {
 	if version["pupil_audio_contract"] != "aliases-v1" {
 		t.Fatalf("missing authored pupil audio projection: %v", version)
 	}
+	if version["required_listening_contract"] != "ledger-v1" {
+		t.Fatalf("required listening deployment cannot be verified: %v", version)
+	}
 	if version["feedback_contract"] != "task-repair-v1" {
 		t.Fatalf("task repair deployment cannot be verified: %+v", version)
 	}

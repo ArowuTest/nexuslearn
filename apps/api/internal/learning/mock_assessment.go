@@ -514,7 +514,11 @@ func (r *PostgresRepository) ListMockAssessmentQuestions(ctx context.Context, as
 		question.SelectionReason = reasons[question.ID]
 		questions = append(questions, question)
 	}
-	return questions, rows.Err()
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	rows.Close()
+	return questions, resolveRequiredListening(ctx, r.db, questions)
 }
 
 type mockAssessmentRow interface {

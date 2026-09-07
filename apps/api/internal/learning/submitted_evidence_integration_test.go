@@ -76,7 +76,7 @@ func TestPostgresPreservesSubmittedEvidenceBeforeNormalization(t *testing.T) {
 			if submitted.Kind != tc.kind || string(submitted.Value) != tc.submitted {
 				t.Fatalf("submitted evidence normalized: %+v", submitted)
 			}
-			if string(fields["grader_revision"]) != `"canonical-policy-v2"` {
+			if string(fields["grader_revision"]) != `"canonical-policy-v3"` {
 				t.Fatalf("marking revision missing: %s", fields["grader_revision"])
 			}
 			if _, err := pool.Exec(ctx, `UPDATE questions SET status='draft',expected_answer='{"value":"changed"}' WHERE id=$1`, tc.id); err != nil {

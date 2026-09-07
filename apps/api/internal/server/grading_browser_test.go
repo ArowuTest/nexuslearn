@@ -114,7 +114,7 @@ func TestBrowserCanonicalGrading(t *testing.T) {
 		if err := pool.QueryRow(ctx, `SELECT count(*) FROM question_attempts qa JOIN students s ON s.id=qa.student_id WHERE s.external_ref=$1 AND qa.question_id='repair-browser-question' AND NOT correct AND given_answer='dog' AND submitted_response->>'value'='dog' AND explanation LIKE '%sounds one at a time%'`, "grading-"+project).Scan(&count); err != nil || count != 1 {
 			t.Fatalf("%s repair evidence was lost or duplicated: %d %v", project, count, err)
 		}
-		if err := pool.QueryRow(ctx, `SELECT count(*) FROM question_attempts qa JOIN students s ON s.id=qa.student_id WHERE s.external_ref=$1 AND qa.question_id='policy-browser-question' AND correct AND given_answer='stopped' AND submitted_response->>'value'='stopped' AND grader_revision='canonical-policy-v2'`, "grading-"+project).Scan(&count); err != nil || count != 1 {
+		if err := pool.QueryRow(ctx, `SELECT count(*) FROM question_attempts qa JOIN students s ON s.id=qa.student_id WHERE s.external_ref=$1 AND qa.question_id='policy-browser-question' AND correct AND given_answer='stopped' AND submitted_response->>'value'='stopped' AND grader_revision='canonical-policy-v3'`, "grading-"+project).Scan(&count); err != nil || count != 1 {
 			t.Fatalf("%s authored alternative evidence incorrect: %d %v", project, count, err)
 		}
 	}

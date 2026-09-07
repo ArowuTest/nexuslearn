@@ -394,20 +394,21 @@ type ActivityConfig struct {
 }
 
 type QuestionConfig struct {
-	QuestionVersion string         `json:"question_version,omitempty"`
-	ResponseKind    string         `json:"response_kind,omitempty"`
-	ID              string         `json:"id"`
-	ActivityID      string         `json:"activity_id"`
-	ObjectiveID     string         `json:"objective_id"`
-	Format          string         `json:"format"`
-	Body            map[string]any `json:"body"`
-	ExpectedAnswer  AuthoredAnswer `json:"expected_answer"`
-	Hints           []string       `json:"hints"`
-	Explanation     string         `json:"explanation"`
-	Difficulty      int            `json:"difficulty"`
-	Status          string         `json:"status"`
-	UpdatedAt       string         `json:"updated_at"`
-	SelectionReason string         `json:"selection_reason,omitempty"`
+	RequiredListening []RequiredListeningAsset `json:"required_listening_evidence,omitempty"`
+	QuestionVersion   string                   `json:"question_version,omitempty"`
+	ResponseKind      string                   `json:"response_kind,omitempty"`
+	ID                string                   `json:"id"`
+	ActivityID        string                   `json:"activity_id"`
+	ObjectiveID       string                   `json:"objective_id"`
+	Format            string                   `json:"format"`
+	Body              map[string]any           `json:"body"`
+	ExpectedAnswer    AuthoredAnswer           `json:"expected_answer"`
+	Hints             []string                 `json:"hints"`
+	Explanation       string                   `json:"explanation"`
+	Difficulty        int                      `json:"difficulty"`
+	Status            string                   `json:"status"`
+	UpdatedAt         string                   `json:"updated_at"`
+	SelectionReason   string                   `json:"selection_reason,omitempty"`
 }
 
 type AuditLog struct {

@@ -6,6 +6,12 @@ let ctx: AudioContext | null = null;
 let muted = false;
 let narration: HTMLAudioElement | null = null;
 const tones = new Set<OscillatorNode>();
+const audioOutcomes = new Set<(src: string, completed: boolean) => void>();
+
+export function onAudioOutcome(listener: (src: string, completed: boolean) => void) {
+  audioOutcomes.add(listener);
+  return () => { audioOutcomes.delete(listener); };
+}
 
 function ac(): AudioContext | null {
   if (typeof window === "undefined") return null;
@@ -42,14 +48,24 @@ export async function playProducedAudio(src: string) {
   const audio = new Audio(src);
   narration = audio;
   audio.preload = "auto";
-  audio.onended = () => { if (narration === audio) narration = null; };
+  const failed = () => {
+    if (narration !== audio) return;
+    stopProducedAudio();
+    for (const listener of audioOutcomes) listener(src, false);
+  };
+  audio.onerror = failed;
+  audio.onended = () => {
+    if (narration !== audio) return;
+    narration = null;
+    for (const listener of audioOutcomes) listener(src, true);
+  };
   try {
     await audio.play();
     return narration === audio ? true : null;
   } catch {
     // Cancellation by replay, mute or navigation is not a transport failure.
     if (narration !== audio) return null;
-    stopProducedAudio();
+    failed();
     return false;
   }
 }

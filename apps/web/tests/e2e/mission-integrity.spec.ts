@@ -47,7 +47,81 @@ async function audioHarness(page: Page, pending = false) {
     } as unknown as typeof Audio;
   }, pending);
 }
+
+test("required listening without a ready recording offers an unmarked accessible exit", async ({ page }) => {
+  await mission(page, { ...numberFixture, switchAccess: true, responseKind: "review", body: { ...numberFixture.body, audio_required: true, audio_asset_id: "pending-listening" } });
+  await page.goto("/play/mission?studentId=integrity-learner");
+  await expect(page.getByRole("heading", { name: "Listening recording unavailable" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Submit answer" })).toHaveCount(0);
+  await expect(page.getByRole("link", { name: "Back to worlds" })).toBeFocused();
+  await page.keyboard.press("Space");
+  await expect(page).toHaveURL(/\/play$/);
+});
+
+test("missing required transport cannot silently become a visual assessment", async ({ page }) => {
+  await mission(page, { ...numberFixture, body: { ...numberFixture.body, audio_required: true } });
+  await page.goto("/play/mission?studentId=integrity-learner");
+  await expect(page.getByRole("heading", { name: "Listening recording unavailable" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Submit answer" })).toHaveCount(0);
+});
+
+for (const control of ["Hear question", "Hear the whole prompt"]) {
+ test(`failed required audio via ${control} closes answer controls without a score`, async ({ page }) => {
+  await page.addInitScript((control) => {
+    let plays=0;
+    window.Audio = class {
+      preload="";onended:(()=>void)|null=null;onerror=null;
+      play(){
+        if(control==="Hear the whole prompt" && plays++===0){Object.assign(window,{finishRequired:()=>this.onended?.()});return Promise.resolve();}
+        return Promise.reject(new Error("test transport failure"));
+      }
+      pause(){}removeAttribute(){}load(){}
+    } as unknown as typeof Audio;
+  }, control);
+  await mission(page, { ...numberFixture, body: { ...numberFixture.body, audio_required: true, audio_url: "/qa-required.mp3", whole_audio_asset_id: "/qa-required.mp3", sounds:["c"] } });
+  const attempts: string[]=[];
+  page.on("request",request=>{if(request.url().endsWith("/v1/learning/attempt"))attempts.push(request.postData()??"");});
+  await open(page);
+  if(control==="Hear the whole prompt"){
+    await page.getByRole("button",{name:"Hear question",exact:true}).click();
+    await page.evaluate(()=>{(window as unknown as {finishRequired:()=>void}).finishRequired();});
+  }
+  await page.getByRole("button", { name: control, exact:true }).click();
+  await expect(page.getByRole("heading", { name: "Listening recording unavailable" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Submit answer" })).toHaveCount(0);
+  expect(attempts).toEqual([]);
+ });
+}
 const activeAudio = (page: Page) => page.evaluate(() => (window as unknown as { __qaClips: { paused: boolean }[] }).__qaClips.filter(clip => !clip.paused).length);
+
+test("ready required narration allows marking and obsolete audio errors do not block it", async ({ page }) => {
+  await audioHarness(page);
+  await mission(page, { ...numberFixture, body: { ...numberFixture.body, audio_required: true, audio_url: "/qa-required.mp3" } });
+  await page.route("http://api.test/v1/learning/attempt",route=>route.fulfill({json:result()}));
+  await open(page);
+  await page.getByRole("button",{name:"Hear question",exact:true}).click();
+  await page.getByRole("button",{name:"Hear question",exact:true}).click();
+  await page.evaluate(()=>{ (window as unknown as {__qaClips:{onerror:()=>void}[]}).__qaClips[0].onerror(); });
+  await page.evaluate(()=>{ (window as unknown as {__qaClips:{onended:()=>void}[]}).__qaClips[0].onended(); });
+  await expect(page.getByRole("region",{name:"Mission question"})).toBeVisible();
+  await expect(page.getByRole("button",{name:"Keyboard answer",exact:true})).toBeDisabled();
+  await page.evaluate(()=>{ (window as unknown as {__qaClips:{onended:()=>void}[]}).__qaClips[1].onended(); });
+  await expect(page.getByRole("button",{name:"Keyboard answer",exact:true})).toBeEnabled();
+  await typeNumber(page,"12");
+  await page.getByRole("button",{name:"Submit answer",exact:true}).click();
+  await expect(page.getByRole("button",{name:"See my discoveries"})).toBeVisible();
+});
+
+test("a required recording that errors after playback starts closes marking", async ({ page }) => {
+  await audioHarness(page);
+  await mission(page, { ...numberFixture, body: { ...numberFixture.body, audio_required: true, audio_url: "/qa-required.mp3" } });
+  await open(page);
+  await page.getByRole("button",{name:"Hear question",exact:true}).click();
+  await expect.poll(()=>activeAudio(page)).toBe(1);
+  await page.evaluate(()=>{ (window as unknown as {__qaClips:{onerror:()=>void}[]}).__qaClips[0].onerror(); });
+  await expect(page.getByRole("region",{name:"Listening recording unavailable"})).toBeFocused();
+  await expect(page.getByRole("button",{name:"Submit answer"})).toHaveCount(0);
+});
 
 test("produced narration replaces prior clips and stops on mute, pause and question completion", async ({ page }) => {
   await audioHarness(page);
@@ -102,6 +176,22 @@ test("released whole-word and phoneme clips share playback while unapproved clip
   } finally {
     releaseDestination();
   }
+});
+
+test("muting required playback cannot unlock answers through a late completion", async ({ page }) => {
+  await audioHarness(page, true);
+  await mission(page, { ...numberFixture, body: { ...numberFixture.body, audio_required: true, audio_url: "/qa-required.mp3" } });
+  await open(page);
+  await page.getByRole("button", { name: "Hear question", exact: true }).click();
+  await expect.poll(() => activeAudio(page)).toBe(1);
+  await page.getByRole("button", { name: "Mute sounds", exact: true }).click();
+  await page.evaluate(() => {
+    const harness = window as unknown as { __resolveAudio: () => void; __qaClips: { onended: () => void }[] };
+    harness.__resolveAudio();
+    harness.__qaClips[0].onended();
+  });
+  await expect(page.getByRole("region", { name: "Mission question" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Keyboard answer", exact: true })).toBeDisabled();
 });
 
 test("muting a pending narration play cancels it without recording a transport failure", async ({ page }) => {

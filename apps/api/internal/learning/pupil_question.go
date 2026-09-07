@@ -100,6 +100,16 @@ func PupilQuestion(q QuestionConfig) PupilQuestionConfig {
 			body["whole_audio_asset_id"] = clip
 		}
 	}
+	if requiresListening(q) {
+		body["audio_required"] = true
+		// A required direct URL is only a stimulus, not release authority.
+		for _, key := range []string{"prompt_audio_url", "audio_url", "narration_url"} {
+			delete(body, key)
+		}
+		if listeningReady(q) {
+			body["audio_url"] = q.RequiredListening[0].File
+		}
+	}
 	// Target features are the key, not the three model choices themselves.
 	if q.Format == "model-sort" {
 		delete(body, "model_features")
