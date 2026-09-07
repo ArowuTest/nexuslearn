@@ -22,7 +22,7 @@ var ErrGradingUnavailable = errors.New("answer marking requires database persist
 
 // Bump when matching/normalization semantics change. This identifies the
 // correctness algorithm, not configurable rewards or mastery policy.
-const canonicalGraderRevision = "canonical-exact-v1"
+const canonicalGraderRevision = "canonical-policy-v2"
 
 // AnswerResponse is learner evidence, never an answer key. New submissions must
 // include this envelope and the served question version. Legacy fields remain
@@ -65,6 +65,17 @@ func questionContractVersion(q QuestionConfig) string {
 }
 
 func canonicalAnswer(q QuestionConfig) (string, any, error) {
+	kind, value, err := canonicalBaseAnswer(q)
+	if err != nil {
+		return kind, value, err
+	}
+	if _, err := questionMarkingPolicy(q, kind); err != nil {
+		return "review", nil, err
+	}
+	return kind, value, nil
+}
+
+func canonicalBaseAnswer(q QuestionConfig) (string, any, error) {
 	e := q.ExpectedAnswer
 	if q.Format == "trace-path" {
 		return "review", nil, ErrQuestionNeedsReview
@@ -93,6 +104,11 @@ func canonicalAnswer(q QuestionConfig) (string, any, error) {
 		return "sequence", sequence, nil
 	}
 	switch v := e["value"].(type) {
+	case json.Number:
+		if _, ok := boundedDecimal(string(v)); !ok {
+			return "review", nil, ErrQuestionNeedsReview
+		}
+		return "number", v, nil
 	case float64:
 		if math.IsNaN(v) || math.IsInf(v, 0) {
 			return "review", nil, ErrQuestionNeedsReview
@@ -133,7 +149,11 @@ func gradeCanonicalAttempt(a Attempt, q QuestionConfig) (Attempt, AttemptResult,
 	if a.Response == nil {
 		return a, AttemptResult{}, ErrInvalidResponse
 	}
-	kind, expected, err := canonicalAnswer(q)
+	kind, expected, err := canonicalBaseAnswer(q)
+	if err != nil {
+		return a, AttemptResult{}, err
+	}
+	policy, err := questionMarkingPolicy(q, kind)
 	if err != nil {
 		return a, AttemptResult{}, err
 	}
@@ -149,14 +169,31 @@ func gradeCanonicalAttempt(a Attempt, q QuestionConfig) (Attempt, AttemptResult,
 		expected = normalizeSequenceTiles(expected)
 		given = normalizeSequenceTiles(given)
 	}
-	expected = normalizeResponse(expected, q.Format)
-	given = normalizeResponse(given, q.Format)
+	expected = normalizeResponseWithCase(expected, q.Format, policy.caseSensitive)
+	given = normalizeResponseWithCase(given, q.Format, policy.caseSensitive)
 	a.Format = q.Format
 	a.QuestionVersion = questionContractVersion(q)
 	a.Expected, a.Given = 0, 0
 	a.ExpectedText = responseEvidence(expected)
 	a.GivenText = responseEvidence(given)
-	result := scoreCorrectness(a, reflect.DeepEqual(expected, given))
+	correct := reflect.DeepEqual(expected, given)
+	for _, alternative := range policy.alternatives {
+		if kind == "sequence" && q.Format != "coordinate-plot" {
+			alternative = normalizeSequenceTiles(alternative)
+		}
+		if reflect.DeepEqual(normalizeResponseWithCase(alternative, q.Format, policy.caseSensitive), given) {
+			correct = true
+		}
+	}
+	if policy.tolerance != nil {
+		correct, err = withinTolerance(expected, a.Response.Value, policy.tolerance)
+		if err != nil {
+			return a, AttemptResult{}, err
+		}
+		// This is the decimal value actually compared, without float rounding.
+		a.GivenText = strings.TrimSpace(string(a.Response.Value))
+	}
+	result := scoreCorrectness(a, correct)
 	return a, result, nil
 }
 
@@ -219,19 +256,26 @@ func validStructured(value any) bool {
 }
 
 func normalizeResponse(value any, format string) any {
+	return normalizeResponseWithCase(value, format, false)
+}
+
+func normalizeResponseWithCase(value any, format string, caseSensitive bool) any {
 	switch v := value.(type) {
 	case string:
+		if caseSensitive {
+			return strings.TrimSpace(v)
+		}
 		return normalizeAnswer(v)
 	case []any:
 		out := make([]any, len(v))
 		for i, item := range v {
-			out[i] = normalizeResponse(item, format)
+			out[i] = normalizeResponseWithCase(item, format, caseSensitive)
 		}
 		return out
 	case map[string]any:
 		out := make(map[string]any, len(v))
 		for key, item := range v {
-			normalized := normalizeResponse(item, format)
+			normalized := normalizeResponseWithCase(item, format, caseSensitive)
 			// Only these authored contracts explicitly treat these lists as unordered.
 			if format == "pattern-sort" || (format == "fair-test-plan" && key == "keep_same") {
 				if items, ok := normalized.([]any); ok {

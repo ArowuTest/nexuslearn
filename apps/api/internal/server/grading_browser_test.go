@@ -66,6 +66,9 @@ func TestBrowserCanonicalGrading(t *testing.T) {
   INSERT INTO curriculum_objectives(id,year_group,subject,strand,topic,statement) VALUES ('repair-browser-objective',3,'English','Spelling','Words','Build a word');
   INSERT INTO activities(id,objective_id,world_key,title,prompt,interaction,status) VALUES ('repair-browser-activity','repair-browser-objective','explorer-islands','Word discovery','Build a word','{}','published');
   INSERT INTO questions(id,activity_id,objective_id,format,body,expected_answer,status) VALUES ('repair-browser-question','repair-browser-activity','repair-browser-objective','word-build','{"prompt":"Build the word cat.","letters":["c","a","t"]}','{"value":"cat"}','published');
+  INSERT INTO curriculum_objectives(id,year_group,subject,strand,topic,statement) VALUES ('policy-browser-objective',3,'English','Reading','Evidence','Find evidence in a story');
+  INSERT INTO activities(id,objective_id,world_key,title,prompt,interaction,status) VALUES ('policy-browser-activity','policy-browser-objective','explorer-islands','Story discovery','Find the evidence','{}','published');
+  INSERT INTO questions(id,activity_id,objective_id,format,body,expected_answer,status) VALUES ('policy-browser-question','policy-browser-activity','policy-browser-objective','clue-highlight','{"prompt":"Which words show that Mia paused?","text":"Mia stopped, and read the sign again."}','{"value":"stopped, and read the sign again","marking_policy":{"version":1,"mode":"exact","accepted_values":["stopped"]}}','published');
  `); err != nil {
 		t.Fatal(err)
 	}
@@ -110,6 +113,9 @@ func TestBrowserCanonicalGrading(t *testing.T) {
 		}
 		if err := pool.QueryRow(ctx, `SELECT count(*) FROM question_attempts qa JOIN students s ON s.id=qa.student_id WHERE s.external_ref=$1 AND qa.question_id='repair-browser-question' AND NOT correct AND given_answer='dog' AND submitted_response->>'value'='dog' AND explanation LIKE '%sounds one at a time%'`, "grading-"+project).Scan(&count); err != nil || count != 1 {
 			t.Fatalf("%s repair evidence was lost or duplicated: %d %v", project, count, err)
+		}
+		if err := pool.QueryRow(ctx, `SELECT count(*) FROM question_attempts qa JOIN students s ON s.id=qa.student_id WHERE s.external_ref=$1 AND qa.question_id='policy-browser-question' AND correct AND given_answer='stopped' AND submitted_response->>'value'='stopped' AND grader_revision='canonical-policy-v2'`, "grading-"+project).Scan(&count); err != nil || count != 1 {
+			t.Fatalf("%s authored alternative evidence incorrect: %d %v", project, count, err)
 		}
 	}
 }

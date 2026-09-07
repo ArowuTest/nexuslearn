@@ -401,7 +401,7 @@ type QuestionConfig struct {
 	ObjectiveID     string         `json:"objective_id"`
 	Format          string         `json:"format"`
 	Body            map[string]any `json:"body"`
-	ExpectedAnswer  map[string]any `json:"expected_answer"`
+	ExpectedAnswer  AuthoredAnswer `json:"expected_answer"`
 	Hints           []string       `json:"hints"`
 	Explanation     string         `json:"explanation"`
 	Difficulty      int            `json:"difficulty"`

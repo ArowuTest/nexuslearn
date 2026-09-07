@@ -72,7 +72,7 @@ test("real canonical decimal grading survives a lost acknowledgement without dup
   await evidence.locator("summary").click();
   await expect(evidence.getByText("1.25", { exact: true })).toBeVisible();
   await expect(evidence.getByText("number: 1.25", { exact: true })).toBeVisible();
-  await expect(evidence).toContainText("canonical-exact-v1");
+  await expect(evidence).toContainText("canonical-policy-v2");
   await expect(evidence).toContainText("What is 1 + 0.25?");
   await expect(evidence).toContainText(JSON.parse(attempts[0]).question_version);
   await expect(evidence).toContainText("+6 points");
@@ -109,4 +109,40 @@ test("real English repair guidance reaches the pupil and survives a repeated ack
   expect(replay.status()).toBe(200);
   expect(await replay.json()).toEqual(saved);
   await page.screenshot({ path: info.outputPath("canonical-english-repair.png"), animations: "disabled" });
+});
+
+test("real authored reading alternative is accepted without exposing private marking policy", async ({ page }, info) => {
+  const api = process.env.GRADING_API_URL;
+  test.skip(!api, "Run via the API TestBrowserCanonicalGrading disposable-database harness.");
+  expect(["127.0.0.1", "localhost"]).toContain(new URL(api!).hostname);
+  const student = `grading-${info.project.name}`;
+  const token = info.project.name === "desktop-chromium" ? process.env.GRADING_TOKEN_DESKTOP! : process.env.GRADING_TOKEN_MOBILE!;
+  let checkedProjection = false;
+  let saved: unknown;
+  await page.route("http://api.test/**", async route => {
+    const request = route.request();
+    const response = await route.fetch({ url: request.url().replace("http://api.test", api!), headers: { ...request.headers(), "X-Pupil-Session": token } });
+    if (request.url().includes("/v1/learning/mission")) {
+      const mission = await response.json();
+      const question = mission.questions.find((item: { id: string }) => item.id === "policy-browser-question");
+      expect(question.response_kind).toBe("text");
+      for (const key of ["expected_answer", "marking_policy", "accepted_values"]) {
+        expect(JSON.stringify(question)).not.toContain(key);
+      }
+      checkedProjection = true;
+    }
+    if (request.url().endsWith("/v1/learning/attempt")) {
+      expect(response.status()).toBe(200);
+      saved = await response.json();
+    }
+    await route.fulfill({ response });
+  });
+  await page.goto(`/play/mission?studentId=${student}&activityId=policy-browser-activity&mode=practice`);
+  await page.getByRole("button", { name: "Keyboard answer", exact: true }).click();
+  await page.getByLabel("Keyboard answer", { exact: true }).fill("stopped");
+  await page.getByRole("button", { name: "Submit answer", exact: true }).click();
+  await expect(page.getByRole("button", { name: "See my discoveries" })).toBeVisible();
+  expect(checkedProjection).toBe(true);
+  expect(saved).toMatchObject({ correct: true });
+  await page.screenshot({ path: info.outputPath("canonical-reading-alternative.png"), animations: "disabled" });
 });
