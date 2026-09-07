@@ -33,6 +33,9 @@ func TestVersionAdvertisesCanonicalGradingForDeploymentChecks(t *testing.T) {
 	if version["marking_policy_contract"] != "authored-v1" {
 		t.Fatalf("missing authored marking policy contract: %v", version)
 	}
+	if version["pupil_audio_contract"] != "aliases-v1" {
+		t.Fatalf("missing authored pupil audio projection: %v", version)
+	}
 	if version["feedback_contract"] != "task-repair-v1" {
 		t.Fatalf("task repair deployment cannot be verified: %+v", version)
 	}

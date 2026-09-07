@@ -2,6 +2,8 @@
 
 Approved direction: the 5–6 September game audit, followed by the user's instruction to continue. Execute inline on the existing main checkout; preserve unrelated generated content. Use one tested batch, not miniature commits.
 
+September 7 follow-on: the shared produced-audio lifecycle and authored clip aliases are repaired in `docs/reviews/2026-09-07-audio-transport-repair.md`. G12 remains partial: release/listening gates, required-listening assessment fallback and assistance-evidence correctness are not certified by transport tests. Canonical backend grading is separately implemented in the September 6–7 grading batches; statements below describe this plan's original baseline.
+
 ## Scope and design
 
 Repair the shared pupil interaction lifecycle (G02/G03/G04/G08). Keep specialised renderer validation: renderers that own a submit action retain it; other registered builders receive a shared submit control. Do not turn unavailable formats into purportedly working games. Failed saves retain an immutable request and freeze answer editing until retry resolves; this avoids reusing an ID with changed evidence. A failed answer is not automatically hint use: reveal authored hints on request and log only actual support. Include teaching, question, feedback and summary actions in scanning, without claiming native select/range scanning is solved here.

@@ -4,6 +4,8 @@
  */
 let ctx: AudioContext | null = null;
 let muted = false;
+let narration: HTMLAudioElement | null = null;
+const tones = new Set<OscillatorNode>();
 
 function ac(): AudioContext | null {
   if (typeof window === "undefined") return null;
@@ -17,16 +19,37 @@ function ac(): AudioContext | null {
 
 export function setMuted(m: boolean) {
   muted = m;
+  if (m) {
+    stopProducedAudio();
+    for (const oscillator of tones) oscillator.stop();
+    tones.clear();
+  }
+}
+
+export function stopProducedAudio() {
+  const previous = narration;
+  narration = null;
+  if (previous) {
+    previous.pause();
+    previous.removeAttribute("src");
+    previous.load();
+  }
 }
 
 export async function playProducedAudio(src: string) {
   if (typeof window === "undefined" || muted || !src.trim()) return false;
+  stopProducedAudio();
   const audio = new Audio(src);
+  narration = audio;
   audio.preload = "auto";
+  audio.onended = () => { if (narration === audio) narration = null; };
   try {
     await audio.play();
-    return true;
+    return narration === audio ? true : null;
   } catch {
+    // Cancellation by replay, mute or navigation is not a transport failure.
+    if (narration !== audio) return null;
+    stopProducedAudio();
     return false;
   }
 }
@@ -36,6 +59,8 @@ function tone(freq: number, dur: number, delay = 0, type: OscillatorType = "sine
   if (!a || muted) return;
   const t0 = a.currentTime + delay;
   const osc = a.createOscillator();
+  tones.add(osc);
+  osc.onended = () => { tones.delete(osc); };
   const g = a.createGain();
   osc.type = type;
   osc.frequency.value = freq;

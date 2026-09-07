@@ -72,11 +72,20 @@ func PupilQuestion(q QuestionConfig) PupilQuestionConfig {
 			body[key] = pupilStimulus(value)
 		}
 	}
-	if assets, ok := q.Body["audio_assets"].(map[string]any); ok {
+	assets, hasAssets := q.Body["audio_assets"].(map[string]any)
+	phonemes, hasPhonemes := q.Body["phoneme_audio_asset_ids"].([]any)
+	sounds, _ := q.Body["sounds"].([]any)
+	if hasAssets || hasPhonemes {
 		publicAssets := map[string]any{}
-		sounds, _ := q.Body["sounds"].([]any)
-		for _, sound := range sounds {
+		for index, sound := range sounds {
 			if label, ok := sound.(string); ok {
+				// Map only positionally aligned authored clips to already-public
+				// sound labels; never expose arbitrary keys or infer missing clips.
+				if len(phonemes) == len(sounds) {
+					if clip, ok := phonemes[index].(string); ok && strings.TrimSpace(clip) != "" {
+						publicAssets[label] = clip
+					}
+				}
 				for _, key := range []string{label, "phoneme-" + label} {
 					if value, ok := assets[key].(string); ok {
 						publicAssets[key] = value
@@ -85,6 +94,11 @@ func PupilQuestion(q QuestionConfig) PupilQuestionConfig {
 			}
 		}
 		body["audio_assets"] = publicAssets
+	}
+	if canonical, _ := body["whole_audio_asset_id"].(string); strings.TrimSpace(canonical) == "" {
+		if clip, ok := q.Body["whole_word_audio_asset_id"].(string); ok && strings.TrimSpace(clip) != "" {
+			body["whole_audio_asset_id"] = clip
+		}
 	}
 	// Target features are the key, not the three model choices themselves.
 	if q.Format == "model-sort" {

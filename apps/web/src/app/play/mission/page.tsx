@@ -22,7 +22,7 @@ import {
   type NextActivityDecision,
   type ProgressReport,
 } from "@/lib/api";
-import { playProducedAudio, sfx, setMuted } from "@/lib/sound";
+import { playProducedAudio, sfx, setMuted, stopProducedAudio } from "@/lib/sound";
 import { resolveNarrationFields, useNarrationAssets } from "@/lib/narration";
 
 // Shared class groups keep repeated mission surfaces visually consistent.
@@ -453,6 +453,7 @@ export default function Mission() {
   }, [lessonIdx]);
 
   useEffect(() => setMuted(mute), [mute]);
+  useEffect(() => stopProducedAudio, [q?.id, idx, lessonIdx, inLesson, awaitingContinue, paused, route.activityId]);
 
   useEffect(() => {
     if (loadState === "ready" && total > 0 && done && !hatched && !completionInFlight.current) {
@@ -688,7 +689,7 @@ export default function Mission() {
     if (!audioURL.trim()) return;
     void recordLearningEvent("audio_replay", { activity_id: mission?.activity?.id || "", question_id: q?.id || "", lesson_step: lessonStep?.step_id || "" });
     const played = await playProducedAudio(audioURL);
-    if (!played) {
+    if (played === false) {
       setMessage(mute ? "Sound is muted. Turn sound on to hear the studio narration." : "Studio audio did not play. You can try again or keep learning with the text and visual model.");
       void recordLearningEvent("audio_playback_failed", {
         activity_id: mission?.activity?.id || "",
@@ -826,6 +827,9 @@ export default function Mission() {
         adaptations?.large_targets ? "large-targets" : ""
       }`}
       style={missionStyle}
+      onClickCapture={event => {
+        if (event.target instanceof Element && event.target.closest("a[href]:not([href^='#'])")) stopProducedAudio();
+      }}
     >
       <div className="mission-ambient pointer-events-none fixed inset-0 overflow-hidden" aria-hidden>
         <div className="absolute left-[8%] top-[12%] h-56 w-56 rounded-full bg-[var(--world-accent)] opacity-12 blur-3xl" />

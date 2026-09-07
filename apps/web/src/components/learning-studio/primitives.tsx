@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { playProducedAudio } from "@/lib/sound";
-import { resolveNarrationAsset, resolveNarrationAssetMap, useNarrationAssets } from "@/lib/narration";
+import { resolveNarrationFields, resolveNarrationAssetMap, useNarrationAssets } from "@/lib/narration";
 import { asStringArray, type StudioQuestion } from "./types";
 
 export function NumericArray({ a = 0, b = 0 }: { a?: number; b?: number }) {
@@ -29,7 +29,7 @@ export function AudioBlend({ question }: { question: StudioQuestion }) {
   const narrationAssets = useNarrationAssets();
   const sounds = asStringArray(question.body.sounds);
   const audioAssets = resolveNarrationAssetMap(question.body.audio_assets, narrationAssets);
-  const promptAudio = resolveNarrationAsset(question.body.prompt_audio_url, narrationAssets);
+  const promptAudio = resolveNarrationFields(question.body, narrationAssets);
   if (!["audio_blend", "audio-blend", "audio-choice", "listen-read"].includes(question.format.toLowerCase()) && sounds.length === 0) return null;
 
   function audioFor(sound: string) {
@@ -42,7 +42,7 @@ export function AudioBlend({ question }: { question: StudioQuestion }) {
       return;
     }
     const played = await playProducedAudio(audioURL);
-    setAudioStatus(played ? "" : `${label} studio audio did not play. Try again, or keep learning with the visual prompt.`);
+    if (played !== null) setAudioStatus(played ? "" : `${label} studio audio did not play. Try again, or keep learning with the visual prompt.`);
   }
 
   return (

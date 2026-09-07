@@ -27,6 +27,121 @@ async function typeNumber(page: Page, value: string) {
   await page.getByLabel("Keyboard answer", { exact: true }).fill(value);
 }
 
+async function audioHarness(page: Page, pending = false) {
+  await page.addInitScript((pending) => {
+    const clips: { paused: boolean; src: string }[] = [];
+    Object.assign(window, { __qaClips: clips });
+    window.Audio = class {
+      paused = true;
+      preload = "";
+      onended = null;
+      onerror = null;
+      constructor(public src = "") { clips.push(this); }
+      play() {
+        this.paused = false;
+        return pending ? new Promise<void>(resolve => Object.assign(window, { __resolveAudio: resolve })) : Promise.resolve();
+      }
+      pause() { this.paused = true; }
+      removeAttribute() {}
+      load() {}
+    } as unknown as typeof Audio;
+  }, pending);
+}
+const activeAudio = (page: Page) => page.evaluate(() => (window as unknown as { __qaClips: { paused: boolean }[] }).__qaClips.filter(clip => !clip.paused).length);
+
+test("produced narration replaces prior clips and stops on mute, pause and question completion", async ({ page }) => {
+  await audioHarness(page);
+  await mission(page, { ...numberFixture, body: { ...numberFixture.body, whole_audio_asset_id: "/qa-whole.mp3", sounds: ["a"], audio_assets: { a: "/qa-a.mp3" } } });
+  await page.route("http://api.test/v1/learning/attempt", route => route.fulfill({ json: result() }));
+  await open(page);
+  const active = () => activeAudio(page);
+  await page.getByRole("button", { name: "Hear question", exact: true }).click();
+  await expect.poll(active).toBe(1);
+  await page.getByRole("button", { name: "Hear question", exact: true }).click();
+  await expect.poll(active).toBe(1);
+  await page.getByRole("button", { name: "Mute sounds", exact: true }).click();
+  await expect.poll(active).toBe(0);
+  await page.getByRole("button", { name: "Unmute sounds", exact: true }).click();
+  await page.getByRole("button", { name: "Hear question", exact: true }).click();
+  await expect.poll(active).toBe(1);
+  await page.getByRole("button", { name: "Pause", exact: true }).click();
+  await expect.poll(active).toBe(0);
+  await page.getByRole("button", { name: "Continue mission", exact: true }).click();
+  await page.getByRole("button", { name: "Hear question", exact: true }).click();
+  await typeNumber(page, "12");
+  await page.getByRole("button", { name: "Submit answer", exact: true }).click();
+  await expect(page.getByRole("button", { name: "See my discoveries" })).toBeVisible();
+  await expect.poll(active).toBe(0);
+});
+
+test("released whole-word and phoneme clips share playback while unapproved clips remain unavailable", async ({ page }) => {
+  await audioHarness(page);
+  let releaseDestination!: () => void;
+  const destinationPending = new Promise<void>(resolve => { releaseDestination = resolve; });
+  await page.route(/\/play\?_rsc=/, async route => {
+    await destinationPending;
+    await route.continue().catch(() => {});
+  });
+  await page.route("**/content/narration-manifest.json", route => route.fulfill({ json: { items: [
+    { id: "word-cat", file: "/qa-cat.mp3", technical_pass: true, production_status: "released" },
+    { id: "phoneme-c", file: "/qa-c.mp3", technical_pass: true, production_status: "human_listening_approved" },
+    { id: "phoneme-a", file: "/qa-a.mp3", technical_pass: true, production_status: "review" },
+  ] } }));
+  await mission(page, { ...numberFixture, body: { ...numberFixture.body, sounds: ["c", "a"], whole_audio_asset_id: "word-cat", audio_assets: { c: "phoneme-c", a: "phoneme-a" } } });
+  await open(page);
+  await expect(page.getByRole("button", { name: "a studio audio unavailable", exact: true })).toBeDisabled();
+  await page.getByRole("button", { name: "Hear the whole prompt", exact: true }).click();
+  await expect.poll(() => activeAudio(page)).toBe(1);
+  await page.getByRole("button", { name: "Hear c", exact: true }).click();
+  await expect.poll(() => activeAudio(page)).toBe(1);
+  expect(await page.evaluate(() => (window as unknown as { __qaClips: { src: string }[] }).__qaClips.map(clip => clip.src))).toEqual(["/qa-cat.mp3", "/qa-c.mp3"]);
+  await page.locator('a[href="/play"]').first().click();
+  // Stop at navigation intent, even if the destination's server data is slow.
+  try {
+    await expect.poll(() => activeAudio(page)).toBe(0);
+  } finally {
+    releaseDestination();
+  }
+});
+
+test("muting a pending narration play cancels it without recording a transport failure", async ({ page }) => {
+  await audioHarness(page, true);
+  await mission(page, { ...numberFixture, body: { ...numberFixture.body, prompt_audio_url: "/qa-pending.mp3" } });
+  const failed: string[] = [];
+  page.on("request", request => { if (request.postData()?.includes('"audio_playback_failed"')) failed.push(request.postData()!); });
+  await open(page);
+  await page.getByRole("button", { name: "Hear question", exact: true }).click();
+  await expect.poll(() => activeAudio(page)).toBe(1);
+  await page.getByRole("button", { name: "Mute sounds", exact: true }).click();
+  await expect.poll(() => activeAudio(page)).toBe(0);
+  await page.evaluate(() => (window as unknown as { __resolveAudio: () => void }).__resolveAudio());
+  await expect(page.getByText("Sound is muted. Turn sound on to hear the studio narration.", { exact: true })).toHaveCount(0);
+  expect(failed).toEqual([]);
+});
+
+test("an existing generated MP3 decodes through the mission player and mute stops it", async ({ page }) => {
+  // Technical playback in a disposable fixture is not listening approval or a
+  // production manifest promotion. No Audio mock: Chromium decodes the file.
+  await page.addInitScript(() => {
+    const NativeAudio = window.Audio;
+    window.Audio = class extends NativeAudio {
+      constructor(src?: string) {
+        super(src);
+        Object.assign(window, { __qaRealAudio: this });
+      }
+    };
+  });
+  await mission(page, { ...numberFixture, body: { ...numberFixture.body, prompt_audio_url: "/audio/narration/alice/en-y1-listening-comprehension/lesson/ready-to-listen-warm-up.mp3" } });
+  await open(page);
+  await page.getByRole("button", { name: "Hear question", exact: true }).click();
+  await expect.poll(() => page.evaluate(() => {
+    const audio = (window as unknown as { __qaRealAudio?: HTMLAudioElement }).__qaRealAudio;
+    return Boolean(audio && !audio.error && audio.readyState >= 2 && Number.isFinite(audio.duration) && audio.currentTime > 0);
+  })).toBe(true);
+  await page.getByRole("button", { name: "Mute sounds", exact: true }).click();
+  await expect.poll(() => page.evaluate(() => (window as unknown as { __qaRealAudio: HTMLAudioElement }).__qaRealAudio.paused)).toBe(true);
+});
+
 test("decimal answers send typed learner evidence and version, never an answer key", async ({ page }) => {
   await mission(page, { ...numberFixture, expected: 1.25, responseKind: "number" });
   let sent: Record<string, unknown> | undefined;
