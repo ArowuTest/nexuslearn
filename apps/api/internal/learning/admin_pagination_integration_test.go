@@ -114,6 +114,14 @@ func openPaginationIntegrationRepository(t *testing.T) (*pgxpool.Pool, *Postgres
 		t.Fatal(err)
 	}
 	config.ConnConfig.RuntimeParams["search_path"] = schema
+	// RuntimeParams are applied during startup, but the pool may create
+	// additional connections after migrations begin. Re-assert the isolated
+	// schema on every connection so integration queries cannot fall through to
+	// a stale public/default relation.
+	config.AfterConnect = func(ctx context.Context, conn *pgx.Conn) error {
+		_, err := conn.Exec(ctx, "SET search_path TO "+identifier)
+		return err
+	}
 	pool, err := pgxpool.NewWithConfig(ctx, config)
 	if err != nil {
 		adminPool.Close()

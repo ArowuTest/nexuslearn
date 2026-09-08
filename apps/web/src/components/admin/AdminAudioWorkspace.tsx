@@ -12,6 +12,7 @@ import {
   type AudioQueueFilters,
   type NarrationQueueItem,
   type NarrationQueuePage,
+  type NarrationPlaybackEvidence,
   type NarrationReadinessReport,
 } from "@/lib/admin-audio";
 
@@ -20,6 +21,7 @@ type ReviewDraft = {
   notes: string;
   reason: string;
   criteria: Record<string, boolean>;
+  playbackCompleted: boolean;
 };
 
 const criteria = [
@@ -48,6 +50,7 @@ function draftFor(item: NarrationQueueItem): ReviewDraft {
     notes: review?.notes ?? "",
     reason: review?.rejection_reasons?.[0] ?? "",
     criteria: review?.criteria ?? {},
+    playbackCompleted: Boolean(review?.playback_evidence?.completed),
   };
 }
 
@@ -119,6 +122,10 @@ export default function AdminAudioWorkspace({ request, readiness }: { request: A
       setMessage("Confirm all four listening criteria before approval.");
       return;
     }
+    if (decision === "approved" && !draft.playbackCompleted) {
+      setMessage("Play the recording through to the end before approval.");
+      return;
+    }
     if (decision === "rejected" && (!draft.reason || !draft.notes.trim())) {
       setMessage("Choose a structured re-record reason and add an evidence note.");
       return;
@@ -136,6 +143,10 @@ export default function AdminAudioWorkspace({ request, readiness }: { request: A
         criteria: checkedCriteria,
         rejectionReason: draft.reason,
         notes: draft.notes,
+        playbackEvidence: decision === "approved" ? {
+          surface: "admin_audio_workspace",
+          completed: draft.playbackCompleted,
+        } satisfies NarrationPlaybackEvidence : undefined,
       });
       if (decision === "rejected") {
         await requestAudioRerecord(request, queue!.release_id!, item, draft.reason, draft.notes);
@@ -156,6 +167,10 @@ export default function AdminAudioWorkspace({ request, readiness }: { request: A
   function applyFilters() {
     syncAudioFiltersToURL(filters);
     void refresh(filters, 0);
+  }
+
+  function markPlaybackComplete(item: NarrationQueueItem) {
+    updateDraft(item, { playbackCompleted: true });
   }
 
   const counts = queue?.counts ?? { awaiting: 0, approved: 0, rejected: 0, stale: 0 };
@@ -246,8 +261,11 @@ export default function AdminAudioWorkspace({ request, readiness }: { request: A
 
                 {stale && <div className="mt-4 rounded-2xl border border-[#f0b35a]/50 bg-[#fff8e8] p-3 text-sm text-[#725100]" role="alert"><strong>The previous decision is stale.</strong> Re-listen and create a new decision against the current file and profile.</div>}
 
-                <audio className="mt-4 w-full" controls preload="metadata" src={item.file} aria-label={`Listen to ${item.asset_id}`} onError={() => setPlaybackErrors((current) => ({ ...current, [item.asset_id]: true }))} onCanPlay={() => setPlaybackErrors((current) => ({ ...current, [item.asset_id]: false }))} />
+                <audio className="mt-4 w-full" controls preload="metadata" src={item.file} aria-label={`Listen to ${item.asset_id}`} onError={() => setPlaybackErrors((current) => ({ ...current, [item.asset_id]: true }))} onCanPlay={() => setPlaybackErrors((current) => ({ ...current, [item.asset_id]: false }))} onEnded={() => markPlaybackComplete(item)} />
                 {playbackErrors[item.asset_id] && <p className="mt-2 rounded-xl bg-[#fff1f1] p-3 text-xs text-[#8b2b2b]" role="alert">Audio playback failed. Do not approve this asset; verify the file or request a technical re-record.</p>}
+                <p className="mt-2 rounded-xl bg-[#f5f7fb] p-3 text-xs text-[#1d1a3e]/68" role="status">
+                  {draft.playbackCompleted ? "Played through; assess voice and suitability." : "Play to end before approval; not proof of attention."}
+                </p>
 
                 <div className="mt-4 rounded-2xl border-l-4 border-[#f0b35a] bg-[#fffaf0] p-4">
                   <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#725100]">Exact transcript</p>
@@ -292,7 +310,7 @@ export default function AdminAudioWorkspace({ request, readiness }: { request: A
                 </label>
 
                 <div className="mt-4 flex flex-wrap gap-2">
-                  <button type="button" onClick={() => void submitReview(item, "approved")} disabled={loading || saving === item.asset_id || playbackErrors[item.asset_id]} className="btn-pop min-h-11 rounded-full bg-[#dff7e7] px-4 text-xs font-semibold text-[#28613c] disabled:opacity-45">Approve listening</button>
+                  <button type="button" onClick={() => void submitReview(item, "approved")} disabled={loading || saving === item.asset_id || playbackErrors[item.asset_id] || !draft.playbackCompleted} className="btn-pop min-h-11 rounded-full bg-[#dff7e7] px-4 text-xs font-semibold text-[#28613c] disabled:opacity-45">Approve listening</button>
                   <button type="button" onClick={() => void submitReview(item, "rejected")} disabled={loading || saving === item.asset_id || !queue?.release_id} className="btn-pop min-h-11 rounded-full bg-[#fde4e4] px-4 text-xs font-semibold text-[#8b2b2b] disabled:opacity-45">Reject and request re-record</button>
                 </div>
                 <p className="mt-3 text-xs leading-5 text-[#1d1a3e]/68">{item.rationale.slice(0, 2).join("; ")}</p>

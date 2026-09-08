@@ -10,6 +10,8 @@ import (
 
 var narrationSHA256Pattern = regexp.MustCompile(`^[0-9a-f]{64}$`)
 
+const narrationPlaybackWorkspace = "admin_audio_workspace"
+
 func validateNarrationReview(review NarrationReview) error {
 	if strings.TrimSpace(review.AssetID) == "" {
 		return invalidConfig("narration asset id is required")
@@ -36,6 +38,17 @@ func validateNarrationReview(review NarrationReview) error {
 	if review.Decision == "rejected" && strings.TrimSpace(review.Notes) == "" && len(review.RejectionReasons) == 0 {
 		return invalidConfig("a rejection needs a note or rejection reason")
 	}
+	if review.PlaybackEvidence != nil {
+		if review.PlaybackEvidence.Surface != "" && review.PlaybackEvidence.Surface != narrationPlaybackWorkspace {
+			return invalidConfig("narration playback evidence surface is not recognised")
+		}
+		if review.PlaybackEvidence.DurationMS < 0 || review.PlaybackEvidence.DurationMS > 3600000 {
+			return invalidConfig("narration playback duration is outside the safe range")
+		}
+		if review.Decision == "approved" && review.PlaybackEvidence.Surface == narrationPlaybackWorkspace && !review.PlaybackEvidence.Completed {
+			return invalidConfig("the audio workspace requires playback completion before approval")
+		}
+	}
 	return nil
 }
 
@@ -55,13 +68,13 @@ func (r *PostgresRepository) ListNarrationReviews(ctx context.Context, assetID s
 	assetID = strings.TrimSpace(assetID)
 	rows, err := r.db.Query(ctx, `
 		SELECT id, asset_id, text_sha256, audio_sha256, production_profile_sha256, decision,
-		       reviewer_id, reviewer_name, criteria, rejection_reasons, notes,
+		       reviewer_id, reviewer_name, criteria, rejection_reasons, notes, playback_evidence,
 		       created_at, updated_at
 		FROM (
 			SELECT DISTINCT ON (asset_id)
 			       id::text AS id, asset_id, text_sha256, audio_sha256,
 			       COALESCE(production_profile_sha256, '') AS production_profile_sha256, decision,
-			       reviewer_id, reviewer_name, criteria, rejection_reasons, notes,
+			       reviewer_id, reviewer_name, criteria, rejection_reasons, notes, playback_evidence,
 			       created_at, updated_at
 			FROM narration_reviews
 			WHERE ($1 = '' OR asset_id = $1)
@@ -77,12 +90,12 @@ func (r *PostgresRepository) ListNarrationReviews(ctx context.Context, assetID s
 	reviews := []NarrationReview{}
 	for rows.Next() {
 		var review NarrationReview
-		var criteriaRaw, reasonsRaw []byte
+		var criteriaRaw, reasonsRaw, playbackRaw []byte
 		var createdAt, updatedAt time.Time
 		if err := rows.Scan(
 			&review.ID, &review.AssetID, &review.TextSHA256, &review.AudioSHA256, &review.ProductionProfileSHA256,
 			&review.Decision, &review.ReviewerID, &review.ReviewerName,
-			&criteriaRaw, &reasonsRaw, &review.Notes, &createdAt, &updatedAt,
+			&criteriaRaw, &reasonsRaw, &review.Notes, &playbackRaw, &createdAt, &updatedAt,
 		); err != nil {
 			return nil, err
 		}
@@ -90,6 +103,10 @@ func (r *PostgresRepository) ListNarrationReviews(ctx context.Context, assetID s
 		_ = json.Unmarshal(criteriaRaw, &review.Criteria)
 		review.RejectionReasons = []string{}
 		_ = json.Unmarshal(reasonsRaw, &review.RejectionReasons)
+		var playback NarrationPlaybackEvidence
+		if len(playbackRaw) > 0 && string(playbackRaw) != "{}" && string(playbackRaw) != "null" && json.Unmarshal(playbackRaw, &playback) == nil {
+			review.PlaybackEvidence = &playback
+		}
 		review.CreatedAt = createdAt.UTC().Format(time.RFC3339)
 		review.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
 		reviews = append(reviews, review)
@@ -136,16 +153,23 @@ func (r *PostgresRepository) SaveNarrationReview(ctx context.Context, review Nar
 	if err != nil {
 		return review, err
 	}
+	playback := []byte("{}")
+	if review.PlaybackEvidence != nil {
+		playback, err = json.Marshal(review.PlaybackEvidence)
+		if err != nil {
+			return review, err
+		}
+	}
 	var createdAt, updatedAt time.Time
 	if err := tx.QueryRow(ctx, `
 		INSERT INTO narration_reviews(
 			asset_id, text_sha256, audio_sha256, production_profile_sha256, decision, reviewer_id,
-			reviewer_name, criteria, rejection_reasons, notes
+			reviewer_name, criteria, rejection_reasons, notes, playback_evidence
 		)
-		VALUES($1,$2,$3,NULLIF($4,''),$5,$6,$7,$8::jsonb,$9::jsonb,$10)
+		VALUES($1,$2,$3,NULLIF($4,''),$5,$6,$7,$8::jsonb,$9::jsonb,$10,$11::jsonb)
 		RETURNING id::text, created_at, updated_at
 	`, review.AssetID, review.TextSHA256, review.AudioSHA256, review.ProductionProfileSHA256, review.Decision,
-		review.ReviewerID, review.ReviewerName, criteria, reasons, review.Notes,
+		review.ReviewerID, review.ReviewerName, criteria, reasons, review.Notes, playback,
 	).Scan(&review.ID, &createdAt, &updatedAt); err != nil {
 		return review, err
 	}
@@ -157,7 +181,7 @@ func (r *PostgresRepository) SaveNarrationReview(ctx context.Context, review Nar
 	`, review.AssetID, mustJSON(map[string]any{
 		"asset_id": review.AssetID, "text_sha256": review.TextSHA256,
 		"audio_sha256": review.AudioSHA256, "production_profile_sha256": review.ProductionProfileSHA256, "decision": review.Decision,
-		"reviewer_name": review.ReviewerName,
+		"reviewer_name": review.ReviewerName, "playback_evidence": review.PlaybackEvidence,
 	})); err != nil {
 		return review, err
 	}

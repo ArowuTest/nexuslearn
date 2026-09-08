@@ -21,9 +21,16 @@ export type NarrationReview = {
   criteria: Record<string, boolean>;
   rejection_reasons?: string[];
   notes?: string;
+  playback_evidence?: NarrationPlaybackEvidence;
   created_at: string;
   updated_at: string;
   stale?: boolean;
+};
+
+export type NarrationPlaybackEvidence = {
+  surface: "admin_audio_workspace";
+  completed: boolean;
+  duration_ms?: number;
 };
 
 export type NarrationQueueItem = {
@@ -165,7 +172,7 @@ async function idempotencyKey(scope: string, payload: unknown) {
 export async function saveAudioReview(
   request: AdminRequest,
   item: NarrationQueueItem,
-  input: { decision: "approved" | "rejected"; reviewerName: string; criteria: Record<string, boolean>; rejectionReason?: string; notes: string },
+  input: { decision: "approved" | "rejected"; reviewerName: string; criteria: Record<string, boolean>; rejectionReason?: string; notes: string; playbackEvidence?: NarrationPlaybackEvidence },
 ) {
   const payload = {
     asset_id: item.asset_id,
@@ -177,6 +184,7 @@ export async function saveAudioReview(
     criteria: input.criteria,
     rejection_reasons: input.decision === "rejected" && input.rejectionReason ? [input.rejectionReason] : [],
     notes: input.notes.trim(),
+    playback_evidence: input.playbackEvidence,
   };
   return request("/v1/admin/content/narration-reviews", {
     method: "POST",

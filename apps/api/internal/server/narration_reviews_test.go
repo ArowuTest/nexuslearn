@@ -162,11 +162,34 @@ func TestNarrationReviewEndpointsEnforceAudioBindingAndCriteria(t *testing.T) {
 		t.Fatalf("incomplete approval should not be persisted")
 	}
 
+	workspaceWithoutPlayback := map[string]any{
+		"asset_id": "asset-1", "text_sha256": textHash, "audio_sha256": audioHash,
+		"decision": "approved", "reviewer_name": "A. Reviewer",
+		"criteria": map[string]bool{
+			"natural": true, "clear": true, "pronunciation": true, "age_suitable": true,
+		},
+		"playback_evidence": map[string]any{
+			"surface": "admin_audio_workspace", "completed": false,
+		},
+	}
+	workspaceWithoutPlaybackBody, _ := json.Marshal(workspaceWithoutPlayback)
+	workspaceWithoutPlaybackRequest := httptest.NewRequest(http.MethodPost, "/v1/admin/content/narration-reviews", bytes.NewReader(workspaceWithoutPlaybackBody))
+	workspaceWithoutPlaybackRequest.Header.Set("X-Admin-Key", "test-admin")
+	workspaceWithoutPlaybackRequest.Header.Set("Idempotency-Key", "review-playback-fail")
+	workspaceWithoutPlaybackResponse := httptest.NewRecorder()
+	srv.ServeHTTP(workspaceWithoutPlaybackResponse, workspaceWithoutPlaybackRequest)
+	if workspaceWithoutPlaybackResponse.Code != http.StatusBadRequest {
+		t.Fatalf("workspace approval without playback completion should fail, got %d: %s", workspaceWithoutPlaybackResponse.Code, workspaceWithoutPlaybackResponse.Body.String())
+	}
+
 	approved := map[string]any{
 		"asset_id": "asset-1", "text_sha256": textHash, "audio_sha256": audioHash,
 		"decision": "approved", "reviewer_name": "A. Reviewer",
 		"criteria": map[string]bool{
 			"natural": true, "clear": true, "pronunciation": true, "age_suitable": true,
+		},
+		"playback_evidence": map[string]any{
+			"surface": "admin_audio_workspace", "completed": true, "duration_ms": 7250,
 		},
 	}
 	approvedBody, _ := json.Marshal(approved)

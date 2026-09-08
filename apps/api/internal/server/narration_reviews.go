@@ -373,15 +373,16 @@ func (s *Server) handleSaveNarrationReview(w http.ResponseWriter, r *http.Reques
 		return
 	}
 	var in struct {
-		AssetID                 string          `json:"asset_id"`
-		TextSHA256              string          `json:"text_sha256"`
-		AudioSHA256             string          `json:"audio_sha256"`
-		ProductionProfileSHA256 string          `json:"production_profile_sha256"`
-		Decision                string          `json:"decision"`
-		ReviewerName            string          `json:"reviewer_name"`
-		Criteria                map[string]bool `json:"criteria"`
-		RejectionReasons        []string        `json:"rejection_reasons"`
-		Notes                   string          `json:"notes"`
+		AssetID                 string                              `json:"asset_id"`
+		TextSHA256              string                              `json:"text_sha256"`
+		AudioSHA256             string                              `json:"audio_sha256"`
+		ProductionProfileSHA256 string                              `json:"production_profile_sha256"`
+		Decision                string                              `json:"decision"`
+		ReviewerName            string                              `json:"reviewer_name"`
+		Criteria                map[string]bool                     `json:"criteria"`
+		RejectionReasons        []string                            `json:"rejection_reasons"`
+		Notes                   string                              `json:"notes"`
+		PlaybackEvidence        *learning.NarrationPlaybackEvidence `json:"playback_evidence"`
 	}
 	if err := json.NewDecoder(r.Body).Decode(&in); err != nil {
 		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid narration review body"})
@@ -415,7 +416,7 @@ func (s *Server) handleSaveNarrationReview(w http.ResponseWriter, r *http.Reques
 		AssetID: in.AssetID, TextSHA256: in.TextSHA256, AudioSHA256: in.AudioSHA256,
 		ProductionProfileSHA256: in.ProductionProfileSHA256,
 		Decision:                in.Decision, ReviewerID: reviewerID, ReviewerName: in.ReviewerName,
-		Criteria: in.Criteria, RejectionReasons: in.RejectionReasons, Notes: strings.TrimSpace(in.Notes),
+		Criteria: in.Criteria, RejectionReasons: in.RejectionReasons, Notes: strings.TrimSpace(in.Notes), PlaybackEvidence: in.PlaybackEvidence,
 	}
 	if err := learning.ValidateNarrationReview(reviewInput); err != nil {
 		s.writeAdminSaveError(w, err, "narration review")

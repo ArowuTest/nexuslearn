@@ -149,3 +149,42 @@ func TestPostgresRequiredListeningRejectsMismatchedOrPartialEvidence(t *testing.
 		})
 	}
 }
+
+func TestPostgresNarrationReviewPersistsPlaybackEvidence(t *testing.T) {
+	pool, repo := openPaginationIntegrationRepository(t)
+	manifest := validAudioManifestImport(t)
+	if _, err := repo.ImportAudioManifest(context.Background(), manifest, "playback-test", "playback-import"); err != nil {
+		t.Fatal(err)
+	}
+	asset := manifest.Assets[0]
+	review := NarrationReview{
+		AssetID: asset.AssetID, TextSHA256: asset.TextSHA256, AudioSHA256: asset.AudioSHA256,
+		ProductionProfileSHA256: asset.ProductionProfileSHA256, Decision: "approved",
+		ReviewerID: "playback-reviewer", ReviewerName: "Synthetic playback reviewer",
+		Criteria:         map[string]bool{"natural": true, "clear": true, "pronunciation": true, "age_suitable": true},
+		PlaybackEvidence: &NarrationPlaybackEvidence{Surface: "admin_audio_workspace", Completed: true, DurationMS: 7250},
+	}
+	if _, err := repo.SaveNarrationReview(context.Background(), review, "playback-review"); err != nil {
+		t.Fatalf("save playback evidence: %v", err)
+	}
+
+	var stored []byte
+	if err := pool.QueryRow(context.Background(), `SELECT playback_evidence FROM narration_reviews WHERE asset_id=$1 ORDER BY created_at DESC,id DESC LIMIT 1`, asset.AssetID).Scan(&stored); err != nil {
+		t.Fatal(err)
+	}
+	var evidence NarrationPlaybackEvidence
+	if err := json.Unmarshal(stored, &evidence); err != nil {
+		t.Fatal(err)
+	}
+	if evidence.Surface != "admin_audio_workspace" || !evidence.Completed || evidence.DurationMS != 7250 {
+		t.Fatalf("stored playback evidence changed: %#v", evidence)
+	}
+
+	reviews, err := repo.ListNarrationReviews(context.Background(), asset.AssetID, 10)
+	if err != nil || len(reviews) != 1 || reviews[0].PlaybackEvidence == nil {
+		t.Fatalf("playback evidence was not returned from the bounded review list: reviews=%#v err=%v", reviews, err)
+	}
+	if !reviews[0].PlaybackEvidence.Completed || reviews[0].PlaybackEvidence.DurationMS != 7250 {
+		t.Fatalf("returned playback evidence changed: %#v", reviews[0].PlaybackEvidence)
+	}
+}

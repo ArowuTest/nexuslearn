@@ -100,6 +100,7 @@ async function openAudioWorkspace(page: Page) {
   });
   await page.goto("/admin?section=audio&audio_status=stale&audio_subject=English&audio_year=1");
   await expect(page.getByRole("heading", { name: "Audio listening QA" })).toBeVisible();
+  await expect(page.getByText("Listen, stretch each sound, then blend the word.")).toBeVisible();
 
   return {
     getReviewPayload: () => reviewPayload,
@@ -153,4 +154,31 @@ test("audio filters stay in the URL and keyboard navigation reaches the dedicate
   await audioNavigation.focus();
   await page.keyboard.press("ArrowUp");
   await expect(page.getByRole("button", { name: "Readiness", exact: true })).toBeFocused();
+});
+
+test("approval is held until the exact recording completes playback", async ({ page }) => {
+  const captured = await openAudioWorkspace(page);
+
+  const criteria = page.locator('fieldset input[type="checkbox"]');
+  await expect(criteria).toHaveCount(4);
+  for (let index = 0; index < 4; index += 1) await criteria.nth(index).check();
+  await page.getByLabel("Reviewer name").fill("A. Audio Reviewer");
+
+  const approve = page.getByRole("button", { name: "Approve listening" });
+  await expect(approve).toBeDisabled();
+  await page.locator("audio").evaluate((audio) => {
+    Object.defineProperty(audio, "duration", { configurable: true, value: 1 });
+    Object.defineProperty(audio, "currentTime", { configurable: true, value: 1 });
+    audio.dispatchEvent(new Event("canplay", { bubbles: true }));
+    audio.dispatchEvent(new Event("timeupdate", { bubbles: true }));
+    audio.dispatchEvent(new Event("ended", { bubbles: true }));
+  });
+  await expect(approve).toBeEnabled();
+  await approve.click();
+
+  await expect(page.getByRole("status").filter({ hasText: "approved against the current transcript" })).toBeVisible();
+  expect(captured.getReviewPayload()).toMatchObject({
+    decision: "approved",
+    playback_evidence: { surface: "admin_audio_workspace", completed: true },
+  });
 });
