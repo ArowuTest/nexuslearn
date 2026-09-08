@@ -2555,7 +2555,7 @@ func (s *Server) handleParentChildEvidence(w http.ResponseWriter, r *http.Reques
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read summary"})
 		return
 	}
-	objectives, err := s.repo.ListObjectives(r.Context())
+	objectives, err := s.listProgressObjectives(r.Context(), externalRef, child.Student.YearGroup)
 	if err != nil {
 		slog.Warn("failed to read parent child objectives", "error", err)
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read progress"})
@@ -3506,7 +3506,7 @@ func (s *Server) handleStudentProgress(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, http.StatusNotFound, map[string]string{"error": "student is not configured"})
 		return
 	}
-	objectives, err := s.repo.ListObjectives(r.Context())
+	objectives, err := s.listProgressObjectives(r.Context(), studentID, year)
 	if err != nil {
 		slog.Warn("failed to read objectives for progress", "student_id", studentID, "error", err)
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read progress"})

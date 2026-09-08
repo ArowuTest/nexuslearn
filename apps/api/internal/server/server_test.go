@@ -59,6 +59,15 @@ type fakeRepository struct {
 	hasBaseline         bool
 }
 
+type progressScopedRepository struct {
+	fakeRepository
+	scopedObjectives []learning.Objective
+}
+
+func (f progressScopedRepository) ListProgressObjectives(context.Context, string, int) ([]learning.Objective, error) {
+	return f.scopedObjectives, nil
+}
+
 func (f fakeRepository) RecordAttempt(_ context.Context, _ learning.Attempt) (learning.AttemptResult, error) {
 	result := learning.AttemptResult{}
 	if f.recordAttemptErr != nil {
@@ -1492,6 +1501,33 @@ func TestHandleStudentProgressReturnsParentSafeProgressContract(t *testing.T) {
 	}
 	if !report.StretchAllowed || report.WorkingYear != 4 || len(report.Subjects) != 3 {
 		t.Fatalf("expected cross-subject progress response, got %#v", report)
+	}
+}
+
+func TestHandleStudentProgressUsesLearnerScopedObjectiveReader(t *testing.T) {
+	t.Setenv("PUPIL_SESSION_SECRET", "test-pupil-session-secret")
+	t.Setenv("REQUIRE_PUPIL_SESSION", "true")
+	srv := New(progressScopedRepository{
+		fakeRepository: fakeRepository{
+			studentYear: 3,
+			objectives:  []learning.Objective{{ID: "fallback-objective", Year: 3, Subject: "Fallback"}},
+			mastery:     []learning.StudentMastery{{ObjectiveID: "scoped-objective", Score: 90}},
+		},
+		scopedObjectives: []learning.Objective{{ID: "scoped-objective", Year: 3, Subject: "Mathematics", Mastery: learning.MasteryRule{Expected: 80, Secure: 90}}},
+	}, "postgres")
+	req := httptest.NewRequest(http.MethodGet, "/v1/students/ava-y3/progress", nil)
+	req.Header.Set("X-Pupil-Session", srv.createPupilSession("ava-y3").Token)
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected progress 200, got %d: %s", res.Code, res.Body.String())
+	}
+	var report learning.ProgressReport
+	if err := json.NewDecoder(res.Body).Decode(&report); err != nil {
+		t.Fatal(err)
+	}
+	if len(report.Subjects) != 1 || report.Subjects[0].Subject != "Mathematics" {
+		t.Fatalf("expected the bounded learner objective scope, got %#v", report.Subjects)
 	}
 }
 

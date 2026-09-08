@@ -7,6 +7,10 @@ import (
 	"github.com/ArowuTest/nexuslearn/apps/api/internal/learning"
 )
 
+type progressObjectiveStore interface {
+	ListProgressObjectives(context.Context, string, int) ([]learning.Objective, error)
+}
+
 func (s *Server) handleAdminStudentProgress(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Cache-Control", "private, no-store")
 	if !s.requireAdmin(w, r) {
@@ -48,7 +52,7 @@ func (s *Server) buildProgressReport(r *http.Request, studentID, schoolURN strin
 	if !ok {
 		return learning.ProgressReport{}, learning.ErrStudentNotFound
 	}
-	objectives, err := s.repo.ListObjectives(r.Context())
+	objectives, err := s.listProgressObjectives(r.Context(), studentID, year)
 	if err != nil {
 		return learning.ProgressReport{}, err
 	}
@@ -64,6 +68,15 @@ func (s *Server) buildProgressReport(r *http.Request, studentID, schoolURN strin
 		return learning.ProgressReport{}, err
 	}
 	return progress, nil
+}
+
+func (s *Server) listProgressObjectives(ctx context.Context, studentID string, yearGroup int) ([]learning.Objective, error) {
+	if store, ok := s.repo.(progressObjectiveStore); ok {
+		return store.ListProgressObjectives(ctx, studentID, yearGroup)
+	}
+	// Keep lightweight repositories and focused server tests compatible while
+	// Postgres uses the bounded learner-specific scope above.
+	return s.repo.ListObjectives(ctx)
 }
 
 // Only call after adult authentication and learner ownership checks. Pupil
