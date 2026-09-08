@@ -1,0 +1,1 @@
+DROP INDEX IF EXISTS narration_reviews_asset_updated_id_idx;

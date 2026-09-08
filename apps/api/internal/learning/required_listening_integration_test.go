@@ -188,3 +188,34 @@ func TestPostgresNarrationReviewPersistsPlaybackEvidence(t *testing.T) {
 		t.Fatalf("returned playback evidence changed: %#v", reviews[0].PlaybackEvidence)
 	}
 }
+
+func TestPostgresNarrationLatestReviewQueueUsesExactOrderingIndex(t *testing.T) {
+	pool, _ := openPaginationIntegrationRepository(t)
+	ctx := context.Background()
+	tx, err := pool.Begin(ctx)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer tx.Rollback(ctx)
+	if _, err := tx.Exec(ctx, `SET LOCAL enable_seqscan=off; SET LOCAL enable_bitmapscan=off; SET LOCAL enable_incremental_sort=off`); err != nil {
+		t.Fatal(err)
+	}
+	var plan []byte
+	if err := tx.QueryRow(ctx, `
+		EXPLAIN (FORMAT JSON)
+		SELECT id, asset_id, updated_at
+		FROM (
+			SELECT DISTINCT ON (asset_id) id, asset_id, updated_at
+			FROM narration_reviews
+			WHERE ($1 = '' OR asset_id = $1)
+			ORDER BY asset_id, updated_at DESC, id DESC
+		) latest
+		ORDER BY updated_at DESC, id DESC
+		LIMIT $2
+	`, "", 100).Scan(&plan); err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(string(plan), "narration_reviews_asset_updated_id_idx") {
+		t.Fatalf("latest narration review query does not use its exact ordering index: %s", plan)
+	}
+}
