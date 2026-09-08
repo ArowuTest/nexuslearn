@@ -41,6 +41,101 @@ type fakeAdminReleasePageRepository struct {
 	releaseCalls int
 }
 
+type fakeAdminDirectoryPageRepository struct {
+	fakeRepository
+	studentPage       learning.StudentProfilePage
+	credentialPage    learning.StudentCredentialPage
+	studentQuery      learning.AdminDirectoryPageQuery
+	credentialQuery   learning.AdminDirectoryPageQuery
+	invalidCursorPage bool
+}
+
+func (f *fakeAdminDirectoryPageRepository) ListStudentPage(_ context.Context, query learning.AdminDirectoryPageQuery) (learning.StudentProfilePage, error) {
+	f.studentQuery = query
+	if f.invalidCursorPage && query.Cursor != "" {
+		return learning.StudentProfilePage{}, learning.ErrInvalidConfiguration
+	}
+	return f.studentPage, nil
+}
+
+func (f *fakeAdminDirectoryPageRepository) ListStudentCredentialPage(_ context.Context, query learning.AdminDirectoryPageQuery) (learning.StudentCredentialPage, error) {
+	f.credentialQuery = query
+	if f.invalidCursorPage && query.Cursor != "" {
+		return learning.StudentCredentialPage{}, learning.ErrInvalidConfiguration
+	}
+	return f.credentialPage, nil
+}
+
+func TestAdminDirectoryHandlersUseBoundedPagesAndPreserveAdminAuth(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "test-admin")
+	repo := &fakeAdminDirectoryPageRepository{
+		studentPage: learning.StudentProfilePage{
+			Students:   []learning.StudentProfileConfig{{ExternalRef: "student-1", DisplayName: "Student One", YearGroup: 3}},
+			NextCursor: "student-next",
+		},
+		credentialPage: learning.StudentCredentialPage{
+			StudentCredentials: []learning.StudentCredentialConfig{{StudentExternalRef: "student-1", DisplayName: "Student One"}},
+			NextCursor:         "credential-next",
+		},
+	}
+	srv := New(repo, "postgres")
+
+	tests := []struct {
+		name      string
+		path      string
+		wantKey   string
+		wantQuery func() learning.AdminDirectoryPageQuery
+	}{
+		{name: "students", path: "/v1/admin/students", wantKey: "students", wantQuery: func() learning.AdminDirectoryPageQuery { return repo.studentQuery }},
+		{name: "credentials", path: "/v1/admin/student-credentials", wantKey: "student_credentials", wantQuery: func() learning.AdminDirectoryPageQuery { return repo.credentialQuery }},
+	}
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			req := httptest.NewRequest(http.MethodGet, test.path+"?limit=2&cursor=directory-cursor", nil)
+			req.Header.Set("X-Admin-Key", "test-admin")
+			res := httptest.NewRecorder()
+			srv.ServeHTTP(res, req)
+			if res.Code != http.StatusOK {
+				t.Fatalf("expected 200, got %d: %s", res.Code, res.Body.String())
+			}
+			query := test.wantQuery()
+			if query.Limit != 2 || query.Cursor != "directory-cursor" {
+				t.Fatalf("directory query was not forwarded: %#v", query)
+			}
+			var body map[string]json.RawMessage
+			if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+				t.Fatal(err)
+			}
+			if _, ok := body[test.wantKey]; !ok {
+				t.Fatalf("compatibility collection key %q is missing: %s", test.wantKey, res.Body.String())
+			}
+			var next string
+			if err := json.Unmarshal(body["next_cursor"], &next); err != nil || next == "" {
+				t.Fatalf("expected next_cursor, got %q err=%v", next, err)
+			}
+		})
+	}
+
+	repo.invalidCursorPage = true
+	for _, path := range []string{"/v1/admin/students", "/v1/admin/student-credentials"} {
+		req := httptest.NewRequest(http.MethodGet, path+"?cursor=not-valid", nil)
+		req.Header.Set("X-Admin-Key", "test-admin")
+		res := httptest.NewRecorder()
+		srv.ServeHTTP(res, req)
+		if res.Code != http.StatusBadRequest {
+			t.Fatalf("%s: expected malformed cursor 400, got %d: %s", path, res.Code, res.Body.String())
+		}
+	}
+
+	for _, path := range []string{"/v1/admin/students?limit=2", "/v1/admin/student-credentials?limit=2"} {
+		res := httptest.NewRecorder()
+		srv.ServeHTTP(res, httptest.NewRequest(http.MethodGet, path, nil))
+		if res.Code != http.StatusUnauthorized {
+			t.Fatalf("%s: expected 401, got %d", path, res.Code)
+		}
+	}
+}
+
 func (f *fakeAdminReleasePageRepository) StageContentRelease(_ context.Context, item learning.ContentReleaseManifest) (learning.ContentReleaseManifest, error) {
 	return item, nil
 }

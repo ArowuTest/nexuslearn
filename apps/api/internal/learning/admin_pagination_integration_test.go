@@ -87,6 +87,112 @@ func TestPostgresAdminLedgersTraverseStableSameTimestampPages(t *testing.T) {
 	})
 }
 
+func TestPostgresAdminDirectoryPagesStayBoundedAndStable(t *testing.T) {
+	pool, repo := openPaginationIntegrationRepository(t)
+	ctx, cancel := context.WithTimeout(context.Background(), 90*time.Second)
+	defer cancel()
+	seedAdminDirectoryRows(t, ctx, pool)
+
+	studentIDs, studentCursors := traverseStudentDirectoryPages(t, ctx, repo, 137)
+	assertStableDirectoryTraversal(t, studentIDs, studentCursors)
+	credentialIDs, credentialCursors := traverseStudentCredentialPages(t, ctx, repo, 137)
+	assertStableDirectoryTraversal(t, credentialIDs, credentialCursors)
+
+	var plan []byte
+	if err := pool.QueryRow(ctx, `
+		EXPLAIN (FORMAT JSON)
+		SELECT id::text, external_ref, display_name, year_group, created_at, updated_at
+		FROM students
+		WHERE ($1::int = 0 OR (year_group, display_name, external_ref) > ($1::int, $2::text, $3::text))
+		ORDER BY year_group, display_name, external_ref
+		LIMIT $4
+	`, 3, "Learner 02500", "directory-02500", 137).Scan(&plan); err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(string(plan), "students_directory_order_idx") {
+		t.Fatalf("directory pagination query plan does not use the bounded ordering index: %s", plan)
+	}
+}
+
+func seedAdminDirectoryRows(t *testing.T, ctx context.Context, pool *pgxpool.Pool) {
+	t.Helper()
+	if _, err := pool.Exec(ctx, `
+		INSERT INTO students (external_ref, display_name, year_group)
+		SELECT 'directory-' || lpad(n::text, 5, '0'), 'Learner ' || lpad(n::text, 5, '0'), ((n - 1) % 7) + 1
+		FROM generate_series(1, $1) AS n
+	`, paginationIntegrationRows); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := pool.Exec(ctx, `
+		INSERT INTO student_credentials (student_id, login_code, picture_password)
+		SELECT id, 'LOGIN-' || external_ref, '["star","book","sun"]'::jsonb
+		FROM students
+		WHERE external_ref LIKE 'directory-%'
+	`); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := pool.Exec(ctx, "ANALYZE students; ANALYZE student_credentials"); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func traverseStudentDirectoryPages(t *testing.T, ctx context.Context, repo *PostgresRepository, limit int) ([]string, []string) {
+	t.Helper()
+	ids, cursors := []string{}, []string{}
+	query := AdminDirectoryPageQuery{Limit: limit}
+	for {
+		page, err := repo.ListStudentPage(ctx, query)
+		if err != nil {
+			t.Fatal(err)
+		}
+		for _, item := range page.Students {
+			ids = append(ids, item.ExternalRef)
+		}
+		cursors = append(cursors, page.NextCursor)
+		if page.NextCursor == "" {
+			return ids, cursors
+		}
+		query.Cursor = page.NextCursor
+	}
+}
+
+func traverseStudentCredentialPages(t *testing.T, ctx context.Context, repo *PostgresRepository, limit int) ([]string, []string) {
+	t.Helper()
+	ids, cursors := []string{}, []string{}
+	query := AdminDirectoryPageQuery{Limit: limit}
+	for {
+		page, err := repo.ListStudentCredentialPage(ctx, query)
+		if err != nil {
+			t.Fatal(err)
+		}
+		for _, item := range page.StudentCredentials {
+			ids = append(ids, item.StudentExternalRef)
+		}
+		cursors = append(cursors, page.NextCursor)
+		if page.NextCursor == "" {
+			return ids, cursors
+		}
+		query.Cursor = page.NextCursor
+	}
+}
+
+func assertStableDirectoryTraversal(t *testing.T, ids, cursors []string) {
+	t.Helper()
+	if len(ids) != paginationIntegrationRows {
+		t.Fatalf("directory pagination omitted rows: got %d want %d", len(ids), paginationIntegrationRows)
+	}
+	seen := make(map[string]struct{}, len(ids))
+	for _, id := range ids {
+		if _, duplicate := seen[id]; duplicate {
+			t.Fatalf("directory pagination returned duplicate id %q", id)
+		}
+		seen[id] = struct{}{}
+	}
+	if len(cursors) < 2 || cursors[len(cursors)-1] != "" {
+		t.Fatalf("directory pagination did not end with an empty cursor: %v", cursors)
+	}
+}
+
 func openPaginationIntegrationRepository(t *testing.T) (*pgxpool.Pool, *PostgresRepository) {
 	t.Helper()
 	dsn := strings.TrimSpace(os.Getenv("TEST_DATABASE_URL"))

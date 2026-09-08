@@ -46,6 +46,11 @@ type idempotentSessionRepository interface {
 	StartSessionWithKey(context.Context, string, string, string, string) (learning.LearningSession, error)
 }
 
+type adminDirectoryPageRepository interface {
+	ListStudentPage(context.Context, learning.AdminDirectoryPageQuery) (learning.StudentProfilePage, error)
+	ListStudentCredentialPage(context.Context, learning.AdminDirectoryPageQuery) (learning.StudentCredentialPage, error)
+}
+
 type strandBucket struct {
 	topics map[string]bool
 	count  int
@@ -1198,6 +1203,30 @@ func (s *Server) handleAdminStudents(w http.ResponseWriter, r *http.Request) {
 	if !s.requireAdmin(w, r) {
 		return
 	}
+	if hasAdminDirectoryPageQuery(r) {
+		pageRepository, ok := s.repo.(adminDirectoryPageRepository)
+		if !ok {
+			writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "bounded learner directory is unavailable"})
+			return
+		}
+		query, err := adminDirectoryPageQuery(r)
+		if err != nil {
+			writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+			return
+		}
+		page, err := pageRepository.ListStudentPage(r.Context(), query)
+		if err != nil {
+			if errors.Is(err, learning.ErrInvalidConfiguration) {
+				writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+				return
+			}
+			slog.Warn("failed to read paged students", "error", err)
+			writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read students"})
+			return
+		}
+		writeJSON(w, http.StatusOK, page)
+		return
+	}
 	students, err := s.repo.ListStudents(r.Context())
 	if err != nil {
 		slog.Warn("failed to read students", "error", err)
@@ -1355,6 +1384,30 @@ func (s *Server) handleGenerateClassCredentials(w http.ResponseWriter, r *http.R
 
 func (s *Server) handleStudentCredentials(w http.ResponseWriter, r *http.Request) {
 	if !s.requireAdmin(w, r) {
+		return
+	}
+	if hasAdminDirectoryPageQuery(r) {
+		pageRepository, ok := s.repo.(adminDirectoryPageRepository)
+		if !ok {
+			writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "bounded learner directory is unavailable"})
+			return
+		}
+		query, err := adminDirectoryPageQuery(r)
+		if err != nil {
+			writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+			return
+		}
+		page, err := pageRepository.ListStudentCredentialPage(r.Context(), query)
+		if err != nil {
+			if errors.Is(err, learning.ErrInvalidConfiguration) {
+				writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+				return
+			}
+			slog.Warn("failed to read paged student credentials", "error", err)
+			writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read student credentials"})
+			return
+		}
+		writeJSON(w, http.StatusOK, page)
 		return
 	}
 	credentials, err := s.repo.ListStudentCredentials(r.Context())
@@ -2453,6 +2506,24 @@ func adminPageQuery(r *http.Request, requireUUID ...bool) (learning.AdminPageQue
 		query.BeforeCreatedAt = createdAt
 		query.BeforeID = id
 	}
+	return query, nil
+}
+
+func hasAdminDirectoryPageQuery(r *http.Request) bool {
+	values := r.URL.Query()
+	return values.Has("limit") || values.Has("cursor")
+}
+
+func adminDirectoryPageQuery(r *http.Request) (learning.AdminDirectoryPageQuery, error) {
+	query := learning.AdminDirectoryPageQuery{}
+	if rawLimit := strings.TrimSpace(r.URL.Query().Get("limit")); rawLimit != "" {
+		limit, err := strconv.Atoi(rawLimit)
+		if err != nil || limit < 1 {
+			return query, errors.New("limit must be a positive whole number")
+		}
+		query.Limit = limit
+	}
+	query.Cursor = strings.TrimSpace(r.URL.Query().Get("cursor"))
 	return query, nil
 }
 

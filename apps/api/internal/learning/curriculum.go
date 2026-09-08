@@ -542,6 +542,7 @@ type ClassConfig struct {
 type StudentCredentialConfig struct {
 	StudentExternalRef string   `json:"student_external_ref"`
 	DisplayName        string   `json:"display_name"`
+	YearGroup          int      `json:"-"`
 	LoginCode          string   `json:"login_code"`
 	PicturePassword    []string `json:"picture_password"`
 	QRSecretHash       string   `json:"qr_secret_hash"`

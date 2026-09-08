@@ -592,12 +592,40 @@ type AdminConfig = {
   access_requests?: AccessRequest[];
 };
 
+type AdminDirectoryState = {
+  studentCursor: string;
+  credentialCursor: string;
+  loaded: boolean;
+  loading: boolean;
+  error: string;
+};
+
 const API = process.env.NEXT_PUBLIC_API_URL;
 const EMPTY_OBJECT = "{}";
 const EMPTY_ARRAY = "[]";
 type Tab = AdminSectionId;
 const ADMIN_PAGE_SIZE = 25;
 const ADMIN_LEDGER_PAGE_SIZE = 25;
+
+const emptyAdminDirectoryState = (): AdminDirectoryState => ({
+  studentCursor: "",
+  credentialCursor: "",
+  loaded: false,
+  loading: false,
+  error: "",
+});
+
+function appendUniqueByKey<T>(current: T[], incoming: T[], key: (item: T) => string) {
+  const seen = new Set(current.map(key));
+  const merged = [...current];
+  for (const item of incoming) {
+    const itemKey = key(item);
+    if (seen.has(itemKey)) continue;
+    seen.add(itemKey);
+    merged.push(item);
+  }
+  return merged;
+}
 
 function emptyAdminLedger<T extends { id: string }>(): AdminLedgerState<T> {
   return { items: [], nextCursor: "", liveApplied: false, loaded: false, loading: false, error: "" };
@@ -780,6 +808,8 @@ export default function AdminPage() {
   const [saving, setSaving] = useState("");
   const [tab, setTab] = useState<Tab>("Overview");
   const [listPages, setListPages] = useState<Record<string, number>>({});
+  const [directoryState, setDirectoryState] = useState<AdminDirectoryState>(() => emptyAdminDirectoryState());
+  const directoryRequest = useRef(0);
 
   useEffect(() => {
     const role = accountSessionRole();
@@ -933,6 +963,65 @@ export default function AdminPage() {
     await loadAdminLedgerPage(releaseLedger, setReleaseLedger, releaseLedgerRequest, "/v1/admin/content/releases", "content_releases", append);
   }
 
+  async function loadLearnerDirectory(append: boolean) {
+    if (append && !directoryState.studentCursor && !directoryState.credentialCursor) return;
+    const requestID = ++directoryRequest.current;
+    const studentCursor = append ? directoryState.studentCursor : "";
+    const credentialCursor = append ? directoryState.credentialCursor : "";
+    const makeQuery = (cursor: string) => {
+      const query = new URLSearchParams({ limit: String(ADMIN_PAGE_SIZE) });
+      if (cursor) query.set("cursor", cursor);
+      return query.toString();
+    };
+    setDirectoryState((current) => append
+      ? { ...current, loading: true, error: "" }
+      : { ...emptyAdminDirectoryState(), loading: true });
+    if (!append) {
+      setConfig((current) => ({ ...(current ?? {}), students: [], student_credentials: [] }));
+    }
+    try {
+      const [studentData, credentialData] = await Promise.all([
+        adminFetch(`/v1/admin/students?${makeQuery(studentCursor)}`) as Promise<Record<string, unknown>>,
+        adminFetch(`/v1/admin/student-credentials?${makeQuery(credentialCursor)}`) as Promise<Record<string, unknown>>,
+      ]);
+      const students = studentData.students;
+      const credentials = credentialData.student_credentials;
+      if (!Array.isArray(students) || !Array.isArray(credentials)) {
+        throw new Error("The learner directory returned an invalid response.");
+      }
+      if (requestID !== directoryRequest.current) return;
+      setConfig((current) => ({
+        ...(current ?? {}),
+        students: append
+          ? appendUniqueByKey(current?.students ?? [], students as StudentProfile[], (student) => student.external_ref)
+          : students as StudentProfile[],
+        student_credentials: append
+          ? appendUniqueByKey(current?.student_credentials ?? [], credentials as StudentCredential[], (credential) => credential.student_external_ref)
+          : credentials as StudentCredential[],
+      }));
+      setDirectoryState({
+        studentCursor: typeof studentData.next_cursor === "string" ? studentData.next_cursor : "",
+        credentialCursor: typeof credentialData.next_cursor === "string" ? credentialData.next_cursor : "",
+        loaded: true,
+        loading: false,
+        error: "",
+      });
+    } catch (error) {
+      if (requestID !== directoryRequest.current) return;
+      setDirectoryState((current) => ({
+        ...current,
+        loaded: true,
+        loading: false,
+        error: error instanceof Error ? error.message : "The learner directory could not be loaded.",
+      }));
+      throw error;
+    }
+  }
+
+  function loadMoreLearnerDirectory() {
+    void loadLearnerDirectory(true).catch(() => undefined);
+  }
+
   async function signInAdmin() {
     if (!API) throw new Error("NEXT_PUBLIC_API_URL is not configured.");
     setLoading(true);
@@ -950,6 +1039,8 @@ export default function AdminPage() {
       setAccountRole(session.role);
       setTab(session.role === "content_reviewer" ? "Reviews" : "Overview");
       setConfig({});
+      setDirectoryState(emptyAdminDirectoryState());
+      directoryRequest.current += 1;
       setAdminLogin({ login_id: adminLogin.login_id, password: "" });
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Administrator login failed.");
@@ -963,6 +1054,8 @@ export default function AdminPage() {
     await logoutAccount();
     setConfig(null);
     setAccountRole(null);
+    setDirectoryState(emptyAdminDirectoryState());
+    directoryRequest.current += 1;
     setObjectives([]);
     setProgressStudentID("");
     setAdminKey("");
@@ -1074,7 +1167,9 @@ export default function AdminPage() {
     setMessage(`Loading ${section.toLowerCase()} workspace...`);
     clearAdminProgress();
     try {
-      if (plan.configSection) {
+      if (plan.configSection === "learners" || plan.configSection === "progress") {
+        await loadLearnerDirectory(false);
+      } else if (plan.configSection) {
         const loaded = await adminFetch(`/v1/admin/config?section=${encodeURIComponent(plan.configSection)}`) as AdminConfig;
         setConfig((current) => ({ ...(current ?? {}), ...loaded }));
       }
@@ -1620,8 +1715,25 @@ export default function AdminPage() {
   const pagedRewards = paginate("rewards", config?.reward_rules ?? []);
   const pagedObjectives = paginate("objectives", objectives);
   const pagedFlags = paginate("flags", config?.feature_flags ?? []);
-  const pagedLearners = paginate("learners", config?.students ?? []);
-  const pagedCredentials = paginate("credentials", config?.student_credentials ?? []);
+
+  const learnerDirectoryControls = (
+    <div className="border-t border-[#1d1a3e]/8 p-4 text-xs" aria-live="polite">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <span className="text-[#1d1a3e]/58">
+          Loaded {config?.students?.length ?? 0} learners and {config?.student_credentials?.length ?? 0} access cards.
+        </span>
+        <button
+          type="button"
+          onClick={loadMoreLearnerDirectory}
+          disabled={directoryState.loading || (!directoryState.studentCursor && !directoryState.credentialCursor)}
+          className="btn-pop bg-[#f6f3ea] px-3 py-2 disabled:cursor-not-allowed disabled:opacity-45"
+        >
+          {directoryState.loading ? "Loading…" : "Load more learner records"}
+        </button>
+      </div>
+      {directoryState.error && <p className="mt-3 text-[#a23d55]">{directoryState.error}</p>}
+    </div>
+  );
 
   if (!config) {
     return (
@@ -1919,7 +2031,7 @@ export default function AdminPage() {
           <EditorGrid
             left={
           <Panel title="Learner Profiles">
-                {pagedLearners.items.map((student) => (
+                {(config?.students ?? []).map((student) => (
                   <PickRow
                     key={student.external_ref}
                     title={student.display_name}
@@ -1928,7 +2040,7 @@ export default function AdminPage() {
                     onClick={() => setStudentDraft({ ...student })}
                   />
                 ))}
-                {pagedCredentials.items.map((credential) => (
+                {(config?.student_credentials ?? []).map((credential) => (
                   <PickRow
                     key={`credential-${credential.student_external_ref}`}
                     title={`${credential.display_name || credential.student_external_ref} access`}
@@ -1937,8 +2049,7 @@ export default function AdminPage() {
                     onClick={() => setCredentialDraft({ ...credential, picturePasswordText: pretty(credential.picture_password ?? []) })}
                   />
                 ))}
-                <AdminListPager page={pagedLearners.page} totalPages={pagedLearners.totalPages} onChange={(page) => changePage("learners", page)} />
-                <AdminListPager page={pagedCredentials.page} totalPages={pagedCredentials.totalPages} onChange={(page) => changePage("credentials", page)} />
+                {learnerDirectoryControls}
               </Panel>
             }
             right={
@@ -1977,6 +2088,7 @@ export default function AdminPage() {
                     }}
                   />
                 ))}
+                {learnerDirectoryControls}
               </Panel>
             }
             right={
