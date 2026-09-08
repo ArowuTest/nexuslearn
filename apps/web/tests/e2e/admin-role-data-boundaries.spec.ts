@@ -21,26 +21,16 @@ async function openAdminAs(page: Page, role: AdminRole, section: string) {
       await route.fulfill({ contentType: "application/json", body: JSON.stringify(body) });
       return;
     }
-    if (url.pathname === "/v1/admin/students") {
-      const cursor = url.searchParams.get("cursor");
+    if (url.pathname === "/v1/admin/learner-directory") {
+      const cursor = url.searchParams.get("student_cursor") || url.searchParams.get("credential_cursor");
       await route.fulfill({
         contentType: "application/json",
         body: JSON.stringify({
           students: [{ external_ref: cursor ? "second-learner" : "private-learner", display_name: cursor ? "Second Learner" : "Private Learner", year_group: 3 }],
-          ...(cursor ? {} : { next_cursor: "student-next" }),
-        }),
-      });
-      return;
-    }
-    if (url.pathname === "/v1/admin/student-credentials") {
-      const cursor = url.searchParams.get("cursor");
-      await route.fulfill({
-        contentType: "application/json",
-        body: JSON.stringify({
           student_credentials: cursor
             ? [{ student_external_ref: "second-learner", display_name: "Second Learner", login_code: "654321", picture_password: [] }]
             : [{ student_external_ref: "private-learner", display_name: "Private Learner", login_code: "123456", picture_password: [] }],
-          ...(cursor ? {} : { next_cursor: "credential-next" }),
+          ...(cursor ? {} : { student_next_cursor: "student-next", credential_next_cursor: "credential-next" }),
         }),
       });
       return;
@@ -136,14 +126,12 @@ test("platform administrator loads one operational section at a time", async ({ 
   await expect(page.getByRole("heading", { name: "Learner Profiles" })).toBeVisible();
 
   await expect.poll(() => requests.map((url) => `${url.pathname}?${url.searchParams.toString()}`)).toEqual([
-    "/v1/admin/students?limit=25",
-    "/v1/admin/student-credentials?limit=25",
+    "/v1/admin/learner-directory?limit=25",
   ]);
   await page.getByRole("button", { name: "Flags", exact: true }).click();
   await expect(page.getByRole("heading", { name: "Feature Flags" })).toBeVisible();
   await expect.poll(() => requests.map((url) => `${url.pathname}?${url.searchParams.toString()}`)).toEqual([
-    "/v1/admin/students?limit=25",
-    "/v1/admin/student-credentials?limit=25",
+    "/v1/admin/learner-directory?limit=25",
     "/v1/admin/config?section=flags",
   ]);
 });
@@ -155,10 +143,8 @@ test("platform administrator appends the next bounded learner page with opaque c
   await loadMore.click();
   await expect(page.getByText("Second Learner", { exact: true }).first()).toBeVisible();
   await expect.poll(() => requests.map((url) => `${url.pathname}?${url.searchParams.toString()}`)).toEqual([
-    "/v1/admin/students?limit=25",
-    "/v1/admin/student-credentials?limit=25",
-    "/v1/admin/students?limit=25&cursor=student-next",
-    "/v1/admin/student-credentials?limit=25&cursor=credential-next",
+    "/v1/admin/learner-directory?limit=25",
+    "/v1/admin/learner-directory?limit=25&student_cursor=student-next&credential_cursor=credential-next",
   ]);
   await expect(loadMore).toBeDisabled();
 });

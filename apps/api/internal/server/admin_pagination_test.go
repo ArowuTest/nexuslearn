@@ -136,6 +136,46 @@ func TestAdminDirectoryHandlersUseBoundedPagesAndPreserveAdminAuth(t *testing.T)
 	}
 }
 
+func TestAdminCombinedDirectoryHandlerUsesIndependentOpaqueCursors(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "test-admin")
+	repo := &fakeAdminDirectoryPageRepository{
+		studentPage: learning.StudentProfilePage{
+			Students:   []learning.StudentProfileConfig{{ExternalRef: "student-2", DisplayName: "Student Two", YearGroup: 4}},
+			NextCursor: "student-next",
+		},
+		credentialPage: learning.StudentCredentialPage{
+			StudentCredentials: []learning.StudentCredentialConfig{{StudentExternalRef: "student-2", DisplayName: "Student Two"}},
+			NextCursor:         "credential-next",
+		},
+	}
+	srv := New(repo, "postgres")
+	req := httptest.NewRequest(http.MethodGet, "/v1/admin/learner-directory?limit=2&student_cursor=student-cursor&credential_cursor=credential-cursor", nil)
+	req.Header.Set("X-Admin-Key", "test-admin")
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200, got %d: %s", res.Code, res.Body.String())
+	}
+	if repo.studentQuery.Limit != 2 || repo.studentQuery.Cursor != "student-cursor" {
+		t.Fatalf("student query was not forwarded independently: %#v", repo.studentQuery)
+	}
+	if repo.credentialQuery.Limit != 2 || repo.credentialQuery.Cursor != "credential-cursor" {
+		t.Fatalf("credential query was not forwarded independently: %#v", repo.credentialQuery)
+	}
+	var body struct {
+		Students             []learning.StudentProfileConfig    `json:"students"`
+		StudentNextCursor    string                             `json:"student_next_cursor"`
+		Credentials          []learning.StudentCredentialConfig `json:"student_credentials"`
+		CredentialNextCursor string                             `json:"credential_next_cursor"`
+	}
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if len(body.Students) != 1 || body.StudentNextCursor != "student-next" || len(body.Credentials) != 1 || body.CredentialNextCursor != "credential-next" {
+		t.Fatalf("unexpected combined page: %#v", body)
+	}
+}
+
 func (f *fakeAdminReleasePageRepository) StageContentRelease(_ context.Context, item learning.ContentReleaseManifest) (learning.ContentReleaseManifest, error) {
 	return item, nil
 }

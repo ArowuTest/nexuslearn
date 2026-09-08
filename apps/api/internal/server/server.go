@@ -263,6 +263,7 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("POST /v1/admin/content/releases/{id}/activate", s.handleActivateContentRelease)
 	s.mux.HandleFunc("GET /v1/admin/reward-rules", s.handleRewardRules)
 	s.mux.HandleFunc("PUT /v1/admin/reward-rules/{id}", s.handleUpsertRewardRule)
+	s.mux.HandleFunc("GET /v1/admin/learner-directory", s.handleAdminLearnerDirectory)
 	s.mux.HandleFunc("GET /v1/admin/students", s.handleAdminStudents)
 	s.mux.HandleFunc("GET /v1/admin/students/{externalRef}/progress", s.handleAdminStudentProgress)
 	s.mux.HandleFunc("GET /v1/admin/students/{externalRef}/mock-assessments", s.handleAdminStudentMockAssessments)
@@ -1234,6 +1235,53 @@ func (s *Server) handleAdminStudents(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	writeJSON(w, http.StatusOK, map[string]any{"students": students})
+}
+
+func (s *Server) handleAdminLearnerDirectory(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	pageRepository, ok := s.repo.(adminDirectoryPageRepository)
+	if !ok {
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "bounded learner directory is unavailable"})
+		return
+	}
+	studentQuery, err := adminDirectoryPageQuery(r, "student_cursor")
+	if err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+		return
+	}
+	credentialQuery, err := adminDirectoryPageQuery(r, "credential_cursor")
+	if err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+		return
+	}
+	studentPage, err := pageRepository.ListStudentPage(r.Context(), studentQuery)
+	if err != nil {
+		if errors.Is(err, learning.ErrInvalidConfiguration) {
+			writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+			return
+		}
+		slog.Warn("failed to read bounded learner directory students", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read learner directory"})
+		return
+	}
+	credentialPage, err := pageRepository.ListStudentCredentialPage(r.Context(), credentialQuery)
+	if err != nil {
+		if errors.Is(err, learning.ErrInvalidConfiguration) {
+			writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+			return
+		}
+		slog.Warn("failed to read bounded learner directory credentials", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read learner directory"})
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{
+		"students":               studentPage.Students,
+		"student_next_cursor":    studentPage.NextCursor,
+		"student_credentials":    credentialPage.StudentCredentials,
+		"credential_next_cursor": credentialPage.NextCursor,
+	})
 }
 
 func (s *Server) handleUpsertStudent(w http.ResponseWriter, r *http.Request) {
@@ -2514,7 +2562,7 @@ func hasAdminDirectoryPageQuery(r *http.Request) bool {
 	return values.Has("limit") || values.Has("cursor")
 }
 
-func adminDirectoryPageQuery(r *http.Request) (learning.AdminDirectoryPageQuery, error) {
+func adminDirectoryPageQuery(r *http.Request, cursorKey ...string) (learning.AdminDirectoryPageQuery, error) {
 	query := learning.AdminDirectoryPageQuery{}
 	if rawLimit := strings.TrimSpace(r.URL.Query().Get("limit")); rawLimit != "" {
 		limit, err := strconv.Atoi(rawLimit)
@@ -2523,7 +2571,11 @@ func adminDirectoryPageQuery(r *http.Request) (learning.AdminDirectoryPageQuery,
 		}
 		query.Limit = limit
 	}
-	query.Cursor = strings.TrimSpace(r.URL.Query().Get("cursor"))
+	key := "cursor"
+	if len(cursorKey) > 0 && cursorKey[0] != "" {
+		key = cursorKey[0]
+	}
+	query.Cursor = strings.TrimSpace(r.URL.Query().Get(key))
 	return query, nil
 }
 

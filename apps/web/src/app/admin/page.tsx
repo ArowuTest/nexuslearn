@@ -592,14 +592,6 @@ type AdminConfig = {
   access_requests?: AccessRequest[];
 };
 
-type AdminDirectoryState = {
-  studentCursor: string;
-  credentialCursor: string;
-  loaded: boolean;
-  loading: boolean;
-  error: string;
-};
-
 const API = process.env.NEXT_PUBLIC_API_URL;
 const EMPTY_OBJECT = "{}";
 const EMPTY_ARRAY = "[]";
@@ -607,36 +599,17 @@ type Tab = AdminSectionId;
 const ADMIN_PAGE_SIZE = 25;
 const ADMIN_LEDGER_PAGE_SIZE = 25;
 
-const emptyAdminDirectoryState = (): AdminDirectoryState => ({
-  studentCursor: "",
-  credentialCursor: "",
-  loaded: false,
-  loading: false,
-  error: "",
-});
-
-function appendUniqueByKey<T>(current: T[], incoming: T[], key: (item: T) => string) {
-  const seen = new Set(current.map(key));
-  const merged = [...current];
-  for (const item of incoming) {
-    const itemKey = key(item);
-    if (seen.has(itemKey)) continue;
-    seen.add(itemKey);
-    merged.push(item);
-  }
-  return merged;
-}
-
 function emptyAdminLedger<T extends { id: string }>(): AdminLedgerState<T> {
   return { items: [], nextCursor: "", liveApplied: false, loaded: false, loading: false, error: "" };
 }
 
-function appendUniqueByID<T extends { id: string }>(current: T[], incoming: T[]) {
-  const seen = new Set(current.map((item) => item.id));
+function appendUniqueByID<T>(current: T[], incoming: T[], getID: (item: T) => string = (item) => (item as { id: string }).id) {
+  const seen = new Set(current.map(getID));
   const merged = [...current];
   for (const item of incoming) {
-    if (seen.has(item.id)) continue;
-    seen.add(item.id);
+    const itemID = getID(item);
+    if (seen.has(itemID)) continue;
+    seen.add(itemID);
     merged.push(item);
   }
   return merged;
@@ -808,7 +781,9 @@ export default function AdminPage() {
   const [saving, setSaving] = useState("");
   const [tab, setTab] = useState<Tab>("Overview");
   const [listPages, setListPages] = useState<Record<string, number>>({});
-  const [directoryState, setDirectoryState] = useState<AdminDirectoryState>(() => emptyAdminDirectoryState());
+  const [directoryLoading, setDirectoryLoading] = useState(false);
+  const [directoryError, setDirectoryError] = useState("");
+  const directoryCursors = useRef({ student: "", credential: "" });
   const directoryRequest = useRef(0);
 
   useEffect(() => {
@@ -964,28 +939,23 @@ export default function AdminPage() {
   }
 
   async function loadLearnerDirectory(append: boolean) {
-    if (append && !directoryState.studentCursor && !directoryState.credentialCursor) return;
+    if (append && !directoryCursors.current.student && !directoryCursors.current.credential) return;
     const requestID = ++directoryRequest.current;
-    const studentCursor = append ? directoryState.studentCursor : "";
-    const credentialCursor = append ? directoryState.credentialCursor : "";
-    const makeQuery = (cursor: string) => {
-      const query = new URLSearchParams({ limit: String(ADMIN_PAGE_SIZE) });
-      if (cursor) query.set("cursor", cursor);
-      return query.toString();
-    };
-    setDirectoryState((current) => append
-      ? { ...current, loading: true, error: "" }
-      : { ...emptyAdminDirectoryState(), loading: true });
+    const studentCursor = append ? directoryCursors.current.student : "";
+    const credentialCursor = append ? directoryCursors.current.credential : "";
+    const query = new URLSearchParams({ limit: String(ADMIN_PAGE_SIZE) });
+    if (studentCursor) query.set("student_cursor", studentCursor);
+    if (credentialCursor) query.set("credential_cursor", credentialCursor);
+    setDirectoryLoading(true);
+    setDirectoryError("");
     if (!append) {
+      directoryCursors.current = { student: "", credential: "" };
       setConfig((current) => ({ ...(current ?? {}), students: [], student_credentials: [] }));
     }
     try {
-      const [studentData, credentialData] = await Promise.all([
-        adminFetch(`/v1/admin/students?${makeQuery(studentCursor)}`) as Promise<Record<string, unknown>>,
-        adminFetch(`/v1/admin/student-credentials?${makeQuery(credentialCursor)}`) as Promise<Record<string, unknown>>,
-      ]);
-      const students = studentData.students;
-      const credentials = credentialData.student_credentials;
+      const data = await adminFetch(`/v1/admin/learner-directory?${query.toString()}`) as Record<string, unknown>;
+      const students = data.students;
+      const credentials = data.student_credentials;
       if (!Array.isArray(students) || !Array.isArray(credentials)) {
         throw new Error("The learner directory returned an invalid response.");
       }
@@ -993,27 +963,21 @@ export default function AdminPage() {
       setConfig((current) => ({
         ...(current ?? {}),
         students: append
-          ? appendUniqueByKey(current?.students ?? [], students as StudentProfile[], (student) => student.external_ref)
+          ? appendUniqueByID(current?.students ?? [], students as StudentProfile[], (student) => student.external_ref)
           : students as StudentProfile[],
         student_credentials: append
-          ? appendUniqueByKey(current?.student_credentials ?? [], credentials as StudentCredential[], (credential) => credential.student_external_ref)
+          ? appendUniqueByID(current?.student_credentials ?? [], credentials as StudentCredential[], (credential) => credential.student_external_ref)
           : credentials as StudentCredential[],
       }));
-      setDirectoryState({
-        studentCursor: typeof studentData.next_cursor === "string" ? studentData.next_cursor : "",
-        credentialCursor: typeof credentialData.next_cursor === "string" ? credentialData.next_cursor : "",
-        loaded: true,
-        loading: false,
-        error: "",
-      });
+      directoryCursors.current = {
+        student: typeof data.student_next_cursor === "string" ? data.student_next_cursor : "",
+        credential: typeof data.credential_next_cursor === "string" ? data.credential_next_cursor : "",
+      };
+      setDirectoryLoading(false);
     } catch (error) {
       if (requestID !== directoryRequest.current) return;
-      setDirectoryState((current) => ({
-        ...current,
-        loaded: true,
-        loading: false,
-        error: error instanceof Error ? error.message : "The learner directory could not be loaded.",
-      }));
+      setDirectoryLoading(false);
+      setDirectoryError(error instanceof Error ? error.message : "The learner directory could not be loaded.");
       throw error;
     }
   }
@@ -1039,7 +1003,9 @@ export default function AdminPage() {
       setAccountRole(session.role);
       setTab(session.role === "content_reviewer" ? "Reviews" : "Overview");
       setConfig({});
-      setDirectoryState(emptyAdminDirectoryState());
+      directoryCursors.current = { student: "", credential: "" };
+      setDirectoryLoading(false);
+      setDirectoryError("");
       directoryRequest.current += 1;
       setAdminLogin({ login_id: adminLogin.login_id, password: "" });
     } catch (error) {
@@ -1054,7 +1020,9 @@ export default function AdminPage() {
     await logoutAccount();
     setConfig(null);
     setAccountRole(null);
-    setDirectoryState(emptyAdminDirectoryState());
+    directoryCursors.current = { student: "", credential: "" };
+    setDirectoryLoading(false);
+    setDirectoryError("");
     directoryRequest.current += 1;
     setObjectives([]);
     setProgressStudentID("");
@@ -1725,13 +1693,13 @@ export default function AdminPage() {
         <button
           type="button"
           onClick={loadMoreLearnerDirectory}
-          disabled={directoryState.loading || (!directoryState.studentCursor && !directoryState.credentialCursor)}
+          disabled={directoryLoading || (!directoryCursors.current.student && !directoryCursors.current.credential)}
           className="btn-pop bg-[#f6f3ea] px-3 py-2 disabled:cursor-not-allowed disabled:opacity-45"
         >
-          {directoryState.loading ? "Loading…" : "Load more learner records"}
+          {directoryLoading ? "Loading…" : "Load more learner records"}
         </button>
       </div>
-      {directoryState.error && <p className="mt-3 text-[#a23d55]">{directoryState.error}</p>}
+      {directoryError && <p className="mt-3 text-[#a23d55]">{directoryError}</p>}
     </div>
   );
 
