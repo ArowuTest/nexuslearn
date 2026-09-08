@@ -742,7 +742,11 @@ func TestHandleWorldStateUsesRepository(t *testing.T) {
 func TestHandlePublicWorldsReturnsEnabledConfiguredWorlds(t *testing.T) {
 	srv := New(fakeRepository{
 		worlds: []learning.WorldConfig{
-			{Key: "wonder-garden", Name: "Wonder Garden", YearGroup: 1, Enabled: true},
+			{Key: "wonder-garden", Name: "Wonder Garden", YearGroup: 1, Config: map[string]any{
+				"subject_lanes": []any{
+					map[string]any{"key": "English", "label": "English", "short": "Words & stories", "accent": "#f7a6d8", "icon": "✦"},
+				},
+			}, Enabled: true},
 			{Key: "archived-test", Name: "Archived", YearGroup: 2, Enabled: false},
 		},
 	}, "postgres")
@@ -762,6 +766,10 @@ func TestHandlePublicWorldsReturnsEnabledConfiguredWorlds(t *testing.T) {
 	}
 	if len(body.Worlds) != 1 || body.Worlds[0].Key != "wonder-garden" {
 		t.Fatalf("expected only enabled configured worlds, got %#v", body.Worlds)
+	}
+	lanes, ok := body.Worlds[0].Config["subject_lanes"].([]any)
+	if !ok || len(lanes) != 1 {
+		t.Fatalf("expected configured subject lanes to survive the public API boundary, got %#v", body.Worlds[0].Config)
 	}
 }
 

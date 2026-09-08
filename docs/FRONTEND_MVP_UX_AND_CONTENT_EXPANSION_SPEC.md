@@ -366,7 +366,9 @@ No new subject is ready for release until it has:
 - [x] Honest API loading, empty and unavailable states across the public home,
   child route, mission and mock-assessment surfaces.
 - [ ] Child portal redesign around warm-up, mission and growth.
-- [ ] Consistent subject identity for English, Mathematics and Science.
+- [x] Consistent subject identity for English, Mathematics and Science is
+  backend-configured per world and rendered with accessible, reduced-motion-safe
+  subject lanes; the wider child portal redesign remains open.
 - [x] Mission support controls and audio replay made easier to find, including
   route-level support shortcuts and produced-audio-only messaging.
 - [x] Audio listening queue embedded in admin readiness, with embedded playback,

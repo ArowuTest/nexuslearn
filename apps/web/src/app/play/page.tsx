@@ -2,14 +2,9 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 import ChildJourneyChrome, { ApiStateCard } from "@/components/ChildJourneyChrome";
 import Dino from "@/components/Dino";
-import { DEFAULT_STUDENT_ID, getNextActivity, getRuntimeFlags, getWorlds } from "@/lib/api";
+import { DEFAULT_WORLD_SUBJECT_LANES, DEFAULT_STUDENT_ID, getNextActivity, getRuntimeFlags, getWorldSubjectLanes, getWorlds } from "@/lib/api";
 
 const WORLD_SHAPES = ["seed", "story", "island", "machine", "orbit", "crest", "lab"] as const;
-const MVP_SUBJECTS = [
-  { name: "English", short: "Words & stories", accent: "#f7a6d8", icon: "✦" },
-  { name: "Mathematics", short: "Patterns & problem solving", accent: "#55cbd3", icon: "＋" },
-  { name: "Science", short: "Questions & discovery", accent: "#8be28f", icon: "◌" },
-] as const;
 
 export default async function PlayEntry() {
   const [worlds, runtimeFlags] = await Promise.all([
@@ -38,6 +33,7 @@ export default async function PlayEntry() {
         world: world.name,
         focus: String(world.config?.focus || world.theme),
         accent: String(world.config?.accent || "#ffbf45"),
+        subjectLanes: getWorldSubjectLanes(world),
         route: publicDemoLearnerEnabled
           ? (world.key === nextActivity?.world_key
               ? `/play/mission?studentId=${encodeURIComponent(DEFAULT_STUDENT_ID)}&activityId=${encodeURIComponent(nextActivity.activity_id)}&mode=${encodeURIComponent(nextActivity.assessment_mode)}`
@@ -47,6 +43,10 @@ export default async function PlayEntry() {
         shape: WORLD_SHAPES[(Math.max(1, world.year_group) - 1) % WORLD_SHAPES.length],
       }))
     : [];
+  const portalSubjects = profiles.length > 0
+    ? Array.from(new Map(profiles.flatMap((profile) => profile.subjectLanes).map((subject) => [subject.key, subject])).values())
+    : [...DEFAULT_WORLD_SUBJECT_LANES];
+  const subjectContext = portalSubjects.map((subject) => subject.label).join(", ");
   const worldsAvailable = worlds !== null;
   const runtimeAvailable = runtimeFlags !== null;
 
@@ -72,7 +72,7 @@ export default async function PlayEntry() {
       <div className="relative mx-auto max-w-7xl px-5 py-5">
         <ChildJourneyChrome
           active="route"
-          context="Choose today’s route across English, Mathematics and Science"
+          context={`Choose today’s route across ${subjectContext}`}
           backHref="/"
           backLabel="Home"
           actionHref="/login"
@@ -169,14 +169,14 @@ export default async function PlayEntry() {
             <div className="rounded-2xl border border-white/10 bg-white/8 p-4 sm:col-span-2 xl:col-span-3">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div>
-                  <p className="font-display text-xs uppercase tracking-[0.14em] text-[#ffdf8a]">MVP subject portals</p>
-                  <p className="mt-1 text-sm text-white/62">Every world uses the same playful learning loop across the three launch subjects.</p>
+                  <p className="font-display text-xs uppercase tracking-[0.14em] text-[#ffdf8a]">Subject pathways</p>
+                  <p className="mt-1 text-sm text-white/62">Each world shows the subjects and learning identity configured for its route.</p>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  {MVP_SUBJECTS.map((subject) => (
-                    <span key={subject.name} className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 text-xs font-semibold text-white/80">
+                  {portalSubjects.map((subject) => (
+                    <span key={subject.key} className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 text-xs font-semibold text-white/80">
                       <span className="grid h-5 w-5 place-items-center rounded-full text-[#17233f]" style={{ backgroundColor: subject.accent }}>{subject.icon}</span>
-                      {subject.name}
+                      {subject.label}
                     </span>
                   ))}
                 </div>
@@ -203,9 +203,18 @@ export default async function PlayEntry() {
                 <p className={`relative z-10 font-display mt-5 text-sm font-semibold ${profile.live ? "text-[#7357c9]" : "text-[#ffdf8a]"}`}>{profile.year}</p>
                 <h2 className="relative z-10 font-display mt-1 text-2xl font-semibold">{profile.world}</h2>
                 <p className={`relative z-10 mt-3 max-w-[14rem] text-sm leading-6 ${profile.live ? "text-[#17233f]/68" : "text-white/62"}`}>{profile.focus}</p>
-                <div className="relative z-10 mt-4 flex flex-wrap gap-1.5">
-                  {MVP_SUBJECTS.map((subject) => (
-                    <span key={subject.name} className={`rounded-full px-2.5 py-1 text-[0.68rem] font-semibold ${profile.live ? "bg-[#17233f]/8 text-[#17233f]/65" : "bg-white/10 text-white/65"}`}>{subject.name}</span>
+                <div className="relative z-10 mt-4 flex flex-wrap gap-1.5" aria-label={`${profile.world} subject pathways`}>
+                  {profile.subjectLanes.map((subject) => (
+                    <span
+                      key={subject.key}
+                      title={`${subject.label}: ${subject.short}`}
+                      aria-label={`${subject.label}: ${subject.short}`}
+                      className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[0.68rem] font-semibold ${profile.live ? "bg-[#17233f]/8 text-[#17233f]/72" : "bg-white/10 text-white/72"}`}
+                      style={{ borderColor: `${subject.accent}88` }}
+                    >
+                      <span className="grid h-4 w-4 place-items-center rounded-full text-[0.62rem] text-[#17233f]" style={{ backgroundColor: subject.accent }}>{subject.icon}</span>
+                      {subject.label}
+                    </span>
                   ))}
                 </div>
                 <div className="absolute bottom-5 right-5 z-10">

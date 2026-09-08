@@ -242,14 +242,48 @@ export type RuntimeFlags = {
   generated_at: string;
 };
 
+export type WorldSubjectLane = {
+  key: "English" | "Mathematics" | "Science";
+  label: string;
+  short: string;
+  accent: string;
+  icon: string;
+};
+
+export const DEFAULT_WORLD_SUBJECT_LANES: readonly WorldSubjectLane[] = [
+  { key: "English", label: "English", short: "Words & stories", accent: "#f7a6d8", icon: "✦" },
+  { key: "Mathematics", label: "Mathematics", short: "Patterns & problem solving", accent: "#55cbd3", icon: "＋" },
+  { key: "Science", label: "Science", short: "Questions & discovery", accent: "#8be28f", icon: "◌" },
+];
+
 export type WorldConfig = {
   key: string;
   name: string;
   year_group: number;
   theme: string;
-  config: Record<string, string | number | boolean>;
+  config: Record<string, unknown>;
   enabled: boolean;
 };
+
+const WORLD_SUBJECT_KEYS = new Set<WorldSubjectLane["key"]>(["English", "Mathematics", "Science"]);
+
+export function getWorldSubjectLanes(world: Pick<WorldConfig, "config">): WorldSubjectLane[] {
+  const configured = world.config?.subject_lanes;
+  if (!Array.isArray(configured)) return [...DEFAULT_WORLD_SUBJECT_LANES];
+
+  const lanes: WorldSubjectLane[] = [];
+  for (const candidate of configured) {
+    if (!candidate || typeof candidate !== "object") continue;
+    const value = candidate as Record<string, unknown>;
+    const key = value.key;
+    if (typeof key !== "string" || !WORLD_SUBJECT_KEYS.has(key as WorldSubjectLane["key"])) continue;
+    if (typeof value.label !== "string" || typeof value.short !== "string" || typeof value.accent !== "string" || typeof value.icon !== "string") continue;
+    if (lanes.some((lane) => lane.key === key)) continue;
+    lanes.push({ key: key as WorldSubjectLane["key"], label: value.label, short: value.short, accent: value.accent, icon: value.icon });
+  }
+
+  return lanes.length > 0 ? lanes : [...DEFAULT_WORLD_SUBJECT_LANES];
+}
 
 export type WorldState = {
   student_id: string;
