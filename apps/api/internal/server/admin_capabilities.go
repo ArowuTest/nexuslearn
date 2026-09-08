@@ -22,6 +22,9 @@ func adminRouteAllowed(role, method, path string) bool {
 		}
 		return strings.HasPrefix(path, "/v1/admin/content/activities") ||
 			strings.HasPrefix(path, "/v1/admin/content/questions") ||
+			path == "/v1/admin/content/activity-directory" ||
+			path == "/v1/admin/content/question-directory" ||
+			path == "/v1/admin/content/objective-directory" ||
 			(method == http.MethodPut && strings.HasPrefix(path, "/v1/admin/curriculum/objectives/"))
 	}
 

@@ -67,6 +67,13 @@ type adminParentAccessPageRepository interface {
 	ListAccessRequestPage(context.Context, learning.AdminAccessRequestPageQuery) (learning.AccessRequestPage, error)
 }
 
+type adminContentPageRepository interface {
+	ListActivityPage(context.Context, learning.AdminContentPageQuery) (learning.ActivityPage, error)
+	ListQuestionPage(context.Context, learning.AdminContentPageQuery) (learning.QuestionPage, error)
+	ListRewardRulePage(context.Context, learning.AdminContentPageQuery) (learning.RewardRulePage, error)
+	ListObjectivePage(context.Context, learning.AdminContentPageQuery) (learning.ObjectivePage, error)
+}
+
 type strandBucket struct {
 	topics map[string]bool
 	count  int
@@ -252,9 +259,12 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("GET /v1/admin/worlds", s.handleWorlds)
 	s.mux.HandleFunc("PUT /v1/admin/worlds/{key}", s.handleUpsertWorld)
 	s.mux.HandleFunc("GET /v1/admin/content/activities", s.handleActivities)
+	s.mux.HandleFunc("GET /v1/admin/content/activity-directory", s.handleAdminActivityDirectory)
 	s.mux.HandleFunc("PUT /v1/admin/content/activities/{id}", s.handleUpsertActivity)
 	s.mux.HandleFunc("GET /v1/admin/content/questions", s.handleQuestions)
+	s.mux.HandleFunc("GET /v1/admin/content/question-directory", s.handleAdminQuestionDirectory)
 	s.mux.HandleFunc("PUT /v1/admin/content/questions/{id}", s.handleUpsertQuestion)
+	s.mux.HandleFunc("GET /v1/admin/content/objective-directory", s.handleAdminObjectiveDirectory)
 	s.mux.HandleFunc("GET /v1/admin/content/readiness", s.handleContentReadiness)
 	s.mux.HandleFunc("GET /v1/admin/content/narration-readiness", s.handleNarrationReadiness)
 	s.mux.HandleFunc("GET /v1/admin/content/narration-queue", s.handleNarrationReviewQueue)
@@ -278,6 +288,7 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("PUT /v1/admin/content/releases/{id}/packs/{packId}", s.handlePutContentReleaseChunk)
 	s.mux.HandleFunc("POST /v1/admin/content/releases/{id}/activate", s.handleActivateContentRelease)
 	s.mux.HandleFunc("GET /v1/admin/reward-rules", s.handleRewardRules)
+	s.mux.HandleFunc("GET /v1/admin/content/reward-directory", s.handleAdminRewardDirectory)
 	s.mux.HandleFunc("PUT /v1/admin/reward-rules/{id}", s.handleUpsertRewardRule)
 	s.mux.HandleFunc("GET /v1/admin/learner-directory", s.handleAdminLearnerDirectory)
 	s.mux.HandleFunc("GET /v1/admin/students", s.handleAdminStudents)
@@ -1140,6 +1151,33 @@ func (s *Server) handleActivities(w http.ResponseWriter, r *http.Request) {
 	writeJSON(w, http.StatusOK, map[string]any{"activities": activities})
 }
 
+func (s *Server) handleAdminActivityDirectory(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	pageRepository, ok := s.repo.(adminContentPageRepository)
+	if !ok {
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "bounded activity directory is unavailable"})
+		return
+	}
+	query, err := adminContentPageQuery(r)
+	if err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+		return
+	}
+	page, err := pageRepository.ListActivityPage(r.Context(), query)
+	if err != nil {
+		if errors.Is(err, learning.ErrInvalidConfiguration) {
+			writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+			return
+		}
+		slog.Warn("failed to read bounded activities", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read activity directory"})
+		return
+	}
+	writeJSON(w, http.StatusOK, page)
+}
+
 func (s *Server) handleUpsertActivity(w http.ResponseWriter, r *http.Request) {
 	if !s.requireAdmin(w, r) {
 		return
@@ -1171,6 +1209,60 @@ func (s *Server) handleQuestions(w http.ResponseWriter, r *http.Request) {
 	writeJSON(w, http.StatusOK, map[string]any{"questions": questions})
 }
 
+func (s *Server) handleAdminQuestionDirectory(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	pageRepository, ok := s.repo.(adminContentPageRepository)
+	if !ok {
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "bounded question directory is unavailable"})
+		return
+	}
+	query, err := adminContentPageQuery(r)
+	if err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+		return
+	}
+	page, err := pageRepository.ListQuestionPage(r.Context(), query)
+	if err != nil {
+		if errors.Is(err, learning.ErrInvalidConfiguration) {
+			writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+			return
+		}
+		slog.Warn("failed to read bounded questions", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read question directory"})
+		return
+	}
+	writeJSON(w, http.StatusOK, page)
+}
+
+func (s *Server) handleAdminObjectiveDirectory(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	pageRepository, ok := s.repo.(adminContentPageRepository)
+	if !ok {
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "bounded objective directory is unavailable"})
+		return
+	}
+	query, err := adminContentPageQuery(r)
+	if err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+		return
+	}
+	page, err := pageRepository.ListObjectivePage(r.Context(), query)
+	if err != nil {
+		if errors.Is(err, learning.ErrInvalidConfiguration) {
+			writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+			return
+		}
+		slog.Warn("failed to read bounded objectives", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read objective directory"})
+		return
+	}
+	writeJSON(w, http.StatusOK, page)
+}
+
 func (s *Server) handleUpsertQuestion(w http.ResponseWriter, r *http.Request) {
 	if !s.requireAdmin(w, r) {
 		return
@@ -1200,6 +1292,33 @@ func (s *Server) handleRewardRules(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	writeJSON(w, http.StatusOK, map[string]any{"reward_rules": rules})
+}
+
+func (s *Server) handleAdminRewardDirectory(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	pageRepository, ok := s.repo.(adminContentPageRepository)
+	if !ok {
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "bounded reward directory is unavailable"})
+		return
+	}
+	query, err := adminContentPageQuery(r)
+	if err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+		return
+	}
+	page, err := pageRepository.ListRewardRulePage(r.Context(), query)
+	if err != nil {
+		if errors.Is(err, learning.ErrInvalidConfiguration) {
+			writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+			return
+		}
+		slog.Warn("failed to read bounded reward rules", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read reward directory"})
+		return
+	}
+	writeJSON(w, http.StatusOK, page)
 }
 
 func (s *Server) handleUpsertRewardRule(w http.ResponseWriter, r *http.Request) {
@@ -2790,6 +2909,21 @@ func adminDirectoryPageQuery(r *http.Request, cursorKey ...string) (learning.Adm
 		key = cursorKey[0]
 	}
 	query.Cursor = strings.TrimSpace(r.URL.Query().Get(key))
+	return query, nil
+}
+
+func adminContentPageQuery(r *http.Request) (learning.AdminContentPageQuery, error) {
+	query := learning.AdminContentPageQuery{Limit: 25, Cursor: strings.TrimSpace(r.URL.Query().Get("cursor"))}
+	if rawLimit := strings.TrimSpace(r.URL.Query().Get("limit")); rawLimit != "" {
+		limit, err := strconv.Atoi(rawLimit)
+		if err != nil || limit < 1 {
+			return query, errors.New("limit must be a positive whole number")
+		}
+		if limit > 100 {
+			limit = 100
+		}
+		query.Limit = limit
+	}
 	return query, nil
 }
 

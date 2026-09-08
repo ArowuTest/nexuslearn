@@ -592,6 +592,15 @@ type AdminConfig = {
   access_requests?: AccessRequest[];
 };
 
+type AdminContentDirectoryKind = "activities" | "questions" | "reward_rules" | "objectives";
+type AdminContentDirectoryState<T> = {
+  items: T[];
+  nextCursor: string;
+  loaded: boolean;
+  loading: boolean;
+  error: string;
+};
+
 const API = process.env.NEXT_PUBLIC_API_URL;
 const EMPTY_OBJECT = "{}";
 const EMPTY_ARRAY = "[]";
@@ -601,6 +610,10 @@ const ADMIN_LEDGER_PAGE_SIZE = 25;
 
 function emptyAdminLedger<T extends { id: string }>(): AdminLedgerState<T> {
   return { items: [], nextCursor: "", liveApplied: false, loaded: false, loading: false, error: "" };
+}
+
+function emptyContentDirectory<T>(): AdminContentDirectoryState<T> {
+  return { items: [], nextCursor: "", loaded: false, loading: false, error: "" };
 }
 
 function appendUniqueByID<T>(current: T[], incoming: T[], getID: (item: T) => string = (item) => (item as { id: string }).id) {
@@ -801,6 +814,11 @@ export default function AdminPage() {
   const [accessRequestDirectoryError, setAccessRequestDirectoryError] = useState("");
   const accessRequestDirectoryCursor = useRef("");
   const accessRequestDirectoryRequest = useRef(0);
+  const [activityDirectory, setActivityDirectory] = useState<AdminContentDirectoryState<Activity>>(() => emptyContentDirectory());
+  const [questionDirectory, setQuestionDirectory] = useState<AdminContentDirectoryState<Question>>(() => emptyContentDirectory());
+  const [rewardDirectory, setRewardDirectory] = useState<AdminContentDirectoryState<RewardRule>>(() => emptyContentDirectory());
+  const [objectiveDirectory, setObjectiveDirectory] = useState<AdminContentDirectoryState<Objective>>(() => emptyContentDirectory());
+  const contentDirectoryRequest = useRef(0);
 
   useEffect(() => {
     const role = accountSessionRole();
@@ -1231,6 +1249,7 @@ export default function AdminPage() {
       setAccessRequestDirectoryError("");
       accessRequestDirectoryRequest.current += 1;
       setAccessRequestStatus("all");
+      resetContentDirectories();
       setAdminLogin({ login_id: adminLogin.login_id, password: "" });
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Administrator login failed.");
@@ -1265,7 +1284,7 @@ export default function AdminPage() {
     setAccessRequestDirectoryError("");
     accessRequestDirectoryRequest.current += 1;
     setAccessRequestStatus("all");
-    setObjectives([]);
+    resetContentDirectories();
     setProgressStudentID("");
     setAdminKey("");
     setContentReviewLedger(null);
@@ -1370,13 +1389,70 @@ export default function AdminPage() {
     }
   }
 
+  function resetContentDirectories() {
+    contentDirectoryRequest.current += 1;
+    setActivityDirectory(emptyContentDirectory());
+    setQuestionDirectory(emptyContentDirectory());
+    setRewardDirectory(emptyContentDirectory());
+    setObjectiveDirectory(emptyContentDirectory());
+    setObjectives([]);
+  }
+
+  async function loadContentDirectory(kind: AdminContentDirectoryKind, append: boolean) {
+    const request = ++contentDirectoryRequest.current;
+    const current = kind === "activities" ? activityDirectory : kind === "questions" ? questionDirectory : kind === "reward_rules" ? rewardDirectory : objectiveDirectory;
+    const cursor = append ? current.nextCursor : "";
+    const endpoint = kind === "activities" ? "activity-directory" : kind === "questions" ? "question-directory" : kind === "reward_rules" ? "reward-directory" : "objective-directory";
+    const setLoadingState = (loading: boolean, error: string) => {
+      if (kind === "activities") setActivityDirectory((previous) => ({ ...previous, loading, error }));
+      else if (kind === "questions") setQuestionDirectory((previous) => ({ ...previous, loading, error }));
+      else if (kind === "reward_rules") setRewardDirectory((previous) => ({ ...previous, loading, error }));
+      else setObjectiveDirectory((previous) => ({ ...previous, loading, error }));
+    };
+    setLoadingState(true, "");
+    try {
+      const params = new URLSearchParams({ limit: String(ADMIN_PAGE_SIZE) });
+      if (cursor) params.set("cursor", cursor);
+      const page = await adminFetch(`/v1/admin/content/${endpoint}?${params.toString()}`) as {
+        activities?: Activity[];
+        questions?: Question[];
+        reward_rules?: RewardRule[];
+        objectives?: Objective[];
+        next_cursor?: string;
+      };
+      if (request !== contentDirectoryRequest.current) return;
+      const incoming = (kind === "activities" ? page.activities : kind === "questions" ? page.questions : kind === "reward_rules" ? page.reward_rules : page.objectives) ?? [];
+      if (kind === "activities") {
+        setActivityDirectory((previous) => ({ items: append ? appendUniqueByID(previous.items, incoming as Activity[]) : incoming as Activity[], nextCursor: page.next_cursor ?? "", loaded: true, loading: false, error: "" }));
+      } else if (kind === "questions") {
+        setQuestionDirectory((previous) => ({ items: append ? appendUniqueByID(previous.items, incoming as Question[]) : incoming as Question[], nextCursor: page.next_cursor ?? "", loaded: true, loading: false, error: "" }));
+      } else if (kind === "reward_rules") {
+        setRewardDirectory((previous) => ({ items: append ? appendUniqueByID(previous.items, incoming as RewardRule[]) : incoming as RewardRule[], nextCursor: page.next_cursor ?? "", loaded: true, loading: false, error: "" }));
+      } else {
+        setObjectiveDirectory((previous) => ({ items: append ? appendUniqueByID(previous.items, incoming as Objective[]) : incoming as Objective[], nextCursor: page.next_cursor ?? "", loaded: true, loading: false, error: "" }));
+      }
+      if (kind === "objectives") setObjectives((previous) => append ? appendUniqueByID(previous, incoming as Objective[]) : incoming as Objective[]);
+    } catch (error) {
+      if (request !== contentDirectoryRequest.current) return;
+      setLoadingState(false, error instanceof Error ? error.message : "Could not load content directory.");
+    }
+  }
+
   async function loadAdminSection(section: Tab, role: AdminAccountRole) {
     const plan = adminSectionLoadPlan(role, section);
     setLoading(true);
     setMessage(`Loading ${section.toLowerCase()} workspace...`);
     clearAdminProgress();
     try {
-      if (plan.configSection === "learners" || plan.configSection === "progress") {
+      if (section === "Activities") {
+        await loadContentDirectory("activities", false);
+      } else if (section === "Questions") {
+        await loadContentDirectory("questions", false);
+      } else if (section === "Rewards") {
+        await loadContentDirectory("reward_rules", false);
+      } else if (section === "Objectives") {
+        await loadContentDirectory("objectives", false);
+      } else if (plan.configSection === "learners" || plan.configSection === "progress") {
         await loadLearnerDirectory(false);
       } else if (plan.configSection === "schools") {
         await loadOrganisationDirectory(false);
@@ -1389,10 +1465,6 @@ export default function AdminPage() {
       } else if (plan.configSection) {
         const loaded = await adminFetch(`/v1/admin/config?section=${encodeURIComponent(plan.configSection)}`) as AdminConfig;
         setConfig((current) => ({ ...(current ?? {}), ...loaded }));
-      }
-      if (plan.objectives) {
-        const objectiveData = await fetch(`${API}/v1/curriculum/objectives`).then((res) => res.json());
-        setObjectives(objectiveData.objectives ?? []);
       }
       if (plan.reportWorkspace === "readiness") {
         const [readinessData, rendererData, assetData, narrationData, packDepthData, curriculumCoverageData, flagshipReviewData] = await Promise.all([
@@ -1923,10 +1995,6 @@ export default function AdminPage() {
   }
 
   const pagedWorlds = paginate("worlds", config?.worlds ?? []);
-  const pagedActivities = paginate("activities", config?.activities ?? []);
-  const pagedQuestions = paginate("questions", config?.questions ?? []);
-  const pagedRewards = paginate("rewards", config?.reward_rules ?? []);
-  const pagedObjectives = paginate("objectives", objectives);
   const pagedFlags = paginate("flags", config?.feature_flags ?? []);
 
   const learnerDirectoryControls = (
@@ -3167,7 +3235,7 @@ export default function AdminPage() {
           <EditorGrid
             left={
           <Panel title="Configured Activities">
-                {pagedActivities.items.map((activity) => (
+                {activityDirectory.items.map((activity) => (
                   <PickRow
                     key={activity.id}
                     title={activity.title || activity.id}
@@ -3183,7 +3251,13 @@ export default function AdminPage() {
                     }
                   />
                 ))}
-                <AdminListPager page={pagedActivities.page} totalPages={pagedActivities.totalPages} onChange={(page) => changePage("activities", page)} />
+                <AdminCursorPager
+                  label={`${activityDirectory.items.length} activities loaded`}
+                  nextCursor={activityDirectory.nextCursor}
+                  loading={activityDirectory.loading}
+                  error={activityDirectory.error}
+                  onLoadMore={() => void loadContentDirectory("activities", true)}
+                />
               </Panel>
             }
             right={
@@ -3209,7 +3283,7 @@ export default function AdminPage() {
           <EditorGrid
             left={
           <Panel title="Configured Questions">
-                {pagedQuestions.items.map((question) => (
+                {questionDirectory.items.map((question) => (
                   <PickRow
                     key={question.id}
                     title={question.id}
@@ -3225,7 +3299,13 @@ export default function AdminPage() {
                     }
                   />
                 ))}
-                <AdminListPager page={pagedQuestions.page} totalPages={pagedQuestions.totalPages} onChange={(page) => changePage("questions", page)} />
+                <AdminCursorPager
+                  label={`${questionDirectory.items.length} questions loaded`}
+                  nextCursor={questionDirectory.nextCursor}
+                  loading={questionDirectory.loading}
+                  error={questionDirectory.error}
+                  onLoadMore={() => void loadContentDirectory("questions", true)}
+                />
               </Panel>
             }
             right={
@@ -3250,7 +3330,7 @@ export default function AdminPage() {
           <EditorGrid
             left={
           <Panel title="Reward Rules">
-                {pagedRewards.items.map((rule) => (
+                {rewardDirectory.items.map((rule) => (
                   <PickRow
                     key={rule.id}
                     title={rule.id}
@@ -3259,7 +3339,13 @@ export default function AdminPage() {
                     onClick={() => setRewardDraft({ ...rule, rewardPayloadText: pretty(rule.reward_payload ?? {}) })}
                   />
                 ))}
-                <AdminListPager page={pagedRewards.page} totalPages={pagedRewards.totalPages} onChange={(page) => changePage("rewards", page)} />
+                <AdminCursorPager
+                  label={`${rewardDirectory.items.length} reward rules loaded`}
+                  nextCursor={rewardDirectory.nextCursor}
+                  loading={rewardDirectory.loading}
+                  error={rewardDirectory.error}
+                  onLoadMore={() => void loadContentDirectory("reward_rules", true)}
+                />
               </Panel>
             }
             right={
@@ -3280,7 +3366,7 @@ export default function AdminPage() {
           <EditorGrid
             left={
           <Panel title="Curriculum Objectives">
-                {pagedObjectives.items.map((objective) => (
+                {objectiveDirectory.items.map((objective) => (
                   <PickRow
                     key={objective.id}
                     title={objective.statement}
@@ -3297,7 +3383,13 @@ export default function AdminPage() {
                     }
                   />
                 ))}
-                <AdminListPager page={pagedObjectives.page} totalPages={pagedObjectives.totalPages} onChange={(page) => changePage("objectives", page)} />
+                <AdminCursorPager
+                  label={`${objectiveDirectory.items.length} objectives loaded`}
+                  nextCursor={objectiveDirectory.nextCursor}
+                  loading={objectiveDirectory.loading}
+                  error={objectiveDirectory.error}
+                  onLoadMore={() => void loadContentDirectory("objectives", true)}
+                />
               </Panel>
             }
             right={
@@ -3448,5 +3540,36 @@ export default function AdminPage() {
           />
         )}
     </AdminWorkspaceShell>
+  );
+}
+
+function AdminCursorPager({
+  label,
+  nextCursor,
+  loading,
+  error,
+  onLoadMore,
+}: {
+  label: string;
+  nextCursor: string;
+  loading: boolean;
+  error: string;
+  onLoadMore: () => void;
+}) {
+  return (
+    <div className="border-t border-[#1d1a3e]/8 p-4 text-xs" aria-live="polite">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <span className="text-[#1d1a3e]/58">{label}</span>
+        <button
+          type="button"
+          onClick={onLoadMore}
+          disabled={loading || !nextCursor}
+          className="btn-pop bg-[#f6f3ea] px-3 py-2 disabled:cursor-not-allowed disabled:opacity-45"
+        >
+          {loading ? "Loading…" : nextCursor ? "Load more" : "All records loaded"}
+        </button>
+      </div>
+      {error && <p className="mt-3 text-[#a23d55]">{error}</p>}
+    </div>
   );
 }

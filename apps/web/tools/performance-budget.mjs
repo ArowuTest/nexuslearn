@@ -11,11 +11,11 @@ const limits = {
   // file together. The route ceiling measures the strict initial uncompressed
   // JavaScript for one rendered route, including shared framework chunks.
   // The aggregate includes shared and route-isolated chunks that no single browser route downloads together.
-  // Authenticated learner, organisation, teaching-group and parent/access directory surfaces add a small,
+  // Authenticated learner, organisation, teaching-group, parent/access and content-directory surfaces add a small,
   // deliberate amount of admin workflow code. Keep route, largest-file, CSS
   // and public-asset limits unchanged; this aggregate ceiling is calibrated to
   // the clean CI Node 22 build with measured headroom.
-  aggregateJavaScript: 1_417_000,
+  aggregateJavaScript: 1_420_000,
   largestRouteJavaScript: 750_000,
   largestJavaScript: 250_000,
   totalCSS: 120_000,

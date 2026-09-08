@@ -21,6 +21,29 @@ async function openAdminAs(page: Page, role: AdminRole, section: string) {
       await route.fulfill({ contentType: "application/json", body: JSON.stringify(body) });
       return;
     }
+    if (url.pathname === "/v1/admin/content/activity-directory") {
+      const cursor = url.searchParams.get("cursor");
+      await route.fulfill({
+        contentType: "application/json",
+        body: JSON.stringify({
+          activities: [{ id: cursor ? "activity-2" : "activity-1", title: cursor ? "Second activity" : "First activity", status: "draft", world_key: "wonder-garden", objective_id: "objective-1" }],
+          ...(cursor ? {} : { next_cursor: "activity-next" }),
+        }),
+      });
+      return;
+    }
+    if (url.pathname === "/v1/admin/content/question-directory") {
+      await route.fulfill({ contentType: "application/json", body: JSON.stringify({ questions: [] }) });
+      return;
+    }
+    if (url.pathname === "/v1/admin/content/objective-directory") {
+      await route.fulfill({ contentType: "application/json", body: JSON.stringify({ objectives: [] }) });
+      return;
+    }
+    if (url.pathname === "/v1/admin/content/reward-directory") {
+      await route.fulfill({ contentType: "application/json", body: JSON.stringify({ reward_rules: [] }) });
+      return;
+    }
     if (url.pathname === "/v1/admin/learner-directory") {
       const cursor = url.searchParams.get("student_cursor") || url.searchParams.get("credential_cursor");
       await route.fulfill({
@@ -139,12 +162,26 @@ test("content editor loads only the selected curriculum-authoring section", asyn
   await expect(page.getByRole("heading", { name: "Configured Activities" })).toBeVisible();
 
   await expect.poll(() => requests.map((url) => `${url.pathname}?${url.searchParams.toString()}`)).toEqual([
-    "/v1/admin/config?section=activities",
+    "/v1/admin/content/activity-directory?limit=25",
   ]);
   const navigation = page.getByRole("navigation", { name: "Admin sections" });
   await expect(navigation.getByRole("button", { name: "Learners", exact: true })).toHaveCount(0);
   await expect(navigation.getByRole("button", { name: "Reviews", exact: true })).toHaveCount(0);
   await expect(navigation.getByRole("button", { name: "Worlds", exact: true })).toHaveCount(0);
+});
+
+test("content editor appends a bounded activity page with an opaque cursor", async ({ page }) => {
+  const requests = await openAdminAs(page, "content_editor", "Activities");
+  await expect(page.getByText("First activity", { exact: true })).toBeVisible();
+  const loadMore = page.getByRole("button", { name: "Load more", exact: true });
+  await expect(loadMore).toBeEnabled();
+  await loadMore.click();
+  await expect(page.getByText("Second activity", { exact: true })).toBeVisible();
+  await expect.poll(() => requests.map((url) => `${url.pathname}?${url.searchParams.toString()}`)).toEqual([
+    "/v1/admin/content/activity-directory?limit=25",
+    "/v1/admin/content/activity-directory?limit=25&cursor=activity-next",
+  ]);
+  await expect(page.getByRole("button", { name: "All records loaded", exact: true })).toBeDisabled();
 });
 
 test("content reviewer enters review without configuration or personal-data requests", async ({ page }) => {

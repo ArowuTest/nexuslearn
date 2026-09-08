@@ -47,6 +47,10 @@ async function stubAdminAPI(page: Page) {
       await route.fulfill({ contentType: "application/json", body: JSON.stringify({ objectives: [] }) });
       return;
     }
+    if (url.pathname === "/v1/admin/content/objective-directory") {
+      await route.fulfill({ contentType: "application/json", body: JSON.stringify({ objectives: [] }) });
+      return;
+    }
     if (url.pathname === "/v1/admin/content/readiness") {
       await route.fulfill({ contentType: "application/json", body: JSON.stringify(emptyReadiness) });
       return;

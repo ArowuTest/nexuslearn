@@ -499,7 +499,9 @@ func (r *PostgresRepository) UpsertActivity(ctx context.Context, activity Activi
 	if err == nil {
 		err = tx.Commit(ctx)
 	}
-	activity.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+	// Cursor-bearing admin pages need the database timestamp at full precision;
+	// truncating it to seconds can repeat or skip rows updated in the same second.
+	activity.UpdatedAt = updatedAt.UTC().Format(time.RFC3339Nano)
 	return activity, err
 }
 

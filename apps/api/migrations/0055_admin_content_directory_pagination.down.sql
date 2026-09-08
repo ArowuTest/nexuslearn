@@ -1,0 +1,4 @@
+DROP INDEX IF EXISTS curriculum_objectives_admin_directory_order_idx;
+DROP INDEX IF EXISTS reward_rules_admin_directory_order_idx;
+DROP INDEX IF EXISTS questions_admin_directory_order_idx;
+DROP INDEX IF EXISTS activities_admin_directory_order_idx;
