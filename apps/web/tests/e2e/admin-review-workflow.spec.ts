@@ -1,5 +1,6 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import { simulateCompletedNarrationPlayback } from "./helpers/narration-playback";
 
 test("reviewer filters the SEND queue and sees honest release gates", async ({ page }) => {
   test.setTimeout(60_000);
@@ -128,6 +129,10 @@ test("reviewer filters the SEND queue and sees honest release gates", async ({ p
       if (route.request().method() === "POST") {
         const payload = route.request().postDataJSON();
         expect(payload.criteria).toEqual({ natural: true, clear: true, pronunciation: true, age_suitable: true });
+        expect(payload.playback_evidence).toEqual({
+          surface: "admin_audio_workspace", coverage_version: "played-ranges-v1",
+          completed: true, duration_ms: 1000, played_ms: 1000, playback_rate: 1,
+        });
         narrationApproved = true;
         await route.fulfill({ contentType: "application/json", body: JSON.stringify({ ...payload, id: "audio-review-1", created_at: "2026-08-09T10:00:00Z", updated_at: "2026-08-09T10:00:00Z" }) });
         return;
@@ -177,12 +182,9 @@ test("reviewer filters the SEND queue and sees honest release gates", async ({ p
   await page.getByLabel("Accurate pronunciation").check();
   await page.getByLabel("Age-suitable pace and tone").check();
   await page.getByLabel("Reviewer name").fill("A. Audio Reviewer");
-  await page.locator("audio").evaluate((audio) => {
-    Object.defineProperty(audio, "duration", { configurable: true, value: 1 });
-    Object.defineProperty(audio, "currentTime", { configurable: true, value: 1 });
-    audio.dispatchEvent(new Event("canplay", { bubbles: true }));
-    audio.dispatchEvent(new Event("ended", { bubbles: true }));
-  });
+  await page.locator("audio").dispatchEvent("ended");
+  await expect(page.getByRole("button", { name: "Approve listening" })).toBeDisabled();
+  await simulateCompletedNarrationPlayback(page);
   await expect(page.getByRole("button", { name: "Approve listening" })).toBeEnabled();
   await page.getByRole("button", { name: "Approve listening" }).click();
   await expect(page.getByText(/approved against the current transcript, audio and production profile/i)).toBeVisible();

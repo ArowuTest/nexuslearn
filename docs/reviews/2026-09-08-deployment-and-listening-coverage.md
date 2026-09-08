@@ -71,6 +71,43 @@ passes; the database recovered and the final suites above were rerun. Hosted
 checks and exact deployed revision are recorded in the delivery checkpoint
 after push. No generated/private reports belong in the commit.
 
+## Hosted verification and CI correction
+
+The first main batch, `6b77e5f`, reached Vercel and Render. Render reported that
+exact revision from clean Go VCS metadata and all deployed smoke conditions
+passed in a direct check. Content quality passed. Platform quality exposed a
+missed older fixture in the combined SEND/audio review journey: its synthetic
+`ended` event supplied no played ranges, so the new guard correctly kept
+approval disabled in both browser projects (258 other tests passed, six
+real-backend-only cases were skipped). The dependent smoke workflow was skipped,
+not successful. These results did not establish a fully green delivery.
+
+The correction shares explicitly synthetic playback telemetry across the two
+admin review suites, asserts that `ended` alone cannot enable approval, and
+asserts the complete versioned playback-evidence payload. It changes tests only;
+the real-MP3 playback case and production listening guard are unchanged.
+
+Correction validation:
+
+- TypeScript, scoped ESLint and diff checks pass.
+- The isolated full nonvisual suite passes 256 desktop/mobile tests, with six
+  backend-only cases skipped. Linux visual baselines remain a hosted CI gate.
+- The separate production-browser/real-API/PostgreSQL harness passes all six
+  cases, including lost acknowledgements without duplicate mastery.
+- An earlier attempt ran both suites simultaneously and missed two existing
+  five-second UI waits: initial audio-queue loading and a grading retry button
+  while the UI still said "Saving your answer". Neither miss recurred when the
+  complete suites ran sequentially. Local contention is a hypothesis, not a
+  proven root cause; no source, timeout or retry setting was changed to pass.
+
+At 2026-09-08T17:27:57Z, a bounded read-only check verified all 874 hosted MP3s:
+HTTP success, audio content type and SHA-256 equality with the locally decoded
+files (66,223,179 bytes; zero failures). Windows Node used the system CA trust
+store; TLS verification was not disabled. The private evidence is retained in
+`.agent/hosted-audio-integrity.json`. This proves delivery integrity, not human
+listening quality. New-commit hosted gate outcomes belong in the delivery
+checkpoint after the correction is pushed.
+
 ## Limits and remaining work
 
 Playback telemetry is user-controlled and cannot establish that anyone paid

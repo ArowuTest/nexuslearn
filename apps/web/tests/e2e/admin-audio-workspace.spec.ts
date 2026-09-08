@@ -1,6 +1,7 @@
 import { expect, test, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { readFile } from "node:fs/promises";
+import { simulateCompletedNarrationPlayback as completePlayback } from "./helpers/narration-playback";
 
 test.describe.configure({ timeout: 60_000 });
 
@@ -128,18 +129,6 @@ async function openAudioWorkspace(page: Page, recording?: ProducedAudio) {
       voiceSettings = {};
     },
   };
-}
-
-async function completePlayback(page: Page, seconds = 1) {
-  await page.locator("audio").evaluate((audio, duration) => {
-    Object.defineProperty(audio, "duration", { configurable: true, value: duration });
-    Object.defineProperty(audio, "currentTime", { configurable: true, value: duration });
-    Object.defineProperty(audio, "played", { configurable: true, value: { length: 1, start: () => 0, end: () => duration } });
-    audio.dispatchEvent(new Event("canplay", { bubbles: true }));
-    audio.dispatchEvent(new Event("loadedmetadata", { bubbles: true }));
-    audio.dispatchEvent(new Event("timeupdate", { bubbles: true }));
-    audio.dispatchEvent(new Event("ended", { bubbles: true }));
-  }, seconds);
 }
 
 test("reviewer restores filters, verifies exact audio identity, and requests a governed re-record", async ({ page }) => {
