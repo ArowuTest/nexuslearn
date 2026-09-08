@@ -51,6 +51,12 @@ type adminDirectoryPageRepository interface {
 	ListStudentCredentialPage(context.Context, learning.AdminDirectoryPageQuery) (learning.StudentCredentialPage, error)
 }
 
+type adminOrganisationPageRepository interface {
+	ListSchoolPage(context.Context, learning.AdminOrganisationPageQuery) (learning.SchoolPage, error)
+	ListSchoolUserPage(context.Context, learning.AdminOrganisationPageQuery) (learning.SchoolUserPage, error)
+	ListClassPage(context.Context, learning.AdminOrganisationPageQuery) (learning.ClassPage, error)
+}
+
 type strandBucket struct {
 	topics map[string]bool
 	count  int
@@ -269,6 +275,7 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("GET /v1/admin/students/{externalRef}/mock-assessments", s.handleAdminStudentMockAssessments)
 	s.mux.HandleFunc("PUT /v1/admin/students/{externalRef}", s.handleUpsertStudent)
 	s.mux.HandleFunc("GET /v1/admin/schools", s.handleSchools)
+	s.mux.HandleFunc("GET /v1/admin/organisation-directory", s.handleAdminOrganisationDirectory)
 	s.mux.HandleFunc("PUT /v1/admin/schools/{urn}", s.handleUpsertSchool)
 	s.mux.HandleFunc("GET /v1/admin/school-users", s.handleSchoolUsers)
 	s.mux.HandleFunc("PUT /v1/admin/schools/{urn}/users/{email}", s.handleUpsertSchoolUser)
@@ -1256,25 +1263,31 @@ func (s *Server) handleAdminLearnerDirectory(w http.ResponseWriter, r *http.Requ
 		writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
 		return
 	}
-	studentPage, err := pageRepository.ListStudentPage(r.Context(), studentQuery)
-	if err != nil {
-		if errors.Is(err, learning.ErrInvalidConfiguration) {
-			writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+	studentPage := learning.StudentProfilePage{}
+	if !adminCollectionDone(r, "student_done") {
+		studentPage, err = pageRepository.ListStudentPage(r.Context(), studentQuery)
+		if err != nil {
+			if errors.Is(err, learning.ErrInvalidConfiguration) {
+				writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+				return
+			}
+			slog.Warn("failed to read bounded learner directory students", "error", err)
+			writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read learner directory"})
 			return
 		}
-		slog.Warn("failed to read bounded learner directory students", "error", err)
-		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read learner directory"})
-		return
 	}
-	credentialPage, err := pageRepository.ListStudentCredentialPage(r.Context(), credentialQuery)
-	if err != nil {
-		if errors.Is(err, learning.ErrInvalidConfiguration) {
-			writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+	credentialPage := learning.StudentCredentialPage{}
+	if !adminCollectionDone(r, "credential_done") {
+		credentialPage, err = pageRepository.ListStudentCredentialPage(r.Context(), credentialQuery)
+		if err != nil {
+			if errors.Is(err, learning.ErrInvalidConfiguration) {
+				writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+				return
+			}
+			slog.Warn("failed to read bounded learner directory credentials", "error", err)
+			writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read learner directory"})
 			return
 		}
-		slog.Warn("failed to read bounded learner directory credentials", "error", err)
-		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read learner directory"})
-		return
 	}
 	writeJSON(w, http.StatusOK, map[string]any{
 		"students":               studentPage.Students,
@@ -1313,6 +1326,79 @@ func (s *Server) handleSchools(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	writeJSON(w, http.StatusOK, map[string]any{"schools": schools})
+}
+
+func (s *Server) handleAdminOrganisationDirectory(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	pageRepository, ok := s.repo.(adminOrganisationPageRepository)
+	if !ok {
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "bounded organisation directory is unavailable"})
+		return
+	}
+	schoolQuery, err := adminOrganisationPageQuery(r, "school_cursor")
+	if err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+		return
+	}
+	userQuery, err := adminOrganisationPageQuery(r, "school_user_cursor")
+	if err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+		return
+	}
+	classQuery, err := adminOrganisationPageQuery(r, "class_cursor")
+	if err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+		return
+	}
+	schools := learning.SchoolPage{}
+	if !adminCollectionDone(r, "school_done") {
+		schools, err = pageRepository.ListSchoolPage(r.Context(), schoolQuery)
+		if err != nil {
+			if errors.Is(err, learning.ErrInvalidConfiguration) {
+				writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+				return
+			}
+			slog.Warn("failed to read bounded organisation schools", "error", err)
+			writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read organisation directory"})
+			return
+		}
+	}
+	users := learning.SchoolUserPage{}
+	if !adminCollectionDone(r, "school_user_done") {
+		users, err = pageRepository.ListSchoolUserPage(r.Context(), userQuery)
+		if err != nil {
+			if errors.Is(err, learning.ErrInvalidConfiguration) {
+				writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+				return
+			}
+			slog.Warn("failed to read bounded organisation users", "error", err)
+			writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read organisation directory"})
+			return
+		}
+	}
+	classes := learning.ClassPage{}
+	if !adminCollectionDone(r, "class_done") {
+		classes, err = pageRepository.ListClassPage(r.Context(), classQuery)
+		if err != nil {
+			if errors.Is(err, learning.ErrInvalidConfiguration) {
+				writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+				return
+			}
+			slog.Warn("failed to read bounded organisation classes", "error", err)
+			writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read organisation directory"})
+			return
+		}
+	}
+	writeJSON(w, http.StatusOK, map[string]any{
+		"schools":                 schools.Schools,
+		"school_next_cursor":      schools.NextCursor,
+		"school_users":            users.SchoolUsers,
+		"school_user_next_cursor": users.NextCursor,
+		"classes":                 classes.Classes,
+		"class_next_cursor":       classes.NextCursor,
+	})
 }
 
 func (s *Server) handleUpsertSchool(w http.ResponseWriter, r *http.Request) {
@@ -2577,6 +2663,23 @@ func adminDirectoryPageQuery(r *http.Request, cursorKey ...string) (learning.Adm
 	}
 	query.Cursor = strings.TrimSpace(r.URL.Query().Get(key))
 	return query, nil
+}
+
+func adminOrganisationPageQuery(r *http.Request, cursorKey string) (learning.AdminOrganisationPageQuery, error) {
+	query := learning.AdminOrganisationPageQuery{}
+	if rawLimit := strings.TrimSpace(r.URL.Query().Get("limit")); rawLimit != "" {
+		limit, err := strconv.Atoi(rawLimit)
+		if err != nil || limit < 1 {
+			return query, errors.New("limit must be a positive whole number")
+		}
+		query.Limit = limit
+	}
+	query.Cursor = strings.TrimSpace(r.URL.Query().Get(cursorKey))
+	return query, nil
+}
+
+func adminCollectionDone(r *http.Request, key string) bool {
+	return r.URL.Query().Get(key) == "1"
 }
 
 func (s *Server) handleStageContentRelease(w http.ResponseWriter, r *http.Request) {

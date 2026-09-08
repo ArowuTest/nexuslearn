@@ -1092,38 +1092,10 @@ func (r *PostgresRepository) listClasses(ctx context.Context, query string, args
 	if len(classes) == 0 {
 		return classes, nil
 	}
-	ids := make([]string, 0, len(classes))
-	byID := make(map[string]int, len(classes))
-	for index := range classes {
-		ids = append(ids, classes[index].ID)
-		byID[classes[index].ID] = index
-		classes[index].Students = []StudentProfileConfig{}
-	}
-	studentRows, err := r.db.Query(ctx, `
-		SELECT cs.class_id::text, s.id::text, s.external_ref, s.display_name, s.year_group, s.created_at, s.updated_at
-		FROM class_students cs
-		JOIN students s ON s.id=cs.student_id
-		WHERE cs.class_id::text = ANY($1::text[])
-		ORDER BY s.display_name, s.external_ref
-	`, ids)
-	if err != nil {
+	if err := r.loadClassStudents(ctx, classes); err != nil {
 		return nil, err
 	}
-	defer studentRows.Close()
-	for studentRows.Next() {
-		var classID string
-		var student StudentProfileConfig
-		var createdAt, updatedAt time.Time
-		if err := studentRows.Scan(&classID, &student.ID, &student.ExternalRef, &student.DisplayName, &student.YearGroup, &createdAt, &updatedAt); err != nil {
-			return nil, err
-		}
-		student.CreatedAt = createdAt.UTC().Format(time.RFC3339)
-		student.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
-		if index, ok := byID[classID]; ok {
-			classes[index].Students = append(classes[index].Students, student)
-		}
-	}
-	return classes, studentRows.Err()
+	return classes, nil
 }
 
 func (r *PostgresRepository) UpsertClass(ctx context.Context, classConfig ClassConfig) (ClassConfig, error) {

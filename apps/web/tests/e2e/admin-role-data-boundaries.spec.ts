@@ -35,6 +35,19 @@ async function openAdminAs(page: Page, role: AdminRole, section: string) {
       });
       return;
     }
+    if (url.pathname === "/v1/admin/organisation-directory") {
+      const cursor = url.searchParams.get("school_cursor") || url.searchParams.get("school_user_cursor") || url.searchParams.get("class_cursor");
+      await route.fulfill({
+        contentType: "application/json",
+        body: JSON.stringify({
+          schools: [{ id: cursor ? "school-2" : "school-1", name: cursor ? "Second School" : "Private School", urn: cursor ? "second-school" : "private-school", status: "active" }],
+          school_users: [{ id: cursor ? "user-2" : "user-1", school_urn: cursor ? "second-school" : "private-school", school_name: cursor ? "Second School" : "Private School", email: cursor ? "teacher2@example.test" : "teacher@example.test", display_name: cursor ? "Second Teacher" : "Private Teacher", role: "teacher", login_id: cursor ? "teacher2" : "teacher", status: "active" }],
+          classes: [{ id: cursor ? "class-2" : "class-1", school_urn: cursor ? "second-school" : "private-school", school_name: cursor ? "Second School" : "Private School", name: cursor ? "Second Class" : "Private Class", year_group: 3, students: [] }],
+          ...(cursor ? {} : { school_next_cursor: "school-next", school_user_next_cursor: "user-next", class_next_cursor: "class-next" }),
+        }),
+      });
+      return;
+    }
     if (url.pathname === "/v1/admin/content/readiness") {
       await route.fulfill({ contentType: "application/json", body: JSON.stringify({ totals: { ready: 0, pilot: 0, draft: 0, blocked: 0 }, items: [] }) });
       return;
@@ -115,6 +128,7 @@ test("content reviewer enters review without configuration or personal-data requ
     "/v1/admin/config",
     "/v1/admin/students",
     "/v1/admin/schools",
+    "/v1/admin/organisation-directory",
     "/v1/admin/student-credentials",
     "/v1/admin/parent-links",
     "/v1/admin/access-requests",
@@ -145,6 +159,21 @@ test("platform administrator appends the next bounded learner page with opaque c
   await expect.poll(() => requests.map((url) => `${url.pathname}?${url.searchParams.toString()}`)).toEqual([
     "/v1/admin/learner-directory?limit=25",
     "/v1/admin/learner-directory?limit=25&student_cursor=student-next&credential_cursor=credential-next",
+  ]);
+  await expect(loadMore).toBeDisabled();
+});
+
+test("platform administrator appends independent organisation pages with opaque cursors", async ({ page }) => {
+  const requests = await openAdminAs(page, "platform_admin", "Schools");
+  await expect(page.getByRole("heading", { name: "Schools and Classes" })).toBeVisible();
+  await expect(page.getByText("Private School", { exact: true })).toBeVisible();
+  const loadMore = page.getByRole("button", { name: "Load more organisation records", exact: true });
+  await expect(loadMore).toBeEnabled();
+  await loadMore.click();
+  await expect(page.getByText("Second School", { exact: true })).toBeVisible();
+  await expect.poll(() => requests.map((url) => `${url.pathname}?${url.searchParams.toString()}`)).toEqual([
+    "/v1/admin/organisation-directory?limit=25",
+    "/v1/admin/organisation-directory?limit=25&school_cursor=school-next&school_user_cursor=user-next&class_cursor=class-next",
   ]);
   await expect(loadMore).toBeDisabled();
 });

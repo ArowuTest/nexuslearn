@@ -785,6 +785,10 @@ export default function AdminPage() {
   const [directoryError, setDirectoryError] = useState("");
   const directoryCursors = useRef({ student: "", credential: "" });
   const directoryRequest = useRef(0);
+  const [organisationLoading, setOrganisationLoading] = useState(false);
+  const [organisationError, setOrganisationError] = useState("");
+  const organisationCursors = useRef({ school: "", schoolUser: "", class: "" });
+  const organisationRequest = useRef(0);
 
   useEffect(() => {
     const role = accountSessionRole();
@@ -945,7 +949,9 @@ export default function AdminPage() {
     const credentialCursor = append ? directoryCursors.current.credential : "";
     const query = new URLSearchParams({ limit: String(ADMIN_PAGE_SIZE) });
     if (studentCursor) query.set("student_cursor", studentCursor);
+    else if (append) query.set("student_done", "1");
     if (credentialCursor) query.set("credential_cursor", credentialCursor);
+    else if (append) query.set("credential_done", "1");
     setDirectoryLoading(true);
     setDirectoryError("");
     if (!append) {
@@ -986,6 +992,62 @@ export default function AdminPage() {
     void loadLearnerDirectory(true).catch(() => undefined);
   }
 
+  async function loadOrganisationDirectory(append: boolean) {
+    if (append && !organisationCursors.current.school && !organisationCursors.current.schoolUser && !organisationCursors.current.class) return;
+    const requestID = ++organisationRequest.current;
+    const cursors = append ? organisationCursors.current : { school: "", schoolUser: "", class: "" };
+    const query = new URLSearchParams({ limit: String(ADMIN_PAGE_SIZE) });
+    if (cursors.school) query.set("school_cursor", cursors.school);
+    else if (append) query.set("school_done", "1");
+    if (cursors.schoolUser) query.set("school_user_cursor", cursors.schoolUser);
+    else if (append) query.set("school_user_done", "1");
+    if (cursors.class) query.set("class_cursor", cursors.class);
+    else if (append) query.set("class_done", "1");
+    setOrganisationLoading(true);
+    setOrganisationError("");
+    if (!append) {
+      organisationCursors.current = { school: "", schoolUser: "", class: "" };
+      setConfig((current) => ({ ...(current ?? {}), schools: [], school_users: [], classes: [] }));
+    }
+    try {
+      const data = await adminFetch(`/v1/admin/organisation-directory?${query.toString()}`) as Record<string, unknown>;
+      const schools = data.schools;
+      const schoolUsers = data.school_users;
+      const classes = data.classes;
+      if (!Array.isArray(schools) || !Array.isArray(schoolUsers) || !Array.isArray(classes)) {
+        throw new Error("The organisation directory returned an invalid response.");
+      }
+      if (requestID !== organisationRequest.current) return;
+      setConfig((current) => ({
+        ...(current ?? {}),
+        schools: append
+          ? appendUniqueByID(current?.schools ?? [], schools as School[], (school) => school.id ?? school.urn)
+          : schools as School[],
+        school_users: append
+          ? appendUniqueByID(current?.school_users ?? [], schoolUsers as SchoolUser[], (user) => user.id ?? `${user.school_urn}:${user.email}`)
+          : schoolUsers as SchoolUser[],
+        classes: append
+          ? appendUniqueByID(current?.classes ?? [], classes as ClassGroup[], (classGroup) => classGroup.id ?? `${classGroup.school_urn}:${classGroup.name}`)
+          : classes as ClassGroup[],
+      }));
+      organisationCursors.current = {
+        school: typeof data.school_next_cursor === "string" ? data.school_next_cursor : "",
+        schoolUser: typeof data.school_user_next_cursor === "string" ? data.school_user_next_cursor : "",
+        class: typeof data.class_next_cursor === "string" ? data.class_next_cursor : "",
+      };
+      setOrganisationLoading(false);
+    } catch (error) {
+      if (requestID !== organisationRequest.current) return;
+      setOrganisationLoading(false);
+      setOrganisationError(error instanceof Error ? error.message : "The organisation directory could not be loaded.");
+      throw error;
+    }
+  }
+
+  function loadMoreOrganisationDirectory() {
+    void loadOrganisationDirectory(true).catch(() => undefined);
+  }
+
   async function signInAdmin() {
     if (!API) throw new Error("NEXT_PUBLIC_API_URL is not configured.");
     setLoading(true);
@@ -1007,6 +1069,10 @@ export default function AdminPage() {
       setDirectoryLoading(false);
       setDirectoryError("");
       directoryRequest.current += 1;
+      organisationCursors.current = { school: "", schoolUser: "", class: "" };
+      setOrganisationLoading(false);
+      setOrganisationError("");
+      organisationRequest.current += 1;
       setAdminLogin({ login_id: adminLogin.login_id, password: "" });
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Administrator login failed.");
@@ -1024,6 +1090,10 @@ export default function AdminPage() {
     setDirectoryLoading(false);
     setDirectoryError("");
     directoryRequest.current += 1;
+    organisationCursors.current = { school: "", schoolUser: "", class: "" };
+    setOrganisationLoading(false);
+    setOrganisationError("");
+    organisationRequest.current += 1;
     setObjectives([]);
     setProgressStudentID("");
     setAdminKey("");
@@ -1137,6 +1207,8 @@ export default function AdminPage() {
     try {
       if (plan.configSection === "learners" || plan.configSection === "progress") {
         await loadLearnerDirectory(false);
+      } else if (plan.configSection === "schools") {
+        await loadOrganisationDirectory(false);
       } else if (plan.configSection) {
         const loaded = await adminFetch(`/v1/admin/config?section=${encodeURIComponent(plan.configSection)}`) as AdminConfig;
         setConfig((current) => ({ ...(current ?? {}), ...loaded }));
@@ -1703,6 +1775,25 @@ export default function AdminPage() {
     </div>
   );
 
+  const organisationDirectoryControls = (
+    <div className="border-t border-[#1d1a3e]/8 p-4 text-xs" aria-live="polite">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <span className="text-[#1d1a3e]/58">
+          Loaded {config?.schools?.length ?? 0} schools, {config?.classes?.length ?? 0} classes and {config?.school_users?.length ?? 0} staff records.
+        </span>
+        <button
+          type="button"
+          onClick={loadMoreOrganisationDirectory}
+          disabled={organisationLoading || (!organisationCursors.current.school && !organisationCursors.current.schoolUser && !organisationCursors.current.class)}
+          className="btn-pop bg-[#f6f3ea] px-3 py-2 disabled:cursor-not-allowed disabled:opacity-45"
+        >
+          {organisationLoading ? "Loading…" : "Load more organisation records"}
+        </button>
+      </div>
+      {organisationError && <p className="mt-3 text-[#a23d55]">{organisationError}</p>}
+    </div>
+  );
+
   if (!config) {
     return (
       <AdminSignInSurface
@@ -1858,6 +1949,7 @@ export default function AdminPage() {
                     onClick={() => setSchoolUserDraft({ ...user })}
                   />
                 ))}
+                {organisationDirectoryControls}
               </Panel>
             }
             right={

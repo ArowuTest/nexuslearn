@@ -47,10 +47,38 @@ type fakeAdminDirectoryPageRepository struct {
 	credentialPage    learning.StudentCredentialPage
 	studentQuery      learning.AdminDirectoryPageQuery
 	credentialQuery   learning.AdminDirectoryPageQuery
+	studentCalls      int
+	credentialCalls   int
 	invalidCursorPage bool
 }
 
+type fakeAdminOrganisationPageRepository struct {
+	fakeRepository
+	schoolPage  learning.SchoolPage
+	userPage    learning.SchoolUserPage
+	classPage   learning.ClassPage
+	schoolQuery learning.AdminOrganisationPageQuery
+	userQuery   learning.AdminOrganisationPageQuery
+	classQuery  learning.AdminOrganisationPageQuery
+}
+
+func (f *fakeAdminOrganisationPageRepository) ListSchoolPage(_ context.Context, query learning.AdminOrganisationPageQuery) (learning.SchoolPage, error) {
+	f.schoolQuery = query
+	return f.schoolPage, nil
+}
+
+func (f *fakeAdminOrganisationPageRepository) ListSchoolUserPage(_ context.Context, query learning.AdminOrganisationPageQuery) (learning.SchoolUserPage, error) {
+	f.userQuery = query
+	return f.userPage, nil
+}
+
+func (f *fakeAdminOrganisationPageRepository) ListClassPage(_ context.Context, query learning.AdminOrganisationPageQuery) (learning.ClassPage, error) {
+	f.classQuery = query
+	return f.classPage, nil
+}
+
 func (f *fakeAdminDirectoryPageRepository) ListStudentPage(_ context.Context, query learning.AdminDirectoryPageQuery) (learning.StudentProfilePage, error) {
+	f.studentCalls++
 	f.studentQuery = query
 	if f.invalidCursorPage && query.Cursor != "" {
 		return learning.StudentProfilePage{}, learning.ErrInvalidConfiguration
@@ -59,6 +87,7 @@ func (f *fakeAdminDirectoryPageRepository) ListStudentPage(_ context.Context, qu
 }
 
 func (f *fakeAdminDirectoryPageRepository) ListStudentCredentialPage(_ context.Context, query learning.AdminDirectoryPageQuery) (learning.StudentCredentialPage, error) {
+	f.credentialCalls++
 	f.credentialQuery = query
 	if f.invalidCursorPage && query.Cursor != "" {
 		return learning.StudentCredentialPage{}, learning.ErrInvalidConfiguration
@@ -173,6 +202,78 @@ func TestAdminCombinedDirectoryHandlerUsesIndependentOpaqueCursors(t *testing.T)
 	}
 	if len(body.Students) != 1 || body.StudentNextCursor != "student-next" || len(body.Credentials) != 1 || body.CredentialNextCursor != "credential-next" {
 		t.Fatalf("unexpected combined page: %#v", body)
+	}
+}
+
+func TestAdminCombinedDirectoryHandlerDoesNotRestartExhaustedCollection(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "test-admin")
+	repo := &fakeAdminDirectoryPageRepository{
+		credentialPage: learning.StudentCredentialPage{
+			StudentCredentials: []learning.StudentCredentialConfig{{StudentExternalRef: "student-2", DisplayName: "Student Two"}},
+		},
+	}
+	srv := New(repo, "postgres")
+	req := httptest.NewRequest(http.MethodGet, "/v1/admin/learner-directory?limit=2&student_done=1&credential_cursor=credential-cursor", nil)
+	req.Header.Set("X-Admin-Key", "test-admin")
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200, got %d: %s", res.Code, res.Body.String())
+	}
+	if repo.studentCalls != 0 || repo.credentialCalls != 1 {
+		t.Fatalf("exhausted collection was queried again: student_calls=%d credential_calls=%d", repo.studentCalls, repo.credentialCalls)
+	}
+	var body struct {
+		Students       []learning.StudentProfileConfig    `json:"students"`
+		Credentials    []learning.StudentCredentialConfig `json:"student_credentials"`
+		StudentNext    string                             `json:"student_next_cursor"`
+		CredentialNext string                             `json:"credential_next_cursor"`
+	}
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if len(body.Students) != 0 || len(body.Credentials) != 1 || body.StudentNext != "" || body.CredentialNext != "" {
+		t.Fatalf("unexpected exhausted collection response: %#v", body)
+	}
+}
+
+func TestAdminCombinedOrganisationHandlerUsesIndependentCursors(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "test-admin")
+	repo := &fakeAdminOrganisationPageRepository{
+		schoolPage: learning.SchoolPage{
+			Schools: []learning.SchoolConfig{{ID: "school-2", Name: "Beta", URN: "beta"}}, NextCursor: "school-next",
+		},
+		userPage: learning.SchoolUserPage{
+			SchoolUsers: []learning.SchoolUserConfig{{ID: "user-2", SchoolName: "Beta", Role: "teacher", DisplayName: "Teacher Two"}}, NextCursor: "user-next",
+		},
+		classPage: learning.ClassPage{
+			Classes: []learning.ClassConfig{{ID: "class-2", SchoolName: "Beta", Name: "Blue", YearGroup: 4}}, NextCursor: "class-next",
+		},
+	}
+	srv := New(repo, "postgres")
+	req := httptest.NewRequest(http.MethodGet, "/v1/admin/organisation-directory?limit=2&school_cursor=school-cursor&school_user_cursor=user-cursor&class_cursor=class-cursor", nil)
+	req.Header.Set("X-Admin-Key", "test-admin")
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200, got %d: %s", res.Code, res.Body.String())
+	}
+	if repo.schoolQuery.Limit != 2 || repo.schoolQuery.Cursor != "school-cursor" || repo.userQuery.Cursor != "user-cursor" || repo.classQuery.Cursor != "class-cursor" {
+		t.Fatalf("organisation cursors were not forwarded independently: school=%#v user=%#v class=%#v", repo.schoolQuery, repo.userQuery, repo.classQuery)
+	}
+	var body struct {
+		Schools          []learning.SchoolConfig     `json:"schools"`
+		SchoolNextCursor string                      `json:"school_next_cursor"`
+		Users            []learning.SchoolUserConfig `json:"school_users"`
+		UserNextCursor   string                      `json:"school_user_next_cursor"`
+		Classes          []learning.ClassConfig      `json:"classes"`
+		ClassNextCursor  string                      `json:"class_next_cursor"`
+	}
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if len(body.Schools) != 1 || body.SchoolNextCursor != "school-next" || len(body.Users) != 1 || body.UserNextCursor != "user-next" || len(body.Classes) != 1 || body.ClassNextCursor != "class-next" {
+		t.Fatalf("unexpected combined organisation page: %#v", body)
 	}
 }
 

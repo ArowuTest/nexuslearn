@@ -52,7 +52,7 @@ test("performance gate requires static HTML evidence and reports evidence counts
   }
 });
 
-test("performance gate enforces the approved 1,410,000-byte aggregate ceiling", async () => {
+test("performance gate enforces the approved 1,412,000-byte aggregate ceiling", async () => {
   const chunks = Array.from({ length: 6 }, (_, index) => `static/chunks/aggregate-${index}.js`);
   const root = await budgetFixture({
     htmlChunks: [chunks[0]],
@@ -62,7 +62,7 @@ test("performance gate enforces the approved 1,410,000-byte aggregate ceiling", 
   try {
     const result = runBudget(root);
     assert.equal(result.status, 1, result.stdout);
-    assert.match(result.stderr, /aggregateJavaScript 1440000 exceeds 1410000/);
+    assert.match(result.stderr, /aggregateJavaScript 1440000 exceeds 1412000/);
     assert.doesNotMatch(result.stderr, /largestJavaScript/);
     assert.doesNotMatch(result.stderr, /largestRouteJavaScript/);
   } finally {

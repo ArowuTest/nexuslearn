@@ -114,6 +114,164 @@ func TestPostgresAdminDirectoryPagesStayBoundedAndStable(t *testing.T) {
 	}
 }
 
+func TestPostgresAdminOrganisationDirectoryPagesStayBoundedAndStable(t *testing.T) {
+	pool, repo := openPaginationIntegrationRepository(t)
+	ctx, cancel := context.WithTimeout(context.Background(), 90*time.Second)
+	defer cancel()
+	seedAdminOrganisationRows(t, ctx, pool)
+
+	schoolIDs, schoolCursors := traverseSchoolPages(t, ctx, repo, 137)
+	secondSchoolIDs, secondSchoolCursors := traverseSchoolPages(t, ctx, repo, 137)
+	assertStableOrganisationTraversal(t, schoolIDs, secondSchoolIDs, schoolCursors, secondSchoolCursors, paginationOrganisationRows)
+	userIDs, userCursors := traverseSchoolUserPages(t, ctx, repo, 137)
+	secondUserIDs, secondUserCursors := traverseSchoolUserPages(t, ctx, repo, 137)
+	assertStableOrganisationTraversal(t, userIDs, secondUserIDs, userCursors, secondUserCursors, paginationOrganisationRows)
+	classIDs, classCursors := traverseClassPages(t, ctx, repo, 137)
+	secondClassIDs, secondClassCursors := traverseClassPages(t, ctx, repo, 137)
+	assertStableOrganisationTraversal(t, classIDs, secondClassIDs, classCursors, secondClassCursors, paginationOrganisationRows)
+
+	var plan []byte
+	if err := pool.QueryRow(ctx, `
+		EXPLAIN (FORMAT JSON)
+		SELECT id::text, name, COALESCE(urn,''), status, created_at, updated_at
+		FROM schools
+		WHERE (name, COALESCE(urn,''), id::text) > ($1::text, $2::text, $3::text)
+		ORDER BY name, COALESCE(urn,''), id::text
+		LIMIT $4
+	`, "Organisation School 00500", "organisation-00500", schoolIDs[len(schoolIDs)/2], 137).Scan(&plan); err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(string(plan), "schools_directory_order_idx") {
+		t.Fatalf("organisation school pagination query plan does not use the bounded ordering index: %s", plan)
+	}
+}
+
+const paginationOrganisationRows = 1000
+
+func seedAdminOrganisationRows(t *testing.T, ctx context.Context, pool *pgxpool.Pool) {
+	t.Helper()
+	if _, err := pool.Exec(ctx, `
+		INSERT INTO schools (name, urn, status)
+		SELECT 'Organisation School ' || lpad(n::text, 5, '0'),
+		       'organisation-' || lpad(n::text, 5, '0'), 'active'
+		FROM generate_series(1, $1) AS n
+	`, paginationOrganisationRows); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := pool.Exec(ctx, `
+		INSERT INTO app_users (email, display_name, user_type, status, login_id, password_hash, temporary_password_required)
+		SELECT 'organisation-teacher-' || lpad(n::text, 5, '0') || '@example.test',
+		       'Organisation Teacher ' || lpad(n::text, 5, '0'), 'teacher', 'active',
+		       'organisation-teacher-' || lpad(n::text, 5, '0'), '', true
+		FROM generate_series(1, $1) AS n
+	`, paginationOrganisationRows); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := pool.Exec(ctx, `
+		INSERT INTO school_users (school_id, user_id, role)
+		SELECT s.id, u.id, 'teacher'
+		FROM schools s
+		JOIN app_users u ON u.email = 'organisation-teacher-' || right(s.urn, 5) || '@example.test'
+		WHERE s.urn LIKE 'organisation-%'
+	`); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := pool.Exec(ctx, `
+		INSERT INTO classes (school_id, name, year_group)
+		SELECT s.id, 'Class Blue', ((right(s.urn, 5)::int - 1) % 7) + 1
+		FROM schools s
+		WHERE s.urn LIKE 'organisation-%'
+	`); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := pool.Exec(ctx, "ANALYZE schools; ANALYZE app_users; ANALYZE school_users; ANALYZE classes"); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func traverseSchoolPages(t *testing.T, ctx context.Context, repo *PostgresRepository, limit int) ([]string, []string) {
+	t.Helper()
+	ids, cursors := []string{}, []string{}
+	query := AdminOrganisationPageQuery{Limit: limit}
+	for {
+		page, err := repo.ListSchoolPage(ctx, query)
+		if err != nil {
+			t.Fatal(err)
+		}
+		for _, item := range page.Schools {
+			ids = append(ids, item.ID)
+		}
+		cursors = append(cursors, page.NextCursor)
+		if page.NextCursor == "" {
+			return ids, cursors
+		}
+		query.Cursor = page.NextCursor
+	}
+}
+
+func traverseSchoolUserPages(t *testing.T, ctx context.Context, repo *PostgresRepository, limit int) ([]string, []string) {
+	t.Helper()
+	ids, cursors := []string{}, []string{}
+	query := AdminOrganisationPageQuery{Limit: limit}
+	for {
+		page, err := repo.ListSchoolUserPage(ctx, query)
+		if err != nil {
+			t.Fatal(err)
+		}
+		for _, item := range page.SchoolUsers {
+			ids = append(ids, item.ID)
+		}
+		cursors = append(cursors, page.NextCursor)
+		if page.NextCursor == "" {
+			return ids, cursors
+		}
+		query.Cursor = page.NextCursor
+	}
+}
+
+func traverseClassPages(t *testing.T, ctx context.Context, repo *PostgresRepository, limit int) ([]string, []string) {
+	t.Helper()
+	ids, cursors := []string{}, []string{}
+	query := AdminOrganisationPageQuery{Limit: limit}
+	for {
+		page, err := repo.ListClassPage(ctx, query)
+		if err != nil {
+			t.Fatal(err)
+		}
+		for _, item := range page.Classes {
+			ids = append(ids, item.ID)
+		}
+		cursors = append(cursors, page.NextCursor)
+		if page.NextCursor == "" {
+			return ids, cursors
+		}
+		query.Cursor = page.NextCursor
+	}
+}
+
+func assertStableOrganisationTraversal(t *testing.T, firstIDs, secondIDs, firstCursors, secondCursors []string, wantRows int) {
+	t.Helper()
+	if len(firstIDs) != wantRows {
+		t.Fatalf("organisation pagination omitted rows: got %d want %d", len(firstIDs), wantRows)
+	}
+	seen := make(map[string]struct{}, len(firstIDs))
+	for _, id := range firstIDs {
+		if _, duplicate := seen[id]; duplicate {
+			t.Fatalf("organisation pagination returned duplicate id %q", id)
+		}
+		seen[id] = struct{}{}
+	}
+	if !reflect.DeepEqual(firstIDs, secondIDs) {
+		t.Fatal("repeated organisation traversal returned a different row sequence")
+	}
+	if !reflect.DeepEqual(firstCursors, secondCursors) {
+		t.Fatal("repeated organisation traversal returned unstable page cursors")
+	}
+	if len(firstCursors) < 2 || firstCursors[len(firstCursors)-1] != "" {
+		t.Fatalf("organisation pagination did not end with an empty cursor: %v", firstCursors)
+	}
+}
+
 func seedAdminDirectoryRows(t *testing.T, ctx context.Context, pool *pgxpool.Pool) {
 	t.Helper()
 	if _, err := pool.Exec(ctx, `
