@@ -44,6 +44,28 @@ async function openAdminAs(page: Page, role: AdminRole, section: string) {
       await route.fulfill({ contentType: "application/json", body: JSON.stringify({ reward_rules: [] }) });
       return;
     }
+    if (url.pathname === "/v1/admin/world-directory") {
+      const cursor = url.searchParams.get("cursor");
+      await route.fulfill({
+        contentType: "application/json",
+        body: JSON.stringify({
+          worlds: [{ key: cursor ? "world-2" : "world-1", name: cursor ? "Second World" : "First World", year_group: 3, theme: "adventure", enabled: true }],
+          ...(cursor ? {} : { next_cursor: "world-next" }),
+        }),
+      });
+      return;
+    }
+    if (url.pathname === "/v1/admin/feature-flag-directory") {
+      const cursor = url.searchParams.get("cursor");
+      await route.fulfill({
+        contentType: "application/json",
+        body: JSON.stringify({
+          feature_flags: [{ key: cursor ? "flag-2" : "flag-1", enabled: !cursor, description: cursor ? "Second flag" : "First flag", config: {} }],
+          ...(cursor ? {} : { next_cursor: "flag-next" }),
+        }),
+      });
+      return;
+    }
     if (url.pathname === "/v1/admin/learner-directory") {
       const cursor = url.searchParams.get("student_cursor") || url.searchParams.get("credential_cursor");
       await route.fulfill({
@@ -219,8 +241,36 @@ test("platform administrator loads one operational section at a time", async ({ 
   await expect(page.getByRole("heading", { name: "Feature Flags" })).toBeVisible();
   await expect.poll(() => requests.map((url) => `${url.pathname}?${url.searchParams.toString()}`)).toEqual([
     "/v1/admin/learner-directory?limit=25",
-    "/v1/admin/config?section=flags",
+    "/v1/admin/feature-flag-directory?limit=25",
   ]);
+});
+
+test("platform administrator appends a bounded feature flag page", async ({ page }) => {
+  const requests = await openAdminAs(page, "platform_admin", "Flags");
+  await expect(page.getByText("flag-1", { exact: true })).toBeVisible();
+  const loadMore = page.getByRole("button", { name: "Load more", exact: true });
+  await expect(loadMore).toBeEnabled();
+  await loadMore.click();
+  await expect(page.getByText("flag-2", { exact: true })).toBeVisible();
+  await expect.poll(() => requests.map((url) => `${url.pathname}?${url.searchParams.toString()}`)).toEqual([
+    "/v1/admin/feature-flag-directory?limit=25",
+    "/v1/admin/feature-flag-directory?limit=25&cursor=flag-next",
+  ]);
+  await expect(page.getByRole("button", { name: "All records loaded", exact: true })).toBeDisabled();
+});
+
+test("platform administrator appends a bounded world page", async ({ page }) => {
+  const requests = await openAdminAs(page, "platform_admin", "Worlds");
+  await expect(page.getByText("First World", { exact: true })).toBeVisible();
+  const loadMore = page.getByRole("button", { name: "Load more", exact: true });
+  await expect(loadMore).toBeEnabled();
+  await loadMore.click();
+  await expect(page.getByText("Second World", { exact: true })).toBeVisible();
+  await expect.poll(() => requests.map((url) => `${url.pathname}?${url.searchParams.toString()}`)).toEqual([
+    "/v1/admin/world-directory?limit=25",
+    "/v1/admin/world-directory?limit=25&cursor=world-next",
+  ]);
+  await expect(page.getByRole("button", { name: "All records loaded", exact: true })).toBeDisabled();
 });
 
 test("platform administrator appends the next bounded learner page with opaque cursors", async ({ page }) => {

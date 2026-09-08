@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import ProgressSnapshot from "@/components/ProgressSnapshot";
 import AttemptEvidencePanel from "@/components/AttemptEvidencePanel";
 import AdminLedgerControls from "@/components/admin/AdminLedgerControls";
-import { Actions, AdminListPager, EditorGrid, Field, Info, JsonField, Panel, PickRow, Select, Toggle } from "@/components/admin/AdminEditorPrimitives";
+import { Actions, EditorGrid, Field, Info, JsonField, Panel, PickRow, Select, Toggle } from "@/components/admin/AdminEditorPrimitives";
 import {
   assetBadgeClass,
   contentVersionDiffFields,
@@ -601,6 +601,15 @@ type AdminContentDirectoryState<T> = {
   error: string;
 };
 
+type AdminRuntimeDirectoryKind = "worlds" | "feature_flags";
+type AdminRuntimeDirectoryState<T> = {
+  items: T[];
+  nextCursor: string;
+  loaded: boolean;
+  loading: boolean;
+  error: string;
+};
+
 const API = process.env.NEXT_PUBLIC_API_URL;
 const EMPTY_OBJECT = "{}";
 const EMPTY_ARRAY = "[]";
@@ -613,6 +622,10 @@ function emptyAdminLedger<T extends { id: string }>(): AdminLedgerState<T> {
 }
 
 function emptyContentDirectory<T>(): AdminContentDirectoryState<T> {
+  return { items: [], nextCursor: "", loaded: false, loading: false, error: "" };
+}
+
+function emptyRuntimeDirectory<T>(): AdminRuntimeDirectoryState<T> {
   return { items: [], nextCursor: "", loaded: false, loading: false, error: "" };
 }
 
@@ -793,7 +806,6 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState("");
   const [tab, setTab] = useState<Tab>("Overview");
-  const [listPages, setListPages] = useState<Record<string, number>>({});
   const [directoryLoading, setDirectoryLoading] = useState(false);
   const [directoryError, setDirectoryError] = useState("");
   const directoryCursors = useRef({ student: "", credential: "" });
@@ -819,6 +831,9 @@ export default function AdminPage() {
   const [rewardDirectory, setRewardDirectory] = useState<AdminContentDirectoryState<RewardRule>>(() => emptyContentDirectory());
   const [objectiveDirectory, setObjectiveDirectory] = useState<AdminContentDirectoryState<Objective>>(() => emptyContentDirectory());
   const contentDirectoryRequest = useRef(0);
+  const [worldDirectory, setWorldDirectory] = useState<AdminRuntimeDirectoryState<World>>(() => emptyRuntimeDirectory());
+  const [featureFlagDirectory, setFeatureFlagDirectory] = useState<AdminRuntimeDirectoryState<FeatureFlag>>(() => emptyRuntimeDirectory());
+  const runtimeDirectoryRequest = useRef(0);
 
   useEffect(() => {
     const role = accountSessionRole();
@@ -896,12 +911,12 @@ export default function AdminPage() {
 
   const totals = useMemo(
     () => [
-      { label: "Worlds", value: config?.worlds?.length ?? 0 },
+      { label: "Worlds", value: worldDirectory.loaded ? worldDirectory.items.length : config?.worlds?.length ?? 0 },
       { label: "Learners", value: config?.students?.length ?? 0 },
       { label: "Classes", value: config?.classes?.length ?? 0 },
       { label: "Content ready", value: readiness?.totals.ready ?? 0 },
     ],
-    [config, readiness],
+    [config, readiness, worldDirectory.loaded, worldDirectory.items.length],
   );
   const selectedProgressStudent = useMemo(
     () => (config?.students ?? []).find((student) => student.external_ref === progressStudentID),
@@ -1250,6 +1265,7 @@ export default function AdminPage() {
       accessRequestDirectoryRequest.current += 1;
       setAccessRequestStatus("all");
       resetContentDirectories();
+      resetRuntimeDirectories();
       setAdminLogin({ login_id: adminLogin.login_id, password: "" });
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Administrator login failed.");
@@ -1285,6 +1301,7 @@ export default function AdminPage() {
     accessRequestDirectoryRequest.current += 1;
     setAccessRequestStatus("all");
     resetContentDirectories();
+    resetRuntimeDirectories();
     setProgressStudentID("");
     setAdminKey("");
     setContentReviewLedger(null);
@@ -1398,6 +1415,12 @@ export default function AdminPage() {
     setObjectives([]);
   }
 
+  function resetRuntimeDirectories() {
+    runtimeDirectoryRequest.current += 1;
+    setWorldDirectory(emptyRuntimeDirectory());
+    setFeatureFlagDirectory(emptyRuntimeDirectory());
+  }
+
   async function loadContentDirectory(kind: AdminContentDirectoryKind, append: boolean) {
     const request = ++contentDirectoryRequest.current;
     const current = kind === "activities" ? activityDirectory : kind === "questions" ? questionDirectory : kind === "reward_rules" ? rewardDirectory : objectiveDirectory;
@@ -1438,6 +1461,42 @@ export default function AdminPage() {
     }
   }
 
+  async function loadRuntimeDirectory(kind: AdminRuntimeDirectoryKind, append: boolean) {
+    const request = ++runtimeDirectoryRequest.current;
+    const current = kind === "worlds" ? worldDirectory : featureFlagDirectory;
+    const cursor = append ? current.nextCursor : "";
+    const endpoint = kind === "worlds" ? "world-directory" : "feature-flag-directory";
+    const setLoadingState = (loading: boolean, error: string) => {
+      if (kind === "worlds") setWorldDirectory((previous) => ({ ...previous, loading, error }));
+      else setFeatureFlagDirectory((previous) => ({ ...previous, loading, error }));
+    };
+    setLoadingState(true, "");
+    try {
+      const params = new URLSearchParams({ limit: String(ADMIN_PAGE_SIZE) });
+      if (cursor) params.set("cursor", cursor);
+      const page = await adminFetch(`/v1/admin/${endpoint}?${params.toString()}`) as {
+        worlds?: World[];
+        feature_flags?: FeatureFlag[];
+        next_cursor?: string;
+      };
+      if (request !== runtimeDirectoryRequest.current) return;
+      if (kind === "worlds") {
+        const incoming = page.worlds ?? [];
+        const items = append ? appendUniqueByID(worldDirectory.items, incoming, (item) => item.key) : incoming;
+        setWorldDirectory({ items, nextCursor: page.next_cursor ?? "", loaded: true, loading: false, error: "" });
+        setConfig((previous) => ({ ...(previous ?? {}), worlds: items }));
+      } else {
+        const incoming = page.feature_flags ?? [];
+        const items = append ? appendUniqueByID(featureFlagDirectory.items, incoming, (item) => item.key) : incoming;
+        setFeatureFlagDirectory({ items, nextCursor: page.next_cursor ?? "", loaded: true, loading: false, error: "" });
+        setConfig((previous) => ({ ...(previous ?? {}), feature_flags: items }));
+      }
+    } catch (error) {
+      if (request !== runtimeDirectoryRequest.current) return;
+      setLoadingState(false, error instanceof Error ? error.message : "Could not load runtime directory.");
+    }
+  }
+
   async function loadAdminSection(section: Tab, role: AdminAccountRole) {
     const plan = adminSectionLoadPlan(role, section);
     setLoading(true);
@@ -1452,6 +1511,10 @@ export default function AdminPage() {
         await loadContentDirectory("reward_rules", false);
       } else if (section === "Objectives") {
         await loadContentDirectory("objectives", false);
+      } else if (section === "Worlds") {
+        await loadRuntimeDirectory("worlds", false);
+      } else if (section === "Flags") {
+        await loadRuntimeDirectory("feature_flags", false);
       } else if (plan.configSection === "learners" || plan.configSection === "progress") {
         await loadLearnerDirectory(false);
       } else if (plan.configSection === "schools") {
@@ -1984,19 +2047,6 @@ export default function AdminPage() {
     window.history.replaceState({}, "", url);
   }
 
-  function paginate<T>(key: string, items: T[]) {
-    const totalPages = Math.max(1, Math.ceil(items.length / ADMIN_PAGE_SIZE));
-    const page = Math.min(listPages[key] ?? 0, totalPages - 1);
-    return { items: items.slice(page * ADMIN_PAGE_SIZE, (page + 1) * ADMIN_PAGE_SIZE), page, totalPages };
-  }
-
-  function changePage(key: string, page: number) {
-    setListPages((current) => ({ ...current, [key]: page }));
-  }
-
-  const pagedWorlds = paginate("worlds", config?.worlds ?? []);
-  const pagedFlags = paginate("flags", config?.feature_flags ?? []);
-
   const learnerDirectoryControls = (
     <div className="border-t border-[#1d1a3e]/8 p-4 text-xs" aria-live="polite">
       <div className="flex flex-wrap items-center justify-between gap-3">
@@ -2474,7 +2524,7 @@ export default function AdminPage() {
           <EditorGrid
             left={
           <Panel title="Configured Worlds">
-                {pagedWorlds.items.map((world) => (
+                {worldDirectory.items.map((world) => (
                   <PickRow
                     key={world.key}
                     title={world.name}
@@ -2483,7 +2533,13 @@ export default function AdminPage() {
                     onClick={() => setWorldDraft({ ...world, configText: pretty(world.config ?? {}) })}
                   />
                 ))}
-                <AdminListPager page={pagedWorlds.page} totalPages={pagedWorlds.totalPages} onChange={(page) => changePage("worlds", page)} />
+                <AdminCursorPager
+                  label={`${worldDirectory.items.length} worlds loaded`}
+                  nextCursor={worldDirectory.nextCursor}
+                  loading={worldDirectory.loading}
+                  error={worldDirectory.error}
+                  onLoadMore={() => void loadRuntimeDirectory("worlds", true)}
+                />
               </Panel>
             }
             right={
@@ -3418,7 +3474,7 @@ export default function AdminPage() {
           <EditorGrid
             left={
           <Panel title="Feature Flags">
-                {pagedFlags.items.map((flag) => (
+                {featureFlagDirectory.items.map((flag) => (
                   <PickRow
                     key={flag.key}
                     title={flag.key}
@@ -3427,7 +3483,13 @@ export default function AdminPage() {
                     onClick={() => setFlagDraft({ ...flag, configText: pretty(flag.config ?? {}) })}
                   />
                 ))}
-                <AdminListPager page={pagedFlags.page} totalPages={pagedFlags.totalPages} onChange={(page) => changePage("flags", page)} />
+                <AdminCursorPager
+                  label={`${featureFlagDirectory.items.length} feature flags loaded`}
+                  nextCursor={featureFlagDirectory.nextCursor}
+                  loading={featureFlagDirectory.loading}
+                  error={featureFlagDirectory.error}
+                  onLoadMore={() => void loadRuntimeDirectory("feature_flags", true)}
+                />
               </Panel>
             }
             right={

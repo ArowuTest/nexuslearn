@@ -74,6 +74,11 @@ type adminContentPageRepository interface {
 	ListObjectivePage(context.Context, learning.AdminContentPageQuery) (learning.ObjectivePage, error)
 }
 
+type adminRuntimePageRepository interface {
+	ListWorldPage(context.Context, learning.AdminRuntimePageQuery) (learning.WorldPage, error)
+	ListFeatureFlagPage(context.Context, learning.AdminRuntimePageQuery) (learning.FeatureFlagPage, error)
+}
+
 type strandBucket struct {
 	topics map[string]bool
 	count  int
@@ -255,8 +260,10 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("GET /v1/admin/config", s.handleAdminConfig)
 	s.mux.HandleFunc("PUT /v1/admin/platform-users/{email}", s.handleUpsertPlatformUser)
 	s.mux.HandleFunc("GET /v1/admin/feature-flags", s.handleFeatureFlags)
+	s.mux.HandleFunc("GET /v1/admin/feature-flag-directory", s.handleAdminFeatureFlagDirectory)
 	s.mux.HandleFunc("PUT /v1/admin/feature-flags/{key}", s.handleUpsertFeatureFlag)
 	s.mux.HandleFunc("GET /v1/admin/worlds", s.handleWorlds)
+	s.mux.HandleFunc("GET /v1/admin/world-directory", s.handleAdminWorldDirectory)
 	s.mux.HandleFunc("PUT /v1/admin/worlds/{key}", s.handleUpsertWorld)
 	s.mux.HandleFunc("GET /v1/admin/content/activities", s.handleActivities)
 	s.mux.HandleFunc("GET /v1/admin/content/activity-directory", s.handleAdminActivityDirectory)
@@ -1079,6 +1086,33 @@ func (s *Server) handleFeatureFlags(w http.ResponseWriter, r *http.Request) {
 	writeJSON(w, http.StatusOK, map[string]any{"feature_flags": flags})
 }
 
+func (s *Server) handleAdminFeatureFlagDirectory(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	pageRepository, ok := s.repo.(adminRuntimePageRepository)
+	if !ok {
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "bounded feature flag directory is unavailable"})
+		return
+	}
+	query, err := adminRuntimePageQuery(r)
+	if err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+		return
+	}
+	page, err := pageRepository.ListFeatureFlagPage(r.Context(), query)
+	if err != nil {
+		if errors.Is(err, learning.ErrInvalidConfiguration) {
+			writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+			return
+		}
+		slog.Warn("failed to read bounded feature flags", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read feature flag directory"})
+		return
+	}
+	writeJSON(w, http.StatusOK, page)
+}
+
 func (s *Server) handleRuntimeFlags(w http.ResponseWriter, r *http.Request) {
 	flags, err := s.repo.ListFeatureFlags(r.Context())
 	if err != nil {
@@ -1118,6 +1152,33 @@ func (s *Server) handleWorlds(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	writeJSON(w, http.StatusOK, map[string]any{"worlds": worlds})
+}
+
+func (s *Server) handleAdminWorldDirectory(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	pageRepository, ok := s.repo.(adminRuntimePageRepository)
+	if !ok {
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "bounded world directory is unavailable"})
+		return
+	}
+	query, err := adminRuntimePageQuery(r)
+	if err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+		return
+	}
+	page, err := pageRepository.ListWorldPage(r.Context(), query)
+	if err != nil {
+		if errors.Is(err, learning.ErrInvalidConfiguration) {
+			writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+			return
+		}
+		slog.Warn("failed to read bounded worlds", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read world directory"})
+		return
+	}
+	writeJSON(w, http.StatusOK, page)
 }
 
 func (s *Server) handleUpsertWorld(w http.ResponseWriter, r *http.Request) {
@@ -2914,6 +2975,21 @@ func adminDirectoryPageQuery(r *http.Request, cursorKey ...string) (learning.Adm
 
 func adminContentPageQuery(r *http.Request) (learning.AdminContentPageQuery, error) {
 	query := learning.AdminContentPageQuery{Limit: 25, Cursor: strings.TrimSpace(r.URL.Query().Get("cursor"))}
+	if rawLimit := strings.TrimSpace(r.URL.Query().Get("limit")); rawLimit != "" {
+		limit, err := strconv.Atoi(rawLimit)
+		if err != nil || limit < 1 {
+			return query, errors.New("limit must be a positive whole number")
+		}
+		if limit > 100 {
+			limit = 100
+		}
+		query.Limit = limit
+	}
+	return query, nil
+}
+
+func adminRuntimePageQuery(r *http.Request) (learning.AdminRuntimePageQuery, error) {
+	query := learning.AdminRuntimePageQuery{Limit: 25, Cursor: strings.TrimSpace(r.URL.Query().Get("cursor"))}
 	if rawLimit := strings.TrimSpace(r.URL.Query().Get("limit")); rawLimit != "" {
 		limit, err := strconv.Atoi(rawLimit)
 		if err != nil || limit < 1 {
