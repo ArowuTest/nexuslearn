@@ -1710,6 +1710,16 @@ func TestHandleAdminContentReadinessSummarizesCoverage(t *testing.T) {
 	if len(body.Items) != 1 || body.Items[0].Status != "ready" || body.Items[0].Score < 85 {
 		t.Fatalf("expected ready item, got %#v", body.Items)
 	}
+	item := body.Items[0]
+	if item.TeacherEvidence != "Accurate recall across formats." || item.ParentExplanation != "Practise facts in short bursts." {
+		t.Fatalf("expected review context to preserve adult evidence prompts, got %#v", item)
+	}
+	if item.ExpectedMastery != 80 || item.SecureMastery != 90 || len(item.RetentionDays) != 3 || len(item.RequiredFormats) != 2 {
+		t.Fatalf("expected mastery review context, got %#v", item)
+	}
+	if len(item.Prerequisites) != 1 || len(item.Misconceptions) != 1 {
+		t.Fatalf("expected prerequisite and misconception review context, got %#v", item)
+	}
 }
 
 func TestHandleAdminContentReadinessFlagsMissingTeachingEvidence(t *testing.T) {

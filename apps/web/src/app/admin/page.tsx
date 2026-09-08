@@ -224,6 +224,14 @@ type ContentReadinessItem = {
   strand: string;
   topic: string;
   statement: string;
+  parent_explanation?: string;
+  teacher_evidence?: string;
+  prerequisites?: string[];
+  misconceptions?: string[];
+  expected_mastery?: number;
+  secure_mastery?: number;
+  retention_days?: number[];
+  required_formats?: string[];
   status: "ready" | "pilot" | "draft" | "blocked";
   score: number;
   activity_count: number;
@@ -2047,6 +2055,17 @@ export default function AdminPage() {
     window.history.replaceState({}, "", url);
   }
 
+  function openObjectiveEditor(objective: Objective) {
+    selectAdminSection("Objectives");
+    setObjectiveDraft({
+      ...objective,
+      prerequisitesText: pretty(objective.prerequisites ?? []),
+      misconceptionsText: pretty(objective.misconceptions ?? []),
+      retentionDaysText: pretty(objective.mastery?.retention_days ?? []),
+      requiredFormatsText: pretty(objective.mastery?.required_formats ?? []),
+    });
+  }
+
   const learnerDirectoryControls = (
     <div className="border-t border-[#1d1a3e]/8 p-4 text-xs" aria-live="polite">
       <div className="flex flex-wrap items-center justify-between gap-3">
@@ -3027,8 +3046,9 @@ export default function AdminPage() {
                 </div>
               )}
               <div className="grid gap-3 p-5 lg:grid-cols-2">
-                {(pilotReviewBatch?.packs ?? []).map((pack) => (
-                  <article key={pack.pack_id} className="border border-[#1d1a3e]/8 bg-[#fffdf7] p-4">
+                {(pilotReviewBatch?.packs ?? []).map((pack) => {
+                  const reviewObjective = objectives.find((candidate) => candidate.id === pack.pack_id);
+                  return <article key={pack.pack_id} className="border border-[#1d1a3e]/8 bg-[#fffdf7] p-4">
                     <div className="flex flex-wrap items-start justify-between gap-2">
                       <div>
                         <p className="font-semibold">{pack.pack_id}</p>
@@ -3041,6 +3061,14 @@ export default function AdminPage() {
                         {pack.renderer_acceptance_required && <span className="bg-[#fde4e4] px-3 py-1 text-xs font-semibold text-[#8b2b2b]">renderer gate</span>}
                       </div>
                     </div>
+                    <ReviewContextCard
+                      packID={pack.pack_id}
+                      objective={reviewObjective}
+                      canOpenObjective={visibleTabs.includes("Objectives") && Boolean(reviewObjective)}
+                      canOpenProgress={visibleTabs.includes("Progress")}
+                      onOpenObjective={() => reviewObjective && openObjectiveEditor(reviewObjective)}
+                      onOpenProgress={() => selectAdminSection("Progress")}
+                    />
                     <div className="mt-3 grid gap-2 sm:grid-cols-2">
                       {pack.lanes.map((lane) => (
                         <div key={lane.id} className="rounded-2xl border border-[#1d1a3e]/8 bg-white p-3">
@@ -3083,8 +3111,8 @@ export default function AdminPage() {
                         ))}
                       </ul>
                     )}
-                  </article>
-                ))}
+                  </article>;
+                })}
                 {!pilotReviewBatch && (
                   <div className="p-4 text-sm leading-6 text-[#1d1a3e]/62">
                     Pilot batch controls will appear after the generated batch report is available.
@@ -3202,8 +3230,9 @@ export default function AdminPage() {
                 <Info label="Formats covered" value={String(readiness?.totals.formats ?? 0)} />
               </div>
               <div className="divide-y divide-[#1d1a3e]/8">
-                {(readiness?.items ?? []).map((item) => (
-                  <article key={item.objective_id} className="grid gap-4 p-5 lg:grid-cols-[1fr_180px]">
+                {(readiness?.items ?? []).map((item) => {
+                  const readinessObjective = objectives.find((candidate) => candidate.id === item.objective_id) ?? objectiveFromReadinessItem(item);
+                  return <article key={item.objective_id} className="grid gap-4 p-5 lg:grid-cols-[1fr_180px]">
                     <div>
                       <div className="flex flex-wrap items-center gap-2">
                         <span className={`px-3 py-1 text-xs font-semibold ${readinessBadgeClass(item.status)}`}>{item.status}</span>
@@ -3241,6 +3270,14 @@ export default function AdminPage() {
                           </div>
                         </div>
                       )}
+                      <ReviewContextCard
+                        packID={item.objective_id}
+                        objective={readinessObjective}
+                        canOpenObjective={visibleTabs.includes("Objectives") && Boolean(readinessObjective)}
+                        canOpenProgress={visibleTabs.includes("Progress")}
+                        onOpenObjective={() => readinessObjective && openObjectiveEditor(readinessObjective)}
+                        onOpenProgress={() => selectAdminSection("Progress")}
+                      />
                     </div>
                     <div className="self-start bg-[#f6f3ea] p-4">
                       <p className="font-display text-4xl font-semibold">{item.score}</p>
@@ -3274,8 +3311,8 @@ export default function AdminPage() {
                         Open objective
                       </button>
                     </div>
-                  </article>
-                ))}
+                  </article>;
+                })}
                 {(readiness?.items ?? []).length === 0 && (
                   <div className="p-5 text-sm leading-6 text-[#1d1a3e]/62">
                     Load configuration to see objective readiness across teaching, assessment, animation and evidence coverage.
@@ -3634,4 +3671,101 @@ function AdminCursorPager({
       {error && <p className="mt-3 text-[#a23d55]">{error}</p>}
     </div>
   );
+}
+
+function reviewAccessChecks(objective?: Objective) {
+  const formats = objective?.mastery?.required_formats ?? [];
+  const checks = [
+    "Confirm the renderer has a keyboard-operable equivalent response route where the interaction requires one.",
+    "Check visual guidance, reduced-motion behaviour and readable task chunking before approving the lane.",
+    "Confirm audio replay, AAC, switch, partner-pointing or extra-processing-time routes are preserved as equivalent evidence when the learner uses them.",
+  ];
+  if (formats.some((format) => format.toLowerCase().includes("audio"))) {
+    checks.unshift("Listen to the produced audio at the learner-facing speed and confirm the transcript, pronunciation and replay state.");
+  }
+  return checks;
+}
+
+function objectiveFromReadinessItem(item: ContentReadinessItem): Objective {
+  return {
+    id: item.objective_id,
+    year: item.year,
+    subject: item.subject,
+    strand: item.strand,
+    topic: item.topic,
+    statement: item.statement,
+    prerequisites: item.prerequisites ?? [],
+    misconceptions: item.misconceptions ?? [],
+    mastery: {
+      expected: item.expected_mastery ?? 80,
+      secure: item.secure_mastery ?? 90,
+      retention_days: item.retention_days ?? [],
+      required_formats: item.required_formats ?? item.formats ?? [],
+    },
+    parent_explanation: item.parent_explanation ?? "",
+    teacher_evidence: item.teacher_evidence ?? "",
+  };
+}
+
+function ReviewContextCard({
+  packID,
+  objective,
+  canOpenObjective,
+  canOpenProgress,
+  onOpenObjective,
+  onOpenProgress,
+}: {
+  packID: string;
+  objective?: Objective;
+  canOpenObjective: boolean;
+  canOpenProgress: boolean;
+  onOpenObjective: () => void;
+  onOpenProgress: () => void;
+}) {
+  const accessChecks = reviewAccessChecks(objective);
+  return (
+    <aside className="mt-4 rounded-2xl border border-[#7357c9]/18 bg-[#f7f4ff] p-4" aria-label={`Review context for ${packID}`}>
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <p className="font-display text-xs uppercase tracking-[0.14em] text-[#5b43a8]">Review context</p>
+          <h4 className="mt-1 font-display text-lg font-semibold">Evidence to inspect before a decision</h4>
+        </div>
+        <span className="rounded-full bg-white px-3 py-1 text-[11px] font-semibold text-[#5b43a8]">{objective ? "objective linked" : "objective link needed"}</span>
+      </div>
+      {objective ? (
+        <>
+          <p className="mt-3 text-sm font-semibold leading-6 text-[#1d1a3e]">{objective.statement}</p>
+          <div className="mt-3 grid gap-3 md:grid-cols-2">
+            <div className="rounded-xl bg-white p-3">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#565267]">Teacher evidence prompt</p>
+              <p className="mt-1 text-sm leading-6 text-[#1d1a3e]/75">{objective.teacher_evidence || "No teacher evidence prompt is configured yet; keep this lane in review."}</p>
+            </div>
+            <div className="rounded-xl bg-white p-3">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#565267]">Mastery standard</p>
+              <p className="mt-1 text-sm leading-6 text-[#1d1a3e]/75">
+                Expected {objective.mastery.expected}% · secure {objective.mastery.secure}% · formats {objective.mastery.required_formats.length ? objective.mastery.required_formats.map(humanise).join(", ") : "not configured"}.
+              </p>
+            </div>
+          </div>
+          <div className="mt-3 rounded-xl bg-white p-3">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#565267]">SEND and equivalent-response checks</p>
+            <ul className="mt-2 grid gap-1.5 text-sm leading-6 text-[#1d1a3e]/75">
+              {accessChecks.map((check) => <li key={check} className="flex gap-2"><span aria-hidden="true" className="text-[#7357c9]">•</span><span>{check}</span></li>)}
+            </ul>
+          </div>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {canOpenObjective && <button type="button" onClick={onOpenObjective} className="btn-pop rounded-full bg-white px-3 py-2 text-xs font-semibold text-[#4d3690]">Open objective record</button>}
+            {canOpenProgress && <button type="button" onClick={onOpenProgress} className="btn-pop rounded-full bg-[#7357c9] px-3 py-2 text-xs font-semibold text-white">Open learner progress</button>}
+          </div>
+          {canOpenProgress && <p className="mt-2 text-[11px] leading-5 text-[#565267]">Select a learner in Progress to see recent attempts, subject route, revision and teacher evidence before recording a decision.</p>}
+        </>
+      ) : (
+        <p className="mt-3 text-sm leading-6 text-[#8b2b2b]">No live objective record matched <span className="font-mono">{packID}</span>. Do not approve this lane until the objective mapping, teacher evidence prompt and access route are available.</p>
+      )}
+    </aside>
+  );
+}
+
+function humanise(value: string) {
+  return value.replaceAll("_", " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
 }

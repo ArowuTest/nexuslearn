@@ -118,6 +118,14 @@ type contentReadinessItem struct {
 	Strand                 string   `json:"strand"`
 	Topic                  string   `json:"topic"`
 	Statement              string   `json:"statement"`
+	ParentExplanation      string   `json:"parent_explanation"`
+	TeacherEvidence        string   `json:"teacher_evidence"`
+	Prerequisites          []string `json:"prerequisites"`
+	Misconceptions         []string `json:"misconceptions"`
+	ExpectedMastery        int      `json:"expected_mastery"`
+	SecureMastery          int      `json:"secure_mastery"`
+	RetentionDays          []int    `json:"retention_days"`
+	RequiredFormats        []string `json:"required_formats"`
 	Status                 string   `json:"status"`
 	Score                  int      `json:"score"`
 	ActivityCount          int      `json:"activity_count"`
@@ -4644,17 +4652,25 @@ func buildContentReadinessReport(objectives []learning.Objective, activities []l
 
 func buildContentReadinessItem(objective learning.Objective, activities []learning.ActivityConfig, questions []learning.QuestionConfig) contentReadinessItem {
 	item := contentReadinessItem{
-		ObjectiveID:   objective.ID,
-		Year:          objective.Year,
-		Subject:       objective.Subject,
-		Strand:        objective.Strand,
-		Topic:         objective.Topic,
-		Statement:     objective.Statement,
-		ActivityCount: len(activities),
-		QuestionCount: len(questions),
-		Formats:       []string{},
-		Missing:       []string{},
-		Warnings:      []string{},
+		ObjectiveID:       objective.ID,
+		Year:              objective.Year,
+		Subject:           objective.Subject,
+		Strand:            objective.Strand,
+		Topic:             objective.Topic,
+		Statement:         objective.Statement,
+		ParentExplanation: objective.ParentExplanation,
+		TeacherEvidence:   objective.TeacherEvidence,
+		Prerequisites:     append([]string{}, objective.Prerequisites...),
+		Misconceptions:    append([]string{}, objective.Misconceptions...),
+		ExpectedMastery:   objective.Mastery.Expected,
+		SecureMastery:     objective.Mastery.Secure,
+		RetentionDays:     append([]int{}, objective.Mastery.RetentionDays...),
+		RequiredFormats:   append([]string{}, objective.Mastery.RequiredFormats...),
+		ActivityCount:     len(activities),
+		QuestionCount:     len(questions),
+		Formats:           []string{},
+		Missing:           []string{},
+		Warnings:          []string{},
 	}
 	score := 0
 

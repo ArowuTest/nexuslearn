@@ -160,6 +160,57 @@ test("admin menu supports roving keyboard navigation and representative section 
   await expect(page.getByRole("heading", { name: "Curriculum Objectives" })).toBeVisible();
 });
 
+test("readiness puts teacher evidence and SEND review context beside the decision surface", async ({ page }) => {
+  await openAuthenticatedAdmin(page);
+  await page.route("http://api.test/v1/curriculum/objectives", route => route.fulfill({
+    contentType: "application/json",
+    body: JSON.stringify({ objectives: [] }),
+  }));
+  await page.route("http://api.test/v1/admin/content/readiness", route => route.fulfill({
+    contentType: "application/json",
+    body: JSON.stringify({
+      ...emptyReadiness,
+      totals: { ...emptyReadiness.totals, objectives: 1 },
+      items: [{
+        objective_id: "ma-y4-times-tables",
+        year: 4,
+        subject: "Mathematics",
+        strand: "Number",
+        topic: "Multiplication",
+        statement: "Recall multiplication facts up to 12 x 12.",
+        parent_explanation: "Practise facts in short bursts.",
+        teacher_evidence: "Accurate recall across formats.",
+        prerequisites: ["equal groups"],
+        misconceptions: ["commutativity confusion"],
+        expected_mastery: 80,
+        secure_mastery: 90,
+        retention_days: [1, 3, 7],
+        required_formats: ["timed-recall", "multiple_choice"],
+        status: "pilot",
+        score: 80,
+        activity_count: 1,
+        published_activity_count: 1,
+        question_count: 3,
+        published_question_count: 3,
+        format_count: 2,
+        formats: ["timed-recall", "multiple_choice"],
+        missing: [],
+        warnings: [],
+      }],
+    }),
+  }));
+
+  await page.getByRole("button", { name: "Readiness", exact: true }).click();
+  await expect(page.getByRole("heading", { name: "Curriculum Content Readiness" })).toBeVisible();
+  await expect(page.getByRole("complementary", { name: "Review context for ma-y4-times-tables" })).toBeVisible();
+  await expect(page.getByText("Accurate recall across formats.", { exact: true })).toBeVisible();
+  await expect(page.getByText(/Expected 80% · secure 90%/)).toBeVisible();
+  await expect(page.getByText(/keyboard-operable equivalent response route/)).toBeVisible();
+  await expect(page.getByRole("button", { name: "Open learner progress" })).toBeVisible();
+  await page.getByRole("button", { name: "Open learner progress" }).click();
+  await expect(page.getByRole("heading", { name: "Learner progress lookup" })).toBeVisible();
+});
+
 test("release workspace runs a read-only backend preflight and shows every blocker", async ({ page }) => {
   await openAuthenticatedAdmin(page);
   await page.getByRole("button", { name: "Releases", exact: true }).click();

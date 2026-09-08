@@ -373,7 +373,12 @@ No new subject is ready for release until it has:
   route-level support shortcuts and produced-audio-only messaging.
 - [x] Audio listening queue embedded in admin readiness, with embedded playback,
   criteria capture and server review status.
-- [ ] Teacher evidence links and review context improved.
+- [x] Teacher evidence links and review context improved. The backend readiness
+  contract now carries the objective statement, teacher evidence prompt,
+  mastery thresholds, retention cadence, prerequisites, misconceptions and
+  required formats; the admin surface places these beside the review decision,
+  exposes SEND/equivalent-response checks and links authorised operators to
+  learner progress without presenting AI review as human approval.
 - [ ] Responsive, keyboard and reduced-motion visual QA across all lanes.
 
 ### Then platform readiness
