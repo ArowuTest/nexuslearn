@@ -22,6 +22,7 @@ type ReviewDraft = {
   reason: string;
   criteria: Record<string, boolean>;
   playbackCompleted: boolean;
+  playbackDurationMS?: number;
 };
 
 const criteria = [
@@ -51,7 +52,13 @@ function draftFor(item: NarrationQueueItem): ReviewDraft {
     reason: review?.rejection_reasons?.[0] ?? "",
     criteria: review?.criteria ?? {},
     playbackCompleted: Boolean(review?.playback_evidence?.completed),
+    playbackDurationMS: review?.playback_evidence?.duration_ms,
   };
+}
+
+function durationMSFromSeconds(durationSeconds?: number) {
+  if (typeof durationSeconds !== "number" || !Number.isFinite(durationSeconds) || durationSeconds <= 0) return undefined;
+  return Math.min(3_600_000, Math.max(1, Math.round(durationSeconds * 1000)));
 }
 
 function Metric({ label, value }: { label: string; value: number }) {
@@ -146,6 +153,7 @@ export default function AdminAudioWorkspace({ request, readiness }: { request: A
         playbackEvidence: decision === "approved" ? {
           surface: "admin_audio_workspace",
           completed: draft.playbackCompleted,
+          duration_ms: draft.playbackDurationMS,
         } satisfies NarrationPlaybackEvidence : undefined,
       });
       if (decision === "rejected") {
@@ -169,8 +177,12 @@ export default function AdminAudioWorkspace({ request, readiness }: { request: A
     void refresh(filters, 0);
   }
 
-  function markPlaybackComplete(item: NarrationQueueItem) {
-    updateDraft(item, { playbackCompleted: true });
+  function markPlaybackComplete(item: NarrationQueueItem, durationSeconds?: number) {
+    const durationMS = durationMSFromSeconds(durationSeconds);
+    updateDraft(item, {
+      playbackCompleted: true,
+      ...(durationMS === undefined ? {} : { playbackDurationMS: durationMS }),
+    });
   }
 
   const counts = queue?.counts ?? { awaiting: 0, approved: 0, rejected: 0, stale: 0 };
@@ -261,10 +273,10 @@ export default function AdminAudioWorkspace({ request, readiness }: { request: A
 
                 {stale && <div className="mt-4 rounded-2xl border border-[#f0b35a]/50 bg-[#fff8e8] p-3 text-sm text-[#725100]" role="alert"><strong>The previous decision is stale.</strong> Re-listen and create a new decision against the current file and profile.</div>}
 
-                <audio className="mt-4 w-full" controls preload="metadata" src={item.file} aria-label={`Listen to ${item.asset_id}`} onError={() => setPlaybackErrors((current) => ({ ...current, [item.asset_id]: true }))} onCanPlay={() => setPlaybackErrors((current) => ({ ...current, [item.asset_id]: false }))} onEnded={() => markPlaybackComplete(item)} />
+                <audio className="mt-4 w-full" controls preload="metadata" src={item.file} aria-label={`Listen to ${item.asset_id}`} onError={() => setPlaybackErrors((current) => ({ ...current, [item.asset_id]: true }))} onCanPlay={() => setPlaybackErrors((current) => ({ ...current, [item.asset_id]: false }))} onEnded={(event) => markPlaybackComplete(item, event.currentTarget.duration)} />
                 {playbackErrors[item.asset_id] && <p className="mt-2 rounded-xl bg-[#fff1f1] p-3 text-xs text-[#8b2b2b]" role="alert">Audio playback failed. Do not approve this asset; verify the file or request a technical re-record.</p>}
                 <p className="mt-2 rounded-xl bg-[#f5f7fb] p-3 text-xs text-[#1d1a3e]/68" role="status">
-                  {draft.playbackCompleted ? "Played through; assess voice and suitability." : "Play to end before approval; not proof of attention."}
+                  {draft.playbackCompleted ? `Played through${draft.playbackDurationMS ? ` · recorded duration ${(draft.playbackDurationMS / 1000).toFixed(1)}s` : ""}; assess voice and suitability.` : "Play to end before approval; not proof of attention."}
                 </p>
 
                 <div className="mt-4 rounded-2xl border-l-4 border-[#f0b35a] bg-[#fffaf0] p-4">

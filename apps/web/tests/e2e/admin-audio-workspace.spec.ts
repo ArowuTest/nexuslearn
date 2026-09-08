@@ -179,6 +179,6 @@ test("approval is held until the exact recording completes playback", async ({ p
   await expect(page.getByRole("status").filter({ hasText: "approved against the current transcript" })).toBeVisible();
   expect(captured.getReviewPayload()).toMatchObject({
     decision: "approved",
-    playback_evidence: { surface: "admin_audio_workspace", completed: true },
+    playback_evidence: { surface: "admin_audio_workspace", completed: true, duration_ms: 1000 },
   });
 });
