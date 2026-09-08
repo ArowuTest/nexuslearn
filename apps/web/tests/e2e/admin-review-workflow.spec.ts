@@ -177,6 +177,13 @@ test("reviewer filters the SEND queue and sees honest release gates", async ({ p
   await page.getByLabel("Accurate pronunciation").check();
   await page.getByLabel("Age-suitable pace and tone").check();
   await page.getByLabel("Reviewer name").fill("A. Audio Reviewer");
+  await page.locator("audio").evaluate((audio) => {
+    Object.defineProperty(audio, "duration", { configurable: true, value: 1 });
+    Object.defineProperty(audio, "currentTime", { configurable: true, value: 1 });
+    audio.dispatchEvent(new Event("canplay", { bubbles: true }));
+    audio.dispatchEvent(new Event("ended", { bubbles: true }));
+  });
+  await expect(page.getByRole("button", { name: "Approve listening" })).toBeEnabled();
   await page.getByRole("button", { name: "Approve listening" }).click();
   await expect(page.getByText(/approved against the current transcript, audio and production profile/i)).toBeVisible();
   await expect(page.getByText(/No recordings match these filters/)).toBeVisible();
