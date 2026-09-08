@@ -702,6 +702,9 @@ type NextActivityDecision struct {
 	StudentID          string             `json:"student_id"`
 	ObjectiveID        string             `json:"objective_id"`
 	ActivityID         string             `json:"activity_id"`
+	ActivityTitle      string             `json:"activity_title,omitempty"`
+	LearningFocus      string             `json:"learning_focus,omitempty"`
+	Subject            string             `json:"subject,omitempty"`
 	WorldKey           string             `json:"world_key"`
 	World              string             `json:"world"`
 	Realm              string             `json:"realm"`

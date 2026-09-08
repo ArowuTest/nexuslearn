@@ -859,7 +859,7 @@ export default function Mission() {
       <ChildJourneyChrome
         active={journeyStage}
         context={journeyContext}
-        backHref="/play"
+        backHref="/play/today"
         backLabel="Exit"
         actionHref="#mission-support"
         actionLabel="Support & audio"
@@ -868,7 +868,7 @@ export default function Mission() {
       {/* top bar */}
       <div className="relative z-10 mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3">
         <Link
-          href="/play"
+          href="/play/today"
           onClick={() => void recordLearningEvent("mission_exited", { activity_id: mission?.activity?.id || "", question_id: q?.id || "", completed_questions: results.length })}
           className="btn-pop bg-white/10 px-4 py-2 text-sm"
         >
@@ -1401,8 +1401,8 @@ export default function Mission() {
                   Play again
                 </button>
               )}
-              <Link href="/play" className="btn-pop bg-[#5840a6] px-6 py-3 text-white">
-                Back to worlds
+              <Link href="/play/today" className="btn-pop bg-[#5840a6] px-6 py-3 text-white">
+                Back to my route
               </Link>
             </div>
           </div>

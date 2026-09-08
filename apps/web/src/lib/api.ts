@@ -102,6 +102,9 @@ export type NextActivityDecision = {
   student_id: string;
   objective_id: string;
   activity_id: string;
+  activity_title?: string;
+  learning_focus?: string;
+  subject?: string;
   world_key: string;
   world: string;
   realm: string;
@@ -573,10 +576,12 @@ export function storePupilSession(result: PupilLoginResult) {
 }
 
 export function clearPupilSession() {
-  if (!storageAvailable()) return;
-  sessionStorage.removeItem(PUPIL_SESSION_KEY);
-  sessionStorage.removeItem(PUPIL_SESSION_STUDENT_KEY);
-  sessionStorage.removeItem(PUPIL_SESSION_EXPIRES_KEY);
+  try {
+    if (!storageAvailable()) return;
+    sessionStorage.removeItem(PUPIL_SESSION_KEY);
+    sessionStorage.removeItem(PUPIL_SESSION_STUDENT_KEY);
+    sessionStorage.removeItem(PUPIL_SESSION_EXPIRES_KEY);
+  } catch { /* Storage may be revoked while a card is being cleared. */ }
 }
 
 export function pupilSessionHeaders(studentId: string): Record<string, string> {

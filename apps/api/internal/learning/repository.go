@@ -120,6 +120,7 @@ type Repository interface {
 	DiagnosticBaseline(ctx context.Context, studentID string) (DiagnosticBaseline, bool, error)
 	CreateDiagnosticBaseline(ctx context.Context, baseline DiagnosticBaseline) (DiagnosticBaseline, error)
 	StudentYear(ctx context.Context, studentID string) (int, bool, error)
+	StudentIdentity(ctx context.Context, studentID string) (StudentProfileConfig, bool, error)
 	ListStudents(ctx context.Context) ([]StudentProfileConfig, error)
 	UpsertStudent(ctx context.Context, student StudentProfileConfig) (StudentProfileConfig, error)
 	ListSchools(ctx context.Context) ([]SchoolConfig, error)
@@ -276,6 +277,10 @@ func (NoopRepository) CreateDiagnosticBaseline(_ context.Context, baseline Diagn
 
 func (NoopRepository) StudentYear(context.Context, string) (int, bool, error) {
 	return 0, false, nil
+}
+
+func (NoopRepository) StudentIdentity(context.Context, string) (StudentProfileConfig, bool, error) {
+	return StudentProfileConfig{}, false, nil
 }
 
 func (NoopRepository) ListStudents(context.Context) ([]StudentProfileConfig, error) {
@@ -1838,6 +1843,24 @@ func interventionStatusForReviewOutcome(outcome string) (string, bool) {
 	default:
 		return "", false
 	}
+}
+
+// StudentIdentity is an indexed point read, not an administrative pupil-list
+// scan. Enrolment identity must stay separate from a selected learning world.
+func (r *PostgresRepository) StudentIdentity(ctx context.Context, studentID string) (StudentProfileConfig, bool, error) {
+	if studentID == "" {
+		return StudentProfileConfig{}, false, nil
+	}
+	var student StudentProfileConfig
+	err := r.db.QueryRow(ctx, `SELECT external_ref, display_name, year_group FROM students WHERE external_ref=$1`, studentID).
+		Scan(&student.ExternalRef, &student.DisplayName, &student.YearGroup)
+	if errors.Is(err, pgx.ErrNoRows) {
+		return StudentProfileConfig{}, false, nil
+	}
+	if err != nil {
+		return StudentProfileConfig{}, false, err
+	}
+	return student, true, nil
 }
 
 func (r *PostgresRepository) StudentYear(ctx context.Context, studentID string) (int, bool, error) {

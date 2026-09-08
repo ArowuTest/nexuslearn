@@ -75,8 +75,8 @@ export default async function PlayEntry() {
           context={`Choose today’s route across ${subjectContext}`}
           backHref="/"
           backLabel="Home"
-          actionHref="/login"
-          actionLabel="Pupil login"
+          actionHref="/play/today"
+          actionLabel="My learning route"
         />
 
         {(!worldsAvailable || !runtimeAvailable) && (
@@ -94,6 +94,7 @@ export default async function PlayEntry() {
           <aside className="rounded-lg border border-white/12 bg-[#142746]/88 p-6 shadow-[0_24px_80px_rgba(0,0,0,0.24)] backdrop-blur">
             <p className="font-display text-sm uppercase tracking-[0.18em] text-[#ffbf45]">Child entry</p>
             <h1 className="font-display mt-3 text-4xl font-semibold leading-tight md:text-5xl">Choose today&apos;s learning world</h1>
+            <Link href="/play/today" className="btn-pop mt-5 inline-flex bg-[#ffbf45] px-5 py-4 text-[#17233f]">Open my learning route</Link>
             <p className="mt-4 leading-7 text-white/68">
               Every portal leads to a real curriculum mission. Start with a predictable warm-up, learn with your companion, then grow your world with what you have proved.
             </p>

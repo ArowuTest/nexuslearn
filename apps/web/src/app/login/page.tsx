@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { Suspense, useMemo, useState } from "react";
+import { Suspense, useState } from "react";
 import Dino from "@/components/Dino";
-import { pupilLogin, storePupilSession, type PupilLoginResult } from "@/lib/api";
+import { clearPupilSession, pupilLogin, storePupilSession, type PupilLoginResult } from "@/lib/api";
 
 const picturePool = ["star", "book", "sun", "tree", "rocket", "moon", "shell", "key"];
 
@@ -21,7 +21,6 @@ function PupilLoginContent() {
   const initialPupil = params.get("pupil") ?? "";
   const initialCode = params.get("code") ?? "";
   const card = params.get("card") ?? "";
-  const requestedWorld = params.get("world") ?? "";
   const [studentRef, setStudentRef] = useState(initialPupil);
   const [loginCode, setLoginCode] = useState(initialCode);
   const [pictures, setPictures] = useState<string[]>([]);
@@ -29,22 +28,13 @@ function PupilLoginContent() {
   const [message, setMessage] = useState(initialCode ? "QR card found. Choose your pictures in order." : "Use the login card from your school or parent.");
   const [saving, setSaving] = useState(false);
 
-  const launchURL = useMemo(() => {
-    if (!result?.student?.external_ref) return "/play";
-    const query = new URLSearchParams({ studentId: result.student.external_ref });
-    if (result.next_activity?.activity_id) {
-      query.set("activityId", result.next_activity.activity_id);
-      query.set("mode", result.next_activity.assessment_mode);
-    }
-    else if (requestedWorld) query.set("world", requestedWorld);
-    return `/play/mission?${query.toString()}`;
-  }, [requestedWorld, result]);
-
   async function submit() {
     setSaving(true);
     setMessage("Checking your card...");
     setResult(null);
     try {
+      // A failed attempt with a different card must not retain the old child.
+      clearPupilSession();
       const loggedIn = await pupilLogin({
         student_external_ref: studentRef.trim(),
         login_code: loginCode.trim().toUpperCase(),
@@ -53,7 +43,7 @@ function PupilLoginContent() {
       });
       setResult(loggedIn);
       storePupilSession(loggedIn);
-      setMessage(`Welcome ${loggedIn.student.display_name || "learner"}. Your mission is ready.`);
+      setMessage(`Welcome ${loggedIn.student.display_name || "learner"}. Your learning route is ready.`);
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Could not log in.");
     } finally {
@@ -132,8 +122,7 @@ function PupilLoginContent() {
               </p>
               {result ? (
                 <div className="flex flex-wrap gap-2">
-                  <Link href={launchURL} className="btn-pop bg-[#ffbf45] px-6 py-4 text-sm text-[#17233f]">Start mission</Link>
-                  <Link href={`/play/mock?studentId=${encodeURIComponent(result.student.external_ref)}`} className="btn-pop bg-[#55cbd3] px-6 py-4 text-sm text-[#17233f]">Build a subject mock</Link>
+                  <Link href="/play/today" className="btn-pop bg-[#ffbf45] px-6 py-4 text-sm text-[#17233f]">See my route</Link>
                 </div>
               ) : (
                 <button onClick={submit} disabled={!studentRef || !loginCode || saving} className="btn-pop bg-[#ffbf45] px-6 py-4 text-sm disabled:opacity-50">

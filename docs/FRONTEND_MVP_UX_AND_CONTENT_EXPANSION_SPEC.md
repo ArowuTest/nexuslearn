@@ -365,10 +365,14 @@ No new subject is ready for release until it has:
   route, mission and mock-assessment surfaces.
 - [x] Honest API loading, empty and unavailable states across the public home,
   child route, mission and mock-assessment surfaces.
-- [ ] Child portal redesign around warm-up, mission and growth.
+- [x] Authenticated child portal redesigned around warm-up, mission and growth
+  at `/play/today`, with selected lesson preview, signed-session access,
+  independent subject evidence and persisted discoveries. Public world
+  exploration remains separate. See `PUPIL_JOURNEY_REVIEW_2026-09-08.md` for
+  implementation boundaries and verification evidence.
 - [x] Consistent subject identity for English, Mathematics and Science is
   backend-configured per world and rendered with accessible, reduced-motion-safe
-  subject lanes; the wider child portal redesign remains open.
+  subject lanes and the personal child route.
 - [x] Mission support controls and audio replay made easier to find, including
   route-level support shortcuts and produced-audio-only messaging.
 - [x] Audio listening queue embedded in admin readiness, with embedded playback,

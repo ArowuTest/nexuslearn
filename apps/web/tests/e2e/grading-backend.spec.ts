@@ -7,6 +7,11 @@ test("real canonical decimal grading survives a lost acknowledgement without dup
   expect(["127.0.0.1", "localhost"]).toContain(url.hostname);
   const student = `grading-${info.project.name}`;
   const token = info.project.name === "desktop-chromium" ? process.env.GRADING_TOKEN_DESKTOP! : process.env.GRADING_TOKEN_MOBILE!;
+  await page.addInitScript(({ student, token }) => {
+    sessionStorage.setItem("nexuslearn_pupil_id", student);
+    sessionStorage.setItem("nexuslearn_pupil_session", token);
+    sessionStorage.setItem("nexuslearn_pupil_session_expires", new Date(Date.now() + 3_600_000).toISOString());
+  }, { student, token });
   const legacy = { student_id: student, objective_id: "grading-browser-objective", question_id: "grading-browser-question", given: 1, expected: 1 };
   const retired = await page.request.post(`${api}/v1/learning/attempt`, {
     headers: { "X-Pupil-Session": token }, data: legacy,
@@ -57,6 +62,13 @@ test("real canonical decimal grading survives a lost acknowledgement without dup
   expect(attempts[0]).toBe(attempts[1]);
   expect(JSON.parse(attempts[0]).response).toEqual({ kind: "number", value: 1.25 });
   await page.screenshot({ path: info.outputPath("canonical-decimal-saved.png"), animations: "disabled" });
+  // Complete the real mission, then read newly persisted world/progress data
+  // through the new pupil route. No learner responses are mocked here.
+  await page.getByRole("button", { name: "See my discoveries" }).click();
+  await page.getByRole("link", { name: "Back to my route" }).click();
+  await expect(page.getByRole("heading", { name: "Ready, QA pupil?" })).toBeVisible();
+  await expect(page.getByRole("region", { name: "Your world growth" })).toContainText("1 discovery saved");
+  await expect(page.getByRole("region", { name: "Mathematics progress" })).toContainText("Year 3: 0 ideas secure for now · 1 explored");
   // Follow the saved pupil attempt into the real authenticated adult UI. This
   // token belongs only to the disposable schema created by the Go harness.
   await page.evaluate((adminToken) => {

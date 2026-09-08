@@ -26,6 +26,7 @@ type fakeRepository struct {
 	session             learning.LearningSession
 	diagnostics         learning.Diagnostics
 	studentYear         int
+	studentIdentityErr  error
 	flags               []learning.FeatureFlag
 	worlds              []learning.WorldConfig
 	activities          []learning.ActivityConfig
@@ -170,6 +171,18 @@ func (f fakeRepository) StudentYear(context.Context, string) (int, bool, error) 
 		return 0, false, nil
 	}
 	return f.studentYear, true, nil
+}
+
+func (f fakeRepository) StudentIdentity(_ context.Context, externalRef string) (learning.StudentProfileConfig, bool, error) {
+	if f.studentIdentityErr != nil {
+		return learning.StudentProfileConfig{}, false, f.studentIdentityErr
+	}
+	for _, student := range f.students {
+		if student.ExternalRef == externalRef {
+			return student, true, nil
+		}
+	}
+	return learning.StudentProfileConfig{}, false, nil
 }
 
 func (f fakeRepository) Diagnostics(context.Context) (learning.Diagnostics, error) {
@@ -828,9 +841,45 @@ func TestHandleCurriculumReleaseStatusReportsLegacyRuntime(t *testing.T) {
 	}
 }
 
+func TestStudentProfileKeepsSavedIdentitySeparateFromTheSelectedWorld(t *testing.T) {
+	for _, scenario := range []struct {
+		name     string
+		students []learning.StudentProfileConfig
+		err      error
+		status   int
+	}{
+		{"saved", []learning.StudentProfileConfig{{ExternalRef: "card-123", DisplayName: "Ava", YearGroup: 3}}, nil, http.StatusOK},
+		{"missing", nil, nil, http.StatusNotFound},
+		{"unavailable", nil, errors.New("database unavailable"), http.StatusInternalServerError},
+	} {
+		t.Run(scenario.name, func(t *testing.T) {
+			srv := New(fakeRepository{
+				studentYear: 3, students: scenario.students, studentIdentityErr: scenario.err,
+				objectives: []learning.Objective{{ID: "number", Year: 3, Subject: "Mathematics"}},
+				activities: []learning.ActivityConfig{{ID: "activity", ObjectiveID: "number", WorldKey: "higher-world", Status: "published"}},
+				worlds:     []learning.WorldConfig{{Key: "higher-world", Name: "Inventor Wilds", YearGroup: 4, Enabled: true}},
+			}, "postgres")
+			res := httptest.NewRecorder()
+			srv.ServeHTTP(res, httptest.NewRequest(http.MethodGet, "/v1/students/card-123/profile", nil))
+			if res.Code != scenario.status {
+				t.Fatalf("expected %d, got %d: %s", scenario.status, res.Code, res.Body.String())
+			}
+			if res.Code == http.StatusOK {
+				var profile map[string]any
+				if err := json.Unmarshal(res.Body.Bytes(), &profile); err != nil {
+					t.Fatal(err)
+				}
+				if profile["display_name"] != "Ava" || profile["year_group"] != float64(3) || profile["active_world_key"] != "higher-world" {
+					t.Fatalf("saved identity must not be derived from the access ID or world year: %#v", profile)
+				}
+			}
+		})
+	}
+}
+
 func TestHandleNextActivityPrefersConfiguredPublishedActivity(t *testing.T) {
 	srv := New(fakeRepository{
-		objectives: []learning.Objective{{ID: "ma-y4-test", Mastery: learning.MasteryRule{RequiredFormats: []string{"array-build"}}}},
+		objectives: []learning.Objective{{ID: "ma-y4-test", Subject: "Mathematics", Statement: "Represent multiplication with arrays.", Mastery: learning.MasteryRule{RequiredFormats: []string{"array-build"}}}},
 		worlds: []learning.WorldConfig{{
 			Key:       "inventor-wilds",
 			Name:      "Inventor Wilds",
@@ -870,6 +919,13 @@ func TestHandleNextActivityPrefersConfiguredPublishedActivity(t *testing.T) {
 
 	if res.Code != http.StatusOK {
 		t.Fatalf("expected 200, got %d", res.Code)
+	}
+	var preview map[string]any
+	if err := json.Unmarshal(res.Body.Bytes(), &preview); err != nil {
+		t.Fatal(err)
+	}
+	if preview["activity_title"] != "Configured Activity" || preview["learning_focus"] != "Build the fact." || preview["subject"] != "Mathematics" {
+		t.Fatalf("expected a published lesson preview rather than just a world label, got %#v", preview)
 	}
 	var body learning.NextActivityDecision
 	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
@@ -1149,6 +1205,9 @@ func TestChooseAdaptiveActivityUsesActiveInterventionBeforeAssignment(t *testing
 	)
 	if !ok || choice.Activity.ID != "intervention" || !choice.Scaffold {
 		t.Fatalf("expected active intervention to win, got %#v", choice)
+	}
+	if strings.Contains(choice.Explanation, "Use concrete arrays.") || strings.Contains(choice.Explanation, "intervention plan") {
+		t.Fatalf("pupil-facing decisions must not expose staff strategy or intervention labels: %q", choice.Explanation)
 	}
 }
 

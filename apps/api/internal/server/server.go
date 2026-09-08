@@ -3460,6 +3460,16 @@ func (s *Server) handleStudentProfile(w http.ResponseWriter, r *http.Request) {
 	if !s.requirePupilSession(w, r, studentID) {
 		return
 	}
+	student, found, err := s.repo.StudentIdentity(r.Context(), studentID)
+	if err != nil {
+		slog.Warn("failed to read pupil identity", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read learner profile"})
+		return
+	}
+	if !found {
+		writeJSON(w, http.StatusNotFound, map[string]string{"error": "learner profile is not configured"})
+		return
+	}
 	decision, err := s.nextDecision(r.Context(), studentID)
 	if err != nil {
 		slog.Warn("failed to build student profile", "error", err)
@@ -3476,8 +3486,8 @@ func (s *Server) handleStudentProfile(w http.ResponseWriter, r *http.Request) {
 	}
 	writeJSON(w, http.StatusOK, map[string]any{
 		"student_id":         studentID,
-		"display_name":       displayNameFromStudentID(studentID),
-		"year_group":         worldYear(worlds, decision.WorldKey),
+		"display_name":       student.DisplayName,
+		"year_group":         student.YearGroup,
 		"active_world":       decision.World,
 		"active_realm":       decision.Realm,
 		"active_world_key":   decision.WorldKey,
@@ -4421,6 +4431,9 @@ func (s *Server) nextDecision(ctx context.Context, studentID string) (learning.N
 		StudentID:          studentID,
 		ObjectiveID:        activity.ObjectiveID,
 		ActivityID:         activity.ID,
+		ActivityTitle:      activity.Title,
+		LearningFocus:      activity.Prompt,
+		Subject:            objective.Subject,
 		WorldKey:           world.Key,
 		World:              world.Name,
 		Realm:              realm,
@@ -5075,8 +5088,10 @@ func chooseAdaptiveActivity(
 		}
 		if options := liveByObjective[intervention.ObjectiveID]; len(options) > 0 {
 			return adaptiveActivityChoice{
-				Activity:    options[0],
-				Explanation: "Selected from an active teacher intervention plan: " + intervention.Strategy,
+				Activity: options[0],
+				// This decision is also returned to pupils. Staff-authored
+				// strategy remains in the authorised intervention workspace.
+				Explanation: "Selected for supported practice on your next learning step.",
 				Scaffold:    true,
 			}, true
 		}

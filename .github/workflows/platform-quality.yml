@@ -105,6 +105,9 @@ jobs:
       - name: Verify deployment identity gate regressions
         run: node --test ../../ops/deployment-smoke.test.mjs
 
+      - name: Verify pupil session and bundle boundary regressions
+        run: node --test tools/pupil-journey.test.mjs tools/client-chunks.test.mjs
+
       - name: Build frontend
         run: npm run build
 

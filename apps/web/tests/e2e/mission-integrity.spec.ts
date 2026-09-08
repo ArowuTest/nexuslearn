@@ -152,7 +152,7 @@ test("released whole-word and phoneme clips share playback while unapproved clip
   await audioHarness(page);
   let releaseDestination!: () => void;
   const destinationPending = new Promise<void>(resolve => { releaseDestination = resolve; });
-  await page.route(/\/play\?_rsc=/, async route => {
+  await page.route(/\/play\/today\?_rsc=/, async route => {
     await destinationPending;
     await route.continue().catch(() => {});
   });
@@ -169,9 +169,11 @@ test("released whole-word and phoneme clips share playback while unapproved clip
   await page.getByRole("button", { name: "Hear c", exact: true }).click();
   await expect.poll(() => activeAudio(page)).toBe(1);
   expect(await page.evaluate(() => (window as unknown as { __qaClips: { src: string }[] }).__qaClips.map(clip => clip.src))).toEqual(["/qa-cat.mp3", "/qa-c.mp3"]);
-  await page.locator('a[href="/play"]').first().click();
+  const exit = page.getByRole("link", { name: "Exit", exact: true }).first();
+  await expect(exit).toHaveAttribute("href", "/play/today");
   // Stop at navigation intent, even if the destination's server data is slow.
   try {
+    await exit.click();
     await expect.poll(() => activeAudio(page)).toBe(0);
   } finally {
     releaseDestination();
