@@ -42,5 +42,5 @@ jobs:
       - name: Verify smoke validator regressions
         run: node --test ops/deployment-smoke.test.mjs
 
-      - name: Verify exact Render revision and deployed access boundaries
+      - name: Verify exact Render and Vercel revisions and deployed access boundaries
         run: node ops/deployment-smoke.mjs

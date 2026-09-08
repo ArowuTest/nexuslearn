@@ -97,16 +97,18 @@ Manual release verification should still check:
 - Vercel deployment is `READY`
 - Render API `/healthz` returns `200`
 - `/v1/version` reports the exact intended Git SHA with a verifiable source/state
+- frontend `/api/version` reports that same SHA with `vercel-build` provenance
 - key child, parent, school and admin routes load
 
 The platform workflow also applies every migration to disposable PostgreSQL 16
 and runs desktop/mobile Playwright journeys for public, family, school, admin
 and pupil-card entry. A separate deployment-smoke workflow waits for Render and
-Vercel, then verifies API health, the exact backend revision and API contracts,
-family-page availability, the public narration manifest, and private-report and
-anonymous parent-evidence privacy boundaries. Vercel's commit-specific deployment
-status must still be checked separately; family-page HTTP availability alone
-does not establish which frontend revision is serving the alias.
+Vercel, then verifies API health, the exact backend and frontend revisions, API
+contracts, personal pupil-entry and family-page availability, the public
+narration manifest, and private-report and anonymous parent-evidence privacy
+boundaries. A current API cannot hide an old frontend behind a successful family
+page response. Check Vercel's commit-specific deployment and production alias
+as well; the smoke test verifies served behaviour, not provider build logs.
 
 The smoke job checks out the successful main push's `workflow_run.head_sha`,
 not the potentially newer default-branch `GITHUB_SHA`. Only main pushes from
@@ -121,6 +123,25 @@ Conflicting, modified, invalid or incomplete stamps cannot pass. Unknown
 revision metadata stays unknown; do not hardcode a SHA or manually override
 Render's value. Deploy the intended source instead. The version response is
 `Cache-Control: no-store` and exposes only validated SHAs and fixed labels.
+
+The frontend's public `/api/version` is a force-static route generated during
+the Next build. It contains only a fixed service label, the validated
+`VERCEL_GIT_COMMIT_SHA`, and a `vercel-build` or `unknown` source label. This
+is build-time provider metadata, not a cryptographic source attestation.
+Missing/malformed values stay unknown; unrelated environment variables and
+credentials are never returned. CI builds with the tested SHA, then deliberately
+changes the server's environment before requesting the endpoint: an old bundle
+must not acquire a new identity merely by restarting it.
+
+This gate intentionally requires both services to serve the target revision.
+If path-based deployment filtering skips an unchanged service, inspect its
+deployment history and deploy the tested target there; do not weaken the gate,
+override version metadata, or call an older deployment successful. If a webhook
+does not create a frontend deployment, first check for an existing/in-progress
+deployment of that SHA, confirm the project/repository/branch binding, and use
+the existing project to deploy the exact tested commit. Never create a duplicate
+blindly after an uncertain request. See
+`reviews/2026-09-08-frontend-release-identity.md` for the reproduced failure.
 
 ### Listening-review playback evidence
 

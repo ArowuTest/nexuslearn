@@ -68,6 +68,7 @@ jobs:
     env:
       NEXT_PUBLIC_API_URL: http://api.test
       PLAYWRIGHT_SERVER_MODE: production
+      WEB_EXPECTED_BUILD_SHA: ${{ github.sha }}
     services:
       grading-postgres:
         image: postgres:16
@@ -106,9 +107,11 @@ jobs:
         run: node --test ../../ops/deployment-smoke.test.mjs
 
       - name: Verify pupil session and bundle boundary regressions
-        run: node --test tools/pupil-journey.test.mjs tools/client-chunks.test.mjs
+        run: node --test tools/pupil-journey.test.mjs tools/client-chunks.test.mjs tools/deployment-version.test.mjs
 
       - name: Build frontend
+        env:
+          VERCEL_GIT_COMMIT_SHA: ${{ github.sha }}
         run: npm run build
 
       - name: Enforce Chromebook-oriented asset budgets
@@ -131,6 +134,9 @@ jobs:
           retention-days: 14
 
       - name: Run critical browser journeys
+        # A server's changed environment must not relabel an already-built UI.
+        env:
+          VERCEL_GIT_COMMIT_SHA: bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
         run: npm run test:e2e
 
       # A retry can make the job green while leaving a real intermittent bug.

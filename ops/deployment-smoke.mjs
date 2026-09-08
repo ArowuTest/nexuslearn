@@ -29,6 +29,11 @@ export function deploymentProblems(snapshot, expected) {
   for (const [key, value] of Object.entries(contracts)) {
     if (version?.[key] !== value) problems.push(`API ${key} is not ${value}`);
   }
+  const frontend = snapshot.webVersion?.body;
+  if (snapshot.webVersion?.status !== 200 || frontend?.service !== 'nexuslearn-web') problems.push('Frontend version response is unavailable');
+  if (frontend?.git_revision !== expected) problems.push(`Frontend revision does not match target ${expected}`);
+  if (frontend?.git_revision_source !== 'vercel-build') problems.push('Frontend revision source is not a Vercel build');
+  if (snapshot.pupilToday?.status !== 200) problems.push('Pupil route is not ready');
   if (snapshot.family?.status !== 200) problems.push('Family page is not ready');
   if (snapshot.privateReport?.status !== 404) problems.push('Private review report must return 404');
   if (snapshot.publicAudio?.status !== 200 || !Array.isArray(snapshot.publicAudio?.body?.items) || snapshot.publicAudio.body.items.length === 0) {
@@ -41,6 +46,7 @@ export function deploymentProblems(snapshot, expected) {
 export async function collectDeployment(fetcher = fetch) {
   const requests = [
     ['health', `${api}/healthz`, true], ['version', `${api}/v1/version`, true],
+    ['webVersion', `${web}/api/version`, true], ['pupilToday', `${web}/play/today`, false],
     ['family', `${web}/family`, false],
     ['privateReport', `${web}/content/pilot-review-evidence-template.json`, false],
     ['publicAudio', `${web}/content/narration-manifest.json`, true],
@@ -69,7 +75,7 @@ export async function waitForDeployment(expected, { attempts = 30, collect = col
     const snapshot = await collect();
     problems = deploymentProblems(snapshot, expected);
     if (!problems.length) {
-      log(`Verified backend revision ${expected} (${snapshot.version.body.git_revision_source}) and deployed access boundaries.`);
+      log(`Verified backend and frontend revision ${expected} (${snapshot.version.body.git_revision_source}, ${snapshot.webVersion.body.git_revision_source}) and deployed access boundaries.`);
       return snapshot;
     }
     log(`Deployment not ready (${attempt}/${attempts}): ${problems.join('; ')}`);
