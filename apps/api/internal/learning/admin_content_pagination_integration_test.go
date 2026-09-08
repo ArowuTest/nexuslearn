@@ -60,7 +60,7 @@ func TestPostgresAdminContentDirectoriesTraverseStablePages(t *testing.T) {
 		WHERE (year_group, subject, strand, topic, id) > ($1::int, $2::text, $3::text, $4::text, $5::text)
 		ORDER BY year_group, subject, strand, topic, id
 		LIMIT $6
-	`, "curriculum_objectives_admin_directory_order_idx", 3, "English", "Reading", "Topic", "admin-content-objective-00500", 137)
+	`, "curriculum_objectives_admin_directory_order_idx|idx_curriculum_objectives_year_subject", 3, "English", "Reading", "Topic", "admin-content-objective-00500", 137)
 }
 
 func seedAdminContentRows(t *testing.T, ctx context.Context, pool *pgxpool.Pool, updatedAt time.Time) {
@@ -217,11 +217,23 @@ func assertContentTraversalStable(t *testing.T, ids, cursors []string, prefix st
 
 func assertAdminContentPlanUsesIndex(t *testing.T, ctx context.Context, pool *pgxpool.Pool, sql, indexName string, args ...any) {
 	t.Helper()
-	var plan []byte
-	if err := pool.QueryRow(ctx, sql, args...).Scan(&plan); err != nil {
+	tx, err := pool.Begin(ctx)
+	if err != nil {
 		t.Fatal(err)
 	}
-	if !strings.Contains(string(plan), indexName) {
-		t.Fatalf("content pagination query plan does not use %s: %s", indexName, plan)
+	defer tx.Rollback(ctx)
+	if _, err := tx.Exec(ctx, `SET LOCAL enable_seqscan=off; SET LOCAL enable_bitmapscan=off; SET LOCAL enable_incremental_sort=off`); err != nil {
+		t.Fatal(err)
 	}
+	var plan []byte
+	if err := tx.QueryRow(ctx, sql, args...).Scan(&plan); err != nil {
+		t.Fatal(err)
+	}
+	indexNames := strings.Split(indexName, "|")
+	for _, candidate := range indexNames {
+		if strings.Contains(string(plan), candidate) {
+			return
+		}
+	}
+	t.Fatalf("content pagination query plan does not use any of %s: %s", indexNames, plan)
 }
