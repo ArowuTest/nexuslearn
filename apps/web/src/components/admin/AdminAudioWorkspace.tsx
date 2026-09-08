@@ -287,6 +287,8 @@ export default function AdminAudioWorkspace({ request, readiness }: { request: A
                 <div className="mt-3 grid gap-2 rounded-2xl bg-[#f4f1ff] p-4 text-xs text-[#1d1a3e]/70 sm:grid-cols-2">
                   <p><strong>Voice:</strong> {item.voice_name ?? queue?.voice_name ?? "manifest voice"}</p>
                   <p><strong>Model:</strong> {item.model_id ?? queue?.model_id ?? "manifest model"}</p>
+                  <p><strong>Output:</strong> {item.output_format ?? "manifest format"}</p>
+                  {typeof item.voice_settings?.speed === "number" && <p><strong>Production speed:</strong> {item.voice_settings.speed.toFixed(2)}x · listen at 1x for approval</p>}
                   <p><strong>Used by {item.reference_count ?? item.reuse_count ?? 1} learning references</strong></p>
                   <p><strong>Canonical reuse:</strong> {item.reuse_count ?? 1}</p>
                 </div>

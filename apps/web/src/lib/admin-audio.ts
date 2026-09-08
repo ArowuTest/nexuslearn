@@ -51,6 +51,8 @@ export type NarrationQueueItem = {
   reference_count?: number;
   voice_name?: string;
   model_id?: string;
+  output_format?: string;
+  voice_settings?: Record<string, unknown>;
   status: Exclude<AudioDecisionStatus, "all">;
   review?: NarrationReview;
   rationale: string[];

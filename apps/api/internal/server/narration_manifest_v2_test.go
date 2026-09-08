@@ -51,6 +51,13 @@ func TestNarrationV2ReviewRequiresExactProfileBinding(t *testing.T) {
 	if len(queue.Items) != 1 || queue.Items[0]["production_profile_sha256"] != asset.ProductionProfileSHA256 || queue.Items[0]["production_identity_sha256"] != asset.ProductionIdentitySHA256 || queue.Items[0]["reuse_count"] != float64(1) {
 		t.Fatalf("expected safe v2 production metadata in queue, got %#v", queue.Items)
 	}
+	if queue.Items[0]["output_format"] != asset.OutputFormat {
+		t.Fatalf("expected signed output format in queue, got %#v", queue.Items[0]["output_format"])
+	}
+	settings, ok := queue.Items[0]["voice_settings"].(map[string]any)
+	if !ok || settings["speed"] != float64(0.92) {
+		t.Fatalf("expected signed voice speed settings in queue, got %#v", queue.Items[0]["voice_settings"])
+	}
 	if queue.ReleaseID != manifest.ReleaseID || queue.CatalogueID != manifest.CatalogueID {
 		t.Fatalf("expected queue to bind release %q and catalogue %q, got %#v", manifest.ReleaseID, manifest.CatalogueID, queue)
 	}

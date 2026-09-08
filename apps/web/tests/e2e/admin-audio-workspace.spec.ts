@@ -41,6 +41,8 @@ async function openAudioWorkspace(page: Page) {
             reference_count: 7,
             voice_name: "Alice - Clear, Engaging Educator",
             model_id: "eleven_multilingual_v2",
+            output_format: "mp3_44100_128",
+            voice_settings: { speed: 0.92 },
             status: "stale",
             review: {
               id: "review-old",
@@ -117,6 +119,7 @@ test("reviewer restores filters, verifies exact audio identity, and requests a g
   await expect(page.getByRole("alert").filter({ hasText: "previous decision is stale" })).toBeVisible();
   await expect(page.getByText("Listen, stretch each sound, then blend the word.")).toBeVisible();
   await expect(page.getByText("Used by 7 learning references")).toBeVisible();
+  await expect(page.getByText("Production speed: 0.92x · listen at 1x for approval")).toBeVisible();
 
   await page.getByLabel("Reviewer name").fill("A. Audio Reviewer");
   await page.getByLabel("Re-record reason").selectOption("pronunciation");

@@ -106,6 +106,8 @@ type narrationQueueItem struct {
 	ReferenceCount           int                       `json:"reference_count,omitempty"`
 	VoiceName                string                    `json:"voice_name,omitempty"`
 	ModelID                  string                    `json:"model_id,omitempty"`
+	OutputFormat             string                    `json:"output_format,omitempty"`
+	VoiceSettings            map[string]any            `json:"voice_settings,omitempty"`
 	Status                   string                    `json:"status"`
 	Review                   *learning.NarrationReview `json:"review,omitempty"`
 	Priority                 int                       `json:"priority"`
@@ -188,7 +190,8 @@ func (s *Server) handleNarrationReviewQueue(w http.ResponseWriter, r *http.Reque
 			ProductionIdentitySHA256: asset.ProductionIdentitySHA256,
 			ProductionProfileSHA256:  asset.ProductionProfileSHA256,
 			ReuseCount:               asset.ReuseCount, ReferenceCount: len(asset.ReferenceIDs),
-			ModelID: modelID, Status: status, Review: currentReview, Priority: priority, Rationale: rationale,
+			ModelID: modelID, OutputFormat: asset.OutputFormat, VoiceSettings: asset.VoiceSettings,
+			Status: status, Review: currentReview, Priority: priority, Rationale: rationale,
 		})
 	}
 	sort.SliceStable(allItems, func(i, j int) bool {
