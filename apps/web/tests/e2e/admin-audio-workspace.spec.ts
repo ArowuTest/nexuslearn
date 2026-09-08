@@ -17,6 +17,7 @@ async function openAudioWorkspace(page: Page, recording?: ProducedAudio) {
   let currentProfileHash = profileHash;
   let audioFile = recording?.file ?? "/audio/narration/alice/y1/blend-together.mp3";
   let voiceSettings: Record<string, number> = recording ? {} : { speed: 0.92 };
+  let previousReviewCurrent = false;
   await page.route("http://api.test/**", async (route) => {
     const request = route.request();
     const url = new URL(request.url());
@@ -51,19 +52,20 @@ async function openAudioWorkspace(page: Page, recording?: ProducedAudio) {
             model_id: "eleven_multilingual_v2",
             output_format: "mp3_44100_128",
             voice_settings: voiceSettings,
-            status: "stale",
+            status: previousReviewCurrent ? "approved" : "stale",
             review: {
               id: "review-old",
               asset_id: "narration-v1-dddddddddddddddddddddddd",
-              text_sha256: "e".repeat(64),
-              audio_sha256: "f".repeat(64),
-              production_profile_sha256: "0".repeat(64),
+              text_sha256: previousReviewCurrent ? textHash : "e".repeat(64),
+              audio_sha256: previousReviewCurrent ? audioHash : "f".repeat(64),
+              production_profile_sha256: previousReviewCurrent ? currentProfileHash : "0".repeat(64),
               decision: "approved",
               reviewer_name: "Previous reviewer",
               criteria: { natural: true, clear: true, pronunciation: true, age_suitable: true },
               created_at: "2026-08-01T10:00:00Z",
               updated_at: "2026-08-01T10:00:00Z",
-              stale: true,
+              stale: !previousReviewCurrent,
+              playback_evidence: { surface: "admin_audio_workspace", completed: true, duration_ms: 1000, played_ms: 1000, playback_rate: 1, coverage_version: "played-ranges-v1" },
             },
             rationale: ["phonics and early-literacy pronunciation must be human-listened"],
           }],
@@ -117,6 +119,7 @@ async function openAudioWorkspace(page: Page, recording?: ProducedAudio) {
   return {
     getReviewPayload: () => reviewPayload,
     getRerecordPayload: () => rerecordPayload,
+    markPreviousReviewCurrent: () => { previousReviewCurrent = true; },
     replaceRecording: (field: "audio" | "transcript" | "profile" | "url" = "audio") => {
       if (field === "audio") audioHash = "9".repeat(64);
       if (field === "transcript") textHash = "8".repeat(64);
@@ -131,6 +134,7 @@ async function completePlayback(page: Page, seconds = 1) {
   await page.locator("audio").evaluate((audio, duration) => {
     Object.defineProperty(audio, "duration", { configurable: true, value: duration });
     Object.defineProperty(audio, "currentTime", { configurable: true, value: duration });
+    Object.defineProperty(audio, "played", { configurable: true, value: { length: 1, start: () => 0, end: () => duration } });
     audio.dispatchEvent(new Event("canplay", { bubbles: true }));
     audio.dispatchEvent(new Event("loadedmetadata", { bubbles: true }));
     audio.dispatchEvent(new Event("timeupdate", { bubbles: true }));
@@ -197,21 +201,67 @@ test("approval is held until the exact recording completes playback", async ({ p
 
   const approve = page.getByRole("button", { name: "Approve listening" });
   await expect(approve).toBeDisabled();
-  await page.locator("audio").evaluate((audio) => {
-    Object.defineProperty(audio, "duration", { configurable: true, value: 1 });
-    Object.defineProperty(audio, "currentTime", { configurable: true, value: 1 });
-    audio.dispatchEvent(new Event("canplay", { bubbles: true }));
-    audio.dispatchEvent(new Event("timeupdate", { bubbles: true }));
-    audio.dispatchEvent(new Event("ended", { bubbles: true }));
-  });
+  // Simulate native telemetry for payload assertions; the separate real-MP3
+  // case below verifies that actual browser playback produces valid ranges.
+  await completePlayback(page);
   await expect(approve).toBeEnabled();
   await approve.click();
 
   await expect(page.getByRole("status").filter({ hasText: "approved against the current transcript" })).toBeVisible();
   expect(captured.getReviewPayload()).toMatchObject({
     decision: "approved",
-    playback_evidence: { surface: "admin_audio_workspace", completed: true, duration_ms: 1000 },
+    playback_evidence: { surface: "admin_audio_workspace", completed: true, duration_ms: 1000, played_ms: 1000, playback_rate: 1, coverage_version: "played-ranges-v1" },
   });
+});
+
+test("a successful review clears native played ranges before the next decision", async ({ page }) => {
+  await openAudioWorkspace(page);
+  await page.getByLabel("Reviewer name").fill("First reviewer");
+  for (const box of await page.locator('fieldset input[type="checkbox"]').all()) await box.check();
+  await completePlayback(page);
+  const previousPlayer = await page.locator("audio").elementHandle();
+  await page.getByRole("button", { name: "Approve listening" }).click();
+  await expect(page.getByRole("status").filter({ hasText: "approved against the current transcript" })).toBeVisible();
+  await expect.poll(() => previousPlayer!.evaluate(player => player.isConnected)).toBe(false);
+  await page.getByLabel("Reviewer name").fill("Second reviewer");
+  await page.locator("audio").dispatchEvent("canplay");
+  await page.locator("audio").dispatchEvent("ended");
+  await expect(page.getByRole("button", { name: "Approve listening" })).toBeDisabled();
+});
+
+test("seeking to the end does not count as listening coverage", async ({ page }) => {
+  await openAudioWorkspace(page);
+  await page.locator("audio").evaluate(audio => {
+    Object.defineProperty(audio, "duration", { configurable: true, value: 10 });
+    Object.defineProperty(audio, "currentTime", { configurable: true, value: 10 });
+    Object.defineProperty(audio, "played", { configurable: true, value: {
+      length: 1, start: () => 9, end: () => 10,
+    } });
+    audio.dispatchEvent(new Event("canplay", { bubbles: true }));
+    audio.dispatchEvent(new Event("ended", { bubbles: true }));
+  });
+  await expect(page.getByRole("button", { name: "Approve listening" })).toBeDisabled();
+  await expect(page.getByText(/Playback coverage incomplete/)).toBeVisible();
+});
+
+test("a different reviewer cannot inherit historical playback coverage", async ({ page }) => {
+  const captured = await openAudioWorkspace(page);
+  captured.markPreviousReviewCurrent();
+  await page.getByRole("button", { name: "Apply audio filters" }).click();
+  await expect(page.getByLabel("Reviewer name")).toHaveValue("Previous reviewer");
+  await page.getByLabel("Reviewer name").fill("New reviewer");
+  await expect(page.getByRole("button", { name: "Approve listening" })).toBeDisabled();
+  expect(captured.getReviewPayload()).toBeNull();
+});
+
+test("altering playback speed resets QA coverage and restores original pace", async ({ page }) => {
+  await openAudioWorkspace(page);
+  await completePlayback(page);
+  await expect(page.getByRole("button", { name: "Approve listening" })).toBeEnabled();
+  await page.locator("audio").evaluate(audio => { (audio as HTMLAudioElement).playbackRate = 2; });
+  await expect(page.getByRole("button", { name: "Approve listening" })).toBeDisabled();
+  await expect(page.getByText(/Listening QA uses the original 1x speed/)).toBeVisible();
+  expect(await page.locator("audio").evaluate(audio => (audio as HTMLAudioElement).playbackRate)).toBe(1);
 });
 
 for (const field of ["audio", "transcript", "profile", "url"] as const) {
@@ -263,9 +313,23 @@ test("a real produced MP3 plays to its native end without granting suitability a
   const captured = await openAudioWorkspace(page, recording!);
   const audio = page.locator("audio");
   await expect(page.getByRole("button", { name: "Approve listening" })).toBeDisabled();
-  await audio.click();
-  await audio.evaluate(element => (element as HTMLAudioElement).play());
-  await expect(page.getByRole("status").filter({ hasText: "Played through" })).toBeVisible({ timeout: 30_000 });
+  // Clicking the middle of a native audio control seeks into the recording.
+  // Obtain a gesture outside the seek bar and verify actual playback from zero.
+  await page.getByRole("heading", { name: "Audio listening QA" }).click();
+  await audio.evaluate(element => {
+    const player = element as HTMLAudioElement;
+    player.currentTime = 0;
+    return player.play();
+  });
+  await expect.poll(() => audio.evaluate(element => (element as HTMLAudioElement).ended), { timeout: 30_000 }).toBe(true);
+  await test.info().attach("native-playback-telemetry", {
+    body: JSON.stringify(await audio.evaluate(element => {
+      const player = element as HTMLAudioElement;
+      return { duration: player.duration, current: player.currentTime, rate: player.playbackRate,
+        played: Array.from({ length: player.played.length }, (_, index) => [player.played.start(index), player.played.end(index)]) };
+    })), contentType: "application/json",
+  });
+  await expect(page.getByRole("status").filter({ hasText: "Playback coverage complete" })).toBeVisible({ timeout: 30_000 });
   expect(await audio.evaluate(element => {
     const player = element as HTMLAudioElement;
     return { ended: player.ended, rate: player.playbackRate, ready: player.readyState >= 2 };

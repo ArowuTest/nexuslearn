@@ -423,9 +423,12 @@ type AuditLog struct {
 }
 
 type NarrationPlaybackEvidence struct {
-	Surface    string `json:"surface,omitempty"`
-	Completed  bool   `json:"completed"`
-	DurationMS int    `json:"duration_ms,omitempty"`
+	Surface         string  `json:"surface,omitempty"`
+	Completed       bool    `json:"completed"`
+	DurationMS      int     `json:"duration_ms,omitempty"`
+	CoverageVersion string  `json:"coverage_version,omitempty"`
+	PlayedMS        int     `json:"played_ms,omitempty"`
+	PlaybackRate    float64 `json:"playback_rate,omitempty"`
 }
 
 type NarrationReview struct {

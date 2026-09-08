@@ -7,29 +7,40 @@ on:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: read
+
+# An older completion must never cancel the newer revision's verification.
+concurrency:
+  group: deployment-smoke-${{ github.event.workflow_run.head_sha || github.sha }}
+  cancel-in-progress: true
+
 jobs:
   deployed-surfaces:
-    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    if: >-
+      (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main') ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.event == 'push' &&
+       github.event.workflow_run.head_repository.full_name == github.repository)
     runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      # workflow_run's GITHUB_SHA can be newer than the quality-checked revision.
+      SMOKE_EXPECTED_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
     steps:
-      - name: Wait for Render and Vercel auto-deploys
-        run: |
-          for attempt in $(seq 1 30); do
-            api="$(curl -fsS --max-time 30 https://nexuslearn-api.onrender.com/healthz || true)"
-            version="$(curl -fsS --max-time 30 https://nexuslearn-api.onrender.com/v1/version || true)"
-            web_status="$(curl -sS -o /tmp/family.html -w '%{http_code}' --max-time 30 https://nexuslearn-woad.vercel.app/family || true)"
-            report_status="$(curl -sS -o /dev/null -w '%{http_code}' --max-time 30 https://nexuslearn-woad.vercel.app/content/pilot-review-evidence-template.json || true)"
-            audio_status="$(curl -sS -o /dev/null -w '%{http_code}' --max-time 30 https://nexuslearn-woad.vercel.app/content/narration-manifest.json || true)"
-            if echo "$api" | grep -q '"status":"ok"' && echo "$version" | grep -q '"attempt_evidence_contract":"submitted-v1"' && echo "$version" | grep -q '"assistance_policy_contract":"assistance-policy-v1"' && echo "$version" | grep -q '"feedback_contract":"task-repair-v1"' && echo "$version" | grep -q '"marking_policy_contract":"authored-v1"' && echo "$version" | grep -q '"pupil_audio_contract":"aliases-v1"' && echo "$version" | grep -q '"required_listening_contract":"ledger-v1"' && test "$web_status" = "200" && test "$report_status" = "404" && test "$audio_status" = "200"; then
-              exit 0
-            fi
-            echo "Deployment not ready yet (attempt $attempt/30)."
-            sleep 30
-          done
-          echo "Deployment smoke checks did not become healthy in time."
-          exit 1
+      - name: Checkout the quality-checked revision
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.SMOKE_EXPECTED_SHA }}
+          persist-credentials: false
 
-      - name: Verify protected parent evidence boundary
-        run: |
-          status="$(curl -sS -o /tmp/evidence.json -w '%{http_code}' --max-time 30 https://nexuslearn-api.onrender.com/v1/parent/children/smoke-test/evidence)"
-          test "$status" = "401"
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Verify smoke validator regressions
+        run: node --test ops/deployment-smoke.test.mjs
+
+      - name: Verify exact Render revision and deployed access boundaries
+        run: node ops/deployment-smoke.mjs

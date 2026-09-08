@@ -31,6 +31,9 @@ export type NarrationPlaybackEvidence = {
   surface: "admin_audio_workspace";
   completed: boolean;
   duration_ms?: number;
+  coverage_version?: "played-ranges-v1";
+  played_ms?: number;
+  playback_rate?: number;
 };
 
 export type NarrationQueueItem = {

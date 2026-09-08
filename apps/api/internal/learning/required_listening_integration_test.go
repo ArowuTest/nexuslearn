@@ -162,7 +162,7 @@ func TestPostgresNarrationReviewPersistsPlaybackEvidence(t *testing.T) {
 		ProductionProfileSHA256: asset.ProductionProfileSHA256, Decision: "approved",
 		ReviewerID: "playback-reviewer", ReviewerName: "Synthetic playback reviewer",
 		Criteria:         map[string]bool{"natural": true, "clear": true, "pronunciation": true, "age_suitable": true},
-		PlaybackEvidence: &NarrationPlaybackEvidence{Surface: "admin_audio_workspace", Completed: true, DurationMS: 7250},
+		PlaybackEvidence: &NarrationPlaybackEvidence{Surface: "admin_audio_workspace", Completed: true, DurationMS: 7250, CoverageVersion: "played-ranges-v1", PlayedMS: 7250, PlaybackRate: 1},
 	}
 	if _, err := repo.SaveNarrationReview(context.Background(), review, "playback-review"); err != nil {
 		t.Fatalf("save playback evidence: %v", err)
@@ -176,7 +176,7 @@ func TestPostgresNarrationReviewPersistsPlaybackEvidence(t *testing.T) {
 	if err := json.Unmarshal(stored, &evidence); err != nil {
 		t.Fatal(err)
 	}
-	if evidence.Surface != "admin_audio_workspace" || !evidence.Completed || evidence.DurationMS != 7250 {
+	if evidence.Surface != "admin_audio_workspace" || !evidence.Completed || evidence.DurationMS != 7250 || evidence.CoverageVersion != "played-ranges-v1" || evidence.PlayedMS != 7250 || evidence.PlaybackRate != 1 {
 		t.Fatalf("stored playback evidence changed: %#v", evidence)
 	}
 
@@ -184,7 +184,7 @@ func TestPostgresNarrationReviewPersistsPlaybackEvidence(t *testing.T) {
 	if err != nil || len(reviews) != 1 || reviews[0].PlaybackEvidence == nil {
 		t.Fatalf("playback evidence was not returned from the bounded review list: reviews=%#v err=%v", reviews, err)
 	}
-	if !reviews[0].PlaybackEvidence.Completed || reviews[0].PlaybackEvidence.DurationMS != 7250 {
+	if *reviews[0].PlaybackEvidence != evidence {
 		t.Fatalf("returned playback evidence changed: %#v", reviews[0].PlaybackEvidence)
 	}
 }

@@ -102,6 +102,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Verify deployment identity gate regressions
+        run: node --test ../../ops/deployment-smoke.test.mjs
+
       - name: Build frontend
         run: npm run build
 

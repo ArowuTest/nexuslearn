@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { assessPace } from "@/lib/audio-pace.mjs";
+import { assessPlaybackCoverage } from "@/lib/audio-playback-coverage.mjs";
 import {
   DEFAULT_AUDIO_FILTERS,
   audioFiltersFromSearch,
@@ -22,8 +23,7 @@ type ReviewDraft = {
   notes: string;
   reason: string;
   criteria: Record<string, boolean>;
-  playbackCompleted: boolean;
-  playbackDurationMS?: number;
+  playbackEvidence?: NarrationPlaybackEvidence;
 };
 
 const criteria = [
@@ -52,8 +52,8 @@ function draftFor(item: NarrationQueueItem): ReviewDraft {
     notes: review?.notes ?? "",
     reason: review?.rejection_reasons?.[0] ?? "",
     criteria: review?.criteria ?? {},
-    playbackCompleted: Boolean(review?.playback_evidence?.completed),
-    playbackDurationMS: review?.playback_evidence?.duration_ms,
+    // Historical evidence belongs to its named reviewer. A new decision needs
+    // fresh playback, even when this exact recording already has a review.
   };
 }
 
@@ -61,11 +61,6 @@ function recordingKey(item: NarrationQueueItem) {
   // Asset IDs can survive regeneration. Never transfer a draft or player state
   // to different bytes, transcript, production profile or delivery URL.
   return JSON.stringify([item.asset_id, item.audio_sha256, item.text_sha256, item.production_profile_sha256 ?? "", item.file]);
-}
-
-function durationMSFromSeconds(durationSeconds?: number) {
-  if (typeof durationSeconds !== "number" || !Number.isFinite(durationSeconds) || durationSeconds <= 0) return undefined;
-  return Math.min(3_600_000, Math.max(1, Math.round(durationSeconds * 1000)));
 }
 
 function Metric({ label, value }: { label: string; value: number }) {
@@ -90,6 +85,7 @@ export default function AdminAudioWorkspace({ request, readiness }: { request: A
   const [drafts, setDrafts] = useState<Record<string, ReviewDraft>>({});
   const [playbackErrors, setPlaybackErrors] = useState<Record<string, boolean>>({});
   const [durations, setDurations] = useState<Record<string, number>>({});
+  const [playbackRuns, setPlaybackRuns] = useState<Record<string, number>>({});
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState("");
   const [message, setMessage] = useState("Loading the governed listening queue…");
@@ -127,6 +123,15 @@ export default function AdminAudioWorkspace({ request, readiness }: { request: A
     setDrafts((current) => ({ ...current, [key]: { ...(current[key] ?? draftFor(item)), ...patch } }));
   }
 
+  function clearPlayback(item: NarrationQueueItem) {
+    const key = recordingKey(item);
+    // An error is not an editing action: do not cache empty form defaults and
+    // hide a subsequent server review update for this same recording.
+    setDrafts(current => current[key]?.playbackEvidence
+      ? { ...current, [key]: { ...current[key], playbackEvidence: undefined } }
+      : current);
+  }
+
   async function submitReview(item: NarrationQueueItem, decision: "approved" | "rejected") {
     const draft = itemDraft(item);
     const checkedCriteria = Object.fromEntries(criteria.map(([id]) => [id, Boolean(draft.criteria[id])]));
@@ -138,8 +143,8 @@ export default function AdminAudioWorkspace({ request, readiness }: { request: A
       setMessage("Confirm all four listening criteria before approval.");
       return;
     }
-    if (decision === "approved" && !draft.playbackCompleted) {
-      setMessage("Play the recording through to the end before approval.");
+    if (decision === "approved" && !draft.playbackEvidence?.completed) {
+      setMessage("Play the whole recording at 1x before approval; skipped sections do not count.");
       return;
     }
     if (decision === "rejected" && (!draft.reason || !draft.notes.trim())) {
@@ -159,12 +164,13 @@ export default function AdminAudioWorkspace({ request, readiness }: { request: A
         criteria: checkedCriteria,
         rejectionReason: draft.reason,
         notes: draft.notes,
-        playbackEvidence: decision === "approved" ? {
-          surface: "admin_audio_workspace",
-          completed: draft.playbackCompleted,
-          duration_ms: draft.playbackDurationMS,
-        } satisfies NarrationPlaybackEvidence : undefined,
+        playbackEvidence: decision === "approved" ? draft.playbackEvidence : undefined,
       });
+      // Native played ranges accumulate for the lifetime of a media element.
+      // Every saved decision ends that lifetime, including a saved rejection
+      // whose separate re-record request subsequently needs a retry.
+      clearPlayback(item);
+      setPlaybackRuns(current => ({ ...current, [recordingKey(item)]: (current[recordingKey(item)] ?? 0) + 1 }));
       if (decision === "rejected") {
         await requestAudioRerecord(request, queue!.release_id!, item, draft.reason, draft.notes);
         setMessage(`Re-record request recorded for ${item.asset_id}. The immutable release asset remains available for audit.`);
@@ -186,11 +192,11 @@ export default function AdminAudioWorkspace({ request, readiness }: { request: A
     void refresh(filters, 0);
   }
 
-  function markPlaybackComplete(item: NarrationQueueItem, durationSeconds?: number) {
-    const durationMS = durationMSFromSeconds(durationSeconds);
+  function markPlaybackComplete(item: NarrationQueueItem, player: HTMLAudioElement) {
+    const ranges: Array<[number, number]> = Array.from({ length: player.played.length }, (_, index) => [player.played.start(index), player.played.end(index)]);
+    const measured = assessPlaybackCoverage(player.duration, ranges, player.playbackRate);
     updateDraft(item, {
-      playbackCompleted: true,
-      ...(durationMS === undefined ? {} : { playbackDurationMS: durationMS }),
+      playbackEvidence: { ...measured, surface: "admin_audio_workspace", coverage_version: "played-ranges-v1" },
     });
   }
 
@@ -284,17 +290,34 @@ export default function AdminAudioWorkspace({ request, readiness }: { request: A
 
                 {stale && <div className="mt-4 rounded-2xl border border-[#f0b35a]/50 bg-[#fff8e8] p-3 text-sm text-[#725100]" role="alert"><strong>The previous decision is stale.</strong> Re-listen and create a new decision against the current file and profile.</div>}
 
-                <audio className="mt-4 w-full" controls preload="metadata" src={item.file} aria-label={`Listen to ${item.asset_id}`}
+                <audio key={`${key}:${playbackRuns[key] ?? 0}`} className="mt-4 w-full" controls controlsList="noplaybackrate" preload="metadata" src={item.file} aria-label={`Listen to ${item.asset_id}`}
                   onLoadedMetadata={(event) => {
                     const seconds = event.currentTarget.duration;
                     if (Number.isFinite(seconds) && seconds > 0) setDurations((current) => ({ ...current, [key]: seconds }));
                   }}
-                  onError={() => setPlaybackErrors((current) => ({ ...current, [key]: true }))}
+                  onError={() => {
+                    setPlaybackErrors((current) => ({ ...current, [key]: true }));
+                    clearPlayback(item);
+                  }}
                   onCanPlay={() => setPlaybackErrors((current) => ({ ...current, [key]: false }))}
-                  onEnded={(event) => markPlaybackComplete(item, event.currentTarget.duration)} />
+                  onRateChange={(event) => {
+                    const player = event.currentTarget;
+                    if (player.playbackRate === 1) return;
+                    player.pause();
+                    player.playbackRate = 1;
+                    player.load(); // Clear native played ranges after altered-speed playback.
+                    clearPlayback(item);
+                    setMessage("Listening QA uses the original 1x speed. Restart playback to assess the produced pace.");
+                  }}
+                  onEnded={(event) => markPlaybackComplete(item, event.currentTarget)} />
                 {playbackErrors[key] && <p className="mt-2 rounded-xl bg-[#fff1f1] p-3 text-xs text-[#8b2b2b]" role="alert">Audio playback failed. Do not approve this asset; verify the file or request a technical re-record.</p>}
                 <p className="mt-2 rounded-xl bg-[#f5f7fb] p-3 text-xs text-[#1d1a3e]/68" role="status">
-                  {draft.playbackCompleted ? `Played through${draft.playbackDurationMS ? ` · recorded duration ${(draft.playbackDurationMS / 1000).toFixed(1)}s` : ""}; assess voice and suitability.` : "Play to end before approval; not proof of attention."}
+                  {draft.playbackEvidence?.completed
+                    ? `Playback coverage complete · recorded duration ${(draft.playbackEvidence.duration_ms! / 1000).toFixed(1)}s at 1x; assess voice and suitability.`
+                    : draft.playbackEvidence
+                      ? "Playback coverage incomplete. Replay skipped sections at 1x, then reach the end."
+                      : "Play the whole recording at 1x before approval; seeking to the end does not count."}
+                  {" Playback telemetry is not proof of attention or listening quality."}
                 </p>
 
                 {pace.wpm !== null && <div className="mt-2 rounded-xl bg-[#fffaf0] p-3 text-xs leading-5 text-[#725100]">
@@ -351,7 +374,7 @@ export default function AdminAudioWorkspace({ request, readiness }: { request: A
                 </label>
 
                 <div className="mt-4 flex flex-wrap gap-2">
-                  <button type="button" onClick={() => void submitReview(item, "approved")} disabled={loading || saving === item.asset_id || playbackErrors[key] || !draft.playbackCompleted} className="btn-pop min-h-11 rounded-full bg-[#dff7e7] px-4 text-xs font-semibold text-[#28613c] disabled:opacity-45">Approve listening</button>
+                  <button type="button" onClick={() => void submitReview(item, "approved")} disabled={loading || saving === item.asset_id || playbackErrors[key] || !draft.playbackEvidence?.completed} className="btn-pop min-h-11 rounded-full bg-[#dff7e7] px-4 text-xs font-semibold text-[#28613c] disabled:opacity-45">Approve listening</button>
                   <button type="button" onClick={() => void submitReview(item, "rejected")} disabled={loading || saving === item.asset_id || !queue?.release_id} className="btn-pop min-h-11 rounded-full bg-[#fde4e4] px-4 text-xs font-semibold text-[#8b2b2b] disabled:opacity-45">Reject and request re-record</button>
                 </div>
                 <p className="mt-3 text-xs leading-5 text-[#1d1a3e]/68">{item.rationale.slice(0, 2).join("; ")}</p>

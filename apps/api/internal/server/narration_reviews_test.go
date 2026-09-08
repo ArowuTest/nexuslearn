@@ -253,9 +253,41 @@ func TestNarrationReviewEndpointsEnforceAudioBindingAndCriteria(t *testing.T) {
 		},
 		"playback_evidence": map[string]any{
 			"surface": "admin_audio_workspace", "completed": true, "duration_ms": 7250,
+			"coverage_version": "played-ranges-v1", "played_ms": 7250, "playback_rate": 1,
 		},
 	}
 	approvedBody, _ := json.Marshal(approved)
+	for _, tc := range []struct {
+		name      string
+		telemetry map[string]any
+	}{
+		{"ended-only", map[string]any{}},
+		{"skipped-ranges", map[string]any{"coverage_version": "played-ranges-v1", "played_ms": 4000, "playback_rate": 1}},
+		{"zero", map[string]any{"coverage_version": "played-ranges-v1", "played_ms": 0, "playback_rate": 1}},
+		{"overcount", map[string]any{"coverage_version": "played-ranges-v1", "played_ms": 7251, "playback_rate": 1}},
+		{"rate-two", map[string]any{"coverage_version": "played-ranges-v1", "played_ms": 7250, "playback_rate": 2}},
+		{"wrong-version", map[string]any{"coverage_version": "unknown", "played_ms": 7250, "playback_rate": 1}},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			var invalid map[string]any
+			if err := json.Unmarshal(approvedBody, &invalid); err != nil {
+				t.Fatal(err)
+			}
+			invalid["playback_evidence"] = map[string]any{"surface": "admin_audio_workspace", "completed": true, "duration_ms": 7250}
+			for key, value := range tc.telemetry {
+				invalid["playback_evidence"].(map[string]any)[key] = value
+			}
+			body, _ := json.Marshal(invalid)
+			request := httptest.NewRequest(http.MethodPost, "/v1/admin/content/narration-reviews", bytes.NewReader(body))
+			request.Header.Set("X-Admin-Key", "test-admin")
+			request.Header.Set("Idempotency-Key", "invalid-coverage-"+tc.name)
+			response := httptest.NewRecorder()
+			srv.ServeHTTP(response, request)
+			if response.Code != http.StatusBadRequest || len(repo.saved) != 0 {
+				t.Fatalf("invalid coverage reached persistence: status=%d saved=%d body=%s", response.Code, len(repo.saved), response.Body.String())
+			}
+		})
+	}
 	approvedRequest := httptest.NewRequest(http.MethodPost, "/v1/admin/content/narration-reviews", bytes.NewReader(approvedBody))
 	approvedRequest.Header.Set("X-Admin-Key", "test-admin")
 	approvedRequest.Header.Set("Idempotency-Key", "review-asset-1")

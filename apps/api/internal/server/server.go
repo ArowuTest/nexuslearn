@@ -423,7 +423,12 @@ func (s *Server) handleHealth(w http.ResponseWriter, _ *http.Request) {
 }
 
 func (s *Server) handleVersion(w http.ResponseWriter, _ *http.Request) {
+	revision := currentBuildRevision()
+	w.Header().Set("Cache-Control", "no-store")
 	writeJSON(w, http.StatusOK, map[string]string{
+		"git_revision":                revision.SHA,
+		"git_revision_source":         revision.Source,
+		"git_revision_state":          revision.State,
 		"name":                        "nexuslearn-api",
 		"version":                     "0.4.0",
 		"slice":                       "3-configurable-platform-closure",

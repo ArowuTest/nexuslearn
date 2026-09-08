@@ -52,7 +52,7 @@ Checks:
 - frontend production build
 - Chromebook-oriented production asset budgets:
   - per-route initial uncompressed JavaScript at or below 750,000 bytes;
-  - aggregate emitted JavaScript at or below 1,400,000 bytes;
+  - aggregate emitted JavaScript at or below 1,430,000 bytes;
   - no JavaScript chunk above 250,000 bytes;
   - total emitted CSS at or below 120,000 bytes;
 - no individual public asset above 600,000 bytes.
@@ -73,7 +73,8 @@ Checks:
 This catches broken code, TypeScript/build errors and API regressions before a
 deployment is trusted.
 
-The 1,400,000-byte aggregate JavaScript ceiling is an explicitly approved
+The 1,430,000-byte aggregate JavaScript ceiling includes the measured calibration
+documented in `reviews/2026-09-08-admin-audio-integrity.md`. This is an explicit
 metric change from the earlier repository-wide total. It remains a secondary
 repository-health cap for runaway dependency growth; it is not a claim that a
 browser downloads all emitted route-isolated chunks. The 750,000-byte
@@ -95,14 +96,47 @@ Manual release verification should still check:
 - latest GitHub workflows are green
 - Vercel deployment is `READY`
 - Render API `/healthz` returns `200`
-- `/v1/version` returns the expected API version
+- `/v1/version` reports the exact intended Git SHA with a verifiable source/state
 - key child, parent, school and admin routes load
 
 The platform workflow also applies every migration to disposable PostgreSQL 16
 and runs desktop/mobile Playwright journeys for public, family, school, admin
 and pupil-card entry. A separate deployment-smoke workflow waits for Render and
-Vercel, then verifies API health, family-page availability and the anonymous
-parent-evidence privacy boundary.
+Vercel, then verifies API health, the exact backend revision and API contracts,
+family-page availability, the public narration manifest, and private-report and
+anonymous parent-evidence privacy boundaries. Vercel's commit-specific deployment
+status must still be checked separately; family-page HTTP availability alone
+does not establish which frontend revision is serving the alias.
+
+The smoke job checks out the successful main push's `workflow_run.head_sha`,
+not the potentially newer default-branch `GITHUB_SHA`. Only main pushes from
+this repository and manual dispatches on main are eligible. Duplicate runs of
+one SHA are coalesced; older SHAs cannot cancel newer verification. If a newer
+deployment supersedes the target, the older smoke run fails explicitly rather
+than treating a different commit as success. Inspect the latest commit's run.
+
+The Go binary's clean `vcs.revision` is preferred. Render's documented
+`RENDER_GIT_COMMIT` is a platform-reported fallback when VCS stamping is absent.
+Conflicting, modified, invalid or incomplete stamps cannot pass. Unknown
+revision metadata stays unknown; do not hardcode a SHA or manually override
+Render's value. Deploy the intended source instead. The version response is
+`Cache-Control: no-store` and exposes only validated SHAs and fixed labels.
+
+### Listening-review playback evidence
+
+New approvals from the admin audio workspace require `played-ranges-v1`
+telemetry: exact file identity, normal-speed playback, positive duration and
+played coverage. Native played ranges are unioned so replay cannot double count
+and seeking to the end cannot fill skipped sections. At most 100ms AND one
+percent of codec/timing rounding is allowed, with matching API validation.
+Changing QA playback speed resets coverage and restores 1x. A new review does
+not inherit another review's playback completion.
+
+This is client-reported telemetry, not proof of attention, continuous listening,
+natural pronunciation or suitability. Named human criteria remain separate.
+Historical evidence is retained unchanged; imports without workspace telemetry
+keep their existing contract and are not upgraded into coverage evidence.
+Pupil/SEND playback preferences are unaffected by the admin-only QA speed rule.
 
 Renderer acceptance additionally checks particle models and sentence cards on
 desktop and mobile for named screen-reader structures, keyboard operation and

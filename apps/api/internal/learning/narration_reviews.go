@@ -40,6 +40,7 @@ func validateNarrationReview(review NarrationReview) error {
 		return invalidConfig("a rejection needs a note or rejection reason")
 	}
 	if review.PlaybackEvidence != nil {
+		playback := review.PlaybackEvidence
 		if review.PlaybackEvidence.Surface != "" && review.PlaybackEvidence.Surface != narrationPlaybackWorkspace {
 			return invalidConfig("narration playback evidence surface is not recognised")
 		}
@@ -48,6 +49,29 @@ func validateNarrationReview(review NarrationReview) error {
 		}
 		if review.Decision == "approved" && review.PlaybackEvidence.Surface == narrationPlaybackWorkspace && !review.PlaybackEvidence.Completed {
 			return invalidConfig("the audio workspace requires playback completion before approval")
+		}
+		workspaceApproval := review.Decision == "approved" && playback.Surface == narrationPlaybackWorkspace
+		// Legacy evidence remains unchanged. New coverage telemetry is checked
+		// on every decision, including rejections and surface-less imports.
+		if workspaceApproval || playback.CoverageVersion != "" || playback.PlayedMS != 0 || playback.PlaybackRate != 0 {
+			if playback.CoverageVersion != "played-ranges-v1" {
+				return invalidConfig("narration playback coverage version must be played-ranges-v1")
+			}
+			if playback.DurationMS < 1 || playback.PlayedMS < 1 || playback.PlayedMS > playback.DurationMS {
+				return invalidConfig("narration playback coverage must be within the positive duration")
+			}
+			if playback.PlaybackRate != 1 {
+				return invalidConfig("narration playback coverage requires normal playback rate")
+			}
+			if workspaceApproval {
+				tolerance := playback.DurationMS / 100
+				if tolerance > 100 {
+					tolerance = 100
+				}
+				if playback.DurationMS-playback.PlayedMS > tolerance {
+					return invalidConfig("the audio workspace requires full played-range coverage before approval")
+				}
+			}
 		}
 	}
 	return nil
