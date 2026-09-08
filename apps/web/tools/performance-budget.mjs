@@ -12,10 +12,11 @@ const limits = {
   // JavaScript for one rendered route, including shared framework chunks.
   // The aggregate includes shared and route-isolated chunks that no single browser route downloads together.
   // Authenticated learner, organisation, teaching-group, parent/access and content-directory surfaces add a small,
-  // deliberate amount of admin workflow code. Keep route, largest-file, CSS
-  // and public-asset limits unchanged; this aggregate ceiling is calibrated to
-  // the clean CI Node 22 build with measured headroom.
-  aggregateJavaScript: 1_420_000,
+  // deliberate amount of admin workflow code. Evidence context and audio pace
+  // review add about 5 KB over the prior baseline. This ceiling retains about
+  // 5 KB of local production-build headroom; CI checks the same limit. Keep
+  // route, largest-file, CSS and public-asset limits unchanged.
+  aggregateJavaScript: 1_430_000,
   largestRouteJavaScript: 750_000,
   largestJavaScript: 250_000,
   totalCSS: 120_000,

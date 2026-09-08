@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { assessPace } from "@/lib/audio-pace.mjs";
 import {
   DEFAULT_AUDIO_FILTERS,
   audioFiltersFromSearch,
@@ -56,6 +57,12 @@ function draftFor(item: NarrationQueueItem): ReviewDraft {
   };
 }
 
+function recordingKey(item: NarrationQueueItem) {
+  // Asset IDs can survive regeneration. Never transfer a draft or player state
+  // to different bytes, transcript, production profile or delivery URL.
+  return JSON.stringify([item.asset_id, item.audio_sha256, item.text_sha256, item.production_profile_sha256 ?? "", item.file]);
+}
+
 function durationMSFromSeconds(durationSeconds?: number) {
   if (typeof durationSeconds !== "number" || !Number.isFinite(durationSeconds) || durationSeconds <= 0) return undefined;
   return Math.min(3_600_000, Math.max(1, Math.round(durationSeconds * 1000)));
@@ -82,6 +89,7 @@ export default function AdminAudioWorkspace({ request, readiness }: { request: A
   const [queue, setQueue] = useState<NarrationQueuePage | null>(null);
   const [drafts, setDrafts] = useState<Record<string, ReviewDraft>>({});
   const [playbackErrors, setPlaybackErrors] = useState<Record<string, boolean>>({});
+  const [durations, setDurations] = useState<Record<string, number>>({});
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState("");
   const [message, setMessage] = useState("Loading the governed listening queue…");
@@ -111,11 +119,12 @@ export default function AdminAudioWorkspace({ request, readiness }: { request: A
   }
 
   function itemDraft(item: NarrationQueueItem) {
-    return drafts[item.asset_id] ?? draftFor(item);
+    return drafts[recordingKey(item)] ?? draftFor(item);
   }
 
   function updateDraft(item: NarrationQueueItem, patch: Partial<ReviewDraft>) {
-    setDrafts((current) => ({ ...current, [item.asset_id]: { ...itemDraft(item), ...patch } }));
+    const key = recordingKey(item);
+    setDrafts((current) => ({ ...current, [key]: { ...(current[key] ?? draftFor(item)), ...patch } }));
   }
 
   async function submitReview(item: NarrationQueueItem, decision: "approved" | "rejected") {
@@ -162,7 +171,7 @@ export default function AdminAudioWorkspace({ request, readiness }: { request: A
       } else {
         setMessage(`${item.asset_id} approved against the current transcript, audio and production profile.`);
       }
-      setDrafts((current) => Object.fromEntries(Object.entries(current).filter(([assetID]) => assetID !== item.asset_id)));
+      setDrafts((current) => Object.fromEntries(Object.entries(current).filter(([key]) => key !== recordingKey(item))));
       const refreshOffset = queue && queue.items.length === 1 && queue.offset > 0 ? Math.max(0, queue.offset - queue.limit) : queue?.offset ?? 0;
       await refresh(filters, refreshOffset, false);
     } catch (error) {
@@ -261,8 +270,10 @@ export default function AdminAudioWorkspace({ request, readiness }: { request: A
           {(queue?.items ?? []).map((item) => {
             const draft = itemDraft(item);
             const stale = item.status === "stale" || item.review?.stale;
+            const key = recordingKey(item);
+            const pace = assessPace(item.text_preview, durations[key], item.year);
             return (
-              <article key={item.asset_id} className="rounded-3xl border border-[#1d1a3e]/10 bg-white p-4 md:p-5">
+              <article key={key} className="rounded-3xl border border-[#1d1a3e]/10 bg-white p-4 md:p-5">
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div className="min-w-0">
                     <p className="break-all font-semibold text-[#17233f]">{item.asset_id}</p>
@@ -273,11 +284,27 @@ export default function AdminAudioWorkspace({ request, readiness }: { request: A
 
                 {stale && <div className="mt-4 rounded-2xl border border-[#f0b35a]/50 bg-[#fff8e8] p-3 text-sm text-[#725100]" role="alert"><strong>The previous decision is stale.</strong> Re-listen and create a new decision against the current file and profile.</div>}
 
-                <audio className="mt-4 w-full" controls preload="metadata" src={item.file} aria-label={`Listen to ${item.asset_id}`} onError={() => setPlaybackErrors((current) => ({ ...current, [item.asset_id]: true }))} onCanPlay={() => setPlaybackErrors((current) => ({ ...current, [item.asset_id]: false }))} onEnded={(event) => markPlaybackComplete(item, event.currentTarget.duration)} />
-                {playbackErrors[item.asset_id] && <p className="mt-2 rounded-xl bg-[#fff1f1] p-3 text-xs text-[#8b2b2b]" role="alert">Audio playback failed. Do not approve this asset; verify the file or request a technical re-record.</p>}
+                <audio className="mt-4 w-full" controls preload="metadata" src={item.file} aria-label={`Listen to ${item.asset_id}`}
+                  onLoadedMetadata={(event) => {
+                    const seconds = event.currentTarget.duration;
+                    if (Number.isFinite(seconds) && seconds > 0) setDurations((current) => ({ ...current, [key]: seconds }));
+                  }}
+                  onError={() => setPlaybackErrors((current) => ({ ...current, [key]: true }))}
+                  onCanPlay={() => setPlaybackErrors((current) => ({ ...current, [key]: false }))}
+                  onEnded={(event) => markPlaybackComplete(item, event.currentTarget.duration)} />
+                {playbackErrors[key] && <p className="mt-2 rounded-xl bg-[#fff1f1] p-3 text-xs text-[#8b2b2b]" role="alert">Audio playback failed. Do not approve this asset; verify the file or request a technical re-record.</p>}
                 <p className="mt-2 rounded-xl bg-[#f5f7fb] p-3 text-xs text-[#1d1a3e]/68" role="status">
                   {draft.playbackCompleted ? `Played through${draft.playbackDurationMS ? ` · recorded duration ${(draft.playbackDurationMS / 1000).toFixed(1)}s` : ""}; assess voice and suitability.` : "Play to end before approval; not proof of attention."}
                 </p>
+
+                {pace.wpm !== null && <div className="mt-2 rounded-xl bg-[#fffaf0] p-3 text-xs leading-5 text-[#725100]">
+                  <p>Browser duration: {durations[key].toFixed(1)}s · script estimate: {pace.wpm} words/min at 1x.</p>
+                  <p>{pace.status === "pace_review_fast" ? `Fast-pace review: above the Year ${item.year} screening level (${pace.screening_upper_wpm} words/min).`
+                    : pace.status === "pace_review_slow" ? "Slow-pace review: listen for long pauses or fragmented speech."
+                    : pace.status === "short_script_listen" ? "Short script: listen directly; a word-rate comparison is unreliable."
+                    : "Within the screening range; pronunciation and suitability still need listening."}</p>
+                  <p>Screening only — not transcription, an educational standard or listening approval.</p>
+                </div>}
 
                 <div className="mt-4 rounded-2xl border-l-4 border-[#f0b35a] bg-[#fffaf0] p-4">
                   <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#725100]">Exact transcript</p>
@@ -288,7 +315,7 @@ export default function AdminAudioWorkspace({ request, readiness }: { request: A
                   <p><strong>Voice:</strong> {item.voice_name ?? queue?.voice_name ?? "manifest voice"}</p>
                   <p><strong>Model:</strong> {item.model_id ?? queue?.model_id ?? "manifest model"}</p>
                   <p><strong>Output:</strong> {item.output_format ?? "manifest format"}</p>
-                  {typeof item.voice_settings?.speed === "number" && <p><strong>Production speed:</strong> {item.voice_settings.speed.toFixed(2)}x · listen at 1x for approval</p>}
+                  <p><strong>Production speed:</strong> {typeof item.voice_settings?.speed === "number" ? `${item.voice_settings.speed.toFixed(2)}x · listen at 1x for approval` : "not recorded; do not infer a historical setting"}</p>
                   <p><strong>Used by {item.reference_count ?? item.reuse_count ?? 1} learning references</strong></p>
                   <p><strong>Canonical reuse:</strong> {item.reuse_count ?? 1}</p>
                 </div>
@@ -324,7 +351,7 @@ export default function AdminAudioWorkspace({ request, readiness }: { request: A
                 </label>
 
                 <div className="mt-4 flex flex-wrap gap-2">
-                  <button type="button" onClick={() => void submitReview(item, "approved")} disabled={loading || saving === item.asset_id || playbackErrors[item.asset_id] || !draft.playbackCompleted} className="btn-pop min-h-11 rounded-full bg-[#dff7e7] px-4 text-xs font-semibold text-[#28613c] disabled:opacity-45">Approve listening</button>
+                  <button type="button" onClick={() => void submitReview(item, "approved")} disabled={loading || saving === item.asset_id || playbackErrors[key] || !draft.playbackCompleted} className="btn-pop min-h-11 rounded-full bg-[#dff7e7] px-4 text-xs font-semibold text-[#28613c] disabled:opacity-45">Approve listening</button>
                   <button type="button" onClick={() => void submitReview(item, "rejected")} disabled={loading || saving === item.asset_id || !queue?.release_id} className="btn-pop min-h-11 rounded-full bg-[#fde4e4] px-4 text-xs font-semibold text-[#8b2b2b] disabled:opacity-45">Reject and request re-record</button>
                 </div>
                 <p className="mt-3 text-xs leading-5 text-[#1d1a3e]/68">{item.rationale.slice(0, 2).join("; ")}</p>

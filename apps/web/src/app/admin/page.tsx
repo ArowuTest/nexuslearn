@@ -3047,7 +3047,8 @@ export default function AdminPage() {
               )}
               <div className="grid gap-3 p-5 lg:grid-cols-2">
                 {(pilotReviewBatch?.packs ?? []).map((pack) => {
-                  const reviewObjective = objectives.find((candidate) => candidate.id === pack.pack_id);
+                  const readinessItem = readiness?.items.find((item) => item.objective_id === pack.pack_id);
+                  const reviewObjective = readinessItem ? objectiveFromReadinessItem(readinessItem) : objectives.find((candidate) => candidate.id === pack.pack_id);
                   return <article key={pack.pack_id} className="border border-[#1d1a3e]/8 bg-[#fffdf7] p-4">
                     <div className="flex flex-wrap items-start justify-between gap-2">
                       <div>
@@ -3282,34 +3283,12 @@ export default function AdminPage() {
                     <div className="self-start bg-[#f6f3ea] p-4">
                       <p className="font-display text-4xl font-semibold">{item.score}</p>
                       <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#1d1a3e]/45">readiness score</p>
-                      <button
-                        onClick={() => {
-                          const objective = objectives.find((candidate) => candidate.id === item.objective_id) ?? {
-                            id: item.objective_id,
-                            year: item.year,
-                            subject: item.subject,
-                            strand: item.strand,
-                            topic: item.topic,
-                            statement: item.statement,
-                            prerequisites: [],
-                            misconceptions: [],
-                            mastery: { expected: 80, secure: 90, retention_days: [], required_formats: [] },
-                            parent_explanation: "",
-                            teacher_evidence: "",
-                          };
-                          setTab("Objectives");
-                          setObjectiveDraft({
-                            ...objective,
-                            prerequisitesText: pretty(objective.prerequisites ?? []),
-                            misconceptionsText: pretty(objective.misconceptions ?? []),
-                            retentionDaysText: pretty(objective.mastery?.retention_days ?? []),
-                            requiredFormatsText: pretty(objective.mastery?.required_formats ?? []),
-                          });
-                        }}
+                      {visibleTabs.includes("Objectives") && <button
+                        onClick={() => openObjectiveEditor(readinessObjective)}
                         className="btn-pop mt-4 w-full bg-white px-4 py-3 text-sm"
                       >
                         Open objective
-                      </button>
+                      </button>}
                     </div>
                   </article>;
                 })}
@@ -3673,19 +3652,6 @@ function AdminCursorPager({
   );
 }
 
-function reviewAccessChecks(objective?: Objective) {
-  const formats = objective?.mastery?.required_formats ?? [];
-  const checks = [
-    "Confirm the renderer has a keyboard-operable equivalent response route where the interaction requires one.",
-    "Check visual guidance, reduced-motion behaviour and readable task chunking before approving the lane.",
-    "Confirm audio replay, AAC, switch, partner-pointing or extra-processing-time routes are preserved as equivalent evidence when the learner uses them.",
-  ];
-  if (formats.some((format) => format.toLowerCase().includes("audio"))) {
-    checks.unshift("Listen to the produced audio at the learner-facing speed and confirm the transcript, pronunciation and replay state.");
-  }
-  return checks;
-}
-
 function objectiveFromReadinessItem(item: ContentReadinessItem): Objective {
   return {
     id: item.objective_id,
@@ -3722,34 +3688,34 @@ function ReviewContextCard({
   onOpenObjective: () => void;
   onOpenProgress: () => void;
 }) {
-  const accessChecks = reviewAccessChecks(objective);
+  const formats = objective?.mastery.required_formats.map(humanise).join(", ") || "not configured";
+  const accessChecks = [
+    ...((objective?.mastery.required_formats ?? []).some((format) => format.toLowerCase().includes("audio"))
+      ? ["Listen to the produced audio and confirm speed, transcript, pronunciation and replay state."]
+      : []),
+    "Confirm the renderer has a keyboard-operable equivalent response route where the interaction requires one.",
+    "Check visual guidance, reduced motion and readable task chunking.",
+    "Confirm switch, AAC, partner-pointing and extra-time routes preserve equivalent evidence.",
+  ];
   return (
-    <aside className="mt-4 rounded-2xl border border-[#7357c9]/18 bg-[#f7f4ff] p-4" aria-label={`Review context for ${packID}`}>
-      <div className="flex flex-wrap items-start justify-between gap-3">
+    <aside className="mt-4 border border-[#7357c9]/20 bg-[#f7f4ff] p-4" aria-label={`Review context for ${packID}`}>
+      <header className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <p className="font-display text-xs uppercase tracking-[0.14em] text-[#5b43a8]">Review context</p>
-          <h4 className="mt-1 font-display text-lg font-semibold">Evidence to inspect before a decision</h4>
+          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#5b43a8]">Review context</p>
+          <h4 className="mt-1 text-lg font-semibold">Evidence before a decision</h4>
         </div>
         <span className="rounded-full bg-white px-3 py-1 text-[11px] font-semibold text-[#5b43a8]">{objective ? "objective linked" : "objective link needed"}</span>
-      </div>
+      </header>
       {objective ? (
         <>
-          <p className="mt-3 text-sm font-semibold leading-6 text-[#1d1a3e]">{objective.statement}</p>
-          <div className="mt-3 grid gap-3 md:grid-cols-2">
-            <div className="rounded-xl bg-white p-3">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#565267]">Teacher evidence prompt</p>
-              <p className="mt-1 text-sm leading-6 text-[#1d1a3e]/75">{objective.teacher_evidence || "No teacher evidence prompt is configured yet; keep this lane in review."}</p>
-            </div>
-            <div className="rounded-xl bg-white p-3">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#565267]">Mastery standard</p>
-              <p className="mt-1 text-sm leading-6 text-[#1d1a3e]/75">
-                Expected {objective.mastery.expected}% · secure {objective.mastery.secure}% · formats {objective.mastery.required_formats.length ? objective.mastery.required_formats.map(humanise).join(", ") : "not configured"}.
-              </p>
-            </div>
+          <p className="mt-3 text-sm font-semibold leading-6">{objective.statement}</p>
+          <div className="mt-3 grid gap-3 text-sm md:grid-cols-2">
+            <p className="rounded-xl bg-white p-3"><strong>Teacher evidence prompt</strong><br /><span>{objective.teacher_evidence || "No prompt configured; keep this lane in review."}</span></p>
+            <p className="rounded-xl bg-white p-3"><strong>Mastery standard</strong><br />Expected {objective.mastery.expected}% · secure {objective.mastery.secure}% · formats {formats}.</p>
           </div>
-          <div className="mt-3 rounded-xl bg-white p-3">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#565267]">SEND and equivalent-response checks</p>
-            <ul className="mt-2 grid gap-1.5 text-sm leading-6 text-[#1d1a3e]/75">
+          <div className="mt-3 rounded-xl bg-white p-3 text-sm">
+            <strong>SEND and equivalent-response checks</strong>
+            <ul className="mt-2 grid gap-1.5 leading-6">
               {accessChecks.map((check) => <li key={check} className="flex gap-2"><span aria-hidden="true" className="text-[#7357c9]">•</span><span>{check}</span></li>)}
             </ul>
           </div>
@@ -3757,10 +3723,9 @@ function ReviewContextCard({
             {canOpenObjective && <button type="button" onClick={onOpenObjective} className="btn-pop rounded-full bg-white px-3 py-2 text-xs font-semibold text-[#4d3690]">Open objective record</button>}
             {canOpenProgress && <button type="button" onClick={onOpenProgress} className="btn-pop rounded-full bg-[#7357c9] px-3 py-2 text-xs font-semibold text-white">Open learner progress</button>}
           </div>
-          {canOpenProgress && <p className="mt-2 text-[11px] leading-5 text-[#565267]">Select a learner in Progress to see recent attempts, subject route, revision and teacher evidence before recording a decision.</p>}
         </>
       ) : (
-        <p className="mt-3 text-sm leading-6 text-[#8b2b2b]">No live objective record matched <span className="font-mono">{packID}</span>. Do not approve this lane until the objective mapping, teacher evidence prompt and access route are available.</p>
+        <p className="mt-3 text-sm leading-6 text-[#8b2b2b]">No live objective matched <span className="font-mono">{packID}</span>. Do not approve until its evidence and access route are available.</p>
       )}
     </aside>
   );

@@ -19,6 +19,44 @@ const emptyReadiness = {
   items: [],
 };
 
+const reviewReadinessItem = {
+  objective_id: "ma-y4-times-tables",
+  year: 4,
+  subject: "Mathematics",
+  strand: "Number",
+  topic: "Multiplication",
+  statement: "Recall multiplication facts up to 12 x 12.",
+  parent_explanation: "Practise facts in short bursts.",
+  teacher_evidence: "Accurate recall across formats.",
+  prerequisites: ["equal groups"],
+  misconceptions: ["commutativity confusion"],
+  expected_mastery: 82,
+  secure_mastery: 94,
+  retention_days: [1, 3, 7],
+  required_formats: ["timed-recall", "multiple_choice"],
+  status: "pilot",
+  score: 80,
+  activity_count: 1,
+  published_activity_count: 1,
+  question_count: 3,
+  published_question_count: 3,
+  format_count: 2,
+  formats: ["multiple_choice"],
+  missing: [],
+  warnings: [],
+};
+
+async function stubReviewReadiness(page: Page) {
+  await page.route("http://api.test/v1/admin/content/readiness", route => route.fulfill({
+    contentType: "application/json",
+    body: JSON.stringify({
+      ...emptyReadiness,
+      totals: { ...emptyReadiness.totals, objectives: 1 },
+      items: [reviewReadinessItem],
+    }),
+  }));
+}
+
 async function stubAdminAPI(page: Page) {
   await page.route("http://api.test/**", async (route) => {
     const url = new URL(route.request().url());
@@ -209,6 +247,74 @@ test("readiness puts teacher evidence and SEND review context beside the decisio
   await expect(page.getByRole("button", { name: "Open learner progress" })).toBeVisible();
   await page.getByRole("button", { name: "Open learner progress" }).click();
   await expect(page.getByRole("heading", { name: "Learner progress lookup" })).toBeVisible();
+});
+
+for (const button of ["Open objective", "Open objective record"]) {
+  test(`readiness ${button} preserves the complete objective when saving`, async ({ page }) => {
+    await openAuthenticatedAdmin(page);
+    await stubReviewReadiness(page);
+    await page.route(`http://api.test/v1/admin/curriculum/objectives/${reviewReadinessItem.objective_id}`, route => route.fulfill({
+      contentType: "application/json", body: "{}",
+    }));
+    await page.getByRole("button", { name: "Readiness", exact: true }).click();
+    await page.getByRole("button", { name: button, exact: true }).click();
+    await expect(page.getByRole("heading", { name: "Objective Editor" })).toBeVisible();
+    await expect(page.getByLabel("Teacher evidence", { exact: true })).toHaveValue(reviewReadinessItem.teacher_evidence);
+    await expect(page).toHaveURL(/section=objectives/);
+    await expect(page.getByLabel("Parent explanation", { exact: true })).toHaveValue(reviewReadinessItem.parent_explanation);
+    const saved = page.waitForRequest(request => request.method() === "PUT" && request.url().endsWith(`/curriculum/objectives/${reviewReadinessItem.objective_id}`));
+    await page.getByRole("button", { name: "Save", exact: true }).click();
+    expect((await saved).postDataJSON()).toEqual({
+      id: reviewReadinessItem.objective_id,
+      year: reviewReadinessItem.year,
+      subject: reviewReadinessItem.subject,
+      strand: reviewReadinessItem.strand,
+      topic: reviewReadinessItem.topic,
+      statement: reviewReadinessItem.statement,
+      parent_explanation: reviewReadinessItem.parent_explanation,
+      teacher_evidence: reviewReadinessItem.teacher_evidence,
+      prerequisites: reviewReadinessItem.prerequisites,
+      misconceptions: reviewReadinessItem.misconceptions,
+      mastery: {
+        expected: reviewReadinessItem.expected_mastery,
+        secure: reviewReadinessItem.secure_mastery,
+        retention_days: reviewReadinessItem.retention_days,
+        required_formats: reviewReadinessItem.required_formats,
+      },
+    });
+  });
+}
+
+test("a direct release review resolves objective context without visiting the objective directory", async ({ page }) => {
+  await openAuthenticatedAdmin(page);
+  await stubReviewReadiness(page);
+  let directoryRequests = 0;
+  page.on("request", request => {
+    if (request.url().includes("/objective-directory")) directoryRequests++;
+  });
+  await page.route("http://api.test/v1/admin/content/reports/pilot-review-batch", route => route.fulfill({
+    contentType: "application/json",
+    body: JSON.stringify({
+      status: "human_review_pending", batch_id: "review-context-test", operator_guidance: [], decision_policy: {},
+      totals: { packs: 2, review_candidates: 2, recommended_first_pass: 2, runtime_variants: 0, pilot_target: 2, release_blockers: 2, audio_qa_required: 0 },
+      packs: [reviewReadinessItem.objective_id, "unknown-objective"].map(pack_id => ({
+        pack_id, year: 4, subject: "Mathematics", queue_rank: 1, runtime_variants: 0, review_candidates: 1, pilot_target: 1,
+        recommended_first_pass: 1, audio_qa_required: false, renderer_acceptance_required: false,
+        first_action: "Review teacher evidence.", blockers: [], lanes: [], evidence_required: [], decision_outputs: [],
+      })),
+    }),
+  }));
+  await page.goto("/admin?section=releases", { waitUntil: "domcontentloaded" });
+  const context = page.getByRole("complementary", { name: `Review context for ${reviewReadinessItem.objective_id}` });
+  await expect(context.getByText(reviewReadinessItem.teacher_evidence, { exact: true })).toBeVisible();
+  await expect(context.getByText(/Expected 82% · secure 94%/)).toBeVisible();
+  const unmatched = page.getByRole("complementary", { name: "Review context for unknown-objective" });
+  await expect(unmatched.getByText(/No live objective matched/)).toBeVisible();
+  await expect(unmatched.getByRole("button", { name: "Open objective record" })).toHaveCount(0);
+  expect(directoryRequests).toBe(0);
+  await context.getByRole("button", { name: "Open objective record" }).click();
+  await expect(page.getByLabel("Teacher evidence", { exact: true })).toHaveValue(reviewReadinessItem.teacher_evidence);
+  await expect(page).toHaveURL(/section=objectives/);
 });
 
 test("release workspace runs a read-only backend preflight and shows every blocker", async ({ page }) => {
