@@ -18,6 +18,7 @@ import (
 
 type narrationReviewRepository interface {
 	ListNarrationReviews(context.Context, string, int) ([]learning.NarrationReview, error)
+	ListNarrationReviewsForAssets(context.Context, []string) ([]learning.NarrationReview, error)
 	SaveNarrationReview(context.Context, learning.NarrationReview, string) (learning.NarrationReview, error)
 }
 
@@ -135,7 +136,13 @@ func (s *Server) handleNarrationReviewQueue(w http.ResponseWriter, r *http.Reque
 		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "narration manifest is not available"})
 		return
 	}
-	reviews, err := repository.ListNarrationReviews(r.Context(), "", len(manifest.Items))
+	assetIDs := make([]string, 0, len(manifest.Items))
+	for _, asset := range manifest.Items {
+		if asset.TechnicalPass {
+			assetIDs = append(assetIDs, asset.ID)
+		}
+	}
+	reviews, err := repository.ListNarrationReviewsForAssets(r.Context(), assetIDs)
 	if err != nil {
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read narration reviews"})
 		return

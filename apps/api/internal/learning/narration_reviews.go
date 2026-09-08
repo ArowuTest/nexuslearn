@@ -11,6 +11,7 @@ import (
 var narrationSHA256Pattern = regexp.MustCompile(`^[0-9a-f]{64}$`)
 
 const narrationPlaybackWorkspace = "admin_audio_workspace"
+const narrationReviewLookupBatchSize = 5000
 
 func validateNarrationReview(review NarrationReview) error {
 	if strings.TrimSpace(review.AssetID) == "" {
@@ -59,13 +60,46 @@ func ValidateNarrationReview(review NarrationReview) error {
 }
 
 func (r *PostgresRepository) ListNarrationReviews(ctx context.Context, assetID string, limit int) ([]NarrationReview, error) {
-	// The governed listening queue joins one latest decision per manifest asset
-	// in a single bounded query. This avoids an asset-by-asset N+1 while leaving
-	// enough headroom for the current 874-asset catalogue and future MVP growth.
-	if limit <= 0 || limit > 5000 {
+	// The history endpoint is globally bounded. The current-catalogue queue
+	// must use ListNarrationReviewsForAssets so retired assets cannot displace it.
+	if limit <= 0 || limit > narrationReviewLookupBatchSize {
 		limit = 100
 	}
-	assetID = strings.TrimSpace(assetID)
+	return r.listNarrationReviews(ctx, strings.TrimSpace(assetID), false, limit)
+}
+
+func (r *PostgresRepository) ListNarrationReviewsForAssets(ctx context.Context, assetIDs []string) ([]NarrationReview, error) {
+	ids := make([]string, 0, len(assetIDs))
+	seen := make(map[string]bool, len(assetIDs))
+	for _, id := range assetIDs {
+		if id != "" && !seen[id] {
+			ids = append(ids, id)
+			seen[id] = true
+		}
+	}
+	reviews := []NarrationReview{}
+	// One query for today's catalogue; bounded batches when it grows. Empty
+	// input never falls through to the global history query.
+	for start := 0; start < len(ids); start += narrationReviewLookupBatchSize {
+		end := start + narrationReviewLookupBatchSize
+		if end > len(ids) {
+			end = len(ids)
+		}
+		batch, err := r.listNarrationReviews(ctx, ids[start:end], true, end-start)
+		if err != nil {
+			return nil, err
+		}
+		reviews = append(reviews, batch...)
+	}
+	return reviews, nil
+}
+
+func (r *PostgresRepository) listNarrationReviews(ctx context.Context, assetFilter any, catalogueScoped bool, limit int) ([]NarrationReview, error) {
+	// Only these fixed predicates are interpolated; all asset IDs are parameters.
+	predicate := "($1 = '' OR asset_id = $1)"
+	if catalogueScoped {
+		predicate = "asset_id = ANY($1::text[])"
+	}
 	rows, err := r.db.Query(ctx, `
 		SELECT id, asset_id, text_sha256, audio_sha256, production_profile_sha256, decision,
 		       reviewer_id, reviewer_name, criteria, rejection_reasons, notes, playback_evidence,
@@ -77,12 +111,12 @@ func (r *PostgresRepository) ListNarrationReviews(ctx context.Context, assetID s
 			       reviewer_id, reviewer_name, criteria, rejection_reasons, notes, playback_evidence,
 			       created_at, updated_at
 			FROM narration_reviews
-			WHERE ($1 = '' OR asset_id = $1)
+			WHERE `+predicate+`
 			ORDER BY asset_id, updated_at DESC, id DESC
 		) latest
 		ORDER BY updated_at DESC, id DESC
 		LIMIT $2
-	`, assetID, limit)
+	`, assetFilter, limit)
 	if err != nil {
 		return nil, err
 	}

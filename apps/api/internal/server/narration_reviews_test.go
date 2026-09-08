@@ -20,6 +20,22 @@ type narrationReviewTestRepository struct {
 	saved   []learning.NarrationReview
 	keys    []string
 	limits  []int
+	lookups [][]string
+}
+
+func (r *narrationReviewTestRepository) ListNarrationReviewsForAssets(_ context.Context, assetIDs []string) ([]learning.NarrationReview, error) {
+	r.lookups = append(r.lookups, append([]string(nil), assetIDs...))
+	ids := map[string]bool{}
+	for _, id := range assetIDs {
+		ids[id] = true
+	}
+	filtered := []learning.NarrationReview{}
+	for _, review := range r.reviews {
+		if ids[review.AssetID] {
+			filtered = append(filtered, review)
+		}
+	}
+	return filtered, nil
 }
 
 func (r *narrationReviewTestRepository) ListNarrationReviews(_ context.Context, assetID string, limit int) ([]learning.NarrationReview, error) {
@@ -33,7 +49,11 @@ func (r *narrationReviewTestRepository) ListNarrationReviews(_ context.Context, 
 		}
 		return filtered, nil
 	}
-	return append([]learning.NarrationReview(nil), r.reviews...), nil
+	end := len(r.reviews)
+	if limit > 0 && end > limit {
+		end = limit
+	}
+	return append([]learning.NarrationReview(nil), r.reviews[:end]...), nil
 }
 
 func (r *narrationReviewTestRepository) SaveNarrationReview(_ context.Context, review learning.NarrationReview, idempotencyKey string) (learning.NarrationReview, error) {
@@ -108,8 +128,51 @@ func TestNarrationReviewQueuePaginatesAndFiltersTheWholeManifest(t *testing.T) {
 	if payload.NextOffset != nil || payload.Counts["approved"] != 1 || payload.Counts["rejected"] != 1 || payload.Counts["awaiting"] != 1 {
 		t.Fatalf("expected complete queue counts and no next page, got %#v", payload)
 	}
-	if len(repo.limits) != 1 || repo.limits[0] != 3 {
-		t.Fatalf("expected one bounded review query for the three manifest assets, got limits %#v", repo.limits)
+	if len(repo.limits) != 0 || len(repo.lookups) != 1 || len(repo.lookups[0]) != 3 {
+		t.Fatalf("expected one catalogue-scoped lookup for three assets, got lookups %#v and history limits %#v", repo.lookups, repo.limits)
+	}
+}
+
+func TestNarrationQueueDoesNotLetRetiredAssetsDisplaceCurrentReview(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "test-admin")
+	textHash, audioHash := strings.Repeat("a", 64), strings.Repeat("b", 64)
+	manifest, err := json.Marshal(narrationManifest{Items: []narrationManifestItem{{
+		ID: "active-recording", PackID: "en-y1-listening", Kind: "lesson", Text: "Listen carefully.",
+		TextSHA256: textHash, SHA256: audioHash, File: "/audio/active.mp3", TechnicalPass: true,
+	}}})
+	if err != nil {
+		t.Fatal(err)
+	}
+	manifestPath := filepath.Join(t.TempDir(), "manifest.json")
+	if err := os.WriteFile(manifestPath, manifest, 0o600); err != nil {
+		t.Fatal(err)
+	}
+	t.Setenv("NARRATION_MANIFEST_PATH", manifestPath)
+	// The history endpoint legitimately lists newer retired assets first. The
+	// active queue must scope its query before applying a result limit.
+	repo := &narrationReviewTestRepository{fakeRepository: &fakeRepository{}, reviews: []learning.NarrationReview{
+		{AssetID: "retired-recording", Decision: "rejected"},
+		{AssetID: "active-recording", TextSHA256: textHash, AudioSHA256: audioHash, Decision: "approved", ReviewerName: "Synthetic reviewer"},
+	}}
+	request := httptest.NewRequest(http.MethodGet, "/v1/admin/content/narration-queue?status=all", nil)
+	request.Header.Set("X-Admin-Key", "test-admin")
+	response := httptest.NewRecorder()
+	New(repo, "postgres").ServeHTTP(response, request)
+	if response.Code != http.StatusOK {
+		t.Fatalf("queue returned %d: %s", response.Code, response.Body.String())
+	}
+	var payload struct {
+		Items  []narrationQueueItem `json:"items"`
+		Counts map[string]int       `json:"counts"`
+	}
+	if err := json.Unmarshal(response.Body.Bytes(), &payload); err != nil {
+		t.Fatal(err)
+	}
+	if len(payload.Items) != 1 || payload.Items[0].Status != "approved" || payload.Counts["approved"] != 1 || payload.Counts["awaiting"] != 0 {
+		t.Fatalf("retired review displaced the active asset's decision: %#v", payload)
+	}
+	if len(repo.lookups) != 1 || len(repo.lookups[0]) != 1 || repo.lookups[0][0] != "active-recording" {
+		t.Fatalf("queue must query only the active catalogue: %#v", repo.lookups)
 	}
 }
 
