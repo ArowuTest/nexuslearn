@@ -793,6 +793,14 @@ export default function AdminPage() {
   const [groupDirectoryError, setGroupDirectoryError] = useState("");
   const groupDirectoryCursor = useRef("");
   const groupDirectoryRequest = useRef(0);
+  const [parentDirectoryLoading, setParentDirectoryLoading] = useState(false);
+  const [parentDirectoryError, setParentDirectoryError] = useState("");
+  const parentDirectoryCursors = useRef({ link: "", invitation: "" });
+  const parentDirectoryRequest = useRef(0);
+  const [accessRequestDirectoryLoading, setAccessRequestDirectoryLoading] = useState(false);
+  const [accessRequestDirectoryError, setAccessRequestDirectoryError] = useState("");
+  const accessRequestDirectoryCursor = useRef("");
+  const accessRequestDirectoryRequest = useRef(0);
 
   useEffect(() => {
     const role = accountSessionRole();
@@ -852,6 +860,7 @@ export default function AdminPage() {
     parent_email: "", parent_display_name: "", student_external_ref: "", relationship: "parent",
   });
   const [latestInvitationURL, setLatestInvitationURL] = useState("");
+  const [accessRequestStatus, setAccessRequestStatus] = useState("all");
   const [platformUserDraft, setPlatformUserDraft] = useState({
     email: "", display_name: "", login_id: "", password: "", role: "platform_admin",
   });
@@ -1089,6 +1098,101 @@ export default function AdminPage() {
     void loadGroupDirectory(true).catch(() => undefined);
   }
 
+  async function loadParentDirectory(append: boolean) {
+    if (append && !parentDirectoryCursors.current.link && !parentDirectoryCursors.current.invitation) return;
+    const requestID = ++parentDirectoryRequest.current;
+    const cursors = append ? parentDirectoryCursors.current : { link: "", invitation: "" };
+    const query = new URLSearchParams({ limit: String(ADMIN_PAGE_SIZE) });
+    if (cursors.link) query.set("parent_link_cursor", cursors.link);
+    else if (append) query.set("parent_link_done", "1");
+    if (cursors.invitation) query.set("parent_invitation_cursor", cursors.invitation);
+    else if (append) query.set("parent_invitation_done", "1");
+    setParentDirectoryLoading(true);
+    setParentDirectoryError("");
+    if (!append) {
+      parentDirectoryCursors.current = { link: "", invitation: "" };
+      setConfig((current) => ({ ...(current ?? {}), parent_links: [] }));
+      setParentInvitations([]);
+    }
+    try {
+      const data = await adminFetch(`/v1/admin/parent-directory?${query.toString()}`) as Record<string, unknown>;
+      const links = data.parent_links;
+      const invitations = data.parent_invitations;
+      if (!Array.isArray(links) || !Array.isArray(invitations)) {
+        throw new Error("The parent directory returned an invalid response.");
+      }
+      if (requestID !== parentDirectoryRequest.current) return;
+      setConfig((current) => ({
+        ...(current ?? {}),
+        parent_links: append
+          ? appendUniqueByID(current?.parent_links ?? [], links as ParentLink[], (link) => link.id ?? `${link.parent_email}:${link.student_external_ref}`)
+          : links as ParentLink[],
+      }));
+      setParentInvitations((current) => append
+        ? appendUniqueByID(current, invitations as ParentInvitation[], (invitation) => invitation.id ?? `${invitation.parent_email}:${invitation.student_external_ref}`)
+        : invitations as ParentInvitation[]);
+      parentDirectoryCursors.current = {
+        link: typeof data.parent_link_next_cursor === "string" ? data.parent_link_next_cursor : "",
+        invitation: typeof data.parent_invitation_next_cursor === "string" ? data.parent_invitation_next_cursor : "",
+      };
+      setParentDirectoryLoading(false);
+    } catch (error) {
+      if (requestID !== parentDirectoryRequest.current) return;
+      setParentDirectoryLoading(false);
+      setParentDirectoryError(error instanceof Error ? error.message : "The parent directory could not be loaded.");
+      throw error;
+    }
+  }
+
+  function loadMoreParentDirectory() {
+    void loadParentDirectory(true).catch(() => undefined);
+  }
+
+  async function loadAccessRequestDirectory(append: boolean, requestedStatus = accessRequestStatus) {
+    if (append && !accessRequestDirectoryCursor.current) return;
+    const requestID = ++accessRequestDirectoryRequest.current;
+    const query = new URLSearchParams({ limit: String(ADMIN_PAGE_SIZE) });
+    const cursor = append ? accessRequestDirectoryCursor.current : "";
+    if (requestedStatus && requestedStatus !== "all") query.set("status", requestedStatus);
+    if (cursor) query.set("cursor", cursor);
+    else if (append) query.set("done", "1");
+    setAccessRequestDirectoryLoading(true);
+    setAccessRequestDirectoryError("");
+    if (!append) {
+      accessRequestDirectoryCursor.current = "";
+      setConfig((current) => ({ ...(current ?? {}), access_requests: [] }));
+      setAccessRequestDraft(null);
+    }
+    try {
+      const data = await adminFetch(`/v1/admin/access-request-directory?${query.toString()}`) as Record<string, unknown>;
+      const requests = data.access_requests;
+      if (!Array.isArray(requests)) throw new Error("The access request directory returned an invalid response.");
+      if (requestID !== accessRequestDirectoryRequest.current) return;
+      setConfig((current) => ({
+        ...(current ?? {}),
+        access_requests: append
+          ? appendUniqueByID(current?.access_requests ?? [], requests as AccessRequest[])
+          : requests as AccessRequest[],
+      }));
+      accessRequestDirectoryCursor.current = typeof data.next_cursor === "string" ? data.next_cursor : "";
+      setAccessRequestDirectoryLoading(false);
+    } catch (error) {
+      if (requestID !== accessRequestDirectoryRequest.current) return;
+      setAccessRequestDirectoryLoading(false);
+      setAccessRequestDirectoryError(error instanceof Error ? error.message : "The access request directory could not be loaded.");
+      throw error;
+    }
+  }
+
+  function loadMoreAccessRequestDirectory() {
+    void loadAccessRequestDirectory(true).catch(() => undefined);
+  }
+
+  function changeAccessRequestStatus(status: string) {
+    setAccessRequestStatus(status);
+    void loadAccessRequestDirectory(false, status).catch(() => undefined);
+  }
+
   async function signInAdmin() {
     if (!API) throw new Error("NEXT_PUBLIC_API_URL is not configured.");
     setLoading(true);
@@ -1118,6 +1222,15 @@ export default function AdminPage() {
       setGroupDirectoryLoading(false);
       setGroupDirectoryError("");
       groupDirectoryRequest.current += 1;
+      parentDirectoryCursors.current = { link: "", invitation: "" };
+      setParentDirectoryLoading(false);
+      setParentDirectoryError("");
+      parentDirectoryRequest.current += 1;
+      accessRequestDirectoryCursor.current = "";
+      setAccessRequestDirectoryLoading(false);
+      setAccessRequestDirectoryError("");
+      accessRequestDirectoryRequest.current += 1;
+      setAccessRequestStatus("all");
       setAdminLogin({ login_id: adminLogin.login_id, password: "" });
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Administrator login failed.");
@@ -1143,6 +1256,15 @@ export default function AdminPage() {
     setGroupDirectoryLoading(false);
     setGroupDirectoryError("");
     groupDirectoryRequest.current += 1;
+    parentDirectoryCursors.current = { link: "", invitation: "" };
+    setParentDirectoryLoading(false);
+    setParentDirectoryError("");
+    parentDirectoryRequest.current += 1;
+    accessRequestDirectoryCursor.current = "";
+    setAccessRequestDirectoryLoading(false);
+    setAccessRequestDirectoryError("");
+    accessRequestDirectoryRequest.current += 1;
+    setAccessRequestStatus("all");
     setObjectives([]);
     setProgressStudentID("");
     setAdminKey("");
@@ -1260,6 +1382,10 @@ export default function AdminPage() {
         await loadOrganisationDirectory(false);
       } else if (plan.configSection === "groups") {
         await loadGroupDirectory(false);
+      } else if (plan.configSection === "parents") {
+        await loadParentDirectory(false);
+      } else if (plan.configSection === "access") {
+        await loadAccessRequestDirectory(false);
       } else if (plan.configSection) {
         const loaded = await adminFetch(`/v1/admin/config?section=${encodeURIComponent(plan.configSection)}`) as AdminConfig;
         setConfig((current) => ({ ...(current ?? {}), ...loaded }));
@@ -1267,10 +1393,6 @@ export default function AdminPage() {
       if (plan.objectives) {
         const objectiveData = await fetch(`${API}/v1/curriculum/objectives`).then((res) => res.json());
         setObjectives(objectiveData.objectives ?? []);
-      }
-      if (plan.parentInvitations) {
-        const invitationData = await adminFetch("/v1/admin/parent-invitations");
-        setParentInvitations(invitationData.parent_invitations ?? []);
       }
       if (plan.reportWorkspace === "readiness") {
         const [readinessData, rendererData, assetData, narrationData, packDepthData, curriculumCoverageData, flagshipReviewData] = await Promise.all([
@@ -1862,6 +1984,40 @@ export default function AdminPage() {
     </div>
   );
 
+  const parentDirectoryControls = (
+    <div className="border-t border-[#1d1a3e]/8 p-4 text-xs" aria-live="polite">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <span className="text-[#1d1a3e]/58">Loaded {(config?.parent_links?.length ?? 0) + parentInvitations.length} parent records.</span>
+        <button
+          type="button"
+          onClick={loadMoreParentDirectory}
+          disabled={parentDirectoryLoading || (!parentDirectoryCursors.current.link && !parentDirectoryCursors.current.invitation)}
+          className="btn-pop bg-[#f6f3ea] px-3 py-2 disabled:cursor-not-allowed disabled:opacity-45"
+        >
+          {parentDirectoryLoading ? "Loading…" : "Load more parent records"}
+        </button>
+      </div>
+      {parentDirectoryError && <p className="mt-3 text-[#a23d55]">{parentDirectoryError}</p>}
+    </div>
+  );
+
+  const accessRequestDirectoryControls = (
+    <div className="border-t border-[#1d1a3e]/8 p-4 text-xs" aria-live="polite">
+      <div className="flex flex-wrap items-end justify-between gap-3">
+        <span className="text-[#1d1a3e]/58">Loaded {config?.access_requests?.length ?? 0} access requests.</span>
+        <button
+          type="button"
+          onClick={loadMoreAccessRequestDirectory}
+          disabled={accessRequestDirectoryLoading || !accessRequestDirectoryCursor.current}
+          className="btn-pop bg-[#f6f3ea] px-3 py-2 disabled:cursor-not-allowed disabled:opacity-45"
+        >
+          {accessRequestDirectoryLoading ? "Loading…" : "Load more access requests"}
+        </button>
+      </div>
+      {accessRequestDirectoryError && <p className="mt-3 text-[#a23d55]">{accessRequestDirectoryError}</p>}
+    </div>
+  );
+
   if (!config) {
     return (
       <AdminSignInSurface
@@ -1898,6 +2054,7 @@ export default function AdminPage() {
           <EditorGrid
             left={
               <Panel title="Access Requests">
+                <Select label="Status filter" value={accessRequestStatus} values={["all", "new", "reviewing", "approved", "waitlisted", "rejected", "converted"]} onChange={changeAccessRequestStatus} />
                 {(config?.access_requests ?? []).map((request) => (
                   <PickRow
                     key={request.id}
@@ -1912,6 +2069,7 @@ export default function AdminPage() {
                     Public parent, school and tutoring organisation requests will appear here.
                   </div>
                 )}
+                {accessRequestDirectoryControls}
               </Panel>
             }
             right={
@@ -2131,6 +2289,7 @@ export default function AdminPage() {
                     </div>
                   ))}
                 </Panel>
+                {parentDirectoryControls}
               </div>
             }
             right={

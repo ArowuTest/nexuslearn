@@ -5,7 +5,6 @@ export type AdminAccountRole = "platform_admin" | "content_editor" | "content_re
 export type AdminSectionLoadPlan = {
   configSection?: string;
   objectives?: boolean;
-  parentInvitations?: boolean;
   reportWorkspace?: "readiness" | "audio" | "releases";
 };
 
@@ -42,7 +41,6 @@ export function adminSectionLoadPlan(role: AdminAccountRole, section: AdminSecti
   return {
     configSection: PLATFORM_CONFIG_SECTIONS[section],
     objectives: section === "Objectives",
-    parentInvitations: section === "Parents",
     reportWorkspace: section === "Readiness" ? "readiness" : section === "Audio" ? "audio" : section === "Releases" ? "releases" : undefined,
   };
 }

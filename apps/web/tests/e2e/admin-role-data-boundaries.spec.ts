@@ -59,6 +59,31 @@ async function openAdminAs(page: Page, role: AdminRole, section: string) {
       });
       return;
     }
+    if (url.pathname === "/v1/admin/parent-directory") {
+      const linkCursor = url.searchParams.get("parent_link_cursor");
+      const invitationCursor = url.searchParams.get("parent_invitation_cursor");
+      await route.fulfill({
+        contentType: "application/json",
+        body: JSON.stringify({
+          parent_links: [{ id: linkCursor ? "link-2" : "link-1", parent_email: linkCursor ? "second@example.test" : "parent@example.test", parent_display_name: linkCursor ? "Second Parent" : "Private Parent", student_external_ref: linkCursor ? "second-learner" : "private-learner", student_display_name: linkCursor ? "Second Learner" : "Private Learner", relationship: "parent", status: "active" }],
+          parent_invitations: [{ id: invitationCursor ? "invitation-2" : "invitation-1", parent_email: invitationCursor ? "second@example.test" : "parent@example.test", parent_display_name: invitationCursor ? "Second Parent" : "Private Parent", student_external_ref: invitationCursor ? "second-learner" : "private-learner", relationship: "parent", status: "pending" }],
+          ...(linkCursor ? {} : { parent_link_next_cursor: "link-next" }),
+          ...(invitationCursor ? {} : { parent_invitation_next_cursor: "invitation-next" }),
+        }),
+      });
+      return;
+    }
+    if (url.pathname === "/v1/admin/access-request-directory") {
+      const cursor = url.searchParams.get("cursor");
+      await route.fulfill({
+        contentType: "application/json",
+        body: JSON.stringify({
+          access_requests: [{ id: cursor ? "request-2" : "request-1", request_type: "school", organisation_name: cursor ? "Second School" : "Private School", contact_name: cursor ? "Second Contact" : "Private Contact", contact_email: "contact@example.test", learner_count: 10, year_groups: [3], status: "new", source: "public_site" }],
+          ...(cursor ? {} : { next_cursor: "request-next" }),
+        }),
+      });
+      return;
+    }
     if (url.pathname === "/v1/admin/content/readiness") {
       await route.fulfill({ contentType: "application/json", body: JSON.stringify({ totals: { ready: 0, pilot: 0, draft: 0, blocked: 0 }, items: [] }) });
       return;
@@ -200,6 +225,35 @@ test("platform administrator appends the next bounded teaching-group page", asyn
   await expect.poll(() => requests.map((url) => `${url.pathname}?${url.searchParams.toString()}`)).toEqual([
     "/v1/admin/group-directory?limit=25",
     "/v1/admin/group-directory?limit=25&cursor=group-next",
+  ]);
+  await expect(loadMore).toBeDisabled();
+});
+
+test("platform administrator appends independent parent relationship pages", async ({ page }) => {
+  const requests = await openAdminAs(page, "platform_admin", "Parents");
+  await expect(page.getByRole("heading", { name: "Parent Links" })).toBeVisible();
+  await expect(page.getByText("Private Parent", { exact: true }).first()).toBeVisible();
+  const loadMore = page.getByRole("button", { name: "Load more parent records", exact: true });
+  await expect(loadMore).toBeEnabled();
+  await loadMore.click();
+  await expect(page.getByText("Second Parent", { exact: true }).first()).toBeVisible();
+  await expect.poll(() => requests.map((url) => `${url.pathname}?${url.searchParams.toString()}`)).toEqual([
+    "/v1/admin/parent-directory?limit=25",
+    "/v1/admin/parent-directory?limit=25&parent_link_cursor=link-next&parent_invitation_cursor=invitation-next",
+  ]);
+  await expect(loadMore).toBeDisabled();
+});
+
+test("platform administrator filters and appends bounded access requests", async ({ page }) => {
+  const requests = await openAdminAs(page, "platform_admin", "Access");
+  await expect(page.getByRole("heading", { name: "Access Requests" })).toBeVisible();
+  const loadMore = page.getByRole("button", { name: "Load more access requests", exact: true });
+  await expect(loadMore).toBeEnabled();
+  await loadMore.click();
+  await expect(page.getByText("Second School", { exact: true }).first()).toBeVisible();
+  await expect.poll(() => requests.map((url) => `${url.pathname}?${url.searchParams.toString()}`)).toEqual([
+    "/v1/admin/access-request-directory?limit=25",
+    "/v1/admin/access-request-directory?limit=25&cursor=request-next",
   ]);
   await expect(loadMore).toBeDisabled();
 });

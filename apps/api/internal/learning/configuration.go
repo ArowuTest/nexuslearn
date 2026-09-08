@@ -2699,7 +2699,12 @@ func (r *PostgresRepository) restoreContentPayload(ctx context.Context, version 
 	}
 }
 
-func scanAccessRequest(row pgx.Row) (AccessRequestConfig, error) {
+func scanAccessRequest(row rowScanner) (AccessRequestConfig, error) {
+	request, _, err := scanAccessRequestWithCreatedAt(row)
+	return request, err
+}
+
+func scanAccessRequestWithCreatedAt(row rowScanner) (AccessRequestConfig, time.Time, error) {
 	var request AccessRequestConfig
 	var yearGroupsJSON, supportNeedsJSON, learningPrioritiesJSON string
 	var createdAt, updatedAt time.Time
@@ -2723,7 +2728,7 @@ func scanAccessRequest(row pgx.Row) (AccessRequestConfig, error) {
 		&updatedAt,
 	)
 	if err != nil {
-		return request, err
+		return request, time.Time{}, err
 	}
 	request.YearGroups = []int{}
 	request.SupportNeeds = []string{}
@@ -2733,7 +2738,7 @@ func scanAccessRequest(row pgx.Row) (AccessRequestConfig, error) {
 	_ = json.Unmarshal([]byte(learningPrioritiesJSON), &request.LearningPriorities)
 	request.CreatedAt = createdAt.UTC().Format(time.RFC3339)
 	request.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
-	return request, nil
+	return request, createdAt, nil
 }
 
 func scanSchoolUser(row pgx.Row) (SchoolUserConfig, error) {
@@ -2786,6 +2791,11 @@ type rowScanner interface {
 }
 
 func scanParentInvitation(row rowScanner) (ParentInvitation, error) {
+	invitation, _, err := scanParentInvitationWithCreatedAt(row)
+	return invitation, err
+}
+
+func scanParentInvitationWithCreatedAt(row rowScanner) (ParentInvitation, time.Time, error) {
 	var invitation ParentInvitation
 	var expiresAt, createdAt, updatedAt time.Time
 	var sentAt, acceptedAt, revokedAt *time.Time
@@ -2804,7 +2814,7 @@ func scanParentInvitation(row rowScanner) (ParentInvitation, error) {
 		&updatedAt,
 	)
 	if err != nil {
-		return invitation, err
+		return invitation, time.Time{}, err
 	}
 	invitation.ExpiresAt = expiresAt.UTC().Format(time.RFC3339)
 	invitation.CreatedAt = createdAt.UTC().Format(time.RFC3339)
@@ -2818,7 +2828,7 @@ func scanParentInvitation(row rowScanner) (ParentInvitation, error) {
 	if revokedAt != nil {
 		invitation.RevokedAt = revokedAt.UTC().Format(time.RFC3339)
 	}
-	return invitation, nil
+	return invitation, createdAt, nil
 }
 
 func (r *PostgresRepository) studentCredential(ctx context.Context, externalRef string) (StudentCredentialConfig, error) {

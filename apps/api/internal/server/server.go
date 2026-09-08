@@ -61,6 +61,12 @@ type adminGroupPageRepository interface {
 	ListGroupPage(context.Context, learning.AdminGroupPageQuery) (learning.GroupPage, error)
 }
 
+type adminParentAccessPageRepository interface {
+	ListParentLinkPage(context.Context, learning.AdminParentPageQuery) (learning.ParentLinkPage, error)
+	ListParentInvitationPage(context.Context, learning.AdminParentPageQuery) (learning.ParentInvitationPage, error)
+	ListAccessRequestPage(context.Context, learning.AdminAccessRequestPageQuery) (learning.AccessRequestPage, error)
+}
+
 type strandBucket struct {
 	topics map[string]bool
 	count  int
@@ -294,11 +300,13 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("PUT /v1/admin/groups/{id}", s.handleUpsertGroup)
 	s.mux.HandleFunc("PUT /v1/admin/groups/{id}/students/{externalRef}", s.handleAssignStudentToGroup)
 	s.mux.HandleFunc("GET /v1/admin/parent-links", s.handleParentLinks)
+	s.mux.HandleFunc("GET /v1/admin/parent-directory", s.handleAdminParentDirectory)
 	s.mux.HandleFunc("PUT /v1/admin/parent-links/{studentExternalRef}", s.handleUpsertParentLink)
 	s.mux.HandleFunc("GET /v1/admin/parent-invitations", s.handleParentInvitations)
 	s.mux.HandleFunc("POST /v1/admin/parent-invitations", s.handleCreateParentInvitation)
 	s.mux.HandleFunc("POST /v1/admin/parent-invitations/{id}/{action}", s.handleParentInvitationAction)
 	s.mux.HandleFunc("GET /v1/admin/access-requests", s.handleAccessRequests)
+	s.mux.HandleFunc("GET /v1/admin/access-request-directory", s.handleAdminAccessRequestDirectory)
 	s.mux.HandleFunc("PUT /v1/admin/access-requests/{id}/status", s.handleUpdateAccessRequestStatus)
 	s.mux.HandleFunc("POST /v1/admin/access-requests/{id}/convert", s.handleConvertAccessRequest)
 	s.mux.HandleFunc("GET /v1/admin/audit", s.handleAuditLogs)
@@ -2006,6 +2014,59 @@ func (s *Server) handleAssignStudentToGroup(w http.ResponseWriter, r *http.Reque
 	writeJSON(w, http.StatusOK, saved)
 }
 
+func (s *Server) handleAdminParentDirectory(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	pageRepository, ok := s.repo.(adminParentAccessPageRepository)
+	if !ok {
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "bounded parent directory is unavailable"})
+		return
+	}
+	linkQuery, err := adminParentPageQuery(r, "parent_link_cursor")
+	if err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+		return
+	}
+	invitationsQuery, err := adminParentPageQuery(r, "parent_invitation_cursor")
+	if err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+		return
+	}
+	links := learning.ParentLinkPage{}
+	if !adminCollectionDone(r, "parent_link_done") {
+		links, err = pageRepository.ListParentLinkPage(r.Context(), linkQuery)
+		if err != nil {
+			if errors.Is(err, learning.ErrInvalidConfiguration) {
+				writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+				return
+			}
+			slog.Warn("failed to read bounded parent links", "error", err)
+			writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read parent directory"})
+			return
+		}
+	}
+	invitations := learning.ParentInvitationPage{}
+	if !adminCollectionDone(r, "parent_invitation_done") {
+		invitations, err = pageRepository.ListParentInvitationPage(r.Context(), invitationsQuery)
+		if err != nil {
+			if errors.Is(err, learning.ErrInvalidConfiguration) {
+				writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+				return
+			}
+			slog.Warn("failed to read bounded parent invitations", "error", err)
+			writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read parent directory"})
+			return
+		}
+	}
+	writeJSON(w, http.StatusOK, map[string]any{
+		"parent_links":                  links.ParentLinks,
+		"parent_link_next_cursor":       links.NextCursor,
+		"parent_invitations":            invitations.ParentInvitations,
+		"parent_invitation_next_cursor": invitations.NextCursor,
+	})
+}
+
 func (s *Server) handleParentLinks(w http.ResponseWriter, r *http.Request) {
 	if !s.requireAdmin(w, r) {
 		return
@@ -2440,6 +2501,37 @@ func (s *Server) handleAccessRequests(w http.ResponseWriter, r *http.Request) {
 	writeJSON(w, http.StatusOK, map[string]any{"access_requests": requests})
 }
 
+func (s *Server) handleAdminAccessRequestDirectory(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	pageRepository, ok := s.repo.(adminParentAccessPageRepository)
+	if !ok {
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "bounded access request directory is unavailable"})
+		return
+	}
+	query, err := adminAccessRequestPageQuery(r)
+	if err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+		return
+	}
+	if adminCollectionDone(r, "done") {
+		writeJSON(w, http.StatusOK, learning.AccessRequestPage{AccessRequests: []learning.AccessRequestConfig{}})
+		return
+	}
+	page, err := pageRepository.ListAccessRequestPage(r.Context(), query)
+	if err != nil {
+		if errors.Is(err, learning.ErrInvalidConfiguration) {
+			writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+			return
+		}
+		slog.Warn("failed to read bounded access requests", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read access request directory"})
+		return
+	}
+	writeJSON(w, http.StatusOK, page)
+}
+
 func (s *Server) handleUpdateAccessRequestStatus(w http.ResponseWriter, r *http.Request) {
 	if !s.requireAdmin(w, r) {
 		return
@@ -2724,6 +2816,33 @@ func adminGroupPageQuery(r *http.Request) (learning.AdminGroupPageQuery, error) 
 		query.Limit = limit
 	}
 	query.Cursor = strings.TrimSpace(r.URL.Query().Get("cursor"))
+	return query, nil
+}
+
+func adminParentPageQuery(r *http.Request, cursorKey string) (learning.AdminParentPageQuery, error) {
+	query := learning.AdminParentPageQuery{}
+	if rawLimit := strings.TrimSpace(r.URL.Query().Get("limit")); rawLimit != "" {
+		limit, err := strconv.Atoi(rawLimit)
+		if err != nil || limit < 1 {
+			return query, errors.New("limit must be a positive whole number")
+		}
+		query.Limit = limit
+	}
+	query.Cursor = strings.TrimSpace(r.URL.Query().Get(cursorKey))
+	return query, nil
+}
+
+func adminAccessRequestPageQuery(r *http.Request) (learning.AdminAccessRequestPageQuery, error) {
+	query := learning.AdminAccessRequestPageQuery{}
+	if rawLimit := strings.TrimSpace(r.URL.Query().Get("limit")); rawLimit != "" {
+		limit, err := strconv.Atoi(rawLimit)
+		if err != nil || limit < 1 {
+			return query, errors.New("limit must be a positive whole number")
+		}
+		query.Limit = limit
+	}
+	query.Cursor = strings.TrimSpace(r.URL.Query().Get("cursor"))
+	query.Status = strings.TrimSpace(r.URL.Query().Get("status"))
 	return query, nil
 }
 

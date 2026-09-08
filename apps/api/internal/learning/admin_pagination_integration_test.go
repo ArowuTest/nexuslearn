@@ -157,8 +157,141 @@ func TestPostgresAdminGroupDirectoryPagesStayBoundedAndStable(t *testing.T) {
 	assertStableOrganisationTraversal(t, firstIDs, secondIDs, firstCursors, secondCursors, paginationGroupRows)
 }
 
+func TestPostgresAdminParentAccessDirectoriesTraverseStablePages(t *testing.T) {
+	pool, repo := openPaginationIntegrationRepository(t)
+	ctx, cancel := context.WithTimeout(context.Background(), 90*time.Second)
+	defer cancel()
+	seedAdminParentAccessRows(t, ctx, pool)
+
+	linkIDs, linkCursors := traverseParentLinkPages(t, ctx, repo, 137)
+	secondLinkIDs, secondLinkCursors := traverseParentLinkPages(t, ctx, repo, 137)
+	assertStableOrganisationTraversal(t, linkIDs, secondLinkIDs, linkCursors, secondLinkCursors, paginationRelationshipRows)
+
+	invitationIDs, invitationCursors := traverseParentInvitationPages(t, ctx, repo, 137)
+	secondInvitationIDs, secondInvitationCursors := traverseParentInvitationPages(t, ctx, repo, 137)
+	assertStableOrganisationTraversal(t, invitationIDs, secondInvitationIDs, invitationCursors, secondInvitationCursors, paginationRelationshipRows)
+
+	requestIDs, requestCursors := traverseAccessRequestPages(t, ctx, repo, 137, "")
+	secondRequestIDs, secondRequestCursors := traverseAccessRequestPages(t, ctx, repo, 137, "")
+	assertStableOrganisationTraversal(t, requestIDs, secondRequestIDs, requestCursors, secondRequestCursors, paginationRelationshipRows)
+
+	filteredIDs, filteredCursors := traverseAccessRequestPages(t, ctx, repo, 137, "reviewing")
+	assertStableOrganisationTraversal(t, filteredIDs, filteredIDs, filteredCursors, filteredCursors, paginationRelationshipRows/5)
+
+	var plan []byte
+	if err := pool.QueryRow(ctx, `
+		EXPLAIN (FORMAT JSON)
+		SELECT l.id::text, l.student_id::text, l.parent_user_id::text,
+		       u.email, u.display_name, s.external_ref, s.display_name,
+		       l.relationship, l.status, l.created_at, l.updated_at
+		FROM parent_student_links l
+		JOIN app_users u ON u.id=l.parent_user_id
+		JOIN students s ON s.id=l.student_id
+		WHERE (l.student_id, l.parent_user_id, l.id) > ($1::uuid, $2::uuid, $3::uuid)
+		ORDER BY l.student_id, l.parent_user_id, l.id
+		LIMIT $4
+	`, paginationUUID(paginationRelationshipRows/2), paginationUUID(paginationRelationshipRows/2), paginationUUID(paginationRelationshipRows/2), 137).Scan(&plan); err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(string(plan), "parent_student_links_admin_order_idx") {
+		t.Fatalf("parent link pagination query plan does not use the bounded ordering index: %s", plan)
+	}
+	if err := pool.QueryRow(ctx, `
+		EXPLAIN (FORMAT JSON)
+		SELECT i.id::text, i.parent_email, i.parent_display_name, s.external_ref, i.relationship,
+		       i.status, i.expires_at, i.sent_at, i.accepted_at, i.revoked_at, i.created_at, i.updated_at
+		FROM parent_invitations i
+		JOIN students s ON s.id=i.student_id
+		WHERE (i.created_at, i.id) < ($1::timestamptz, $2::uuid)
+		ORDER BY i.created_at DESC, i.id DESC
+		LIMIT $3
+	`, time.Date(2026, time.August, 18, 11, 59, 0, 0, time.UTC), paginationUUID(paginationRelationshipRows/2), 137).Scan(&plan); err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(string(plan), "parent_invitations_admin_order_idx") {
+		t.Fatalf("parent invitation pagination query plan does not use the bounded ordering index: %s", plan)
+	}
+	if err := pool.QueryRow(ctx, `
+		EXPLAIN (FORMAT JSON)
+		SELECT id::text, request_type, organisation_name, contact_name, contact_email, phone, role, region,
+		       COALESCE(learner_count, 0), array_to_json(year_groups)::text,
+		       array_to_json(support_needs)::text, array_to_json(learning_priorities)::text,
+		       message, status, source, created_at, updated_at
+		FROM access_requests
+		WHERE (created_at, id) < ($1::timestamptz, $2::uuid)
+		ORDER BY created_at DESC, id DESC
+		LIMIT $3
+	`, time.Date(2026, time.August, 18, 11, 59, 0, 0, time.UTC), paginationUUID(paginationRelationshipRows/2), 137).Scan(&plan); err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(string(plan), "access_requests_admin_order_idx") {
+		t.Fatalf("access request pagination query plan does not use the bounded ordering index: %s", plan)
+	}
+}
+
 const paginationOrganisationRows = 1000
 const paginationGroupRows = 1000
+const paginationRelationshipRows = 1000
+
+func seedAdminParentAccessRows(t *testing.T, ctx context.Context, pool *pgxpool.Pool) {
+	t.Helper()
+	if _, err := pool.Exec(ctx, `
+		INSERT INTO students (external_ref, display_name, year_group)
+		SELECT 'relationship-student-' || lpad(n::text, 5, '0'), 'Relationship Learner ' || lpad(n::text, 5, '0'), ((n - 1) % 7) + 1
+		FROM generate_series(1, $1) AS n
+	`, paginationRelationshipRows); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := pool.Exec(ctx, `
+		INSERT INTO app_users (email, display_name, user_type, status)
+		SELECT 'relationship-parent-' || lpad(n::text, 5, '0') || '@example.test',
+		       'Relationship Parent ' || lpad(n::text, 5, '0'), 'parent', 'active'
+		FROM generate_series(1, $1) AS n
+	`, paginationRelationshipRows); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := pool.Exec(ctx, `
+		INSERT INTO parent_student_links (parent_user_id, student_id, relationship, status)
+		SELECT u.id, s.id, 'parent', 'active'
+		FROM app_users u
+		JOIN students s ON right(s.external_ref, 5) = right(split_part(u.email, '@', 1), 5)
+		WHERE u.email LIKE 'relationship-parent-%@example.test'
+	`); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := pool.Exec(ctx, `
+		INSERT INTO parent_invitations (
+			parent_email, parent_display_name, student_id, relationship, token_hash, status, expires_at, created_at, updated_at
+		)
+		SELECT 'invited-parent-' || lpad(n::text, 5, '0') || '@example.test',
+		       'Invited Parent ' || lpad(n::text, 5, '0'),
+		       s.id, 'parent', md5('pagination-invitation-' || n::text),
+		       CASE WHEN n % 3 = 0 THEN 'sent' ELSE 'pending' END,
+		       $1::timestamptz + interval '7 days', $1::timestamptz - (n * interval '1 second'), $1::timestamptz - (n * interval '1 second')
+		FROM generate_series(1, $2) AS n
+		JOIN students s ON s.external_ref = 'relationship-student-' || lpad(n::text, 5, '0')
+	`, time.Date(2026, time.August, 18, 12, 0, 0, 123456000, time.UTC), paginationRelationshipRows); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := pool.Exec(ctx, `
+		INSERT INTO access_requests (
+			request_type, organisation_name, contact_name, contact_email, phone, role, region,
+			learner_count, year_groups, support_needs, learning_priorities, message, status, source, created_at, updated_at
+		)
+		SELECT CASE WHEN n % 2 = 0 THEN 'school' ELSE 'tutor_org' END,
+		       'Access Organisation ' || lpad(n::text, 5, '0'), 'Access Contact ' || lpad(n::text, 5, '0'),
+		       'access-' || lpad(n::text, 5, '0') || '@example.test', '', 'teacher', 'England',
+		       n % 40 + 1, ARRAY[((n - 1) % 7) + 1], ARRAY['dyslexia'], ARRAY['fluency'],
+		       'Pagination test request', CASE WHEN n % 5 = 0 THEN 'reviewing' ELSE 'new' END, 'pagination-test',
+		       $1::timestamptz - (n * interval '1 second'), $1::timestamptz - (n * interval '1 second')
+		FROM generate_series(1, $2) AS n
+	`, time.Date(2026, time.August, 18, 12, 0, 0, 123456000, time.UTC), paginationRelationshipRows); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := pool.Exec(ctx, "ANALYZE students; ANALYZE app_users; ANALYZE parent_student_links; ANALYZE parent_invitations; ANALYZE access_requests"); err != nil {
+		t.Fatal(err)
+	}
+}
 
 func seedAdminGroupRows(t *testing.T, ctx context.Context, pool *pgxpool.Pool) {
 	t.Helper()
@@ -293,6 +426,66 @@ func traverseGroupPages(t *testing.T, ctx context.Context, repo *PostgresReposit
 			t.Fatal(err)
 		}
 		for _, item := range page.Groups {
+			ids = append(ids, item.ID)
+		}
+		cursors = append(cursors, page.NextCursor)
+		if page.NextCursor == "" {
+			return ids, cursors
+		}
+		query.Cursor = page.NextCursor
+	}
+}
+
+func traverseParentLinkPages(t *testing.T, ctx context.Context, repo *PostgresRepository, limit int) ([]string, []string) {
+	t.Helper()
+	ids, cursors := []string{}, []string{}
+	query := AdminParentPageQuery{Limit: limit}
+	for {
+		page, err := repo.ListParentLinkPage(ctx, query)
+		if err != nil {
+			t.Fatal(err)
+		}
+		for _, item := range page.ParentLinks {
+			ids = append(ids, item.ID)
+		}
+		cursors = append(cursors, page.NextCursor)
+		if page.NextCursor == "" {
+			return ids, cursors
+		}
+		query.Cursor = page.NextCursor
+	}
+}
+
+func traverseParentInvitationPages(t *testing.T, ctx context.Context, repo *PostgresRepository, limit int) ([]string, []string) {
+	t.Helper()
+	ids, cursors := []string{}, []string{}
+	query := AdminParentPageQuery{Limit: limit}
+	for {
+		page, err := repo.ListParentInvitationPage(ctx, query)
+		if err != nil {
+			t.Fatal(err)
+		}
+		for _, item := range page.ParentInvitations {
+			ids = append(ids, item.ID)
+		}
+		cursors = append(cursors, page.NextCursor)
+		if page.NextCursor == "" {
+			return ids, cursors
+		}
+		query.Cursor = page.NextCursor
+	}
+}
+
+func traverseAccessRequestPages(t *testing.T, ctx context.Context, repo *PostgresRepository, limit int, status string) ([]string, []string) {
+	t.Helper()
+	ids, cursors := []string{}, []string{}
+	query := AdminAccessRequestPageQuery{Limit: limit, Status: status}
+	for {
+		page, err := repo.ListAccessRequestPage(ctx, query)
+		if err != nil {
+			t.Fatal(err)
+		}
+		for _, item := range page.AccessRequests {
 			ids = append(ids, item.ID)
 		}
 		cursors = append(cursors, page.NextCursor)
