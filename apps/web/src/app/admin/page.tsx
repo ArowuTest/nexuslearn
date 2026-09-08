@@ -789,6 +789,10 @@ export default function AdminPage() {
   const [organisationError, setOrganisationError] = useState("");
   const organisationCursors = useRef({ school: "", schoolUser: "", class: "" });
   const organisationRequest = useRef(0);
+  const [groupDirectoryLoading, setGroupDirectoryLoading] = useState(false);
+  const [groupDirectoryError, setGroupDirectoryError] = useState("");
+  const groupDirectoryCursor = useRef("");
+  const groupDirectoryRequest = useRef(0);
 
   useEffect(() => {
     const role = accountSessionRole();
@@ -1048,6 +1052,43 @@ export default function AdminPage() {
     void loadOrganisationDirectory(true).catch(() => undefined);
   }
 
+  async function loadGroupDirectory(append: boolean) {
+    if (append && !groupDirectoryCursor.current) return;
+    const requestID = ++groupDirectoryRequest.current;
+    const query = new URLSearchParams({ limit: String(ADMIN_PAGE_SIZE) });
+    if (append && groupDirectoryCursor.current) query.set("cursor", groupDirectoryCursor.current);
+    else if (append) query.set("done", "1");
+    setGroupDirectoryLoading(true);
+    setGroupDirectoryError("");
+    if (!append) {
+      groupDirectoryCursor.current = "";
+      setConfig((current) => ({ ...(current ?? {}), groups: [] }));
+    }
+    try {
+      const data = await adminFetch(`/v1/admin/group-directory?${query.toString()}`) as Record<string, unknown>;
+      const groups = data.groups;
+      if (!Array.isArray(groups)) throw new Error("The group directory returned an invalid response.");
+      if (requestID !== groupDirectoryRequest.current) return;
+      setConfig((current) => ({
+        ...(current ?? {}),
+        groups: append
+          ? appendUniqueByID(current?.groups ?? [], groups as LearningGroup[], (group) => group.id ?? `${group.class_id}:${group.name}`)
+          : groups as LearningGroup[],
+      }));
+      groupDirectoryCursor.current = typeof data.next_cursor === "string" ? data.next_cursor : "";
+      setGroupDirectoryLoading(false);
+    } catch (error) {
+      if (requestID !== groupDirectoryRequest.current) return;
+      setGroupDirectoryLoading(false);
+      setGroupDirectoryError(error instanceof Error ? error.message : "The group directory could not be loaded.");
+      throw error;
+    }
+  }
+
+  function loadMoreGroupDirectory() {
+    void loadGroupDirectory(true).catch(() => undefined);
+  }
+
   async function signInAdmin() {
     if (!API) throw new Error("NEXT_PUBLIC_API_URL is not configured.");
     setLoading(true);
@@ -1073,6 +1114,10 @@ export default function AdminPage() {
       setOrganisationLoading(false);
       setOrganisationError("");
       organisationRequest.current += 1;
+      groupDirectoryCursor.current = "";
+      setGroupDirectoryLoading(false);
+      setGroupDirectoryError("");
+      groupDirectoryRequest.current += 1;
       setAdminLogin({ login_id: adminLogin.login_id, password: "" });
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Administrator login failed.");
@@ -1094,6 +1139,10 @@ export default function AdminPage() {
     setOrganisationLoading(false);
     setOrganisationError("");
     organisationRequest.current += 1;
+    groupDirectoryCursor.current = "";
+    setGroupDirectoryLoading(false);
+    setGroupDirectoryError("");
+    groupDirectoryRequest.current += 1;
     setObjectives([]);
     setProgressStudentID("");
     setAdminKey("");
@@ -1209,6 +1258,8 @@ export default function AdminPage() {
         await loadLearnerDirectory(false);
       } else if (plan.configSection === "schools") {
         await loadOrganisationDirectory(false);
+      } else if (plan.configSection === "groups") {
+        await loadGroupDirectory(false);
       } else if (plan.configSection) {
         const loaded = await adminFetch(`/v1/admin/config?section=${encodeURIComponent(plan.configSection)}`) as AdminConfig;
         setConfig((current) => ({ ...(current ?? {}), ...loaded }));
@@ -1794,6 +1845,23 @@ export default function AdminPage() {
     </div>
   );
 
+  const groupDirectoryControls = (
+    <div className="border-t border-[#1d1a3e]/8 p-4 text-xs" aria-live="polite">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <span className="text-[#1d1a3e]/58">Loaded {config?.groups?.length ?? 0} teaching groups.</span>
+        <button
+          type="button"
+          onClick={loadMoreGroupDirectory}
+          disabled={groupDirectoryLoading || !groupDirectoryCursor.current}
+          className="btn-pop bg-[#f6f3ea] px-3 py-2 disabled:cursor-not-allowed disabled:opacity-45"
+        >
+          {groupDirectoryLoading ? "Loading…" : "Load more groups"}
+        </button>
+      </div>
+      {groupDirectoryError && <p className="mt-3 text-[#a23d55]">{groupDirectoryError}</p>}
+    </div>
+  );
+
   if (!config) {
     return (
       <AdminSignInSurface
@@ -2007,6 +2075,7 @@ export default function AdminPage() {
                     }}
                   />
                 ))}
+                {groupDirectoryControls}
               </Panel>
             }
             right={

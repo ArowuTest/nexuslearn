@@ -1,0 +1,2 @@
+DROP INDEX IF EXISTS learning_group_students_directory_group_idx;
+DROP INDEX IF EXISTS learning_groups_directory_order_idx;

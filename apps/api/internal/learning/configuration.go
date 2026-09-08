@@ -1386,38 +1386,10 @@ func (r *PostgresRepository) listGroups(ctx context.Context, query string, args 
 	if len(groups) == 0 {
 		return groups, nil
 	}
-	ids := make([]string, 0, len(groups))
-	byID := make(map[string]int, len(groups))
-	for index := range groups {
-		ids = append(ids, groups[index].ID)
-		byID[groups[index].ID] = index
-		groups[index].Students = []StudentProfileConfig{}
-	}
-	studentRows, err := r.db.Query(ctx, `
-		SELECT gs.group_id::text, s.id::text, s.external_ref, s.display_name, s.year_group, s.created_at, s.updated_at
-		FROM learning_group_students gs
-		JOIN students s ON s.id = gs.student_id
-		WHERE gs.group_id::text = ANY($1::text[])
-		ORDER BY s.display_name, s.external_ref
-	`, ids)
-	if err != nil {
+	if err := r.loadGroupStudents(ctx, groups); err != nil {
 		return nil, err
 	}
-	defer studentRows.Close()
-	for studentRows.Next() {
-		var groupID string
-		var student StudentProfileConfig
-		var createdAt, updatedAt time.Time
-		if err := studentRows.Scan(&groupID, &student.ID, &student.ExternalRef, &student.DisplayName, &student.YearGroup, &createdAt, &updatedAt); err != nil {
-			return nil, err
-		}
-		student.CreatedAt = createdAt.UTC().Format(time.RFC3339)
-		student.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
-		if index, ok := byID[groupID]; ok {
-			groups[index].Students = append(groups[index].Students, student)
-		}
-	}
-	return groups, studentRows.Err()
+	return groups, nil
 }
 
 func (r *PostgresRepository) UpsertGroup(ctx context.Context, group LearningGroupConfig) (LearningGroupConfig, error) {

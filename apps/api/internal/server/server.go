@@ -57,6 +57,10 @@ type adminOrganisationPageRepository interface {
 	ListClassPage(context.Context, learning.AdminOrganisationPageQuery) (learning.ClassPage, error)
 }
 
+type adminGroupPageRepository interface {
+	ListGroupPage(context.Context, learning.AdminGroupPageQuery) (learning.GroupPage, error)
+}
+
 type strandBucket struct {
 	topics map[string]bool
 	count  int
@@ -286,6 +290,7 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("GET /v1/admin/student-credentials", s.handleStudentCredentials)
 	s.mux.HandleFunc("PUT /v1/admin/student-credentials/{externalRef}", s.handleUpsertStudentCredential)
 	s.mux.HandleFunc("GET /v1/admin/groups", s.handleGroups)
+	s.mux.HandleFunc("GET /v1/admin/group-directory", s.handleAdminGroupDirectory)
 	s.mux.HandleFunc("PUT /v1/admin/groups/{id}", s.handleUpsertGroup)
 	s.mux.HandleFunc("PUT /v1/admin/groups/{id}/students/{externalRef}", s.handleAssignStudentToGroup)
 	s.mux.HandleFunc("GET /v1/admin/parent-links", s.handleParentLinks)
@@ -1940,6 +1945,37 @@ func (s *Server) handleGroups(w http.ResponseWriter, r *http.Request) {
 	writeJSON(w, http.StatusOK, map[string]any{"groups": groups})
 }
 
+func (s *Server) handleAdminGroupDirectory(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	pageRepository, ok := s.repo.(adminGroupPageRepository)
+	if !ok {
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "bounded group directory is unavailable"})
+		return
+	}
+	query, err := adminGroupPageQuery(r)
+	if err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+		return
+	}
+	if r.URL.Query().Get("done") == "1" {
+		writeJSON(w, http.StatusOK, map[string]any{"groups": []learning.LearningGroupConfig{}, "next_cursor": ""})
+		return
+	}
+	page, err := pageRepository.ListGroupPage(r.Context(), query)
+	if err != nil {
+		if errors.Is(err, learning.ErrInvalidConfiguration) {
+			writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+			return
+		}
+		slog.Warn("failed to read bounded group directory", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read group directory"})
+		return
+	}
+	writeJSON(w, http.StatusOK, page)
+}
+
 func (s *Server) handleUpsertGroup(w http.ResponseWriter, r *http.Request) {
 	if !s.requireAdmin(w, r) {
 		return
@@ -2675,6 +2711,19 @@ func adminOrganisationPageQuery(r *http.Request, cursorKey string) (learning.Adm
 		query.Limit = limit
 	}
 	query.Cursor = strings.TrimSpace(r.URL.Query().Get(cursorKey))
+	return query, nil
+}
+
+func adminGroupPageQuery(r *http.Request) (learning.AdminGroupPageQuery, error) {
+	query := learning.AdminGroupPageQuery{}
+	if rawLimit := strings.TrimSpace(r.URL.Query().Get("limit")); rawLimit != "" {
+		limit, err := strconv.Atoi(rawLimit)
+		if err != nil || limit < 1 {
+			return query, errors.New("limit must be a positive whole number")
+		}
+		query.Limit = limit
+	}
+	query.Cursor = strings.TrimSpace(r.URL.Query().Get("cursor"))
 	return query, nil
 }
 

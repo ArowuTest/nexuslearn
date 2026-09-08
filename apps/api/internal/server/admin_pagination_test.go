@@ -62,6 +62,17 @@ type fakeAdminOrganisationPageRepository struct {
 	classQuery  learning.AdminOrganisationPageQuery
 }
 
+type fakeAdminGroupPageRepository struct {
+	fakeRepository
+	groupPage  learning.GroupPage
+	groupQuery learning.AdminGroupPageQuery
+}
+
+func (f *fakeAdminGroupPageRepository) ListGroupPage(_ context.Context, query learning.AdminGroupPageQuery) (learning.GroupPage, error) {
+	f.groupQuery = query
+	return f.groupPage, nil
+}
+
 func (f *fakeAdminOrganisationPageRepository) ListSchoolPage(_ context.Context, query learning.AdminOrganisationPageQuery) (learning.SchoolPage, error) {
 	f.schoolQuery = query
 	return f.schoolPage, nil
@@ -274,6 +285,43 @@ func TestAdminCombinedOrganisationHandlerUsesIndependentCursors(t *testing.T) {
 	}
 	if len(body.Schools) != 1 || body.SchoolNextCursor != "school-next" || len(body.Users) != 1 || body.UserNextCursor != "user-next" || len(body.Classes) != 1 || body.ClassNextCursor != "class-next" {
 		t.Fatalf("unexpected combined organisation page: %#v", body)
+	}
+}
+
+func TestAdminGroupDirectoryHandlerUsesBoundedOpaqueCursor(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "test-admin")
+	repo := &fakeAdminGroupPageRepository{
+		groupPage: learning.GroupPage{
+			Groups:     []learning.LearningGroupConfig{{ID: "group-2", ClassID: "class-2", ClassName: "Blue", Name: "Intervention", Purpose: "senco"}},
+			NextCursor: "group-next",
+		},
+	}
+	srv := New(repo, "postgres")
+	req := httptest.NewRequest(http.MethodGet, "/v1/admin/group-directory?limit=2&cursor=group-cursor", nil)
+	req.Header.Set("X-Admin-Key", "test-admin")
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200, got %d: %s", res.Code, res.Body.String())
+	}
+	if repo.groupQuery.Limit != 2 || repo.groupQuery.Cursor != "group-cursor" {
+		t.Fatalf("group query was not forwarded: %#v", repo.groupQuery)
+	}
+	var body struct {
+		Groups     []learning.LearningGroupConfig `json:"groups"`
+		NextCursor string                         `json:"next_cursor"`
+	}
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if len(body.Groups) != 1 || body.NextCursor != "group-next" {
+		t.Fatalf("unexpected group page: %#v", body)
+	}
+
+	res = httptest.NewRecorder()
+	srv.ServeHTTP(res, httptest.NewRequest(http.MethodGet, "/v1/admin/group-directory?limit=2&done=1", nil))
+	if res.Code != http.StatusUnauthorized {
+		t.Fatalf("unauthenticated terminal request should be rejected, got %d", res.Code)
 	}
 }
 

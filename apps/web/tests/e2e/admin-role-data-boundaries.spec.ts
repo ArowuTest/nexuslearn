@@ -48,6 +48,17 @@ async function openAdminAs(page: Page, role: AdminRole, section: string) {
       });
       return;
     }
+    if (url.pathname === "/v1/admin/group-directory") {
+      const cursor = url.searchParams.get("cursor");
+      await route.fulfill({
+        contentType: "application/json",
+        body: JSON.stringify({
+          groups: [{ id: cursor ? "group-2" : "group-1", class_id: cursor ? "class-2" : "class-1", class_name: cursor ? "Second Class" : "Private Class", name: cursor ? "Second Group" : "Private Group", purpose: "intervention", students: [] }],
+          ...(cursor ? {} : { next_cursor: "group-next" }),
+        }),
+      });
+      return;
+    }
     if (url.pathname === "/v1/admin/content/readiness") {
       await route.fulfill({ contentType: "application/json", body: JSON.stringify({ totals: { ready: 0, pilot: 0, draft: 0, blocked: 0 }, items: [] }) });
       return;
@@ -174,6 +185,21 @@ test("platform administrator appends independent organisation pages with opaque 
   await expect.poll(() => requests.map((url) => `${url.pathname}?${url.searchParams.toString()}`)).toEqual([
     "/v1/admin/organisation-directory?limit=25",
     "/v1/admin/organisation-directory?limit=25&school_cursor=school-next&school_user_cursor=user-next&class_cursor=class-next",
+  ]);
+  await expect(loadMore).toBeDisabled();
+});
+
+test("platform administrator appends the next bounded teaching-group page", async ({ page }) => {
+  const requests = await openAdminAs(page, "platform_admin", "Groups");
+  await expect(page.getByRole("heading", { name: "Teaching Groups" })).toBeVisible();
+  await expect(page.getByText("Private Group", { exact: true })).toBeVisible();
+  const loadMore = page.getByRole("button", { name: "Load more groups", exact: true });
+  await expect(loadMore).toBeEnabled();
+  await loadMore.click();
+  await expect(page.getByText("Second Group", { exact: true })).toBeVisible();
+  await expect.poll(() => requests.map((url) => `${url.pathname}?${url.searchParams.toString()}`)).toEqual([
+    "/v1/admin/group-directory?limit=25",
+    "/v1/admin/group-directory?limit=25&cursor=group-next",
   ]);
   await expect(loadMore).toBeDisabled();
 });

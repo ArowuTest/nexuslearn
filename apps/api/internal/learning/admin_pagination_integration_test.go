@@ -146,7 +146,41 @@ func TestPostgresAdminOrganisationDirectoryPagesStayBoundedAndStable(t *testing.
 	}
 }
 
+func TestPostgresAdminGroupDirectoryPagesStayBoundedAndStable(t *testing.T) {
+	pool, repo := openPaginationIntegrationRepository(t)
+	ctx, cancel := context.WithTimeout(context.Background(), 90*time.Second)
+	defer cancel()
+	seedAdminGroupRows(t, ctx, pool)
+
+	firstIDs, firstCursors := traverseGroupPages(t, ctx, repo, 137)
+	secondIDs, secondCursors := traverseGroupPages(t, ctx, repo, 137)
+	assertStableOrganisationTraversal(t, firstIDs, secondIDs, firstCursors, secondCursors, paginationGroupRows)
+}
+
 const paginationOrganisationRows = 1000
+const paginationGroupRows = 1000
+
+func seedAdminGroupRows(t *testing.T, ctx context.Context, pool *pgxpool.Pool) {
+	t.Helper()
+	if _, err := pool.Exec(ctx, `
+		INSERT INTO classes (name, year_group)
+		SELECT 'Group Class ' || lpad(n::text, 5, '0'), ((n - 1) % 7) + 1
+		FROM generate_series(1, $1) AS n
+	`, paginationGroupRows); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := pool.Exec(ctx, `
+		INSERT INTO learning_groups (class_id, name, purpose)
+		SELECT c.id, 'Learning Group ' || right(c.name, 5), CASE WHEN c.year_group % 2 = 0 THEN 'challenge' ELSE 'intervention' END
+		FROM classes c
+		WHERE c.name LIKE 'Group Class %'
+	`); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := pool.Exec(ctx, "ANALYZE classes; ANALYZE learning_groups; ANALYZE learning_group_students"); err != nil {
+		t.Fatal(err)
+	}
+}
 
 func seedAdminOrganisationRows(t *testing.T, ctx context.Context, pool *pgxpool.Pool) {
 	t.Helper()
@@ -239,6 +273,26 @@ func traverseClassPages(t *testing.T, ctx context.Context, repo *PostgresReposit
 			t.Fatal(err)
 		}
 		for _, item := range page.Classes {
+			ids = append(ids, item.ID)
+		}
+		cursors = append(cursors, page.NextCursor)
+		if page.NextCursor == "" {
+			return ids, cursors
+		}
+		query.Cursor = page.NextCursor
+	}
+}
+
+func traverseGroupPages(t *testing.T, ctx context.Context, repo *PostgresRepository, limit int) ([]string, []string) {
+	t.Helper()
+	ids, cursors := []string{}, []string{}
+	query := AdminGroupPageQuery{Limit: limit}
+	for {
+		page, err := repo.ListGroupPage(ctx, query)
+		if err != nil {
+			t.Fatal(err)
+		}
+		for _, item := range page.Groups {
 			ids = append(ids, item.ID)
 		}
 		cursors = append(cursors, page.NextCursor)
