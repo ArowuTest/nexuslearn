@@ -549,6 +549,7 @@ const PUPIL_SESSION_EXPIRES_KEY = "nexuslearn_pupil_session_expires";
 const ACCOUNT_SESSION_KEY = "nexuslearn_account_session";
 const ACCOUNT_SESSION_ROLE_KEY = "nexuslearn_account_role";
 const ACCOUNT_SESSION_EXPIRES_KEY = "nexuslearn_account_session_expires";
+const ACCOUNT_SESSION_CHANGED_EVENT = "nexuslearn-account-session-changed";
 
 export type AccountSession = {
   token: string;
@@ -602,6 +603,7 @@ export function storeAccountSession(session?: AccountSession) {
   sessionStorage.setItem(ACCOUNT_SESSION_KEY, session.token);
   sessionStorage.setItem(ACCOUNT_SESSION_ROLE_KEY, session.role);
   sessionStorage.setItem(ACCOUNT_SESSION_EXPIRES_KEY, session.expires_at);
+  window.dispatchEvent(new Event(ACCOUNT_SESSION_CHANGED_EVENT));
 }
 
 export function clearAccountSession() {
@@ -609,6 +611,32 @@ export function clearAccountSession() {
   sessionStorage.removeItem(ACCOUNT_SESSION_KEY);
   sessionStorage.removeItem(ACCOUNT_SESSION_ROLE_KEY);
   sessionStorage.removeItem(ACCOUNT_SESSION_EXPIRES_KEY);
+  window.dispatchEvent(new Event(ACCOUNT_SESSION_CHANGED_EVENT));
+}
+
+// Same-document storage writes do not emit a native storage event. Private
+// workspaces also need an expiry wake-up when the user is not interacting.
+export function subscribeAccountSession(listener: () => void) {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  function scheduleExpiry() {
+    clearTimeout(timer);
+    const expires = Date.parse(sessionStorage.getItem(ACCOUNT_SESSION_EXPIRES_KEY) ?? "");
+    if (!Number.isFinite(expires)) return;
+    timer = setTimeout(() => {
+      listener();
+      if (Date.now() < expires) scheduleExpiry();
+    }, Math.max(0, Math.min(expires - Date.now() + 1, 2_147_483_647)));
+  }
+  function changed() { listener(); scheduleExpiry(); }
+  const events = [ACCOUNT_SESSION_CHANGED_EVENT, "storage", "focus", "pageshow"];
+  events.forEach(event => window.addEventListener(event, changed));
+  document.addEventListener("visibilitychange", changed);
+  scheduleExpiry();
+  return () => {
+    clearTimeout(timer);
+    events.forEach(event => window.removeEventListener(event, changed));
+    document.removeEventListener("visibilitychange", changed);
+  };
 }
 
 export function accountSessionRole(): string | null {

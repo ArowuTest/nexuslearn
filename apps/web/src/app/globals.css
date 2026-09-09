@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Shared studio surfaces keep the same tokens across all curriculum renderers. */
+@layer components {
+  .studio-step-label {
+    @apply font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)];
+  }
+  .studio-workspace-panel {
+    @apply mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5;
+  }
+  .studio-check-answer {
+    @apply mt-4 min-h-14 w-full bg-sun px-4 py-3 text-lg text-ink disabled:opacity-50;
+  }
+}
+
 :where(a, button, input, select, summary, [tabindex]):focus-visible {
   outline: 4px solid #ffdf8a;
   outline-offset: 3px;

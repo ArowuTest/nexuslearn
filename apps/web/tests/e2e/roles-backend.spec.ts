@@ -19,7 +19,7 @@ async function capture(page: Page, info: TestInfo, name: string) {
 
 async function schoolChange(page: Page, button: string) {
   const mutation = page.waitForResponse(r => r.url().includes("/v1/school/") && ["PUT", "POST"].includes(r.request().method()));
-  const portal = page.waitForResponse(r => r.url().endsWith("/v1/school/config") && r.request().method() === "GET");
+  const portal = page.waitForResponse(r => new URL(r.url()).pathname === "/v1/school/config" && r.request().method() === "GET");
   await page.getByRole("button", { name: button, exact: true }).click();
   expect((await mutation).status()).toBe(200);
   expect((await portal).status()).toBe(200);
@@ -83,7 +83,7 @@ test("real school creates a class, pupil, teaching group and usable login card",
   await page.getByLabel("School URN", { exact: true }).fill("qa-school");
   await page.getByLabel("Login ID", { exact: true }).fill("qa-teacher");
   await page.getByLabel("Temporary password", { exact: true }).fill("local-disposable-password-only");
-  const schoolLoaded = page.waitForResponse(response => response.url().endsWith("/v1/school/config"));
+  const schoolLoaded = page.waitForResponse(response => new URL(response.url()).pathname === "/v1/school/config");
   await page.getByLabel("Temporary password", { exact: true }).press("Enter");
   expect((await schoolLoaded).status()).toBe(200);
   await expect(page.getByText("Signed in as qa-teacher / School admin", { exact: true })).toBeVisible();
@@ -103,6 +103,8 @@ test("real school creates a class, pupil, teaching group and usable login card",
   await panel("Class Access").getByLabel("Pupil ID").fill(pupilId);
   await schoolChange(page, "Add pupil");
   await schoolChange(page, "Generate logins");
+  await page.getByRole("combobox", { name: "Login card class", exact: true }).selectOption({ label: `${className} (Year 1)` });
+  await page.getByRole("button", { name: "Show login card for QA school explorer", exact: true }).click();
   await expect(page.getByRole("heading", { name: "QA school explorer", exact: true }).first()).toBeVisible();
   await panel("Pupil Login Packs").scrollIntoViewIfNeeded();
   await capture(page, info, "06-school-login-card");

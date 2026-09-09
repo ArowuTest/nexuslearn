@@ -1,7 +1,8 @@
 "use client";
 
 import { useSyncExternalStore, type ReactNode } from "react";
-import QRCode from "qrcode";
+// Pinned symbol-only entry: card rendering does not need canvas or image encoders.
+import { create as createQRCode } from "qrcode/lib/core/qrcode";
 import LoginPicture from "@/components/LoginPicture";
 import { loginCardURL } from "@/components/role-workspaces/loginCardURL.mjs";
 
@@ -15,9 +16,9 @@ type StudentCredential = {
 
 const subscribeToStaticOrigin = () => () => {};
 
-export function Panel({ id, title, children, action = null }: { id?: string; title: string; children: ReactNode; action?: ReactNode }) {
+export function Panel({ id, title, children, action = null, accessibleName }: { id?: string; title: string; children: ReactNode; action?: ReactNode; accessibleName?: string }) {
   return (
-    <section id={id} className="scroll-mt-28 overflow-hidden rounded-lg bg-white shadow-card">
+    <section id={id} aria-label={accessibleName} className="scroll-mt-28 overflow-hidden rounded-lg bg-white shadow-card">
       <div className="flex items-center justify-between gap-3 border-b border-[#17233f]/10 p-5">
         <h2 className="font-display text-2xl font-semibold">{title}</h2>
         {action}
@@ -33,39 +34,40 @@ export function LoginCard({ credential, schoolName }: { credential: StudentCrede
   const loginURL = loginCardURL(credential, currentOrigin, process.env.NEXT_PUBLIC_APP_ORIGIN);
   return (
     <article className="break-inside-avoid rounded-lg border-2 border-[#17233f] bg-white p-5 text-[#17233f]">
+      <p className="font-display text-xs uppercase tracking-[0.16em] text-[#7357c9]">NexusLearn</p>
       <div className="flex items-start justify-between gap-4">
-        <div>
-          <p className="font-display text-xs uppercase tracking-[0.16em] text-[#7357c9]">NexusLearn</p>
+        <div className="min-w-0 flex-1 break-words">
           <h3 className="font-display mt-1 text-2xl font-semibold">{credential.display_name || credential.student_external_ref}</h3>
-          <p className="mt-1 text-xs text-[#17233f]/56">{schoolName}</p>
+          <p className="mt-1 text-xs text-[#42506b]">{schoolName}</p>
         </div>
-        {loginURL ? <QRCodeMark value={loginURL} /> : <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-lg border border-[#17233f]/20 bg-[#f7f0df] p-2 text-center text-[10px] font-semibold text-[#17233f]/58" role="status">QR available after secure page load</div>}
+        {loginURL ? <QRCodeMark value={loginURL} /> : <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-lg border border-[#17233f]/20 bg-[#f7f0df] p-2 text-center text-[10px] font-semibold text-[#42506b]" role="status">QR available after secure page load</div>}
       </div>
       <div className="mt-5 grid grid-cols-2 gap-3">
         <Info label="Login code" value={credential.login_code || "Picture login"} />
         <Info label="Pupil ID" value={credential.student_external_ref} />
       </div>
       <div className="mt-4 rounded-lg bg-[#f7f0df] p-4">
-        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#17233f]/50">Picture password</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#42506b]">Picture password</p>
         <div className="mt-3 flex flex-wrap gap-2">
-          {picturePassword.length > 0 ? picturePassword.map((item, index) => <span key={`${item}-${index}`} className="flex flex-col items-center gap-1 rounded-lg bg-white px-3 py-2 text-sm font-semibold shadow-sm"><span>{index + 1}.</span><LoginPicture picture={item} /><span>{friendly(item)}</span></span>) : <span className="text-sm text-[#17233f]/58">Use the login code shown above.</span>}
+          {picturePassword.length > 0 ? picturePassword.map((item, index) => <span key={`${item}-${index}`} className="flex flex-col items-center gap-1 rounded-lg bg-white px-3 py-2 text-sm font-semibold shadow-sm"><span>{index + 1}.</span><LoginPicture picture={item} /><span>{friendly(item)}</span></span>) : <span className="text-sm text-[#42506b]">Use the login code shown above.</span>}
         </div>
       </div>
-      <p className="mt-4 text-xs leading-5 text-[#17233f]/58">Scan the QR code or go to NexusLearn, enter the code, then choose the pictures in order. Do not share this card outside the learner&apos;s trusted adults.</p>
+      <p className="mt-4 text-xs leading-5 text-[#42506b]">Scan the QR code or go to NexusLearn, enter the code, then choose the pictures in order. Do not share this card outside the learner&apos;s trusted adults.</p>
     </article>
   );
 }
 
 function QRCodeMark({ value }: { value: string }) {
-  const qr = QRCode.create(value, { errorCorrectionLevel: "M" });
+  const qr = createQRCode(value, { errorCorrectionLevel: "M" });
   const size = qr.modules.size;
+  const extent = size + 8; // Four light modules on every edge, independent of CSS pixels.
   const cells: Array<[number, number]> = [];
-  for (let y = 0; y < size; y += 1) for (let x = 0; x < size; x += 1) if (qr.modules.get(x, y)) cells.push([x, y]);
-  return <svg viewBox={`0 0 ${size} ${size}`} className="h-24 w-24 shrink-0 rounded-lg border border-[#17233f]/20 bg-white p-1" role="img" aria-label="QR login code" data-login-url={value}><rect width={size} height={size} fill="#ffffff" />{cells.map(([x, y]) => <rect key={`${x}-${y}`} x={x} y={y} width="1" height="1" fill="#17233f" />)}</svg>;
+  for (let y = 0; y < size; y += 1) for (let x = 0; x < size; x += 1) if (qr.modules.get(y, x)) cells.push([x + 4, y + 4]);
+  return <svg viewBox={`0 0 ${extent} ${extent}`} className="h-24 w-24 shrink-0 rounded-lg border border-[#17233f]/20 bg-white p-1" role="img" aria-label="QR login code" data-login-url={value}><rect width={extent} height={extent} fill="#ffffff" />{cells.map(([x, y]) => <rect key={`${x}-${y}`} x={x} y={y} width="1" height="1" fill="#17233f" />)}</svg>;
 }
 
 function Info({ label, value }: { label: string; value: string }) {
-  return <div className="rounded-lg border border-[#17233f]/12 p-3"><p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#17233f]/48">{label}</p><p className="mt-1 break-words font-display text-lg font-semibold">{value}</p></div>;
+  return <div className="min-w-0 rounded-lg border border-[#17233f]/12 p-3"><p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#42506b]">{label}</p><p className="mt-1 break-words font-display text-lg font-semibold">{value}</p></div>;
 }
 
 export function Field({ label, value, onChange, type = "text" }: { label: string; value: string | number; onChange: (value: string) => void; type?: "text" | "number" | "password" | "datetime-local" }) {

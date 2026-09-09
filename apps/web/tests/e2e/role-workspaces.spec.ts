@@ -201,6 +201,10 @@ test("school workspace clears all organisation state on logout and failed accoun
       }) });
       return;
     }
+    if (url.pathname === "/v1/school/classes/class-3/credentials") {
+      await route.fulfill({ json: { class_id: "class-3", limit: 12, has_more: false, next_cursor: "", student_credentials: [{ student_external_ref: "ava-y3", display_name: "Ava", login_code: "654321", picture_password: ["star", "book", "sun"] }] } });
+      return;
+    }
     if (url.pathname === "/v1/school/assignments") {
       await route.fulfill({ contentType: "application/json", body: JSON.stringify({ assignments: [{ id: "assignment-1", student_external_ref: "ava-y3", student_display_name: "Ava", objective_id: "maths-y3-fractions", title: "Ava fractions priority", priority: 80, status: "active" }] }) });
       return;
@@ -233,6 +237,8 @@ test("school workspace clears all organisation state on logout and failed accoun
   const selectedLearner = page.getByLabel("Selected school learner");
   await selectedLearner.selectOption("ava-y3");
   await expect.poll(() => schoolRequests).toContain("GET /v1/school/mock-assessments?studentId=ava-y3&limit=20");
+  await page.getByLabel("Login card class").selectOption("class-3");
+  await page.getByRole("button", { name: "Show login card for Ava", exact: true }).click();
   const qr = page.locator('svg[aria-label="QR login code"]').last();
   await expect(qr).toHaveAttribute("data-login-url", /http:\/\/127\.0\.0\.1:\d+\/login\?pupil=ava-y3&code=654321/);
 
@@ -256,6 +262,7 @@ test("school workspace clears all organisation state on logout and failed accoun
 
   await signInToSchool(page, "teacher-one");
   await expect(page.getByText("Ava confidential plan", { exact: true }).first()).toBeVisible();
+  await page.getByRole("button", { name: "Sign out", exact: true }).click();
   await page.getByLabel("Login ID").fill("teacher-two");
   await page.getByLabel("Temporary password").fill("wrong-password");
   await page.getByRole("button", { name: "Sign in" }).click();

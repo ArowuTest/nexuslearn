@@ -27,7 +27,7 @@ function WordBuilder({ question, input, onChoose }: { question: StudioQuestion; 
   }
 
   return (
-    <div className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" role="group" aria-label="Word building tiles">
+    <div className="studio-workspace-panel" role="group" aria-label="Word building tiles">
       <p className="font-display text-center text-xs uppercase tracking-[0.15em] text-[var(--world-accent)]">Build the word</p>
       <div className="mt-4 flex min-h-20 flex-wrap items-center justify-center gap-2 rounded-2xl bg-[#fff7df] p-4" aria-live="polite">
         {built.length ? built.map((tile, index) => (
@@ -58,8 +58,8 @@ function NounPhraseBuilder({ question, input, onChoose }: { question: StudioQues
   if (question.format.toLowerCase() !== "noun-phrase-builder" || tiles.length < 2) return null;
   const phrase = (parts: string[]) => parts.join(" ").replaceAll(" ,", ",").replaceAll(" .", ".");
   const publish = (next: string[], nextUsed: number[]) => { setBuilt(next); setUsed(nextUsed); onChoose(phrase(next)); };
-  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Noun phrase builder">
-    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Phrase workshop</p>
+  return <section className="studio-workspace-panel" aria-label="Noun phrase builder">
+    <p className="studio-step-label">Phrase workshop</p>
     <p className="mt-2 text-center text-sm text-white/80">Build the clearest phrase. Tap cards in order; no dragging or handwriting is needed.</p>
     <p className="mt-5 min-h-16 rounded-2xl bg-[#fff7df] p-4 text-center text-xl font-semibold text-ink" aria-live="polite">{built.length ? phrase(built) : "Your phrase will appear here"}</p>
     <div className="mt-4 flex flex-wrap justify-center gap-2">{tiles.map((tile, index) => <button key={`${tile}-${index}`} type="button" disabled={used.includes(index)} onClick={() => publish([...built, tile], [...used, index])} className="min-h-12 rounded-xl bg-white px-4 font-semibold text-ink disabled:opacity-35">{tile}</button>)}</div>
@@ -168,8 +168,8 @@ function PhonemeCounter({ question, input, onChoose }: { question: StudioQuestio
   const sounds = asStringArray(question.body.sounds);
   const choices = asStringArray(question.body.choices).filter((choice) => /^\d+$/.test(choice));
   if (!sounds.length || choices.length < 2) return null;
-  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Sound counter activity">
-    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Sound detective</p>
+  return <section className="studio-workspace-panel" aria-label="Sound counter activity">
+    <p className="studio-step-label">Sound detective</p>
     <p className="mt-2 text-center text-sm text-white/80">Tap one counter for each sound you hear. Say the sounds slowly, not the letter names.</p>
     <div className="mt-5 flex flex-wrap justify-center gap-3" aria-label={`${sounds.length} sound counters`}>
       {sounds.map((sound, index) => <span key={`${sound}-${index}`} className="flex h-14 w-14 items-center justify-center rounded-full border-4 border-sun bg-leaf text-xl font-bold text-white" aria-label={`Sound ${index + 1}: ${sound}`}>●</span>)}
@@ -196,8 +196,8 @@ function SoundBoxBuilder({ question, input, onChoose }: { question: StudioQuesti
   const publish = (next: string[], nextUsed: number[]) => { setBuilt(next); setUsed(nextUsed); onChoose(JSON.stringify(next)); };
   const add = (tile: string, index: number) => { if (built.length < boxCount) publish([...built, tile], [...used, index]); };
   const undo = () => publish(built.slice(0, -1), used.slice(0, -1));
-  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Sound box builder">
-    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Sound box builder</p>
+  return <section className="studio-workspace-panel" aria-label="Sound box builder">
+    <p className="studio-step-label">Sound box builder</p>
     <p className="mt-2 text-center text-sm text-white/80">Say each sound, then place its sound tile in the next box. You can tap; dragging is never needed.</p>
     <ol className="mt-5 grid gap-2" style={{ gridTemplateColumns: `repeat(${boxCount}, minmax(0, 1fr))` }} aria-label={`${boxCount} sound boxes`}>
       {Array.from({ length: boxCount }, (_, index) => <li key={index} className="flex min-h-16 items-center justify-center rounded-xl border-2 border-dashed border-sun bg-[#fff7df] text-2xl font-bold text-ink" aria-label={`Sound box ${index + 1}${built[index] ? `: ${built[index]}` : ': empty'}`}>{built[index] ?? ''}</li>)}
@@ -258,8 +258,8 @@ function EvidenceSpanSelector({ question, input, onChoose }: { question: StudioQ
   };
   const title = format === 'evidence-rank' ? 'Evidence strength desk' : format === 'evidence-link' ? 'Clue-to-inference link' : format === 'clue-highlight' ? 'Clue finder' : 'Evidence finder';
   const instruction = multi ? 'Select every precise phrase that supports the idea. The order does not matter.' : format === 'evidence-rank' ? 'Choose the evidence that best supports the claim. Re-read before you decide.' : 'Select the most precise evidence. You can revise your choice at any time; there is no timer.';
-  if (candidates.length < 2) return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label={title}>
-    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">{title}</p>
+  if (candidates.length < 2) return <section className="studio-workspace-panel" aria-label={title}>
+    <p className="studio-step-label">{title}</p>
     {inference && <p className="mt-2 rounded-2xl bg-[#fff7df] p-4 text-sm font-semibold leading-6 text-ink">Claim or idea: {inference}</p>}
     {source && <p className="mt-4 rounded-2xl bg-[#fff7df] p-4 text-sm leading-6 text-ink"><span className="font-display text-xs uppercase">Text to inspect</span><br />{source}</p>}
     {preciseWords}
@@ -267,8 +267,8 @@ function EvidenceSpanSelector({ question, input, onChoose }: { question: StudioQ
       <input value={input} onChange={(event) => onChoose(event.target.value)} className="mt-2 min-h-14 w-full rounded-xl bg-[#fff7df] px-4 text-lg text-ink" aria-label="Evidence phrase" />
     </label>}
   </section>;
-  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label={title}>
-    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">{title}</p>
+  return <section className="studio-workspace-panel" aria-label={title}>
+    <p className="studio-step-label">{title}</p>
     <p className="mt-2 text-center text-sm text-white/80">{instruction}</p>
     {inference && <p className="mt-4 rounded-2xl bg-[#fff7df] p-4 text-sm font-semibold leading-6 text-ink"><span className="font-display text-xs uppercase">Claim or idea</span><br />{inference}</p>}
     {source && <p className="mt-4 rounded-2xl bg-[#fff7df] p-4 text-sm leading-6 text-ink"><span className="font-display text-xs uppercase">Text to inspect</span><br />{source}</p>}
@@ -285,8 +285,8 @@ function FeatureExplorer({ question, input, onChoose }: { question: StudioQuesti
   const options = asStringArray(question.body.choices).length ? asStringArray(question.body.choices) : asStringArray(question.body.hotspots);
   const subject = String(question.body.animal ?? question.body.shape ?? 'discovery');
   if (options.length < 2) return null;
-  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Feature explorer">
-    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">{question.body.animal ? 'Field guide explorer' : 'Shape builder explorer'}</p>
+  return <section className="studio-workspace-panel" aria-label="Feature explorer">
+    <p className="studio-step-label">{question.body.animal ? 'Field guide explorer' : 'Shape builder explorer'}</p>
     <p className="mt-2 text-center text-sm text-white/80">Find the most useful clue about <strong>{subject}</strong>. Every clue is a large labelled button.</p>
     <div className="mt-5 grid gap-3 sm:grid-cols-2">{options.map((option) => <button key={option} type="button" onClick={() => onChoose(option)} aria-pressed={input === option} className={`min-h-16 rounded-2xl border-2 px-4 text-left font-semibold ${input === option ? 'border-sun bg-[#fff7df] text-ink ring-2 ring-sun' : 'border-white/15 bg-white/5 text-white'}`}>{option}</button>)}</div>
     <p className="mt-4 text-center text-xs text-white/70">A careful observation earns a calm explorer spark—there is no timer or penalty for trying again.</p>
@@ -318,8 +318,8 @@ function ReaderEffectBoard({ question, input, onChoose }: { question: StudioQues
   const versions = asStringArray(question.body.choices).length ? asStringArray(question.body.choices) : asStringArray(question.body.versions);
   const source = typeof question.body.original === 'string' ? question.body.original : typeof question.body.text === 'string' ? question.body.text : '';
   if (versions.length < 2) return null;
-  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Reader effect comparison board">
-    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Publishing studio</p>
+  return <section className="studio-workspace-panel" aria-label="Reader effect comparison board">
+    <p className="studio-step-label">Publishing studio</p>
     {source && <p className="mt-3 rounded-2xl bg-[#fff7df] p-4 text-ink"><span className="font-display text-xs">Original</span><br />{source}</p>}
     <p className="mt-3 text-center text-sm text-white/80">Compare each version for clarity, meaning and reader effect. Choose the strongest edit.</p>
     <div className="mt-4 grid gap-3">{versions.map((version, index) => <button key={version} type="button" onClick={() => onChoose(version)} aria-pressed={input === version} className={`rounded-2xl border-2 p-4 text-left ${input === version ? 'border-sun bg-[#fff7df] text-ink' : 'border-white/15 bg-white/5 text-white'}`}><span className="font-display mr-2 text-xs opacity-70">Version {index + 1}</span>{version}</button>)}</div>
@@ -344,8 +344,8 @@ function GrammarWorkshop({ question, input, onChoose, onSubmit }: { question: St
         ? 'Place the extra information beside the noun it describes and check that the meaning stays clear.'
         : 'Check the clause boundary, reference arrow and punctuation. More words are not automatically better.';
 
-  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label={title}>
-    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">{title}</p>
+  return <section className="studio-workspace-panel" aria-label={title}>
+    <p className="studio-step-label">{title}</p>
     <p className="mt-2 text-center text-sm text-white/80">{instruction}</p>
     {(baseNoun || antecedent || clause || sourceSentences.length > 0) && <div className="mt-4 grid gap-2 rounded-2xl bg-[#fff7df] p-4 text-sm text-ink">
       {baseNoun && <p><span className="font-display text-xs uppercase">Main noun</span><br />{baseNoun}</p>}
@@ -357,7 +357,7 @@ function GrammarWorkshop({ question, input, onChoose, onSubmit }: { question: St
       {choices.map((choice, index) => <button key={choice} type="button" onClick={() => onChoose(choice)} aria-pressed={input === choice} className={`min-h-14 rounded-xl border-2 p-3 text-left text-sm font-semibold ${input === choice ? 'border-sun bg-[#fff7df] text-ink' : 'border-white/15 bg-white/5 text-white'}`}><span className="font-display mr-2 text-xs opacity-70">Option {String.fromCharCode(65 + index)}</span>{choice}</button>)}
     </div>
     <p className="mt-3 text-center text-xs text-white/70">You can reread, change your choice and submit when the sentence makes sense. There is no timer.</p>
-    <button type="button" onClick={onSubmit} disabled={!input} className="btn-pop mt-4 min-h-14 w-full bg-sun px-4 py-3 text-lg text-ink disabled:opacity-50" aria-label="Submit grammar answer">Send answer</button>
+    <button type="button" onClick={onSubmit} disabled={!input} className="btn-pop studio-check-answer" aria-label="Submit grammar answer">Send answer</button>
   </section>;
 }
 function DisciplineContextBoard({ question, input, onChoose, onSubmit }: { question: StudioQuestion; input: string; onChoose: (value: string) => void; onSubmit: () => void }) {
@@ -370,10 +370,10 @@ function DisciplineContextBoard({ question, input, onChoose, onSubmit }: { quest
   const subjectFor = (card: Record<string, unknown>, index: number) => { const sentence = String(card.sentence ?? ''); const match = sentence.match(/^In\s+([^,]+),/i); return match ? match[1] : `Subject ${index + 1}`; };
   const assign = (subject: string, value: string) => onChoose(JSON.stringify({ ...assignments, [subject]: value }));
   const complete = cards.every((card, index) => typeof assignments[subjectFor(card, index)] === 'string');
-  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Disciplinary vocabulary context sorter">
-    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Discipline vocabulary map</p><p className="mt-2 text-center text-sm text-white/80">The same word can become more precise in different subjects. Match each sentence to the meaning it uses.</p>
+  return <section className="studio-workspace-panel" aria-label="Disciplinary vocabulary context sorter">
+    <p className="studio-step-label">Discipline vocabulary map</p><p className="mt-2 text-center text-sm text-white/80">The same word can become more precise in different subjects. Match each sentence to the meaning it uses.</p>
     <div className="mt-4 grid gap-3">{cards.map((card, index) => { const subject = subjectFor(card, index); return <label key={subject} className="rounded-xl bg-[#fff7df] p-3 text-sm font-semibold text-ink"><span className="font-display text-xs uppercase">{subject}</span><br />{String(card.sentence ?? '')}<select value={assignments[subject] ?? ''} onChange={(event) => assign(subject, event.target.value)} className="mt-2 min-h-11 w-full rounded-lg bg-white px-2 text-ink"><option value="">Choose meaning</option>{choices.map((choice) => <option key={choice} value={choice}>{choice}</option>)}</select></label>;})}</div>
-    <button type="button" onClick={onSubmit} disabled={!complete} className="btn-pop mt-4 min-h-14 w-full bg-sun px-4 py-3 text-lg text-ink disabled:opacity-50" aria-label="Submit disciplinary vocabulary answer">Send answer</button>
+    <button type="button" onClick={onSubmit} disabled={!complete} className="btn-pop studio-check-answer" aria-label="Submit disciplinary vocabulary answer">Send answer</button>
   </section>;
 }
 function SentenceBuildBoard({ question, input, onChoose, onSubmit }: { question: StudioQuestion; input: string; onChoose: (value: string) => void; onSubmit: () => void }) {
@@ -389,13 +389,13 @@ function SentenceBuildBoard({ question, input, onChoose, onSubmit }: { question:
   };
   const removeLast = () => onChoose(JSON.stringify(built.slice(0, -1)));
   const clear = () => onChoose('[]');
-  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Sentence building board">
-    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Sentence builder</p>
+  return <section className="studio-workspace-panel" aria-label="Sentence building board">
+    <p className="studio-step-label">Sentence builder</p>
     <p className="mt-2 text-center text-sm text-white/80">Choose one labelled tile at a time. The sentence stays visible, and dragging is never required.</p>
     <div className="mt-4 min-h-20 rounded-2xl bg-[#fff7df] p-4 text-center text-lg font-semibold text-ink" aria-live="polite">{built.length ? built.join(' ') : 'Choose tiles to begin'}</div>
     <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3" role="group" aria-label="Sentence tiles">{tiles.map((tile, index) => <button key={`${tile}-${index}`} type="button" onClick={() => chooseTile(tile, index)} className="min-h-12 rounded-xl border-2 border-white/15 bg-white/5 p-3 text-left text-sm font-semibold text-white focus:border-sun">{tile}</button>)}</div>
     <div className="mt-3 grid grid-cols-2 gap-2"><button type="button" onClick={removeLast} disabled={!built.length} className="min-h-11 rounded-xl bg-white/10 px-3 text-sm font-semibold text-white disabled:opacity-40">Undo last tile</button><button type="button" onClick={clear} disabled={!built.length} className="min-h-11 rounded-xl bg-white/10 px-3 text-sm font-semibold text-white disabled:opacity-40">Clear sentence</button></div>
-    <button type="button" onClick={onSubmit} disabled={!built.length} className="btn-pop mt-4 min-h-14 w-full bg-sun px-4 py-3 text-lg text-ink disabled:opacity-50" aria-label="Submit sentence">Send sentence</button>
+    <button type="button" onClick={onSubmit} disabled={!built.length} className="btn-pop studio-check-answer" aria-label="Submit sentence">Send sentence</button>
   </section>;
 }
 function ParagraphRelationshipCard({ question }: { question: StudioQuestion }) {
@@ -409,7 +409,7 @@ function ClaimEvidenceTray({ question }: { question: StudioQuestion }) {
   if (question.format.toLowerCase() !== 'claim-evidence-explain') return null;
   const observations = asStringArray(question.body.observations);
   if (!observations.length) return null;
-  return <aside className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Scientific evidence tray"><p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Evidence tray</p><ul className="mt-4 grid gap-2">{observations.map((observation, index) => <li key={observation} className="rounded-xl bg-[#fff7df] p-3 text-ink"><span className="mr-2 font-display text-xs">Observation {index + 1}</span>{observation}</li>)}</ul><p className="mt-3 text-center text-sm text-white/80">Choose the claim the observations support—be careful not to claim more than the evidence shows.</p></aside>;
+  return <aside className="studio-workspace-panel" aria-label="Scientific evidence tray"><p className="studio-step-label">Evidence tray</p><ul className="mt-4 grid gap-2">{observations.map((observation, index) => <li key={observation} className="rounded-xl bg-[#fff7df] p-3 text-ink"><span className="mr-2 font-display text-xs">Observation {index + 1}</span>{observation}</li>)}</ul><p className="mt-3 text-center text-sm text-white/80">Choose the claim the observations support—be careful not to claim more than the evidence shows.</p></aside>;
 }
 function CohesionContextCard({ question }: { question: StudioQuestion }) {
   if (question.format.toLowerCase() !== 'cohesion-edit') return null;
@@ -417,7 +417,7 @@ function CohesionContextCard({ question }: { question: StudioQuestion }) {
   const referent = typeof question.body.intended_referent === 'string' ? question.body.intended_referent : '';
   const original = typeof question.body.original === 'string' ? question.body.original : '';
   const context = meaning || referent || (original ? `Repair this original: ${original}` : 'Keep the intended meaning clear.');
-  return <aside className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Cohesion repair context"><p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Clarity desk</p><p className="mt-3 rounded-xl bg-[#fff7df] p-4 text-center text-sm font-semibold text-ink">{context}</p><p className="mt-3 text-center text-sm text-white/80">Choose the edit that keeps this meaning clear for the reader.</p></aside>;
+  return <aside className="studio-workspace-panel" aria-label="Cohesion repair context"><p className="studio-step-label">Clarity desk</p><p className="mt-3 rounded-xl bg-[#fff7df] p-4 text-center text-sm font-semibold text-ink">{context}</p><p className="mt-3 text-center text-sm text-white/80">Choose the edit that keeps this meaning clear for the reader.</p></aside>;
 }
 
 export const literacyRendererRegistry = {

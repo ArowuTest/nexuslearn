@@ -31,8 +31,8 @@ function SequenceBoard({ question, input, onChoose }: { question: StudioQuestion
 
   if (cards.length < 2) {
     return (
-      <div className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" role="group" aria-label="Sequence choice board">
-        <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Choose the sequence that makes sense</p>
+      <div className="studio-workspace-panel" role="group" aria-label="Sequence choice board">
+        <p className="studio-step-label">Choose the sequence that makes sense</p>
         <div className="mt-4 grid gap-3">
           {sequenceChoices.map((sequence, index) => {
             const value = JSON.stringify(sequence);
@@ -57,8 +57,8 @@ function SequenceBoard({ question, input, onChoose }: { question: StudioQuestion
   }
 
   return (
-    <div className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" role="group" aria-label="Sequence ordering board">
-      <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Put the stages in order</p>
+    <div className="studio-workspace-panel" role="group" aria-label="Sequence ordering board">
+      <p className="studio-step-label">Put the stages in order</p>
       <ol className="mt-4 grid gap-3">
         {ordered.map((card, index) => (
           <li key={card + "-" + index} className="grid grid-cols-[auto_1fr_auto] items-center gap-3 rounded-2xl bg-[#fff7df] p-3 text-ink">
@@ -83,8 +83,8 @@ function LifeEvidenceBoard({ question }: { question: StudioQuestion }) {
   const item = typeof question.body.item === 'string' ? question.body.item : '';
   const model = typeof question.body.text_model === 'string' ? question.body.text_model : '';
   if (!stages.length && !item && !model) return null;
-  return <aside className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Life science evidence board">
-    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Ecology evidence board</p>
+  return <aside className="studio-workspace-panel" aria-label="Life science evidence board">
+    <p className="studio-step-label">Ecology evidence board</p>
     {item && <p className="mt-3 rounded-2xl bg-[#fff7df] p-4 text-center text-lg font-semibold text-ink">Observation: {item}</p>}
     {stages.length > 0 && <ol className="mt-4 grid gap-2 sm:grid-cols-2">{stages.map((stage, index) => <li key={stage} className="rounded-xl bg-[#fff7df] p-3 text-ink"><span className="mr-2 font-display text-xs">{index + 1}</span>{stage}</li>)}</ol>}
     {model && <p className="mt-4 rounded-xl border border-sun/60 bg-[#fff7df] p-3 text-sm leading-6 text-ink">Read the evidence: {model}</p>}
@@ -99,8 +99,8 @@ function ClassificationKeyBoard({ question }: { question: StudioQuestion }) {
   const features = asStringArray(card?.features).length ? asStringArray(card?.features) : asStringArray(question.body.evidence);
   const organism = String(question.body.organism ?? 'organism');
   if (!path.length && !features.length) return null;
-  return <aside className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Classification key evidence">
-    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Classification key</p>
+  return <aside className="studio-workspace-panel" aria-label="Classification key evidence">
+    <p className="studio-step-label">Classification key</p>
     {features.length > 0 && <div className="mt-4 rounded-2xl bg-[#fff7df] p-4 text-ink"><p className="font-semibold">Evidence for {organism}</p><ul className="mt-2 grid gap-1 text-sm">{features.map((feature) => <li key={feature}>• {feature}</li>)}</ul></div>}
     {path.length > 0 && <ol className="mt-4 grid gap-2">{path.map((step, index) => <li key={step} className="rounded-xl border border-sun/60 bg-[#fff7df] p-3 text-ink"><span className="mr-2 font-display text-xs">Step {index + 1}</span>{step}</li>)}</ol>}
     <p className="mt-4 text-center text-xs text-white/70">Follow one checkable feature at a time. Take as long as you need.</p>
@@ -114,14 +114,14 @@ function ReasoningChoiceBoard({ question, input, onChoose, onSubmit }: { questio
   if (choices.length < 2) return null;
   const title = format === 'shape-evidence-map' ? 'Shape evidence map' : format === 'function-choice' ? 'Structure and function lab' : 'Explain with evidence';
   const instruction = format === 'shape-evidence-map' ? 'Check every defining property before you decide whether the claim follows.' : format === 'function-choice' ? 'Match each structure with the job it really performs. Similar names can have different jobs.' : 'Choose the explanation that accounts for the observation without adding an unsupported idea.';
-  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label={title}>
-    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">{title}</p>
+  return <section className="studio-workspace-panel" aria-label={title}>
+    <p className="studio-step-label">{title}</p>
     <p className="mt-2 text-center text-sm text-white/80">{instruction}</p>
     {claims.length > 0 && <div className="mt-4 flex flex-wrap justify-center gap-2">{claims.map((claim) => <span key={claim} className="rounded-xl bg-[#fff7df] px-3 py-2 text-sm font-semibold text-ink">{claim}</span>)}</div>}
     <div className="mt-4 grid gap-2" role="group" aria-label="Reasoning choices">
       {choices.map((choice, index) => <button key={choice} type="button" onClick={() => onChoose(choice)} aria-pressed={input === choice} className={`min-h-14 rounded-xl border-2 p-3 text-left text-sm font-semibold ${input === choice ? 'border-sun bg-[#fff7df] text-ink' : 'border-white/15 bg-white/5 text-white'}`}><span className="font-display mr-2 text-xs opacity-70">Option {String.fromCharCode(65 + index)}</span>{choice}</button>)}
     </div>
-    <button type="button" onClick={onSubmit} disabled={!input} className="btn-pop mt-4 min-h-14 w-full bg-sun px-4 py-3 text-lg text-ink disabled:opacity-50" aria-label="Submit reasoning answer">Send answer</button>
+    <button type="button" onClick={onSubmit} disabled={!input} className="btn-pop studio-check-answer" aria-label="Submit reasoning answer">Send answer</button>
   </section>;
 }
 function CircuitEvidenceBoard({ question, input, onChoose, onSubmit }: { question: StudioQuestion; input: string; onChoose: (value: string) => void; onSubmit: () => void }) {
@@ -144,7 +144,7 @@ function CircuitEvidenceBoard({ question, input, onChoose, onSubmit }: { questio
     {table.length > 0 && <div className="mt-4 overflow-x-auto rounded-2xl bg-[#fff7df] p-3"><table className="w-full min-w-[28rem] text-left text-sm text-ink"><caption className="mb-2 text-left font-display text-xs uppercase">Observed circuit outputs</caption><thead><tr>{Object.keys(table[0]).map((key) => <th key={key} scope="col" className="border-b border-ink/15 px-2 py-2 font-display text-xs uppercase">{key.replaceAll('_', ' ')}</th>)}</tr></thead><tbody>{table.map((row, index) => <tr key={index}>{Object.keys(table[0]).map((key) => <td key={key} className="border-b border-ink/10 px-2 py-2 align-top">{String(row[key] ?? '')}</td>)}</tr>)}</tbody></table></div>}
     <div className="mt-4 grid gap-3" role="group" aria-label="Circuit answer choices">{choices.map((choice, index) => <button key={choice} type="button" onClick={() => onChoose(choice)} aria-pressed={input === choice} className={`min-h-16 rounded-2xl border-2 p-4 text-left text-sm font-semibold ${input === choice ? 'border-sun bg-[#fff7df] text-ink ring-2 ring-sun' : 'border-white/15 bg-white/5 text-white'}`}><span className="mr-2 font-display text-xs opacity-70">{index + 1}.</span>{choice}</button>)}</div>
     <p className="mt-4 text-center text-xs text-white/65">Keyboard, switch scanning, touch and partner/AAC selection use the same numbered route. Simulator-only, low-voltage learning is allowed; mains electricity is never required.</p>
-    <button type="button" onClick={onSubmit} disabled={!input} className="btn-pop mt-4 min-h-14 w-full bg-sun px-4 py-3 text-lg text-ink disabled:opacity-50" aria-label="Submit circuit answer">Send evidence</button>
+    <button type="button" onClick={onSubmit} disabled={!input} className="btn-pop studio-check-answer" aria-label="Submit circuit answer">Send evidence</button>
   </section>;
 }
 
@@ -176,7 +176,7 @@ function EvolutionEvidenceBoard({ question, input, onChoose, onSubmit }: { quest
     {Object.keys(startingCounts).length > 0 && <div className="mt-4 overflow-x-auto rounded-2xl bg-[#fff7df] p-3"><table className="w-full min-w-[18rem] text-left text-sm text-ink"><caption className="mb-2 text-left font-display text-xs uppercase">Starting population snapshot</caption><thead><tr><th scope="col" className="border-b border-ink/15 px-2 py-2">Trait pattern</th><th scope="col" className="border-b border-ink/15 px-2 py-2 text-right">Count</th></tr></thead><tbody>{Object.entries(startingCounts).map(([label, count]) => <tr key={label}><th scope="row" className="border-b border-ink/10 px-2 py-2 font-semibold">{label.replaceAll('_', ' ')}</th><td className="border-b border-ink/10 px-2 py-2 text-right font-mono">{String(count)}</td></tr>)}</tbody></table></div>}
     <div className="mt-4 grid gap-3" role="group" aria-label="Evolution evidence choices">{choices.map((choice, index) => <button key={choice} type="button" onClick={() => onChoose(choice)} aria-pressed={input === choice} className={`min-h-16 rounded-2xl border-2 p-4 text-left text-sm font-semibold ${input === choice ? 'border-sun bg-[#fff7df] text-ink ring-2 ring-sun' : 'border-white/15 bg-white/5 text-white'}`}><span className="mr-2 font-display text-xs opacity-70">{index + 1}.</span>{choice}</button>)}</div>
     <p className="mt-4 text-center text-xs text-white/65">Numbered selection works with touch, keyboard, switch scanning, eye gaze, AAC or partner pointing. Motion can be reduced to still evidence cards; speed never earns the mark.</p>
-    <button type="button" onClick={onSubmit} disabled={!input} className="btn-pop mt-4 min-h-14 w-full bg-sun px-4 py-3 text-lg text-ink disabled:opacity-50" aria-label="Submit evolution evidence">Send evidence</button>
+    <button type="button" onClick={onSubmit} disabled={!input} className="btn-pop studio-check-answer" aria-label="Submit evolution evidence">Send evidence</button>
   </section>;
 }
 
@@ -199,7 +199,7 @@ function CellLabelBoard({ question, input, onChoose, onSubmit }: { question: Stu
     <div className="mt-4 flex justify-center"><span className="rounded-xl bg-[#fff7df] px-3 py-2 text-sm font-bold capitalize text-ink">{cellType}</span></div>
     <div className="mt-4 grid gap-3">{features.map((feature, index) => <label key={feature} className="rounded-2xl bg-[#fff7df] p-4 text-sm font-semibold text-ink"><span className="mr-2 font-display text-xs uppercase">Feature {index + 1}</span>{feature}<select value={assignments[feature] ?? ''} onChange={(event) => assign(feature, event.target.value)} className="mt-3 min-h-12 w-full rounded-xl border border-ink/15 bg-white px-3 text-ink"><option value="">Choose a label</option>{labels.map((label) => <option key={label} value={label}>{label}</option>)}</select></label>)}</div>
     <p className="mt-4 text-center text-xs text-white/65">Touch, keyboard, switch, eye gaze, AAC and partner routes work; dragging is optional.</p>
-    <button type="button" onClick={onSubmit} disabled={!complete} className="btn-pop mt-4 min-h-14 w-full bg-sun px-4 py-3 text-lg text-ink disabled:opacity-50" aria-label="Submit cell labels">Send atlas</button>
+    <button type="button" onClick={onSubmit} disabled={!complete} className="btn-pop studio-check-answer" aria-label="Submit cell labels">Send atlas</button>
   </section>;
 }
 
@@ -223,7 +223,7 @@ export function ForceModelBoard({ question, input, onChoose, onSubmit }: { quest
     <div className="mt-4 grid gap-3" role="group" aria-label="Force model choices">{choices.map((choice, index) => <button key={choice} type="button" onClick={() => onChoose(choice)} aria-pressed={input === choice} className={`min-h-16 rounded-2xl border-2 p-4 text-left text-sm font-semibold ${input === choice ? 'border-sun bg-[#fff7df] text-ink ring-2 ring-sun' : 'border-white/15 bg-white/5 text-white'}`}><span className="mr-2 font-display text-xs opacity-70">{index + 1}.</span>{choice}</button>)}</div>
     {safety && <p className="mt-4 rounded-2xl bg-[#fff7df] p-3 text-xs leading-5 text-ink">Safe route: {safety.replaceAll('_', ' ')}</p>}
     <p className="mt-4 text-center text-xs text-white/65">Pause, replay or use still frames. Accessible routes share one path; no speed score.</p>
-    <button type="button" onClick={onSubmit} disabled={!input} className="btn-pop mt-4 min-h-14 w-full bg-sun px-4 py-3 text-lg text-ink disabled:opacity-50" aria-label="Submit force model answer">Send model evidence</button>
+    <button type="button" onClick={onSubmit} disabled={!input} className="btn-pop studio-check-answer" aria-label="Submit force model answer">Send model evidence</button>
   </section>;
 }
 function HealthyChoiceBoard({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
@@ -233,7 +233,7 @@ function HealthyChoiceBoard({ question, input, onChoose }: { question: StudioQue
   const plateChoices = rawChoices.filter((choice): choice is Array<string | number> => Array.isArray(choice) && choice.every((item) => typeof item === 'string' || typeof item === 'number')).map((choice) => choice.map(String));
   const inclusiveNote = typeof question.body.inclusive_note === 'string' ? question.body.inclusive_note : '';
   if (scalarChoices.length < 2 && plateChoices.length < 2) return null;
-  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Healthy choice board"><p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Body-care explorer</p>{inclusiveNote && <p className="mt-3 rounded-xl bg-[#fff7df] p-3 text-center text-sm text-ink">{inclusiveNote}</p>}<p className="mt-3 text-center text-sm text-white/80">Choose the option that best supports the body, using evidence and variety.</p>{scalarChoices.length >= 2 && <div className="mt-4 grid gap-2">{scalarChoices.map((choice) => <button key={choice} type="button" onClick={() => onChoose(choice)} aria-pressed={input === choice} className={`min-h-12 rounded-xl border-2 p-3 text-left font-semibold ${input === choice ? 'border-sun bg-[#fff7df] text-ink' : 'border-white/15 bg-white/5 text-white'}`}>{choice}</button>)}</div>}{plateChoices.length >= 2 && <div className="mt-4 grid gap-3">{plateChoices.map((plate) => { const value = JSON.stringify(plate); return <button key={value} type="button" onClick={() => onChoose(value)} aria-pressed={input === value} className={`rounded-2xl border-2 p-4 text-left ${input === value ? 'border-sun bg-[#fff7df] text-ink' : 'border-white/15 bg-white/5 text-white'}`}><span className="font-display text-xs opacity-70">Plate option</span><span className="mt-2 flex flex-wrap gap-2">{plate.map((food, index) => <span key={`${food}-${index}`} className="rounded-lg bg-white/20 px-2 py-1 text-sm">{food}</span>)}</span></button>;})}</div>}</section>;
+  return <section className="studio-workspace-panel" aria-label="Healthy choice board"><p className="studio-step-label">Body-care explorer</p>{inclusiveNote && <p className="mt-3 rounded-xl bg-[#fff7df] p-3 text-center text-sm text-ink">{inclusiveNote}</p>}<p className="mt-3 text-center text-sm text-white/80">Choose the option that best supports the body, using evidence and variety.</p>{scalarChoices.length >= 2 && <div className="mt-4 grid gap-2">{scalarChoices.map((choice) => <button key={choice} type="button" onClick={() => onChoose(choice)} aria-pressed={input === choice} className={`min-h-12 rounded-xl border-2 p-3 text-left font-semibold ${input === choice ? 'border-sun bg-[#fff7df] text-ink' : 'border-white/15 bg-white/5 text-white'}`}>{choice}</button>)}</div>}{plateChoices.length >= 2 && <div className="mt-4 grid gap-3">{plateChoices.map((plate) => { const value = JSON.stringify(plate); return <button key={value} type="button" onClick={() => onChoose(value)} aria-pressed={input === value} className={`rounded-2xl border-2 p-4 text-left ${input === value ? 'border-sun bg-[#fff7df] text-ink' : 'border-white/15 bg-white/5 text-white'}`}><span className="font-display text-xs opacity-70">Plate option</span><span className="mt-2 flex flex-wrap gap-2">{plate.map((food, index) => <span key={`${food}-${index}`} className="rounded-lg bg-white/20 px-2 py-1 text-sm">{food}</span>)}</span></button>;})}</div>}</section>;
 }
 
 export function RoleAssignmentBoard({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
@@ -246,7 +246,7 @@ export function RoleAssignmentBoard({ question, input, onChoose }: { question: S
   try { const value = JSON.parse(input); if (Array.isArray(value)) saved = value; } catch { /* start fresh */ }
   const assigned = new Map<string, string>(); saved.forEach((item) => { const match = item.match(/^([^:]+): (.+)$/); if (match) assigned.set(match[2], match[1]); });
   const publish = (card: string, category: string) => { const next = new Map(assigned); next.set(card, category); const result = categories.map((group) => `${group}: ${cards.filter((item) => next.get(item) === group).join(', ')}`).filter((item) => !item.endsWith(': ')); onChoose(JSON.stringify(result)); };
-  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label={format === 'variable-sort' ? 'Variable role sorter' : 'Argument role map'}><p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">{format === 'variable-sort' ? 'Investigation sorter' : 'Argument map'}</p><p className="mt-2 text-center text-sm text-white/80">Assign each card to one role. Use the labels and evidence, not colour or speed.</p><div className="mt-4 grid gap-2">{cards.map((card) => <label key={card} className="rounded-xl bg-[#fff7df] p-3 text-sm text-ink">{card}<select value={assigned.get(card) ?? ''} onChange={(event) => publish(card, event.target.value)} className="mt-2 min-h-11 w-full rounded-lg bg-white px-2 text-ink"><option value="">Choose a role</option>{categories.map((category) => <option key={category} value={category}>{category}</option>)}</select></label>)}</div></section>;
+  return <section className="studio-workspace-panel" aria-label={format === 'variable-sort' ? 'Variable role sorter' : 'Argument role map'}><p className="studio-step-label">{format === 'variable-sort' ? 'Investigation sorter' : 'Argument map'}</p><p className="mt-2 text-center text-sm text-white/80">Assign each card to one role. Use the labels and evidence, not colour or speed.</p><div className="mt-4 grid gap-2">{cards.map((card) => <label key={card} className="rounded-xl bg-[#fff7df] p-3 text-sm text-ink">{card}<select value={assigned.get(card) ?? ''} onChange={(event) => publish(card, event.target.value)} className="mt-2 min-h-11 w-full rounded-lg bg-white px-2 text-ink"><option value="">Choose a role</option>{categories.map((category) => <option key={category} value={category}>{category}</option>)}</select></label>)}</div></section>;
 }
 
 function CircuitCompletionBoard({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
@@ -255,8 +255,8 @@ function CircuitCompletionBoard({ question, input, onChoose }: { question: Studi
   if (components.length < 2) return null;
   const complete = input === 'closed_loop';
   const options = choiceOptions(question);
-  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Circuit completion board">
-    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Safe circuit lab</p>
+  return <section className="studio-workspace-panel" aria-label="Circuit completion board">
+    <p className="studio-step-label">Safe circuit lab</p>
     <div className="mt-4 flex flex-wrap items-center justify-center gap-2">{components.map((component, index) => <span key={`${component}-${index}`} className="rounded-xl bg-[#fff7df] px-3 py-2 text-sm font-semibold text-ink">{component}</span>)}</div>
     <p className="mt-4 text-center text-sm text-white/80">Inspect the connections before deciding. No real electricity or fine dragging is required.</p>
     {options.length ? <div className="mt-4 grid gap-3">{options.map(option => <button key={option.value} type="button" onClick={() => onChoose(option.value)} aria-pressed={input === option.value} className={`min-h-12 rounded-xl px-4 py-3 text-left font-semibold ${input === option.value ? 'bg-leaf text-white' : 'bg-sun text-ink'}`}>{option.label.replaceAll('_', ' ')}</button>)}</div> : <button type="button" onClick={() => onChoose(complete ? 'open_loop' : 'closed_loop')} aria-pressed={complete} className={`mt-4 min-h-12 w-full rounded-xl px-4 font-semibold ${complete ? 'bg-leaf text-white' : 'bg-sun text-ink'}`}>{complete ? 'Closed loop recorded' : 'Complete closed loop'}</button>}
@@ -273,7 +273,7 @@ function GraphDataReader({ question }: { question: StudioQuestion }) {
   const columns = Object.keys(data[0]);
   const xAxis = typeof question.body.x_axis === 'string' ? question.body.x_axis : columns[0];
   const yAxis = typeof question.body.y_axis === 'string' ? question.body.y_axis : columns.slice(1).join(' and ');
-  return <aside className="mx-auto mt-6 max-w-xl overflow-x-auto rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Graph data reader"><p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Graph data table</p><p className="mt-2 text-center text-sm text-white/80">Read {xAxis} across, then {yAxis} down. Values are available in this static table.</p><table className="mt-4 w-full border-separate border-spacing-1 text-left text-sm"><thead><tr>{columns.map((column) => <th key={column} className="rounded-lg bg-sun p-2 text-ink">{column}</th>)}</tr></thead><tbody>{data.map((row, index) => <tr key={index}>{columns.map((column) => <td key={column} className="rounded-lg bg-[#fff7df] p-2 text-ink">{String(row[column] ?? '')}</td>)}</tr>)}</tbody></table></aside>;
+  return <aside className="mx-auto mt-6 max-w-xl overflow-x-auto rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Graph data reader"><p className="studio-step-label">Graph data table</p><p className="mt-2 text-center text-sm text-white/80">Read {xAxis} across, then {yAxis} down. Values are available in this static table.</p><table className="mt-4 w-full border-separate border-spacing-1 text-left text-sm"><thead><tr>{columns.map((column) => <th key={column} className="rounded-lg bg-sun p-2 text-ink">{column}</th>)}</tr></thead><tbody>{data.map((row, index) => <tr key={index}>{columns.map((column) => <td key={column} className="rounded-lg bg-[#fff7df] p-2 text-ink">{String(row[column] ?? '')}</td>)}</tr>)}</tbody></table></aside>;
 }
 
 function PredictionEvidenceBoard({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
@@ -282,7 +282,7 @@ function PredictionEvidenceBoard({ question, input, onChoose }: { question: Stud
   const prediction = typeof question.body.prediction === 'string' ? question.body.prediction : '';
   const observation = typeof question.body.observation === 'string' ? question.body.observation : '';
   if (options.length < 2 || !observation) return null;
-  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Prediction observation explanation board"><p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Evidence lab</p>{prediction && <div className="mt-4 rounded-xl bg-white/10 p-3 text-sm text-white"><span className="font-display text-xs text-sun">Prediction</span><br />{prediction}</div>}<div className="mt-3 rounded-xl bg-[#fff7df] p-3 text-sm text-ink"><span className="font-display text-xs">Observation</span><br />{observation}</div><p className="mt-3 text-center text-sm text-white/80">Choose the explanation that fits the evidence. A prediction can change when new evidence appears.</p><div className="mt-4 grid gap-2">{options.map((option) => <button key={option} type="button" onClick={() => onChoose(option)} aria-pressed={input === option} className={`rounded-xl border-2 p-3 text-left text-sm ${input === option ? 'border-sun bg-[#fff7df] text-ink' : 'border-white/15 bg-white/5 text-white'}`}>{option}</button>)}</div></section>;
+  return <section className="studio-workspace-panel" aria-label="Prediction observation explanation board"><p className="studio-step-label">Evidence lab</p>{prediction && <div className="mt-4 rounded-xl bg-white/10 p-3 text-sm text-white"><span className="font-display text-xs text-sun">Prediction</span><br />{prediction}</div>}<div className="mt-3 rounded-xl bg-[#fff7df] p-3 text-sm text-ink"><span className="font-display text-xs">Observation</span><br />{observation}</div><p className="mt-3 text-center text-sm text-white/80">Choose the explanation that fits the evidence. A prediction can change when new evidence appears.</p><div className="mt-4 grid gap-2">{options.map((option) => <button key={option} type="button" onClick={() => onChoose(option)} aria-pressed={input === option} className={`rounded-xl border-2 p-3 text-left text-sm ${input === option ? 'border-sun bg-[#fff7df] text-ink' : 'border-white/15 bg-white/5 text-white'}`}>{option}</button>)}</div></section>;
 }
 
 function FairTestPlanner({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
@@ -298,7 +298,7 @@ function FairTestPlanner({ question, input, onChoose }: { question: StudioQuesti
   const chooseChange = (value: string) => { setChange(value); const next = controls.filter((item) => item !== value); setControls(next); publish(value, measure, next); };
   const chooseMeasure = (value: string) => { setMeasure(value); const next = controls.filter((item) => item !== value); setControls(next); publish(change, value, next); };
   const toggleControl = (value: string) => { if (value === change || value === measure) return; const next = controls.includes(value) ? controls.filter((item) => item !== value) : [...controls, value]; setControls(next); publish(change, measure, next); };
-  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Fair test planner"><p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Fair test planner</p><p className="mt-2 text-center text-sm text-white/80">Change one variable, measure one outcome, and keep the others the same.</p><div className="mt-4 grid gap-3 md:grid-cols-2"><label className="text-sm font-semibold text-white">Change<select value={change} onChange={(event) => chooseChange(event.target.value)} className="mt-1 min-h-12 w-full rounded-xl bg-[#fff7df] px-3 text-ink"><option value="">Choose a variable</option>{variables.map((variable) => <option key={variable} value={variable}>{variable}</option>)}</select></label><label className="text-sm font-semibold text-white">Measure<select value={measure} onChange={(event) => chooseMeasure(event.target.value)} className="mt-1 min-h-12 w-full rounded-xl bg-[#fff7df] px-3 text-ink"><option value="">Choose an outcome</option>{variables.map((variable) => <option key={variable} value={variable}>{variable}</option>)}</select></label></div><p className="mt-4 text-sm font-semibold text-white">Keep the same</p><div className="mt-2 flex flex-wrap gap-2">{variables.map((variable) => <button key={variable} type="button" disabled={variable === change || variable === measure} onClick={() => toggleControl(variable)} aria-pressed={controls.includes(variable)} className={`min-h-11 rounded-xl px-3 text-sm font-semibold ${controls.includes(variable) ? 'bg-sun text-ink' : 'bg-white/10 text-white'} disabled:opacity-35`}>{variable}</button>)}</div></section>;
+  return <section className="studio-workspace-panel" aria-label="Fair test planner"><p className="studio-step-label">Fair test planner</p><p className="mt-2 text-center text-sm text-white/80">Change one variable, measure one outcome, and keep the others the same.</p><div className="mt-4 grid gap-3 md:grid-cols-2"><label className="text-sm font-semibold text-white">Change<select value={change} onChange={(event) => chooseChange(event.target.value)} className="mt-1 min-h-12 w-full rounded-xl bg-[#fff7df] px-3 text-ink"><option value="">Choose a variable</option>{variables.map((variable) => <option key={variable} value={variable}>{variable}</option>)}</select></label><label className="text-sm font-semibold text-white">Measure<select value={measure} onChange={(event) => chooseMeasure(event.target.value)} className="mt-1 min-h-12 w-full rounded-xl bg-[#fff7df] px-3 text-ink"><option value="">Choose an outcome</option>{variables.map((variable) => <option key={variable} value={variable}>{variable}</option>)}</select></label></div><p className="mt-4 text-sm font-semibold text-white">Keep the same</p><div className="mt-2 flex flex-wrap gap-2">{variables.map((variable) => <button key={variable} type="button" disabled={variable === change || variable === measure} onClick={() => toggleControl(variable)} aria-pressed={controls.includes(variable)} className={`min-h-11 rounded-xl px-3 text-sm font-semibold ${controls.includes(variable) ? 'bg-sun text-ink' : 'bg-white/10 text-white'} disabled:opacity-35`}>{variable}</button>)}</div></section>;
 }
 function ParticleLab({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
   const format = question.format.toLowerCase();

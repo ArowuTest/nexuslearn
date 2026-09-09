@@ -5,6 +5,26 @@ Scope: API persistence foundation
 
 ## Current State
 
+### Bounded school access reads (September 2026)
+
+School clients can request `GET /v1/school/config?include_credentials=false` for
+an overview without reading credential rows. The omitted/true option retains the
+legacy contract during rollout; malformed or repeated options return 400.
+`GET /v1/school/classes/{classID}/credentials?limit=12&cursor=...` returns a
+private class credential page: `class_id`, `student_credentials`, `limit`,
+`has_more`, `next_cursor`. The default is 12 rows and the maximum is 50.
+
+Pages use a school/class-bound immutable student UUID cursor and a SQL membership
+limit before joining credentials. Empty or ungenerated members remain explicit;
+reads never generate credentials. Current role, actor, school and class scope
+are rechecked. All responses, including errors, are `private, no-store`.
+The school lookup and class/group/student membership checks use direct queries
+instead of loading the whole school portal. Existing class-membership indexes
+support this path, so no migration was added. Broader school roster limits are
+unchanged. See [school access audit](reviews/2026-09-09-school-access-workflows.md).
+
+### Persistence foundation
+
 The API can run with or without `DATABASE_URL`.
 
 - Without `DATABASE_URL`, the API uses a no-op repository that returns honest empty state. It does not invent learner progress.

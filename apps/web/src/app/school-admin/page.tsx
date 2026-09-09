@@ -6,14 +6,14 @@ import MockAssessmentBuilder from "@/components/MockAssessmentBuilder";
 import MockAssessmentHistory from "@/components/MockAssessmentHistory";
 import ProgressSnapshot from "@/components/ProgressSnapshot";
 import AttemptEvidencePanel from "@/components/AttemptEvidencePanel";
-import { Actions, BooleanField, ChoiceGrid, Field, LabeledSelect, LearnerScopeNotice, LoginCard, Panel, PurposeSelect, Row, TextArea } from "@/components/role-workspaces/SchoolWorkspacePrimitives";
+import { Actions, BooleanField, ChoiceGrid, Field, LabeledSelect, LearnerScopeNotice, Panel, PurposeSelect, Row, TextArea } from "@/components/role-workspaces/SchoolWorkspacePrimitives";
+import SchoolAccessCards from "@/components/role-workspaces/SchoolAccessCards";
 import { WorkspaceNavigation, WorkspaceState } from "@/components/role-workspaces/WorkspaceNavigation";
 import { accountSessionHeaders, logoutAccount, storeAccountSession, type AccountSession, type ProgressReport } from "@/lib/api";
 
 type Student = { external_ref: string; display_name: string; year_group: number };
 type ClassGroup = { id?: string; school_urn?: string; name: string; year_group: number; students?: Student[] };
 type LearningGroup = { id?: string; class_id: string; class_name?: string; name: string; purpose: string; students?: Student[] };
-type StudentCredential = { student_external_ref: string; display_name?: string; login_code: string; picture_password: string[]; qr_secret_hash?: string };
 type SchoolUser = { login_id: string; display_name?: string; role: string; school_urn: string };
 type LearningAssignment = {
   id?: string;
@@ -64,7 +64,6 @@ type SchoolPortal = {
   current_user?: SchoolUser;
   classes?: ClassGroup[];
   groups?: LearningGroup[];
-  student_credentials?: StudentCredential[];
 };
 type StudentEngagementProfile = {
   student_external_ref: string;
@@ -196,7 +195,7 @@ export default function SchoolAdminPage() {
   const workspaceLoadVersion = useRef(0);
   const progressRequest = useRef(0);
   const supportRequest = useRef(0);
-  const credentials = portal?.student_credentials ?? [];
+  const [cardRevision, setCardRevision] = useState(0);
   const classOptions = ["", ...(portal?.classes ?? []).map(item => item.id ?? "").filter(Boolean)];
   const classLabels = Object.fromEntries((portal?.classes ?? []).map(item => [item.id ?? "", `${item.name} (Year ${item.year_group})`]));
   const isSchoolAdmin = portal?.current_user?.role === "school_admin";
@@ -219,9 +218,8 @@ export default function SchoolAdminPage() {
       ["Classes", portal?.classes?.length ?? 0],
       ["Groups", portal?.groups?.length ?? 0],
       ["Pupils", students.size],
-      ["Login packs", credentials.length],
     ];
-  }, [portal, credentials.length]);
+  }, [portal]);
 
   function headers() {
     return {
@@ -267,7 +265,7 @@ export default function SchoolAdminPage() {
     workspaceLoadVersion.current = loadVersion;
     try {
       const [data, assignmentData, evidenceData, interventionData, reviewData] = await Promise.all([
-        apiFetch("/v1/school/config"),
+        apiFetch("/v1/school/config?include_credentials=false"),
         apiFetch("/v1/school/assignments"),
         apiFetch("/v1/school/evidence"),
         apiFetch("/v1/school/interventions"),
@@ -277,6 +275,7 @@ export default function SchoolAdminPage() {
       const loadedPortal = data as SchoolPortal;
       if (!loadedPortal.current_user) throw new Error("School workspace authentication could not be verified.");
       setPortal(loadedPortal);
+      setCardRevision(value => value + 1);
       setLearningAssignments(assignmentData.assignments ?? []);
       setTeacherEvidence(evidenceData.teacher_evidence ?? []);
       setInterventions(interventionData.interventions ?? []);
@@ -536,22 +535,22 @@ export default function SchoolAdminPage() {
           <WorkspaceNavigation
             label="School workspace sections"
             items={[
-              { href: "#school-setup", label: "Setup & access", detail: "sign-in and login cards" },
-              { href: "#school-people", label: "Groups & pupils", detail: "classes and teaching groups" },
+              { href: "#school-people", label: "Classes & pupils", detail: "enrolment and teaching groups" },
+              { href: "#school-access", label: "Access cards", detail: "class cards and printing" },
               { href: "#school-learning", label: "Learning & evidence", detail: "progress, assignments and mocks" },
               { href: "#school-support", label: "Support & interventions", detail: "SEND access and reassessment" },
             ]}
           />
         ) : null}
 
-        <form id="school-setup" aria-label="School sign in" onSubmit={(event) => { event.preventDefault(); if (!saving && schoolURN && loginID && password) void signIn(); }} className="scroll-mt-28 mt-8 grid gap-4 rounded-lg bg-white p-5 shadow-card md:grid-cols-[1fr_1fr_1fr_auto]">
+        {!portal?.current_user && <form id="school-setup" aria-label="School sign in" onSubmit={(event) => { event.preventDefault(); if (!saving && schoolURN && loginID && password) void signIn(); }} className="scroll-mt-28 mt-8 grid gap-4 rounded-lg bg-white p-5 shadow-card md:grid-cols-[1fr_1fr_1fr_auto]">
           <Field label="School URN" value={schoolURN} onChange={setSchoolURN} />
           <Field label="Login ID" value={loginID} onChange={setLoginID} />
           <Field label="Temporary password" value={password} onChange={setPassword} type="password" />
           <button type="submit" disabled={!schoolURN || !loginID || !password || saving} className="btn-pop self-end bg-[#ffbf45] px-5 py-3 text-sm disabled:opacity-50">
             Sign in
           </button>
-        </form>
+        </form>}
 
         <div className="mt-4"><WorkspaceState tone={saving ? "loading" : portal ? "success" : "neutral"}>{message}</WorkspaceState></div>
         {portal?.current_user && (
@@ -562,7 +561,7 @@ export default function SchoolAdminPage() {
         )}
 
         {portal?.current_user ? <>
-        <section className="mt-6 grid gap-4 md:grid-cols-4">
+        <section className="mt-6 grid gap-4 md:grid-cols-3">
           {totals.map(([label, value]) => (
             <article key={label} className="rounded-lg bg-white p-5 shadow-card">
               <p className="font-display text-3xl font-semibold">{value}</p>
@@ -571,9 +570,16 @@ export default function SchoolAdminPage() {
           ))}
         </section>
 
-        <section className="mt-6 grid items-start gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-          <div className="grid gap-6">
-            <Panel id="school-people" title="Classes">
+        <section id="school-people" className="mt-8 scroll-mt-28">
+          <h2 className="font-display text-3xl font-semibold">Classes &amp; pupils</h2>
+          <p className="mb-5 mt-2 text-sm leading-6 text-[#42506b]">Create a class first, enrol its pupils, then organise teaching groups and generate their login cards.</p>
+          <div className="grid items-start gap-6 lg:grid-cols-2">
+            <Panel id="school-class-setup" title="Create Class">
+              <Field label="Class name" value={classDraft.name} onChange={(name) => setClassDraft({ ...classDraft, name })} />
+              <Field label="Year group" type="number" value={classDraft.year_group} onChange={(year_group) => setClassDraft({ ...classDraft, year_group: Number(year_group) })} />
+              <Actions label="Save class" disabled={!isSchoolAdmin || !classDraft.name || saving} onClick={saveClass} />
+            </Panel>
+            <Panel title="Classes">
               {(portal?.classes ?? []).map((item) => (
                 <Row key={item.id} title={item.name} meta={`Year ${item.year_group}`} body={`${(item.students ?? []).length} pupils / ID ${item.id}`} onClick={() => {
                   setClassDraft({ ...item });
@@ -582,87 +588,6 @@ export default function SchoolAdminPage() {
                 }} />
               ))}
             </Panel>
-            <Panel title="Pupil Login Packs" action={credentials.length > 0 ? <button onClick={() => window.print()} className="btn-pop bg-[#17233f] px-4 py-2 text-xs text-white">Print cards</button> : null}>
-              {credentials.length > 0 && (
-                <div className="no-print border-b border-[#17233f]/10 bg-[#fbfaf6] p-5 text-sm leading-6 text-[#17233f]/66">
-                  Print cards gives each pupil a simple login code and picture password. Keep cards inside the classroom or send them through approved parent channels.
-                </div>
-              )}
-              {credentials.map((credential) => (
-                <div key={credential.student_external_ref} className="p-5">
-                  <LoginCard credential={credential} schoolName={portal.school?.name ?? "NexusLearn"} />
-                </div>
-              ))}
-              {credentials.length === 0 && (
-                <div className="p-5 text-sm leading-6 text-[#17233f]/58">
-                  Generate class logins after adding pupils to a class.
-                </div>
-              )}
-            </Panel>
-            <Panel id="school-learning" title="Active Learning Assignments">
-              {learningAssignments.filter((item) => item.status === "active").map((item) => (
-                <Row
-                  key={item.id}
-                  title={item.title}
-                  meta={`${item.student_display_name || item.student_external_ref} / priority ${item.priority}`}
-                  body={`${item.objective_id}${item.due_at ? ` / due ${new Date(item.due_at).toLocaleDateString()}` : ""}`}
-                />
-              ))}
-              {learningAssignments.filter((item) => item.status === "active").length === 0 && (
-                <div className="p-5 text-sm leading-6 text-[#17233f]/58">
-                  Teachers can place a curriculum objective into a pupil&apos;s adaptive queue.
-                </div>
-              )}
-            </Panel>
-            <Panel id="school-support" title="Active Interventions">
-              {interventions.filter((item) => item.status === "active" || item.status === "monitoring").map((item) => (
-                <Row
-                  key={item.id}
-                  title={item.title}
-                  meta={`${item.student_display_name || item.student_external_ref} / priority ${item.priority}`}
-                  body={`${item.need} Strategy: ${item.strategy}`}
-                  action={item.id ? (
-                    <button
-                      onClick={() => setReviewDraft({
-                        intervention_id: item.id!,
-                        outcome: item.status === "monitoring" ? "complete" : "monitor",
-                        evidence_note: "",
-                        next_review_due_at: "",
-                      })}
-                      className="rounded-lg bg-[#55cbd3]/20 px-3 py-2 text-xs font-semibold text-[#155d64]"
-                    >
-                      Review evidence
-                    </button>
-                  ) : null}
-                />
-              ))}
-              {interventions.length === 0 && <div className="p-5 text-sm text-[#17233f]/58">No intervention plans recorded.</div>}
-            </Panel>
-            <Panel title="Intervention Reassessment History">
-              {interventionReviews.slice(0, 12).map((review) => (
-                <Row
-                  key={review.id}
-                  title={`${review.student_display_name || review.student_external_ref}: ${review.outcome}`}
-                  meta={review.reviewed_at ? new Date(review.reviewed_at).toLocaleDateString() : "review"}
-                  body={`${review.objective_id || "Objective"} / ${review.evidence_note}${review.next_review_due_at ? ` / next review ${new Date(review.next_review_due_at).toLocaleDateString()}` : ""}`}
-                />
-              ))}
-              {interventionReviews.length === 0 && <div className="p-5 text-sm text-[#17233f]/58">No reassessment records yet.</div>}
-            </Panel>
-            <Panel title="Moderated Teacher Evidence">
-              {teacherEvidence.slice(0, 12).map((item) => (
-                <Row
-                  key={item.id}
-                  title={`${item.student_display_name || item.student_external_ref}: ${item.outcome.replaceAll("_", " ")}`}
-                  meta={item.evidence_type.replaceAll("_", " ")}
-                  body={`${item.objective_id} / ${item.note}`}
-                />
-              ))}
-              {teacherEvidence.length === 0 && <div className="p-5 text-sm text-[#17233f]/58">No moderated evidence recorded.</div>}
-            </Panel>
-          </div>
-
-          <div className="grid gap-6">
             <Panel title="Create Pupil">
               <LabeledSelect label="Enrol in class" value={assignment.class_id} values={classOptions} labels={classLabels} onChange={(class_id) => setAssignment({ ...assignment, class_id })} />
               {!portal.classes?.length && <p className="px-5 py-3 text-sm">Create a class first, then enrol your new pupil into it. <a href="#school-class-setup" className="font-semibold underline">Create a class</a></p>}
@@ -671,7 +596,29 @@ export default function SchoolAdminPage() {
               <Field label="Year group" type="number" value={student.year_group} onChange={(year_group) => setStudent({ ...student, year_group: Number(year_group) })} />
               <Actions label="Create pupil" disabled={!isSchoolAdmin || !assignment.class_id || !student.external_ref || !student.display_name || saving} onClick={saveStudent} />
             </Panel>
-            <Panel title="SENCO Pupil Support Profile">
+            <Panel title="Class Access">
+              <LabeledSelect label="Class" value={assignment.class_id} values={classOptions} labels={classLabels} onChange={(class_id) => setAssignment({ ...assignment, class_id })} />
+              <Field label="Pupil ID" value={assignment.student_external_ref} onChange={(student_external_ref) => setAssignment({ ...assignment, student_external_ref: slug(student_external_ref) })} />
+              <div className="flex flex-wrap justify-end gap-3 p-5">
+                <button onClick={assignStudent} disabled={!isSchoolAdmin || !assignment.class_id || !assignment.student_external_ref || saving} className="btn-pop bg-[#55cbd3] px-5 py-3 text-sm disabled:opacity-50">Add pupil</button>
+                <button onClick={() => generateCredentials(assignment.class_id)} disabled={!isSchoolAdmin || !assignment.class_id || saving} className="btn-pop bg-[#ffbf45] px-5 py-3 text-sm disabled:opacity-50">Generate logins</button>
+              </div>
+            </Panel>
+            <Panel title="Teaching Group">
+              <Field label="Group ID" value={group.id ?? ""} onChange={(id) => setGroup({ ...group, id: slug(id) })} />
+              <LabeledSelect label="Class" value={group.class_id} values={classOptions} labels={classLabels} onChange={(class_id) => setGroup({ ...group, class_id })} />
+              <Field label="Group name" value={group.name} onChange={(name) => setGroup({ ...group, name })} />
+              <PurposeSelect value={group.purpose} values={["intervention", "challenge", "phonics", "fluency", "senco", "teacher-defined"]} onChange={(purpose) => setGroup({ ...group, purpose })} />
+              <Actions label="Save group" disabled={!group.class_id || !group.name || saving} onClick={saveGroup} />
+            </Panel>
+          </div>
+        </section>
+        <div className="mt-8 no-print" />
+        <SchoolAccessCards key={cardRevision} classes={portal.classes ?? []} schoolName={portal.school?.name ?? "School workspace"} loadPage={(classID, cursor) => apiFetch(`/v1/school/classes/${encodeURIComponent(classID)}/credentials?limit=12${cursor ? `&cursor=${encodeURIComponent(cursor)}` : ""}`)} />
+        <section id="school-learning" className="mt-8 scroll-mt-28">
+          <h2 className="font-display text-3xl font-semibold">Learning &amp; evidence</h2>
+          <p className="mt-2 text-sm leading-6 text-[#42506b]">Choose one pupil for their progress, assignments, subject checks and support. Each subject can progress independently.</p>
+          <div className="my-5 rounded-lg bg-white shadow-card">
               <LabeledSelect
                 label="Selected school learner"
                 value={engagementPupil}
@@ -687,6 +634,98 @@ export default function SchoolAdminPage() {
                   setInterventionDraft((current) => ({ ...current, student_external_ref: scopedStudentRef }));
                 }}
               />
+          </div>
+          <div className="grid items-start gap-6 lg:grid-cols-2">
+            <Panel title="Learner Progress Snapshot">
+              <div className="flex flex-wrap items-center justify-between gap-3 p-5">
+                <p className="max-w-xl text-sm leading-6 text-[#17233f]/62">
+                  {selectedEngagementStudent
+                    ? `Showing ${selectedEngagementStudent.display_name} (${selectedEngagementStudent.external_ref}). Progress is subject-specific, so Mathematics can stretch while English remains on its own support route.`
+                    : "Choose a pupil above. Progress is subject-specific: a pupil may work ahead in Mathematics while English remains on its own support route."}
+                </p>
+                <button onClick={loadProgressReport} disabled={!selectedEngagementStudent || saving} className="btn-pop bg-[#7357c9] px-5 py-3 text-sm text-white disabled:opacity-50">Load progress</button>
+              </div>
+              <div className="[&_p]:!text-[#42506b]">
+                <ProgressSnapshot progress={progressReport} tone="navy" empty="Choose a pupil above, then load their progress evidence." />
+                <AttemptEvidencePanel items={progressReport?.attempt_evidence} />
+              </div>
+              {selectedEngagementStudent && (
+                <div className="border-t border-[#17233f]/10 p-5">
+                  <MockAssessmentHistory
+                    role="school"
+                    studentId={selectedEngagementStudent.external_ref}
+                    studentName={selectedEngagementStudent.display_name}
+                  />
+                </div>
+              )}
+            </Panel>
+            <Panel title="Assign Learning Priority">
+              <LearnerScopeNotice purpose="assignment" learner={selectedEngagementStudent} />
+              <Field label="Objective ID" value={learningAssignment.objective_id} onChange={(objective_id) => setLearningAssignment({ ...learningAssignment, objective_id })} />
+              <Field label="Activity ID (optional)" value={learningAssignment.activity_id ?? ""} onChange={(activity_id) => setLearningAssignment({ ...learningAssignment, activity_id })} />
+              <Field label="Teacher note/title" value={learningAssignment.title} onChange={(title) => setLearningAssignment({ ...learningAssignment, title })} />
+              <Field label="Priority 1-100" type="number" value={learningAssignment.priority} onChange={(priority) => setLearningAssignment({ ...learningAssignment, priority: Number(priority) })} />
+              <Field label="Due date (optional)" type="datetime-local" value={learningAssignment.due_at ?? ""} onChange={(due_at) => setLearningAssignment({ ...learningAssignment, due_at })} />
+              <Actions
+                label="Assign learning"
+                disabled={!learningAssignment.student_external_ref || !learningAssignment.objective_id || !learningAssignment.title || saving}
+                onClick={saveLearningAssignment}
+              />
+            </Panel>
+            <Panel title="Active Learning Assignments">
+              {learningAssignments.filter((item) => item.status === "active").map((item) => (
+                <Row
+                  key={item.id}
+                  title={item.title}
+                  meta={`${item.student_display_name || item.student_external_ref} / priority ${item.priority}`}
+                  body={`${item.objective_id}${item.due_at ? ` / due ${new Date(item.due_at).toLocaleDateString()}` : ""}`}
+                />
+              ))}
+              {learningAssignments.filter((item) => item.status === "active").length === 0 && (
+                <div className="p-5 text-sm leading-6 text-[#17233f]/58">
+                  Teachers can place a curriculum objective into a pupil&apos;s adaptive queue.
+                </div>
+              )}
+            </Panel>
+            <Panel title="Generate Subject Mock">
+              <LearnerScopeNotice purpose="mock" learner={selectedEngagementStudent} />
+              {(() => {
+                const target = (portal?.classes ?? []).flatMap((item) => item.students ?? []).find((item) => item.external_ref === learningAssignment.student_external_ref);
+                return target ? (
+                  <div className="p-5 pt-0">
+                    <MockAssessmentBuilder key={`school:${target.external_ref}:${target.year_group}`} role="school" studentId={target.external_ref} studentName={target.display_name} yearGroup={target.year_group} />
+                  </div>
+                ) : <p className="px-5 pb-5 text-sm leading-6 text-[#17233f]/58">Enter a pupil ID that belongs to this school to generate a scoped subject mock.</p>;
+              })()}
+            </Panel>
+            <Panel title="Record Teacher Evidence">
+              <LearnerScopeNotice purpose="teacher evidence" learner={selectedEngagementStudent} />
+              <Field label="Objective ID" value={evidenceDraft.objective_id} onChange={(objective_id) => setEvidenceDraft({ ...evidenceDraft, objective_id })} />
+              <LabeledSelect label="Evidence type" value={evidenceDraft.evidence_type} values={["observation", "work_sample", "conversation", "assessment", "external"]} onChange={(evidence_type) => setEvidenceDraft({ ...evidenceDraft, evidence_type })} />
+              <LabeledSelect label="Outcome" value={evidenceDraft.outcome} values={["secure", "developing", "needs_support", "inconclusive"]} onChange={(outcome) => setEvidenceDraft({ ...evidenceDraft, outcome })} />
+              <Field label="Evidence note" value={evidenceDraft.note} onChange={(note) => setEvidenceDraft({ ...evidenceDraft, note })} />
+              <Field label="Source reference (optional)" value={evidenceDraft.source_ref ?? ""} onChange={(source_ref) => setEvidenceDraft({ ...evidenceDraft, source_ref })} />
+              <Actions label="Save teacher evidence" disabled={!evidenceDraft.student_external_ref || !evidenceDraft.objective_id || !evidenceDraft.note || saving} onClick={saveTeacherEvidence} />
+            </Panel>
+            <Panel title="Moderated Teacher Evidence">
+              {teacherEvidence.slice(0, 12).map((item) => (
+                <Row
+                  key={item.id}
+                  title={`${item.student_display_name || item.student_external_ref}: ${item.outcome.replaceAll("_", " ")}`}
+                  meta={item.evidence_type.replaceAll("_", " ")}
+                  body={`${item.objective_id} / ${item.note}`}
+                />
+              ))}
+              {teacherEvidence.length === 0 && <div className="p-5 text-sm text-[#17233f]/58">No moderated evidence recorded.</div>}
+            </Panel>
+          </div>
+        </section>
+        <section id="school-support" className="mt-8 scroll-mt-28">
+          <h2 className="font-display text-3xl font-semibold">Support &amp; interventions</h2>
+          <p className="mb-5 mt-2 text-sm leading-6 text-[#42506b]">These tools use the pupil selected in <a href="#school-learning" className="font-semibold underline">Learning &amp; evidence</a>. Support changes access and pacing, not curriculum entitlement.</p>
+          <div className="grid items-start gap-6 lg:grid-cols-2">
+            <Panel title="SENCO Pupil Support Profile">
+
               <div className="flex justify-end border-b border-[#17233f]/10 p-5">
                 <button onClick={() => syncEngagementProfile(false)} disabled={!selectedEngagementStudent || saving} className="btn-pop bg-[#55cbd3] px-5 py-3 text-sm disabled:opacity-50">Load profile</button>
               </div>
@@ -753,82 +792,6 @@ export default function SchoolAdminPage() {
               {engagementProfile.updated_at && <p className="px-5 pb-2 text-xs text-[#17233f]/52">Last updated {new Date(engagementProfile.updated_at).toLocaleString()}</p>}
               <Actions label="Save support profile" disabled={!selectedEngagementStudent || saving} onClick={() => syncEngagementProfile(true)} />
             </Panel>
-            <Panel title="Learner Progress Snapshot">
-              <div className="flex flex-wrap items-center justify-between gap-3 p-5">
-                <p className="max-w-xl text-sm leading-6 text-[#17233f]/62">
-                  {selectedEngagementStudent
-                    ? `Showing ${selectedEngagementStudent.display_name} (${selectedEngagementStudent.external_ref}). Progress is subject-specific, so Mathematics can stretch while English remains on its own support route.`
-                    : "Choose a pupil above. Progress is subject-specific: a pupil may work ahead in Mathematics while English remains on its own support route."}
-                </p>
-                <button onClick={loadProgressReport} disabled={!selectedEngagementStudent || saving} className="btn-pop bg-[#7357c9] px-5 py-3 text-sm text-white disabled:opacity-50">Load progress</button>
-              </div>
-              <div className="[&_p]:!text-[#42506b]">
-                <ProgressSnapshot progress={progressReport} tone="navy" empty="Choose a pupil above, then load their progress evidence." />
-                <AttemptEvidencePanel items={progressReport?.attempt_evidence} />
-              </div>
-              {selectedEngagementStudent && (
-                <div className="border-t border-[#17233f]/10 p-5">
-                  <MockAssessmentHistory
-                    role="school"
-                    studentId={selectedEngagementStudent.external_ref}
-                    studentName={selectedEngagementStudent.display_name}
-                  />
-                </div>
-              )}
-            </Panel>
-            <Panel id="school-class-setup" title="Create Class">
-              <Field label="Class name" value={classDraft.name} onChange={(name) => setClassDraft({ ...classDraft, name })} />
-              <Field label="Year group" type="number" value={classDraft.year_group} onChange={(year_group) => setClassDraft({ ...classDraft, year_group: Number(year_group) })} />
-              <Actions label="Save class" disabled={!isSchoolAdmin || !classDraft.name || saving} onClick={saveClass} />
-            </Panel>
-            <Panel title="Class Access">
-              <LabeledSelect label="Class" value={assignment.class_id} values={classOptions} labels={classLabels} onChange={(class_id) => setAssignment({ ...assignment, class_id })} />
-              <Field label="Pupil ID" value={assignment.student_external_ref} onChange={(student_external_ref) => setAssignment({ ...assignment, student_external_ref: slug(student_external_ref) })} />
-              <div className="flex flex-wrap justify-end gap-3 p-5">
-                <button onClick={assignStudent} disabled={!isSchoolAdmin || !assignment.class_id || !assignment.student_external_ref || saving} className="btn-pop bg-[#55cbd3] px-5 py-3 text-sm disabled:opacity-50">Add pupil</button>
-                <button onClick={() => generateCredentials(assignment.class_id)} disabled={!isSchoolAdmin || !assignment.class_id || saving} className="btn-pop bg-[#ffbf45] px-5 py-3 text-sm disabled:opacity-50">Generate logins</button>
-              </div>
-            </Panel>
-            <Panel title="Teaching Group">
-              <Field label="Group ID" value={group.id ?? ""} onChange={(id) => setGroup({ ...group, id: slug(id) })} />
-              <LabeledSelect label="Class" value={group.class_id} values={classOptions} labels={classLabels} onChange={(class_id) => setGroup({ ...group, class_id })} />
-              <Field label="Group name" value={group.name} onChange={(name) => setGroup({ ...group, name })} />
-              <PurposeSelect value={group.purpose} values={["intervention", "challenge", "phonics", "fluency", "senco", "teacher-defined"]} onChange={(purpose) => setGroup({ ...group, purpose })} />
-              <Actions label="Save group" disabled={!group.class_id || !group.name || saving} onClick={saveGroup} />
-            </Panel>
-            <Panel title="Assign Learning Priority">
-              <LearnerScopeNotice purpose="assignment" learner={selectedEngagementStudent} />
-              <Field label="Objective ID" value={learningAssignment.objective_id} onChange={(objective_id) => setLearningAssignment({ ...learningAssignment, objective_id })} />
-              <Field label="Activity ID (optional)" value={learningAssignment.activity_id ?? ""} onChange={(activity_id) => setLearningAssignment({ ...learningAssignment, activity_id })} />
-              <Field label="Teacher note/title" value={learningAssignment.title} onChange={(title) => setLearningAssignment({ ...learningAssignment, title })} />
-              <Field label="Priority 1-100" type="number" value={learningAssignment.priority} onChange={(priority) => setLearningAssignment({ ...learningAssignment, priority: Number(priority) })} />
-              <Field label="Due date (optional)" type="datetime-local" value={learningAssignment.due_at ?? ""} onChange={(due_at) => setLearningAssignment({ ...learningAssignment, due_at })} />
-              <Actions
-                label="Assign learning"
-                disabled={!learningAssignment.student_external_ref || !learningAssignment.objective_id || !learningAssignment.title || saving}
-                onClick={saveLearningAssignment}
-              />
-            </Panel>
-            <Panel title="Generate Subject Mock">
-              <LearnerScopeNotice purpose="mock" learner={selectedEngagementStudent} />
-              {(() => {
-                const target = (portal?.classes ?? []).flatMap((item) => item.students ?? []).find((item) => item.external_ref === learningAssignment.student_external_ref);
-                return target ? (
-                  <div className="p-5 pt-0">
-                    <MockAssessmentBuilder key={`school:${target.external_ref}:${target.year_group}`} role="school" studentId={target.external_ref} studentName={target.display_name} yearGroup={target.year_group} />
-                  </div>
-                ) : <p className="px-5 pb-5 text-sm leading-6 text-[#17233f]/58">Enter a pupil ID that belongs to this school to generate a scoped subject mock.</p>;
-              })()}
-            </Panel>
-            <Panel title="Record Teacher Evidence">
-              <LearnerScopeNotice purpose="teacher evidence" learner={selectedEngagementStudent} />
-              <Field label="Objective ID" value={evidenceDraft.objective_id} onChange={(objective_id) => setEvidenceDraft({ ...evidenceDraft, objective_id })} />
-              <LabeledSelect label="Evidence type" value={evidenceDraft.evidence_type} values={["observation", "work_sample", "conversation", "assessment", "external"]} onChange={(evidence_type) => setEvidenceDraft({ ...evidenceDraft, evidence_type })} />
-              <LabeledSelect label="Outcome" value={evidenceDraft.outcome} values={["secure", "developing", "needs_support", "inconclusive"]} onChange={(outcome) => setEvidenceDraft({ ...evidenceDraft, outcome })} />
-              <Field label="Evidence note" value={evidenceDraft.note} onChange={(note) => setEvidenceDraft({ ...evidenceDraft, note })} />
-              <Field label="Source reference (optional)" value={evidenceDraft.source_ref ?? ""} onChange={(source_ref) => setEvidenceDraft({ ...evidenceDraft, source_ref })} />
-              <Actions label="Save teacher evidence" disabled={!evidenceDraft.student_external_ref || !evidenceDraft.objective_id || !evidenceDraft.note || saving} onClick={saveTeacherEvidence} />
-            </Panel>
             <Panel title="Create Intervention Plan">
               <LearnerScopeNotice purpose="intervention" learner={selectedEngagementStudent} />
               <Field label="Objective ID" value={interventionDraft.objective_id} onChange={(objective_id) => setInterventionDraft({ ...interventionDraft, objective_id })} />
@@ -838,6 +801,30 @@ export default function SchoolAdminPage() {
               <Field label="Priority 1-100" type="number" value={interventionDraft.priority} onChange={(priority) => setInterventionDraft({ ...interventionDraft, priority: Number(priority) })} />
               <Field label="Review date (optional)" type="datetime-local" value={interventionDraft.review_due_at ?? ""} onChange={(review_due_at) => setInterventionDraft({ ...interventionDraft, review_due_at })} />
               <Actions label="Create intervention" disabled={!interventionDraft.student_external_ref || !interventionDraft.objective_id || !interventionDraft.title || !interventionDraft.need || !interventionDraft.strategy || saving} onClick={saveIntervention} />
+            </Panel>
+            <Panel title="Active Interventions">
+              {interventions.filter((item) => item.status === "active" || item.status === "monitoring").map((item) => (
+                <Row
+                  key={item.id}
+                  title={item.title}
+                  meta={`${item.student_display_name || item.student_external_ref} / priority ${item.priority}`}
+                  body={`${item.need} Strategy: ${item.strategy}`}
+                  action={item.id ? (
+                    <button
+                      onClick={() => setReviewDraft({
+                        intervention_id: item.id!,
+                        outcome: item.status === "monitoring" ? "complete" : "monitor",
+                        evidence_note: "",
+                        next_review_due_at: "",
+                      })}
+                      className="rounded-lg bg-[#55cbd3]/20 px-3 py-2 text-xs font-semibold text-[#155d64]"
+                    >
+                      Review evidence
+                    </button>
+                  ) : null}
+                />
+              ))}
+              {interventions.length === 0 && <div className="p-5 text-sm text-[#17233f]/58">No intervention plans recorded.</div>}
             </Panel>
             <Panel title="Review Intervention Evidence">
               <LabeledSelect
@@ -856,18 +843,17 @@ export default function SchoolAdminPage() {
                 onClick={saveInterventionReview}
               />
             </Panel>
-          </div>
-        </section>
-
-        <section className="print-card-sheet mt-8 hidden">
-          <div className="mb-5">
-            <h2 className="font-display text-3xl font-semibold">NexusLearn pupil login cards</h2>
-            <p className="mt-1 text-sm text-[#17233f]/62">{portal?.school?.name ?? "School workspace"} / generated from current credential list</p>
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {credentials.map((credential) => (
-              <LoginCard key={`print-${credential.student_external_ref}`} credential={credential} schoolName={portal?.school?.name ?? "NexusLearn"} />
-            ))}
+            <Panel title="Intervention Reassessment History">
+              {interventionReviews.slice(0, 12).map((review) => (
+                <Row
+                  key={review.id}
+                  title={`${review.student_display_name || review.student_external_ref}: ${review.outcome}`}
+                  meta={review.reviewed_at ? new Date(review.reviewed_at).toLocaleDateString() : "review"}
+                  body={`${review.objective_id || "Objective"} / ${review.evidence_note}${review.next_review_due_at ? ` / next review ${new Date(review.next_review_due_at).toLocaleDateString()}` : ""}`}
+                />
+              ))}
+              {interventionReviews.length === 0 && <div className="p-5 text-sm text-[#17233f]/58">No reassessment records yet.</div>}
+            </Panel>
           </div>
         </section>
         </> : null}

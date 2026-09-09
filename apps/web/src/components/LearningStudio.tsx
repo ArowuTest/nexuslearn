@@ -133,7 +133,7 @@ export default function LearningStudio({
             type="button"
             onClick={onSubmit}
             disabled={!input}
-            className="btn-pop mt-4 min-h-14 w-full bg-sun px-4 py-3 text-lg text-ink disabled:opacity-50"
+            className="btn-pop studio-check-answer"
             aria-label="Submit answer"
           >
             Send answer

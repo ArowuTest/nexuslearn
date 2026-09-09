@@ -1000,22 +1000,16 @@ func (r *PostgresRepository) VerifySchoolUser(ctx context.Context, schoolURN str
 }
 
 func (r *PostgresRepository) SchoolPortal(ctx context.Context, schoolURN string) (SchoolPortalConfig, error) {
+	return r.schoolPortal(ctx, schoolURN, true)
+}
+
+func (r *PostgresRepository) schoolPortal(ctx context.Context, schoolURN string, includeCredentials bool) (SchoolPortalConfig, error) {
 	if blank(schoolURN) {
 		return SchoolPortalConfig{}, invalidConfig("school urn is required")
 	}
-	schools, err := r.ListSchools(ctx)
+	school, err := r.schoolByURN(ctx, schoolURN)
 	if err != nil {
 		return SchoolPortalConfig{}, err
-	}
-	var school SchoolConfig
-	for _, item := range schools {
-		if item.URN == schoolURN {
-			school = item
-			break
-		}
-	}
-	if school.URN == "" {
-		return SchoolPortalConfig{}, invalidConfig("school urn does not exist")
 	}
 	classes, err := r.ListClassesForSchool(ctx, schoolURN)
 	if err != nil {
@@ -1025,9 +1019,12 @@ func (r *PostgresRepository) SchoolPortal(ctx context.Context, schoolURN string)
 	if err != nil {
 		return SchoolPortalConfig{}, err
 	}
-	credentials, err := r.ListStudentCredentialsForSchool(ctx, schoolURN)
-	if err != nil {
-		return SchoolPortalConfig{}, err
+	credentials := []StudentCredentialConfig{}
+	if includeCredentials {
+		credentials, err = r.ListStudentCredentialsForSchool(ctx, schoolURN)
+		if err != nil {
+			return SchoolPortalConfig{}, err
+		}
 	}
 	users, err := r.ListSchoolUsersForSchool(ctx, schoolURN)
 	if err != nil {

@@ -16,6 +16,7 @@ import (
 	"io"
 	"log/slog"
 	"net/http"
+	"net/url"
 	"os"
 	"sort"
 	"strconv"
@@ -350,6 +351,7 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("PUT /v1/school/classes/{id}", s.handleSchoolUpsertClass)
 	s.mux.HandleFunc("PUT /v1/school/classes/{id}/students/{externalRef}", s.handleSchoolAssignStudentToClass)
 	s.mux.HandleFunc("PUT /v1/school/classes/{id}/credentials", s.handleSchoolGenerateClassCredentials)
+	s.mux.HandleFunc("GET /v1/school/classes/{id}/credentials", s.handleSchoolClassCredentials)
 	s.mux.HandleFunc("PUT /v1/school/groups/{id}", s.handleSchoolUpsertGroup)
 	s.mux.HandleFunc("PUT /v1/school/groups/{id}/students/{externalRef}", s.handleSchoolAssignStudentToGroup)
 	s.mux.HandleFunc("GET /v1/school/assignments", s.handleSchoolAssignments)
@@ -1778,11 +1780,37 @@ func (s *Server) handleUpsertStudentCredential(w http.ResponseWriter, r *http.Re
 }
 
 func (s *Server) handleSchoolConfig(w http.ResponseWriter, r *http.Request) {
-	user, ok := s.requireSchoolUser(w, r)
+	w.Header().Set("Cache-Control", "private, no-store")
+	user, ok := s.requireSchoolReadUser(w, r)
 	if !ok {
 		return
 	}
-	config, err := s.repo.SchoolPortal(r.Context(), user.SchoolURN)
+	includeCredentials := true
+	query, parseErr := url.ParseQuery(r.URL.RawQuery)
+	if parseErr != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid school configuration query"})
+		return
+	}
+	if values, present := query["include_credentials"]; present {
+		if len(values) != 1 || (values[0] != "true" && values[0] != "false") {
+			writeJSON(w, http.StatusBadRequest, map[string]string{"error": "include_credentials must be true or false"})
+			return
+		}
+		includeCredentials = values[0] == "true"
+	}
+	var config learning.SchoolPortalConfig
+	var err error
+	if includeCredentials {
+		config, err = s.repo.SchoolPortal(r.Context(), user.SchoolURN)
+	} else {
+		repository, ok := s.repo.(learning.SchoolOverviewRepository)
+		if !ok {
+			writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "lightweight school overview is unavailable"})
+			return
+		}
+		config, err = repository.SchoolOverview(r.Context(), user.SchoolURN)
+		config.StudentCredentials = []learning.StudentCredentialConfig{}
+	}
 	if err != nil {
 		s.writeAdminSaveError(w, err, "school config")
 		return
@@ -5327,6 +5355,14 @@ func recommendedActions(activity learning.ActivityConfig, objective learning.Obj
 }
 
 func (s *Server) classBelongsToSchool(ctx context.Context, schoolURN string, classID string) bool {
+	if repository, ok := s.repo.(learning.SchoolScopeRepository); ok {
+		belongs, err := repository.ClassBelongsToSchool(ctx, schoolURN, classID)
+		if err != nil {
+			slog.Warn("failed to check school class scope", "error", err)
+		}
+		return err == nil && belongs
+	}
+	// Compatibility for older test repositories; PostgreSQL uses bounded EXISTS.
 	config, err := s.repo.SchoolPortal(ctx, schoolURN)
 	if err != nil {
 		slog.Warn("failed to check school class scope", "school_urn", schoolURN, "class_id", classID, "error", err)
@@ -5341,6 +5377,13 @@ func (s *Server) classBelongsToSchool(ctx context.Context, schoolURN string, cla
 }
 
 func (s *Server) groupBelongsToSchool(ctx context.Context, schoolURN string, groupID string) bool {
+	if repository, ok := s.repo.(learning.SchoolScopeRepository); ok {
+		belongs, err := repository.GroupBelongsToSchool(ctx, schoolURN, groupID)
+		if err != nil {
+			slog.Warn("failed to check school group scope", "error", err)
+		}
+		return err == nil && belongs
+	}
 	config, err := s.repo.SchoolPortal(ctx, schoolURN)
 	if err != nil {
 		slog.Warn("failed to check school group scope", "school_urn", schoolURN, "group_id", groupID, "error", err)
@@ -5355,6 +5398,13 @@ func (s *Server) groupBelongsToSchool(ctx context.Context, schoolURN string, gro
 }
 
 func (s *Server) studentBelongsToSchool(ctx context.Context, schoolURN string, studentExternalRef string) bool {
+	if repository, ok := s.repo.(learning.SchoolScopeRepository); ok {
+		belongs, err := repository.StudentBelongsToSchool(ctx, schoolURN, studentExternalRef)
+		if err != nil {
+			slog.Warn("failed to check school pupil scope", "error", err)
+		}
+		return err == nil && belongs
+	}
 	config, err := s.repo.SchoolPortal(ctx, schoolURN)
 	if err != nil {
 		slog.Warn("failed to check school pupil scope", "school_urn", schoolURN, "student", studentExternalRef, "error", err)

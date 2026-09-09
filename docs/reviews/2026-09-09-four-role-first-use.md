@@ -51,7 +51,13 @@ Earlier real runs passed parent-to-pupil Today and admin navigation on both view
 - All 28 deployment identity, pupil-session, client-chunk and public-content-boundary checks passed. Final real-backend browser suites passed independently: six role journeys (38.1s browser time) and six canonical grading journeys (28.9s). Linux visual CI and exact deployed revisions remain required before release completion; local Windows verification excludes only the two Linux-baseline visual test names, without changing baselines or tolerances.
 - Audio audit: all 874 stored files decoded; no inventory or signal-integrity failures; 22 audit/playback-coverage regressions passed. 172 pace-review flags and 874 unknown original generation-speed records remain. This is technical evidence, not a human listening approval.
 
-## Still to review and refine
+## Hosted release verification
+
+Released to GitHub `main` as `73a6af14bcfbc774b1f99a75c3b5cea71a5bc6ee`. Platform quality [34314740705](https://github.com/ArowuTest/nexuslearn/actions/runs/34314740705), Content quality [34314740788](https://github.com/ArowuTest/nexuslearn/actions/runs/34314740788) and Deployment smoke [34315225574](https://github.com/ArowuTest/nexuslearn/actions/runs/34315225574) passed. Linux web evidence: 362 browser checks including the unchanged visual baselines; all six real grading and six real role checks passed separately; no flaky/retry summary. CI aggregate JavaScript: 1,429,463 bytes within the unchanged cap.
+
+The live smoke independently matched both API clean Go VCS and immutable frontend Vercel-build identity to that exact revision, with health and private/public boundaries passing. Render automatic deployment `dep-dager1oae00c73bpg1s0` is live. Vercel reported success through GitHub and its public build identity matched; its management API returned 403 to the existing token, so no management-API READY claim or manual deployment was made.
+
+## Remaining work after this release
 
 School/tutor task organisation remains form-heavy and requires raw objective IDs in some flows. Final captures also show school-wide unpaginated login cards (including other classes) and long empty desktop columns around progress. Next batch should make selection discoverable and organise setup, learning, support and review into clearer task-focused sections with class-scoped card paging and explicit print selection. Mobile admin has a long navigation-before-content sequence. Shared-browser adult-to-pupil handoff policy, deeper school/group assignment, observation/intervention, parent evidence and all-year mission flows require additional fresh walkthroughs. None of those are silently marked complete by this first-use batch.
 
