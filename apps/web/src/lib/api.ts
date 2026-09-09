@@ -872,7 +872,9 @@ export async function getParentPortal(): Promise<ParentPortal> {
   });
   const body = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error(body.error ?? "Could not load parent account.");
-  return body as ParentPortal;
+  // Older API releases encoded an empty Go slice as null. A new family must
+  // still be able to open its workspace and add the first child during rollout.
+  return { ...body, children: Array.isArray(body.children) ? body.children : [] } as ParentPortal;
 }
 
 export async function getParentChildEvidence(externalRef: string): Promise<ParentChildEvidence> {

@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useEffectEvent, useMemo, useRef, useState } from "react";
 import MockAssessmentBuilder from "@/components/MockAssessmentBuilder";
 import FamilyProgressReport from "@/components/role-workspaces/FamilyProgressReport";
+import LoginPicture from "@/components/LoginPicture";
+import { accountSessionHeaders, accountSessionRole } from "@/lib/api";
 import { WorkspaceNavigation, WorkspaceState } from "@/components/role-workspaces/WorkspaceNavigation";
 import { acceptParentInvitation, createParentAccount, createParentChild, getParentChildEvidence, getParentPortal, logoutAccount, parentLogin, type ParentChildEvidence, type ParentPortal, type StudentEngagementProfile } from "@/lib/api";
 
@@ -77,8 +79,19 @@ export default function FamilyPage() {
   const [invitation, setInvitation] = useState("");
   const [invitationProfile, setInvitationProfile] = useState({ display_name: "", password: "" });
   const portalLoadVersion = useRef(0);
+  const sessionVersion = useRef(0);
 
   const recommendations = useMemo(() => inclusionSummary(engagement), [engagement]);
+
+  const resumeWorkspace = useEffectEvent(() => {
+    if (new URLSearchParams(window.location.search).has("invitation") || accountSessionRole() !== "parent") return;
+    void guarded("Loading family workspace...", async () => { await fetchPortal(); });
+  });
+  useEffect(() => {
+    let active = true;
+    queueMicrotask(() => { if (active) resumeWorkspace(); });
+    return () => { active = false; sessionVersion.current += 1; portalLoadVersion.current += 1; };
+  }, []);
 
   useEffect(() => {
     const token = new URLSearchParams(window.location.search).get("invitation");
@@ -97,7 +110,8 @@ export default function FamilyPage() {
       const saved = await createParentAccount(parent);
       const loginID = saved.login_id || saved.email;
       const password = parent.password || saved.temporary_password || "";
-      setLogin({ login_id: loginID ?? "", password });
+      setLogin({ login_id: loginID ?? "", password: "" });
+      setParent({ email: "", display_name: "", password: "" });
       setMessage(`Parent account created. Login ID: ${loginID}.`);
       if (password) await fetchPortal();
     });
@@ -109,33 +123,42 @@ export default function FamilyPage() {
       setPortal(null);
       setEvidenceByChild({});
       await parentLogin(login.login_id, login.password);
+      setLogin({ login_id: login.login_id, password: "" });
       await fetchPortal();
       setMessage("Family workspace loaded.");
     });
   }
 
   async function createChild() {
+    const version = sessionVersion.current;
+    // Keep the allocated ID in the draft so an uncertain response can be
+    // retried without silently creating a second child.
+    const externalRef = slug(child.external_ref || `home-${crypto.randomUUID()}`);
+    setChild({ ...child, external_ref: externalRef });
     await guarded("Creating child profile...", async () => {
       const interests = interestText.split(",").map((item) => item.trim()).filter(Boolean);
       await createParentChild({
         ...child,
-        external_ref: slug(child.external_ref || `${child.display_name}-${Date.now()}`),
+        external_ref: externalRef,
         year_group: Number(child.year_group),
         engagement: { ...engagement, interests },
       });
+      if (version !== sessionVersion.current) return;
       setChild({ external_ref: "", display_name: "", year_group: 1 });
       setEngagement(baseEngagement);
       setInterestText("");
       await fetchPortal();
+      if (version !== sessionVersion.current) return;
       setMessage("Child profile created and family workspace refreshed.");
     });
   }
 
   async function fetchPortal() {
+    const token = accountSessionHeaders(["parent"]).Authorization;
     const loadVersion = portalLoadVersion.current + 1;
     portalLoadVersion.current = loadVersion;
     const loaded = await getParentPortal();
-    if (loadVersion !== portalLoadVersion.current) return loaded;
+    if (loadVersion !== portalLoadVersion.current || token !== accountSessionHeaders(["parent"]).Authorization) return loaded;
     setPortal(loaded);
     const linkedRefs = loaded.children.map((item) => pupilRefFor(item));
     const refsToLoad = linkedRefs.filter((externalRef) => !evidenceByChild[externalRef]);
@@ -145,7 +168,7 @@ export default function FamilyPage() {
         return [externalRef, evidence] as const;
       })
     );
-    if (loadVersion !== portalLoadVersion.current) return loaded;
+    if (loadVersion !== portalLoadVersion.current || token !== accountSessionHeaders(["parent"]).Authorization) return loaded;
     const nextEvidence: Record<string, ParentChildEvidence> = {};
     for (const entry of entries) {
       if (entry.status === "fulfilled") nextEvidence[entry.value[0]] = entry.value[1];
@@ -157,10 +180,12 @@ export default function FamilyPage() {
       }
       return { ...linkedEvidence, ...nextEvidence };
     });
+    setMessage("Family workspace loaded.");
     return loaded;
   }
 
   async function loadEvidence(externalRef: string) {
+    const version = sessionVersion.current;
     await guarded("Loading child evidence...", async () => {
       setEvidenceByChild((current) => {
         const next = { ...current };
@@ -168,6 +193,7 @@ export default function FamilyPage() {
         return next;
       });
       const evidence = await getParentChildEvidence(externalRef);
+      if (version !== sessionVersion.current) return;
       setEvidenceByChild((current) => ({ ...current, [externalRef]: evidence }));
       setMessage(`Evidence loaded for ${evidence.child.student.display_name}.`);
     });
@@ -189,23 +215,33 @@ export default function FamilyPage() {
   }
 
   async function logout() {
+    sessionVersion.current += 1;
     portalLoadVersion.current += 1;
-    await logoutAccount();
     setPortal(null);
     setEvidenceByChild({});
     setLogin({ login_id: "", password: "" });
+    setParent({ email: "", display_name: "", password: "" });
+    setInvitationProfile({ display_name: "", password: "" });
+    setChild({ external_ref: "", display_name: "", year_group: 1 });
+    setEngagement(baseEngagement);
+    setInterestText("");
+    setSaving(false);
+    // Clear private UI immediately, even if revocation never answers. The API
+    // helper clears the local token synchronously before contacting the server.
+    void logoutAccount();
     setMessage("Signed out securely.");
   }
 
   async function guarded(progress: string, action: () => Promise<void>) {
+    const version = sessionVersion.current;
     setSaving(true);
     setMessage(progress);
     try {
       await action();
     } catch (error) {
-      setMessage(error instanceof Error ? error.message : "Action failed.");
+      if (version === sessionVersion.current) setMessage(error instanceof Error ? error.message : "Action failed.");
     } finally {
-      setSaving(false);
+      if (version === sessionVersion.current) setSaving(false);
     }
   }
 
@@ -255,12 +291,12 @@ export default function FamilyPage() {
 
             <div className="mt-6 grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
               <Metric label="Children" value={String(childCount)} />
-              <Metric label="Session" value={labelFor(engagement.session_length)} />
-              <Metric label="Sensory" value={labelFor(engagement.sensory_load)} />
+              <Metric label="New profile: session" value={labelFor(engagement.session_length)} />
+              <Metric label="New profile: sensory" value={labelFor(engagement.sensory_load)} />
             </div>
 
             <div className="mt-6 rounded-lg border border-white/12 bg-white/8 p-5">
-              <p className="font-display text-xl font-semibold">Runtime adaptations</p>
+              <p className="font-display text-xl font-semibold">New child support preview</p>
               <ul className="mt-3 space-y-2 text-sm leading-6 text-white/74">
                 {recommendations.map((item) => <li key={item}>{item}</li>)}
               </ul>
@@ -281,6 +317,10 @@ export default function FamilyPage() {
               </section>
             )}
             <section id="family-account" className="scroll-mt-28 overflow-hidden rounded-lg bg-white shadow-[0_22px_60px_rgba(21,33,61,0.14)]">
+              {portal ? <div className="flex flex-wrap items-center justify-between gap-3 p-5">
+                <p className="text-sm font-semibold">Signed in as {portal.parent.display_name || portal.parent.login_id}</p>
+                <button type="button" onClick={logout} className="btn-pop bg-[#15213d] px-5 py-3 text-sm text-white">Sign out</button>
+              </div> : <>
               <SectionHeader eyebrow="Step 1" title="Parent access" detail="Create a private family workspace or load an existing one." />
               <div className="grid gap-0 border-t border-[#15213d]/10 md:grid-cols-3">
                 <Field label="Parent name" value={parent.display_name} onChange={(display_name) => setParent({ ...parent, display_name })} />
@@ -290,18 +330,18 @@ export default function FamilyPage() {
               <ActionBar message="Parent access is private. Children use their own child-safe login card rather than the parent password.">
                 <button onClick={signup} disabled={!parent.email || !parent.display_name || !parent.password || saving} className="btn-pop bg-[#ffbf45] px-5 py-3 text-sm disabled:opacity-50">Create account</button>
               </ActionBar>
-              <div className="grid gap-0 border-t border-[#15213d]/10 md:grid-cols-[1fr_1fr_auto_auto]">
+              <form aria-label="Parent sign in" onSubmit={(event) => { event.preventDefault(); if (!saving && login.login_id && login.password) void loadPortal(); }} className="grid gap-0 border-t border-[#15213d]/10 md:grid-cols-[1fr_1fr_auto_auto]">
                 <Field label="Login ID" value={login.login_id} onChange={(login_id) => setLogin({ ...login, login_id })} />
                 <Field label="Password" type="password" value={login.password} onChange={(password) => setLogin({ ...login, password })} />
-                <button onClick={loadPortal} disabled={!login.login_id || !login.password || saving} className="btn-pop m-5 self-end bg-[#55cbd3] px-5 py-3 text-sm disabled:opacity-50">Sign in</button>
-                {portal && <button onClick={logout} disabled={saving} className="btn-pop m-5 self-end bg-[#15213d] px-5 py-3 text-sm text-white disabled:opacity-50">Sign out</button>}
-              </div>
+                <button type="submit" disabled={!login.login_id || !login.password || saving} className="btn-pop m-5 self-end bg-[#55cbd3] px-5 py-3 text-sm disabled:opacity-50">Sign in</button>
+              </form>
+              </>}
             </section>
 
             {portal ? <section id="family-children" className="scroll-mt-28 overflow-hidden rounded-lg bg-white shadow-[0_22px_60px_rgba(21,33,61,0.14)]">
               <SectionHeader eyebrow="Step 2" title="Children" detail="Generated pupil-style credentials keep the child login simple and school-safe." />
               {portal && portal.children.length > 0 ? (
-                <div className="grid gap-3 border-t border-[#15213d]/10 p-5 md:grid-cols-2 xl:grid-cols-3">
+                <div className="grid gap-3 border-t border-[#15213d]/10 p-5" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 20rem), 1fr))" }}>
                   {portal.children.map((item) => {
                     const pupilRef = pupilRefFor(item);
                     const loginHref = `/login?pupil=${encodeURIComponent(pupilRef)}&code=${encodeURIComponent(item.credential.login_code)}`;
@@ -310,14 +350,21 @@ export default function FamilyPage() {
                     const evidenceConfidence = weakestEvidenceConfidence(evidence?.mastery ?? []);
                     return (
                       <article key={pupilRef} className="rounded-lg border border-[#15213d]/10 bg-[#f7f0df] p-4">
-                        <div className="flex items-start justify-between gap-3">
-                          <div>
-                            <p className="font-display text-xl font-semibold">{item.student.display_name}</p>
-                            <p className="mt-1 text-sm text-[#15213d]/58">Year {item.student.year_group}</p>
-                          </div>
-                          <span className="rounded-lg bg-white px-3 py-2 text-xs font-semibold text-[#7357c9]">{item.credential.login_code}</span>
+                        <div>
+                          <p className="font-display text-xl font-semibold">{item.student.display_name}</p>
+                          <p className="mt-1 text-sm text-[#15213d]/58">Year {item.student.year_group}</p>
                         </div>
                         <p className="mt-3 text-xs leading-5 text-[#15213d]/62">{item.engagement.declared_support_needs.join(", ") || "No declared support needs selected"}</p>
+                        <details className="mt-3 rounded-lg border border-[#15213d]/15 bg-white p-3">
+                          <summary className="cursor-pointer text-sm font-semibold">Show child login card</summary>
+                          <p className="mt-2 break-all text-sm">Pupil ID: {pupilRef}</p>
+                          <p className="mt-1 break-all text-sm">Login code: {item.credential.login_code}</p>
+                          <p className="mt-3 text-sm font-semibold">Picture password — choose in this order</p>
+                          <ol className="mt-2 flex flex-wrap gap-2" aria-label="Picture password sequence">
+                            {(item.credential.picture_password ?? []).map((picture, index) => <li key={`${picture}-${index}`} className="flex flex-col items-center gap-1 rounded-lg bg-[#f7f0df] p-2"><span className="text-xs">{index + 1}</span><LoginPicture picture={picture} /><span className="text-xs">{labelFor(picture)}</span></li>)}
+                          </ol>
+                          <p className="mt-3 text-xs leading-5">Keep this card private. Share it only with your child and their trusted adults.</p>
+                        </details>
                         <div className="mt-4 flex flex-wrap items-center gap-2">
                           <Link href={loginHref} className="rounded-lg bg-[#15213d] px-3 py-2 text-xs font-semibold text-white">Open child login</Link>
                           <Link href={historyHref} className="rounded-lg bg-[#7357c9] px-3 py-2 text-xs font-semibold text-white">View {item.student.display_name}&apos;s subject check history</Link>
@@ -347,7 +394,7 @@ export default function FamilyPage() {
                 </div>
               ) : (
                 <div className="border-t border-[#15213d]/10 p-5 text-sm leading-6 text-[#15213d]/62">
-                  Load a workspace to see children here, or create the first child profile below.
+                  No children linked yet. Add your first child using the profile below.
                 </div>
               )}
             </section> : null}
@@ -383,7 +430,7 @@ export default function FamilyPage() {
               </div>
               <div className="flex flex-wrap items-center justify-between gap-3 border-t border-[#15213d]/10 bg-[#fbfaf6] p-5">
                 <p className="max-w-xl text-sm leading-6 text-[#15213d]/62">The runtime already uses this profile to tune mission length, scaffolds, audio, reading support and animation intensity.</p>
-                <button onClick={createChild} disabled={!login.login_id || !login.password || !child.display_name || saving} className="btn-pop bg-[#ffbf45] px-6 py-3 text-sm disabled:opacity-50">Create child profile</button>
+                <button onClick={createChild} disabled={!portal || !child.display_name.trim() || child.year_group < 1 || child.year_group > 7 || saving} className="btn-pop bg-[#ffbf45] px-6 py-3 text-sm disabled:opacity-50">Create child profile</button>
               </div>
             </section> : null}
           </div>
@@ -464,11 +511,11 @@ function ActionBar({ message, children }: { message: string; children: ReactNode
 
 function ChoiceGroup({ title, items, selected, onToggle }: { title: string; items: readonly (readonly [string, string])[]; selected: string[]; onToggle: (key: string) => void }) {
   return (
-    <div className="border-t border-[#15213d]/10 p-5">
+    <div role="group" aria-label={title} className="border-t border-[#15213d]/10 p-5">
       <p className="text-sm font-semibold text-[#15213d]/70">{title} <span className="font-normal text-[#5f6779]">Optional</span></p>
       <div className="mt-3 flex flex-wrap gap-2">
         {items.map(([key, label]) => (
-          <button key={key} onClick={() => onToggle(key)} className={`rounded-lg px-3 py-2 text-xs font-semibold transition ${selected.includes(key) ? "bg-[#7357c9] text-white" : "bg-[#f7f0df] text-[#15213d]"}`}>
+          <button type="button" key={key} aria-pressed={selected.includes(key)} onClick={() => onToggle(key)} className={`min-h-11 rounded-lg px-3 py-2 text-xs font-semibold transition ${selected.includes(key) ? "bg-[#7357c9] text-white" : "bg-[#f7f0df] text-[#15213d]"}`}>
             {label}
           </button>
         ))}

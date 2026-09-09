@@ -2061,7 +2061,7 @@ func (r *PostgresRepository) ParentPortal(ctx context.Context, parentLoginID str
 		return ParentPortalConfig{}, err
 	}
 	defer rows.Close()
-	out := ParentPortalConfig{Parent: parent}
+	out := ParentPortalConfig{Parent: parent, Children: []ParentChildConfig{}}
 	for rows.Next() {
 		var student StudentProfileConfig
 		var createdAt, updatedAt, credentialUpdatedAt, engagementUpdatedAt time.Time

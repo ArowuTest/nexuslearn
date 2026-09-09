@@ -8,8 +8,8 @@ export type WorkspaceNavigationItem = {
 
 export function WorkspaceNavigation({ label, items }: { label: string; items: WorkspaceNavigationItem[] }) {
   return (
-    <nav aria-label={label} className="no-print sticky top-3 z-20 mt-5 overflow-x-auto rounded-2xl border border-[#17233f]/10 bg-white/95 p-2 shadow-card backdrop-blur">
-      <ul className="flex min-w-max gap-2">
+    <nav aria-label={label} className="no-print md:sticky md:top-3 z-20 mt-5 rounded-2xl border border-[#17233f]/10 bg-white/95 p-2 shadow-card backdrop-blur">
+      <ul className="flex flex-wrap gap-2">
         {items.map((item) => (
           <li key={item.href}>
             <a href={item.href} className="block rounded-xl px-4 py-3 text-sm font-semibold text-[#17233f] transition hover:bg-[#f7f0df] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7357c9]">

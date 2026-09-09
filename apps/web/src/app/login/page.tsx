@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import Dino from "@/components/Dino";
+import LoginPicture from "@/components/LoginPicture";
 import { clearPupilSession, pupilLogin, storePupilSession, type PupilLoginResult } from "@/lib/api";
 
 const picturePool = ["star", "book", "sun", "tree", "rocket", "moon", "shell", "key"];
@@ -18,17 +19,42 @@ export default function PupilLoginPage() {
 
 function PupilLoginContent() {
   const params = useSearchParams();
-  const initialPupil = params.get("pupil") ?? "";
-  const initialCode = params.get("code") ?? "";
-  const card = params.get("card") ?? "";
+  return <PupilLoginForm key={params.toString()} initialPupil={params.get("pupil") ?? ""} initialCode={params.get("code") ?? ""} card={params.get("card") ?? ""} />;
+}
+
+function PupilLoginForm({ initialPupil, initialCode, card }: { initialPupil: string; initialCode: string; card: string }) {
   const [studentRef, setStudentRef] = useState(initialPupil);
   const [loginCode, setLoginCode] = useState(initialCode);
   const [pictures, setPictures] = useState<string[]>([]);
   const [result, setResult] = useState<PupilLoginResult | null>(null);
   const [message, setMessage] = useState(initialCode ? "QR card found. Choose your pictures in order." : "Use the login card from your school or parent.");
   const [saving, setSaving] = useState(false);
+  const [qrSecret, setQrSecret] = useState(card);
+  const requestVersion = useRef(0);
+
+  useEffect(() => {
+    clearPupilSession();
+    return () => { requestVersion.current += 1; };
+  }, []);
+
+  function invalidateCard() {
+    requestVersion.current += 1;
+    clearPupilSession();
+    setResult(null);
+    setSaving(false);
+    setMessage("Choose your pictures, then log in.");
+  }
+
+  function changeIdentity(field: "pupil" | "code", value: string) {
+    invalidateCard();
+    setPictures([]);
+    setQrSecret("");
+    if (field === "pupil") setStudentRef(value);
+    else setLoginCode(value.toUpperCase());
+  }
 
   async function submit() {
+    const request = ++requestVersion.current;
     setSaving(true);
     setMessage("Checking your card...");
     setResult(null);
@@ -39,20 +65,22 @@ function PupilLoginContent() {
         student_external_ref: studentRef.trim(),
         login_code: loginCode.trim().toUpperCase(),
         picture_password: pictures,
-        qr_secret_hash: card,
+        qr_secret_hash: qrSecret,
       });
+      if (request !== requestVersion.current) return;
       setResult(loggedIn);
       storePupilSession(loggedIn);
       setMessage(`Welcome ${loggedIn.student.display_name || "learner"}. Your learning route is ready.`);
     } catch (error) {
-      setMessage(error instanceof Error ? error.message : "Could not log in.");
+      if (request === requestVersion.current) setMessage(error instanceof Error ? error.message : "Could not log in.");
     } finally {
-      setSaving(false);
+      if (request === requestVersion.current) setSaving(false);
     }
   }
 
   function choosePicture(value: string) {
     if (pictures.length >= 6) return;
+    invalidateCard();
     setPictures([...pictures, value]);
   }
 
@@ -84,8 +112,8 @@ function PupilLoginContent() {
             </div>
 
             <div className="grid gap-0 border-b border-[#17233f]/10 md:grid-cols-2">
-              <Field label="Pupil ID" value={studentRef} onChange={setStudentRef} />
-              <Field label="Login code" value={loginCode} onChange={(value) => setLoginCode(value.toUpperCase())} />
+              <Field label="Pupil ID" value={studentRef} onChange={(value) => changeIdentity("pupil", value)} />
+              <Field label="Login code" value={loginCode} onChange={(value) => changeIdentity("code", value)} />
             </div>
 
             <div className="p-6">
@@ -94,12 +122,13 @@ function PupilLoginContent() {
                   <h3 className="font-display text-2xl font-semibold">Picture password</h3>
                   <p className="mt-1 text-sm text-[#17233f]/58">Choose the pictures from your card in the same order.</p>
                 </div>
-                <button onClick={() => setPictures([])} className="rounded-lg bg-[#f7f0df] px-4 py-2 text-sm font-semibold">Clear</button>
+                <button onClick={() => { invalidateCard(); setPictures([]); }} className="rounded-lg bg-[#f7f0df] px-4 py-2 text-sm font-semibold">Clear</button>
               </div>
               <div className="mt-4 grid grid-cols-4 gap-2 sm:grid-cols-8">
                 {picturePool.map((picture) => (
-                  <button key={picture} onClick={() => choosePicture(picture)} className="tile-press rounded-lg border border-[#17233f]/10 bg-[#f7f0df] px-3 py-3 text-sm font-semibold">
-                    {labelForPicture(picture)}
+                  <button key={picture} aria-label={labelForPicture(picture)} onClick={() => choosePicture(picture)} className="tile-press flex min-h-20 flex-col items-center justify-center gap-2 rounded-lg border border-[#17233f]/10 bg-[#f7f0df] px-1 py-3 text-xs font-semibold">
+                    <LoginPicture picture={picture} />
+                    <span aria-hidden="true">{labelForPicture(picture)}</span>
                   </button>
                 ))}
               </div>
@@ -107,7 +136,7 @@ function PupilLoginContent() {
                 {pictures.length > 0 ? (
                   <div className="flex flex-wrap gap-2">
                     {pictures.map((picture, index) => (
-                      <span key={`${picture}-${index}`} className="rounded-lg bg-[#55cbd3]/20 px-3 py-2 text-sm font-semibold text-[#155d64]">{index + 1}. {labelForPicture(picture)}</span>
+                      <span key={`${picture}-${index}`} className="flex items-center gap-2 rounded-lg bg-[#55cbd3]/20 px-3 py-2 text-sm font-semibold text-[#155d64]">{index + 1}. <LoginPicture picture={picture} size={24} /><span aria-hidden="true">{labelForPicture(picture)}</span></span>
                     ))}
                   </div>
                 ) : (

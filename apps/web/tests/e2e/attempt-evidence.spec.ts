@@ -43,9 +43,9 @@ for (const workspace of ["parents", "family", "school-admin", "admin"]) {
     });
     await page.goto(workspace === "admin" ? "/admin?section=Progress" : `/${workspace}`);
     if (workspace === "family") {
-      await page.getByLabel("Login ID").fill("test-parent");
-      await page.getByLabel("Password").last().fill("test-password");
-      await page.getByRole("button", { name: "Sign in", exact: true }).click();
+      // The pre-seeded session resumes only after the parent API verifies it.
+      await expect(page.getByText("Signed in as Parent", { exact: true })).toBeVisible();
+      await expect(page.getByLabel("Login ID")).toHaveCount(0);
     }
     if (workspace === "admin") {
       await page.getByLabel("Learner external ref").fill(student.external_ref);
@@ -61,6 +61,7 @@ for (const workspace of ["parents", "family", "school-admin", "admin"]) {
     }
     const evidence = page.getByRole("region", { name: "Recent learning evidence" });
     await expect(evidence).toBeVisible();
+    if (workspace === "school-admin") await expect(page.getByRole("status")).toHaveText("Learner progress loaded.");
     await expect(evidence).toContainText("not a mastery judgement");
     const first = evidence.locator("details").first();
     await first.locator("summary").focus();

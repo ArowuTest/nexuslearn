@@ -2,6 +2,7 @@
 
 import { useSyncExternalStore, type ReactNode } from "react";
 import QRCode from "qrcode";
+import LoginPicture from "@/components/LoginPicture";
 import { loginCardURL } from "@/components/role-workspaces/loginCardURL.mjs";
 
 type StudentCredential = {
@@ -47,7 +48,7 @@ export function LoginCard({ credential, schoolName }: { credential: StudentCrede
       <div className="mt-4 rounded-lg bg-[#f7f0df] p-4">
         <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#17233f]/50">Picture password</p>
         <div className="mt-3 flex flex-wrap gap-2">
-          {picturePassword.length > 0 ? picturePassword.map((item, index) => <span key={`${item}-${index}`} className="rounded-lg bg-white px-3 py-2 text-sm font-semibold shadow-sm">{friendly(item)}</span>) : <span className="text-sm text-[#17233f]/58">Use the login code shown above.</span>}
+          {picturePassword.length > 0 ? picturePassword.map((item, index) => <span key={`${item}-${index}`} className="flex flex-col items-center gap-1 rounded-lg bg-white px-3 py-2 text-sm font-semibold shadow-sm"><span>{index + 1}.</span><LoginPicture picture={item} /><span>{friendly(item)}</span></span>) : <span className="text-sm text-[#17233f]/58">Use the login code shown above.</span>}
         </div>
       </div>
       <p className="mt-4 text-xs leading-5 text-[#17233f]/58">Scan the QR code or go to NexusLearn, enter the code, then choose the pictures in order. Do not share this card outside the learner&apos;s trusted adults.</p>

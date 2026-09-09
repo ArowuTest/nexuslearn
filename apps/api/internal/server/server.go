@@ -1805,13 +1805,32 @@ func (s *Server) handleSchoolUpsertStudent(w http.ResponseWriter, r *http.Reques
 	if !s.requireSchoolAdmin(w, user) {
 		return
 	}
-	var student learning.StudentProfileConfig
-	if err := json.NewDecoder(r.Body).Decode(&student); err != nil {
+	repository, ok := s.repo.(learning.SchoolStudentRepository)
+	if !ok {
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "atomic school pupil writes are not available"})
+		return
+	}
+	var in struct {
+		DisplayName string `json:"display_name"`
+		YearGroup   int    `json:"year_group"`
+		ClassID     string `json:"class_id"`
+	}
+	if err := json.NewDecoder(r.Body).Decode(&in); err != nil {
 		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
 		return
 	}
-	student.ExternalRef = r.PathValue("externalRef")
-	saved, err := s.repo.UpsertStudent(r.Context(), student)
+	classID, student, err := learning.PrepareSchoolStudent(in.ClassID, learning.StudentProfileConfig{
+		ExternalRef: r.PathValue("externalRef"), DisplayName: in.DisplayName, YearGroup: in.YearGroup,
+	})
+	if err != nil {
+		s.writeAdminSaveError(w, err, "school learner")
+		return
+	}
+	saved, err := repository.UpsertSchoolStudent(r.Context(), user.ID, user.SchoolURN, classID, student)
+	if errors.Is(err, learning.ErrSchoolStudentForbidden) {
+		writeJSON(w, http.StatusForbidden, map[string]string{"error": "class or pupil is outside this school"})
+		return
+	}
 	if err != nil {
 		s.writeAdminSaveError(w, err, "school learner")
 		return
@@ -1893,11 +1912,21 @@ func (s *Server) handleSchoolAssignStudentToClass(w http.ResponseWriter, r *http
 	if !s.requireSchoolAdmin(w, user) {
 		return
 	}
-	if !s.classBelongsToSchool(r.Context(), user.SchoolURN, r.PathValue("id")) {
-		writeJSON(w, http.StatusForbidden, map[string]string{"error": "class is outside this school"})
+	repository, ok := s.repo.(learning.SchoolStudentRepository)
+	if !ok {
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "atomic school pupil writes are not available"})
 		return
 	}
-	saved, err := s.repo.AssignStudentToClass(r.Context(), r.PathValue("id"), r.PathValue("externalRef"))
+	classID, externalRef, err := learning.PrepareSchoolClassAssignment(r.PathValue("id"), r.PathValue("externalRef"))
+	if err != nil {
+		s.writeAdminSaveError(w, err, "school class assignment")
+		return
+	}
+	saved, err := repository.AssignSchoolStudentToClass(r.Context(), user.ID, user.SchoolURN, classID, externalRef)
+	if errors.Is(err, learning.ErrSchoolStudentForbidden) {
+		writeJSON(w, http.StatusForbidden, map[string]string{"error": "class or pupil is outside this school"})
+		return
+	}
 	if err != nil {
 		s.writeAdminSaveError(w, err, "school class assignment")
 		return
@@ -2601,8 +2630,14 @@ func (s *Server) handleParentChildEvidence(w http.ResponseWriter, r *http.Reques
 }
 
 func (s *Server) handleParentUpsertChild(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Cache-Control", "private, no-store")
 	parent, ok := s.requireParentUser(w, r)
 	if !ok {
+		return
+	}
+	repository, ok := s.repo.(learning.ParentChildRepository)
+	if !ok {
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "atomic parent child writes are not available"})
 		return
 	}
 	var in struct {
@@ -2614,43 +2649,25 @@ func (s *Server) handleParentUpsertChild(w http.ResponseWriter, r *http.Request)
 		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
 		return
 	}
-	externalRef := r.PathValue("externalRef")
-	student, err := s.repo.UpsertStudent(r.Context(), learning.StudentProfileConfig{
-		ExternalRef: externalRef,
+	student, engagement, err := learning.PrepareParentChild(learning.StudentProfileConfig{
+		ExternalRef: r.PathValue("externalRef"),
 		DisplayName: in.DisplayName,
 		YearGroup:   in.YearGroup,
-	})
+	}, in.Engagement)
 	if err != nil {
 		s.writeAdminSaveError(w, err, "parent child")
 		return
 	}
-	_, err = s.repo.UpsertParentLink(r.Context(), learning.ParentLinkConfig{
-		ParentEmail:        parent.Email,
-		ParentDisplayName:  parent.DisplayName,
-		StudentExternalRef: externalRef,
-		Relationship:       "parent",
-		Status:             "active",
-	})
-	if err != nil {
-		s.writeAdminSaveError(w, err, "parent child link")
+	saved, err := repository.UpsertParentChild(r.Context(), parent.ID, student, engagement)
+	if errors.Is(err, learning.ErrParentChildForbidden) {
+		writeJSON(w, http.StatusForbidden, map[string]string{"error": "child is outside this parent account"})
 		return
 	}
-	credential, err := s.repo.UpsertStudentCredential(r.Context(), learning.StudentCredentialConfig{
-		StudentExternalRef: externalRef,
-		LoginCode:          homeLoginCode(externalRef),
-		PicturePassword:    []string{"star", "book", "sun"},
-	})
 	if err != nil {
-		s.writeAdminSaveError(w, err, "parent child credential")
+		s.writeAdminSaveError(w, err, "parent child")
 		return
 	}
-	in.Engagement.StudentExternalRef = externalRef
-	engagement, err := s.repo.UpsertStudentEngagement(r.Context(), in.Engagement)
-	if err != nil {
-		s.writeAdminSaveError(w, err, "parent child engagement")
-		return
-	}
-	writeJSON(w, http.StatusOK, learning.ParentChildConfig{Student: student, Credential: credential, Engagement: engagement})
+	writeJSON(w, http.StatusOK, saved)
 }
 
 func (s *Server) handleParentUpsertEngagement(w http.ResponseWriter, r *http.Request) {

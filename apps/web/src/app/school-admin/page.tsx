@@ -195,7 +195,10 @@ export default function SchoolAdminPage() {
   const [progressReport, setProgressReport] = useState<ProgressReport | null>(null);
   const workspaceLoadVersion = useRef(0);
   const progressRequest = useRef(0);
+  const supportRequest = useRef(0);
   const credentials = portal?.student_credentials ?? [];
+  const classOptions = ["", ...(portal?.classes ?? []).map(item => item.id ?? "").filter(Boolean)];
+  const classLabels = Object.fromEntries((portal?.classes ?? []).map(item => [item.id ?? "", `${item.name} (Year ${item.year_group})`]));
   const isSchoolAdmin = portal?.current_user?.role === "school_admin";
   const runtimePreview = runtimePreviewItems(engagementProfile);
   const schoolStudents = useMemo(() => {
@@ -243,8 +246,7 @@ export default function SchoolAdminPage() {
     setInterventionDraft({ student_external_ref: "", objective_id: "", title: "", need: "", strategy: "", priority: 85, review_due_at: "" });
     setGroup({ id: "", class_id: "", name: "", purpose: "intervention", students: [] });
     setEngagementPupil("");
-    setEngagementProfile(emptyEngagementProfile());
-    setEngagementInterests("");
+    clearSupportProfile();
     clearProgressReport();
   }
 
@@ -324,21 +326,36 @@ export default function SchoolAdminPage() {
     await guarded("Creating pupil...", async () => {
       await apiFetch(`/v1/school/students/${slug(student.external_ref)}`, {
         method: "PUT",
-        body: JSON.stringify({ display_name: student.display_name, year_group: Number(student.year_group) }),
+        body: JSON.stringify({ display_name: student.display_name, year_group: Number(student.year_group), class_id: assignment.class_id }),
       });
       setStudent({ external_ref: "", display_name: "", year_group: 1 });
       await load();
     });
   }
 
-  async function loadEngagementProfile() {
+  function clearSupportProfile(studentExternalRef = "") {
+    supportRequest.current += 1;
+    setEngagementProfile(emptyEngagementProfile(studentExternalRef));
+    setEngagementInterests("");
+  }
+
+  async function syncEngagementProfile(save: boolean) {
     const studentExternalRef = selectedEngagementStudent?.external_ref;
-    if (!studentExternalRef) return;
-    await guarded("Loading pupil support profile...", async () => {
-      const profile = await apiFetch(`/v1/school/students/${encodeURIComponent(studentExternalRef)}/engagement`);
-      setEngagementProfile({ ...emptyEngagementProfile(studentExternalRef), ...profile, student_external_ref: studentExternalRef });
-      setEngagementInterests((profile.interests ?? []).join(", "));
-      setMessage("Pupil support profile loaded.");
+    if (!studentExternalRef || (save && engagementProfile.student_external_ref !== studentExternalRef)) return;
+    const request = ++supportRequest.current;
+    await guarded(save ? "Saving pupil support profile..." : "Loading pupil support profile...", async () => {
+      try {
+        const profile = await apiFetch(`/v1/school/students/${encodeURIComponent(studentExternalRef)}/engagement`, save ? {
+          method: "PUT",
+          body: JSON.stringify({ ...engagementProfile, student_external_ref: studentExternalRef, interests: commaValues(engagementInterests) }),
+        } : undefined);
+        if (request !== supportRequest.current) return;
+        setEngagementProfile({ ...emptyEngagementProfile(studentExternalRef), ...profile, student_external_ref: studentExternalRef });
+        setEngagementInterests((profile.interests ?? []).join(", "));
+        setMessage(save ? "Pupil support profile saved." : "Pupil support profile loaded.");
+      } catch (error) {
+        if (request === supportRequest.current) throw error;
+      }
     });
   }
 
@@ -355,33 +372,24 @@ export default function SchoolAdminPage() {
     await guarded("Loading learner progress...", async () => {
       try {
         const data = await apiFetch(`/v1/school/students/${encodeURIComponent(studentExternalRef)}/progress`);
-        if (request === progressRequest.current) setProgressReport(data as ProgressReport);
+        if (request === progressRequest.current) {
+          setProgressReport(data as ProgressReport);
+          setMessage("Learner progress loaded.");
+        }
       } catch (error) {
         if (request === progressRequest.current) throw error;
       }
     });
   }
 
-  async function saveEngagementProfile() {
-    const studentExternalRef = selectedEngagementStudent?.external_ref;
-    if (!studentExternalRef) return;
-    await guarded("Saving pupil support profile...", async () => {
-      const profile = await apiFetch(`/v1/school/students/${encodeURIComponent(studentExternalRef)}/engagement`, {
-        method: "PUT",
-        body: JSON.stringify({ ...engagementProfile, student_external_ref: studentExternalRef, interests: commaValues(engagementInterests) }),
-      });
-      setEngagementProfile({ ...emptyEngagementProfile(studentExternalRef), ...profile, student_external_ref: studentExternalRef });
-      setEngagementInterests((profile.interests ?? []).join(", "));
-      setMessage("Pupil support profile saved.");
-    });
-  }
-
   async function saveClass() {
     await guarded("Saving class...", async () => {
-      await apiFetch(`/v1/school/classes/${classDraft.id || slug(classDraft.name)}`, {
+      const saved = await apiFetch(`/v1/school/classes/${classDraft.id || slug(classDraft.name)}`, {
         method: "PUT",
         body: JSON.stringify({ name: classDraft.name, year_group: Number(classDraft.year_group) }),
       });
+      setAssignment(current => ({ ...current, class_id: saved.id }));
+      setGroup(current => ({ ...current, class_id: saved.id }));
       setClassDraft({ id: "", name: "", year_group: 1, students: [] });
       await load();
     });
@@ -536,14 +544,14 @@ export default function SchoolAdminPage() {
           />
         ) : null}
 
-        <section id="school-setup" className="scroll-mt-28 mt-8 grid gap-4 rounded-lg bg-white p-5 shadow-card md:grid-cols-[1fr_1fr_1fr_auto]">
+        <form id="school-setup" aria-label="School sign in" onSubmit={(event) => { event.preventDefault(); if (!saving && schoolURN && loginID && password) void signIn(); }} className="scroll-mt-28 mt-8 grid gap-4 rounded-lg bg-white p-5 shadow-card md:grid-cols-[1fr_1fr_1fr_auto]">
           <Field label="School URN" value={schoolURN} onChange={setSchoolURN} />
           <Field label="Login ID" value={loginID} onChange={setLoginID} />
           <Field label="Temporary password" value={password} onChange={setPassword} type="password" />
-          <button onClick={signIn} disabled={!schoolURN || !loginID || !password || saving} className="btn-pop self-end bg-[#ffbf45] px-5 py-3 text-sm disabled:opacity-50">
+          <button type="submit" disabled={!schoolURN || !loginID || !password || saving} className="btn-pop self-end bg-[#ffbf45] px-5 py-3 text-sm disabled:opacity-50">
             Sign in
           </button>
-        </section>
+        </form>
 
         <div className="mt-4"><WorkspaceState tone={saving ? "loading" : portal ? "success" : "neutral"}>{message}</WorkspaceState></div>
         {portal?.current_user && (
@@ -581,13 +589,9 @@ export default function SchoolAdminPage() {
                 </div>
               )}
               {credentials.map((credential) => (
-                <article key={credential.student_external_ref} className="p-5">
-                  <div className="flex flex-wrap items-start justify-between gap-3">
-                    <p className="font-semibold">{credential.display_name || credential.student_external_ref}</p>
-                    <span className="rounded-lg bg-[#55cbd3]/20 px-3 py-1 text-xs font-semibold text-[#155d64]">{credential.login_code}</span>
-                  </div>
-                  <p className="mt-2 text-sm text-[#17233f]/58">{credential.picture_password.join(" / ")}</p>
-                </article>
+                <div key={credential.student_external_ref} className="p-5">
+                  <LoginCard credential={credential} schoolName={portal.school?.name ?? "NexusLearn"} />
+                </div>
               ))}
               {credentials.length === 0 && (
                 <div className="p-5 text-sm leading-6 text-[#17233f]/58">
@@ -660,10 +664,12 @@ export default function SchoolAdminPage() {
 
           <div className="grid gap-6">
             <Panel title="Create Pupil">
+              <LabeledSelect label="Enrol in class" value={assignment.class_id} values={classOptions} labels={classLabels} onChange={(class_id) => setAssignment({ ...assignment, class_id })} />
+              {!portal.classes?.length && <p className="px-5 py-3 text-sm">Create a class first, then enrol your new pupil into it. <a href="#school-class-setup" className="font-semibold underline">Create a class</a></p>}
               <Field label="Pupil ID" value={student.external_ref} onChange={(external_ref) => setStudent({ ...student, external_ref: slug(external_ref) })} />
               <Field label="Display name" value={student.display_name} onChange={(display_name) => setStudent({ ...student, display_name })} />
               <Field label="Year group" type="number" value={student.year_group} onChange={(year_group) => setStudent({ ...student, year_group: Number(year_group) })} />
-              <Actions label="Create pupil" disabled={!isSchoolAdmin || !student.external_ref || !student.display_name || saving} onClick={saveStudent} />
+              <Actions label="Create pupil" disabled={!isSchoolAdmin || !assignment.class_id || !student.external_ref || !student.display_name || saving} onClick={saveStudent} />
             </Panel>
             <Panel title="SENCO Pupil Support Profile">
               <LabeledSelect
@@ -674,8 +680,7 @@ export default function SchoolAdminPage() {
                 onChange={(studentExternalRef) => {
                   const scopedStudentRef = schoolStudents.some((item) => item.external_ref === studentExternalRef) ? studentExternalRef : "";
                   setEngagementPupil(scopedStudentRef);
-                  setEngagementProfile(emptyEngagementProfile(scopedStudentRef));
-                  setEngagementInterests("");
+                  clearSupportProfile(scopedStudentRef);
                   clearProgressReport();
                   setLearningAssignment((current) => ({ ...current, student_external_ref: scopedStudentRef }));
                   setEvidenceDraft((current) => ({ ...current, student_external_ref: scopedStudentRef }));
@@ -683,7 +688,7 @@ export default function SchoolAdminPage() {
                 }}
               />
               <div className="flex justify-end border-b border-[#17233f]/10 p-5">
-                <button onClick={loadEngagementProfile} disabled={!selectedEngagementStudent || saving} className="btn-pop bg-[#55cbd3] px-5 py-3 text-sm disabled:opacity-50">Load profile</button>
+                <button onClick={() => syncEngagementProfile(false)} disabled={!selectedEngagementStudent || saving} className="btn-pop bg-[#55cbd3] px-5 py-3 text-sm disabled:opacity-50">Load profile</button>
               </div>
               <ChoiceGrid
                 label="Declared support needs"
@@ -746,7 +751,7 @@ export default function SchoolAdminPage() {
               <Field label="Interests (comma separated)" value={engagementInterests} onChange={setEngagementInterests} />
               <TextArea label="Operational notes" value={engagementProfile.notes} onChange={(notes) => setEngagementProfile({ ...engagementProfile, notes })} />
               {engagementProfile.updated_at && <p className="px-5 pb-2 text-xs text-[#17233f]/52">Last updated {new Date(engagementProfile.updated_at).toLocaleString()}</p>}
-              <Actions label="Save support profile" disabled={!selectedEngagementStudent || saving} onClick={saveEngagementProfile} />
+              <Actions label="Save support profile" disabled={!selectedEngagementStudent || saving} onClick={() => syncEngagementProfile(true)} />
             </Panel>
             <Panel title="Learner Progress Snapshot">
               <div className="flex flex-wrap items-center justify-between gap-3 p-5">
@@ -771,14 +776,13 @@ export default function SchoolAdminPage() {
                 </div>
               )}
             </Panel>
-            <Panel title="Create Class">
-              <Field label="Class ID" value={classDraft.id ?? ""} onChange={(id) => setClassDraft({ ...classDraft, id: slug(id) })} />
+            <Panel id="school-class-setup" title="Create Class">
               <Field label="Class name" value={classDraft.name} onChange={(name) => setClassDraft({ ...classDraft, name })} />
               <Field label="Year group" type="number" value={classDraft.year_group} onChange={(year_group) => setClassDraft({ ...classDraft, year_group: Number(year_group) })} />
               <Actions label="Save class" disabled={!isSchoolAdmin || !classDraft.name || saving} onClick={saveClass} />
             </Panel>
             <Panel title="Class Access">
-              <Field label="Class ID" value={assignment.class_id} onChange={(class_id) => setAssignment({ ...assignment, class_id })} />
+              <LabeledSelect label="Class" value={assignment.class_id} values={classOptions} labels={classLabels} onChange={(class_id) => setAssignment({ ...assignment, class_id })} />
               <Field label="Pupil ID" value={assignment.student_external_ref} onChange={(student_external_ref) => setAssignment({ ...assignment, student_external_ref: slug(student_external_ref) })} />
               <div className="flex flex-wrap justify-end gap-3 p-5">
                 <button onClick={assignStudent} disabled={!isSchoolAdmin || !assignment.class_id || !assignment.student_external_ref || saving} className="btn-pop bg-[#55cbd3] px-5 py-3 text-sm disabled:opacity-50">Add pupil</button>
@@ -787,7 +791,7 @@ export default function SchoolAdminPage() {
             </Panel>
             <Panel title="Teaching Group">
               <Field label="Group ID" value={group.id ?? ""} onChange={(id) => setGroup({ ...group, id: slug(id) })} />
-              <Field label="Class ID" value={group.class_id} onChange={(class_id) => setGroup({ ...group, class_id })} />
+              <LabeledSelect label="Class" value={group.class_id} values={classOptions} labels={classLabels} onChange={(class_id) => setGroup({ ...group, class_id })} />
               <Field label="Group name" value={group.name} onChange={(name) => setGroup({ ...group, name })} />
               <PurposeSelect value={group.purpose} values={["intervention", "challenge", "phonics", "fluency", "senco", "teacher-defined"]} onChange={(purpose) => setGroup({ ...group, purpose })} />
               <Actions label="Save group" disabled={!group.class_id || !group.name || saving} onClick={saveGroup} />
