@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"github.com/ArowuTest/nexuslearn/apps/api/internal/database"
+	"github.com/ArowuTest/nexuslearn/apps/api/internal/testdb"
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
 )
@@ -611,6 +612,10 @@ func openPaginationIntegrationRepository(t *testing.T) (*pgxpool.Pool, *Postgres
 	t.Cleanup(cancel)
 	adminPool, err := pgxpool.New(ctx, dsn)
 	if err != nil {
+		t.Fatal(err)
+	}
+	if err := testdb.PrepareExtensions(ctx, adminPool); err != nil {
+		adminPool.Close()
 		t.Fatal(err)
 	}
 	schema := fmt.Sprintf("admin_pagination_%d", time.Now().UnixNano())

@@ -4,8 +4,10 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { inspectMP3Buffer } from "./lib/mp3-inspection.mjs";
-import { buildVariantAudioCatalog } from "./lib/variant-audio-catalog.mjs";
+import { buildVariantAudioCatalog, canonicalJSONStringify } from "./lib/variant-audio-catalog.mjs";
 import { catalogAssetsToProductionItems, selectProductionItems } from "./lib/narration-manifest-v2.mjs";
+import { productionCheckpoint, readProductionCheckpoint, writeProductionCheckpoint, removeProductionCheckpoint, withProductionLock } from "./lib/narration-production-cache.mjs";
+import { publishNarrationBatch, recoverNarrationPublication } from "./lib/narration-publication.mjs";
 
 const toolDir = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(toolDir, "../../..");
@@ -15,6 +17,7 @@ const manifestPath = path.join(repoRoot, "packages/content/audio/narration-manif
 const publicManifestPath = path.join(repoRoot, "apps/web/public/content/narration-manifest.json");
 const reviewPath = path.join(repoRoot, "packages/content/generated/audio/narration-review.html");
 const publicReviewPath = path.join(repoRoot, "apps/web/private/content/narration-review.html");
+const checkpointRoot = path.join(repoRoot, ".agent/narration-production/assets");
 const apiKey = process.env.ELEVENLABS_API_KEY ?? "";
 const voiceId = process.env.ELEVENLABS_VOICE_ID ?? "Xb7hH8MSUJpSbSDYk0k2";
 const modelId = process.env.ELEVENLABS_MODEL_ID ?? "eleven_multilingual_v2";
@@ -196,27 +199,34 @@ function pacingFor(year, kind) {
 }
 
 async function requestSpeech(item) {
-  const response = await fetch(
-    `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}?output_format=mp3_44100_128`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "audio/mpeg",
-        "xi-api-key": apiKey,
+  const signal = AbortSignal.timeout(90_000);
+  try {
+    const response = await fetch(
+      `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}?output_format=mp3_44100_128`,
+      {
+        method: "POST",
+        signal,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "audio/mpeg",
+          "xi-api-key": apiKey,
+        },
+        body: JSON.stringify({
+          text: item.text,
+          model_id: modelId,
+          voice_settings: item.voice_settings,
+        }),
       },
-      body: JSON.stringify({
-        text: item.text,
-        model_id: modelId,
-        voice_settings: item.voice_settings,
-      }),
-    },
-  );
-  if (!response.ok) {
-    const detail = await response.text();
-    throw new Error(`${response.status} ${response.statusText}: ${detail.slice(0, 500)}`);
+    );
+    if (!response.ok) {
+      await response.body?.cancel();
+      throw new Error(`ElevenLabs returned HTTP ${response.status}; no automatic retry was sent`);
+    }
+    return Buffer.from(await response.arrayBuffer());
+  } catch (error) {
+    if (signal.aborted) throw new Error("ElevenLabs request timed out; its billing outcome may be uncertain and no automatic retry was sent");
+    throw error;
   }
-  return Buffer.from(await response.arrayBuffer());
 }
 
 function technicalCheck(buffer) {
@@ -226,38 +236,42 @@ function technicalCheck(buffer) {
   };
 }
 
-function reusableMetadataMatches(previous, item) {
+function sameRecordingIdentity(previous, item) {
   return Boolean(
     previous
+    && previous.id === item.id
     && previous.text_sha256 === item.text_sha256
     && previous.voice_id === item.voice_id
     && previous.model_id === item.model_id
     && previous.relative_file === item.relative_file
-    && JSON.stringify(previous.voice_settings ?? legacyVoiceSettings(previous.kind)) === JSON.stringify(item.voice_settings)
+    && previous.file === item.file
   );
 }
 
-function legacyVoiceSettings(kind) {
-  return {
-    stability: 0.55,
-    similarity_boost: 0.75,
-    style: 0.15,
-    use_speaker_boost: true,
-    speed: kind === "lesson" ? 0.94 : 0.92,
-  };
+function hasRecordedSettings(item) {
+  const settings = item?.voice_settings;
+  return Boolean(settings && !Array.isArray(settings)
+    && ["stability", "similarity_boost", "style", "speed"].every(key => Number.isFinite(settings[key]))
+    && settings.speed > 0 && typeof settings.use_speaker_boost === "boolean");
 }
 
-function mergeProductionMetadata(previous, current, check) {
-  const merged = { ...(previous ?? {}), ...current, ...check };
-  delete merged.human_listening_approved;
-  delete merged.listening_status;
-  return merged;
+function reusableMetadataMatches(previous, item) {
+  return sameRecordingIdentity(previous, item)
+    && hasRecordedSettings(previous)
+    && canonicalJSONStringify(previous.voice_settings) === canonicalJSONStringify(item.voice_settings);
 }
 
-async function produce(items, previousItems) {
+async function produce(items, previousItems, pendingPublications) {
   let produced = 0;
   let skipped = 0;
   let planned = 0;
+  let resumed = 0;
+  const unknownSettings = items.filter(item => previousItems.has(item.id) && !hasRecordedSettings(previousItems.get(item.id)));
+  // Preflight the whole selection before the first paid call. Today's policy is
+  // not evidence of how a historical file was made; replacing it is explicit.
+  if (unknownSettings.length && !dryRun && !force) {
+    throw new Error(`${unknownSettings.length} selected recordings have unknown generation settings; use --dry-run to plan, then --force only for the chosen re-recording batch`);
+  }
   for (const [index, item] of items.entries()) {
     const absoluteFile = path.join(publicRoot, item.relative_file);
     const previous = previousItems.get(item.id);
@@ -271,7 +285,10 @@ async function produce(items, previousItems) {
           && (previous.bytes === undefined || previous.bytes === check.bytes),
         );
         if (check.technical_pass && fileMatchesManifest) {
-          Object.assign(item, mergeProductionMetadata(previous, item, check));
+          // Replace, rather than overlay: absent historical fields must remain
+          // absent, including the policy/profile label and voice display name.
+          for (const key of Object.keys(item)) delete item[key];
+          Object.assign(item, previous, check);
           skipped += 1;
           continue;
         }
@@ -284,29 +301,30 @@ async function produce(items, previousItems) {
       planned += 1;
       continue;
     }
-    if (!apiKey) throw new Error("ELEVENLABS_API_KEY is required to generate missing or stale narration");
-    await fs.mkdir(path.dirname(absoluteFile), { recursive: true });
-    let lastError;
-    for (let attempt = 1; attempt <= 3; attempt += 1) {
+    const checkpoint = productionCheckpoint(checkpointRoot, item);
+    const cached = await readProductionCheckpoint(checkpoint);
+    if (cached) {
+      Object.assign(item, cached);
+      resumed += 1;
+    } else {
+      if (!apiKey) throw new Error("ELEVENLABS_API_KEY is required to generate missing or stale narration");
       try {
         const audio = await requestSpeech(item);
-        const check = technicalCheck(audio);
+        const check = { ...technicalCheck(audio), generated_at: new Date().toISOString() };
         if (!check.technical_pass) throw new Error(`invalid MP3 response (${check.bytes} bytes)`);
-        await fs.writeFile(absoluteFile, audio);
-        Object.assign(item, mergeProductionMetadata(previous, item, check));
+        await writeProductionCheckpoint(checkpoint, audio, check);
+        Object.assign(item, check);
         produced += 1;
-        break;
       } catch (error) {
-        lastError = error;
-        if (attempt < 3) await new Promise((resolve) => setTimeout(resolve, attempt * 1_500));
+        throw new Error(`${item.id}: ${error?.message ?? "generation failed"}. Earlier verified responses remain staged; the published inventory is unchanged. Inspect provider usage before explicitly retrying an uncertain request.`);
       }
     }
-    if (!item.technical_pass) throw new Error(`${item.id}: ${lastError?.message ?? "generation failed"}`);
+    pendingPublications.push({ checkpoint, absoluteFile });
     if ((index + 1) % 10 === 0 || index + 1 === items.length) {
       console.log(`narration progress ${index + 1}/${items.length} produced=${produced} skipped=${skipped}`);
     }
   }
-  return { produced, skipped, planned };
+  return { produced, skipped, planned, resumed, unknown_settings: unknownSettings.length };
 }
 
 async function mergeProducedInventory(allItems, selectedItems, previousItems) {
@@ -323,12 +341,14 @@ async function mergeProducedInventory(allItems, selectedItems, previousItems) {
       continue;
     }
     const previous = previousItems.get(expected.id);
-    if (!reusableMetadataMatches(previous, expected)) continue;
+    if (!sameRecordingIdentity(previous, expected)) continue;
     try {
       const existing = await fs.readFile(path.join(publicRoot, expected.relative_file));
       const check = technicalCheck(existing);
       if (check.technical_pass && previous.sha256 === check.sha256 && (previous.bytes === undefined || previous.bytes === check.bytes)) {
-        merged.push(mergeProductionMetadata(previous, expected, check));
+        // An unselected, verified recording stays exactly as recorded, even if
+        // its settings differ from today's policy or were never recorded.
+        merged.push({ ...previous, ...check });
       }
     } catch {
       // Missing and stale assets stay out of the produced manifest.
@@ -337,7 +357,7 @@ async function mergeProducedInventory(allItems, selectedItems, previousItems) {
   return merged;
 }
 
-async function writeManifest(items, summary, expectedAssets, selectedAssets) {
+function manifestWrites(items, summary, expectedAssets, selectedAssets) {
   const manifest = {
     version: 1,
     status: dryRun ? "planned" : "generated_pending_human_listening",
@@ -369,8 +389,6 @@ async function writeManifest(items, summary, expectedAssets, selectedAssets) {
     },
     items,
   };
-  await fs.mkdir(path.dirname(manifestPath), { recursive: true });
-  await fs.mkdir(path.dirname(publicManifestPath), { recursive: true });
   const rendered = `${JSON.stringify(manifest, null, 2)}\n`;
   const publicManifest = {
     ...manifest,
@@ -388,13 +406,11 @@ async function writeManifest(items, summary, expectedAssets, selectedAssets) {
     })),
   };
   const publicRendered = `${JSON.stringify(publicManifest)}\n`;
-  await fs.writeFile(manifestPath, rendered);
-  await fs.writeFile(publicManifestPath, publicRendered);
   const review = renderReview(manifest);
-  await fs.mkdir(path.dirname(reviewPath), { recursive: true });
-  await fs.writeFile(reviewPath, review);
-  await fs.mkdir(path.dirname(publicReviewPath), { recursive: true });
-  await fs.writeFile(publicReviewPath, review);
+  return [
+    { file: manifestPath, data: rendered }, { file: publicManifestPath, data: publicRendered },
+    { file: reviewPath, data: review }, { file: publicReviewPath, data: review },
+  ];
 }
 
 function escapeHTML(value) {
@@ -452,22 +468,38 @@ function renderReview(manifest) {
   return html.replace(/[ \t]+$/gm, "");
 }
 
-const standardItems = await collect();
-const variantItems = await collectVariantItems();
-const inventory = only === "variants" ? variantItems : standardItems;
-const items = selectItems(inventory);
-const previous = await readPreviousManifest();
-const previousItems = previous.items;
-if (items.length < inventory.length && previous.manifest && (
-  previous.manifest.voice?.id !== voiceId || previous.manifest.voice?.model_id !== modelId
-)) {
-  throw new Error("filtered production cannot change voice or model; run the complete inventory migration without --pack, --year, --only or --limit");
+async function main() {
+  await recoverNarrationPublication(repoRoot, { readOnly: dryRun });
+  const standardItems = await collect();
+  const variantItems = await collectVariantItems();
+  const inventory = only === "variants" ? variantItems : standardItems;
+  const items = selectItems(inventory);
+  const previous = await readPreviousManifest();
+  const previousItems = previous.items;
+  if (items.length < inventory.length && previous.manifest && (
+    previous.manifest.voice?.id !== voiceId || previous.manifest.voice?.model_id !== modelId
+  )) {
+    throw new Error("filtered production cannot change voice or model; run the complete inventory migration without --pack, --year, --only or --limit");
+  }
+  const pendingPublications = [];
+  const summary = await produce(items, previousItems, pendingPublications);
+  if (!dryRun) {
+    const mergedItems = await mergeProducedInventory(inventory, items, previousItems);
+    const updates = [];
+    // Provider work never replaces public bytes. One recoverable publication
+    // includes every selected recording and all four inventory/review files.
+    for (const { checkpoint, absoluteFile } of pendingPublications) {
+      await readProductionCheckpoint(checkpoint);
+      updates.push({ file: absoluteFile, data: await fs.readFile(checkpoint.audio) });
+    }
+    updates.push(...manifestWrites(mergedItems, summary, inventory.length, items.length));
+    await publishNarrationBatch(repoRoot, updates);
+    for (const { checkpoint } of pendingPublications) await removeProductionCheckpoint(checkpoint);
+  }
+  console.log(
+    `narration selected=${items.length} expected=${inventory.length} standard=${standardItems.length} variants=${variantItems.length} lessons=${items.filter((item) => item.kind === "lesson").length} vocabulary=${items.filter((item) => item.kind === "vocabulary").length} variant_items=${items.filter((item) => item.kind === "variant").length} characters=${items.reduce((total, item) => total + item.text.length, 0)} produced=${summary.produced} skipped=${summary.skipped} planned=${summary.planned} resumed=${summary.resumed} unknown_settings=${summary.unknown_settings}`,
+  );
 }
-const summary = await produce(items, previousItems);
-if (!dryRun) {
-  const mergedItems = await mergeProducedInventory(inventory, items, previousItems);
-  await writeManifest(mergedItems, summary, inventory.length, items.length);
-}
-console.log(
-  `narration selected=${items.length} expected=${inventory.length} standard=${standardItems.length} variants=${variantItems.length} lessons=${items.filter((item) => item.kind === "lesson").length} vocabulary=${items.filter((item) => item.kind === "vocabulary").length} variant_items=${items.filter((item) => item.kind === "variant").length} characters=${items.reduce((total, item) => total + item.text.length, 0)} produced=${summary.produced} skipped=${summary.skipped} planned=${summary.planned}`,
-);
+
+if (dryRun) await main();
+else await withProductionLock(path.dirname(checkpointRoot), main);

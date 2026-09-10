@@ -18,6 +18,17 @@ import (
 
 const schoolCurriculumPath = "/v1/school/curriculum/objectives"
 
+func TestIsolatedSchoolSchemaDoesNotOwnDatabaseExtensions(t *testing.T) {
+	_, _, pool := parentChildSecurityServer(t)
+	var extensionSchema string
+	if err := pool.QueryRow(context.Background(), `SELECT n.nspname FROM pg_extension e JOIN pg_namespace n ON n.oid=e.extnamespace WHERE e.extname='pgcrypto'`).Scan(&extensionSchema); err != nil {
+		t.Fatal(err)
+	}
+	if extensionSchema != "public" {
+		t.Fatalf("database-global pgcrypto belongs to disposable schema %q; parallel test cleanup can drop it", extensionSchema)
+	}
+}
+
 type schoolCurriculumHTTPPage struct {
 	Year       int    `json:"year"`
 	Subject    string `json:"subject"`

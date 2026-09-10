@@ -13,6 +13,7 @@ import (
 
 	"github.com/ArowuTest/nexuslearn/apps/api/internal/database"
 	"github.com/ArowuTest/nexuslearn/apps/api/internal/learning"
+	"github.com/ArowuTest/nexuslearn/apps/api/internal/testdb"
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
 )
@@ -35,6 +36,9 @@ func TestBrowserRoleJourneys(t *testing.T) {
 		t.Fatal(err)
 	}
 	defer admin.Close()
+	if err := testdb.PrepareExtensions(ctx, admin); err != nil {
+		t.Fatal(err)
+	}
 	schema := fmt.Sprintf("browser_roles_%d", time.Now().UnixNano())
 	identifier := pgx.Identifier{schema}.Sanitize()
 	if _, err := admin.Exec(ctx, "CREATE SCHEMA "+identifier); err != nil {

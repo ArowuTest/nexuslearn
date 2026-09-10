@@ -14,6 +14,7 @@ import (
 
 	"github.com/ArowuTest/nexuslearn/apps/api/internal/database"
 	"github.com/ArowuTest/nexuslearn/apps/api/internal/learning"
+	"github.com/ArowuTest/nexuslearn/apps/api/internal/testdb"
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
 )
@@ -27,6 +28,10 @@ func parentChildSecurityServer(t *testing.T) (*Server, learning.Repository, *pgx
 	ctx := context.Background()
 	admin, err := pgxpool.New(ctx, dsn)
 	if err != nil {
+		t.Fatal(err)
+	}
+	if err := testdb.PrepareExtensions(ctx, admin); err != nil {
+		admin.Close()
 		t.Fatal(err)
 	}
 	schema := fmt.Sprintf("parent_child_security_%d", time.Now().UnixNano())
