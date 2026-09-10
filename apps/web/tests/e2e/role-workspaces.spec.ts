@@ -230,6 +230,7 @@ test("school workspace clears all organisation state on logout and failed accoun
 
   await page.goto("/school-admin");
   await signInToSchool(page, "teacher-one");
+  await page.getByLabel("Selected school learner").selectOption("ava-y3");
   await expect(page.getByText("Ava confidential plan", { exact: true }).first()).toBeVisible();
   await expect(page.getByText("Ava moderated evidence")).toBeVisible();
   await expect(page.getByText("Ava fractions priority")).toBeVisible();
@@ -261,6 +262,7 @@ test("school workspace clears all organisation state on logout and failed accoun
   await expect(page.getByLabel("Selected school learner")).toHaveCount(0);
 
   await signInToSchool(page, "teacher-one");
+  await page.getByLabel("Selected school learner").selectOption("ava-y3");
   await expect(page.getByText("Ava confidential plan", { exact: true }).first()).toBeVisible();
   await page.getByRole("button", { name: "Sign out", exact: true }).click();
   await page.getByLabel("Login ID").fill("teacher-two");

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useEffectEvent, useMemo, useRef, useState } from "react";
 import MockAssessmentBuilder from "@/components/MockAssessmentBuilder";
 import MockAssessmentHistory from "@/components/MockAssessmentHistory";
 import ProgressSnapshot from "@/components/ProgressSnapshot";
@@ -9,8 +9,10 @@ import AttemptEvidencePanel from "@/components/AttemptEvidencePanel";
 import { Actions, BooleanField, ChoiceGrid, Field, LabeledSelect, LearnerScopeNotice, Panel, PurposeSelect, Row, TextArea } from "@/components/role-workspaces/SchoolWorkspacePrimitives";
 import SchoolAccessCards from "@/components/role-workspaces/SchoolAccessCards";
 import SchoolLearningTask from "@/components/role-workspaces/SchoolLearningTask";
+import SchoolInterventionReview from "@/components/role-workspaces/SchoolInterventionReview";
+import SchoolRecordRows from "@/components/role-workspaces/SchoolRecordRows";
 import { WorkspaceNavigation, WorkspaceState } from "@/components/role-workspaces/WorkspaceNavigation";
-import { accountSessionHeaders, logoutAccount, storeAccountSession, type AccountSession, type ProgressReport } from "@/lib/api";
+import { accountSessionHeaders, logoutAccount, storeAccountSession, subscribeAccountSession, type AccountSession, type ProgressReport } from "@/lib/api";
 
 type Student = { external_ref: string; display_name: string; year_group: number };
 type ClassGroup = { id?: string; school_urn?: string; name: string; year_group: number; students?: Student[] };
@@ -60,6 +62,11 @@ type InterventionReview = {
   next_review_due_at?: string;
   reviewed_at?: string;
 };
+type RecordKind = "assignment" | "evidence" | "intervention" | "review";
+type RecordState = "idle" | "loading" | "ready" | "error";
+const recordKinds: RecordKind[] = ["assignment", "evidence", "intervention", "review"];
+const recordEndpoints = { assignment: ["assignments", "assignments"], evidence: ["evidence", "teacher_evidence"], intervention: ["interventions", "interventions"], review: ["intervention-reviews", "intervention_reviews"] };
+const emptyRecordState = (): Record<RecordKind, RecordState> => ({ assignment: "idle", evidence: "idle", intervention: "idle", review: "idle" });
 type SchoolPortal = {
   school?: { urn: string; name: string; status: string };
   current_user?: SchoolUser;
@@ -159,12 +166,11 @@ export default function SchoolAdminPage() {
   const [teacherEvidence, setTeacherEvidence] = useState<TeacherEvidence[]>([]);
   const [interventions, setInterventions] = useState<Intervention[]>([]);
   const [interventionReviews, setInterventionReviews] = useState<InterventionReview[]>([]);
-  const [reviewDraft, setReviewDraft] = useState<InterventionReview>({
-    intervention_id: "",
-    outcome: "monitor",
-    evidence_note: "",
-    next_review_due_at: "",
-  });
+  const [reviewTarget, setReviewTarget] = useState({ id: "", version: 0 });
+  const [recordStates, setRecordStates] = useState(emptyRecordState);
+  const recordScope = useRef({ pupil: "", epoch: 0 });
+  const recordRequests = useRef({ assignment: 0, evidence: 0, intervention: 0, review: 0 });
+  const recordControllers = useRef<Partial<Record<RecordKind, AbortController>>>({});
   const [group, setGroup] = useState<LearningGroup>({ id: "", class_id: "", name: "", purpose: "intervention", students: [] });
   const [engagementPupil, setEngagementPupil] = useState("");
   const [engagementProfile, setEngagementProfile] = useState<StudentEngagementProfile>(emptyEngagementProfile());
@@ -188,6 +194,20 @@ export default function SchoolAdminPage() {
     [schoolStudents],
   );
   const selectedEngagementStudent = schoolStudents.find((item) => item.external_ref === engagementPupil);
+  const onSessionChanged = useEffectEvent(resetWorkspace);
+  useEffect(() => {
+    let owner = accountSessionHeaders(["school_admin", "teacher"]).Authorization;
+    const unsubscribe = subscribeAccountSession(() => {
+      const current = accountSessionHeaders(["school_admin", "teacher"]).Authorization;
+      if (owner !== current) { owner = current; onSessionChanged(); }
+    });
+    const controllers = recordControllers.current;
+    return () => {
+      unsubscribe();
+      workspaceLoadVersion.current++; recordScope.current.epoch++; supportRequest.current++; progressRequest.current++;
+      Object.values(controllers).forEach(controller => controller.abort());
+    };
+  }, []);
 
   const totals = useMemo(() => {
     const students = new Set<string>();
@@ -213,11 +233,7 @@ export default function SchoolAdminPage() {
     setStudent({ external_ref: "", display_name: "", year_group: 1 });
     setClassDraft({ id: "", name: "", year_group: 1, students: [] });
     setAssignment({ class_id: "", student_external_ref: "" });
-    setLearningAssignments([]);
-    setTeacherEvidence([]);
-    setInterventions([]);
-    setInterventionReviews([]);
-    setReviewDraft({ intervention_id: "", outcome: "monitor", evidence_note: "", next_review_due_at: "" });
+    clearLearningRecords("");
     setGroup({ id: "", class_id: "", name: "", purpose: "intervention", students: [] });
     setEngagementPupil("");
     clearSupportProfile();
@@ -249,26 +265,59 @@ export default function SchoolAdminPage() {
     }
   }
 
-  async function refreshLearningTask(kind: "assignment" | "evidence" | "intervention") {
-    const version = ++workspaceLoadVersion.current;
+  function clearLearningRecords(pupil: string) {
+    recordScope.current = { pupil, epoch: recordScope.current.epoch + 1 };
+    Object.values(recordControllers.current).forEach(controller => controller.abort());
+    setLearningAssignments([]); setTeacherEvidence([]); setInterventions([]); setInterventionReviews([]);
+    setRecordStates(emptyRecordState());
+    setReviewTarget(current => ({ id: "", version: current.version + 1 }));
+  }
+
+  function selectLearner(pupil: string) {
+    clearLearningRecords(pupil);
+    setEngagementPupil(pupil);
+    clearSupportProfile(pupil);
+    clearProgressReport();
+    if (pupil) recordKinds.forEach(kind => { void refreshLearningTask(kind).catch(() => {}); });
+  }
+
+  async function refreshLearningTask(kind: RecordKind) {
+    const { pupil, epoch } = recordScope.current;
+    if (!pupil) return;
+    const version = ++recordRequests.current[kind];
+    recordControllers.current[kind]?.abort();
+    const controller = new AbortController();
+    recordControllers.current[kind] = controller;
     const owner = headers().Authorization;
-    const current = () => version === workspaceLoadVersion.current && owner === headers().Authorization;
-    const path = kind === "assignment" ? "assignments" : kind === "evidence" ? "evidence" : "interventions";
-    try {
-      const data = await apiFetch(`/v1/school/${path}`);
-      if (!current()) return;
-      if (kind === "assignment") setLearningAssignments(data.assignments ?? []);
-      else if (kind === "evidence") setTeacherEvidence(data.teacher_evidence ?? []);
-      else setInterventions(data.interventions ?? []);
-    } catch (error) {
-      if (!current()) return;
-      // Do not show an old list as current, or discard another task's draft
-      // because this read failed. Revoked access still removes all private UI.
+    const current = () => epoch === recordScope.current.epoch && version === recordRequests.current[kind] && owner === headers().Authorization;
+    const [path, field] = recordEndpoints[kind];
+    const clear = () => {
       if (kind === "assignment") setLearningAssignments([]);
       else if (kind === "evidence") setTeacherEvidence([]);
-      else setInterventions([]);
+      else if (kind === "intervention") setInterventions([]);
+      else setInterventionReviews([]);
+    };
+    clear();
+    setRecordStates(state => ({ ...state, [kind]: "loading" }));
+    try {
+      const data = await apiFetch(`/v1/school/${path}?studentId=${encodeURIComponent(pupil)}`, { signal: controller.signal });
+      if (!current()) return;
+      const items = data[field] ?? [];
+      // Defence in depth: a mis-scoped response must not enter a pupil's workspace.
+      if (!Array.isArray(items) || items.some(item => !item || item.student_external_ref !== pupil)) throw new Error("The pupil records could not be verified.");
+      if (kind === "assignment") setLearningAssignments(items);
+      else if (kind === "evidence") setTeacherEvidence(items);
+      else if (kind === "intervention") setInterventions(items);
+      else setInterventionReviews(items);
+      setRecordStates(state => ({ ...state, [kind]: "ready" }));
+    } catch (error) {
+      if (!current()) return;
+      clear();
+      setRecordStates(state => ({ ...state, [kind]: "error" }));
       if (error && typeof error === "object" && "status" in error && (error.status === 401 || error.status === 403)) resetWorkspace();
       throw error;
+    } finally {
+      if (recordControllers.current[kind] === controller) delete recordControllers.current[kind];
     }
   }
 
@@ -276,22 +325,14 @@ export default function SchoolAdminPage() {
     const loadVersion = workspaceLoadVersion.current + 1;
     workspaceLoadVersion.current = loadVersion;
     try {
-      const [data, assignmentData, evidenceData, interventionData, reviewData] = await Promise.all([
-        apiFetch("/v1/school/config?include_credentials=false"),
-        apiFetch("/v1/school/assignments"),
-        apiFetch("/v1/school/evidence"),
-        apiFetch("/v1/school/interventions"),
-        apiFetch("/v1/school/intervention-reviews"),
-      ]);
+      const data = await apiFetch("/v1/school/config?include_credentials=false");
       if (loadVersion !== workspaceLoadVersion.current) return;
       const loadedPortal = data as SchoolPortal;
       if (!loadedPortal.current_user) throw new Error("School workspace authentication could not be verified.");
       setPortal(loadedPortal);
       setCardRevision(value => value + 1);
-      setLearningAssignments(assignmentData.assignments ?? []);
-      setTeacherEvidence(evidenceData.teacher_evidence ?? []);
-      setInterventions(interventionData.interventions ?? []);
-      setInterventionReviews(reviewData.intervention_reviews ?? []);
+      const pupil = recordScope.current.pupil;
+      if (pupil && !(loadedPortal.classes ?? []).some(item => item.students?.some(student => student.external_ref === pupil))) selectLearner("");
     } catch (error) {
       if (loadVersion === workspaceLoadVersion.current) resetWorkspace();
       throw error;
@@ -435,21 +476,6 @@ export default function SchoolAdminPage() {
     });
   }
 
-  async function saveInterventionReview() {
-    await guarded("Saving intervention reassessment...", async () => {
-      await apiFetch(`/v1/school/interventions/${reviewDraft.intervention_id}/reviews`, {
-        method: "POST",
-        body: JSON.stringify({
-          outcome: reviewDraft.outcome,
-          evidence_note: reviewDraft.evidence_note,
-          next_review_due_at: reviewDraft.next_review_due_at ? new Date(reviewDraft.next_review_due_at).toISOString() : "",
-        }),
-      });
-      setReviewDraft({ intervention_id: "", outcome: "monitor", evidence_note: "", next_review_due_at: "" });
-      await load();
-    });
-  }
-
   async function guarded(progress: string, action: () => Promise<void>) {
     setSaving(true);
     setMessage(progress);
@@ -572,9 +598,7 @@ export default function SchoolAdminPage() {
                 labels={schoolStudentLabels}
                 onChange={(studentExternalRef) => {
                   const scopedStudentRef = schoolStudents.some((item) => item.external_ref === studentExternalRef) ? studentExternalRef : "";
-                  setEngagementPupil(scopedStudentRef);
-                  clearSupportProfile(scopedStudentRef);
-                  clearProgressReport();
+                  selectLearner(scopedStudentRef);
                 }}
               />
             </fieldset>
@@ -605,7 +629,8 @@ export default function SchoolAdminPage() {
             </Panel>
             <SchoolLearningTask key={`assignment:${engagementPupil}`} kind="assignment" learner={selectedEngagementStudent} disabled={saving} request={apiFetch} onSaved={() => refreshLearningTask("assignment")} onBusyChange={setTaskSaving} />
             <Panel title="Active Learning Assignments">
-              {learningAssignments.filter((item) => item.status === "active").map((item) => (
+              <RecordStatus state={recordStates.assignment} retry={() => void refreshLearningTask("assignment").catch(() => {})} disabled={saving} />
+              <SchoolRecordRows key={`${engagementPupil}:${recordStates.assignment}`} limitNote={learningAssignments.length >= 500 ? "This view contains up to 500 saved priorities for this pupil, not the complete historical archive." : undefined}>{learningAssignments.filter((item) => item.status === "active").map((item) => (
                 <Row
                   key={item.id}
                   title={item.title}
@@ -613,7 +638,8 @@ export default function SchoolAdminPage() {
                   body={`${item.objective_id}${item.due_at ? ` / due ${new Date(item.due_at).toLocaleDateString()}` : ""}`}
                 />
               ))}
-              {learningAssignments.filter((item) => item.status === "active").length === 0 && (
+              </SchoolRecordRows>
+              {recordStates.assignment === "ready" && learningAssignments.filter((item) => item.status === "active").length === 0 && (
                 <div className="p-5 text-sm leading-6 text-[#17233f]/58">
                   Teachers can place a curriculum objective into a pupil&apos;s adaptive queue.
                 </div>
@@ -632,7 +658,8 @@ const target = selectedEngagementStudent;
             </Panel>
             <SchoolLearningTask key={`evidence:${engagementPupil}`} kind="evidence" learner={selectedEngagementStudent} disabled={saving} request={apiFetch} onSaved={() => refreshLearningTask("evidence")} onBusyChange={setTaskSaving} />
             <Panel title="Moderated Teacher Evidence">
-              {teacherEvidence.slice(0, 12).map((item) => (
+              <RecordStatus state={recordStates.evidence} retry={() => void refreshLearningTask("evidence").catch(() => {})} disabled={saving} />
+              <SchoolRecordRows key={`${engagementPupil}:${recordStates.evidence}`} limitNote={teacherEvidence.length >= 200 ? "The latest 200 evidence records for this pupil are loaded. Older records are not included in this view." : undefined}>{teacherEvidence.map((item) => (
                 <Row
                   key={item.id}
                   title={`${item.student_display_name || item.student_external_ref}: ${item.outcome.replaceAll("_", " ")}`}
@@ -640,7 +667,8 @@ const target = selectedEngagementStudent;
                   body={`${item.objective_id} / ${item.note}`}
                 />
               ))}
-              {teacherEvidence.length === 0 && <div className="p-5 text-sm text-[#17233f]/58">No moderated evidence recorded.</div>}
+              </SchoolRecordRows>
+              {recordStates.evidence === "ready" && teacherEvidence.length === 0 && <div className="p-5 text-sm text-[#17233f]/58">No moderated evidence recorded for this pupil.</div>}
             </Panel>
           </div>
         </section>
@@ -718,7 +746,8 @@ const target = selectedEngagementStudent;
             </Panel>
             <SchoolLearningTask key={`intervention:${engagementPupil}`} kind="intervention" learner={selectedEngagementStudent} disabled={saving} request={apiFetch} onSaved={() => refreshLearningTask("intervention")} onBusyChange={setTaskSaving} />
             <Panel title="Active Interventions">
-              {interventions.filter((item) => item.status === "active" || item.status === "monitoring").map((item) => (
+              <RecordStatus state={recordStates.intervention} retry={() => void refreshLearningTask("intervention").catch(() => {})} disabled={saving} />
+              <SchoolRecordRows key={`${engagementPupil}:${recordStates.intervention}`} limitNote={interventions.length >= 500 ? "Up to 500 plans are loaded for this pupil, ordered by status and priority. This is not the complete historical archive." : undefined}>{interventions.filter((item) => item.status === "active" || item.status === "monitoring").map((item) => (
                 <Row
                   key={item.id}
                   title={item.title}
@@ -726,12 +755,8 @@ const target = selectedEngagementStudent;
                   body={`${item.need} Strategy: ${item.strategy}`}
                   action={item.id ? (
                     <button
-                      onClick={() => setReviewDraft({
-                        intervention_id: item.id!,
-                        outcome: item.status === "monitoring" ? "complete" : "monitor",
-                        evidence_note: "",
-                        next_review_due_at: "",
-                      })}
+                      disabled={saving}
+                      onClick={() => setReviewTarget(current => ({ id: item.id!, version: current.version + 1 }))}
                       className="rounded-lg bg-[#55cbd3]/20 px-3 py-2 text-xs font-semibold text-[#155d64]"
                     >
                       Review evidence
@@ -739,27 +764,13 @@ const target = selectedEngagementStudent;
                   ) : null}
                 />
               ))}
-              {interventions.length === 0 && <div className="p-5 text-sm text-[#17233f]/58">No intervention plans recorded.</div>}
+              </SchoolRecordRows>
+              {recordStates.intervention === "ready" && interventions.filter(item => item.status === "active" || item.status === "monitoring").length === 0 && <div className="p-5 text-sm text-[#17233f]/58">No active intervention plans for this pupil.</div>}
             </Panel>
-            <Panel title="Review Intervention Evidence">
-              <LabeledSelect
-                label="Intervention"
-                value={reviewDraft.intervention_id}
-                values={["", ...interventions.filter((item) => item.id).map((item) => item.id!)]}
-                labels={Object.fromEntries(interventions.filter((item) => item.id).map((item) => [item.id!, `${item.student_display_name || item.student_external_ref}: ${item.title}`]))}
-                onChange={(intervention_id) => setReviewDraft({ ...reviewDraft, intervention_id })}
-              />
-              <LabeledSelect label="Review outcome" value={reviewDraft.outcome} values={["continue", "monitor", "complete", "reopen"]} onChange={(outcome) => setReviewDraft({ ...reviewDraft, outcome: outcome as InterventionReview["outcome"] })} />
-              <Field label="Reassessment evidence" value={reviewDraft.evidence_note} onChange={(evidence_note) => setReviewDraft({ ...reviewDraft, evidence_note })} />
-              <Field label="Next review date" type="datetime-local" value={reviewDraft.next_review_due_at ?? ""} onChange={(next_review_due_at) => setReviewDraft({ ...reviewDraft, next_review_due_at })} />
-              <Actions
-                label="Save reassessment"
-                disabled={!reviewDraft.intervention_id || !reviewDraft.evidence_note || (reviewDraft.outcome !== "complete" && !reviewDraft.next_review_due_at) || saving}
-                onClick={saveInterventionReview}
-              />
-            </Panel>
+            <SchoolInterventionReview key={`review:${engagementPupil}:${reviewTarget.version}`} learner={selectedEngagementStudent} initialID={reviewTarget.id} interventions={interventions} disabled={saving} request={apiFetch} onBusyChange={setTaskSaving} onSaved={async () => { await Promise.all([refreshLearningTask("intervention"), refreshLearningTask("review")]); }} />
             <Panel title="Intervention Reassessment History">
-              {interventionReviews.slice(0, 12).map((review) => (
+              <RecordStatus state={recordStates.review} retry={() => void refreshLearningTask("review").catch(() => {})} disabled={saving} />
+              <SchoolRecordRows key={`${engagementPupil}:${recordStates.review}`} limitNote={interventionReviews.length >= 500 ? "The latest 500 reassessments for this pupil are loaded. Older records are not included in this view." : undefined}>{interventionReviews.map((review) => (
                 <Row
                   key={review.id}
                   title={`${review.student_display_name || review.student_external_ref}: ${review.outcome}`}
@@ -767,7 +778,8 @@ const target = selectedEngagementStudent;
                   body={`${review.objective_id || "Objective"} / ${review.evidence_note}${review.next_review_due_at ? ` / next review ${new Date(review.next_review_due_at).toLocaleDateString()}` : ""}`}
                 />
               ))}
-              {interventionReviews.length === 0 && <div className="p-5 text-sm text-[#17233f]/58">No reassessment records yet.</div>}
+              </SchoolRecordRows>
+              {recordStates.review === "ready" && interventionReviews.length === 0 && <div className="p-5 text-sm text-[#17233f]/58">No reassessment records for this pupil yet.</div>}
             </Panel>
           </div>
         </section>
@@ -775,6 +787,14 @@ const target = selectedEngagementStudent;
       </div>
     </main>
   );
+}
+
+function RecordStatus({ state, retry, disabled }: { state: RecordState; retry: () => void; disabled: boolean }) {
+  if (state === "ready") return null;
+  return <div className="p-5 text-sm text-[#42506b]">
+    <p role={state === "error" ? "alert" : undefined} aria-live="polite">{state === "idle" ? "Choose a pupil above to see their records." : state === "loading" ? "Loading this pupil's records…" : "This pupil's records could not be loaded. No previous pupil's records are shown."}</p>
+    {state === "error" && <button className="mt-3 min-h-11 rounded-lg bg-[#ffbf45] px-4 font-semibold disabled:opacity-50" disabled={disabled} onClick={retry}>Retry pupil records</button>}
+  </div>;
 }
 
 function slug(value: string) {

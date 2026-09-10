@@ -285,7 +285,7 @@ test("a confirmed teacher save remains visible when refreshing its list fails", 
   const area = taskPanel(page, "evidence");
   await area.getByLabel("Evidence note").fill("This record was successfully saved.");
   await taskPanel(page).getByLabel("Teacher note/title").fill("Preserve the other task's draft.");
-  await page.route("http://api.test/v1/school/evidence", route => route.request().method() === "GET"
+  await page.route("http://api.test/v1/school/evidence?*", route => route.request().method() === "GET"
     ? route.fulfill({ status: 503, json: { error: "Temporarily unavailable" } }) : route.fallback());
   await area.getByRole("button", { name: "Save teacher evidence", exact: true }).click();
   await expect(area.getByRole("alert")).toContainText("Teacher evidence saved.");
@@ -294,7 +294,7 @@ test("a confirmed teacher save remains visible when refreshing its list fails", 
   await expect(taskPanel(page).getByLabel("Teacher note/title")).toHaveValue("Preserve the other task's draft.");
   await expect(area.getByLabel("Evidence note")).toHaveValue("");
   expect(writes.filter(item => item.path === "/v1/school/evidence")).toHaveLength(1);
-  await page.unroute("http://api.test/v1/school/evidence");
+  await page.unroute("http://api.test/v1/school/evidence?*");
   await area.getByRole("button", { name: "Refresh saved records", exact: true }).click();
   await expect(area.getByText("Teacher evidence saved.", { exact: true })).toBeVisible();
   await expect(area.getByRole("button", { name: "Refresh saved records", exact: true })).toHaveCount(0);
@@ -307,7 +307,7 @@ test("a denied post-save refresh clears the private school workspace", async ({ 
   await chooseObjective(page, "evidence");
   const area = taskPanel(page, "evidence");
   await area.getByLabel("Evidence note").fill("Only visible to the authorised school.");
-  await page.route("http://api.test/v1/school/evidence", route => route.request().method() === "GET"
+  await page.route("http://api.test/v1/school/evidence?*", route => route.request().method() === "GET"
     ? route.fulfill({ status: 403, json: { error: "School access revoked" } }) : route.fallback());
   await area.getByRole("button", { name: "Save teacher evidence", exact: true }).click();
   await expect(page.getByRole("navigation", { name: "School workspace sections" })).toHaveCount(0);

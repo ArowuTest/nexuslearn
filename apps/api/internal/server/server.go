@@ -2031,11 +2031,11 @@ func (s *Server) handleSchoolAssignStudentToGroup(w http.ResponseWriter, r *http
 }
 
 func (s *Server) handleSchoolAssignments(w http.ResponseWriter, r *http.Request) {
-	user, ok := s.requireSchoolUser(w, r)
+	user, studentRef, ok := s.requireSchoolRecordRead(w, r)
 	if !ok {
 		return
 	}
-	assignments, err := s.repo.ListAssignments(r.Context(), user.SchoolURN, r.URL.Query().Get("studentId"))
+	assignments, err := s.repo.ListAssignments(r.Context(), user.SchoolURN, studentRef)
 	if err != nil {
 		slog.Warn("failed to list school assignments", "error", err)
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not load assignments"})
@@ -2066,11 +2066,11 @@ func (s *Server) handleSchoolCreateAssignment(w http.ResponseWriter, r *http.Req
 }
 
 func (s *Server) handleSchoolTeacherEvidence(w http.ResponseWriter, r *http.Request) {
-	user, ok := s.requireSchoolUser(w, r)
+	user, studentRef, ok := s.requireSchoolRecordRead(w, r)
 	if !ok {
 		return
 	}
-	records, err := s.repo.ListTeacherEvidence(r.Context(), user.SchoolURN, r.URL.Query().Get("studentId"))
+	records, err := s.repo.ListTeacherEvidence(r.Context(), user.SchoolURN, studentRef)
 	if err != nil {
 		slog.Warn("failed to list teacher evidence", "error", err)
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not load teacher evidence"})
@@ -2101,11 +2101,11 @@ func (s *Server) handleSchoolCreateTeacherEvidence(w http.ResponseWriter, r *htt
 }
 
 func (s *Server) handleSchoolInterventions(w http.ResponseWriter, r *http.Request) {
-	user, ok := s.requireSchoolUser(w, r)
+	user, studentRef, ok := s.requireSchoolRecordRead(w, r)
 	if !ok {
 		return
 	}
-	plans, err := s.repo.ListInterventions(r.Context(), user.SchoolURN, r.URL.Query().Get("studentId"))
+	plans, err := s.repo.ListInterventions(r.Context(), user.SchoolURN, studentRef)
 	if err != nil {
 		slog.Warn("failed to list interventions", "error", err)
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not load interventions"})
@@ -2156,11 +2156,11 @@ func (s *Server) handleSchoolUpdateInterventionStatus(w http.ResponseWriter, r *
 }
 
 func (s *Server) handleSchoolInterventionReviews(w http.ResponseWriter, r *http.Request) {
-	user, ok := s.requireSchoolUser(w, r)
+	user, studentRef, ok := s.requireSchoolRecordRead(w, r)
 	if !ok {
 		return
 	}
-	reviews, err := s.repo.ListInterventionReviews(r.Context(), user.SchoolURN, r.URL.Query().Get("studentId"))
+	reviews, err := s.repo.ListInterventionReviews(r.Context(), user.SchoolURN, studentRef)
 	if err != nil {
 		slog.Warn("failed to list intervention reviews", "error", err)
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not load intervention reviews"})
