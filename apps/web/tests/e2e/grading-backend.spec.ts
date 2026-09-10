@@ -1,6 +1,8 @@
 import { expect, test } from "@playwright/test";
 
 test("real canonical decimal grading survives a lost acknowledgement without duplicate mastery", async ({ page }, info) => {
+  page.on("requestfailed", request => console.info("grading QA request failure", new URL(request.url()).pathname, request.failure()?.errorText));
+  page.on("console", message => { if (message.type() === "error") console.info("grading QA browser error", message.text()); });
   const api = process.env.GRADING_API_URL;
   test.skip(!api, "Run via the API TestBrowserCanonicalGrading disposable-database harness.");
   const url = new URL(api!);

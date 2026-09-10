@@ -344,6 +344,7 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("GET /v1/curriculum/release-status", s.handleCurriculumReleaseStatus)
 	s.mux.HandleFunc("GET /v1/runtime/flags", s.handleRuntimeFlags)
 	s.mux.HandleFunc("GET /v1/school/config", s.handleSchoolConfig)
+	s.mux.HandleFunc("GET /v1/school/curriculum/objectives", s.handleSchoolCurriculumObjectives)
 	s.mux.HandleFunc("PUT /v1/school/students/{externalRef}", s.handleSchoolUpsertStudent)
 	s.mux.HandleFunc("GET /v1/school/students/{externalRef}/engagement", s.handleSchoolStudentEngagement)
 	s.mux.HandleFunc("GET /v1/school/students/{externalRef}/progress", s.handleSchoolStudentProgress)

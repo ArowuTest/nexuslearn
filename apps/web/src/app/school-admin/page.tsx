@@ -8,6 +8,7 @@ import ProgressSnapshot from "@/components/ProgressSnapshot";
 import AttemptEvidencePanel from "@/components/AttemptEvidencePanel";
 import { Actions, BooleanField, ChoiceGrid, Field, LabeledSelect, LearnerScopeNotice, Panel, PurposeSelect, Row, TextArea } from "@/components/role-workspaces/SchoolWorkspacePrimitives";
 import SchoolAccessCards from "@/components/role-workspaces/SchoolAccessCards";
+import SchoolLearningTask from "@/components/role-workspaces/SchoolLearningTask";
 import { WorkspaceNavigation, WorkspaceState } from "@/components/role-workspaces/WorkspaceNavigation";
 import { accountSessionHeaders, logoutAccount, storeAccountSession, type AccountSession, type ProgressReport } from "@/lib/api";
 
@@ -148,28 +149,14 @@ export default function SchoolAdminPage() {
   const [password, setPassword] = useState("");
   const [portal, setPortal] = useState<SchoolPortal | null>(null);
   const [message, setMessage] = useState("Use the school login details issued by platform admin.");
-  const [saving, setSaving] = useState(false);
+  const [working, setSaving] = useState(false);
+  const [taskSaving, setTaskSaving] = useState(false);
+  const saving = working || taskSaving;
   const [student, setStudent] = useState<Student>({ external_ref: "", display_name: "", year_group: 1 });
   const [classDraft, setClassDraft] = useState<ClassGroup>({ id: "", name: "", year_group: 1, students: [] });
   const [assignment, setAssignment] = useState({ class_id: "", student_external_ref: "" });
   const [learningAssignments, setLearningAssignments] = useState<LearningAssignment[]>([]);
-  const [learningAssignment, setLearningAssignment] = useState<LearningAssignment>({
-    student_external_ref: "",
-    objective_id: "",
-    activity_id: "",
-    title: "",
-    priority: 70,
-    due_at: "",
-  });
   const [teacherEvidence, setTeacherEvidence] = useState<TeacherEvidence[]>([]);
-  const [evidenceDraft, setEvidenceDraft] = useState<TeacherEvidence>({
-    student_external_ref: "",
-    objective_id: "",
-    evidence_type: "observation",
-    outcome: "developing",
-    note: "",
-    source_ref: "",
-  });
   const [interventions, setInterventions] = useState<Intervention[]>([]);
   const [interventionReviews, setInterventionReviews] = useState<InterventionReview[]>([]);
   const [reviewDraft, setReviewDraft] = useState<InterventionReview>({
@@ -177,15 +164,6 @@ export default function SchoolAdminPage() {
     outcome: "monitor",
     evidence_note: "",
     next_review_due_at: "",
-  });
-  const [interventionDraft, setInterventionDraft] = useState<Intervention>({
-    student_external_ref: "",
-    objective_id: "",
-    title: "",
-    need: "",
-    strategy: "",
-    priority: 85,
-    review_due_at: "",
   });
   const [group, setGroup] = useState<LearningGroup>({ id: "", class_id: "", name: "", purpose: "intervention", students: [] });
   const [engagementPupil, setEngagementPupil] = useState("");
@@ -221,7 +199,7 @@ export default function SchoolAdminPage() {
     ];
   }, [portal]);
 
-  function headers() {
+  function headers(): Record<string, string> {
     return {
       "Content-Type": "application/json",
       ...accountSessionHeaders(["school_admin", "teacher"]),
@@ -231,17 +209,15 @@ export default function SchoolAdminPage() {
   function resetWorkspace() {
     workspaceLoadVersion.current += 1;
     setPortal(null);
+    setTaskSaving(false);
     setStudent({ external_ref: "", display_name: "", year_group: 1 });
     setClassDraft({ id: "", name: "", year_group: 1, students: [] });
     setAssignment({ class_id: "", student_external_ref: "" });
     setLearningAssignments([]);
-    setLearningAssignment({ student_external_ref: "", objective_id: "", activity_id: "", title: "", priority: 70, due_at: "" });
     setTeacherEvidence([]);
-    setEvidenceDraft({ student_external_ref: "", objective_id: "", evidence_type: "observation", outcome: "developing", note: "", source_ref: "" });
     setInterventions([]);
     setInterventionReviews([]);
     setReviewDraft({ intervention_id: "", outcome: "monitor", evidence_note: "", next_review_due_at: "" });
-    setInterventionDraft({ student_external_ref: "", objective_id: "", title: "", need: "", strategy: "", priority: 85, review_due_at: "" });
     setGroup({ id: "", class_id: "", name: "", purpose: "intervention", students: [] });
     setEngagementPupil("");
     clearSupportProfile();
@@ -254,10 +230,46 @@ export default function SchoolAdminPage() {
     if ((options.method || "GET").toUpperCase() === "POST" && !requestHeaders["Idempotency-Key"]) {
       requestHeaders["Idempotency-Key"] = typeof crypto !== "undefined" && typeof crypto.randomUUID === "function" ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`;
     }
-    const res = await fetch(`${API}${path}`, { ...options, headers: requestHeaders });
-    const body = await res.json().catch(() => ({}));
-    if (!res.ok) throw new Error(body.error ?? "Request failed.");
-    return body;
+    const controller = new AbortController();
+    const abort = () => controller.abort();
+    options.signal?.addEventListener("abort", abort, { once: true });
+    if (options.signal?.aborted) abort();
+    const timeout = setTimeout(abort, 15_000);
+    try {
+      const res = await fetch(`${API}${path}`, { ...options, headers: requestHeaders, signal: controller.signal });
+      const body = await res.json().catch(() => null);
+      // A timed-out or malformed success body cannot confirm a durable save.
+      if (controller.signal.aborted) throw new Error("The school request timed out. Please retry.");
+      if (!res.ok) throw Object.assign(new Error(body?.error ?? "Request failed."), { status: res.status });
+      if (!body || typeof body !== "object") throw new Error("The school response could not be verified.");
+      return body;
+    } finally {
+      clearTimeout(timeout);
+      options.signal?.removeEventListener("abort", abort);
+    }
+  }
+
+  async function refreshLearningTask(kind: "assignment" | "evidence" | "intervention") {
+    const version = ++workspaceLoadVersion.current;
+    const owner = headers().Authorization;
+    const current = () => version === workspaceLoadVersion.current && owner === headers().Authorization;
+    const path = kind === "assignment" ? "assignments" : kind === "evidence" ? "evidence" : "interventions";
+    try {
+      const data = await apiFetch(`/v1/school/${path}`);
+      if (!current()) return;
+      if (kind === "assignment") setLearningAssignments(data.assignments ?? []);
+      else if (kind === "evidence") setTeacherEvidence(data.teacher_evidence ?? []);
+      else setInterventions(data.interventions ?? []);
+    } catch (error) {
+      if (!current()) return;
+      // Do not show an old list as current, or discard another task's draft
+      // because this read failed. Revoked access still removes all private UI.
+      if (kind === "assignment") setLearningAssignments([]);
+      else if (kind === "evidence") setTeacherEvidence([]);
+      else setInterventions([]);
+      if (error && typeof error === "object" && "status" in error && (error.status === 401 || error.status === 403)) resetWorkspace();
+      throw error;
+    }
   }
 
   async function loadWorkspace() {
@@ -423,73 +435,6 @@ export default function SchoolAdminPage() {
     });
   }
 
-  async function saveLearningAssignment() {
-    await guarded("Assigning learning priority...", async () => {
-      await apiFetch("/v1/school/assignments", {
-        method: "POST",
-        body: JSON.stringify({
-          ...learningAssignment,
-          student_external_ref: slug(learningAssignment.student_external_ref),
-          due_at: learningAssignment.due_at ? new Date(learningAssignment.due_at).toISOString() : "",
-          status: "active",
-          priority: Number(learningAssignment.priority),
-        }),
-      });
-      setLearningAssignment({
-        student_external_ref: "",
-        objective_id: "",
-        activity_id: "",
-        title: "",
-        priority: 70,
-        due_at: "",
-      });
-      await load();
-    });
-  }
-
-  async function saveTeacherEvidence() {
-    await guarded("Saving moderated teacher evidence...", async () => {
-      await apiFetch("/v1/school/evidence", {
-        method: "POST",
-        body: JSON.stringify({ ...evidenceDraft, student_external_ref: slug(evidenceDraft.student_external_ref) }),
-      });
-      setEvidenceDraft({
-        student_external_ref: "",
-        objective_id: "",
-        evidence_type: "observation",
-        outcome: "developing",
-        note: "",
-        source_ref: "",
-      });
-      await load();
-    });
-  }
-
-  async function saveIntervention() {
-    await guarded("Creating intervention plan...", async () => {
-      await apiFetch("/v1/school/interventions", {
-        method: "POST",
-        body: JSON.stringify({
-          ...interventionDraft,
-          student_external_ref: slug(interventionDraft.student_external_ref),
-          priority: Number(interventionDraft.priority),
-          review_due_at: interventionDraft.review_due_at ? new Date(interventionDraft.review_due_at).toISOString() : "",
-          status: "active",
-        }),
-      });
-      setInterventionDraft({
-        student_external_ref: "",
-        objective_id: "",
-        title: "",
-        need: "",
-        strategy: "",
-        priority: 85,
-        review_due_at: "",
-      });
-      await load();
-    });
-  }
-
   async function saveInterventionReview() {
     await guarded("Saving intervention reassessment...", async () => {
       await apiFetch(`/v1/school/interventions/${reviewDraft.intervention_id}/reviews`, {
@@ -619,6 +564,7 @@ export default function SchoolAdminPage() {
           <h2 className="font-display text-3xl font-semibold">Learning &amp; evidence</h2>
           <p className="mt-2 text-sm leading-6 text-[#42506b]">Choose one pupil for their progress, assignments, subject checks and support. Each subject can progress independently.</p>
           <div className="my-5 rounded-lg bg-white shadow-card">
+            <fieldset disabled={taskSaving}>
               <LabeledSelect
                 label="Selected school learner"
                 value={engagementPupil}
@@ -629,11 +575,9 @@ export default function SchoolAdminPage() {
                   setEngagementPupil(scopedStudentRef);
                   clearSupportProfile(scopedStudentRef);
                   clearProgressReport();
-                  setLearningAssignment((current) => ({ ...current, student_external_ref: scopedStudentRef }));
-                  setEvidenceDraft((current) => ({ ...current, student_external_ref: scopedStudentRef }));
-                  setInterventionDraft((current) => ({ ...current, student_external_ref: scopedStudentRef }));
                 }}
               />
+            </fieldset>
           </div>
           <div className="grid items-start gap-6 lg:grid-cols-2">
             <Panel title="Learner Progress Snapshot">
@@ -659,19 +603,7 @@ export default function SchoolAdminPage() {
                 </div>
               )}
             </Panel>
-            <Panel title="Assign Learning Priority">
-              <LearnerScopeNotice purpose="assignment" learner={selectedEngagementStudent} />
-              <Field label="Objective ID" value={learningAssignment.objective_id} onChange={(objective_id) => setLearningAssignment({ ...learningAssignment, objective_id })} />
-              <Field label="Activity ID (optional)" value={learningAssignment.activity_id ?? ""} onChange={(activity_id) => setLearningAssignment({ ...learningAssignment, activity_id })} />
-              <Field label="Teacher note/title" value={learningAssignment.title} onChange={(title) => setLearningAssignment({ ...learningAssignment, title })} />
-              <Field label="Priority 1-100" type="number" value={learningAssignment.priority} onChange={(priority) => setLearningAssignment({ ...learningAssignment, priority: Number(priority) })} />
-              <Field label="Due date (optional)" type="datetime-local" value={learningAssignment.due_at ?? ""} onChange={(due_at) => setLearningAssignment({ ...learningAssignment, due_at })} />
-              <Actions
-                label="Assign learning"
-                disabled={!learningAssignment.student_external_ref || !learningAssignment.objective_id || !learningAssignment.title || saving}
-                onClick={saveLearningAssignment}
-              />
-            </Panel>
+            <SchoolLearningTask key={`assignment:${engagementPupil}`} kind="assignment" learner={selectedEngagementStudent} disabled={saving} request={apiFetch} onSaved={() => refreshLearningTask("assignment")} onBusyChange={setTaskSaving} />
             <Panel title="Active Learning Assignments">
               {learningAssignments.filter((item) => item.status === "active").map((item) => (
                 <Row
@@ -690,23 +622,15 @@ export default function SchoolAdminPage() {
             <Panel title="Generate Subject Mock">
               <LearnerScopeNotice purpose="mock" learner={selectedEngagementStudent} />
               {(() => {
-                const target = (portal?.classes ?? []).flatMap((item) => item.students ?? []).find((item) => item.external_ref === learningAssignment.student_external_ref);
+const target = selectedEngagementStudent;
                 return target ? (
                   <div className="p-5 pt-0">
                     <MockAssessmentBuilder key={`school:${target.external_ref}:${target.year_group}`} role="school" studentId={target.external_ref} studentName={target.display_name} yearGroup={target.year_group} />
                   </div>
-                ) : <p className="px-5 pb-5 text-sm leading-6 text-[#17233f]/58">Enter a pupil ID that belongs to this school to generate a scoped subject mock.</p>;
+                ) : <p className="px-5 pb-5 text-sm leading-6 text-[#17233f]/58">Choose a pupil above to generate a scoped subject mock.</p>;
               })()}
             </Panel>
-            <Panel title="Record Teacher Evidence">
-              <LearnerScopeNotice purpose="teacher evidence" learner={selectedEngagementStudent} />
-              <Field label="Objective ID" value={evidenceDraft.objective_id} onChange={(objective_id) => setEvidenceDraft({ ...evidenceDraft, objective_id })} />
-              <LabeledSelect label="Evidence type" value={evidenceDraft.evidence_type} values={["observation", "work_sample", "conversation", "assessment", "external"]} onChange={(evidence_type) => setEvidenceDraft({ ...evidenceDraft, evidence_type })} />
-              <LabeledSelect label="Outcome" value={evidenceDraft.outcome} values={["secure", "developing", "needs_support", "inconclusive"]} onChange={(outcome) => setEvidenceDraft({ ...evidenceDraft, outcome })} />
-              <Field label="Evidence note" value={evidenceDraft.note} onChange={(note) => setEvidenceDraft({ ...evidenceDraft, note })} />
-              <Field label="Source reference (optional)" value={evidenceDraft.source_ref ?? ""} onChange={(source_ref) => setEvidenceDraft({ ...evidenceDraft, source_ref })} />
-              <Actions label="Save teacher evidence" disabled={!evidenceDraft.student_external_ref || !evidenceDraft.objective_id || !evidenceDraft.note || saving} onClick={saveTeacherEvidence} />
-            </Panel>
+            <SchoolLearningTask key={`evidence:${engagementPupil}`} kind="evidence" learner={selectedEngagementStudent} disabled={saving} request={apiFetch} onSaved={() => refreshLearningTask("evidence")} onBusyChange={setTaskSaving} />
             <Panel title="Moderated Teacher Evidence">
               {teacherEvidence.slice(0, 12).map((item) => (
                 <Row
@@ -792,16 +716,7 @@ export default function SchoolAdminPage() {
               {engagementProfile.updated_at && <p className="px-5 pb-2 text-xs text-[#17233f]/52">Last updated {new Date(engagementProfile.updated_at).toLocaleString()}</p>}
               <Actions label="Save support profile" disabled={!selectedEngagementStudent || saving} onClick={() => syncEngagementProfile(true)} />
             </Panel>
-            <Panel title="Create Intervention Plan">
-              <LearnerScopeNotice purpose="intervention" learner={selectedEngagementStudent} />
-              <Field label="Objective ID" value={interventionDraft.objective_id} onChange={(objective_id) => setInterventionDraft({ ...interventionDraft, objective_id })} />
-              <Field label="Plan title" value={interventionDraft.title} onChange={(title) => setInterventionDraft({ ...interventionDraft, title })} />
-              <Field label="Identified learning need" value={interventionDraft.need} onChange={(need) => setInterventionDraft({ ...interventionDraft, need })} />
-              <Field label="Teaching strategy" value={interventionDraft.strategy} onChange={(strategy) => setInterventionDraft({ ...interventionDraft, strategy })} />
-              <Field label="Priority 1-100" type="number" value={interventionDraft.priority} onChange={(priority) => setInterventionDraft({ ...interventionDraft, priority: Number(priority) })} />
-              <Field label="Review date (optional)" type="datetime-local" value={interventionDraft.review_due_at ?? ""} onChange={(review_due_at) => setInterventionDraft({ ...interventionDraft, review_due_at })} />
-              <Actions label="Create intervention" disabled={!interventionDraft.student_external_ref || !interventionDraft.objective_id || !interventionDraft.title || !interventionDraft.need || !interventionDraft.strategy || saving} onClick={saveIntervention} />
-            </Panel>
+            <SchoolLearningTask key={`intervention:${engagementPupil}`} kind="intervention" learner={selectedEngagementStudent} disabled={saving} request={apiFetch} onSaved={() => refreshLearningTask("intervention")} onBusyChange={setTaskSaving} />
             <Panel title="Active Interventions">
               {interventions.filter((item) => item.status === "active" || item.status === "monitoring").map((item) => (
                 <Row

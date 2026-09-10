@@ -14,6 +14,22 @@ const nextConfig = {
         priority: 20,
         reuseExistingChunk: true,
       };
+      // These widgets were each emitted twice across pupil/adult routes. Keep
+      // separate shared chunks: opening a mock must not also load reporting UI.
+      for (const [key, component, name] of [
+        ["sharedMockBuilder", "MockAssessmentBuilder", "nexuslearn-mock-builder"],
+        ["sharedProgressSnapshot", "ProgressSnapshot", "nexuslearn-progress-snapshot"],
+        ["sharedDino", "Dino", "nexuslearn-dino"],
+      ]) {
+        config.optimization.splitChunks.cacheGroups[key] = {
+          test: module => module.layer === "app-pages-browser" && (module.nameForCondition?.() || "").replaceAll("\\", "/").endsWith(`/src/components/${component}.tsx`),
+          name,
+          minChunks: 2,
+          enforce: true,
+          priority: 20,
+          reuseExistingChunk: true,
+        };
+      }
     }
     return config;
   },
