@@ -255,7 +255,11 @@ test("session changes remove already expanded cards without another click", asyn
   });
   await expect(cards(page).getByText("CARD-oak-01", { exact: true })).toHaveCount(0);
   await expect(cards(page).getByRole("checkbox")).toHaveCount(0);
-  await expect(cards(page).getByRole("alert")).toContainText("school session changed");
+  await expect(cards(page)).toHaveCount(0);
+  await expect(page.locator(".print-card-sheet article")).toHaveCount(0);
+  await expect(page.getByRole("navigation", { name: "School workspace sections" })).toHaveCount(0);
+  await expect(page.getByRole("form", { name: "School sign in" })).toBeVisible();
+  await expect(page.getByRole("status")).toContainText("Your school session changed or expired. Sign in again to continue.");
 });
 
 test("session expiry clears private cards even when the workspace is idle", async ({ page }) => {
@@ -267,7 +271,11 @@ test("session expiry clears private cards even when the workspace is idle", asyn
   await page.clock.fastForward(300_001);
   await expect(cards(page).getByText("CARD-oak-01", { exact: true })).toHaveCount(0);
   await expect(cards(page).getByRole("checkbox")).toHaveCount(0);
-  await expect(cards(page).getByRole("alert")).toContainText("school session changed");
+  await expect(cards(page)).toHaveCount(0);
+  await expect(page.locator(".print-card-sheet article")).toHaveCount(0);
+  await expect(page.getByRole("navigation", { name: "School workspace sections" })).toHaveCount(0);
+  await expect(page.getByRole("form", { name: "School sign in" })).toBeVisible();
+  await expect(page.getByRole("status")).toContainText("Your school session changed or expired. Sign in again to continue.");
 });
 
 test("disclosure rechecks the loading session even without a storage notification", async ({ page }) => {

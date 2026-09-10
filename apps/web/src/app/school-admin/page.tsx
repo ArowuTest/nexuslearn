@@ -194,7 +194,10 @@ export default function SchoolAdminPage() {
     [schoolStudents],
   );
   const selectedEngagementStudent = schoolStudents.find((item) => item.external_ref === engagementPupil);
-  const onSessionChanged = useEffectEvent(resetWorkspace);
+  const onSessionChanged = useEffectEvent(() => {
+    resetWorkspace();
+    if (portal?.current_user) setMessage("Your school session changed or expired. Sign in again to continue.");
+  });
   useEffect(() => {
     let owner = accountSessionHeaders(["school_admin", "teacher"]).Authorization;
     const unsubscribe = subscribeAccountSession(() => {
