@@ -7,6 +7,8 @@ import MockAssessmentBuilder from "@/components/MockAssessmentBuilder";
 import FamilyProgressReport from "@/components/role-workspaces/FamilyProgressReport";
 import LoginPicture from "@/components/LoginPicture";
 import { accountSessionHeaders, accountSessionRole } from "@/lib/api";
+import useAccountAuthentication from "@/components/role-workspaces/useAccountAuthentication";
+import useAccountWorkspace from "@/components/role-workspaces/useAccountWorkspace";
 import { WorkspaceNavigation, WorkspaceState } from "@/components/role-workspaces/WorkspaceNavigation";
 import { acceptParentInvitation, createParentAccount, createParentChild, getParentChildEvidence, getParentPortal, logoutAccount, parentLogin, type ParentChildEvidence, type ParentPortal, type StudentEngagementProfile } from "@/lib/api";
 
@@ -67,6 +69,7 @@ const baseEngagement: StudentEngagementProfile = {
 };
 
 export default function FamilyPage() {
+  const authentication = useAccountAuthentication();
   const [parent, setParent] = useState({ email: "", display_name: "", password: "" });
   const [login, setLogin] = useState({ login_id: "", password: "" });
   const [portal, setPortal] = useState<ParentPortal | null>(null);
@@ -80,6 +83,12 @@ export default function FamilyPage() {
   const [invitationProfile, setInvitationProfile] = useState({ display_name: "", password: "" });
   const portalLoadVersion = useRef(0);
   const sessionVersion = useRef(0);
+  const portalController = useRef<AbortController | null>(null);
+  const evidenceVersion = useRef<Record<string, number>>({});
+  const workspace = useAccountWorkspace(() => {
+    resetWorkspace();
+    setMessage("Your family session changed or expired. Sign in again to continue.");
+  });
 
   const recommendations = useMemo(() => inclusionSummary(engagement), [engagement]);
 
@@ -90,7 +99,7 @@ export default function FamilyPage() {
   useEffect(() => {
     let active = true;
     queueMicrotask(() => { if (active) resumeWorkspace(); });
-    return () => { active = false; sessionVersion.current += 1; portalLoadVersion.current += 1; };
+    return () => { active = false; sessionVersion.current += 1; portalLoadVersion.current += 1; portalController.current?.abort(); };
   }, []);
 
   useEffect(() => {
@@ -106,8 +115,11 @@ export default function FamilyPage() {
   }, []);
 
   async function signup() {
+    if (authentication.busy()) return;
     await guarded("Creating parent account...", async () => {
-      const saved = await createParentAccount(parent);
+      const result = await authentication.run(signal => createParentAccount(parent, signal));
+      if (!result) { setMessage("Sign-in cancelled because the account session changed."); return; }
+      const saved = result.parent;
       const loginID = saved.login_id || saved.email;
       const password = parent.password || saved.temporary_password || "";
       setLogin({ login_id: loginID ?? "", password: "" });
@@ -118,14 +130,17 @@ export default function FamilyPage() {
   }
 
   async function loadPortal() {
+    if (authentication.busy()) return;
     await guarded("Loading family workspace...", async () => {
       portalLoadVersion.current += 1;
       setPortal(null);
       setEvidenceByChild({});
-      await parentLogin(login.login_id, login.password);
+      const result = await authentication.run(signal => parentLogin(login.login_id, login.password, signal));
+      if (!result) { setMessage("Sign-in cancelled because the account session changed."); return; }
       setLogin({ login_id: login.login_id, password: "" });
+      const current = workspace.capture();
       await fetchPortal();
-      setMessage("Family workspace loaded.");
+      if (current()) setMessage("Family workspace loaded.");
     });
   }
 
@@ -154,31 +169,44 @@ export default function FamilyPage() {
   }
 
   async function fetchPortal() {
+    portalController.current?.abort();
+    const controller = new AbortController();
+    portalController.current = controller;
     const token = accountSessionHeaders(["parent"]).Authorization;
     const loadVersion = portalLoadVersion.current + 1;
     portalLoadVersion.current = loadVersion;
-    const loaded = await getParentPortal();
+    const loaded = await workspace.run(signal => {
+      const cancel = () => controller.abort();
+      signal.addEventListener("abort", cancel, { once: true });
+      return getParentPortal(controller.signal).finally(() => signal.removeEventListener("abort", cancel));
+    });
     if (loadVersion !== portalLoadVersion.current || token !== accountSessionHeaders(["parent"]).Authorization) return loaded;
     setPortal(loaded);
     const linkedRefs = loaded.children.map((item) => pupilRefFor(item));
     const refsToLoad = linkedRefs.filter((externalRef) => !evidenceByChild[externalRef]);
-    const entries = await Promise.allSettled(
+    // Evidence is supplementary: it must not keep the whole family form busy.
+    // Each child read still owns a deadline and is cancelled on session change.
+    void Promise.allSettled(
       refsToLoad.map(async (externalRef) => {
-        const evidence = await getParentChildEvidence(externalRef);
-        return [externalRef, evidence] as const;
+        const version = (evidenceVersion.current[externalRef] ?? 0) + 1;
+        evidenceVersion.current[externalRef] = version;
+        const evidence = await workspace.run(signal => getParentChildEvidence(externalRef, signal));
+        return [externalRef, evidence, version] as const;
       })
-    );
-    if (loadVersion !== portalLoadVersion.current || token !== accountSessionHeaders(["parent"]).Authorization) return loaded;
-    const nextEvidence: Record<string, ParentChildEvidence> = {};
-    for (const entry of entries) {
-      if (entry.status === "fulfilled") nextEvidence[entry.value[0]] = entry.value[1];
-    }
-    setEvidenceByChild((current) => {
-      const linkedEvidence: Record<string, ParentChildEvidence> = {};
-      for (const externalRef of linkedRefs) {
-        if (current[externalRef]) linkedEvidence[externalRef] = current[externalRef];
+    ).then(entries => {
+      if (loadVersion !== portalLoadVersion.current || token !== accountSessionHeaders(["parent"]).Authorization) return;
+      const nextEvidence: Record<string, ParentChildEvidence> = {};
+      for (const entry of entries) {
+        if (entry.status === "fulfilled" && evidenceVersion.current[entry.value[0]] === entry.value[2]) nextEvidence[entry.value[0]] = entry.value[1];
       }
-      return { ...linkedEvidence, ...nextEvidence };
+      setEvidenceByChild((current) => {
+        const linkedEvidence: Record<string, ParentChildEvidence> = {};
+        for (const externalRef of linkedRefs) {
+          if (current[externalRef]) linkedEvidence[externalRef] = current[externalRef];
+        }
+        return { ...linkedEvidence, ...nextEvidence };
+      });
+      if (entries.some(entry => entry.status === "rejected")) setMessage("Family workspace loaded. Some child evidence could not be loaded; use Load evidence to retry.");
     });
     setMessage("Family workspace loaded.");
     return loaded;
@@ -186,46 +214,61 @@ export default function FamilyPage() {
 
   async function loadEvidence(externalRef: string) {
     const version = sessionVersion.current;
+    const request = (evidenceVersion.current[externalRef] ?? 0) + 1;
+    evidenceVersion.current[externalRef] = request;
     await guarded("Loading child evidence...", async () => {
       setEvidenceByChild((current) => {
         const next = { ...current };
         delete next[externalRef];
         return next;
       });
-      const evidence = await getParentChildEvidence(externalRef);
-      if (version !== sessionVersion.current) return;
+      const evidence = await workspace.run(signal => getParentChildEvidence(externalRef, signal));
+      if (version !== sessionVersion.current || request !== evidenceVersion.current[externalRef]) return;
       setEvidenceByChild((current) => ({ ...current, [externalRef]: evidence }));
       setMessage(`Evidence loaded for ${evidence.child.student.display_name}.`);
     });
   }
 
   async function acceptInvitation() {
+    if (authentication.busy()) return;
     await guarded("Accepting invitation...", async () => {
-      const saved = await acceptParentInvitation({
+      const result = await authentication.run(signal => acceptParentInvitation({
         token: invitation,
         display_name: invitationProfile.display_name,
         password: invitationProfile.password,
-      });
+      }, signal));
+      if (!result) { setMessage("Sign-in cancelled because the account session changed."); return; }
+      const saved = result.parent;
       setLogin({ login_id: saved.login_id || saved.email || "", password: "" });
       setInvitation("");
       window.history.replaceState({}, "", "/family");
+      const current = workspace.capture();
       await fetchPortal();
-      setMessage("Invitation accepted. Your linked child is ready.");
+      if (current()) setMessage("Invitation accepted. Your linked child is ready.");
     });
   }
 
-  async function logout() {
+  function resetWorkspace() {
+    workspace.invalidate();
+    portalController.current?.abort();
     sessionVersion.current += 1;
     portalLoadVersion.current += 1;
+    evidenceVersion.current = {};
     setPortal(null);
     setEvidenceByChild({});
     setLogin({ login_id: "", password: "" });
     setParent({ email: "", display_name: "", password: "" });
     setInvitationProfile({ display_name: "", password: "" });
+    setInvitation("");
+    if (new URLSearchParams(window.location.search).has("invitation")) window.history.replaceState({}, "", "/family");
     setChild({ external_ref: "", display_name: "", year_group: 1 });
     setEngagement(baseEngagement);
     setInterestText("");
     setSaving(false);
+  }
+
+  function logout() {
+    resetWorkspace();
     // Clear private UI immediately, even if revocation never answers. The API
     // helper clears the local token synchronously before contacting the server.
     void logoutAccount();
@@ -307,10 +350,10 @@ export default function FamilyPage() {
             {invitation && (
               <section className="overflow-hidden rounded-lg bg-white shadow-[0_22px_60px_rgba(21,33,61,0.14)]">
                 <SectionHeader eyebrow="Invitation" title="Join your child's learning workspace" detail="The invitation links only the named child after you create a secure parent account." />
-                <div className="grid gap-0 border-t border-[#15213d]/10 md:grid-cols-2">
+                <fieldset disabled={saving || !authentication.ready} className="grid min-w-0 gap-0 border-t border-[#15213d]/10 md:grid-cols-2">
                   <Field label="Your name" value={invitationProfile.display_name} onChange={(display_name) => setInvitationProfile({ ...invitationProfile, display_name })} />
                   <Field label="Choose password" type="password" value={invitationProfile.password} onChange={(password) => setInvitationProfile({ ...invitationProfile, password })} />
-                </div>
+                </fieldset>
                 <ActionBar message="Invitation links expire after 72 hours and can be revoked by the platform team.">
                   <button onClick={acceptInvitation} disabled={!invitationProfile.display_name || invitationProfile.password.length < 8 || saving} className="btn-pop bg-[#55cbd3] px-5 py-3 text-sm disabled:opacity-50">Accept invitation</button>
                 </ActionBar>
@@ -322,18 +365,20 @@ export default function FamilyPage() {
                 <button type="button" onClick={logout} className="btn-pop bg-[#15213d] px-5 py-3 text-sm text-white">Sign out</button>
               </div> : <>
               <SectionHeader eyebrow="Step 1" title="Parent access" detail="Create a private family workspace or load an existing one." />
-              <div className="grid gap-0 border-t border-[#15213d]/10 md:grid-cols-3">
+              <fieldset disabled={saving || !authentication.ready} className="grid min-w-0 gap-0 border-t border-[#15213d]/10 md:grid-cols-3">
                 <Field label="Parent name" value={parent.display_name} onChange={(display_name) => setParent({ ...parent, display_name })} />
                 <Field label="Email" value={parent.email} onChange={(email) => setParent({ ...parent, email: email.trim().toLowerCase() })} />
                 <Field label="Password" type="password" value={parent.password} onChange={(password) => setParent({ ...parent, password })} />
-              </div>
+              </fieldset>
               <ActionBar message="Parent access is private. Children use their own child-safe login card rather than the parent password.">
                 <button onClick={signup} disabled={!parent.email || !parent.display_name || !parent.password || saving} className="btn-pop bg-[#ffbf45] px-5 py-3 text-sm disabled:opacity-50">Create account</button>
               </ActionBar>
               <form aria-label="Parent sign in" onSubmit={(event) => { event.preventDefault(); if (!saving && login.login_id && login.password) void loadPortal(); }} className="grid gap-0 border-t border-[#15213d]/10 md:grid-cols-[1fr_1fr_auto_auto]">
+                <fieldset disabled={saving || !authentication.ready} className="contents">
                 <Field label="Login ID" value={login.login_id} onChange={(login_id) => setLogin({ ...login, login_id })} />
                 <Field label="Password" type="password" value={login.password} onChange={(password) => setLogin({ ...login, password })} />
                 <button type="submit" disabled={!login.login_id || !login.password || saving} className="btn-pop m-5 self-end bg-[#55cbd3] px-5 py-3 text-sm disabled:opacity-50">Sign in</button>
+                </fieldset>
               </form>
               </>}
             </section>

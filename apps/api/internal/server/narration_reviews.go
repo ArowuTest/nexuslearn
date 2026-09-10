@@ -9,11 +9,13 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"path/filepath"
 	"sort"
 	"strconv"
 	"strings"
 
 	"github.com/ArowuTest/nexuslearn/apps/api/internal/learning"
+	"github.com/ArowuTest/nexuslearn/apps/api/internal/narrationjson"
 )
 
 type narrationReviewRepository interface {
@@ -90,29 +92,51 @@ type narrationManifest struct {
 }
 
 type narrationQueueItem struct {
-	Rank                     int                       `json:"rank"`
-	AssetID                  string                    `json:"asset_id"`
-	PackID                   string                    `json:"pack_id"`
-	Year                     int                       `json:"year"`
-	Subject                  string                    `json:"subject"`
-	Kind                     string                    `json:"kind"`
-	SourceID                 string                    `json:"source_id"`
-	TextPreview              string                    `json:"text_preview"`
-	File                     string                    `json:"file"`
-	TextSHA256               string                    `json:"text_sha256"`
-	AudioSHA256              string                    `json:"audio_sha256"`
-	ProductionIdentitySHA256 string                    `json:"production_identity_sha256,omitempty"`
-	ProductionProfileSHA256  string                    `json:"production_profile_sha256,omitempty"`
-	ReuseCount               int                       `json:"reuse_count,omitempty"`
-	ReferenceCount           int                       `json:"reference_count,omitempty"`
-	VoiceName                string                    `json:"voice_name,omitempty"`
-	ModelID                  string                    `json:"model_id,omitempty"`
-	OutputFormat             string                    `json:"output_format,omitempty"`
-	VoiceSettings            map[string]any            `json:"voice_settings,omitempty"`
-	Status                   string                    `json:"status"`
-	Review                   *learning.NarrationReview `json:"review,omitempty"`
-	Priority                 int                       `json:"priority"`
-	Rationale                []string                  `json:"rationale"`
+	CurriculumBindings       []narrationCurriculumBinding `json:"curriculum_bindings,omitempty"`
+	Rank                     int                          `json:"rank"`
+	AssetID                  string                       `json:"asset_id"`
+	PackID                   string                       `json:"pack_id"`
+	Year                     int                          `json:"year"`
+	Subject                  string                       `json:"subject"`
+	Kind                     string                       `json:"kind"`
+	SourceID                 string                       `json:"source_id"`
+	TextPreview              string                       `json:"text_preview"`
+	File                     string                       `json:"file"`
+	TextSHA256               string                       `json:"text_sha256"`
+	AudioSHA256              string                       `json:"audio_sha256"`
+	ProductionIdentitySHA256 string                       `json:"production_identity_sha256,omitempty"`
+	ProductionProfileSHA256  string                       `json:"production_profile_sha256,omitempty"`
+	ReuseCount               int                          `json:"reuse_count,omitempty"`
+	ReferenceCount           int                          `json:"reference_count,omitempty"`
+	VoiceName                string                       `json:"voice_name,omitempty"`
+	ModelID                  string                       `json:"model_id,omitempty"`
+	OutputFormat             string                       `json:"output_format,omitempty"`
+	VoiceSettings            map[string]any               `json:"voice_settings,omitempty"`
+	Status                   string                       `json:"status"`
+	Review                   *learning.NarrationReview    `json:"review,omitempty"`
+	Priority                 int                          `json:"priority"`
+	Rationale                []string                     `json:"rationale"`
+}
+
+type narrationCurriculumBinding struct {
+	PackID  string `json:"pack_id"`
+	Year    int    `json:"year"`
+	Subject string `json:"subject"`
+}
+
+func narrationCurriculumBindings(asset narrationManifestItem) []narrationCurriculumBinding {
+	packIDs := append([]string{asset.PackID}, asset.PackIDs...)
+	seen := make(map[string]bool, len(packIDs))
+	bindings := make([]narrationCurriculumBinding, 0, len(packIDs))
+	for _, packID := range packIDs {
+		if seen[packID] {
+			continue
+		}
+		seen[packID] = true
+		year, subject := narrationCurriculumIdentity(packID)
+		bindings = append(bindings, narrationCurriculumBinding{PackID: packID, Year: year, Subject: subject})
+	}
+	return bindings
 }
 
 type narrationQueueYearSummary struct {
@@ -162,6 +186,7 @@ func (s *Server) handleNarrationReviewQueue(w http.ResponseWriter, r *http.Reque
 			continue
 		}
 		year, subject := narrationCurriculumIdentity(asset.PackID)
+		bindings := narrationCurriculumBindings(asset)
 		voiceName := asset.VoiceName
 		if voiceName == "" {
 			voiceName = asset.VoiceID
@@ -185,13 +210,21 @@ func (s *Server) handleNarrationReviewQueue(w http.ResponseWriter, r *http.Reque
 			}
 		}
 		counts[status]++
-		if yearCounts[year] == nil {
-			yearCounts[year] = map[string]int{"awaiting": 0, "approved": 0, "rejected": 0, "stale": 0}
+		countedYears := make(map[int]bool, len(bindings))
+		for _, binding := range bindings {
+			if countedYears[binding.Year] {
+				continue
+			}
+			countedYears[binding.Year] = true
+			if yearCounts[binding.Year] == nil {
+				yearCounts[binding.Year] = map[string]int{"awaiting": 0, "approved": 0, "rejected": 0, "stale": 0}
+			}
+			yearCounts[binding.Year][status]++
 		}
-		yearCounts[year][status]++
 		priority, rationale := narrationQueuePriority(year, asset.PackID, asset.Kind)
 		allItems = append(allItems, narrationQueueItem{
-			AssetID: asset.ID, PackID: asset.PackID, Year: year, Subject: subject,
+			CurriculumBindings: bindings,
+			AssetID:            asset.ID, PackID: asset.PackID, Year: year, Subject: subject,
 			Kind: asset.Kind, SourceID: asset.SourceID, TextPreview: asset.Text, File: asset.File,
 			TextSHA256: asset.TextSHA256, AudioSHA256: asset.SHA256, VoiceName: voiceName,
 			ProductionIdentitySHA256: asset.ProductionIdentitySHA256,
@@ -216,6 +249,7 @@ func (s *Server) handleNarrationReviewQueue(w http.ResponseWriter, r *http.Reque
 		statusFilter = "awaiting"
 	}
 	subjectFilter := strings.TrimSpace(r.URL.Query().Get("subject"))
+	packFilter := strings.TrimSpace(r.URL.Query().Get("pack"))
 	kindFilter := strings.ToLower(strings.TrimSpace(r.URL.Query().Get("kind")))
 	search := strings.ToLower(strings.TrimSpace(r.URL.Query().Get("search")))
 	yearFilter := 0
@@ -227,16 +261,24 @@ func (s *Server) handleNarrationReviewQueue(w http.ResponseWriter, r *http.Reque
 		if statusFilter != "all" && item.Status != statusFilter {
 			continue
 		}
-		if subjectFilter != "" && !strings.EqualFold(item.Subject, subjectFilter) {
-			continue
+		matched := false
+		packIDs := make([]string, 0, len(item.CurriculumBindings))
+		for _, binding := range item.CurriculumBindings {
+			packIDs = append(packIDs, binding.PackID)
+			if (subjectFilter == "" || strings.EqualFold(binding.Subject, subjectFilter)) && (yearFilter <= 0 || binding.Year == yearFilter) && (packFilter == "" || binding.PackID == packFilter) && !matched {
+				// Match a real year/subject/pack pair, not a cross-product of
+				// independent arrays. Describe that scope in the displayed row.
+				item.PackID, item.Year, item.Subject = binding.PackID, binding.Year, binding.Subject
+				matched = true
+			}
 		}
-		if yearFilter > 0 && item.Year != yearFilter {
+		if !matched {
 			continue
 		}
 		if kindFilter != "" && !strings.EqualFold(item.Kind, kindFilter) {
 			continue
 		}
-		if search != "" && !strings.Contains(strings.ToLower(strings.Join([]string{item.AssetID, item.PackID, item.SourceID, item.TextPreview}, " ")), search) {
+		if search != "" && !strings.Contains(strings.ToLower(strings.Join(append([]string{item.AssetID, item.SourceID, item.TextPreview}, packIDs...), " ")), search) {
 			continue
 		}
 		filtered = append(filtered, item)
@@ -471,6 +513,46 @@ func readNarrationBindings() (map[string]narrationManifestItem, string, error) {
 }
 
 func readNarrationManifest() (narrationManifest, string, error) {
+	manifest, source, err := readBaseNarrationManifest()
+	if err != nil || manifest.Version == 2 {
+		return manifest, source, err
+	}
+	// Keep the historical lesson/vocabulary inventory independently reviewable.
+	// A generated companion adds canonical variants without replacing it.
+	companion := filepath.Join(filepath.Dir(source), "narration-manifest-v2.json")
+	body, err := os.ReadFile(companion)
+	if errors.Is(err, os.ErrNotExist) {
+		return manifest, source, nil
+	}
+	if err != nil {
+		return narrationManifest{}, companion, err
+	}
+	variants, err := decodeNarrationManifest(body)
+	if err != nil {
+		return narrationManifest{}, companion, err
+	}
+	if variants.Version != 2 {
+		return narrationManifest{}, companion, errors.New("variant narration companion must be version 2")
+	}
+	if err := learning.ValidateAudioManifestImport(audioManifestImport(variants)); err != nil {
+		return narrationManifest{}, companion, err
+	}
+	seen := make(map[string]bool, len(variants.Items))
+	for _, item := range variants.Items {
+		seen[item.ID] = true
+	}
+	for _, item := range manifest.Items {
+		if seen[item.ID] {
+			return narrationManifest{}, companion, errors.New("duplicate narration asset across review inventories")
+		}
+		seen[item.ID] = true
+	}
+	variants.Items = append(manifest.Items, variants.Items...)
+	variants.Voice = manifest.Voice
+	return variants, companion, nil
+}
+
+func readBaseNarrationManifest() (narrationManifest, string, error) {
 	candidates := []string{}
 	if configured := strings.TrimSpace(os.Getenv("NARRATION_MANIFEST_PATH")); configured != "" {
 		candidates = append(candidates, configured)
@@ -731,7 +813,7 @@ func validNarrationProductionStatus(status string) bool {
 }
 
 func canonicalSHA256(value any) (string, error) {
-	body, err := json.Marshal(value)
+	body, err := narrationjson.Marshal(value)
 	if err != nil {
 		return "", err
 	}

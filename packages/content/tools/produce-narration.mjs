@@ -5,7 +5,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { inspectMP3Buffer } from "./lib/mp3-inspection.mjs";
 import { buildVariantAudioCatalog, canonicalJSONStringify } from "./lib/variant-audio-catalog.mjs";
-import { catalogAssetsToProductionItems, selectProductionItems } from "./lib/narration-manifest-v2.mjs";
+import { buildNarrationManifestV2, catalogAssetsToProductionItems, selectProductionItems } from "./lib/narration-manifest-v2.mjs";
 import { productionCheckpoint, readProductionCheckpoint, writeProductionCheckpoint, removeProductionCheckpoint, withProductionLock } from "./lib/narration-production-cache.mjs";
 import { publishNarrationBatch, recoverNarrationPublication } from "./lib/narration-publication.mjs";
 
@@ -28,9 +28,16 @@ const only = argValue("--only") ?? "all";
 const packFilter = argValue("--pack");
 const yearFilter = argValue("--year");
 const limitValue = argValue("--limit");
+const licence = argValue("--licence");
+const variantManifestPath = path.join(repoRoot, "packages/content/audio/narration-manifest-v2.json");
+const variantHistoryPath = path.join(repoRoot, "packages/content/audio/narration-asset-history.json");
 if (!dryRun && only === "variants") {
-  throw new Error("variant production is fail-closed until manifest v2 backend import is active; use --dry-run to inspect the canonical batch");
+  if (licence !== "provider_terms") throw new Error("variant production requires --licence provider_terms after confirming the provider usage rights for this batch");
+  if (!Number.isInteger(Number(limitValue)) || Number(limitValue) < 1 || Number(limitValue) > 500) {
+    throw new Error("variant production requires an explicit --limit from 1 to 500; preview the batch with --dry-run first");
+  }
 }
+if (licence !== undefined && (only !== "variants" || licence !== "provider_terms")) throw new Error("--licence provider_terms is supported only for variant batches");
 const narrationPacingPolicy = {
   version: 1,
   year_1: { lesson: 0.92, vocabulary: 0.90, rationale: "slightly slower early-reader pacing" },
@@ -40,7 +47,7 @@ const narrationPacingPolicy = {
 
 function validateArgs() {
   const booleanOptions = new Set(["--dry-run", "--force"]);
-  const valueOptions = new Set(["--only", "--pack", "--year", "--limit"]);
+  const valueOptions = new Set(["--only", "--pack", "--year", "--limit", "--licence"]);
   const args = process.argv.slice(2);
   for (let index = 0; index < args.length; index += 1) {
     const argument = args[index];
@@ -83,8 +90,16 @@ async function readJSON(file) {
 
 async function readPreviousManifest() {
   try {
-    const manifest = await readJSON(manifestPath);
-    return { manifest, items: new Map((manifest.items ?? []).map((item) => [item.id, item])) };
+    const manifest = await readJSON(only === "variants" ? variantManifestPath : manifestPath);
+    if (only === "variants") {
+      const identity = Object.fromEntries(["schema", "version", "catalogue_id", "catalogue_sha256", "provenance", "assets", "references", "blockers"].map(key => [key, manifest[key]]));
+      const digest = textHash(canonicalJSONStringify(identity));
+      if (manifest.schema !== "nexuslearn.narration-manifest.v2" || manifest.version !== 2 || !Array.isArray(manifest.assets)
+        || manifest.release_sha256 !== digest || manifest.release_id !== `narration-release-v2-${digest.slice(0, 24)}`) {
+        throw new Error("previous variant manifest identity is invalid; preserve it and investigate before generation");
+      }
+    }
+    return { manifest, items: new Map((only === "variants" ? manifest.assets : manifest.items ?? []).map((item) => [item.id, item])) };
   } catch (error) {
     if (error?.code === "ENOENT") return { manifest: null, items: new Map() };
     throw error;
@@ -108,7 +123,7 @@ async function collect() {
   return items;
 }
 
-async function collectVariantItems() {
+async function collectVariantCatalog() {
   const files = (await fs.readdir(packDir)).filter((file) => file.endsWith(".json")).sort();
   const packs = [];
   for (const file of files) {
@@ -130,7 +145,7 @@ async function collectVariantItems() {
         .map((year) => [year, year === 1 ? narrationPacingPolicy.year_1.lesson : year === 2 ? narrationPacingPolicy.year_2.lesson : narrationPacingPolicy.year_3_to_7.lesson]),
     ),
   });
-  return catalogAssetsToProductionItems(catalog);
+  return catalog;
 }
 
 function selectItems(items) {
@@ -261,6 +276,66 @@ function reusableMetadataMatches(previous, item) {
     && canonicalJSONStringify(previous.voice_settings) === canonicalJSONStringify(item.voice_settings);
 }
 
+function rememberVariantAssets(history, assets) {
+  for (const asset of assets) {
+    const record = { id: asset.id, sha256: asset.sha256, bytes: asset.bytes };
+    if (!/^narration-v1-[a-f0-9]{24}$/.test(record.id ?? "") || !/^[a-f0-9]{64}$/.test(record.sha256 ?? "")
+      || !Number.isInteger(record.bytes) || record.bytes <= 0) throw new Error("invalid immutable narration history binding");
+    const previous = history.get(record.id);
+    if (previous && canonicalJSONStringify(previous) !== canonicalJSONStringify(record)) throw new Error("immutable narration history conflicts with the supplied recording");
+    history.set(record.id, record);
+  }
+  if (history.size > 20000) throw new Error("immutable narration history exceeds its bounded inventory; migrate it before producing more audio");
+  return history;
+}
+
+async function readVariantHistory(previousItems) {
+  const history = new Map();
+  let document;
+  try { document = await readJSON(variantHistoryPath); }
+  catch (error) { if (error.code !== "ENOENT") throw error; }
+  if (document !== undefined) {
+    if (!document || typeof document !== "object" || Array.isArray(document)) throw new Error("invalid immutable narration history; restore the original inventory");
+    const identity = { schema: document.schema, version: document.version, assets: document.assets };
+    if (identity.schema !== "nexuslearn.narration-asset-history.v1" || identity.version !== 1 || !Array.isArray(identity.assets)
+      || identity.assets.length > 20000 || document.sha256 !== textHash(canonicalJSONStringify(identity))) {
+      throw new Error("invalid immutable narration history; preserve it and restore the original inventory");
+    }
+    rememberVariantAssets(history, identity.assets);
+    if (history.size !== identity.assets.length) throw new Error("duplicate immutable narration history binding");
+  }
+  // Seed existing v2 inventories during migration, including unselected assets.
+  // Missing/stale entries may leave the active review manifest, but their URL
+  // reservations must survive every later filtered batch.
+  return rememberVariantAssets(history, previousItems.values());
+}
+
+function variantHistoryWrite(history, assets) {
+  rememberVariantAssets(history, assets);
+  const identity = { schema: "nexuslearn.narration-asset-history.v1", version: 1,
+    assets: [...history.values()].sort((a,b) => a.id.localeCompare(b.id)) };
+  return { file: variantHistoryPath, data: `${JSON.stringify({ ...identity, sha256: textHash(canonicalJSONStringify(identity)) })}\n` };
+}
+
+async function validateCanonicalDestinations(items, previousItems, history) {
+  for (const item of items) {
+    const previous = previousItems.get(item.id);
+    if (!previous && history.has(item.id)) throw new Error(`${item.id}: immutable canonical identity was previously recorded; restore its original inventory and bytes instead of regenerating this URL`);
+    let audio;
+    try { audio = await fs.readFile(path.join(publicRoot, item.relative_file)); }
+    catch (error) {
+      if (error.code !== "ENOENT") throw error;
+      if (!previous) continue;
+      throw new Error(`${item.id}: immutable canonical audio is missing; restore the original bytes instead of regenerating this URL`);
+    }
+    const check = technicalCheck(audio);
+    if (force || !previous || !reusableMetadataMatches(previous, item) || !check.technical_pass
+      || previous.sha256 !== check.sha256 || previous.bytes !== check.bytes) {
+      throw new Error(`${item.id}: immutable canonical audio cannot be overwritten; restore the original inventory or produce a deliberately changed transcript/profile identity`);
+    }
+  }
+}
+
 async function produce(items, previousItems, pendingPublications) {
   let produced = 0;
   let skipped = 0;
@@ -285,6 +360,13 @@ async function produce(items, previousItems, pendingPublications) {
           && (previous.bytes === undefined || previous.bytes === check.bytes),
         );
         if (check.technical_pass && fileMatchesManifest) {
+          if (item.kind === "variant") {
+            // Keep current aliases/occurrences, never carry historic review
+            // assertions into a freshly constructed production inventory.
+            Object.assign(item, check, previous.generated_at ? { generated_at: previous.generated_at } : {});
+            skipped += 1;
+            continue;
+          }
           // Replace, rather than overlay: absent historical fields must remain
           // absent, including the policy/profile label and voice display name.
           for (const key of Object.keys(item)) delete item[key];
@@ -332,7 +414,7 @@ async function mergeProducedInventory(allItems, selectedItems, previousItems) {
   const expectedIDs = new Set(allItems.map((item) => item.id));
   const merged = [];
   for (const previous of previousItems.values()) {
-    if (!expectedIDs.has(previous.id)) merged.push(previous);
+    if (only !== "variants" && !expectedIDs.has(previous.id)) merged.push(previous);
   }
   for (const expected of allItems) {
     const selected = selectedByID.get(expected.id);
@@ -342,13 +424,16 @@ async function mergeProducedInventory(allItems, selectedItems, previousItems) {
     }
     const previous = previousItems.get(expected.id);
     if (!sameRecordingIdentity(previous, expected)) continue;
+    if (only === "variants" && !reusableMetadataMatches(previous, expected)) continue;
     try {
       const existing = await fs.readFile(path.join(publicRoot, expected.relative_file));
       const check = technicalCheck(existing);
       if (check.technical_pass && previous.sha256 === check.sha256 && (previous.bytes === undefined || previous.bytes === check.bytes)) {
         // An unselected, verified recording stays exactly as recorded, even if
         // its settings differ from today's policy or were never recorded.
-        merged.push({ ...previous, ...check });
+        merged.push(only === "variants"
+          ? { ...expected, ...check, ...(previous.generated_at ? { generated_at: previous.generated_at } : {}) }
+          : { ...previous, ...check });
       }
     } catch {
       // Missing and stale assets stay out of the produced manifest.
@@ -471,12 +556,18 @@ function renderReview(manifest) {
 async function main() {
   await recoverNarrationPublication(repoRoot, { readOnly: dryRun });
   const standardItems = await collect();
-  const variantItems = await collectVariantItems();
+  const variantCatalog = await collectVariantCatalog();
+  const variantItems = catalogAssetsToProductionItems(variantCatalog);
   const inventory = only === "variants" ? variantItems : standardItems;
   const items = selectItems(inventory);
   const previous = await readPreviousManifest();
   const previousItems = previous.items;
-  if (items.length < inventory.length && previous.manifest && (
+  const variantHistory = only === "variants" ? await readVariantHistory(previousItems) : null;
+  if (only === "variants") await validateCanonicalDestinations(items, previousItems, variantHistory);
+  if (only === "variants" && (variantItems.length > 5000 || variantCatalog.references.length > 10000)) {
+    throw new Error("variant inventory exceeds the backend import bounds; split the governed catalogue before generation");
+  }
+  if (only !== "variants" && items.length < inventory.length && previous.manifest && (
     previous.manifest.voice?.id !== voiceId || previous.manifest.voice?.model_id !== modelId
   )) {
     throw new Error("filtered production cannot change voice or model; run the complete inventory migration without --pack, --year, --only or --limit");
@@ -490,14 +581,33 @@ async function main() {
     // includes every selected recording and all four inventory/review files.
     for (const { checkpoint, absoluteFile } of pendingPublications) {
       await readProductionCheckpoint(checkpoint);
+      if (only === "variants") {
+        try {
+          await fs.access(absoluteFile);
+          throw new Error("immutable canonical audio appeared during production; preserve staged responses and investigate before publication");
+        } catch (error) { if (error.code !== "ENOENT") throw error; }
+      }
       updates.push({ file: absoluteFile, data: await fs.readFile(checkpoint.audio) });
     }
-    updates.push(...manifestWrites(mergedItems, summary, inventory.length, items.length));
+    if (only === "variants") {
+      const manifest = buildNarrationManifestV2({
+        catalog: variantCatalog, produced_assets: mergedItems,
+        provenance: { licence, produced_by: "governed_narration_producer" },
+      });
+      const data = `${JSON.stringify(manifest)}\n`;
+      if (Buffer.byteLength(data) > 32 * 1024 * 1024) throw new Error("variant manifest exceeds the backend import body bound; verified responses remain staged");
+      updates.push({ file: variantManifestPath, data });
+      updates.push(variantHistoryWrite(variantHistory, mergedItems));
+    } else {
+      updates.push(...manifestWrites(mergedItems, summary, inventory.length, items.length));
+    }
     await publishNarrationBatch(repoRoot, updates);
     for (const { checkpoint } of pendingPublications) await removeProductionCheckpoint(checkpoint);
   }
+  const selectedReferences = items.reduce((total, item) => total + (item.reference_ids?.length ?? 0), 0);
+  const selectedOccurrences = items.reduce((total, item) => total + (item.reuse_count ?? 0), 0);
   console.log(
-    `narration selected=${items.length} expected=${inventory.length} standard=${standardItems.length} variants=${variantItems.length} lessons=${items.filter((item) => item.kind === "lesson").length} vocabulary=${items.filter((item) => item.kind === "vocabulary").length} variant_items=${items.filter((item) => item.kind === "variant").length} characters=${items.reduce((total, item) => total + item.text.length, 0)} produced=${summary.produced} skipped=${summary.skipped} planned=${summary.planned} resumed=${summary.resumed} unknown_settings=${summary.unknown_settings}`,
+    `narration selected=${items.length} expected=${inventory.length} standard=${standardItems.length} variants=${variantItems.length} lessons=${items.filter((item) => item.kind === "lesson").length} vocabulary=${items.filter((item) => item.kind === "vocabulary").length} variant_items=${items.filter((item) => item.kind === "variant").length} characters=${items.reduce((total, item) => total + item.text.length, 0)} produced=${summary.produced} skipped=${summary.skipped} planned=${summary.planned} resumed=${summary.resumed} unknown_settings=${summary.unknown_settings} references=${selectedReferences} occurrences=${selectedOccurrences} deduplicated=${Math.max(0, selectedOccurrences - items.length)}`,
   );
 }
 

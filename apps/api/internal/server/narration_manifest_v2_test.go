@@ -120,6 +120,82 @@ func TestReadNarrationManifestAcceptsSignedV2ProductionBindings(t *testing.T) {
 	}
 }
 
+func TestNarrationReviewInventoryKeepsLegacyAndVariantAssets(t *testing.T) {
+	variantPath := writeNarrationManifestV2Fixture(t, nil)
+	legacyPath := filepath.Join(filepath.Dir(variantPath), "narration-manifest.json")
+	body, _ := json.Marshal(map[string]any{"version": 1, "provider": "ElevenLabs", "items": []map[string]any{{
+		"id": "legacy-lesson", "text_sha256": strings.Repeat("a", 64), "sha256": strings.Repeat("b", 64), "kind": "lesson", "technical_pass": true,
+	}}})
+	if err := os.WriteFile(legacyPath, body, 0o600); err != nil {
+		t.Fatal(err)
+	}
+	t.Setenv("NARRATION_MANIFEST_PATH", legacyPath)
+	manifest, _, err := readNarrationManifest()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(manifest.Items) != 2 || manifest.ReleaseID == "" {
+		t.Fatalf("legacy and versioned review inventories must coexist; items=%d release=%q", len(manifest.Items), manifest.ReleaseID)
+	}
+	bindings, _, err := readNarrationBindings()
+	if err != nil || bindings["legacy-lesson"].ID == "" {
+		t.Fatalf("legacy review binding lost: %v", err)
+	}
+	if err := os.WriteFile(variantPath, []byte(`{"version":2}`), 0o600); err != nil {
+		t.Fatal(err)
+	}
+	if _, _, err := readNarrationManifest(); err == nil {
+		t.Fatal("a corrupt companion must fail closed, not silently disappear from the review queue")
+	}
+}
+
+func TestNarrationSharedAssetReviewFiltersUseBoundCurriculumPairs(t *testing.T) {
+	manifestPath := writeNarrationManifestV2Fixture(t, func(identity map[string]any) {
+		asset := identity["assets"].([]map[string]any)[0]
+		asset["pack_ids"] = []string{"en-y1-phonics", "ma-y3-fractions"}
+		asset["years"] = []int{1, 3}
+	})
+	t.Setenv("NARRATION_MANIFEST_PATH", manifestPath)
+	t.Setenv("ADMIN_API_KEY", "test-admin")
+	srv := New(&narrationReviewTestRepository{fakeRepository: &fakeRepository{}}, "postgres")
+	for _, query := range []struct {
+		filter string
+		count  int
+		pack   string
+	}{
+		{"year=3&subject=Mathematics", 1, "ma-y3-fractions"},
+		{"year=1&subject=Mathematics", 0, ""},
+		{"year=1&subject=English", 1, "en-y1-phonics"},
+		{"pack=ma-y3-fractions", 1, "ma-y3-fractions"},
+	} {
+		t.Run(query.filter, func(t *testing.T) {
+			request := httptest.NewRequest(http.MethodGet, "/v1/admin/content/narration-queue?status=all&"+query.filter, nil)
+			request.Header.Set("X-Admin-Key", "test-admin")
+			response := httptest.NewRecorder()
+			srv.ServeHTTP(response, request)
+			if response.Code != http.StatusOK {
+				t.Fatalf("queue: %d %s", response.Code, response.Body.String())
+			}
+			var body struct {
+				Items []narrationQueueItem        `json:"items"`
+				Years []narrationQueueYearSummary `json:"years"`
+			}
+			if err := json.Unmarshal(response.Body.Bytes(), &body); err != nil {
+				t.Fatal(err)
+			}
+			if len(body.Items) != query.count {
+				t.Fatalf("shared asset filter has %d items, want %d", len(body.Items), query.count)
+			}
+			if query.count > 0 && body.Items[0].PackID != query.pack {
+				t.Fatalf("row must describe the matched scope, got %s", body.Items[0].PackID)
+			}
+			if len(body.Years) != 2 {
+				t.Fatalf("year summary omitted a shared asset binding: %#v", body.Years)
+			}
+		})
+	}
+}
+
 func TestReadNarrationManifestRejectsV2ProfileHashDrift(t *testing.T) {
 	manifestPath := writeNarrationManifestV2Fixture(t, func(identity map[string]any) {
 		assets := identity["assets"].([]map[string]any)

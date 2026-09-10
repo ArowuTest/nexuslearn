@@ -10,6 +10,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/ArowuTest/nexuslearn/apps/api/internal/narrationjson"
 	"github.com/jackc/pgx/v5"
 )
 
@@ -190,7 +191,7 @@ func validLowerAudioSHA(value string) bool {
 }
 
 func canonicalAudioSHA256(value any) (string, error) {
-	body, err := json.Marshal(value)
+	body, err := narrationjson.Marshal(value)
 	if err != nil {
 		return "", err
 	}

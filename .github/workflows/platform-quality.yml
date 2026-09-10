@@ -42,6 +42,11 @@ jobs:
       - name: Verify formatting
         run: test -z "$(gofmt -l .)"
 
+      - name: Set up Node for narration producer contract
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
       - name: Run API tests
         run: go test ./...
 
@@ -108,7 +113,7 @@ jobs:
         run: node --test ../../ops/deployment-smoke.test.mjs
 
       - name: Verify pupil session and bundle boundary regressions
-        run: node --test tools/pupil-journey.test.mjs tools/client-chunks.test.mjs tools/deployment-version.test.mjs tools/login-card-qr.test.mjs
+        run: node --test tools/pupil-journey.test.mjs tools/adult-auth.test.mjs tools/client-chunks.test.mjs tools/deployment-version.test.mjs tools/login-card-qr.test.mjs
 
       - name: Build frontend
         env:

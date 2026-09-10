@@ -61,7 +61,7 @@ async function fixture(t, items) {
         const rename = fs.rename;
         let publicationFault = ${JSON.stringify(publicationFault)};
         fs.rename = async (from, to) => {
-          if (publicationFault && to === ${JSON.stringify(path.join(root, "apps/web/public/content/narration-manifest.json"))}) {
+          if (publicationFault && (to === ${JSON.stringify(path.join(root, "apps/web/public/content/narration-manifest.json"))} || to === ${JSON.stringify(path.join(root, "packages/content/audio/narration-manifest-v2.json"))})) {
             const fault = publicationFault;
             publicationFault = null;
             if (fault === 'crash') process.exit(75);
@@ -105,6 +105,153 @@ async function fixture(t, items) {
     },
   };
 }
+
+async function addVariants(f, index = 0) {
+  const file = path.join(f.root, "packages/content/packs", `${f.rows[index].pack_id}.json`);
+  const pack = JSON.parse(await fs.readFile(file, "utf8"));
+  pack.question_variants = [
+    { variant_id: "one", body: { audio_asset_id: `word-cat-${index}`, target_word: `cat ${index}` } },
+    { variant_id: "two", body: { audio_asset_id: `word-pet-${index}`, target_word: `cat ${index}` } },
+    { variant_id: "specialist", body: { phoneme_audio_asset_ids: ["phoneme-sh"] } },
+  ];
+  await fs.writeFile(file, JSON.stringify(pack));
+}
+
+test("bounded variant production writes a v2 review inventory without replacing lesson narration", async t => {
+  const f = await fixture(t, [{ year: 1 }]);
+  await addVariants(f);
+  const before = await fs.readFile(f.manifestPath, "utf8");
+  const result = f.run(["--only", "variants", "--limit", "1", "--licence", "provider_terms"]);
+  assert.equal(result.status, 0, result.stderr);
+  const manifest = JSON.parse(await fs.readFile(path.join(f.root, "packages/content/audio/narration-manifest-v2.json"), "utf8"));
+  assert.match(result.stdout, /references=2 occurrences=2 deduplicated=1/);
+  assert.equal(manifest.version, 2);
+  assert.equal(manifest.licence_id, "provider_terms");
+  assert.equal(manifest.assets.length, 1);
+  assert.equal(manifest.references.length, 3);
+  assert.equal(manifest.totals.specialist_required, 1);
+  assert.equal(manifest.assets[0].voice_settings.speed, 0.92);
+  assert.equal(manifest.assets[0].production_status, "required_human_listening_review");
+  assert.equal(manifest.assets[0].reference_ids.length, 2);
+  assert.equal((await f.requests()).length, 1, "deduplicated aliases must make one paid request; specialist phonemes make none");
+  assert.equal(await fs.readFile(f.manifestPath, "utf8"), before);
+  assert.deepEqual(await fs.readFile(path.join(f.root, "apps/web/public", manifest.assets[0].file)), generatedAudio);
+  assert.doesNotMatch(JSON.stringify(manifest), /offline-test-only/);
+});
+
+test("variant batches retain earlier byte-verified assets and reuse them without more requests", async t => {
+  const f = await fixture(t, [{ year: 1 }, { year: 3 }]);
+  await addVariants(f, 0);
+  await addVariants(f, 1);
+  for (const row of f.rows) {
+    const result = f.run(["--only", "variants", "--pack", row.pack_id, "--limit", "1", "--licence", "provider_terms"]);
+    assert.equal(result.status, 0, result.stderr);
+  }
+  const file = path.join(f.root, "packages/content/audio/narration-manifest-v2.json");
+  const previous = JSON.parse(await fs.readFile(file, "utf8"));
+  assert.equal(previous.assets.length, 2);
+  const result = f.run(["--only", "variants", "--limit", "2", "--licence", "provider_terms"]);
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal((await f.requests()).length, 2);
+  assert.equal(JSON.parse(await fs.readFile(file, "utf8")).release_id, previous.release_id);
+});
+
+test("variant production requires an explicit bounded selection and supported licence before any provider call", async t => {
+  const f = await fixture(t, [{ year: 1 }]);
+  await addVariants(f);
+  for (const args of [[], ["--limit", "1"], ["--limit", "501", "--licence", "provider_terms"], ["--limit", "1", "--licence", "unknown"]]) {
+    const result = f.run(["--only", "variants", ...args]);
+    assert.notEqual(result.status, 0);
+    assert.match(result.stderr, /licence|limit/);
+  }
+  assert.equal((await f.requests()).length, 0);
+  const preview = f.run(["--only", "variants", "--dry-run"]);
+  assert.equal(preview.status, 0, preview.stderr);
+  assert.equal((await f.requests()).length, 0);
+});
+
+test("variant publication failure rolls back new public files and resumes without paying twice", async t => {
+  const f = await fixture(t, [{ year: 1 }]);
+  await addVariants(f);
+  const args = ["--only", "variants", "--limit", "1", "--licence", "provider_terms"];
+  const first = f.run(args, [200], "write");
+  assert.notEqual(first.status, 0);
+  assert.match(first.stderr, /rolled back/);
+  const destination = path.join(f.root, "packages/content/audio/narration-manifest-v2.json");
+  await assert.rejects(fs.access(destination), { code: "ENOENT" });
+  const second = f.run(args);
+  assert.equal(second.status, 0, second.stderr);
+  assert.equal((await f.requests()).length, 1);
+  const manifest = JSON.parse(await fs.readFile(destination, "utf8"));
+  assert.equal(manifest.assets[0].production_status, "required_human_listening_review");
+});
+
+test("variant reuse refreshes aliases without recording again when the catalogue expands", async t => {
+  const f = await fixture(t, [{ year: 1 }]);
+  await addVariants(f);
+  const args = ["--only", "variants", "--limit", "1", "--licence", "provider_terms"];
+  assert.equal(f.run(args).status, 0);
+  const file = path.join(f.root, "packages/content/packs", `${f.rows[0].pack_id}.json`);
+  const pack = JSON.parse(await fs.readFile(file, "utf8"));
+  pack.question_variants.push({ variant_id: "three", body: { audio_asset_id: "word-extra", target_word: "cat 0" } });
+  await fs.writeFile(file, JSON.stringify(pack));
+  const result = f.run(args);
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal((await f.requests()).length, 1);
+  const manifest = JSON.parse(await fs.readFile(path.join(f.root, "packages/content/audio/narration-manifest-v2.json"), "utf8"));
+  assert.equal(manifest.assets[0].reference_ids.length, 3);
+  assert.equal(manifest.references.length, 4);
+});
+
+for (const scenario of ["forced", "corrupt", "orphaned"]) {
+  test(`canonical variant audio cannot be overwritten when ${scenario}`, async t => {
+    const f = await fixture(t, [{ year: 1 }]);
+    await addVariants(f);
+    const args = ["--only", "variants", "--limit", "1", "--licence", "provider_terms"];
+    assert.equal(f.run(args).status, 0);
+    const manifestFile = path.join(f.root, "packages/content/audio/narration-manifest-v2.json");
+    const beforeManifest = await fs.readFile(manifestFile, "utf8");
+    const manifest = JSON.parse(beforeManifest);
+    const audioFile = path.join(f.root, "apps/web/public", manifest.assets[0].file);
+    if (scenario === "corrupt") await fs.writeFile(audioFile, "corrupt historical audio");
+    if (scenario === "orphaned") await fs.unlink(manifestFile);
+    const beforeAudio = await fs.readFile(audioFile);
+    const result = f.run([...args, ...(scenario === "forced" ? ["--force"] : [])]);
+    assert.notEqual(result.status, 0, "a historical canonical URL must never silently acquire new bytes");
+    assert.match(result.stderr, /immutable|canonical.*overwrite|restore.*original/i);
+    assert.equal((await f.requests()).length, 1, "reject the unsafe operation before any additional paid request");
+    assert.deepEqual(await fs.readFile(audioFile), beforeAudio);
+    if (scenario !== "orphaned") assert.equal(await fs.readFile(manifestFile, "utf8"), beforeManifest);
+  });
+}
+
+test("filtered publication cannot forget a missing historical recording and regenerate its URL later", async t => {
+  const f = await fixture(t, [{ year: 1 }, { year: 3 }]);
+  await addVariants(f, 0); await addVariants(f, 1);
+  const args = ["--only", "variants", "--limit", "1", "--licence", "provider_terms"];
+  const first = f.run([...args, "--pack", f.rows[0].pack_id]);
+  assert.equal(first.status, 0, first.stderr);
+  const manifestFile = path.join(f.root, "packages/content/audio/narration-manifest-v2.json");
+  const manifest = JSON.parse(await fs.readFile(manifestFile, "utf8"));
+  const oldURL = path.join(f.root, "apps/web/public", manifest.assets[0].file);
+  await fs.unlink(oldURL);
+  const second = f.run([...args, "--pack", f.rows[1].pack_id]);
+  assert.equal(second.status, 0, second.stderr);
+  const third = f.run([...args, "--pack", f.rows[0].pack_id]);
+  assert.notEqual(third.status, 0, "a filtered manifest must not erase the historical URL reservation");
+  assert.match(third.stderr, /immutable|restore.*original/i);
+  assert.equal((await f.requests()).length, 2, "the missing historical audio must not be regenerated");
+});
+
+test("a null immutable history is corrupt evidence, not an empty new inventory", async t => {
+  const f = await fixture(t, [{ year: 1 }]);
+  await addVariants(f);
+  await fs.writeFile(path.join(f.root, "packages/content/audio/narration-asset-history.json"), "null");
+  const result = f.run(["--only", "variants", "--limit", "1", "--licence", "provider_terms"]);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /invalid immutable narration history/);
+  assert.equal((await f.requests()).length, 0);
+});
 
 test("unknown historical settings block production without rewriting or charging", async t => {
   const f = await fixture(t, [{}]);

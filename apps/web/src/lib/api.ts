@@ -560,6 +560,41 @@ export type AccountSession = {
   expires_in_seconds: number;
 };
 
+export type AccountAuthentication = { session: AccountSession; parent?: ParentAccount };
+
+// Transport only: the mounted caller owns whether this session may be stored.
+export async function requestAccountSession(path: string, payload: unknown, roles: string[], signal?: AbortSignal): Promise<AccountAuthentication> {
+  if (!API) throw new Error("The NexusLearn API is not configured yet.");
+  if (signal?.aborted) throw new Error("Sign-in cancelled.");
+  const controller = new AbortController();
+  const cancel = () => controller.abort();
+  let timedOut = false;
+  signal?.addEventListener("abort", cancel, { once: true });
+  const timer = setTimeout(() => { timedOut = true; controller.abort(); }, 15_000);
+  try {
+    const response = await fetch(`${API}${path}`, {
+      method: "POST", cache: "no-store", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload), signal: controller.signal,
+    });
+    const body = await response.json().catch(() => null);
+    if (controller.signal.aborted) throw new Error("Sign-in cancelled.");
+    if (!response.ok) throw new Error(typeof body?.error === "string" ? body.error : "Sign-in failed. Please retry.");
+    const session = body?.session;
+    if (!session || typeof session.token !== "string" || !session.token.trim() || !roles.includes(session.role)
+      || typeof session.expires_at !== "string" || !(Date.parse(session.expires_at) > Date.now())) {
+      throw new Error("The sign-in response could not be verified. Please retry.");
+    }
+    return body as AccountAuthentication;
+  } catch (error) {
+    if (timedOut) throw new Error("Sign-in timed out. Please retry.");
+    if (signal?.aborted) throw new Error("Sign-in cancelled.");
+    throw error;
+  } finally {
+    clearTimeout(timer);
+    signal?.removeEventListener("abort", cancel);
+  }
+}
+
 type FetchOptions = {
   headers?: Record<string, string>;
 };
@@ -631,12 +666,13 @@ export function subscribeAccountSession(listener: () => void) {
   const events = [ACCOUNT_SESSION_CHANGED_EVENT, "storage", "focus", "pageshow"];
   events.forEach(event => window.addEventListener(event, changed));
   document.addEventListener("visibilitychange", changed);
-  scheduleExpiry();
-  return () => {
+  const unsubscribe = () => {
     clearTimeout(timer);
     events.forEach(event => window.removeEventListener(event, changed));
     document.removeEventListener("visibilitychange", changed);
   };
+  try { scheduleExpiry(); } catch (error) { unsubscribe(); throw error; }
+  return unsubscribe;
 }
 
 export function accountSessionRole(): string | null {
@@ -669,10 +705,31 @@ export async function logoutAccount() {
   clearAccountSession();
   if (!API || !headers.Authorization) return;
   try {
-    await fetch(`${API}/v1/auth/logout`, { method: "POST", headers });
+    await accountRequestDeadline(signal => fetch(`${API}/v1/auth/logout`, { method: "POST", headers, cache: "no-store", signal }));
   } catch {
     // Local privacy state is authoritative on sign-out. A transient network
     // failure must never keep private workspace data mounted in the browser.
+  }
+}
+
+// Only session revocation and family reads use this boundary. Race cancellation
+// as well as aborting fetch so even a stalled response body releases the caller.
+async function accountRequestDeadline<T>(action: (signal: AbortSignal) => Promise<T>, signal?: AbortSignal): Promise<T> {
+  if (signal?.aborted) throw new Error("Request cancelled.");
+  const controller = new AbortController();
+  let rejectCancellation!: (error: Error) => void;
+  const cancellation = new Promise<never>((_resolve, reject) => { rejectCancellation = reject; });
+  const cancel = () => { rejectCancellation(new Error("Request cancelled.")); controller.abort(); };
+  const timer = setTimeout(() => {
+    rejectCancellation(new Error("The account request timed out. Please retry."));
+    controller.abort();
+  }, 15_000);
+  signal?.addEventListener("abort", cancel, { once: true });
+  try {
+    return await Promise.race([action(controller.signal), cancellation]);
+  } finally {
+    clearTimeout(timer);
+    signal?.removeEventListener("abort", cancel);
   }
 }
 
@@ -864,56 +921,55 @@ export async function submitAccessRequest(request: AccessRequest): Promise<Acces
   return body as AccessRequest;
 }
 
-export async function createParentAccount(parent: ParentAccount): Promise<ParentAccount> {
-  if (!API) throw new Error("The NexusLearn API is not configured yet.");
-  const res = await fetch(`${API}/v1/parents/signup`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(parent),
-  });
-  const body = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(body.error ?? "Could not create parent account.");
-  const result = body as { parent: ParentAccount; session?: AccountSession };
-  storeAccountSession(result.session);
-  return result.parent;
+async function parentAccountSession(path: string, payload: unknown, signal?: AbortSignal) {
+  const result = await requestAccountSession(path, payload, ["parent"], signal);
+  const parent = result.parent;
+  if (!parent || ![parent.login_id, parent.email].some(value => typeof value === "string" && value.trim())) {
+    throw new Error("The parent sign-in response could not be verified. Please retry.");
+  }
+  return { ...result, parent };
 }
 
-export async function parentLogin(loginID: string, password: string): Promise<ParentAccount> {
-  if (!API) throw new Error("The NexusLearn API is not configured yet.");
-  const res = await fetch(`${API}/v1/auth/parent-login`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ login_id: loginID, password }),
-  });
-  const body = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(body.error ?? "Could not log in.");
-  const result = body as { parent: ParentAccount; session?: AccountSession };
-  storeAccountSession(result.session);
-  return result.parent;
+export function createParentAccount(parent: ParentAccount, signal?: AbortSignal) {
+  return parentAccountSession("/v1/parents/signup", parent, signal);
 }
 
-export async function getParentPortal(): Promise<ParentPortal> {
-  if (!API) throw new Error("The NexusLearn API is not configured yet.");
-  const res = await fetch(`${API}/v1/parent/config`, {
-    headers: accountSessionHeaders(["parent"]),
-    cache: "no-store",
-  });
-  const body = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(body.error ?? "Could not load parent account.");
+export function parentLogin(loginID: string, password: string, signal?: AbortSignal) {
+  return parentAccountSession("/v1/auth/parent-login", { login_id: loginID, password }, signal);
+}
+
+export async function getParentPortal(signal?: AbortSignal): Promise<ParentPortal> {
+  const body = await readParentAccount("/v1/parent/config", "Could not load parent account.", signal);
   // Older API releases encoded an empty Go slice as null. A new family must
   // still be able to open its workspace and add the first child during rollout.
   return { ...body, children: Array.isArray(body.children) ? body.children : [] } as ParentPortal;
 }
 
-export async function getParentChildEvidence(externalRef: string): Promise<ParentChildEvidence> {
+export async function getParentChildEvidence(externalRef: string, signal?: AbortSignal): Promise<ParentChildEvidence> {
+  return readParentAccount(`/v1/parent/children/${encodeURIComponent(externalRef)}/evidence`, "Could not load child evidence.", signal);
+}
+
+async function readParentAccount(path: string, failure: string, signal?: AbortSignal) {
   if (!API) throw new Error("The NexusLearn API is not configured yet.");
-  const res = await fetch(`${API}/v1/parent/children/${encodeURIComponent(externalRef)}/evidence`, {
-    headers: accountSessionHeaders(["parent"]),
-    cache: "no-store",
-  });
-  const body = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(body.error ?? "Could not load child evidence.");
-  return body as ParentChildEvidence;
+  const headers = accountSessionHeaders(["parent"]);
+  if (!headers.Authorization) throw new Error("The account session changed. Sign in again.");
+  const current = () => headers.Authorization === accountSessionHeaders(["parent"]).Authorization;
+  try {
+    const { res, body } = await accountRequestDeadline(async requestSignal => {
+      const res = await fetch(`${API}${path}`, { headers, cache: "no-store", signal: requestSignal });
+      const body = await res.json().catch(() => ({}));
+      return { res, body };
+    }, signal);
+    if (!current()) throw new Error("The account session changed. Sign in again.");
+    if (!res.ok) {
+      if (res.status === 401 || res.status === 403) clearAccountSession();
+      throw new Error(body?.error ?? failure);
+    }
+    return body;
+  } catch (error) {
+    if (!current()) throw new Error("The account session changed. Sign in again.");
+    throw error;
+  }
 }
 
 export async function createParentChild(child: { external_ref: string; display_name: string; year_group: number; engagement: StudentEngagementProfile }) {
@@ -928,18 +984,8 @@ export async function createParentChild(child: { external_ref: string; display_n
   return body;
 }
 
-export async function acceptParentInvitation(payload: { token: string; display_name: string; password: string }): Promise<ParentAccount> {
-  if (!API) throw new Error("The NexusLearn API is not configured yet.");
-  const res = await fetch(`${API}/v1/parent/invitations/accept`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  });
-  const body = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(body.error ?? "Could not accept invitation.");
-  const result = body as { parent: ParentAccount; session?: AccountSession };
-  storeAccountSession(result.session);
-  return result.parent;
+export function acceptParentInvitation(payload: { token: string; display_name: string; password: string }, signal?: AbortSignal) {
+  return parentAccountSession("/v1/parent/invitations/accept", payload, signal);
 }
 
 export async function pupilLogin(payload: { student_external_ref: string; login_code: string; picture_password: string[]; qr_secret_hash?: string }): Promise<PupilLoginResult> {

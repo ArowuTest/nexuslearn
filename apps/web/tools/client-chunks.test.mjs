@@ -39,7 +39,7 @@ test("only the exact browser API module enters the new cache group", () => {
 test("shared UI widgets keep distinct exact-source production browser boundaries", () => {
   const config = nextConfig.webpack(configuration(), { isServer: false, dev: false });
   const names = new Set();
-  for (const [key, component] of [["sharedMockBuilder", "MockAssessmentBuilder"], ["sharedProgressSnapshot", "ProgressSnapshot"], ["sharedDino", "Dino"]]) {
+  for (const [key, component] of [["sharedMockBuilder", "MockAssessmentBuilder"], ["sharedProgressSnapshot", "ProgressSnapshot"], ["sharedDino", "Dino"], ["sharedWorkspaceNavigation", "role-workspaces/WorkspaceNavigation"], ["sharedMockObjectiveGuidance", "MockObjectiveGuidance"], ["sharedAttemptEvidence", "AttemptEvidencePanel"]]) {
     const group = config.optimization.splitChunks.cacheGroups[key];
     assert.ok(group, `${component} must not be duplicated in role bundles`);
     assert.equal(group.minChunks, 2);
@@ -54,5 +54,22 @@ test("shared UI widgets keep distinct exact-source production browser boundaries
     }
     for (const resource of ["/repo/apps/web/src/lib/api.ts", `/repo/apps/web/src/components/${component}Extra.tsx`, `/repo/apps/web/src/components/admin/${component}.tsx`]) assert.equal(group.test({ layer: "app-pages-browser", nameForCondition: () => resource }), false);
     assert.equal(group.test({}), false);
+  }
+});
+
+test("adult authentication lifecycle is shared only by its exact production browser module", () => {
+  const config = nextConfig.webpack(configuration(), { isServer: false, dev: false });
+  const group = config.optimization.splitChunks.cacheGroups.sharedAccountAuthentication;
+  assert.ok(group, "the same lifecycle must not be copied into all three adult routes");
+  assert.equal(group.name, "nexuslearn-account-authentication");
+  assert.equal(group.minChunks, 2);
+  assert.equal(group.enforce, true);
+  assert.equal(group.reuseExistingChunk, true);
+  for (const resource of ["/repo/src/components/role-workspaces/useAccountAuthentication.ts", "C:\\repo\\src\\components\\role-workspaces\\useAccountAuthentication.ts"]) {
+    assert.equal(group.test({ layer: "app-pages-browser", nameForCondition: () => resource }), true);
+    for (const layer of ["rsc", "ssr", undefined]) assert.equal(group.test({ layer, nameForCondition: () => resource }), false);
+  }
+  for (const resource of ["/repo/src/lib/api.ts", "/repo/src/components/role-workspaces/useAccountAuthenticationExtra.ts", "/repo/src/components/admin/useAccountAuthentication.ts"]) {
+    assert.equal(group.test({ layer: "app-pages-browser", nameForCondition: () => resource }), false);
   }
 });

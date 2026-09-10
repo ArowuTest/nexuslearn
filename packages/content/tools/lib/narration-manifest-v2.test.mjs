@@ -103,6 +103,11 @@ test("manifest release identity is stable across generated time and input orderi
   assert.equal(first.assets[0].reuse_count, 3);
   assert.equal(first.references[0].reference_id, "fraction-second");
   assert.equal(first.blockers[0].reference_id, "phoneme-sh");
+  const specialist = first.references.find(reference => reference.reference_id === "phoneme-sh");
+  assert.equal(specialist.text, "");
+  assert.equal(specialist.text_sha256, "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855");
+  assert.equal(specialist.production_asset_id, undefined);
+  assert.equal(specialist.status, "specialist_required");
 });
 
 test("manifest rejects produced bytes bound to a stale production profile", () => {

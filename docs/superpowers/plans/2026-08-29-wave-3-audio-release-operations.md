@@ -103,11 +103,15 @@ The producer performs network and filesystem effects; the module validates and
 constructs identities without effects. A filtered run must reject profile
 changes and preserve only byte-verified reusable assets.
 
-- [ ] **Step 4: Integrate canonical assets and aliases into production**
+- [x] **Step 4: Integrate canonical assets and aliases into production**
 
 Produce one MP3 per production identity. Do not call ElevenLabs during tests or
 catalogue checks. `--dry-run` reports selected references, unique production
 assets, estimated characters and reuse savings.
+
+Implementation evidence: `docs/reviews/2026-09-10-canonical-variant-production.md`.
+The v2 companion preserves the legacy inventory; real generation/listening and
+hosted release activation remain independent operator gates.
 
 - [x] **Step 5: Verify migration without credentials**
 

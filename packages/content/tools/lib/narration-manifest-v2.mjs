@@ -80,7 +80,14 @@ export function buildNarrationManifestV2({
     .sort((left, right) => left.id.localeCompare(right.id))
     .map((produced) => validateProducedAsset(produced, expectedByID));
   const references = [...(catalog.references ?? [])]
-    .map((reference) => canonicalCopy(reference))
+    .map((reference) => canonicalCopy({
+      ...reference,
+      // PostgreSQL requires a digest even for explicitly blocked placeholders.
+      // Hash the empty transcript; never invent speech or a production identity.
+      ...((reference.status === "specialist_required" || reference.status === "unresolved")
+        && reference.text === "" && reference.text_sha256 === ""
+        ? { text_sha256: sha256("") } : {}),
+    }))
     .sort((left, right) => left.reference_id.localeCompare(right.reference_id));
   const blockers = [...(catalog.blockers ?? [])]
     .map((blocker) => canonicalCopy(blocker))

@@ -6,6 +6,8 @@ import { atomicWrite } from "./narration-production-cache.mjs";
 const hash = value => crypto.createHash("sha256").update(value).digest("hex");
 const metadataFiles = new Set([
   "packages/content/audio/narration-manifest.json",
+  "packages/content/audio/narration-manifest-v2.json",
+  "packages/content/audio/narration-asset-history.json",
   "apps/web/public/content/narration-manifest.json",
   "packages/content/generated/audio/narration-review.html",
   "apps/web/private/content/narration-review.html",

@@ -12,7 +12,8 @@ import SchoolLearningTask from "@/components/role-workspaces/SchoolLearningTask"
 import SchoolInterventionReview from "@/components/role-workspaces/SchoolInterventionReview";
 import SchoolRecordRows from "@/components/role-workspaces/SchoolRecordRows";
 import { WorkspaceNavigation, WorkspaceState } from "@/components/role-workspaces/WorkspaceNavigation";
-import { accountSessionHeaders, logoutAccount, storeAccountSession, subscribeAccountSession, type AccountSession, type ProgressReport } from "@/lib/api";
+import { accountSessionHeaders, logoutAccount, requestAccountSession, subscribeAccountSession, type ProgressReport } from "@/lib/api";
+import useAccountAuthentication from "@/components/role-workspaces/useAccountAuthentication";
 
 type Student = { external_ref: string; display_name: string; year_group: number };
 type ClassGroup = { id?: string; school_urn?: string; name: string; year_group: number; students?: Student[] };
@@ -151,6 +152,7 @@ function runtimePreviewItems(profile: StudentEngagementProfile): Array<[string, 
 }
 
 export default function SchoolAdminPage() {
+  const authentication = useAccountAuthentication();
   const [schoolURN, setSchoolURN] = useState("");
   const [loginID, setLoginID] = useState("");
   const [password, setPassword] = useState("");
@@ -350,31 +352,25 @@ export default function SchoolAdminPage() {
   }
 
   async function signIn() {
+    if (authentication.busy()) return;
     await guarded("Signing in...", async () => {
       resetWorkspace();
-      if (!API) throw new Error("API is not configured.");
-      const res = await fetch(`${API}/v1/auth/school-login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ school_urn: schoolURN, login_id: loginID, password }),
-      });
-      const body = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(body.error ?? "School login failed.");
-      storeAccountSession(body.session as AccountSession);
+      const result = await authentication.run(signal => requestAccountSession("/v1/auth/school-login", { school_urn: schoolURN, login_id: loginID, password }, ["school_admin", "teacher"], signal));
+      if (!result) { setMessage("Sign-in cancelled because the account session changed."); return; }
       setPassword("");
       await loadWorkspace();
       setMessage("School workspace loaded.");
     });
   }
 
-  async function logout() {
+  function logout() {
     resetWorkspace();
-    setMessage("Signing out securely...");
-    try {
-      await logoutAccount();
-    } finally {
-      setMessage("Signed out securely.");
-    }
+    setPassword("");
+    setLoginID("");
+    setSchoolURN("");
+    setSaving(false);
+    void logoutAccount();
+    setMessage("Signed out securely.");
   }
 
   async function saveStudent() {
@@ -518,12 +514,14 @@ export default function SchoolAdminPage() {
         ) : null}
 
         {!portal?.current_user && <form id="school-setup" aria-label="School sign in" onSubmit={(event) => { event.preventDefault(); if (!saving && schoolURN && loginID && password) void signIn(); }} className="scroll-mt-28 mt-8 grid gap-4 rounded-lg bg-white p-5 shadow-card md:grid-cols-[1fr_1fr_1fr_auto]">
+          <fieldset disabled={working || !authentication.ready} className="contents">
           <Field label="School URN" value={schoolURN} onChange={setSchoolURN} />
           <Field label="Login ID" value={loginID} onChange={setLoginID} />
           <Field label="Temporary password" value={password} onChange={setPassword} type="password" />
           <button type="submit" disabled={!schoolURN || !loginID || !password || saving} className="btn-pop self-end bg-[#ffbf45] px-5 py-3 text-sm disabled:opacity-50">
             Sign in
           </button>
+          </fieldset>
         </form>}
 
         <div className="mt-4"><WorkspaceState tone={saving ? "loading" : portal ? "success" : "neutral"}>{message}</WorkspaceState></div>

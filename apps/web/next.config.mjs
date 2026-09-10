@@ -16,13 +16,19 @@ const nextConfig = {
       };
       // These widgets were each emitted twice across pupil/adult routes. Keep
       // separate shared chunks: opening a mock must not also load reporting UI.
-      for (const [key, component, name] of [
+      for (const [key, component, name, extension = "tsx"] of [
         ["sharedMockBuilder", "MockAssessmentBuilder", "nexuslearn-mock-builder"],
         ["sharedProgressSnapshot", "ProgressSnapshot", "nexuslearn-progress-snapshot"],
         ["sharedDino", "Dino", "nexuslearn-dino"],
+        ["sharedAccountAuthentication", "role-workspaces/useAccountAuthentication", "nexuslearn-account-authentication", "ts"],
+        ["sharedWorkspaceNavigation", "role-workspaces/WorkspaceNavigation", "nexuslearn-workspace-navigation"],
+        // Measured in four and three emitted chunks respectively. Preserve
+        // separate payloads so evidence UI does not pull in mock guidance.
+        ["sharedMockObjectiveGuidance", "MockObjectiveGuidance", "nexuslearn-mock-objective-guidance"],
+        ["sharedAttemptEvidence", "AttemptEvidencePanel", "nexuslearn-attempt-evidence"],
       ]) {
         config.optimization.splitChunks.cacheGroups[key] = {
-          test: module => module.layer === "app-pages-browser" && (module.nameForCondition?.() || "").replaceAll("\\", "/").endsWith(`/src/components/${component}.tsx`),
+          test: module => module.layer === "app-pages-browser" && (module.nameForCondition?.() || "").replaceAll("\\", "/").endsWith(`/src/components/${component}.${extension}`),
           name,
           minChunks: 2,
           enforce: true,

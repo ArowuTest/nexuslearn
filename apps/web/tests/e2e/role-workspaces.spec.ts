@@ -265,6 +265,8 @@ test("school workspace clears all organisation state on logout and failed accoun
   await page.getByLabel("Selected school learner").selectOption("ava-y3");
   await expect(page.getByText("Ava confidential plan", { exact: true }).first()).toBeVisible();
   await page.getByRole("button", { name: "Sign out", exact: true }).click();
+  await expect(page.getByLabel("School URN")).toHaveValue("");
+  await page.getByLabel("School URN").fill("123456");
   await page.getByLabel("Login ID").fill("teacher-two");
   await page.getByLabel("Temporary password").fill("wrong-password");
   await page.getByRole("button", { name: "Sign in" }).click();

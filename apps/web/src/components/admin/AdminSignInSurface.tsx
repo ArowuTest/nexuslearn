@@ -4,6 +4,7 @@ type AdminSignInSurfaceProps = {
   adminKey: string;
   login: { login_id: string; password: string };
   loading: boolean;
+  ready: boolean;
   message: string;
   onAdminKeyChange: (value: string) => void;
   onLoginChange: (login: { login_id: string; password: string }) => void;
@@ -15,6 +16,7 @@ export default function AdminSignInSurface({
   adminKey,
   login,
   loading,
+  ready,
   message,
   onAdminKeyChange,
   onLoginChange,
@@ -31,7 +33,8 @@ export default function AdminSignInSurface({
             Sign in with your named platform account to continue to the functions assigned to your role.
           </p>
         </div>
-        <form className="bg-white p-6 shadow-card" onSubmit={(event) => { event.preventDefault(); onSignIn(); }}>
+        <form className="bg-white p-6 shadow-card" onSubmit={(event) => { event.preventDefault(); if (!loading && login.login_id && login.password) onSignIn(); }}>
+          <fieldset disabled={loading || !ready} className="contents">
           <label className="block">
             <span className="text-sm font-semibold">Login ID</span>
             <input value={login.login_id} onChange={(event) => onLoginChange({ ...login, login_id: event.target.value })} className="mt-2 w-full border border-[#1d1a3e]/15 px-4 py-3 outline-none focus:border-[#7357c9]" placeholder="name@example.com" autoComplete="username" autoFocus />
@@ -43,6 +46,7 @@ export default function AdminSignInSurface({
           <button type="submit" disabled={loading || !login.login_id || !login.password} className="btn-pop mt-6 w-full bg-[#ffbf45] px-6 py-3 text-[#1d1a3e] disabled:cursor-not-allowed disabled:opacity-50">
             {loading ? "Signing in" : "Sign in"}
           </button>
+          </fieldset>
           <p className="mt-4 text-center text-xs leading-5 text-[#1d1a3e]/54">
             Access is role-controlled. Reviewers see review tools; platform administrators see the full control room.
           </p>

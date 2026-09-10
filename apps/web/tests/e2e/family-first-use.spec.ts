@@ -109,13 +109,15 @@ test("signing out during evidence loading prevents the late response restoring c
   await expect(page.getByRole("button", { name: "Load evidence", exact: true })).toBeEnabled();
   let release!: () => void;
   const pending = new Promise<void>(resolve => { release = resolve; });
-  await page.route("http://api.test/v1/parent/children/qa-child/evidence", async route => { await pending; await route.fulfill({ json: { child, mastery: [], summary: {}, progress: null } }); });
-  const response = page.waitForResponse(r => r.url().endsWith("/qa-child/evidence"));
+  await page.route("http://api.test/v1/parent/children/qa-child/evidence", async route => { await pending; await route.fulfill({ json: { child, mastery: [], summary: {}, progress: null } }).catch(() => {}); });
+  const started = page.waitForRequest(r => r.url().endsWith("/qa-child/evidence"));
+  const aborted = page.waitForEvent("requestfailed", { predicate: r => r.url().endsWith("/qa-child/evidence") });
   try {
     await page.getByRole("button", { name: "Load evidence", exact: true }).click();
+    await started;
     await page.getByRole("button", { name: "Sign out", exact: true }).click();
     release();
-    await responseSettled(page, response);
+    expect((await aborted).failure()?.errorText).toBe("net::ERR_ABORTED");
     await expect(page.getByText("QA child", { exact: true })).toHaveCount(0);
     await expect(page.getByRole("status")).toHaveText("Signed out securely.");
   } finally { release(); }

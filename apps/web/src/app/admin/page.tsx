@@ -34,7 +34,9 @@ import {
   type AdminSectionId,
   visibleAdminSections,
 } from "@/components/admin/adminSectionModel";
-import { accountSessionHeaders, accountSessionRole, logoutAccount, storeAccountSession, type AccountSession, type ProgressReport } from "@/lib/api";
+import { accountSessionHeaders, accountSessionRole, logoutAccount, requestAccountSession, type ProgressReport } from "@/lib/api";
+import useAccountAuthentication from "@/components/role-workspaces/useAccountAuthentication";
+import useAccountWorkspace from "@/components/role-workspaces/useAccountWorkspace";
 import type { NarrationReadinessReport } from "@/lib/admin-audio";
 
 const AdminReviewWorkspace = dynamic(() => import("@/components/admin/AdminReviewWorkspace"), {
@@ -783,6 +785,7 @@ const newFlag: FeatureFlag = {
 };
 
 export default function AdminPage() {
+  const authentication = useAccountAuthentication();
   const [adminKey, setAdminKey] = useState("");
   const [adminLogin, setAdminLogin] = useState({ login_id: "", password: "" });
   const [config, setConfig] = useState<AdminConfig | null>(null);
@@ -842,10 +845,14 @@ export default function AdminPage() {
   const [worldDirectory, setWorldDirectory] = useState<AdminRuntimeDirectoryState<World>>(() => emptyRuntimeDirectory());
   const [featureFlagDirectory, setFeatureFlagDirectory] = useState<AdminRuntimeDirectoryState<FeatureFlag>>(() => emptyRuntimeDirectory());
   const runtimeDirectoryRequest = useRef(0);
+  const workspace = useAccountWorkspace(() => {
+    resetWorkspace();
+    setMessage("Your administrator session changed or expired. Sign in again to continue.");
+  });
 
   useEffect(() => {
     const role = accountSessionRole();
-    if (!role) return;
+    if (!role || !["platform_admin", "content_editor", "content_reviewer"].includes(role)) return;
     setAccountRole(role);
     setConfig({});
     const requestedSection = new URLSearchParams(window.location.search).get("section");
@@ -938,10 +945,12 @@ export default function AdminPage() {
     if (sessionHeaders.Authorization) headers.set("Authorization", sessionHeaders.Authorization);
     else if (adminKey) headers.set("X-Admin-Key", adminKey);
     if (options.body) headers.set("Content-Type", "application/json");
-    const res = await fetch(`${API}${path}`, { ...options, headers });
-    const body = await res.json().catch(() => ({}));
-    if (!res.ok) throw new Error(body.error ?? "Admin request failed.");
-    return body;
+    return workspace.run(async signal => {
+      const res = await fetch(`${API}${path}`, { ...options, headers, signal });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(body.error ?? "Admin request failed.");
+      return body;
+    });
   }
 
   async function loadAdminLedgerPage<T extends { id: string }>(
@@ -1234,59 +1243,7 @@ export default function AdminPage() {
     void loadAccessRequestDirectory(false, status).catch(() => undefined);
   }
 
-  async function signInAdmin() {
-    if (!API) throw new Error("NEXT_PUBLIC_API_URL is not configured.");
-    setLoading(true);
-    setMessage("Signing in...");
-    try {
-      const res = await fetch(`${API}/v1/auth/admin-login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(adminLogin),
-      });
-      const body = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(body.error ?? "Administrator login failed.");
-      const session = body.session as AccountSession;
-      storeAccountSession(session);
-      setAccountRole(session.role);
-      setTab(session.role === "content_reviewer" ? "Reviews" : "Overview");
-      setConfig({});
-      directoryCursors.current = { student: "", credential: "" };
-      setDirectoryLoading(false);
-      setDirectoryError("");
-      directoryRequest.current += 1;
-      organisationCursors.current = { school: "", schoolUser: "", class: "" };
-      setOrganisationLoading(false);
-      setOrganisationError("");
-      organisationRequest.current += 1;
-      groupDirectoryCursor.current = "";
-      setGroupDirectoryLoading(false);
-      setGroupDirectoryError("");
-      groupDirectoryRequest.current += 1;
-      parentDirectoryCursors.current = { link: "", invitation: "" };
-      setParentDirectoryLoading(false);
-      setParentDirectoryError("");
-      parentDirectoryRequest.current += 1;
-      accessRequestDirectoryCursor.current = "";
-      setAccessRequestDirectoryLoading(false);
-      setAccessRequestDirectoryError("");
-      accessRequestDirectoryRequest.current += 1;
-      setAccessRequestStatus("all");
-      resetContentDirectories();
-      resetRuntimeDirectories();
-      setAdminLogin({ login_id: adminLogin.login_id, password: "" });
-    } catch (error) {
-      setMessage(error instanceof Error ? error.message : "Administrator login failed.");
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  async function signOutAdmin() {
-    clearAdminProgress();
-    await logoutAccount();
-    setConfig(null);
-    setAccountRole(null);
+  function resetAccountDirectories() {
     directoryCursors.current = { student: "", credential: "" };
     setDirectoryLoading(false);
     setDirectoryError("");
@@ -1310,6 +1267,34 @@ export default function AdminPage() {
     setAccessRequestStatus("all");
     resetContentDirectories();
     resetRuntimeDirectories();
+  }
+
+  async function signInAdmin() {
+    if (loading || authentication.busy()) return;
+    setLoading(true);
+    setMessage("Signing in...");
+    try {
+      const result = await authentication.run(signal => requestAccountSession("/v1/auth/admin-login", adminLogin, ["platform_admin", "content_editor", "content_reviewer"], signal));
+      if (!result) { setMessage("Sign-in cancelled because the account session changed."); return; }
+      const session = result.session;
+      setAccountRole(session.role);
+      setTab(session.role === "content_reviewer" ? "Reviews" : "Overview");
+      setConfig({});
+      resetAccountDirectories();
+      setAdminLogin({ login_id: adminLogin.login_id, password: "" });
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Administrator login failed.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  function resetWorkspace() {
+    workspace.invalidate();
+    clearAdminProgress();
+    setConfig(null);
+    setAccountRole(null);
+    resetAccountDirectories();
     setProgressStudentID("");
     setAdminKey("");
     setContentReviewLedger(null);
@@ -1320,6 +1305,34 @@ export default function AdminPage() {
     setAuditLedger(emptyAdminLedger());
     setVersionLedger(emptyAdminLedger());
     setReleaseLedger(emptyAdminLedger());
+    setAdminLogin({ login_id: "", password: "" });
+    setLoading(false);
+    setSaving("");
+    setTab("Overview");
+    setReadiness(null); setRendererReadiness(null); setAssetReadiness(null);
+    setNarrationReadiness(null); setPackDepthReadiness(null); setCurriculumCoverage(null);
+    setReleaseSnapshot(null); setVariantQueue(null); setRuntimeSpine(null);
+    setPilotReviewBatch(null); setPilotReviewEvidence(null); setPilotReviewEvidenceCheck(null); setFlagshipReview(null);
+    setParentInvitations([]); setLatestInvitationURL(""); setAccessRequestDraft(null);
+    setWorldDraft({ ...newWorld, configText: pretty(newWorld.config) });
+    setActivityDraft({ ...newActivity, interactionText: pretty(newActivity.interaction), feedbackText: pretty(newActivity.feedback), animationHooksText: pretty(newActivity.animation_hooks) });
+    setQuestionDraft({ ...newQuestion, bodyText: pretty(newQuestion.body), expectedText: pretty(newQuestion.expected_answer), hintsText: pretty(newQuestion.hints) });
+    setRewardDraft({ ...newRewardRule, rewardPayloadText: pretty(newRewardRule.reward_payload) });
+    setStudentDraft({ ...newStudent }); setSchoolDraft({ ...newSchool }); setSchoolUserDraft({ ...newSchoolUser }); setClassDraft({ ...newClassGroup });
+    setCredentialDraft({ ...newCredential, picturePasswordText: pretty(newCredential.picture_password) });
+    setAssignmentDraft({ class_id: "", student_external_ref: "" });
+    setCredentialBatchDraft({ class_id: "", overwrite: false, picturePoolText: pretty(["star", "book", "sun", "tree", "rocket", "moon"]) });
+    setGroupDraft({ ...newGroup }); setGroupAssignmentDraft({ group_id: "", student_external_ref: "" });
+    setParentLinkDraft({ ...newParentLink });
+    setParentInvitationDraft({ parent_email: "", parent_display_name: "", student_external_ref: "", relationship: "parent" });
+    setPlatformUserDraft({ email: "", display_name: "", login_id: "", password: "", role: "platform_admin" });
+    setObjectiveDraft({ ...newObjective, prerequisitesText: pretty(newObjective.prerequisites), misconceptionsText: pretty(newObjective.misconceptions), retentionDaysText: pretty(newObjective.mastery.retention_days), requiredFormatsText: pretty(newObjective.mastery.required_formats) });
+    setFlagDraft({ ...newFlag, configText: pretty(newFlag.config) });
+  }
+
+  function signOutAdmin() {
+    resetWorkspace();
+    void logoutAccount();
     setMessage("Signed out securely.");
   }
 
@@ -1328,8 +1341,10 @@ export default function AdminPage() {
   }
 
   async function downloadContentReport(name: string) {
+    const current = workspace.capture();
     try {
       const report = await loadGeneratedContentReport(name);
+      if (!current()) return;
       const url = URL.createObjectURL(new Blob([JSON.stringify(report, null, 2)], { type: "application/json" }));
       const link = document.createElement("a");
       link.href = url;
@@ -1337,7 +1352,7 @@ export default function AdminPage() {
       link.click();
       setTimeout(() => URL.revokeObjectURL(url), 1000);
     } catch {
-      setMessage("Report download unavailable. Check your admin session and try again.");
+      if (current()) setMessage("Report download unavailable. Check your admin session and try again.");
     }
   }
 
@@ -1369,6 +1384,7 @@ export default function AdminPage() {
   }
 
   async function saveContentReview(pack: PilotReviewPack, lane: PilotReviewLane, decision: ContentReviewDecision["decision"]) {
+    const current = workspace.capture();
     const draft = contentReviewDraftFor(pack.pack_id, lane.id);
     const candidateIDs = draft.candidate_ids.split(",").map((item) => item.trim()).filter(Boolean);
     if (!draft.reviewer_name.trim() || !draft.evidence_notes.trim()) {
@@ -1394,23 +1410,27 @@ export default function AdminPage() {
         candidate_ids: candidateIDs,
         revision_actions: draft.revision_actions.split(",").map((item) => item.trim()).filter(Boolean),
       };
+      const key = await reviewIdempotencyKey(`content-${pack.pack_id}-${lane.id}`, reviewPayload);
+      if (!current()) return;
       const review = await adminFetch("/v1/admin/content/reviews", {
         method: "POST",
-        headers: { "Idempotency-Key": await reviewIdempotencyKey(`content-${pack.pack_id}-${lane.id}`, reviewPayload) },
+        headers: { "Idempotency-Key": key },
         body: JSON.stringify(reviewPayload),
       }) as ContentReviewDecision;
+      if (!current()) return;
       setContentReviewLedger((current) => current ? { ...current, reviews: [review, ...current.reviews.filter((item) => !(item.pack_id === review.pack_id && item.lane_id === review.lane_id))] } : current);
       try {
         const refreshed = await adminFetch("/v1/admin/content/reviews") as ContentReviewLedger;
+        if (!current()) return;
         setContentReviewLedger(refreshed);
       } catch {
         // The decision is already persisted; retain the optimistic ledger if a refresh briefly fails.
       }
-      setMessage(`${pack.pack_id} / ${lane.id.replaceAll("_", " ")} recorded as ${decision}. The release gate will remain blocked until every required lane is current and approved.`);
+      if (current()) setMessage(`${pack.pack_id} / ${lane.id.replaceAll("_", " ")} recorded as ${decision}. The release gate will remain blocked until every required lane is current and approved.`);
     } catch (error) {
-      setMessage(error instanceof Error ? error.message : "Could not save content review.");
+      if (current()) setMessage(error instanceof Error ? error.message : "Could not save content review.");
     } finally {
-      setSaving("");
+      if (current()) setSaving("");
     }
   }
 
@@ -1506,6 +1526,7 @@ export default function AdminPage() {
   }
 
   async function loadAdminSection(section: Tab, role: AdminAccountRole) {
+    const current = workspace.capture();
     const plan = adminSectionLoadPlan(role, section);
     setLoading(true);
     setMessage(`Loading ${section.toLowerCase()} workspace...`);
@@ -1535,8 +1556,10 @@ export default function AdminPage() {
         await loadAccessRequestDirectory(false);
       } else if (plan.configSection) {
         const loaded = await adminFetch(`/v1/admin/config?section=${encodeURIComponent(plan.configSection)}`) as AdminConfig;
+        if (!current()) return;
         setConfig((current) => ({ ...(current ?? {}), ...loaded }));
       }
+      if (!current()) return;
       if (plan.reportWorkspace === "readiness") {
         const [readinessData, rendererData, assetData, narrationData, packDepthData, curriculumCoverageData, flagshipReviewData] = await Promise.all([
           adminFetch("/v1/admin/content/readiness"),
@@ -1547,6 +1570,7 @@ export default function AdminPage() {
           loadGeneratedContentReport("curriculum-area-coverage"),
           loadGeneratedContentReport("flagship-review"),
         ]);
+        if (!current()) return;
         setReadiness(readinessData as ContentReadinessReport);
         setRendererReadiness(rendererData as RendererReadinessReport | null);
         setAssetReadiness(assetData as AssetReadinessReport | null);
@@ -1557,6 +1581,7 @@ export default function AdminPage() {
       }
       if (plan.reportWorkspace === "audio") {
         const narrationData = await loadGeneratedContentReport("narration-readiness");
+        if (!current()) return;
         setNarrationReadiness(narrationData as NarrationReadinessReport | null);
       }
       if (plan.reportWorkspace === "releases") {
@@ -1570,6 +1595,7 @@ export default function AdminPage() {
           loadGeneratedContentReport("pilot-review-evidence-check"),
           adminFetch("/v1/admin/content/reviews").catch(() => null),
         ]);
+        if (!current()) return;
         setReadiness(readinessData as ContentReadinessReport);
         setReleaseSnapshot(releaseData as ContentReleaseSnapshot | null);
         setVariantQueue(variantQueueData as VariantProductionQueue | null);
@@ -1582,10 +1608,12 @@ export default function AdminPage() {
       }
       setMessage(`${section} workspace loaded.`);
     } catch (error) {
-      setMessage(error instanceof Error ? error.message : "Could not reach the API.");
-      clearAdminProgress();
+      if (current()) {
+        setMessage(error instanceof Error ? error.message : "Could not reach the API.");
+        clearAdminProgress();
+      }
     } finally {
-      setLoading(false);
+      if (current()) setLoading(false);
     }
   }
 
@@ -1596,13 +1624,14 @@ export default function AdminPage() {
   }
 
   async function savePlatformUser() {
-    await save(`/v1/admin/platform-users/${encodeURIComponent(platformUserDraft.email)}`, {
+    const current = workspace.capture();
+    await guardedSave(async () => { await save(`/v1/admin/platform-users/${encodeURIComponent(platformUserDraft.email)}`, {
       display_name: platformUserDraft.display_name,
       login_id: platformUserDraft.login_id || platformUserDraft.email,
       password: platformUserDraft.password,
       roles: [platformUserDraft.role],
-    });
-    setPlatformUserDraft({ email: "", display_name: "", login_id: "", password: "", role: "platform_admin" });
+    }); });
+    if (current()) setPlatformUserDraft({ email: "", display_name: "", login_id: "", password: "", role: "platform_admin" });
   }
 
   function clearAdminProgress() {
@@ -1623,41 +1652,45 @@ export default function AdminPage() {
     } catch (error) {
       if (request === progressRequest.current) setMessage(error instanceof Error ? error.message : "Could not load learner progress.");
     } finally {
-      setSaving("");
+      if (request === progressRequest.current) setSaving("");
     }
   }
 
   async function createParentInvitation() {
+    const current = workspace.capture();
     setSaving("parent invitation");
     try {
       const result = await adminFetch("/v1/admin/parent-invitations", {
         method: "POST",
         body: JSON.stringify(parentInvitationDraft),
       });
+      if (!current()) return;
       setLatestInvitationURL(result.accept_url ?? "");
       setParentInvitationDraft({ parent_email: "", parent_display_name: "", student_external_ref: "", relationship: "parent" });
       await loadConfig();
-      setMessage("Parent invitation created. Share the one-time URL through an approved channel.");
+      if (current()) setMessage("Parent invitation created. Share the one-time URL through an approved channel.");
     } catch (error) {
-      setMessage(error instanceof Error ? error.message : "Could not create parent invitation.");
+      if (current()) setMessage(error instanceof Error ? error.message : "Could not create parent invitation.");
     } finally {
-      setSaving("");
+      if (current()) setSaving("");
     }
   }
 
   async function updateParentInvitation(id: string, action: "sent" | "resend" | "revoke") {
+    const current = workspace.capture();
     setSaving(`parent invitation ${action}`);
     try {
       const result = await adminFetch(`/v1/admin/parent-invitations/${encodeURIComponent(id)}/${action}`, { method: "POST" });
+      if (!current()) return;
       if (result.parent_invitation?.token) {
         setLatestInvitationURL(`${window.location.origin}/family?invitation=${result.parent_invitation.token}`);
       }
       await loadConfig();
-      setMessage(`Parent invitation ${action} completed.`);
+      if (current()) setMessage(`Parent invitation ${action} completed.`);
     } catch (error) {
-      setMessage(error instanceof Error ? error.message : "Could not update parent invitation.");
+      if (current()) setMessage(error instanceof Error ? error.message : "Could not update parent invitation.");
     } finally {
-      setSaving("");
+      if (current()) setSaving("");
     }
   }
 
@@ -1903,6 +1936,7 @@ export default function AdminPage() {
   }
 
   async function convertAccessRequest() {
+    const current = workspace.capture();
     if (!accessRequestDraft?.id) {
       setMessage("Select an approved school or tutoring request first.");
       return;
@@ -1924,6 +1958,7 @@ export default function AdminPage() {
           create_starter_class: true,
         }),
       })) as AccessRequestConversionResult;
+      if (!current()) return;
       setAccessRequestDraft({ ...converted.access_request });
       setSchoolDraft({ ...converted.school });
       if (converted.school_user?.email) setSchoolUserDraft({ ...converted.school_user });
@@ -1932,7 +1967,7 @@ export default function AdminPage() {
         ? ` Login ID: ${converted.school_user.login_id}. Temporary password: ${converted.school_user.temporary_password}.`
         : "";
       await loadConfig();
-      setMessage(`Request converted into ${converted.school.name}.${credentialText}`);
+      if (current()) setMessage(`Request converted into ${converted.school.name}.${credentialText}`);
     });
   }
 
@@ -1994,6 +2029,7 @@ export default function AdminPage() {
   }
 
   async function restoreContentVersion(version: ContentVersion) {
+    const current = workspace.capture();
     const confirmed = window.confirm(`Restore ${version.content_key} to version ${version.version}? This will create a new audited configuration version.`);
     if (!confirmed) return;
     await guardedSave(async () => {
@@ -2003,10 +2039,11 @@ export default function AdminPage() {
       setMessage("Content snapshot restored. Refreshing live configuration...");
       await loadConfig();
     });
-    setSaving("");
+    if (current()) setSaving("");
   }
 
   async function promoteContentVersion(version: ContentVersion) {
+    const current = workspace.capture();
     const target = nextContentStatus(version.status);
     if (!target) return;
     const confirmed = window.confirm(`Promote ${version.content_key} from ${version.status} to ${target}?`);
@@ -2019,30 +2056,35 @@ export default function AdminPage() {
         body: JSON.stringify({ status: target }),
       });
       await loadConfig();
-      setMessage(`Content promoted to ${target} with an audited immutable snapshot.`);
+      if (current()) setMessage(`Content promoted to ${target} with an audited immutable snapshot.`);
     });
-    setSaving("");
+    if (current()) setSaving("");
   }
 
   async function save(path: string, body: unknown) {
+    const current = workspace.capture();
     try {
       setSaving(path);
       setMessage("Saving...");
       await adminFetch(path, { method: "PUT", body: JSON.stringify(body) });
+      if (!current()) throw new Error("The account request was cancelled.");
       setMessage("Saved. Refreshing live configuration...");
       await loadConfig();
+      if (!current()) throw new Error("The account request was cancelled.");
     } catch (error) {
+      if (!current()) throw error;
       setMessage(error instanceof Error ? error.message : "Save failed.");
     } finally {
-      setSaving("");
+      if (current()) setSaving("");
     }
   }
 
   async function guardedSave(action: () => Promise<void>) {
+    const current = workspace.capture();
     try {
       await action();
     } catch (error) {
-      setMessage(error instanceof Error ? error.message : "Save failed.");
+      if (current()) setMessage(error instanceof Error ? error.message : "Save failed.");
     }
   }
 
@@ -2158,6 +2200,7 @@ export default function AdminPage() {
   if (!config) {
     return (
       <AdminSignInSurface
+        ready={authentication.ready}
         adminKey={adminKey}
         login={adminLogin}
         loading={loading}
