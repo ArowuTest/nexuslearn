@@ -1,5 +1,6 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import { responseSettled } from "./response-settled";
 
 const student = { external_ref: "evidence-child", display_name: "Evidence Pupil", year_group: 3 };
 const peer = { external_ref: "other-child", display_name: "Other Pupil", year_group: 4 };
@@ -93,12 +94,43 @@ for (const workspace of ["parents", "family", "school-admin", "admin"]) {
         await gate;
         await route.fulfill({ contentType: "application/json", body: JSON.stringify(report) });
       });
+      let releasePeer!: () => void;
+      let peerArrived!: () => void;
+      const peerGate = new Promise<void>(resolve => { releasePeer = resolve; });
+      const peerSeen = new Promise<void>(resolve => { peerArrived = resolve; });
+      if (workspace === "admin") {
+        await page.route(`http://api.test/v1/admin/students/${peer.external_ref}/progress`, async route => {
+          peerArrived();
+          await peerGate;
+          await route.fulfill({ contentType: "application/json", body: JSON.stringify({
+            ...report, student_id: peer.external_ref,
+            attempt_evidence: [{ ...report.attempt_evidence[0], question_prompt: "Other pupil evidence only" }],
+          }) });
+        });
+      }
       try {
         await page.getByRole("button", { name: "Load progress", exact: true }).click();
         await requestSeen;
-        if (workspace === "admin") await page.getByLabel("Learner external ref").fill(peer.external_ref);
-        else await page.getByLabel("Selected school learner").selectOption(peer.external_ref);
-      } finally { release(); }
+        if (workspace === "admin") {
+          await page.getByLabel("Learner external ref").fill(peer.external_ref);
+          const load = page.getByRole("button", { name: "Load progress", exact: true });
+          await expect(load).toBeEnabled(); // Old response remains held.
+          await expect(evidence).toHaveCount(0);
+          await load.click();
+          await peerSeen;
+          const oldResponse = page.waitForResponse(r => new URL(r.url()).pathname === `/v1/admin/students/${student.external_ref}/progress`);
+          release();
+          await responseSettled(page, oldResponse);
+          await expect(load).toBeDisabled(); // Old settlement must not release the peer's request.
+          await expect(evidence).toHaveCount(0);
+          releasePeer();
+          await expect(evidence).toContainText("Other pupil evidence only");
+          await expect(evidence).not.toContainText("What is 1.5 + 1?");
+          await expect(load).toBeEnabled();
+          return;
+        }
+        await page.getByLabel("Selected school learner").selectOption(peer.external_ref);
+      } finally { release(); releasePeer(); }
       await expect(page.getByRole("button", { name: "Load progress", exact: true })).toBeEnabled();
       await expect(evidence).toHaveCount(0);
     }

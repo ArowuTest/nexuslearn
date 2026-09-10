@@ -1637,6 +1637,7 @@ export default function AdminPage() {
   function clearAdminProgress() {
     progressRequest.current += 1;
     setAdminProgress(null);
+    setSaving(current => current === "progress" ? "" : current);
   }
 
   async function loadAdminProgress() {

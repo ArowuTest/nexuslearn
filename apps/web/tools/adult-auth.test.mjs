@@ -154,6 +154,54 @@ test("admin sign-out clears private UI before remote revocation settles", async 
   finally { finish(); await pending; }
 });
 
+async function adminProgressHarness() {
+  const pageSource = await readFile(new URL("../src/app/admin/page.tsx", import.meta.url), "utf8");
+  const file = ts.createSourceFile("page.tsx", pageSource, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
+  const handlers = [];
+  function visit(node) {
+    if (ts.isFunctionDeclaration(node) && ["clearAdminProgress", "loadAdminProgress"].includes(node.name?.text)) handlers.push(node.getText(file));
+    ts.forEachChild(node, visit);
+  }
+  visit(file);
+  assert.equal(handlers.length, 2);
+  const state = { saving: "", report: null, message: "" };
+  const requests = [];
+  const context = {
+    progressRequest: { current: 0 }, progressStudentID: "first-child", Error, encodeURIComponent,
+    setSaving(value) { state.saving = typeof value === "function" ? value(state.saving) : value; },
+    setAdminProgress(value) { state.report = value; }, setMessage(value) { state.message = value; },
+    adminFetch() { return new Promise(resolve => { requests.push(resolve); }); },
+  };
+  const code = ts.transpileModule(handlers.join("\n"), { compilerOptions: { target: ts.ScriptTarget.ES2022 } }).outputText;
+  const api = vm.runInNewContext(`${code}; ({clearAdminProgress, loadAdminProgress})`, context);
+  return { state, requests, context, ...api };
+}
+
+test("switching admin pupil releases old progress busy state but preserves a newer request", async () => {
+  const h = await adminProgressHarness();
+  const first = h.loadAdminProgress();
+  assert.equal(h.state.saving, "progress");
+  h.context.progressStudentID = "second-child";
+  h.clearAdminProgress();
+  assert.equal(h.state.saving, "", "Changing pupils must release the invalidated progress request");
+  const second = h.loadAdminProgress();
+  h.requests[0]({ student_id: "first-child" });
+  await first;
+  assert.equal(h.state.report, null);
+  assert.equal(h.state.saving, "progress", "Old settlement must not unlock the newer request");
+  h.requests[1]({ student_id: "second-child" });
+  await second;
+  assert.equal(h.state.report.student_id, "second-child");
+  assert.equal(h.state.saving, "");
+});
+
+test("clearing admin progress does not release unrelated mutation busy state", async () => {
+  const h = await adminProgressHarness();
+  h.state.saving = "Save objective";
+  h.clearAdminProgress();
+  assert.equal(h.state.saving, "Save objective");
+});
+
 test("verified authentication returns a session without storing or publishing it", async () => {
   const h = harness(async (url, options) => {
     assert.equal(url, "http://api.test/v1/auth/parent-login");
