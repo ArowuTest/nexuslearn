@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { accountSessionHeaders, subscribeAccountSession } from "@/lib/api";
 import { LabeledSelect, LoginCard, Panel } from "./SchoolWorkspacePrimitives";
+import { classYearLabel } from "./useSchoolDirectories";
 
 type Credential = { student_external_ref: string; display_name?: string; login_code: string; picture_password: string[]; qr_secret_hash?: string };
 type CardPage = { class_id: string; student_credentials: Credential[]; limit: number; has_more: boolean; next_cursor: string };
@@ -21,8 +22,8 @@ function validPage(value: unknown, classID: string, cursors: string[]): value is
     && new Set(page.student_credentials.map(card => card.student_external_ref)).size === page.student_credentials.length;
 }
 
-export default function SchoolAccessCards({ classes, schoolName, loadPage }: {
-  classes: ClassSummary[]; schoolName: string; loadPage: (classID: string, cursor: string) => Promise<unknown>;
+export default function SchoolAccessCards({ classes, schoolName, loadPage, onClassChange }: {
+  classes: ClassSummary[]; schoolName: string; loadPage: (classID: string, cursor: string) => Promise<unknown>; onClassChange?: (classID: string) => void;
 }) {
   const [view, setView] = useState<{ classID: string; cursors: string[]; index: number; data: CardPage | null; authorization: string; sessionChanged?: boolean; state: "idle" | "loading" | "ready" | "error" }>({ classID: "", cursors: [""], index: 0, data: null, authorization: "", state: "idle" });
   const [selected, setSelected] = useState<string[]>([]);
@@ -104,7 +105,7 @@ export default function SchoolAccessCards({ classes, schoolName, loadPage }: {
   return <>
     <Panel id="school-access" title="Pupil Login Packs" accessibleName="Pupil Login Packs">
       <p className="p-5 text-sm leading-6 text-[#42506b]">Choose one class. Cards load 12 at a time and stay hidden until opened. Print only the pupils you select on this page; keep their cards with trusted adults.</p>
-      <fieldset disabled={view.sessionChanged}><LabeledSelect label="Login card class" value={view.classID} values={["", ...classes.map(item => item.id ?? "").filter(Boolean)]} labels={Object.fromEntries(classes.map(item => [item.id ?? "", `${item.name} (Year ${item.year_group})`]))} onChange={id => void load(id)} /></fieldset>
+      <fieldset disabled={view.sessionChanged}><LabeledSelect label="Login card class" value={view.classID} values={["", ...classes.map(item => item.id ?? "").filter(Boolean)]} labels={Object.fromEntries(classes.map(item => [item.id ?? "", `${item.name} (${classYearLabel(item.year_group)})`]))} onChange={id => { onClassChange?.(id); void load(id); }} /></fieldset>
       <div className="flex flex-wrap items-center justify-between gap-3 p-5">
         <p ref={result} tabIndex={-1} role={view.state === "idle" ? undefined : view.state === "error" ? "alert" : "status"} className="text-sm text-[#42506b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7357c9]">
           {view.sessionChanged ? "Your school session changed or expired. Sign out and sign in again before loading login cards." : view.state === "idle" ? "Choose a class to see its login cards." : view.state === "loading" ? "Loading class cards…" : view.state === "error" ? "This class's cards could not be loaded. No old cards are being shown." : `Page ${view.index + 1} · ${cards.length} ${cards.length === 1 ? "pupil" : "pupils"}${view.data?.has_more ? " · more available" : " · end of class"}`}

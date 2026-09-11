@@ -1,0 +1,2 @@
+DROP INDEX IF EXISTS learning_groups_school_directory_keyset_idx;
+DROP INDEX IF EXISTS classes_school_directory_keyset_idx;

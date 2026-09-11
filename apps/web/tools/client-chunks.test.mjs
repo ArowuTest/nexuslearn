@@ -39,7 +39,7 @@ test("only the exact browser API module enters the new cache group", () => {
 test("shared UI widgets keep distinct exact-source production browser boundaries", () => {
   const config = nextConfig.webpack(configuration(), { isServer: false, dev: false });
   const names = new Set();
-  for (const [key, component] of [["sharedMockBuilder", "MockAssessmentBuilder"], ["sharedProgressSnapshot", "ProgressSnapshot"], ["sharedDino", "Dino"], ["sharedWorkspaceNavigation", "role-workspaces/WorkspaceNavigation"], ["sharedMockObjectiveGuidance", "MockObjectiveGuidance"], ["sharedAttemptEvidence", "AttemptEvidencePanel"]]) {
+  for (const [key, component] of [["sharedMockBuilder", "MockAssessmentBuilder"], ["sharedProgressSnapshot", "ProgressSnapshot"], ["sharedDino", "Dino"], ["sharedWorkspaceNavigation", "role-workspaces/WorkspaceNavigation"], ["sharedMockObjectiveGuidance", "MockObjectiveGuidance"], ["sharedAttemptEvidence", "AttemptEvidencePanel"], ["sharedMockHistory", "MockAssessmentHistory"], ["sharedChildJourney", "ChildJourneyChrome"]]) {
     const group = config.optimization.splitChunks.cacheGroups[key];
     assert.ok(group, `${component} must not be duplicated in role bundles`);
     assert.equal(group.minChunks, 2);

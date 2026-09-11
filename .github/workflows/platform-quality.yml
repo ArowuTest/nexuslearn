@@ -113,7 +113,7 @@ jobs:
         run: node --test ../../ops/deployment-smoke.test.mjs
 
       - name: Verify pupil session and bundle boundary regressions
-        run: node --test tools/pupil-journey.test.mjs tools/adult-auth.test.mjs tools/client-chunks.test.mjs tools/deployment-version.test.mjs tools/login-card-qr.test.mjs
+        run: node --test tools/pupil-journey.test.mjs tools/adult-auth.test.mjs tools/school-directory.test.mjs tools/client-chunks.test.mjs tools/deployment-version.test.mjs tools/login-card-qr.test.mjs
 
       - name: Build frontend
         env:

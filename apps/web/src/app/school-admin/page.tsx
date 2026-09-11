@@ -14,10 +14,13 @@ import SchoolRecordRows from "@/components/role-workspaces/SchoolRecordRows";
 import { WorkspaceNavigation, WorkspaceState } from "@/components/role-workspaces/WorkspaceNavigation";
 import { accountSessionHeaders, logoutAccount, requestAccountSession, subscribeAccountSession, type ProgressReport } from "@/lib/api";
 import useAccountAuthentication from "@/components/role-workspaces/useAccountAuthentication";
+import useSchoolDirectories, { classYearLabel, schoolDirectoryOverview, schoolDirectoryPage, type DirectoryClass, type DirectoryGroup, type DirectoryInfo } from "@/components/role-workspaces/useSchoolDirectories";
+import SchoolDirectoryControls from "@/components/role-workspaces/SchoolDirectoryControls";
 
 type Student = { external_ref: string; display_name: string; year_group: number };
-type ClassGroup = { id?: string; school_urn?: string; name: string; year_group: number; students?: Student[] };
-type LearningGroup = { id?: string; class_id: string; class_name?: string; name: string; purpose: string; students?: Student[] };
+type ClassGroup = { id?: string; school_urn?: string; name: string; year_group: number; student_count?: number; students?: Student[] };
+type ClassPin = "enrolment" | "group" | "card" | "draft";
+type LearningGroup = { id?: string; class_id: string; class_name?: string; name: string; purpose: string; student_count?: number; students?: Student[] };
 type SchoolUser = { login_id: string; display_name?: string; role: string; school_urn: string };
 type LearningAssignment = {
   id?: string;
@@ -73,6 +76,8 @@ type SchoolPortal = {
   current_user?: SchoolUser;
   classes?: ClassGroup[];
   groups?: LearningGroup[];
+  students?: Student[];
+  directory?: DirectoryInfo;
 };
 type StudentEngagementProfile = {
   student_external_ref: string;
@@ -153,6 +158,8 @@ function runtimePreviewItems(profile: StudentEngagementProfile): Array<[string, 
 
 export default function SchoolAdminPage() {
   const authentication = useAccountAuthentication();
+  const [pinnedPupil, setPinnedPupil] = useState<Student | null>(null);
+  const [pinnedClasses, setPinnedClasses] = useState<Partial<Record<ClassPin, ClassGroup>>>({});
   const [schoolURN, setSchoolURN] = useState("");
   const [loginID, setLoginID] = useState("");
   const [password, setPassword] = useState("");
@@ -181,16 +188,24 @@ export default function SchoolAdminPage() {
   const workspaceLoadVersion = useRef(0);
   const progressRequest = useRef(0);
   const supportRequest = useRef(0);
+  const groupLookup = useRef<{ version: number; controller?: AbortController }>({ version: 0 });
   const [cardRevision, setCardRevision] = useState(0);
-  const classOptions = ["", ...(portal?.classes ?? []).map(item => item.id ?? "").filter(Boolean)];
-  const classLabels = Object.fromEntries((portal?.classes ?? []).map(item => [item.id ?? "", `${item.name} (Year ${item.year_group})`]));
+  const directories = useSchoolDirectories((path, options) => apiFetch(path, options), () => { resetWorkspace(); setMessage("Your school access changed. Sign in again to continue."); });
+  const classPage: ClassGroup[] = directories.enabled ? directories.views.classes.items as DirectoryClass[] : portal?.classes ?? [];
+  const groupPage: LearningGroup[] = directories.enabled ? directories.views.groups.items as DirectoryGroup[] : portal?.groups ?? [];
+  const availableClasses = Array.from(new Map([...Object.values(pinnedClasses), ...classPage].map(item => [item.id, item])).values());
+  const classOptions = ["", ...availableClasses.map(item => item.id ?? "").filter(Boolean)];
+  const classLabels = Object.fromEntries(availableClasses.map(item => [item.id ?? "", `${item.name} (${classYearLabel(item.year_group)})`]));
   const isSchoolAdmin = portal?.current_user?.role === "school_admin";
   const runtimePreview = runtimePreviewItems(engagementProfile);
   const schoolStudents = useMemo(() => {
     const byID = new Map<string, Student>();
-    (portal?.classes ?? []).forEach((item) => (item.students ?? []).forEach((learner) => byID.set(learner.external_ref, learner)));
+    if (directories.enabled) {
+      if (pinnedPupil) byID.set(pinnedPupil.external_ref, pinnedPupil);
+      (directories.views.students.items as Student[]).forEach(learner => byID.set(learner.external_ref, learner));
+    } else (portal?.classes ?? []).forEach((item) => (item.students ?? []).forEach((learner) => byID.set(learner.external_ref, learner)));
     return Array.from(byID.values()).sort((left, right) => left.display_name.localeCompare(right.display_name));
-  }, [portal]);
+  }, [portal, directories.enabled, directories.views.students.items, pinnedPupil]);
   const schoolStudentLabels = useMemo(
     () => Object.fromEntries(schoolStudents.map((item) => [item.external_ref, `${item.display_name} / Year ${item.year_group}`])),
     [schoolStudents],
@@ -207,14 +222,17 @@ export default function SchoolAdminPage() {
       if (owner !== current) { owner = current; onSessionChanged(); }
     });
     const controllers = recordControllers.current;
+    const lookup = groupLookup.current;
     return () => {
       unsubscribe();
       workspaceLoadVersion.current++; recordScope.current.epoch++; supportRequest.current++; progressRequest.current++;
+      lookup.controller?.abort(); lookup.version++;
       Object.values(controllers).forEach(controller => controller.abort());
     };
   }, []);
 
   const totals = useMemo(() => {
+    if (directories.enabled) return [["Classes", directories.counts.classes], ["Groups", directories.counts.groups], ["Pupils", directories.counts.students]];
     const students = new Set<string>();
     (portal?.classes ?? []).forEach((item) => (item.students ?? []).forEach((learner) => students.add(learner.external_ref)));
     return [
@@ -222,7 +240,49 @@ export default function SchoolAdminPage() {
       ["Groups", portal?.groups?.length ?? 0],
       ["Pupils", students.size],
     ];
-  }, [portal]);
+  }, [portal, directories.enabled, directories.counts]);
+
+  function pinClass(slot: ClassPin, id: string, known?: ClassGroup) {
+    const row = known ?? availableClasses.find(item => item.id === id);
+    // Four independent slots bound retained summaries. An async group lookup
+    // must never prune a newer enrolment/card selection captured by another UI.
+    setPinnedClasses(values => {
+      const next = { ...values };
+      if (row) next[slot] = row;
+      else delete next[slot];
+      return next;
+    });
+  }
+
+  async function chooseGroup(item: LearningGroup) {
+    const version = workspaceLoadVersion.current;
+    groupLookup.current.controller?.abort();
+    const request = ++groupLookup.current.version;
+    const controller = new AbortController();
+    groupLookup.current.controller = controller;
+    const current = () => version === workspaceLoadVersion.current && request === groupLookup.current.version && !controller.signal.aborted;
+    setGroup({ ...item });
+    pinClass("group", item.class_id);
+    try {
+      let selectedClass = availableClasses.find(row => row.id === item.class_id);
+      if (!selectedClass && directories.enabled) {
+        const data = await apiFetch(`/v1/school/directory?kind=classes&limit=20&ref=${encodeURIComponent(item.class_id)}`, { signal: controller.signal });
+        if (!current()) return;
+        const page = schoolDirectoryPage("classes", data, portal!.school!.urn);
+        if (page.items.length !== 1 || (page.items[0] as DirectoryClass).id !== item.class_id) throw new Error("This group's class is no longer available. Refresh the directory.");
+        selectedClass = page.items[0] as DirectoryClass;
+      }
+      pinClass("group", item.class_id, selectedClass);
+    } catch (error) { if (current()) setMessage(error instanceof Error ? error.message : "Could not select this teaching group."); }
+  }
+
+  function editGroup(value: LearningGroup) {
+    if (value.id !== group.id || value.class_id !== group.class_id) {
+      groupLookup.current.controller?.abort(); groupLookup.current.version++;
+    }
+    pinClass("group", value.class_id);
+    setGroup(value);
+  }
 
   function headers(): Record<string, string> {
     return {
@@ -233,6 +293,9 @@ export default function SchoolAdminPage() {
 
   function resetWorkspace() {
     workspaceLoadVersion.current += 1;
+    directories.reset();
+    groupLookup.current.controller?.abort(); groupLookup.current.version++;
+    setPinnedPupil(null); setPinnedClasses({});
     setPortal(null);
     setTaskSaving(false);
     setStudent({ external_ref: "", display_name: "", year_group: 1 });
@@ -279,6 +342,7 @@ export default function SchoolAdminPage() {
   }
 
   function selectLearner(pupil: string) {
+    setPinnedPupil(pupil ? schoolStudents.find(item => item.external_ref === pupil) ?? null : null);
     clearLearningRecords(pupil);
     setEngagementPupil(pupil);
     clearSupportProfile(pupil);
@@ -330,14 +394,25 @@ export default function SchoolAdminPage() {
     const loadVersion = workspaceLoadVersion.current + 1;
     workspaceLoadVersion.current = loadVersion;
     try {
-      const data = await apiFetch("/v1/school/config?include_credentials=false");
+      const data = await apiFetch("/v1/school/config?include_credentials=false&view=directory");
       if (loadVersion !== workspaceLoadVersion.current) return;
       const loadedPortal = data as SchoolPortal;
       if (!loadedPortal.current_user) throw new Error("School workspace authentication could not be verified.");
+      const bounded = schoolDirectoryOverview(data);
+      const pupil = recordScope.current.pupil;
+      if (pupil && bounded) {
+        const lookup = await apiFetch(`/v1/school/directory?kind=students&limit=20&ref=${encodeURIComponent(pupil)}`);
+        if (loadVersion !== workspaceLoadVersion.current) return;
+        const result = schoolDirectoryPage("students", lookup, bounded.urn).items as Student[];
+        if (result.length > 1 || result.some(item => item.external_ref !== pupil)) throw new Error("The selected pupil response could not be verified.");
+        if (recordScope.current.pupil === pupil) {
+          if (result.length) setPinnedPupil(result[0]);
+          else selectLearner("");
+        }
+      } else if (pupil && !(loadedPortal.classes ?? []).some(item => item.students?.some(student => student.external_ref === pupil))) selectLearner("");
+      directories.initialise(data);
       setPortal(loadedPortal);
       setCardRevision(value => value + 1);
-      const pupil = recordScope.current.pupil;
-      if (pupil && !(loadedPortal.classes ?? []).some(item => item.students?.some(student => student.external_ref === pupil))) selectLearner("");
     } catch (error) {
       if (loadVersion === workspaceLoadVersion.current) resetWorkspace();
       throw error;
@@ -435,10 +510,16 @@ export default function SchoolAdminPage() {
 
   async function saveClass() {
     await guarded("Saving class...", async () => {
+      const version = workspaceLoadVersion.current;
       const saved = await apiFetch(`/v1/school/classes/${classDraft.id || slug(classDraft.name)}`, {
         method: "PUT",
         body: JSON.stringify({ name: classDraft.name, year_group: Number(classDraft.year_group) }),
       });
+      if (version !== workspaceLoadVersion.current) return;
+      pinClass("enrolment", saved.id, saved);
+      pinClass("group", saved.id, saved);
+      pinClass("draft", "");
+      groupLookup.current.controller?.abort(); groupLookup.current.version++;
       setAssignment(current => ({ ...current, class_id: saved.id }));
       setGroup(current => ({ ...current, class_id: saved.id }));
       setClassDraft({ id: "", name: "", year_group: 1, students: [] });
@@ -552,24 +633,27 @@ export default function SchoolAdminPage() {
               <Actions label="Save class" disabled={!isSchoolAdmin || !classDraft.name || saving} onClick={saveClass} />
             </Panel>
             <Panel title="Classes">
-              {(portal?.classes ?? []).map((item) => (
-                <Row key={item.id} title={item.name} meta={`Year ${item.year_group}`} body={`${(item.students ?? []).length} pupils / ID ${item.id}`} onClick={() => {
+              {directories.enabled && <SchoolDirectoryControls label="Classes" kind="classes" view={directories.views.classes} edit={directories.edit} navigate={directories.navigate} />}
+              {classPage.map((item) => (
+                <Row key={item.id} title={item.name} meta={classYearLabel(item.year_group)} body={`${item.student_count ?? (item.students ?? []).length} pupils / ID ${item.id}`} onClick={() => {
+                  pinClass("draft", item.id ?? "", item);
+                  pinClass("enrolment", item.id ?? "", item);
                   setClassDraft({ ...item });
                   setAssignment({ ...assignment, class_id: item.id ?? "" });
-                  setGroup({ ...group, class_id: item.id ?? "" });
+                  editGroup({ ...group, class_id: item.id ?? "" });
                 }} />
               ))}
             </Panel>
             <Panel title="Create Pupil">
-              <LabeledSelect label="Enrol in class" value={assignment.class_id} values={classOptions} labels={classLabels} onChange={(class_id) => setAssignment({ ...assignment, class_id })} />
-              {!portal.classes?.length && <p className="px-5 py-3 text-sm">Create a class first, then enrol your new pupil into it. <a href="#school-class-setup" className="font-semibold underline">Create a class</a></p>}
+              <LabeledSelect label="Enrol in class" value={assignment.class_id} values={classOptions} labels={classLabels} onChange={(class_id) => { pinClass("enrolment", class_id); setAssignment({ ...assignment, class_id }); }} />
+              {(directories.enabled ? directories.counts.classes === 0 : !portal.classes?.length) && <p className="px-5 py-3 text-sm">Create a class first, then enrol your new pupil into it. <a href="#school-class-setup" className="font-semibold underline">Create a class</a></p>}
               <Field label="Pupil ID" value={student.external_ref} onChange={(external_ref) => setStudent({ ...student, external_ref: slug(external_ref) })} />
               <Field label="Display name" value={student.display_name} onChange={(display_name) => setStudent({ ...student, display_name })} />
               <Field label="Year group" type="number" value={student.year_group} onChange={(year_group) => setStudent({ ...student, year_group: Number(year_group) })} />
               <Actions label="Create pupil" disabled={!isSchoolAdmin || !assignment.class_id || !student.external_ref || !student.display_name || saving} onClick={saveStudent} />
             </Panel>
             <Panel title="Class Access">
-              <LabeledSelect label="Class" value={assignment.class_id} values={classOptions} labels={classLabels} onChange={(class_id) => setAssignment({ ...assignment, class_id })} />
+              <LabeledSelect label="Class" value={assignment.class_id} values={classOptions} labels={classLabels} onChange={(class_id) => { pinClass("enrolment", class_id); setAssignment({ ...assignment, class_id }); }} />
               <Field label="Pupil ID" value={assignment.student_external_ref} onChange={(student_external_ref) => setAssignment({ ...assignment, student_external_ref: slug(student_external_ref) })} />
               <div className="flex flex-wrap justify-end gap-3 p-5">
                 <button onClick={assignStudent} disabled={!isSchoolAdmin || !assignment.class_id || !assignment.student_external_ref || saving} className="btn-pop bg-[#55cbd3] px-5 py-3 text-sm disabled:opacity-50">Add pupil</button>
@@ -577,20 +661,25 @@ export default function SchoolAdminPage() {
               </div>
             </Panel>
             <Panel title="Teaching Group">
-              <Field label="Group ID" value={group.id ?? ""} onChange={(id) => setGroup({ ...group, id: slug(id) })} />
-              <LabeledSelect label="Class" value={group.class_id} values={classOptions} labels={classLabels} onChange={(class_id) => setGroup({ ...group, class_id })} />
-              <Field label="Group name" value={group.name} onChange={(name) => setGroup({ ...group, name })} />
-              <PurposeSelect value={group.purpose} values={["intervention", "challenge", "phonics", "fluency", "senco", "teacher-defined"]} onChange={(purpose) => setGroup({ ...group, purpose })} />
-              <Actions label="Save group" disabled={!group.class_id || !group.name || saving} onClick={saveGroup} />
+              <Field label="Group ID" value={group.id ?? ""} onChange={(id) => editGroup({ ...group, id: slug(id) })} />
+              <LabeledSelect label="Class" value={group.class_id} values={classOptions} labels={classLabels} onChange={(class_id) => editGroup({ ...group, class_id })} />
+              <Field label="Group name" value={group.name} onChange={(name) => editGroup({ ...group, name })} />
+              <PurposeSelect value={group.purpose} values={["intervention", "challenge", "phonics", "fluency", "senco", "teacher-defined"]} onChange={(purpose) => editGroup({ ...group, purpose })} />
+              <Actions label="Save group" disabled={!group.class_id || !group.name || saving || !availableClasses.some(item => item.id === group.class_id)} onClick={saveGroup} />
             </Panel>
+            {directories.enabled && <Panel title="Teaching groups">
+              <SchoolDirectoryControls label="Groups" kind="groups" view={directories.views.groups} edit={directories.edit} navigate={directories.navigate} />
+              {groupPage.map(item => <Row key={item.id} title={item.name} meta={item.purpose} body={`${item.student_count ?? item.students?.length ?? 0} pupils`} onClick={() => void chooseGroup(item)} />)}
+            </Panel>}
           </div>
         </section>
         <div className="mt-8 no-print" />
-        <SchoolAccessCards key={cardRevision} classes={portal.classes ?? []} schoolName={portal.school?.name ?? "School workspace"} loadPage={(classID, cursor) => apiFetch(`/v1/school/classes/${encodeURIComponent(classID)}/credentials?limit=12${cursor ? `&cursor=${encodeURIComponent(cursor)}` : ""}`)} />
+        <SchoolAccessCards key={cardRevision} classes={availableClasses} onClassChange={id => pinClass("card", id)} schoolName={portal.school?.name ?? "School workspace"} loadPage={(classID, cursor) => apiFetch(`/v1/school/classes/${encodeURIComponent(classID)}/credentials?limit=12${cursor ? `&cursor=${encodeURIComponent(cursor)}` : ""}`)} />
         <section id="school-learning" className="mt-8 scroll-mt-28">
           <h2 className="font-display text-3xl font-semibold">Learning &amp; evidence</h2>
           <p className="mt-2 text-sm leading-6 text-[#42506b]">Choose one pupil for their progress, assignments, subject checks and support. Each subject can progress independently.</p>
           <div className="my-5 rounded-lg bg-white shadow-card">
+            {directories.enabled && <SchoolDirectoryControls label="Pupils" kind="students" view={directories.views.students} edit={directories.edit} navigate={directories.navigate} />}
             <fieldset disabled={taskSaving}>
               <LabeledSelect
                 label="Selected school learner"

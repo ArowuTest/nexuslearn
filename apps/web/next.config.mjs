@@ -26,6 +26,10 @@ const nextConfig = {
         // separate payloads so evidence UI does not pull in mock guidance.
         ["sharedMockObjectiveGuidance", "MockObjectiveGuidance", "nexuslearn-mock-objective-guidance"],
         ["sharedAttemptEvidence", "AttemptEvidencePanel", "nexuslearn-attempt-evidence"],
+        // These exact modules each appeared twice (6,628 + 2,726 bytes).
+        // Keep adult history separate from the pupil journey shell.
+        ["sharedMockHistory", "MockAssessmentHistory", "nexuslearn-mock-history"],
+        ["sharedChildJourney", "ChildJourneyChrome", "nexuslearn-child-journey"],
       ]) {
         config.optimization.splitChunks.cacheGroups[key] = {
           test: module => module.layer === "app-pages-browser" && (module.nameForCondition?.() || "").replaceAll("\\", "/").endsWith(`/src/components/${component}.${extension}`),

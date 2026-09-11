@@ -1,4 +1,4 @@
-import { expect, test, type Page, type TestInfo } from "@playwright/test";
+import { expect, test, type Page, type Response, type TestInfo } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { responseSettled } from "./response-settled";
 
@@ -17,12 +17,28 @@ async function capture(page: Page, info: TestInfo, name: string) {
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBe(true);
 }
 
+async function boundedSchoolOverview(response: Response) {
+  expect(response.status()).toBe(200);
+  expect(new URL(response.url()).searchParams.get("view")).toBe("directory");
+  expect(response.headers()["cache-control"]).toContain("no-store");
+  const data = await response.json();
+  expect(data.directory.version).toBe(1);
+  expect(data.current_user.school_urn).toBe(data.school.urn);
+  expect(data).not.toHaveProperty("users");
+  expect(data).not.toHaveProperty("student_credentials");
+  for (const kind of ["classes", "groups", "students"]) {
+    expect(data[kind].length).toBeLessThanOrEqual(20);
+    expect(data.directory.counts[kind]).toBeGreaterThanOrEqual(data[kind].length);
+    for (const item of data[kind]) expect(item).not.toHaveProperty("students");
+  }
+}
+
 async function schoolChange(page: Page, button: string) {
   const mutation = page.waitForResponse(r => r.url().includes("/v1/school/") && ["PUT", "POST"].includes(r.request().method()));
   const portal = page.waitForResponse(r => new URL(r.url()).pathname === "/v1/school/config" && r.request().method() === "GET");
   await page.getByRole("button", { name: button, exact: true }).click();
   expect((await mutation).status()).toBe(200);
-  expect((await portal).status()).toBe(200);
+  await boundedSchoolOverview(await portal);
   await expect(page.getByRole("status")).toHaveText("School workspace loaded.");
   return (await mutation).json();
 }
@@ -85,7 +101,7 @@ test("real school creates a class, pupil, teaching group and usable login card",
   await page.getByLabel("Temporary password", { exact: true }).fill("local-disposable-password-only");
   const schoolLoaded = page.waitForResponse(response => new URL(response.url()).pathname === "/v1/school/config");
   await page.getByLabel("Temporary password", { exact: true }).press("Enter");
-  expect((await schoolLoaded).status()).toBe(200);
+  await boundedSchoolOverview(await schoolLoaded);
   await expect(page.getByText("Signed in as qa-teacher / School admin", { exact: true })).toBeVisible();
   await capture(page, info, "05-school-entry");
   const panel = (name: string) => page.locator("section").filter({ has: page.getByRole("heading", { name, exact: true }) }).last();
@@ -113,6 +129,14 @@ test("real school creates a class, pupil, teaching group and usable login card",
   await panel("Teaching Group").getByLabel("Group name").fill(groupName);
   const group = await schoolChange(page, "Save group");
   expect(group.name).toBe(groupName);
+  const pupilDirectory = page.getByRole("search", { name: "Pupils directory" });
+  await pupilDirectory.getByLabel("Search pupils").fill(pupilId);
+  const searched = page.waitForResponse(response => new URL(response.url()).pathname === "/v1/school/directory" && new URL(response.url()).searchParams.get("search") === pupilId);
+  await pupilDirectory.getByLabel("Search pupils").press("Enter");
+  const found = await searched;
+  expect(found.status()).toBe(200);
+  expect(await found.json()).toMatchObject({ school_urn: "qa-school", kind: "students", items: [{ external_ref: pupilId, display_name: "QA school explorer" }] });
+  await expect(pupilDirectory).toContainText("1 results");
   await page.getByLabel("Selected school learner").selectOption(pupilId);
   const profileLoaded = page.waitForResponse(r => r.url().endsWith(`/${pupilId}/engagement`) && r.request().method() === "GET");
   await page.getByRole("button", { name: "Load profile", exact: true }).click();

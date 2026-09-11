@@ -344,6 +344,7 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("GET /v1/curriculum/release-status", s.handleCurriculumReleaseStatus)
 	s.mux.HandleFunc("GET /v1/runtime/flags", s.handleRuntimeFlags)
 	s.mux.HandleFunc("GET /v1/school/config", s.handleSchoolConfig)
+	s.mux.HandleFunc("GET /v1/school/directory", s.handleSchoolDirectory)
 	s.mux.HandleFunc("GET /v1/school/curriculum/objectives", s.handleSchoolCurriculumObjectives)
 	s.mux.HandleFunc("PUT /v1/school/students/{externalRef}", s.handleSchoolUpsertStudent)
 	s.mux.HandleFunc("GET /v1/school/students/{externalRef}/engagement", s.handleSchoolStudentEngagement)
@@ -1782,6 +1783,10 @@ func (s *Server) handleUpsertStudentCredential(w http.ResponseWriter, r *http.Re
 
 func (s *Server) handleSchoolConfig(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Cache-Control", "private, no-store")
+	if r.URL.Query().Has("view") {
+		s.handleSchoolDirectoryOverview(w, r)
+		return
+	}
 	user, ok := s.requireSchoolReadUser(w, r)
 	if !ok {
 		return
