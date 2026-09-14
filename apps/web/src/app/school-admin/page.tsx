@@ -17,6 +17,7 @@ import useAccountAuthentication from "@/components/role-workspaces/useAccountAut
 import useAccountWorkspace from "@/components/role-workspaces/useAccountWorkspace";
 import useSchoolDirectories, { classYearLabel, schoolDirectoryOverview, schoolDirectoryPage, type DirectoryClass, type DirectoryGroup, type DirectoryInfo } from "@/components/role-workspaces/useSchoolDirectories";
 import SchoolDirectoryControls from "@/components/role-workspaces/SchoolDirectoryControls";
+import { emptyEngagementProfile, verifiedEngagementProfile, supportChoices, supportNeeds, learningApproaches, type StudentEngagementProfile } from "@/components/role-workspaces/schoolSupportProfile";
 
 type Student = { external_ref: string; display_name: string; year_group: number };
 type ClassGroup = { id?: string; school_urn?: string; name: string; year_group: number; student_count?: number; students?: Student[] };
@@ -80,51 +81,8 @@ type SchoolPortal = {
   students?: Student[];
   directory?: DirectoryInfo;
 };
-type StudentEngagementProfile = {
-  student_external_ref: string;
-  declared_support_needs: string[];
-  learning_approaches: string[];
-  celebration_intensity: string;
-  audio_support: boolean;
-  reading_support: boolean;
-  session_length: string;
-  sensory_load: string;
-  attention_support: string;
-  communication_support: string;
-  processing_support: string;
-  confidence_support: string;
-  companion_style: string;
-  reward_style: string;
-  interests: string[];
-  notes: string;
-  updated_at?: string;
-};
-
 const API = process.env.NEXT_PUBLIC_API_URL;
 const picturePool = ["star", "book", "sun", "tree", "rocket", "moon", "shell", "key"];
-const supportNeeds = ["adhd", "autism", "dyslexia", "dyspraxia", "dyscalculia", "speech_language", "sensory", "working_memory", "processing_speed", "eal", "hearing", "vision", "anxiety_confidence", "fine_motor", "other"];
-const learningApproaches = ["simple_text", "high_contrast", "large_targets", "simplified_controls", "switch_access", "predictable_routine", "short_bursts", "visual_steps", "audio_read_aloud", "reduced_motion", "low_sensory", "extra_processing_time", "worked_examples", "confidence_first", "movement_breaks", "teach_back", "high_challenge"];
-
-function emptyEngagementProfile(studentExternalRef = ""): StudentEngagementProfile {
-  return {
-    student_external_ref: studentExternalRef,
-    declared_support_needs: [],
-    learning_approaches: [],
-    celebration_intensity: "balanced",
-    audio_support: false,
-    reading_support: false,
-    session_length: "standard",
-    sensory_load: "balanced",
-    attention_support: "standard",
-    communication_support: "standard",
-    processing_support: "standard",
-    confidence_support: "balanced",
-    companion_style: "friendly",
-    reward_style: "world_building",
-    interests: [],
-    notes: "",
-  };
-}
 
 function runtimePreviewItems(profile: StudentEngagementProfile): Array<[string, string]> {
   const approaches = new Set(profile.learning_approaches);
@@ -184,11 +142,13 @@ export default function SchoolAdminPage() {
   const [group, setGroup] = useState<LearningGroup>({ id: "", class_id: "", name: "", purpose: "intervention", students: [] });
   const [engagementPupil, setEngagementPupil] = useState("");
   const [engagementProfile, setEngagementProfile] = useState<StudentEngagementProfile>(emptyEngagementProfile());
+  const [supportVerified, setSupportVerified] = useState(false);
   const [engagementInterests, setEngagementInterests] = useState("");
   const [progressReport, setProgressReport] = useState<ProgressReport | null>(null);
   const workspaceLoadVersion = useRef(0);
   const progressRequest = useRef(0);
   const supportRequest = useRef(0);
+  const supportController = useRef<AbortController | null>(null);
   const groupLookup = useRef<{ version: number; controller?: AbortController }>({ version: 0 });
   const [cardRevision, setCardRevision] = useState(0);
   const actionRequest = useRef({ version: 0, mounted: true });
@@ -483,28 +443,38 @@ export default function SchoolAdminPage() {
 
   function clearSupportProfile(studentExternalRef = "") {
     supportRequest.current += 1;
+    supportController.current?.abort(); supportController.current = null;
+    setSupportVerified(false);
     setEngagementProfile(emptyEngagementProfile(studentExternalRef));
     setEngagementInterests("");
   }
 
   async function syncEngagementProfile(save: boolean) {
     const studentExternalRef = selectedEngagementStudent?.external_ref;
-    if (!studentExternalRef || (save && engagementProfile.student_external_ref !== studentExternalRef)) return;
+    if (!studentExternalRef || (save && (!supportVerified || engagementProfile.student_external_ref !== studentExternalRef))) return;
     const request = ++supportRequest.current;
-    await guarded(save ? "Saving pupil support profile..." : "Loading pupil support profile...", async () => {
+    supportController.current?.abort();
+    const controller = new AbortController();
+    supportController.current = controller;
+    if (!save) setSupportVerified(false);
+    try { await guarded(save ? "Saving pupil support profile..." : "Loading pupil support profile...", async () => {
       try {
-        const profile = await apiFetch(`/v1/school/students/${encodeURIComponent(studentExternalRef)}/engagement`, save ? {
-          method: "PUT",
-          body: JSON.stringify({ ...engagementProfile, student_external_ref: studentExternalRef, interests: commaValues(engagementInterests) }),
-        } : undefined);
+        const data = await apiFetch(`/v1/school/students/${encodeURIComponent(studentExternalRef)}/engagement`, {
+          signal: controller.signal,
+          ...(save ? { method: "PUT", body: JSON.stringify({ ...engagementProfile, student_external_ref: studentExternalRef, interests: commaValues(engagementInterests) }) } : {}),
+        });
         if (request !== supportRequest.current) return;
-        setEngagementProfile({ ...emptyEngagementProfile(studentExternalRef), ...profile, student_external_ref: studentExternalRef });
-        setEngagementInterests((profile.interests ?? []).join(", "));
+        const profile = verifiedEngagementProfile(data, studentExternalRef);
+        setEngagementProfile(profile);
+        setEngagementInterests(profile.interests.join(", "));
+        setSupportVerified(true);
         setMessage(save ? "Pupil support profile saved." : "Pupil support profile loaded.");
       } catch (error) {
         if (request === supportRequest.current) throw error;
       }
-    });
+    }); } finally {
+      if (supportController.current === controller) supportController.current = null;
+    }
   }
 
   function clearProgressReport() {
@@ -798,6 +768,9 @@ const target = selectedEngagementStudent;
               <div className="flex justify-end border-b border-[#17233f]/10 p-5">
                 <button onClick={() => syncEngagementProfile(false)} disabled={!selectedEngagementStudent || saving} className="btn-pop bg-[#55cbd3] px-5 py-3 text-sm disabled:opacity-50">Load profile</button>
               </div>
+              {!supportVerified && <p className="px-5 pt-4 text-sm leading-6 text-[#42506b]">Choose a pupil and load their saved settings before editing. This protects their existing access and pacing supports.</p>}
+              <fieldset disabled={saving || !supportVerified || !selectedEngagementStudent} className="min-w-0">
+              <legend className="sr-only">Pupil support settings</legend>
               <ChoiceGrid
                 label="Declared support needs"
                 values={supportNeeds}
@@ -812,15 +785,15 @@ const target = selectedEngagementStudent;
                 onChange={(learning_approaches) => setEngagementProfile({ ...engagementProfile, learning_approaches })}
               />
               <div className="grid md:grid-cols-2">
-                <LabeledSelect label="Session length" value={engagementProfile.session_length} values={["short", "standard", "extended"]} onChange={(session_length) => setEngagementProfile({ ...engagementProfile, session_length })} />
-                <LabeledSelect label="Sensory load" value={engagementProfile.sensory_load} values={["low", "balanced", "high"]} onChange={(sensory_load) => setEngagementProfile({ ...engagementProfile, sensory_load })} />
-                <LabeledSelect label="Attention support" value={engagementProfile.attention_support} values={["standard", "chunked", "high_structure"]} onChange={(attention_support) => setEngagementProfile({ ...engagementProfile, attention_support })} />
-                <LabeledSelect label="Communication support" value={engagementProfile.communication_support} values={["standard", "visual", "audio_visual"]} onChange={(communication_support) => setEngagementProfile({ ...engagementProfile, communication_support })} />
-                <LabeledSelect label="Processing support" value={engagementProfile.processing_support} values={["standard", "extra_time", "step_by_step"]} onChange={(processing_support) => setEngagementProfile({ ...engagementProfile, processing_support })} />
-                <LabeledSelect label="Confidence support" value={engagementProfile.confidence_support} values={["gentle", "balanced", "challenge"]} onChange={(confidence_support) => setEngagementProfile({ ...engagementProfile, confidence_support })} />
-                <LabeledSelect label="Celebrations" value={engagementProfile.celebration_intensity} values={["quiet", "balanced", "big"]} onChange={(celebration_intensity) => setEngagementProfile({ ...engagementProfile, celebration_intensity })} />
-                <LabeledSelect label="Companion style" value={engagementProfile.companion_style} values={["friendly", "funny", "calm", "coach"]} onChange={(companion_style) => setEngagementProfile({ ...engagementProfile, companion_style })} />
-                <LabeledSelect label="Reward style" value={engagementProfile.reward_style} values={["world_building", "collecting", "story", "challenge"]} onChange={(reward_style) => setEngagementProfile({ ...engagementProfile, reward_style })} />
+                <LabeledSelect label="Session length" value={engagementProfile.session_length} values={supportChoices.session_length} onChange={(session_length) => setEngagementProfile({ ...engagementProfile, session_length })} />
+                <LabeledSelect label="Sensory load" value={engagementProfile.sensory_load} values={supportChoices.sensory_load} onChange={(sensory_load) => setEngagementProfile({ ...engagementProfile, sensory_load })} />
+                <LabeledSelect label="Attention support" value={engagementProfile.attention_support} values={supportChoices.attention_support} onChange={(attention_support) => setEngagementProfile({ ...engagementProfile, attention_support })} />
+                <LabeledSelect label="Communication support" value={engagementProfile.communication_support} values={supportChoices.communication_support} onChange={(communication_support) => setEngagementProfile({ ...engagementProfile, communication_support })} />
+                <LabeledSelect label="Processing support" value={engagementProfile.processing_support} values={supportChoices.processing_support} onChange={(processing_support) => setEngagementProfile({ ...engagementProfile, processing_support })} />
+                <LabeledSelect label="Confidence support" value={engagementProfile.confidence_support} values={supportChoices.confidence_support} onChange={(confidence_support) => setEngagementProfile({ ...engagementProfile, confidence_support })} />
+                <LabeledSelect label="Celebrations" value={engagementProfile.celebration_intensity} values={supportChoices.celebration_intensity} onChange={(celebration_intensity) => setEngagementProfile({ ...engagementProfile, celebration_intensity })} />
+                <LabeledSelect label="Companion style" value={engagementProfile.companion_style} values={supportChoices.companion_style} onChange={(companion_style) => setEngagementProfile({ ...engagementProfile, companion_style })} />
+                <LabeledSelect label="Reward style" value={engagementProfile.reward_style} values={supportChoices.reward_style} onChange={(reward_style) => setEngagementProfile({ ...engagementProfile, reward_style })} />
               </div>
               <div className="grid border-y border-[#17233f]/10 md:grid-cols-2">
                 <BooleanField label="Audio support" checked={engagementProfile.audio_support} onChange={(audio_support) => setEngagementProfile({ ...engagementProfile, audio_support })} />
@@ -859,7 +832,8 @@ const target = selectedEngagementStudent;
               <Field label="Interests (comma separated)" value={engagementInterests} onChange={setEngagementInterests} />
               <TextArea label="Operational notes" value={engagementProfile.notes} onChange={(notes) => setEngagementProfile({ ...engagementProfile, notes })} />
               {engagementProfile.updated_at && <p className="px-5 pb-2 text-xs text-[#17233f]/52">Last updated {new Date(engagementProfile.updated_at).toLocaleString()}</p>}
-              <Actions label="Save support profile" disabled={!selectedEngagementStudent || saving} onClick={() => syncEngagementProfile(true)} />
+              <Actions label="Save support profile" disabled={!selectedEngagementStudent || !supportVerified || saving} onClick={() => syncEngagementProfile(true)} />
+              </fieldset>
             </Panel>
             <SchoolLearningTask key={`intervention:${engagementPupil}`} kind="intervention" learner={selectedEngagementStudent} disabled={saving} request={apiFetch} onSaved={() => refreshLearningTask("intervention")} onBusyChange={setTaskSaving} />
             <Panel title="Active Interventions">

@@ -1,5 +1,6 @@
 import { expect, test, type Page } from "@playwright/test";
 import { readFile } from "node:fs/promises";
+import { openAdminNavigation, selectAdminSection } from "./helpers/adminNavigation";
 
 test.describe.configure({ timeout: 60_000 });
 
@@ -145,7 +146,7 @@ async function openAuthenticatedAdmin(page: Page) {
     sessionStorage.setItem("nexuslearn_account_session_expires", "2099-01-01T00:00:00Z");
   });
   await page.goto("/admin", { waitUntil: "domcontentloaded" });
-  await expect(page.getByRole("navigation", { name: "Admin sections" })).toBeVisible({ timeout: 15_000 });
+  await openAdminNavigation(page);
 }
 
 test("unauthenticated admin is only the sign-in and bootstrap migration surface", async ({ page }) => {
@@ -192,9 +193,9 @@ test("admin menu supports roving keyboard navigation and representative section 
   await page.keyboard.press("Enter");
   await expect(page.getByRole("heading", { name: "Content Version Snapshots" })).toBeVisible();
 
-  await navigation.getByRole("button", { name: "Worlds", exact: true }).click();
+  await selectAdminSection(page, "Worlds");
   await expect(page.getByRole("heading", { name: "Configured Worlds" })).toBeVisible();
-  await navigation.getByRole("button", { name: "Objectives", exact: true }).click();
+  await selectAdminSection(page, "Objectives");
   await expect(page.getByRole("heading", { name: "Curriculum Objectives" })).toBeVisible();
 });
 
@@ -238,7 +239,7 @@ test("readiness puts teacher evidence and SEND review context beside the decisio
     }),
   }));
 
-  await page.getByRole("button", { name: "Readiness", exact: true }).click();
+  await selectAdminSection(page, "Readiness");
   await expect(page.getByRole("heading", { name: "Curriculum Content Readiness" })).toBeVisible();
   await expect(page.getByRole("complementary", { name: "Review context for ma-y4-times-tables" })).toBeVisible();
   await expect(page.getByText("Accurate recall across formats.", { exact: true })).toBeVisible();
@@ -256,7 +257,7 @@ for (const button of ["Open objective", "Open objective record"]) {
     await page.route(`http://api.test/v1/admin/curriculum/objectives/${reviewReadinessItem.objective_id}`, route => route.fulfill({
       contentType: "application/json", body: "{}",
     }));
-    await page.getByRole("button", { name: "Readiness", exact: true }).click();
+    await selectAdminSection(page, "Readiness");
     await page.getByRole("button", { name: button, exact: true }).click();
     await expect(page.getByRole("heading", { name: "Objective Editor" })).toBeVisible();
     await expect(page.getByLabel("Teacher evidence", { exact: true })).toHaveValue(reviewReadinessItem.teacher_evidence);
@@ -319,7 +320,7 @@ test("a direct release review resolves objective context without visiting the ob
 
 test("release workspace runs a read-only backend preflight and shows every blocker", async ({ page }) => {
   await openAuthenticatedAdmin(page);
-  await page.getByRole("button", { name: "Releases", exact: true }).click();
+  await selectAdminSection(page, "Releases");
   await expect(page.getByRole("heading", { name: "Live release preflight" })).toBeVisible();
   await page.getByLabel("Live release manifest JSON").fill(JSON.stringify({ channel: "live", id: "nexuslearn-live-test", manifest_sha256: "a".repeat(64) }));
   await page.getByRole("button", { name: "Run read-only preflight" }).click();
@@ -340,7 +341,7 @@ test("admin downloads reports with authentication and fails closed when the repo
     const report = JSON.parse(await readFile(`private/content/${name}.json`, "utf8"));
     await route.fulfill({ json: report });
   });
-  await page.getByRole("navigation", { name: "Admin sections" }).getByRole("button", { name: "Readiness", exact: true }).click();
+  await selectAdminSection(page, "Readiness");
   const button = page.getByRole("button", { name: "Download depth report" });
   await expect(button).toBeVisible();
   const downloaded = page.waitForEvent("download");

@@ -1,6 +1,7 @@
 import { expect, test, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { readFile } from "node:fs/promises";
+import { openAdminNavigation } from "./helpers/adminNavigation";
 import { simulateCompletedNarrationPlayback as completePlayback } from "./helpers/narration-playback";
 
 test.describe.configure({ timeout: 60_000 });
@@ -173,7 +174,7 @@ test("audio filters stay in the URL and keyboard navigation reaches the dedicate
   await page.getByRole("button", { name: "Apply audio filters" }).click();
   await expect(page).toHaveURL(/audio_search=blend/);
 
-  const audioNavigation = page.getByRole("navigation", { name: "Admin sections" }).getByRole("button", { name: "Audio", exact: true });
+  const audioNavigation = (await openAdminNavigation(page)).getByRole("button", { name: "Audio", exact: true });
   await expect(audioNavigation).toHaveAttribute("aria-current", "page");
   await audioNavigation.focus();
   await page.keyboard.press("ArrowUp");

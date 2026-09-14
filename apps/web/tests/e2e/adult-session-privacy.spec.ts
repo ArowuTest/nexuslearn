@@ -1,4 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
+import { openAdminNavigation, selectAdminSection } from "./helpers/adminNavigation";
 
 const child = {
   student: { external_ref: "private-child", display_name: "Private child", year_group: 1 },
@@ -46,6 +47,7 @@ for (const account of [
       await fixture(page, account.role);
       await seed(page, account.role);
       await page.goto(account.route);
+      if (account.role === "platform_admin") await openAdminNavigation(page);
       await expect(page.getByRole("navigation", { name: account.navigation })).toBeVisible();
       await expect(page.getByText("Private child", { exact: true }).first()).toBeVisible();
       if (account.role === "parent") {
@@ -60,7 +62,7 @@ for (const account of [
         window.dispatchEvent(new Event("nexuslearn-account-session-changed"));
       }, change);
       if (change === "expiry") await page.clock.fastForward(5_001);
-      await expect(page.getByRole("navigation", { name: account.navigation })).toHaveCount(0);
+      await expect(page.getByRole("navigation", { name: account.navigation, includeHidden: true })).toHaveCount(0);
       await expect(page.getByText("Private child", { exact: true })).toHaveCount(0);
       await expect(page.getByRole("status")).toContainText("changed or expired");
       if (account.role === "parent") {
@@ -76,7 +78,7 @@ for (const account of [
         await page.getByLabel("Login ID", { exact: true }).fill("next-admin");
         await page.getByLabel("Password", { exact: true }).fill("local-test-only-password");
         await page.getByRole("button", { name: "Sign in", exact: true }).click();
-        await page.getByRole("navigation", { name: account.navigation }).getByRole("button", { name: "Learners", exact: true }).click();
+        await selectAdminSection(page, "Learners");
         await expect(page.getByLabel("Display name", { exact: true })).toHaveValue("");
       }
     });
@@ -86,13 +88,14 @@ for (const account of [
     await fixture(page, account.role);
     await seed(page, account.role);
     await page.goto(account.route);
+    if (account.role === "platform_admin") await openAdminNavigation(page);
     await expect(page.getByRole("navigation", { name: account.navigation })).toBeVisible();
     let release!: () => void;
     const gate = new Promise<void>(resolve => { release = resolve; });
     await page.route("http://api.test/v1/auth/logout", async route => { await gate; await route.fulfill({ status: 204 }).catch(() => {}); });
     try {
       await page.getByRole("button", { name: "Sign out", exact: true }).click();
-      await expect(page.getByRole("navigation", { name: account.navigation })).toHaveCount(0);
+      await expect(page.getByRole("navigation", { name: account.navigation, includeHidden: true })).toHaveCount(0);
       await expect(page.getByText("Private child", { exact: true })).toHaveCount(0);
       await expect(page.getByRole("status")).toHaveText("Signed out securely.");
       expect(await page.evaluate(() => sessionStorage.getItem("nexuslearn_account_session"))).toBeNull();

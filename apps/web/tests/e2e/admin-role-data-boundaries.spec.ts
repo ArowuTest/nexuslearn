@@ -1,4 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
+import { openAdminNavigation, selectAdminSection } from "./helpers/adminNavigation";
 
 test.describe.configure({ timeout: 60_000 });
 
@@ -175,7 +176,7 @@ async function openAdminAs(page: Page, role: AdminRole, section: string) {
     sessionStorage.setItem("nexuslearn_account_session_expires", "2099-01-01T00:00:00Z");
   }, role);
   await page.goto(`/admin?section=${section}`, { waitUntil: "domcontentloaded" });
-  await expect(page.getByRole("navigation", { name: "Admin sections" })).toBeVisible({ timeout: 15_000 });
+  await openAdminNavigation(page);
   return requests;
 }
 
@@ -237,7 +238,7 @@ test("platform administrator loads one operational section at a time", async ({ 
   await expect.poll(() => requests.map((url) => `${url.pathname}?${url.searchParams.toString()}`)).toEqual([
     "/v1/admin/learner-directory?limit=25",
   ]);
-  await page.getByRole("button", { name: "Flags", exact: true }).click();
+  await selectAdminSection(page, "Flags");
   await expect(page.getByRole("heading", { name: "Feature Flags" })).toBeVisible();
   await expect.poll(() => requests.map((url) => `${url.pathname}?${url.searchParams.toString()}`)).toEqual([
     "/v1/admin/learner-directory?limit=25",

@@ -20,6 +20,9 @@ const nextConfig = {
         ["sharedMockBuilder", "MockAssessmentBuilder", "nexuslearn-mock-builder"],
         ["sharedProgressSnapshot", "ProgressSnapshot", "nexuslearn-progress-snapshot"],
         ["sharedDino", "Dino", "nexuslearn-dino"],
+        // Measured in the family, pupil-login and school card route chunks.
+        ["sharedLoginPicture", "LoginPicture", "nexuslearn-login-picture"],
+        ["sharedEngagementOptions", "role-workspaces/engagementProfileOptions", "nexuslearn-engagement-options", "ts"],
         ["sharedAccountAuthentication", "role-workspaces/useAccountAuthentication", "nexuslearn-account-authentication", "ts"],
         // Measured in family, admin and school route payloads. Ownership stays
         // one exact browser module; server and development splitting is unchanged.

@@ -97,9 +97,17 @@ content/provider calls, credentials, git stage/commit/push or subagents.
   do not raise the aggregate budget merely to fit new code.
 - [x] One independent adversarial review of the substantive integrated diff,
   with focused remediation; no repeated small review agents.
-- [ ] Full relevant API/content/browser gates, exact-stage one coherent batch,
+- [x] Full relevant API/content/browser gates, exact-stage one coherent batch,
   push main and verify CI/hosted identities if authorised tools are available.
-- [ ] Durable local handover and FS V2B checkpoint when service is available.
+- [x] Durable local handover and FS V2B checkpoint when service is available.
+
+Release reconciliation, 2026-09-14: this directory batch is included in main
+`46d21493f345cf1fbabb7e1710b2f466f6266b7d`. Platform and Content quality passed;
+the complete Linux web gate passed 534 fixture cases and both six-case real
+backend suites. After the user's manual Render deployment, both hosted build
+identities and access boundaries matched this SHA. Deployment smoke run
+`34872036028`, attempt 2, passed. The earlier attempt failed correctly while
+Render still served the previous revision. FS V2B stores the release checkpoint.
 
 ## Execution rulings
 

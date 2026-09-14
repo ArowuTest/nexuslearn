@@ -1,4 +1,4 @@
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test, type Page, type Route } from "@playwright/test";
 import { responseSettled } from "./response-settled";
 
 const pupils = [
@@ -6,7 +6,17 @@ const pupils = [
   { external_ref: "child-b", display_name: "Learner B", year_group: 3 },
 ];
 const session = { token: "school-lifecycle-fixture", role: "school_admin", expires_at: "2099-01-01T00:00:00Z" };
-const profileA = { student_external_ref: "child-a", notes: "Private support for A", interests: ["A interest"], learning_approaches: ["reduced_motion"] };
+// Saved-profile fixtures must contain the complete backend contract. Missing
+// fields are deliberately rejected rather than replaced with writable defaults.
+const profileB = {
+  student_external_ref: "child-b", declared_support_needs: [], learning_approaches: [],
+  celebration_intensity: "quiet", audio_support: true, reading_support: true,
+  session_length: "short", sensory_load: "low", attention_support: "chunked",
+  communication_support: "audio_visual", processing_support: "extra_time",
+  confidence_support: "gentle", companion_style: "calm", reward_style: "story",
+  notes: "Private support for B", interests: ["B interest"],
+};
+const profileA = { ...profileB, student_external_ref: "child-a", notes: "Private support for A", interests: ["A interest"], learning_approaches: ["reduced_motion"] };
 
 async function schoolFixture(page: Page) {
   const writes: Record<string, unknown>[] = [];
@@ -24,7 +34,7 @@ async function schoolFixture(page: Page) {
       if (route.request().method() === "PUT") {
         body = route.request().postDataJSON();
         writes.push(body as Record<string, unknown>);
-      } else body = path.includes("/child-a/") ? profileA : { student_external_ref: "child-b", notes: "", interests: [] };
+      } else body = path.includes("/child-a/") ? profileA : profileB;
     }
     await route.fulfill({ json: body });
   });
@@ -50,30 +60,50 @@ for (const scenario of [
       await page.getByRole("button", { name: "Load profile", exact: true }).click();
       await expect(page.getByRole("textbox", { name: "Operational notes", exact: true })).toHaveValue(profileA.notes);
     }
-    let release!: () => void, arrived!: () => void;
+    let release!: () => void, arrived!: () => void, settled!: () => void;
     const gate = new Promise<void>(resolve => { release = resolve; });
     const seen = new Promise<void>(resolve => { arrived = resolve; });
-    await page.route("http://api.test/v1/school/students/child-a/engagement", async route => {
+    const finished = new Promise<void>(resolve => { settled = resolve; });
+    const heldPath = "http://api.test/v1/school/students/child-a/engagement";
+    const holdProfile = async (route: Route) => {
       if (route.request().method() !== scenario.method) { await route.fallback(); return; }
       arrived();
       await gate;
-      await route.fulfill({ json: profileA });
-    });
-    const response = page.waitForResponse(r => r.url().endsWith("/child-a/engagement") && r.request().method() === scenario.method);
+      try { await route.fulfill({ json: profileA }); }
+      catch (error) { if (route.request().failure()?.errorText !== "net::ERR_ABORTED") throw error; }
+      finally { settled(); }
+    };
+    await page.route(heldPath, holdProfile);
     try {
       await page.getByRole("button", { name: scenario.method === "PUT" ? "Save support profile" : "Load profile", exact: true }).click();
       await seen;
+      const cancelled = page.waitForEvent("requestfailed", { predicate: request => request.url().endsWith("/child-a/engagement") && request.method() === scenario.method });
       await learner.selectOption("child-b");
+      expect((await cancelled).failure()?.errorText).toBe("net::ERR_ABORTED");
       if (scenario.target === "child-a") await learner.selectOption("child-a");
-      release();
-      await responseSettled(page, response);
-      await expect(page.getByRole("textbox", { name: "Operational notes", exact: true })).toHaveValue("");
+      release(); await finished;
+      await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
+      await page.unroute(heldPath, holdProfile);
+      const notes = page.getByRole("textbox", { name: "Operational notes", exact: true });
+      const save = page.getByRole("button", { name: "Save support profile", exact: true });
+      await expect(notes).toHaveValue("");
+      await expect(notes).toBeDisabled();
       await expect(page.getByLabel("Reduced Motion", { exact: true })).not.toBeChecked();
+      await expect(save).toBeDisabled();
+      expect(writes).toHaveLength(0);
+
+      // Returning to A is still a fresh selection: verify its saved profile
+      // again before any new write, just as when changing to another pupil.
+      const current = scenario.target === "child-a" ? profileA : profileB;
+      await page.getByRole("button", { name: "Load profile", exact: true }).click();
+      await expect(notes).toHaveValue(current.notes);
+      await expect(notes).toBeEnabled();
+      await notes.fill(`${scenario.target} verified draft`);
       const saved = page.waitForResponse(r => r.url().endsWith(`/${scenario.target}/engagement`) && r.request().method() === "PUT");
-      await page.getByRole("button", { name: "Save support profile", exact: true }).click();
+      await save.click();
       await responseSettled(page, saved);
-      expect(writes.at(-1)?.student_external_ref).toBe(scenario.target);
-      expect(writes.at(-1)?.notes).toBe("");
+      expect(writes).toHaveLength(1);
+      expect(writes[0]).toMatchObject({ ...current, notes: `${scenario.target} verified draft` });
     } finally { release(); }
   });
 }

@@ -1,6 +1,7 @@
 import { expect, test, type Page, type Response, type TestInfo } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { responseSettled } from "./response-settled";
+import { selectAdminSection } from "./helpers/adminNavigation";
 
 const api = process.env.ROLE_API_URL;
 test.skip(!api, "Requires the disposable PostgreSQL role browser harness.");
@@ -265,12 +266,12 @@ test("real admin signs in and navigates protected operational sections", async (
   await page.getByLabel("Login ID", { exact: true }).fill("qa-admin");
   await page.getByLabel("Password", { exact: true }).fill("local-disposable-password-only");
   await page.getByRole("button", { name: "Sign in", exact: true }).click();
-  const nav = page.getByRole("navigation", { name: "Admin sections" });
-  await expect(nav).toBeVisible();
+  const nav = page.getByRole("navigation", { name: "Admin sections", includeHidden: true });
+  await expect(nav).toBeAttached();
   await capture(page, info, "07-admin-overview");
-  await nav.getByRole("button", { name: "Schools", exact: true }).click();
+  await selectAdminSection(page, "Schools");
   await expect(page.getByText("Local QA school", { exact: true }).first()).toBeVisible();
-  await nav.getByRole("button", { name: "Learners", exact: true }).click();
+  await selectAdminSection(page, "Learners");
   await expect(page.getByRole("status")).toContainText("Learners workspace loaded");
   await capture(page, info, "08-admin-learners");
   const accessibility = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"]).analyze();

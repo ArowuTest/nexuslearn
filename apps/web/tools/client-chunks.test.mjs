@@ -60,6 +60,7 @@ test("shared UI widgets keep distinct exact-source production browser boundaries
 for (const [key, component, name] of [
   ["sharedAccountAuthentication", "useAccountAuthentication", "nexuslearn-account-authentication"],
   ["sharedAccountWorkspace", "useAccountWorkspace", "nexuslearn-account-workspace"],
+  ["sharedEngagementOptions", "engagementProfileOptions", "nexuslearn-engagement-options"],
 ]) test(`${component} lifecycle is shared only by its exact production browser module`, () => {
   const config = nextConfig.webpack(configuration(), { isServer: false, dev: false });
   const group = config.optimization.splitChunks.cacheGroups[key];
@@ -75,4 +76,15 @@ for (const [key, component, name] of [
   for (const resource of ["/repo/src/lib/api.ts", `/repo/src/components/role-workspaces/${component}Extra.ts`, `/repo/src/components/admin/${component}.ts`]) {
     assert.equal(group.test({ layer: "app-pages-browser", nameForCondition: () => resource }), false);
   }
+});
+
+test("picture-login symbols use one exact browser chunk across child and adult cards", () => {
+  const config = nextConfig.webpack(configuration(), { isServer: false, dev: false });
+  const group = config.optimization.splitChunks.cacheGroups.sharedLoginPicture;
+  assert.ok(group, "measured picture-login module must not be copied three times");
+  assert.equal(group.minChunks, 2);
+  assert.equal(group.name, "nexuslearn-login-picture");
+  assert.equal(group.test({ layer: "app-pages-browser", nameForCondition: () => "/repo/src/components/LoginPicture.tsx" }), true);
+  assert.equal(group.test({ layer: "ssr", nameForCondition: () => "/repo/src/components/LoginPicture.tsx" }), false);
+  assert.equal(group.test({ layer: "app-pages-browser", nameForCondition: () => "/repo/src/components/LoginPictureExtra.tsx" }), false);
 });

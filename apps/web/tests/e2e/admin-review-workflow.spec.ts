@@ -1,5 +1,6 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import { selectAdminSection } from "./helpers/adminNavigation";
 import { simulateCompletedNarrationPlayback } from "./helpers/narration-playback";
 
 test("reviewer filters the SEND queue and sees honest release gates", async ({ page }) => {
@@ -173,7 +174,7 @@ test("reviewer filters the SEND queue and sees honest release gates", async ({ p
     .analyze();
   expect(accessibility.violations.filter((item) => item.impact === "critical" || item.impact === "serious")).toEqual([]);
 
-  await page.getByRole("button", { name: "Audio", exact: true }).click();
+  await selectAdminSection(page, "Audio");
   await expect(page.getByRole("heading", { name: "Audio listening QA" })).toBeVisible();
   await expect(page.getByText("874", { exact: true }).first()).toBeVisible();
   await expect(page.getByText("Follow the path slowly. Start at the glowing dot.")).toBeVisible();

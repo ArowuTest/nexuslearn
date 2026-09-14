@@ -1,4 +1,5 @@
 import { expect, test, type Page, type Route } from "@playwright/test";
+import { openAdminNavigation, selectAdminSection } from "./helpers/adminNavigation";
 
 test.describe.configure({ timeout: 60_000 });
 
@@ -57,7 +58,7 @@ async function openAuthenticatedAdmin(page: Page, handleLedger: LedgerHandler) {
     sessionStorage.setItem("nexuslearn_account_session_expires", "2099-01-01T00:00:00Z");
   });
   await page.goto("/admin", { waitUntil: "domcontentloaded" });
-  await expect(page.getByRole("navigation", { name: "Admin sections" })).toBeVisible({ timeout: 15_000 });
+  await openAdminNavigation(page);
 }
 
 test("admin ledgers load by section and append unique older rows to an explicit end state", async ({ page }) => {
@@ -113,7 +114,7 @@ test("admin ledgers load by section and append unique older rows to an explicit 
 
   expect(ledgerRequests).toEqual([]);
 
-  await page.getByRole("button", { name: "Audit", exact: true }).click();
+  await selectAdminSection(page, "Audit");
   await expect(page.getByText("activity-main", { exact: true })).toBeVisible();
   await expect(page.getByText("content.updated", { exact: true })).toBeVisible();
   expect(ledgerRequests).toHaveLength(2);
@@ -132,8 +133,8 @@ test("admin ledgers load by section and append unique older rows to an explicit 
   expect(ledgerRequests.some((request) => new URL(request).searchParams.get("cursor") === "versions-page-2")).toBe(true);
   expect(ledgerRequests.some((request) => new URL(request).searchParams.get("cursor") === "audit-page-2")).toBe(true);
 
-  await page.getByRole("button", { name: "Worlds", exact: true }).click();
-  await page.getByRole("button", { name: "Audit", exact: true }).click();
+  await selectAdminSection(page, "Worlds");
+  await selectAdminSection(page, "Audit");
   await expect(page.getByText("question-older", { exact: true })).not.toBeVisible();
   await expect(page.getByText("content.promoted", { exact: true })).not.toBeVisible();
   expect(ledgerRequests.slice(-2).every((request) => !new URL(request).searchParams.has("cursor"))).toBe(true);
@@ -165,7 +166,7 @@ test("audit ledgers expose independent empty, error and retry outcomes", async (
     throw new Error(`Unexpected release request: ${url}`);
   });
 
-  await page.getByRole("button", { name: "Audit", exact: true }).click();
+  await selectAdminSection(page, "Audit");
   await expect(page.getByText("No audit events have been recorded yet.")).toBeVisible();
   await expect(page.getByRole("alert").filter({ hasText: "Version ledger unavailable" })).toBeVisible();
 
@@ -211,7 +212,7 @@ test("release ledger loads in Releases and preserves the first page when continu
   });
 
   expect(releaseRequests).toEqual([]);
-  await page.getByRole("button", { name: "Releases", exact: true }).click();
+  await selectAdminSection(page, "Releases");
   await expect(page.getByText("review / staged", { exact: true })).toBeVisible();
   await expect(page.getByText("live release applied", { exact: true })).toBeVisible();
   expect(releaseRequests).toHaveLength(1);

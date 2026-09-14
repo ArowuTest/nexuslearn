@@ -10,62 +10,12 @@ import { accountSessionHeaders, accountSessionRole } from "@/lib/api";
 import useAccountAuthentication from "@/components/role-workspaces/useAccountAuthentication";
 import useAccountWorkspace from "@/components/role-workspaces/useAccountWorkspace";
 import { WorkspaceNavigation, WorkspaceState } from "@/components/role-workspaces/WorkspaceNavigation";
+import { engagementDefaults, supportChoices, supportNeedOptions as supportNeeds, familyApproachOptions as approaches } from "@/components/role-workspaces/engagementProfileOptions";
 import { acceptParentInvitation, createParentAccount, createParentChild, getParentChildEvidence, getParentPortal, logoutAccount, parentLogin, type ParentChildEvidence, type ParentPortal, type StudentEngagementProfile } from "@/lib/api";
 
-const supportNeeds = [
-  ["adhd", "ADHD"],
-  ["autism", "Autism"],
-  ["dyslexia", "Dyslexia"],
-  ["dyspraxia", "Dyspraxia"],
-  ["dyscalculia", "Dyscalculia"],
-  ["speech_language", "Speech/language"],
-  ["sensory", "Sensory sensitivity"],
-  ["working_memory", "Working memory"],
-  ["processing_speed", "Processing speed"],
-  ["eal", "English as an additional language"],
-  ["hearing", "Hearing support"],
-  ["vision", "Vision support"],
-  ["anxiety_confidence", "Anxiety/confidence"],
-  ["fine_motor", "Fine motor"],
-  ["other", "Other"],
-] as const;
-
-const approaches = [
-  ["predictable_routine", "Predictable routine"],
-  ["short_bursts", "Short bursts"],
-  ["visual_steps", "Visual steps"],
-  ["audio_read_aloud", "Read aloud"],
-  ["reduced_motion", "Reduced motion"],
-  ["low_sensory", "Low sensory"],
-  ["extra_processing_time", "Extra time"],
-  ["worked_examples", "Worked examples"],
-  ["confidence_first", "Confidence first"],
-  ["movement_breaks", "Movement breaks"],
-  ["teach_back", "Teach-back"],
-  ["high_challenge", "High challenge"],
-  ["simple_text", "Simple text"],
-  ["high_contrast", "High contrast"],
-  ["large_targets", "Large targets"],
-  ["simplified_controls", "Simplified controls"],
-  ["switch_access", "Switch access"],
-] as const;
-
 const baseEngagement: StudentEngagementProfile = {
-  declared_support_needs: [],
+  ...engagementDefaults(),
   learning_approaches: ["predictable_routine", "worked_examples"],
-  celebration_intensity: "balanced",
-  audio_support: false,
-  reading_support: false,
-  session_length: "standard",
-  sensory_load: "balanced",
-  attention_support: "standard",
-  communication_support: "standard",
-  processing_support: "standard",
-  confidence_support: "balanced",
-  companion_style: "friendly",
-  reward_style: "world_building",
-  interests: [],
-  notes: "",
 };
 
 export default function FamilyPage() {
@@ -456,15 +406,15 @@ export default function FamilyPage() {
               <ChoiceGroup title="Helpful learning approaches" items={approaches} selected={engagement.learning_approaches} onToggle={(key) => toggle(key, "learning_approaches")} />
 
               <div className="grid gap-0 border-t border-[#15213d]/10 md:grid-cols-3">
-                <Select label="Sensory load" value={engagement.sensory_load} values={["low", "balanced", "high"]} onChange={(sensory_load) => setEngagement({ ...engagement, sensory_load: sensory_load as StudentEngagementProfile["sensory_load"] })} />
-                <Select label="Attention support" value={engagement.attention_support} values={["standard", "chunked", "high_structure"]} onChange={(attention_support) => setEngagement({ ...engagement, attention_support: attention_support as StudentEngagementProfile["attention_support"] })} />
-                <Select label="Processing support" value={engagement.processing_support} values={["standard", "extra_time", "step_by_step"]} onChange={(processing_support) => setEngagement({ ...engagement, processing_support: processing_support as StudentEngagementProfile["processing_support"] })} />
-                <Select label="Communication" value={engagement.communication_support} values={["standard", "visual", "audio_visual"]} onChange={(communication_support) => setEngagement({ ...engagement, communication_support: communication_support as StudentEngagementProfile["communication_support"] })} />
-                <Select label="Confidence support" value={engagement.confidence_support} values={["gentle", "balanced", "challenge"]} onChange={(confidence_support) => setEngagement({ ...engagement, confidence_support: confidence_support as StudentEngagementProfile["confidence_support"] })} />
-                <Select label="Session length" value={engagement.session_length} values={["short", "standard", "extended"]} onChange={(session_length) => setEngagement({ ...engagement, session_length: session_length as StudentEngagementProfile["session_length"] })} />
-                <Select label="Celebration" value={engagement.celebration_intensity} values={["quiet", "balanced", "big"]} onChange={(celebration_intensity) => setEngagement({ ...engagement, celebration_intensity: celebration_intensity as StudentEngagementProfile["celebration_intensity"] })} />
-                <Select label="Companion" value={engagement.companion_style} values={["friendly", "funny", "calm", "coach"]} onChange={(companion_style) => setEngagement({ ...engagement, companion_style: companion_style as StudentEngagementProfile["companion_style"] })} />
-                <Select label="Reward" value={engagement.reward_style} values={["world_building", "collecting", "story", "challenge"]} onChange={(reward_style) => setEngagement({ ...engagement, reward_style: reward_style as StudentEngagementProfile["reward_style"] })} />
+                <Select label="Sensory load" value={engagement.sensory_load} values={supportChoices.sensory_load} onChange={(sensory_load) => setEngagement({ ...engagement, sensory_load: sensory_load as StudentEngagementProfile["sensory_load"] })} />
+                <Select label="Attention support" value={engagement.attention_support} values={supportChoices.attention_support} onChange={(attention_support) => setEngagement({ ...engagement, attention_support: attention_support as StudentEngagementProfile["attention_support"] })} />
+                <Select label="Processing support" value={engagement.processing_support} values={supportChoices.processing_support} onChange={(processing_support) => setEngagement({ ...engagement, processing_support: processing_support as StudentEngagementProfile["processing_support"] })} />
+                <Select label="Communication" value={engagement.communication_support} values={supportChoices.communication_support} onChange={(communication_support) => setEngagement({ ...engagement, communication_support: communication_support as StudentEngagementProfile["communication_support"] })} />
+                <Select label="Confidence support" value={engagement.confidence_support} values={supportChoices.confidence_support} onChange={(confidence_support) => setEngagement({ ...engagement, confidence_support: confidence_support as StudentEngagementProfile["confidence_support"] })} />
+                <Select label="Session length" value={engagement.session_length} values={supportChoices.session_length} onChange={(session_length) => setEngagement({ ...engagement, session_length: session_length as StudentEngagementProfile["session_length"] })} />
+                <Select label="Celebration" value={engagement.celebration_intensity} values={supportChoices.celebration_intensity} onChange={(celebration_intensity) => setEngagement({ ...engagement, celebration_intensity: celebration_intensity as StudentEngagementProfile["celebration_intensity"] })} />
+                <Select label="Companion" value={engagement.companion_style} values={supportChoices.companion_style} onChange={(companion_style) => setEngagement({ ...engagement, companion_style: companion_style as StudentEngagementProfile["companion_style"] })} />
+                <Select label="Reward" value={engagement.reward_style} values={supportChoices.reward_style} onChange={(reward_style) => setEngagement({ ...engagement, reward_style: reward_style as StudentEngagementProfile["reward_style"] })} />
               </div>
 
               <div className="grid gap-0 border-t border-[#15213d]/10 md:grid-cols-2">

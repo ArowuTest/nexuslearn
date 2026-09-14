@@ -2246,7 +2246,7 @@ export default function AdminPage() {
                   />
                 ))}
                 {(config?.access_requests ?? []).length === 0 && (
-                  <div className="p-5 text-sm leading-6 text-[#1d1a3e]/60">
+                  <div className="p-5 text-sm leading-6 text-[#565267]">
                     Public parent, school and tutoring organisation requests will appear here.
                   </div>
                 )}
