@@ -57,19 +57,22 @@ test("shared UI widgets keep distinct exact-source production browser boundaries
   }
 });
 
-test("adult authentication lifecycle is shared only by its exact production browser module", () => {
+for (const [key, component, name] of [
+  ["sharedAccountAuthentication", "useAccountAuthentication", "nexuslearn-account-authentication"],
+  ["sharedAccountWorkspace", "useAccountWorkspace", "nexuslearn-account-workspace"],
+]) test(`${component} lifecycle is shared only by its exact production browser module`, () => {
   const config = nextConfig.webpack(configuration(), { isServer: false, dev: false });
-  const group = config.optimization.splitChunks.cacheGroups.sharedAccountAuthentication;
+  const group = config.optimization.splitChunks.cacheGroups[key];
   assert.ok(group, "the same lifecycle must not be copied into all three adult routes");
-  assert.equal(group.name, "nexuslearn-account-authentication");
+  assert.equal(group.name, name);
   assert.equal(group.minChunks, 2);
   assert.equal(group.enforce, true);
   assert.equal(group.reuseExistingChunk, true);
-  for (const resource of ["/repo/src/components/role-workspaces/useAccountAuthentication.ts", "C:\\repo\\src\\components\\role-workspaces\\useAccountAuthentication.ts"]) {
+  for (const resource of [`/repo/src/components/role-workspaces/${component}.ts`, `C:\\repo\\src\\components\\role-workspaces\\${component}.ts`]) {
     assert.equal(group.test({ layer: "app-pages-browser", nameForCondition: () => resource }), true);
     for (const layer of ["rsc", "ssr", undefined]) assert.equal(group.test({ layer, nameForCondition: () => resource }), false);
   }
-  for (const resource of ["/repo/src/lib/api.ts", "/repo/src/components/role-workspaces/useAccountAuthenticationExtra.ts", "/repo/src/components/admin/useAccountAuthentication.ts"]) {
+  for (const resource of ["/repo/src/lib/api.ts", `/repo/src/components/role-workspaces/${component}Extra.ts`, `/repo/src/components/admin/${component}.ts`]) {
     assert.equal(group.test({ layer: "app-pages-browser", nameForCondition: () => resource }), false);
   }
 });

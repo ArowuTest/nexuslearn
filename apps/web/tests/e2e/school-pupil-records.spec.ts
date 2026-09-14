@@ -154,22 +154,28 @@ test("pending reassessment locks pupil choice and logout discards its late compl
   const { reads } = await school(page);
   let release!: () => void;
   const gate = new Promise<void>(resolve => { release = resolve; });
+  let settled!: () => void;
+  const finished = new Promise<void>(resolve => { settled = resolve; });
   let started = false;
   await page.route("http://api.test/v1/school/interventions/*/reviews", async route => {
     started = true; await gate;
-    await route.fulfill({ status: 201, json: { id: "late-review" } });
+    try { await route.fulfill({ status: 201, json: { id: "late-review" } }); }
+    catch (error) { if (route.request().failure()?.errorText !== "net::ERR_ABORTED") throw error; }
+    finally { settled(); }
   });
   await draftReview(page);
-  const completed = page.waitForResponse(response => response.url().endsWith("/interventions/interventions-ava-y3/reviews") && response.request().method() === "POST");
+  const cancelled = page.waitForEvent("requestfailed", { predicate: request => request.url().endsWith("/interventions/interventions-ava-y3/reviews") && request.method() === "POST" });
   await reviewPanel(page).getByRole("button", { name: "Save reassessment" }).click();
   let readsAtLogout = 0;
   try {
     await expect.poll(() => started).toBe(true);
     await expect(page.getByLabel("Selected school learner")).toBeDisabled();
     await page.getByRole("button", { name: "Sign out", exact: true }).click();
+    expect((await cancelled).failure()?.errorText).toBe("net::ERR_ABORTED");
     readsAtLogout = reads.length;
   } finally { release(); }
-  await responseSettled(page, completed);
+  await finished;
+  await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
   expect(reads.length).toBe(readsAtLogout);
   await expect(page.getByRole("navigation", { name: "School workspace sections" })).toHaveCount(0);
   await expect(page.getByLabel("Reassessment evidence")).toHaveCount(0);

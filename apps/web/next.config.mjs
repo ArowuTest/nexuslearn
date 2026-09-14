@@ -21,6 +21,9 @@ const nextConfig = {
         ["sharedProgressSnapshot", "ProgressSnapshot", "nexuslearn-progress-snapshot"],
         ["sharedDino", "Dino", "nexuslearn-dino"],
         ["sharedAccountAuthentication", "role-workspaces/useAccountAuthentication", "nexuslearn-account-authentication", "ts"],
+        // Measured in family, admin and school route payloads. Ownership stays
+        // one exact browser module; server and development splitting is unchanged.
+        ["sharedAccountWorkspace", "role-workspaces/useAccountWorkspace", "nexuslearn-account-workspace", "ts"],
         ["sharedWorkspaceNavigation", "role-workspaces/WorkspaceNavigation", "nexuslearn-workspace-navigation"],
         // Measured in four and three emitted chunks respectively. Preserve
         // separate payloads so evidence UI does not pull in mock guidance.

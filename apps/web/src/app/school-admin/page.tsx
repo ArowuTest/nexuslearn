@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useEffectEvent, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import MockAssessmentBuilder from "@/components/MockAssessmentBuilder";
 import MockAssessmentHistory from "@/components/MockAssessmentHistory";
 import ProgressSnapshot from "@/components/ProgressSnapshot";
@@ -12,8 +12,9 @@ import SchoolLearningTask from "@/components/role-workspaces/SchoolLearningTask"
 import SchoolInterventionReview from "@/components/role-workspaces/SchoolInterventionReview";
 import SchoolRecordRows from "@/components/role-workspaces/SchoolRecordRows";
 import { WorkspaceNavigation, WorkspaceState } from "@/components/role-workspaces/WorkspaceNavigation";
-import { accountSessionHeaders, logoutAccount, requestAccountSession, subscribeAccountSession, type ProgressReport } from "@/lib/api";
+import { accountSessionHeaders, logoutAccount, requestAccountSession, type ProgressReport } from "@/lib/api";
 import useAccountAuthentication from "@/components/role-workspaces/useAccountAuthentication";
+import useAccountWorkspace from "@/components/role-workspaces/useAccountWorkspace";
 import useSchoolDirectories, { classYearLabel, schoolDirectoryOverview, schoolDirectoryPage, type DirectoryClass, type DirectoryGroup, type DirectoryInfo } from "@/components/role-workspaces/useSchoolDirectories";
 import SchoolDirectoryControls from "@/components/role-workspaces/SchoolDirectoryControls";
 
@@ -190,6 +191,14 @@ export default function SchoolAdminPage() {
   const supportRequest = useRef(0);
   const groupLookup = useRef<{ version: number; controller?: AbortController }>({ version: 0 });
   const [cardRevision, setCardRevision] = useState(0);
+  const actionRequest = useRef({ version: 0, mounted: true });
+  const workspace = useAccountWorkspace(() => {
+    // The authentication hook alone decides whether its verified login may
+    // replace a cached owner. Clear private data without cancelling that handoff.
+    const authenticating = authentication.busy();
+    resetWorkspace(authenticating);
+    if (!authenticating) setMessage("Your school session changed or expired. Sign in again to continue.");
+  });
   const directories = useSchoolDirectories((path, options) => apiFetch(path, options), () => { resetWorkspace(); setMessage("Your school access changed. Sign in again to continue."); });
   const classPage: ClassGroup[] = directories.enabled ? directories.views.classes.items as DirectoryClass[] : portal?.classes ?? [];
   const groupPage: LearningGroup[] = directories.enabled ? directories.views.groups.items as DirectoryGroup[] : portal?.groups ?? [];
@@ -211,20 +220,13 @@ export default function SchoolAdminPage() {
     [schoolStudents],
   );
   const selectedEngagementStudent = schoolStudents.find((item) => item.external_ref === engagementPupil);
-  const onSessionChanged = useEffectEvent(() => {
-    resetWorkspace();
-    if (portal?.current_user) setMessage("Your school session changed or expired. Sign in again to continue.");
-  });
   useEffect(() => {
-    let owner = accountSessionHeaders(["school_admin", "teacher"]).Authorization;
-    const unsubscribe = subscribeAccountSession(() => {
-      const current = accountSessionHeaders(["school_admin", "teacher"]).Authorization;
-      if (owner !== current) { owner = current; onSessionChanged(); }
-    });
     const controllers = recordControllers.current;
     const lookup = groupLookup.current;
+    const action = actionRequest.current;
+    action.mounted = true;
     return () => {
-      unsubscribe();
+      action.mounted = false; action.version++;
       workspaceLoadVersion.current++; recordScope.current.epoch++; supportRequest.current++; progressRequest.current++;
       lookup.controller?.abort(); lookup.version++;
       Object.values(controllers).forEach(controller => controller.abort());
@@ -291,7 +293,12 @@ export default function SchoolAdminPage() {
     };
   }
 
-  function resetWorkspace() {
+  function resetWorkspace(preserveAuthentication = false) {
+    workspace.invalidate();
+    if (!preserveAuthentication) {
+      actionRequest.current.version++;
+      setSaving(false);
+    }
     workspaceLoadVersion.current += 1;
     directories.reset();
     groupLookup.current.controller?.abort(); groupLookup.current.version++;
@@ -314,23 +321,26 @@ export default function SchoolAdminPage() {
     if ((options.method || "GET").toUpperCase() === "POST" && !requestHeaders["Idempotency-Key"]) {
       requestHeaders["Idempotency-Key"] = typeof crypto !== "undefined" && typeof crypto.randomUUID === "function" ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`;
     }
-    const controller = new AbortController();
-    const abort = () => controller.abort();
-    options.signal?.addEventListener("abort", abort, { once: true });
-    if (options.signal?.aborted) abort();
-    const timeout = setTimeout(abort, 15_000);
-    try {
-      const res = await fetch(`${API}${path}`, { ...options, headers: requestHeaders, signal: controller.signal });
-      const body = await res.json().catch(() => null);
-      // A timed-out or malformed success body cannot confirm a durable save.
-      if (controller.signal.aborted) throw new Error("The school request timed out. Please retry.");
-      if (!res.ok) throw Object.assign(new Error(body?.error ?? "Request failed."), { status: res.status });
-      if (!body || typeof body !== "object") throw new Error("The school response could not be verified.");
-      return body;
-    } finally {
-      clearTimeout(timeout);
-      options.signal?.removeEventListener("abort", abort);
-    }
+    return workspace.run(async signal => {
+      const controller = new AbortController();
+      const abort = () => controller.abort();
+      const sources = [signal, options.signal];
+      sources.forEach(source => source?.addEventListener("abort", abort, { once: true }));
+      if (sources.some(source => source?.aborted)) abort();
+      const timeout = setTimeout(abort, 15_000);
+      try {
+        const res = await fetch(`${API}${path}`, { ...options, headers: requestHeaders, signal: controller.signal });
+        const body = await res.json().catch(() => null);
+        // A timed-out or malformed success body cannot confirm a durable save.
+        if (controller.signal.aborted) throw new Error("The school request timed out. Please retry.");
+        if (!res.ok) throw Object.assign(new Error(body?.error ?? "Request failed."), { status: res.status });
+        if (!body || typeof body !== "object") throw new Error("The school response could not be verified.");
+        return body;
+      } finally {
+        clearTimeout(timeout);
+        sources.forEach(source => source?.removeEventListener("abort", abort));
+      }
+    });
   }
 
   function clearLearningRecords(pupil: string) {
@@ -414,7 +424,10 @@ export default function SchoolAdminPage() {
       setPortal(loadedPortal);
       setCardRevision(value => value + 1);
     } catch (error) {
-      if (loadVersion === workspaceLoadVersion.current) resetWorkspace();
+      if (loadVersion === workspaceLoadVersion.current) {
+        resetWorkspace();
+        setMessage(error instanceof Error ? error.message : "Could not load the school workspace.");
+      }
       throw error;
     }
   }
@@ -428,14 +441,23 @@ export default function SchoolAdminPage() {
 
   async function signIn() {
     if (authentication.busy()) return;
-    await guarded("Signing in...", async () => {
-      resetWorkspace();
+    resetWorkspace();
+    const request = ++actionRequest.current.version;
+    const current = () => actionRequest.current.mounted && request === actionRequest.current.version;
+    setSaving(true);
+    setMessage("Signing in...");
+    try {
       const result = await authentication.run(signal => requestAccountSession("/v1/auth/school-login", { school_urn: schoolURN, login_id: loginID, password }, ["school_admin", "teacher"], signal));
+      if (!current()) return;
       if (!result) { setMessage("Sign-in cancelled because the account session changed."); return; }
       setPassword("");
       await loadWorkspace();
-      setMessage("School workspace loaded.");
-    });
+      if (current()) setMessage("School workspace loaded.");
+    } catch (error) {
+      if (current()) setMessage(error instanceof Error ? error.message : "Sign-in failed.");
+    } finally {
+      if (current()) setSaving(false);
+    }
   }
 
   function logout() {
@@ -557,14 +579,18 @@ export default function SchoolAdminPage() {
   }
 
   async function guarded(progress: string, action: () => Promise<void>) {
+    const owned = workspace.capture();
+    if (!owned()) return;
+    const request = ++actionRequest.current.version;
+    const current = () => owned() && request === actionRequest.current.version;
     setSaving(true);
     setMessage(progress);
     try {
       await action();
     } catch (error) {
-      setMessage(error instanceof Error ? error.message : "Action failed.");
+      if (current()) setMessage(error instanceof Error ? error.message : "Action failed.");
     } finally {
-      setSaving(false);
+      if (current()) setSaving(false);
     }
   }
 
@@ -626,7 +652,8 @@ export default function SchoolAdminPage() {
         <section id="school-people" className="mt-8 scroll-mt-28">
           <h2 className="font-display text-3xl font-semibold">Classes &amp; pupils</h2>
           <p className="mb-5 mt-2 text-sm leading-6 text-[#42506b]">Create a class first, enrol its pupils, then organise teaching groups and generate their login cards.</p>
-          <div className="grid items-start gap-6 lg:grid-cols-2">
+          <fieldset disabled={saving} className="grid min-w-0 items-start gap-6 lg:grid-cols-2">
+            <legend className="sr-only">School setup</legend>
             <Panel id="school-class-setup" title="Create Class">
               <Field label="Class name" value={classDraft.name} onChange={(name) => setClassDraft({ ...classDraft, name })} />
               <Field label="Year group" type="number" value={classDraft.year_group} onChange={(year_group) => setClassDraft({ ...classDraft, year_group: Number(year_group) })} />
@@ -671,7 +698,7 @@ export default function SchoolAdminPage() {
               <SchoolDirectoryControls label="Groups" kind="groups" view={directories.views.groups} edit={directories.edit} navigate={directories.navigate} />
               {groupPage.map(item => <Row key={item.id} title={item.name} meta={item.purpose} body={`${item.student_count ?? item.students?.length ?? 0} pupils`} onClick={() => void chooseGroup(item)} />)}
             </Panel>}
-          </div>
+          </fieldset>
         </section>
         <div className="mt-8 no-print" />
         <SchoolAccessCards key={cardRevision} classes={availableClasses} onClassChange={id => pinClass("card", id)} schoolName={portal.school?.name ?? "School workspace"} loadPage={(classID, cursor) => apiFetch(`/v1/school/classes/${encodeURIComponent(classID)}/credentials?limit=12${cursor ? `&cursor=${encodeURIComponent(cursor)}` : ""}`)} />

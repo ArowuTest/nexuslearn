@@ -134,13 +134,23 @@ test("sign-out during a card request clears the workspace and ignores its late p
   await school(page);
   let release!: () => void;
   const pending = new Promise<void>(resolve => { release = resolve; });
-  await page.route("http://api.test/v1/school/classes/oak/credentials?*", async route => { await pending; await route.fulfill({ json: pageData("oak") }); });
-  const response = page.waitForResponse(r => r.url().includes("/classes/oak/credentials"));
+  let settled!: () => void;
+  const finished = new Promise<void>(resolve => { settled = resolve; });
+  let started = false;
+  await page.route("http://api.test/v1/school/classes/oak/credentials?*", async route => {
+    started = true; await pending;
+    try { await route.fulfill({ json: pageData("oak") }); }
+    catch (error) { if (route.request().failure()?.errorText !== "net::ERR_ABORTED") throw error; }
+    finally { settled(); }
+  });
+  const cancelled = page.waitForEvent("requestfailed", { predicate: request => request.url().includes("/classes/oak/credentials") });
   try {
     await page.getByLabel("Login card class").selectOption("oak");
+    await expect.poll(() => started).toBe(true);
     await page.getByRole("button", { name: "Sign out", exact: true }).click();
-    release();
-    await responseSettled(page, response);
+    expect((await cancelled).failure()?.errorText).toBe("net::ERR_ABORTED");
+    release(); await finished;
+    await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
     await expect(cards(page)).toHaveCount(0);
     await expect(page.getByText("CARD-oak-01", { exact: true })).toHaveCount(0);
     await expect(page.getByRole("form", { name: "School sign in" })).toBeVisible();
