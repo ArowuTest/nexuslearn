@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import dynamic from "next/dynamic";
+import { deferClientWorkspace } from "@/components/deferClientWorkspace";
 import ProgressSnapshot from "@/components/ProgressSnapshot";
 import AttemptEvidencePanel from "@/components/AttemptEvidencePanel";
 import AdminLedgerControls from "@/components/admin/AdminLedgerControls";
-import { Actions, EditorGrid, Field, Info, JsonField, Panel, PickRow, Select, Toggle } from "@/components/admin/AdminEditorPrimitives";
+import { Actions, EditorGrid, Field, InfoValues, JsonField, Panel, PickRow, Select, Toggle } from "@/components/admin/AdminEditorPrimitives";
 import {
   assetBadgeClass,
   contentVersionDiffFields,
@@ -39,20 +39,16 @@ import useAccountAuthentication from "@/components/role-workspaces/useAccountAut
 import useAccountWorkspace from "@/components/role-workspaces/useAccountWorkspace";
 import type { NarrationReadinessReport } from "@/lib/admin-audio";
 
-const AdminReviewWorkspace = dynamic(() => import("@/components/admin/AdminReviewWorkspace"), {
-  loading: () => <p role="status">Loading governed review workspace…</p>,
-  ssr: false,
-});
+const AdminReviewWorkspace = deferClientWorkspace(() => import("@/components/admin/AdminReviewWorkspace"), <p role="status">Loading governed review workspace…</p>);
 
-const AdminAudioWorkspace = dynamic(() => import("@/components/admin/AdminAudioWorkspace"), {
-  loading: () => <p role="status">Loading audio listening workspace…</p>,
-  ssr: false,
-});
+const AdminAudioWorkspace = deferClientWorkspace(() => import("@/components/admin/AdminAudioWorkspace"), <p role="status">Loading audio listening workspace…</p>);
 
-const AdminReleasePreflight = dynamic(() => import("@/components/admin/AdminReleasePreflight"), {
-  loading: () => <p role="status">Loading release preflight…</p>,
-  ssr: false,
-});
+const AdminReleasePreflight = deferClientWorkspace(() => import("@/components/admin/AdminReleasePreflight"), <p role="status">Loading release preflight…</p>);
+
+const directoryActionClass = "btn-pop bg-[#f6f3ea] px-3 py-2 disabled:cursor-not-allowed disabled:opacity-45";
+const summaryGridClass = "grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-4";
+const pendingBadgeClass = "bg-[#fff4d5] px-3 py-1 text-xs font-semibold text-[#725100]";
+const reviewInputClass = "w-full border border-[#1d1a3e]/10 px-3 py-2 text-xs outline-none focus:border-[#7357c9]";
 
 type FeatureFlag = { key: string; enabled: boolean; description: string; config?: Record<string, unknown>; updated_at?: string };
 type World = { key: string; name: string; year_group: number; theme: string; config?: Record<string, unknown>; enabled: boolean };
@@ -2119,7 +2115,7 @@ export default function AdminPage() {
           type="button"
           onClick={loadMoreLearnerDirectory}
           disabled={directoryLoading || (!directoryCursors.current.student && !directoryCursors.current.credential)}
-          className="btn-pop bg-[#f6f3ea] px-3 py-2 disabled:cursor-not-allowed disabled:opacity-45"
+          className={directoryActionClass}
         >
           {directoryLoading ? "Loading…" : "Load more learner records"}
         </button>
@@ -2138,7 +2134,7 @@ export default function AdminPage() {
           type="button"
           onClick={loadMoreOrganisationDirectory}
           disabled={organisationLoading || (!organisationCursors.current.school && !organisationCursors.current.schoolUser && !organisationCursors.current.class)}
-          className="btn-pop bg-[#f6f3ea] px-3 py-2 disabled:cursor-not-allowed disabled:opacity-45"
+          className={directoryActionClass}
         >
           {organisationLoading ? "Loading…" : "Load more organisation records"}
         </button>
@@ -2155,7 +2151,7 @@ export default function AdminPage() {
           type="button"
           onClick={loadMoreGroupDirectory}
           disabled={groupDirectoryLoading || !groupDirectoryCursor.current}
-          className="btn-pop bg-[#f6f3ea] px-3 py-2 disabled:cursor-not-allowed disabled:opacity-45"
+          className={directoryActionClass}
         >
           {groupDirectoryLoading ? "Loading…" : "Load more groups"}
         </button>
@@ -2172,7 +2168,7 @@ export default function AdminPage() {
           type="button"
           onClick={loadMoreParentDirectory}
           disabled={parentDirectoryLoading || (!parentDirectoryCursors.current.link && !parentDirectoryCursors.current.invitation)}
-          className="btn-pop bg-[#f6f3ea] px-3 py-2 disabled:cursor-not-allowed disabled:opacity-45"
+          className={directoryActionClass}
         >
           {parentDirectoryLoading ? "Loading…" : "Load more parent records"}
         </button>
@@ -2189,7 +2185,7 @@ export default function AdminPage() {
           type="button"
           onClick={loadMoreAccessRequestDirectory}
           disabled={accessRequestDirectoryLoading || !accessRequestDirectoryCursor.current}
-          className="btn-pop bg-[#f6f3ea] px-3 py-2 disabled:cursor-not-allowed disabled:opacity-45"
+          className={directoryActionClass}
         >
           {accessRequestDirectoryLoading ? "Loading…" : "Load more access requests"}
         </button>
@@ -2264,14 +2260,16 @@ export default function AdminPage() {
                         {accessRequestDraft.request_type} request from {accessRequestDraft.contact_name} ({accessRequestDraft.contact_email})
                       </p>
                       <div className="mt-4 grid gap-3 text-sm md:grid-cols-2">
-                        <Info label="Status" value={accessRequestDraft.status} />
-                        <Info label="Role" value={accessRequestDraft.role || "not provided"} />
-                        <Info label="Phone" value={accessRequestDraft.phone || "not provided"} />
-                        <Info label="Region" value={accessRequestDraft.region || "not provided"} />
-                        <Info label="Learners" value={String(accessRequestDraft.learner_count || "not provided")} />
-                        <Info label="Years" value={(accessRequestDraft.year_groups ?? []).map((year) => `Y${year}`).join(", ") || "not provided"} />
-                        <Info label="SEND/support" value={(accessRequestDraft.support_needs ?? []).join(", ") || "not provided"} />
-                        <Info label="Learning priorities" value={(accessRequestDraft.learning_priorities ?? []).join(", ") || "not provided"} />
+                        <InfoValues items={[
+                          ["Status", accessRequestDraft.status],
+                          ["Role", accessRequestDraft.role || "not provided"],
+                          ["Phone", accessRequestDraft.phone || "not provided"],
+                          ["Region", accessRequestDraft.region || "not provided"],
+                          ["Learners", accessRequestDraft.learner_count || "not provided"],
+                          ["Years", (accessRequestDraft.year_groups ?? []).map((year) => `Y${year}`).join(", ") || "not provided"],
+                          ["SEND/support", (accessRequestDraft.support_needs ?? []).join(", ") || "not provided"],
+                          ["Learning priorities", (accessRequestDraft.learning_priorities ?? []).join(", ") || "not provided"],
+                        ]} />
                       </div>
                       {accessRequestDraft.message && (
                         <p className="mt-4 rounded-lg bg-[#f6f3ea] p-4 text-sm leading-6 text-[#1d1a3e]/70">{accessRequestDraft.message}</p>
@@ -2662,12 +2660,14 @@ export default function AdminPage() {
                 </p>
               </div>
               <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-4 xl:grid-cols-6">
-                <Info label="Depth-ready packs" value={`${packDepthReadiness?.totals.depth_ready_packs ?? 0}/${packDepthReadiness?.totals.packs ?? 0}`} />
-                <Info label="Blocked packs" value={String(packDepthReadiness?.totals.blocked_packs ?? 0)} />
-                <Info label="Authored variants" value={String(packDepthReadiness?.totals.authored_variants ?? 0)} />
-                <Info label="Pilot target" value={String(packDepthReadiness?.totals.pilot_target ?? 0)} />
-                <Info label="Mature target" value={String(packDepthReadiness?.totals.mature_target ?? 0)} />
-                <Info label="Deep target" value={String(packDepthReadiness?.totals.deep_target ?? 0)} />
+                <InfoValues items={[
+                  ["Depth-ready packs", `${packDepthReadiness?.totals.depth_ready_packs ?? 0}/${packDepthReadiness?.totals.packs ?? 0}`],
+                  ["Blocked packs", packDepthReadiness?.totals.blocked_packs ?? 0],
+                  ["Authored variants", packDepthReadiness?.totals.authored_variants ?? 0],
+                  ["Pilot target", packDepthReadiness?.totals.pilot_target ?? 0],
+                  ["Mature target", packDepthReadiness?.totals.mature_target ?? 0],
+                  ["Deep target", packDepthReadiness?.totals.deep_target ?? 0],
+                ]} />
               </div>
               <div className="grid gap-3 p-5 lg:grid-cols-3">
                 {(packDepthReadiness?.years ?? []).slice(0, 21).map((row) => (
@@ -2717,14 +2717,16 @@ export default function AdminPage() {
                 </div>
               </div>
               <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-4 lg:grid-cols-8">
-                <Info label="Scripts" value={String(narrationReadiness?.totals.expected_assets ?? 0)} />
-                <Info label="Technical pass" value={String(narrationReadiness?.totals.technical_pass ?? 0)} />
-                <Info label="Missing MP3s" value={String(narrationReadiness?.totals.missing ?? 0)} />
-                <Info label="Listening approved" value={String(narrationReadiness?.totals.listening_approved ?? 0)} />
-                <Info label="Need decision/rework" value={String(narrationReadiness?.totals.unreviewed ?? 0)} />
-                <Info label="Variant audio refs" value={String(narrationReadiness?.totals.variant_references ?? 0)} />
-                <Info label="Registered variants" value={String(narrationReadiness?.totals.variant_manifest_items ?? 0)} />
-                <Info label="Unresolved refs" value={String(narrationReadiness?.totals.unresolved_variant_references ?? 0)} />
+                <InfoValues items={[
+                  ["Scripts", narrationReadiness?.totals.expected_assets ?? 0],
+                  ["Technical pass", narrationReadiness?.totals.technical_pass ?? 0],
+                  ["Missing MP3s", narrationReadiness?.totals.missing ?? 0],
+                  ["Listening approved", narrationReadiness?.totals.listening_approved ?? 0],
+                  ["Need decision/rework", narrationReadiness?.totals.unreviewed ?? 0],
+                  ["Variant audio refs", narrationReadiness?.totals.variant_references ?? 0],
+                  ["Registered variants", narrationReadiness?.totals.variant_manifest_items ?? 0],
+                  ["Unresolved refs", narrationReadiness?.totals.unresolved_variant_references ?? 0],
+                ]} />
               </div>
               {narrationReadiness && (
                 <div className="border-b border-[#1d1a3e]/8 bg-[#fff8e8] p-5">
@@ -2755,7 +2757,7 @@ export default function AdminPage() {
                   return <article key={year.year} className="border border-[#1d1a3e]/8 bg-[#fffdf7] p-4">
                     <div className="flex items-center justify-between gap-3">
                       <p className="font-display text-lg font-semibold">Year {year.year}</p>
-                      <span className="bg-[#fff4d5] px-3 py-1 text-xs font-semibold text-[#725100]">{year.unreviewed} pending</span>
+                      <span className={pendingBadgeClass}>{year.unreviewed} pending</span>
                     </div>
                     <p className="mt-3 text-xs leading-5 text-[#1d1a3e]/62">
                       {year.technical_pass}/{year.expected_assets} technical · {year.listening_approved} listening approved · {year.unresolved_variant_references}/{year.variant_references} variant references unresolved.
@@ -2784,11 +2786,13 @@ export default function AdminPage() {
                   Download missing-area matrix
                 </button>
               </div>
-              <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-4">
-                <Info label="Contract areas" value={String(curriculumCoverage?.totals.contract_areas ?? 0)} />
-                <Info label="Areas with a pack" value={String(curriculumCoverage?.totals.authored_areas ?? 0)} />
-                <Info label="Missing areas" value={String(curriculumCoverage?.totals.missing_areas ?? 0)} />
-                <Info label="Breadth" value={`${curriculumCoverage?.totals.breadth_percent ?? 0}%`} />
+              <div className={summaryGridClass}>
+                <InfoValues items={[
+                  ["Contract areas", curriculumCoverage?.totals.contract_areas ?? 0],
+                  ["Areas with a pack", curriculumCoverage?.totals.authored_areas ?? 0],
+                  ["Missing areas", curriculumCoverage?.totals.missing_areas ?? 0],
+                  ["Breadth", `${curriculumCoverage?.totals.breadth_percent ?? 0}%`],
+                ]} />
               </div>
               <div className="grid gap-3 p-5 lg:grid-cols-2">
                 {(curriculumCoverage?.years ?? []).map((year) => (
@@ -2821,11 +2825,13 @@ export default function AdminPage() {
                   Approved child-runtime questions must have a real renderer, scoring path and accessible interaction contract. Ambitious future formats can stay authored in review without leaking into live missions.
                 </p>
               </div>
-              <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-4">
-                <Info label="Registered formats" value={String(rendererReadiness?.totals.formats ?? 0)} />
-                <Info label="Runtime questions checked" value={String(rendererReadiness?.totals.runtime_questions ?? 0)} />
-                <Info label="Ready formats" value={String(rendererReadiness?.totals.ready_formats ?? 0)} />
-                <Info label="Gate failures" value={String(rendererReadiness?.totals.runtime_failures ?? 0)} />
+              <div className={summaryGridClass}>
+                <InfoValues items={[
+                  ["Registered formats", rendererReadiness?.totals.formats ?? 0],
+                  ["Runtime questions checked", rendererReadiness?.totals.runtime_questions ?? 0],
+                  ["Ready formats", rendererReadiness?.totals.ready_formats ?? 0],
+                  ["Gate failures", rendererReadiness?.totals.runtime_failures ?? 0],
+                ]} />
               </div>
               <div className="grid gap-3 p-5 lg:grid-cols-2">
                 {(rendererReadiness?.formats ?? [])
@@ -2866,11 +2872,13 @@ export default function AdminPage() {
                   Open narration listening QA
                 </button>
               </div>
-              <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-4">
-                <Info label="Asset families" value={String(assetReadiness?.totals.families ?? 0)} />
-                <Info label="Runtime families" value={String(assetReadiness?.totals.runtime_families ?? 0)} />
-                <Info label="Prototype" value={String(assetReadiness?.totals.prototype ?? 0)} />
-                <Info label="Gate failures" value={String(assetReadiness?.totals.failures ?? 0)} />
+              <div className={summaryGridClass}>
+                <InfoValues items={[
+                  ["Asset families", assetReadiness?.totals.families ?? 0],
+                  ["Runtime families", assetReadiness?.totals.runtime_families ?? 0],
+                  ["Prototype", assetReadiness?.totals.prototype ?? 0],
+                  ["Gate failures", assetReadiness?.totals.failures ?? 0],
+                ]} />
               </div>
               <div className="grid gap-3 p-5 lg:grid-cols-2">
                 {(assetReadiness?.asset_families ?? []).map((family) => (
@@ -2886,7 +2894,7 @@ export default function AdminPage() {
                     {family.production_gaps.length > 0 && (
                       <div className="mt-3 flex flex-wrap gap-2">
                         {family.production_gaps.map((gap) => (
-                          <span key={gap} className="bg-[#fff4d5] px-3 py-1 text-xs font-semibold text-[#725100]">{gap}</span>
+                          <span key={gap} className={pendingBadgeClass}>{gap}</span>
                         ))}
                       </div>
                     )}
@@ -2907,11 +2915,13 @@ export default function AdminPage() {
                   Internal product and technical review is recorded separately from independent teacher, produced-audio, accessibility, safeguarding and child-pilot approval.
                 </p>
               </div>
-              <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-4">
-                <Info label="Items reviewed" value={String(flagshipReview?.totals.items ?? 0)} />
-                <Info label="Internal pass" value={String(flagshipReview?.totals.internal_pass ?? 0)} />
-                <Info label="Release blocked" value={String(flagshipReview?.totals.release_blocked ?? 0)} />
-                <Info label="Runtime approved" value={String(flagshipReview?.totals.runtime_approved_by_this_review ?? 0)} />
+              <div className={summaryGridClass}>
+                <InfoValues items={[
+                  ["Items reviewed", flagshipReview?.totals.items ?? 0],
+                  ["Internal pass", flagshipReview?.totals.internal_pass ?? 0],
+                  ["Release blocked", flagshipReview?.totals.release_blocked ?? 0],
+                  ["Runtime approved", flagshipReview?.totals.runtime_approved_by_this_review ?? 0],
+                ]} />
               </div>
               <div className="grid gap-3 p-5 lg:grid-cols-3">
                 {(flagshipReview?.packs ?? []).map((pack) => (
@@ -2936,12 +2946,14 @@ export default function AdminPage() {
                 </p>
               </div>
               <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-6">
-                <Info label="Authored variants" value={String(variantQueue?.totals.authored_variants ?? 0)} />
-                <Info label="Source runtime approved" value={String(variantQueue?.totals.runtime_variants ?? 0)} />
-                <Info label="Runtime spine overlays" value={String(runtimeSpine?.totals.overlay_variants ?? 0)} />
-                <Info label="Playable runtime path" value={String(runtimeSpine?.totals.runtime_after_overlay ?? variantQueue?.totals.runtime_variants ?? 0)} />
-                <Info label="Awaiting review" value={String(variantQueue?.totals.review_candidates ?? 0)} />
-                <Info label="Blocked from pilot" value={String(variantQueue?.totals.blocked_from_pilot ?? 0)} />
+                <InfoValues items={[
+                  ["Authored variants", variantQueue?.totals.authored_variants ?? 0],
+                  ["Source runtime approved", variantQueue?.totals.runtime_variants ?? 0],
+                  ["Runtime spine overlays", runtimeSpine?.totals.overlay_variants ?? 0],
+                  ["Playable runtime path", runtimeSpine?.totals.runtime_after_overlay ?? variantQueue?.totals.runtime_variants ?? 0],
+                  ["Awaiting review", variantQueue?.totals.review_candidates ?? 0],
+                  ["Blocked from pilot", variantQueue?.totals.blocked_from_pilot ?? 0],
+                ]} />
               </div>
               {variantQueue && (
                 <div className="border-b border-[#1d1a3e]/8 bg-[#f7fbff] p-5">
@@ -3030,19 +3042,23 @@ export default function AdminPage() {
                 </div>
               </div>
               <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-6">
-                <Info label="Batch packs" value={String(pilotReviewBatch?.totals.packs ?? 0)} />
-                <Info label="First-pass items" value={String(pilotReviewBatch?.totals.recommended_first_pass ?? 0)} />
-                <Info label="Review candidates" value={String(pilotReviewBatch?.totals.review_candidates ?? 0)} />
-                <Info label="Runtime / pilot" value={`${pilotReviewBatch?.totals.runtime_variants ?? 0}/${pilotReviewBatch?.totals.pilot_target ?? 0}`} />
-                <Info label="Release blockers" value={String(pilotReviewBatch?.totals.release_blockers ?? 0)} />
-                <Info label="Audio QA packs" value={String(pilotReviewBatch?.totals.audio_qa_required ?? 0)} />
+                <InfoValues items={[
+                  ["Batch packs", pilotReviewBatch?.totals.packs ?? 0],
+                  ["First-pass items", pilotReviewBatch?.totals.recommended_first_pass ?? 0],
+                  ["Review candidates", pilotReviewBatch?.totals.review_candidates ?? 0],
+                  ["Runtime / pilot", `${pilotReviewBatch?.totals.runtime_variants ?? 0}/${pilotReviewBatch?.totals.pilot_target ?? 0}`],
+                  ["Release blockers", pilotReviewBatch?.totals.release_blockers ?? 0],
+                  ["Audio QA packs", pilotReviewBatch?.totals.audio_qa_required ?? 0],
+                ]} />
               </div>
               <div className="grid gap-3 border-b border-[#1d1a3e]/8 bg-[#f8fbff] p-5 text-sm md:grid-cols-5">
-                <Info label="Evidence records" value={String(pilotReviewEvidence?.records.length ?? 0)} />
-                <Info label="Pending records" value={String((pilotReviewEvidence?.records ?? []).filter((record) => record.review_state !== "approved").length)} />
-                <Info label="Required lanes pending" value={String(pilotReviewEvidenceCheck?.totals.pending_required_lanes ?? 0)} />
-                <Info label="Gate errors" value={String(pilotReviewEvidenceCheck?.totals.errors ?? 0)} />
-                <Info label="Gate source" value={pilotReviewEvidenceCheck?.served_by === "api" ? "backend API" : "static fallback"} />
+                <InfoValues items={[
+                  ["Evidence records", pilotReviewEvidence?.records.length ?? 0],
+                  ["Pending records", (pilotReviewEvidence?.records ?? []).filter((record) => record.review_state !== "approved").length],
+                  ["Required lanes pending", pilotReviewEvidenceCheck?.totals.pending_required_lanes ?? 0],
+                  ["Gate errors", pilotReviewEvidenceCheck?.totals.errors ?? 0],
+                  ["Gate source", pilotReviewEvidenceCheck?.served_by === "api" ? "backend API" : "static fallback"],
+                ]} />
               </div>
               <div className={`border-b border-[#1d1a3e]/8 p-5 text-sm ${pilotReviewEvidenceCheck?.promotion_allowed ? "bg-[#effaf3] text-[#155d36]" : "bg-[#fff4d5] text-[#725100]"}`}>
                 <p className="font-semibold">
@@ -3061,10 +3077,12 @@ export default function AdminPage() {
                     </p>
                   </div>
                   <div className="grid grid-cols-2 gap-2 text-center sm:grid-cols-4">
-                    <Info label="Required approved" value={`${contentReviewLedger?.release_gate?.approved_required_lanes ?? 0}/${contentReviewLedger?.release_gate?.required_lanes ?? 0}`} />
-                    <Info label="Pending" value={String(contentReviewLedger?.release_gate?.pending_required_lanes ?? 0)} />
-                    <Info label="Stale" value={String(contentReviewLedger?.release_gate?.stale_decisions ?? 0)} />
-                    <Info label="Decisions" value={String(contentReviewLedger?.release_gate?.decision_count ?? 0)} />
+                    <InfoValues items={[
+                      ["Required approved", `${contentReviewLedger?.release_gate?.approved_required_lanes ?? 0}/${contentReviewLedger?.release_gate?.required_lanes ?? 0}`],
+                      ["Pending", contentReviewLedger?.release_gate?.pending_required_lanes ?? 0],
+                      ["Stale", contentReviewLedger?.release_gate?.stale_decisions ?? 0],
+                      ["Decisions", contentReviewLedger?.release_gate?.decision_count ?? 0],
+                    ]} />
                   </div>
                 </div>
                 <p className="mt-3 text-xs leading-5 opacity-75">
@@ -3102,7 +3120,7 @@ export default function AdminPage() {
                         </p>
                       </div>
                       <div className="flex flex-wrap gap-2">
-                        {pack.audio_qa_required && <span className="bg-[#fff4d5] px-3 py-1 text-xs font-semibold text-[#725100]">audio QA</span>}
+                        {pack.audio_qa_required && <span className={pendingBadgeClass}>audio QA</span>}
                         {pack.renderer_acceptance_required && <span className="bg-[#fde4e4] px-3 py-1 text-xs font-semibold text-[#8b2b2b]">renderer gate</span>}
                       </div>
                     </div>
@@ -3132,10 +3150,10 @@ export default function AdminPage() {
                           </div>
                           <p className="mt-2 text-[11px] leading-4 text-[#1d1a3e]/58">{lane.description}</p>
                           {reviewable && contentReviewLedger && <div className="mt-3 space-y-2 border-t border-[#1d1a3e]/8 pt-3">
-                            <input value={draft.reviewer_name} onChange={(event) => updateContentReviewDraft(pack.pack_id, lane.id, { reviewer_name: event.target.value })} placeholder="Reviewer name / role" className="w-full border border-[#1d1a3e]/10 px-3 py-2 text-xs outline-none focus:border-[#7357c9]" />
+                            <input value={draft.reviewer_name} onChange={(event) => updateContentReviewDraft(pack.pack_id, lane.id, { reviewer_name: event.target.value })} placeholder="Reviewer name / role" className={reviewInputClass} />
                             <textarea value={draft.evidence_notes} onChange={(event) => updateContentReviewDraft(pack.pack_id, lane.id, { evidence_notes: event.target.value })} placeholder="Evidence notes: age fit, SEND access, misconceptions, safeguarding or audio findings" rows={2} className="w-full resize-y border border-[#1d1a3e]/10 px-3 py-2 text-xs outline-none focus:border-[#7357c9]" />
-                            <input value={draft.candidate_ids} onChange={(event) => updateContentReviewDraft(pack.pack_id, lane.id, { candidate_ids: event.target.value })} placeholder="Candidate IDs reviewed (comma separated)" className="w-full border border-[#1d1a3e]/10 px-3 py-2 text-xs outline-none focus:border-[#7357c9]" />
-                            <input value={draft.revision_actions} onChange={(event) => updateContentReviewDraft(pack.pack_id, lane.id, { revision_actions: event.target.value })} placeholder="Revision actions, if any (comma separated)" className="w-full border border-[#1d1a3e]/10 px-3 py-2 text-xs outline-none focus:border-[#7357c9]" />
+                            <input value={draft.candidate_ids} onChange={(event) => updateContentReviewDraft(pack.pack_id, lane.id, { candidate_ids: event.target.value })} placeholder="Candidate IDs reviewed (comma separated)" className={reviewInputClass} />
+                            <input value={draft.revision_actions} onChange={(event) => updateContentReviewDraft(pack.pack_id, lane.id, { revision_actions: event.target.value })} placeholder="Revision actions, if any (comma separated)" className={reviewInputClass} />
                             <div className="flex flex-wrap gap-2">
                               <button type="button" onClick={() => void saveContentReview(pack, lane, "approved")} disabled={saving === reviewKey} className="btn-pop rounded-full bg-[#dff7e7] px-3 py-2 text-[11px] font-semibold text-[#28613c] disabled:opacity-50">Approve lane</button>
                               <button type="button" onClick={() => void saveContentReview(pack, lane, "revise")} disabled={saving === reviewKey} className="btn-pop rounded-full bg-[#fff4d5] px-3 py-2 text-[11px] font-semibold text-[#725100] disabled:opacity-50">Request revision</button>
@@ -3173,11 +3191,13 @@ export default function AdminPage() {
                   Objective packs stay in controlled release channels until their payloads, previews, accessibility checks, item-bank depth and pilot evidence are ready.
                 </p>
               </div>
-              <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-4">
-                <Info label="Tracked packs" value={String(releaseSnapshot?.totals.packs ?? 0)} />
-                <Info label="Authoring" value={String(releaseSnapshot?.totals.authoring ?? 0)} />
-                <Info label="Release failures" value={String(releaseSnapshot?.totals.failures ?? 0)} />
-                <Info label="Warnings" value={String(releaseSnapshot?.totals.warnings ?? 0)} />
+              <div className={summaryGridClass}>
+                <InfoValues items={[
+                  ["Tracked packs", releaseSnapshot?.totals.packs ?? 0],
+                  ["Authoring", releaseSnapshot?.totals.authoring ?? 0],
+                  ["Release failures", releaseSnapshot?.totals.failures ?? 0],
+                  ["Warnings", releaseSnapshot?.totals.warnings ?? 0],
+                ]} />
               </div>
               <div className="border-b border-[#1d1a3e]/8 bg-[#f8fbff] p-5">
                 <div className="flex flex-wrap items-start justify-between gap-3">
@@ -3192,7 +3212,7 @@ export default function AdminPage() {
                   ) : releaseLedger.error ? (
                     <span className="bg-[#fde4e4] px-3 py-1 text-xs font-semibold text-[#8b2b2b]">release ledger unavailable</span>
                   ) : releaseLedger.loaded ? (
-                    <span className="bg-[#fff4d5] px-3 py-1 text-xs font-semibold text-[#725100]">no live release applied</span>
+                    <span className={pendingBadgeClass}>no live release applied</span>
                   ) : (
                     <span className="bg-[#f6f3ea] px-3 py-1 text-xs font-semibold text-[#565267]">loading release ledger</span>
                   )}
@@ -3245,7 +3265,7 @@ export default function AdminPage() {
                     {pack.warnings.length > 0 && (
                       <div className="mt-3 flex flex-wrap gap-2">
                         {pack.warnings.slice(0, 3).map((warning) => (
-                          <span key={warning} className="bg-[#fff4d5] px-3 py-1 text-xs font-semibold text-[#725100]">{warning}</span>
+                          <span key={warning} className={pendingBadgeClass}>{warning}</span>
                         ))}
                       </div>
                     )}
@@ -3268,11 +3288,13 @@ export default function AdminPage() {
                   Every objective needs teaching design, runtime-approved activities, question variation, hints, explanations, mastery evidence and animation hooks before it should be treated as ready.
                 </p>
               </div>
-              <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-4">
-                <Info label="Objectives" value={String(readiness?.totals.objectives ?? 0)} />
-                <Info label="Published activities" value={String(readiness?.totals.published_activities ?? 0)} />
-                <Info label="Published questions" value={String(readiness?.totals.published_questions ?? 0)} />
-                <Info label="Formats covered" value={String(readiness?.totals.formats ?? 0)} />
+              <div className={summaryGridClass}>
+                <InfoValues items={[
+                  ["Objectives", readiness?.totals.objectives ?? 0],
+                  ["Published activities", readiness?.totals.published_activities ?? 0],
+                  ["Published questions", readiness?.totals.published_questions ?? 0],
+                  ["Formats covered", readiness?.totals.formats ?? 0],
+                ]} />
               </div>
               <div className="divide-y divide-[#1d1a3e]/8">
                 {(readiness?.items ?? []).map((item) => {
@@ -3310,7 +3332,7 @@ export default function AdminPage() {
                           <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#8b6500]">Warnings</p>
                           <div className="mt-2 flex flex-wrap gap-2">
                             {item.warnings.map((warning) => (
-                              <span key={warning} className="bg-[#fff4d5] px-3 py-1 text-xs font-semibold text-[#725100]">{warning}</span>
+                              <span key={warning} className={pendingBadgeClass}>{warning}</span>
                             ))}
                           </div>
                         </div>
@@ -3686,7 +3708,7 @@ function AdminCursorPager({
           type="button"
           onClick={onLoadMore}
           disabled={loading || !nextCursor}
-          className="btn-pop bg-[#f6f3ea] px-3 py-2 disabled:cursor-not-allowed disabled:opacity-45"
+          className={directoryActionClass}
         >
           {loading ? "Loading…" : nextCursor ? "Load more" : "All records loaded"}
         </button>

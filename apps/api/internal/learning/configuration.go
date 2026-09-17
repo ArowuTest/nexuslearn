@@ -2044,7 +2044,7 @@ func (r *PostgresRepository) ParentPortal(ctx context.Context, parentLoginID str
 		       COALESCE(p.communication_support,'standard'), COALESCE(p.processing_support,'standard'),
 		       COALESCE(p.confidence_support,'balanced'), COALESCE(p.companion_style,'friendly'),
 		       COALESCE(p.reward_style,'world_building'), COALESCE(to_json(p.interests)::text,'[]'),
-		       COALESCE(p.notes,''), COALESCE(p.updated_at, s.updated_at)
+		       COALESCE(p.notes,''), COALESCE(p.updated_at, s.updated_at), COALESCE(p.version,0)
 		FROM parent_student_links l
 		JOIN app_users u ON u.id = l.parent_user_id
 		JOIN students s ON s.id = l.student_id
@@ -2072,7 +2072,7 @@ func (r *PostgresRepository) ParentPortal(ctx context.Context, parentLoginID str
 			&engagement.ReadingSupport, &engagement.SessionLength, &engagement.SensoryLoad,
 			&engagement.AttentionSupport, &engagement.CommunicationSupport, &engagement.ProcessingSupport,
 			&engagement.ConfidenceSupport, &engagement.CompanionStyle, &engagement.RewardStyle,
-			&interestsJSON, &engagement.Notes, &engagementUpdatedAt); err != nil {
+			&interestsJSON, &engagement.Notes, &engagementUpdatedAt, &engagement.Version); err != nil {
 			return ParentPortalConfig{}, err
 		}
 		student.CreatedAt = createdAt.UTC().Format(time.RFC3339)
@@ -2090,94 +2090,6 @@ func (r *PostgresRepository) ParentPortal(ctx context.Context, parentLoginID str
 		out.Children = append(out.Children, ParentChildConfig{Student: student, Credential: credential, Engagement: engagement})
 	}
 	return out, rows.Err()
-}
-
-func (r *PostgresRepository) UpsertStudentEngagement(ctx context.Context, profile StudentEngagementProfile) (StudentEngagementProfile, error) {
-	defaults := defaultStudentEngagement(profile.StudentExternalRef)
-	if profile.CelebrationIntensity == "" {
-		profile.CelebrationIntensity = defaults.CelebrationIntensity
-	}
-	if profile.SessionLength == "" {
-		profile.SessionLength = defaults.SessionLength
-	}
-	if profile.SensoryLoad == "" {
-		profile.SensoryLoad = defaults.SensoryLoad
-	}
-	if profile.AttentionSupport == "" {
-		profile.AttentionSupport = defaults.AttentionSupport
-	}
-	if profile.CommunicationSupport == "" {
-		profile.CommunicationSupport = defaults.CommunicationSupport
-	}
-	if profile.ProcessingSupport == "" {
-		profile.ProcessingSupport = defaults.ProcessingSupport
-	}
-	if profile.ConfidenceSupport == "" {
-		profile.ConfidenceSupport = defaults.ConfidenceSupport
-	}
-	if profile.CompanionStyle == "" {
-		profile.CompanionStyle = defaults.CompanionStyle
-	}
-	if profile.RewardStyle == "" {
-		profile.RewardStyle = defaults.RewardStyle
-	}
-	if profile.Interests == nil {
-		profile.Interests = []string{}
-	}
-	if profile.DeclaredSupportNeeds == nil {
-		profile.DeclaredSupportNeeds = []string{}
-	}
-	if profile.LearningApproaches == nil {
-		profile.LearningApproaches = []string{}
-	}
-	if err := validateStudentEngagement(profile); err != nil {
-		return profile, err
-	}
-	tx, err := r.db.Begin(ctx)
-	if err != nil {
-		return profile, err
-	}
-	defer tx.Rollback(ctx)
-	var updatedAt time.Time
-	err = tx.QueryRow(ctx, `
-		INSERT INTO student_engagement_profiles (
-			student_id, declared_support_needs, learning_approaches, celebration_intensity,
-			audio_support, reading_support, session_length, sensory_load, attention_support,
-			communication_support, processing_support, confidence_support, companion_style,
-			reward_style, interests, notes, updated_at
-		)
-		VALUES ((SELECT id FROM students WHERE external_ref=$1 LIMIT 1), $2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,now())
-		ON CONFLICT (student_id) DO UPDATE SET
-			declared_support_needs = EXCLUDED.declared_support_needs,
-			learning_approaches = EXCLUDED.learning_approaches,
-			celebration_intensity = EXCLUDED.celebration_intensity,
-			audio_support = EXCLUDED.audio_support,
-			reading_support = EXCLUDED.reading_support,
-			session_length = EXCLUDED.session_length,
-			sensory_load = EXCLUDED.sensory_load,
-			attention_support = EXCLUDED.attention_support,
-			communication_support = EXCLUDED.communication_support,
-			processing_support = EXCLUDED.processing_support,
-			confidence_support = EXCLUDED.confidence_support,
-			companion_style = EXCLUDED.companion_style,
-			reward_style = EXCLUDED.reward_style,
-			interests = EXCLUDED.interests,
-			notes = EXCLUDED.notes,
-			updated_at = now()
-		RETURNING updated_at
-	`, profile.StudentExternalRef, profile.DeclaredSupportNeeds, profile.LearningApproaches, profile.CelebrationIntensity,
-		profile.AudioSupport, profile.ReadingSupport, profile.SessionLength, profile.SensoryLoad, profile.AttentionSupport,
-		profile.CommunicationSupport, profile.ProcessingSupport, profile.ConfidenceSupport, profile.CompanionStyle,
-		profile.RewardStyle, profile.Interests, strings.TrimSpace(profile.Notes)).Scan(&updatedAt)
-	if err != nil {
-		return profile, err
-	}
-	profile.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
-	_, err = tx.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'student_engagement_profile', $1, $2::jsonb)`, profile.StudentExternalRef, mustJSON(profile))
-	if err == nil {
-		err = tx.Commit(ctx)
-	}
-	return profile, err
 }
 
 func (r *PostgresRepository) StudentEngagement(ctx context.Context, studentExternalRef string) (StudentEngagementProfile, error) {
@@ -2844,21 +2756,25 @@ func (r *PostgresRepository) studentCredential(ctx context.Context, externalRef 
 }
 
 func (r *PostgresRepository) studentEngagement(ctx context.Context, externalRef string) (StudentEngagementProfile, error) {
+	return readStudentEngagement(ctx, r.db, externalRef)
+}
+
+func readStudentEngagement(ctx context.Context, db queryExecutor, externalRef string) (StudentEngagementProfile, error) {
 	profile := defaultStudentEngagement(externalRef)
 	var supportJSON, approachesJSON, interestsJSON string
 	var updatedAt time.Time
-	err := r.db.QueryRow(ctx, `
+	err := db.QueryRow(ctx, `
 		SELECT to_json(declared_support_needs)::text, to_json(learning_approaches)::text,
 		       celebration_intensity, audio_support, reading_support, session_length, sensory_load,
 		       attention_support, communication_support, processing_support, confidence_support,
-		       companion_style, reward_style, to_json(interests)::text, notes, p.updated_at
+		       companion_style, reward_style, to_json(interests)::text, notes, p.updated_at, p.version
 		FROM student_engagement_profiles p
 		JOIN students s ON s.id = p.student_id
 		WHERE s.external_ref=$1
 	`, externalRef).Scan(&supportJSON, &approachesJSON, &profile.CelebrationIntensity, &profile.AudioSupport, &profile.ReadingSupport,
 		&profile.SessionLength, &profile.SensoryLoad, &profile.AttentionSupport, &profile.CommunicationSupport,
 		&profile.ProcessingSupport, &profile.ConfidenceSupport, &profile.CompanionStyle, &profile.RewardStyle,
-		&interestsJSON, &profile.Notes, &updatedAt)
+		&interestsJSON, &profile.Notes, &updatedAt, &profile.Version)
 	if errors.Is(err, pgx.ErrNoRows) {
 		return profile, nil
 	}

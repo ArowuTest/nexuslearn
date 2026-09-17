@@ -1872,49 +1872,6 @@ func (s *Server) handleSchoolUpsertStudent(w http.ResponseWriter, r *http.Reques
 	writeJSON(w, http.StatusOK, saved)
 }
 
-func (s *Server) handleSchoolStudentEngagement(w http.ResponseWriter, r *http.Request) {
-	user, ok := s.requireSchoolUser(w, r)
-	if !ok {
-		return
-	}
-	externalRef := r.PathValue("externalRef")
-	if !s.studentBelongsToSchool(r.Context(), user.SchoolURN, externalRef) {
-		writeJSON(w, http.StatusForbidden, map[string]string{"error": "pupil is outside this school"})
-		return
-	}
-	profile, err := s.repo.StudentEngagement(r.Context(), externalRef)
-	if err != nil {
-		slog.Warn("failed to read school pupil engagement profile", "school_urn", user.SchoolURN, "student", externalRef, "error", err)
-		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read pupil engagement profile"})
-		return
-	}
-	writeJSON(w, http.StatusOK, profile)
-}
-
-func (s *Server) handleSchoolUpsertStudentEngagement(w http.ResponseWriter, r *http.Request) {
-	user, ok := s.requireSchoolUser(w, r)
-	if !ok {
-		return
-	}
-	externalRef := r.PathValue("externalRef")
-	if !s.studentBelongsToSchool(r.Context(), user.SchoolURN, externalRef) {
-		writeJSON(w, http.StatusForbidden, map[string]string{"error": "pupil is outside this school"})
-		return
-	}
-	var profile learning.StudentEngagementProfile
-	if err := json.NewDecoder(r.Body).Decode(&profile); err != nil {
-		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
-		return
-	}
-	profile.StudentExternalRef = externalRef
-	saved, err := s.repo.UpsertStudentEngagement(r.Context(), profile)
-	if err != nil {
-		s.writeAdminSaveError(w, err, "school pupil engagement profile")
-		return
-	}
-	writeJSON(w, http.StatusOK, saved)
-}
-
 func (s *Server) handleSchoolUpsertClass(w http.ResponseWriter, r *http.Request) {
 	user, ok := s.requireSchoolUser(w, r)
 	if !ok {
@@ -2699,30 +2656,6 @@ func (s *Server) handleParentUpsertChild(w http.ResponseWriter, r *http.Request)
 	}
 	if err != nil {
 		s.writeAdminSaveError(w, err, "parent child")
-		return
-	}
-	writeJSON(w, http.StatusOK, saved)
-}
-
-func (s *Server) handleParentUpsertEngagement(w http.ResponseWriter, r *http.Request) {
-	parent, ok := s.requireParentUser(w, r)
-	if !ok {
-		return
-	}
-	externalRef := r.PathValue("externalRef")
-	if !s.parentOwnsChild(r.Context(), parent.LoginID, externalRef) {
-		writeJSON(w, http.StatusForbidden, map[string]string{"error": "child is outside this parent account"})
-		return
-	}
-	var profile learning.StudentEngagementProfile
-	if err := json.NewDecoder(r.Body).Decode(&profile); err != nil {
-		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
-		return
-	}
-	profile.StudentExternalRef = externalRef
-	saved, err := s.repo.UpsertStudentEngagement(r.Context(), profile)
-	if err != nil {
-		s.writeAdminSaveError(w, err, "parent child engagement")
 		return
 	}
 	writeJSON(w, http.StatusOK, saved)

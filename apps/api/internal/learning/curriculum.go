@@ -599,6 +599,7 @@ type ParentAccountConfig struct {
 
 type StudentEngagementProfile struct {
 	StudentExternalRef   string   `json:"student_external_ref"`
+	Version              int64    `json:"version"`
 	DeclaredSupportNeeds []string `json:"declared_support_needs"`
 	LearningApproaches   []string `json:"learning_approaches"`
 	CelebrationIntensity string   `json:"celebration_intensity"`

@@ -1,7 +1,6 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import type { ComponentType } from "react";
+import { lazy, Suspense, type ComponentType } from "react";
 import { FORMAT_FAMILIES } from "./formats";
 import { AudioBlend } from "./primitives";
 import {
@@ -13,20 +12,20 @@ import {
   type StudioRendererRegistry,
 } from "./types";
 
-const LiteracyRenderer = dynamic<StudioRendererProps>(
-  () => import("./literacy").then((module) => module.LiteracyRenderer),
+const LiteracyRenderer = lazy(
+  () => import("./literacy").then((module) => ({ default: module.LiteracyRenderer })),
 );
-const MathematicsRenderer = dynamic<StudioRendererProps>(
-  () => import("./mathematics").then((module) => module.MathematicsRenderer),
+const MathematicsRenderer = lazy(
+  () => import("./mathematics").then((module) => ({ default: module.MathematicsRenderer })),
 );
-const ScienceRenderer = dynamic<StudioRendererProps>(
-  () => import("./science").then((module) => module.ScienceRenderer),
+const ScienceRenderer = lazy(
+  () => import("./science").then((module) => ({ default: module.ScienceRenderer })),
 );
-const CrossCurricularRenderer = dynamic<StudioRendererProps>(
-  () => import("./cross-curricular").then((module) => module.CrossCurricularRenderer),
+const CrossCurricularRenderer = lazy(
+  () => import("./cross-curricular").then((module) => ({ default: module.CrossCurricularRenderer })),
 );
-const CompatibilityRenderer = dynamic<StudioRendererProps>(
-  () => import("./science").then((module) => module.CompatibilityRenderer),
+const CompatibilityRenderer = lazy(
+  () => import("./science").then((module) => ({ default: module.CompatibilityRenderer })),
 );
 
 const rendererByFamily: Record<StudioRendererFamily, ComponentType<StudioRendererProps>> = {
@@ -105,8 +104,8 @@ export function LearningActivityRenderer(props: StudioRendererProps) {
   return (
     <>
       <AudioBlend question={props.question} />
-      {showPrimaryRenderer && <PrimaryRenderer {...props} />}
-      {includeCompatibilityRenderer && <CompatibilityRenderer {...props} />}
+      {showPrimaryRenderer && <Suspense fallback={null}><PrimaryRenderer {...props} /></Suspense>}
+      {includeCompatibilityRenderer && <Suspense fallback={null}><CompatibilityRenderer {...props} /></Suspense>}
       {props.responseMode === "interactive" &&
         !PrimaryRenderer &&
         !hasRoleAssignmentFallback &&

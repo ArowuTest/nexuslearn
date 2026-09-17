@@ -45,7 +45,7 @@ func TestParentChildRepositoryPostgres(t *testing.T) {
 		if _, err := repo.UpsertStudentCredential(ctx, StudentCredentialConfig{StudentExternalRef: ref, LoginCode: "SCHOOL-" + ref, PicturePassword: []string{"moon", "tree", "key"}, QRSecretHash: "original-qr"}); err != nil {
 			t.Fatal(err)
 		}
-		if _, err := repo.UpsertStudentEngagement(ctx, StudentEngagementProfile{StudentExternalRef: ref, Notes: "Original private support"}); err != nil {
+		if _, err := pool.Exec(ctx, `INSERT INTO student_engagement_profiles(student_id,notes) VALUES($1,'Original private support')`, student.ID); err != nil {
 			t.Fatal(err)
 		}
 		return student
@@ -192,6 +192,11 @@ func TestParentChildRepositoryPostgres(t *testing.T) {
 			if existing {
 				student := seed(ref)
 				link(a, student.ID, "active")
+				// This path now initialises only absent support. Inject failure on
+				// that insertion, while still asserting identity/credential rollback.
+				if _, err := pool.Exec(ctx, `DELETE FROM student_engagement_profiles WHERE student_id=$1`, student.ID); err != nil {
+					t.Fatal(err)
+				}
 			}
 			before := parentChildSnapshot(t, ctx, pool, ref)
 			input := child(ref)

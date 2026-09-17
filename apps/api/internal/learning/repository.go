@@ -147,7 +147,6 @@ type Repository interface {
 	UpsertParentAccount(ctx context.Context, parent ParentAccountConfig) (ParentAccountConfig, error)
 	VerifyParentUser(ctx context.Context, loginID string, password string) (ParentAccountConfig, bool, error)
 	ParentPortal(ctx context.Context, parentLoginID string) (ParentPortalConfig, error)
-	UpsertStudentEngagement(ctx context.Context, profile StudentEngagementProfile) (StudentEngagementProfile, error)
 	StudentEngagement(ctx context.Context, studentExternalRef string) (StudentEngagementProfile, error)
 	ListAccessRequests(ctx context.Context, status string) ([]AccessRequestConfig, error)
 	CreateAccessRequest(ctx context.Context, request AccessRequestConfig) (AccessRequestConfig, error)
@@ -385,10 +384,6 @@ func (NoopRepository) VerifyParentUser(_ context.Context, loginID string, _ stri
 
 func (NoopRepository) ParentPortal(_ context.Context, parentLoginID string) (ParentPortalConfig, error) {
 	return ParentPortalConfig{Parent: ParentAccountConfig{LoginID: parentLoginID}}, nil
-}
-
-func (NoopRepository) UpsertStudentEngagement(_ context.Context, profile StudentEngagementProfile) (StudentEngagementProfile, error) {
-	return profile, nil
 }
 
 func (NoopRepository) StudentEngagement(_ context.Context, studentExternalRef string) (StudentEngagementProfile, error) {

@@ -512,7 +512,7 @@ export type ParentPortal = {
   children: Array<{
     student: StudentProfile & { external_ref?: string };
     credential: { student_external_ref: string; login_code: string; picture_password: string[] };
-    engagement: StudentEngagementProfile;
+    engagement: StudentEngagementProfile & { student_external_ref: string; version: number; updated_at: string };
   }>;
 };
 

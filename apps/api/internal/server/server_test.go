@@ -377,10 +377,6 @@ func (f fakeRepository) ParentPortal(_ context.Context, parentLoginID string) (l
 	return learning.ParentPortalConfig{Parent: learning.ParentAccountConfig{LoginID: parentLoginID}}, nil
 }
 
-func (f fakeRepository) UpsertStudentEngagement(_ context.Context, profile learning.StudentEngagementProfile) (learning.StudentEngagementProfile, error) {
-	return profile, nil
-}
-
 func (f fakeRepository) StudentEngagement(_ context.Context, studentExternalRef string) (learning.StudentEngagementProfile, error) {
 	if f.engagement.StudentExternalRef != "" {
 		return f.engagement, nil
@@ -2345,7 +2341,7 @@ func TestSchoolStudentEngagementRequiresSchoolPupilScope(t *testing.T) {
 		t.Fatalf("expected school authentication to be required, got %d", res.Code)
 	}
 
-	srv := New(fakeRepository{
+	srv := New(&engagementHandlerRepository{fakeRepository: fakeRepository{
 		verifySchool: true,
 		schoolRole:   "teacher",
 		schoolPortal: learning.SchoolPortalConfig{
@@ -2362,7 +2358,7 @@ func TestSchoolStudentEngagementRequiresSchoolPupilScope(t *testing.T) {
 			LearningApproaches:   []string{"simple_text", "large_targets"},
 			SessionLength:        "short",
 		},
-	}, "postgres")
+	}, allowedRef: "ava-y3"}, "postgres")
 
 	req = httptest.NewRequest(http.MethodGet, "/v1/school/students/ava-y3/engagement", nil)
 	req.Header.Set("X-School-URN", "urn-100")
@@ -2393,7 +2389,7 @@ func TestSchoolStudentEngagementRequiresSchoolPupilScope(t *testing.T) {
 }
 
 func TestSchoolStudentEngagementPutUsesScopedPathPupil(t *testing.T) {
-	srv := New(fakeRepository{
+	srv := New(&engagementHandlerRepository{fakeRepository: fakeRepository{
 		verifySchool: true,
 		schoolPortal: learning.SchoolPortalConfig{
 			School: learning.SchoolConfig{URN: "urn-100", Name: "Nexus Primary"},
@@ -2403,10 +2399,10 @@ func TestSchoolStudentEngagementPutUsesScopedPathPupil(t *testing.T) {
 				Students:  []learning.StudentProfileConfig{{ExternalRef: "ava-y3"}},
 			}},
 		},
-	}, "postgres")
+	}, allowedRef: "ava-y3"}, "postgres")
 
 	req := httptest.NewRequest(http.MethodPut, "/v1/school/students/ava-y3/engagement", strings.NewReader(`{
-		"student_external_ref":"outside-school",
+		"student_external_ref":"outside-school","version":10,
 		"declared_support_needs":["fine_motor"],
 		"learning_approaches":["simplified_controls","switch_access"],
 		"celebration_intensity":"quiet",
@@ -2423,6 +2419,7 @@ func TestSchoolStudentEngagementPutUsesScopedPathPupil(t *testing.T) {
 		"interests":["space"],
 		"notes":"Use the switch mount on the left."
 	}`))
+	req.Header.Set("Idempotency-Key", "support-fixture-save")
 	req.Header.Set("X-School-URN", "urn-100")
 	req.Header.Set("X-School-Login", "lead")
 	req.Header.Set("X-School-Password", "secret")

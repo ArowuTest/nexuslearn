@@ -40,6 +40,11 @@ export function AdminListPager({ page, totalPages, onChange }: { page: number; t
   );
 }
 
+// Summary data stays explicit at the call site without repeating card markup.
+export function InfoValues({ items }: { items: ReadonlyArray<readonly [string, string | number]> }) {
+  return <>{items.map(([label, value], index) => <Info key={`${index}-${label}`} label={label} value={String(value)} />)}</>;
+}
+
 export function Info({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-lg border border-[#1d1a3e]/10 bg-white p-3">

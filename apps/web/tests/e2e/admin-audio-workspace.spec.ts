@@ -20,6 +20,20 @@ async function openAudioWorkspace(page: Page, recording?: ProducedAudio) {
   let audioFile = recording?.file ?? "/audio/narration/alice/y1/blend-together.mp3";
   let voiceSettings: Record<string, number> = recording ? {} : { speed: 0.92 };
   let previousReviewCurrent = false;
+  if (!recording) {
+    // Workflow tests simulate native telemetry, not real ElevenLabs playback.
+    // Serve valid deterministic media so a late 404 cannot erase that evidence.
+    // The separate produced-MP3 journey never installs this route.
+    const samples = 8000;
+    const wav = Buffer.alloc(44 + samples * 2);
+    wav.write("RIFF", 0); wav.writeUInt32LE(wav.length - 8, 4);
+    wav.write("WAVEfmt ", 8); wav.writeUInt32LE(16, 16);
+    wav.writeUInt16LE(1, 20); wav.writeUInt16LE(1, 22);
+    wav.writeUInt32LE(samples, 24); wav.writeUInt32LE(samples * 2, 28);
+    wav.writeUInt16LE(2, 32); wav.writeUInt16LE(16, 34);
+    wav.write("data", 36); wav.writeUInt32LE(samples * 2, 40);
+    await page.route("**/audio/narration/alice/y1/**", route => route.fulfill({ contentType: "audio/wav", body: wav }));
+  }
   await page.route("http://api.test/**", async (route) => {
     const request = route.request();
     const url = new URL(request.url());

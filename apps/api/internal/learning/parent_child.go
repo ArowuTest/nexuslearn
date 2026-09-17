@@ -155,6 +155,7 @@ func PrepareParentChild(student StudentProfileConfig, profile StudentEngagementP
 		return StudentProfileConfig{}, StudentEngagementProfile{}, err
 	}
 	profile.StudentExternalRef = student.ExternalRef
+	profile.Version = 0
 	profile.UpdatedAt = ""
 	profile.Notes = strings.TrimSpace(profile.Notes)
 	defaults := defaultStudentEngagement(student.ExternalRef)
@@ -192,32 +193,26 @@ func PrepareParentChild(student StudentProfileConfig, profile StudentEngagementP
 }
 
 func saveParentChildSupport(ctx context.Context, tx pgx.Tx, studentID string, profile StudentEngagementProfile) (StudentEngagementProfile, error) {
-	var updatedAt time.Time
-	err := tx.QueryRow(ctx, `
+	// The owning transaction locks the pupil. Setup may initialise missing
+	// support, but a retry or identity update must never replace established care.
+	current, err := readStudentEngagement(ctx, tx, profile.StudentExternalRef)
+	if err != nil || current.Version > 0 {
+		return current, err
+	}
+	_, err = tx.Exec(ctx, `
 		INSERT INTO student_engagement_profiles (
 			student_id, declared_support_needs, learning_approaches, celebration_intensity,
 			audio_support, reading_support, session_length, sensory_load, attention_support,
 			communication_support, processing_support, confidence_support, companion_style,
 			reward_style, interests, notes, updated_at
 		) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,now())
-		ON CONFLICT (student_id) DO UPDATE SET
-			declared_support_needs=EXCLUDED.declared_support_needs,
-			learning_approaches=EXCLUDED.learning_approaches,
-			celebration_intensity=EXCLUDED.celebration_intensity,
-			audio_support=EXCLUDED.audio_support, reading_support=EXCLUDED.reading_support,
-			session_length=EXCLUDED.session_length, sensory_load=EXCLUDED.sensory_load,
-			attention_support=EXCLUDED.attention_support, communication_support=EXCLUDED.communication_support,
-			processing_support=EXCLUDED.processing_support, confidence_support=EXCLUDED.confidence_support,
-			companion_style=EXCLUDED.companion_style, reward_style=EXCLUDED.reward_style,
-			interests=EXCLUDED.interests, notes=EXCLUDED.notes, updated_at=now()
-		RETURNING updated_at
+		ON CONFLICT (student_id) DO NOTHING
 	`, studentID, profile.DeclaredSupportNeeds, profile.LearningApproaches, profile.CelebrationIntensity,
 		profile.AudioSupport, profile.ReadingSupport, profile.SessionLength, profile.SensoryLoad, profile.AttentionSupport,
 		profile.CommunicationSupport, profile.ProcessingSupport, profile.ConfidenceSupport, profile.CompanionStyle,
-		profile.RewardStyle, profile.Interests, profile.Notes).Scan(&updatedAt)
+		profile.RewardStyle, profile.Interests, profile.Notes)
 	if err != nil {
 		return StudentEngagementProfile{}, err
 	}
-	profile.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
-	return profile, nil
+	return readStudentEngagement(ctx, tx, profile.StudentExternalRef)
 }

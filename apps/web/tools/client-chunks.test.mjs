@@ -1,10 +1,32 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import nextConfig from "../next.config.mjs";
+import { readFile } from "node:fs/promises";
+import { createRequire } from "node:module";
+import vm from "node:vm";
+import ts from "typescript";
+import React from "react";
+import { renderToStaticMarkup } from "react-dom/server";
 
 function configuration() {
   return { optimization: { splitChunks: { minSize: 20_000, chunks: () => true, cacheGroups: { framework: { priority: 40 }, lib: { priority: 30 } } } } };
 }
+
+test("deferred admin workspaces keep the server fallback without importing private client modules", async () => {
+  const input = await readFile(new URL("../src/components/deferClientWorkspace.tsx", import.meta.url), "utf8").catch(error => {
+    if (error.code === "ENOENT") return null;
+    throw error;
+  });
+  assert.ok(input, "client-only workspace loading needs one small React boundary");
+  const loaded = { exports: {}, require: createRequire(import.meta.url) };
+  vm.runInNewContext(ts.transpileModule(input, { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.ReactJSX } }).outputText, loaded);
+  let imports = 0;
+  const Workspace = loaded.exports.deferClientWorkspace(async () => { imports++; return { default: () => React.createElement("p", null, "Private workspace") }; }, React.createElement("p", { role: "status" }, "Loading review workspace"));
+  const markup = renderToStaticMarkup(React.createElement(Workspace));
+  assert.match(markup, /role="status">Loading review workspace/);
+  assert.doesNotMatch(markup, /Private workspace/);
+  assert.equal(imports, 0, "server rendering must not invoke the browser-only loader");
+});
 
 test("client API sharing preserves default groups and excludes development and server builds", () => {
   for (const options of [{ isServer: true, dev: false }, { isServer: false, dev: true }]) {
@@ -20,6 +42,16 @@ test("client API sharing preserves default groups and excludes development and s
   assert.equal(config.optimization.splitChunks.minSize, 20_000);
   assert.equal(config.optimization.splitChunks.cacheGroups.framework, framework);
   assert.equal(config.optimization.splitChunks.cacheGroups.lib, lib);
+});
+
+test("shared admin summaries preserve card order, escaping, empty values and existing markup", async () => {
+  const input = await readFile(new URL("../src/components/admin/AdminEditorPrimitives.tsx", import.meta.url), "utf8");
+  const loaded = { exports: {}, require: createRequire(import.meta.url) };
+  vm.runInNewContext(ts.transpileModule(input, { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.ReactJSX } }).outputText, loaded);
+  assert.equal(typeof loaded.exports.InfoValues, "function");
+  const items = [["Count", 0], ["Status", ""], ["Private <label>", "A & B"], ["Count", 9]];
+  const before = renderToStaticMarkup(React.createElement(React.Fragment, null, ...items.map(([label, value], key) => React.createElement(loaded.exports.Info, { key, label, value: String(value) }))));
+  assert.equal(renderToStaticMarkup(React.createElement(loaded.exports.InfoValues, { items })), before);
 });
 
 test("only the exact browser API module enters the new cache group", () => {

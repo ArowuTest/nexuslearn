@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useMemo, useRef, useState } from "react";
 import MockAssessmentBuilder from "@/components/MockAssessmentBuilder";
 import MockAssessmentHistory from "@/components/MockAssessmentHistory";
 import ProgressSnapshot from "@/components/ProgressSnapshot";
 import AttemptEvidencePanel from "@/components/AttemptEvidencePanel";
-import { Actions, BooleanField, ChoiceGrid, Field, LabeledSelect, LearnerScopeNotice, Panel, PurposeSelect, Row, TextArea } from "@/components/role-workspaces/SchoolWorkspacePrimitives";
+import { Actions, Field, LabeledSelect, LearnerScopeNotice, Panel, PurposeSelect, Row, TextArea } from "@/components/role-workspaces/SchoolWorkspacePrimitives";
 import SchoolAccessCards from "@/components/role-workspaces/SchoolAccessCards";
 import SchoolLearningTask from "@/components/role-workspaces/SchoolLearningTask";
 import SchoolInterventionReview from "@/components/role-workspaces/SchoolInterventionReview";
@@ -17,7 +17,9 @@ import useAccountAuthentication from "@/components/role-workspaces/useAccountAut
 import useAccountWorkspace from "@/components/role-workspaces/useAccountWorkspace";
 import useSchoolDirectories, { classYearLabel, schoolDirectoryOverview, schoolDirectoryPage, type DirectoryClass, type DirectoryGroup, type DirectoryInfo } from "@/components/role-workspaces/useSchoolDirectories";
 import SchoolDirectoryControls from "@/components/role-workspaces/SchoolDirectoryControls";
-import { emptyEngagementProfile, verifiedEngagementProfile, supportChoices, supportNeeds, learningApproaches, type StudentEngagementProfile } from "@/components/role-workspaces/schoolSupportProfile";
+import { prepareSupportSave, supportEditorState, supportReadNeedsReview, type SupportEvent } from "@/components/role-workspaces/schoolSupportProfile";
+import { createSupportTransport } from "@/components/role-workspaces/schoolSupportTransport";
+const SchoolSupportEditor = lazy(() => import("@/components/role-workspaces/SchoolSupportEditor"));
 
 type Student = { external_ref: string; display_name: string; year_group: number };
 type ClassGroup = { id?: string; school_urn?: string; name: string; year_group: number; student_count?: number; students?: Student[] };
@@ -84,36 +86,7 @@ type SchoolPortal = {
 const API = process.env.NEXT_PUBLIC_API_URL;
 const picturePool = ["star", "book", "sun", "tree", "rocket", "moon", "shell", "key"];
 
-function runtimePreviewItems(profile: StudentEngagementProfile): Array<[string, string]> {
-  const approaches = new Set(profile.learning_approaches);
-  const items: Array<[string, string] | null> = [
-    profile.session_length === "short" || approaches.has("short_bursts")
-      ? ["Short mission pacing", "The child runtime limits question count and makes completion feel reachable."]
-      : null,
-    profile.sensory_load === "low" || approaches.has("low_sensory") || approaches.has("reduced_motion")
-      ? ["Low sensory visuals", "Motion, celebration intensity and visual noise are reduced by default."]
-      : null,
-    profile.audio_support || profile.communication_support === "audio_visual" || approaches.has("audio_read_aloud")
-      ? ["Audio-first prompts", "Teaching steps and eligible questions surface replayable narration controls."]
-      : null,
-    profile.reading_support || approaches.has("simple_text") || profile.communication_support === "visual"
-      ? ["Reading/visual scaffolds", "Plain-language cues and visual task steps stay visible during practice."]
-      : null,
-    profile.processing_support === "step_by_step" || approaches.has("worked_examples")
-      ? ["Step-by-step teaching", "The mission models the idea before moving into independent questions."]
-      : null,
-    profile.attention_support !== "standard" || approaches.has("predictable_routine")
-      ? ["Predictable routine", "The mission keeps a Learn, Practise, Finish schedule and chunked evidence flow."]
-      : null,
-    approaches.has("switch_access") || approaches.has("large_targets") || approaches.has("simplified_controls")
-      ? ["Accessible controls", "Large targets, simplified interaction and switch scanning can be activated in mission."]
-      : null,
-    profile.confidence_support === "gentle" || approaches.has("confidence_first")
-      ? ["Confidence-first feedback", "The companion uses calmer correction, optional confidence checks and repair hints."]
-      : null,
-  ];
-  return items.filter((item): item is [string, string] => Boolean(item));
-}
+
 
 export default function SchoolAdminPage() {
   const authentication = useAccountAuthentication();
@@ -126,7 +99,8 @@ export default function SchoolAdminPage() {
   const [message, setMessage] = useState("Use the school login details issued by platform admin.");
   const [working, setSaving] = useState(false);
   const [taskSaving, setTaskSaving] = useState(false);
-  const saving = working || taskSaving;
+  const [supportSaving, setSupportSaving] = useState(false);
+  const saving = working || taskSaving || supportSaving;
   const [student, setStudent] = useState<Student>({ external_ref: "", display_name: "", year_group: 1 });
   const [classDraft, setClassDraft] = useState<ClassGroup>({ id: "", name: "", year_group: 1, students: [] });
   const [assignment, setAssignment] = useState({ class_id: "", student_external_ref: "" });
@@ -141,14 +115,13 @@ export default function SchoolAdminPage() {
   const recordControllers = useRef<Partial<Record<RecordKind, AbortController>>>({});
   const [group, setGroup] = useState<LearningGroup>({ id: "", class_id: "", name: "", purpose: "intervention", students: [] });
   const [engagementPupil, setEngagementPupil] = useState("");
-  const [engagementProfile, setEngagementProfile] = useState<StudentEngagementProfile>(emptyEngagementProfile());
-  const [supportVerified, setSupportVerified] = useState(false);
-  const [engagementInterests, setEngagementInterests] = useState("");
+  const [supportState, setSupportState] = useState(() => supportEditorState(null, { type: "reset" }));
+  const [supportTransport] = useState(createSupportTransport);
   const [progressReport, setProgressReport] = useState<ProgressReport | null>(null);
   const workspaceLoadVersion = useRef(0);
   const progressRequest = useRef(0);
   const supportRequest = useRef(0);
-  const supportController = useRef<AbortController | null>(null);
+
   const groupLookup = useRef<{ version: number; controller?: AbortController }>({ version: 0 });
   const [cardRevision, setCardRevision] = useState(0);
   const actionRequest = useRef({ version: 0, mounted: true });
@@ -166,7 +139,7 @@ export default function SchoolAdminPage() {
   const classOptions = ["", ...availableClasses.map(item => item.id ?? "").filter(Boolean)];
   const classLabels = Object.fromEntries(availableClasses.map(item => [item.id ?? "", `${item.name} (${classYearLabel(item.year_group)})`]));
   const isSchoolAdmin = portal?.current_user?.role === "school_admin";
-  const runtimePreview = runtimePreviewItems(engagementProfile);
+
   const schoolStudents = useMemo(() => {
     const byID = new Map<string, Student>();
     if (directories.enabled) {
@@ -187,11 +160,12 @@ export default function SchoolAdminPage() {
     action.mounted = true;
     return () => {
       action.mounted = false; action.version++;
-      workspaceLoadVersion.current++; recordScope.current.epoch++; supportRequest.current++; progressRequest.current++;
+      workspaceLoadVersion.current++; recordScope.current.epoch++; progressRequest.current++;
+      supportTransport.cancel();
       lookup.controller?.abort(); lookup.version++;
       Object.values(controllers).forEach(controller => controller.abort());
     };
-  }, []);
+  }, [supportTransport]);
 
   const totals = useMemo(() => {
     if (directories.enabled) return [["Classes", directories.counts.classes], ["Groups", directories.counts.groups], ["Pupils", directories.counts.students]];
@@ -275,7 +249,7 @@ export default function SchoolAdminPage() {
     clearProgressReport();
   }
 
-  async function apiFetch(path: string, options: RequestInit = {}) {
+  async function apiFetch(path: string, options: RequestInit = {}, rawResponse = false) {
     if (!API) throw new Error("API is not configured.");
     const requestHeaders: Record<string, string> = { ...headers(), ...(options.headers ?? {}) as Record<string, string> };
     if ((options.method || "GET").toUpperCase() === "POST" && !requestHeaders["Idempotency-Key"]) {
@@ -293,6 +267,7 @@ export default function SchoolAdminPage() {
         const body = await res.json().catch(() => null);
         // A timed-out or malformed success body cannot confirm a durable save.
         if (controller.signal.aborted) throw new Error("The school request timed out. Please retry.");
+        if (rawResponse) return { status: res.status, body };
         if (!res.ok) throw Object.assign(new Error(body?.error ?? "Request failed."), { status: res.status });
         if (!body || typeof body !== "object") throw new Error("The school response could not be verified.");
         return body;
@@ -441,39 +416,46 @@ export default function SchoolAdminPage() {
     });
   }
 
-  function clearSupportProfile(studentExternalRef = "") {
-    supportRequest.current += 1;
-    supportController.current?.abort(); supportController.current = null;
-    setSupportVerified(false);
-    setEngagementProfile(emptyEngagementProfile(studentExternalRef));
-    setEngagementInterests("");
+  function clearSupportProfile(pupil = "") {
+    supportRequest.current++;
+    supportTransport.cancel();
+    setSupportSaving(false);
+    setSupportState(supportEditorState(null, { type: "reset", pupil }));
+  }
+
+  function changeSupport(event: SupportEvent) {
+    const next = supportEditorState(supportState, event);
+    setSupportState(next);
+    if (next === supportState) return;
+    if (event.type === "rebase") setMessage("Draft reviewed against the saved settings. Use Save support profile to save it separately.");
+    if (event.type === "discard") setMessage("Saved settings selected. No changes were saved.");
   }
 
   async function syncEngagementProfile(save: boolean) {
-    const studentExternalRef = selectedEngagementStudent?.external_ref;
-    if (!studentExternalRef || (save && (!supportVerified || engagementProfile.student_external_ref !== studentExternalRef))) return;
+    const pupil = selectedEngagementStudent?.external_ref;
+    if (!pupil || saving || supportTransport.busy() || (save && (!supportState.ready || supportState.review ||
+      supportState.base?.student_external_ref !== pupil || supportState.draft.student_external_ref !== pupil))) return;
+    const owned = workspace.capture();
     const request = ++supportRequest.current;
-    supportController.current?.abort();
-    const controller = new AbortController();
-    supportController.current = controller;
-    if (!save) setSupportVerified(false);
-    try { await guarded(save ? "Saving pupil support profile..." : "Loading pupil support profile...", async () => {
-      try {
-        const data = await apiFetch(`/v1/school/students/${encodeURIComponent(studentExternalRef)}/engagement`, {
-          signal: controller.signal,
-          ...(save ? { method: "PUT", body: JSON.stringify({ ...engagementProfile, student_external_ref: studentExternalRef, interests: commaValues(engagementInterests) }) } : {}),
-        });
-        if (request !== supportRequest.current) return;
-        const profile = verifiedEngagementProfile(data, studentExternalRef);
-        setEngagementProfile(profile);
-        setEngagementInterests(profile.interests.join(", "));
-        setSupportVerified(true);
-        setMessage(save ? "Pupil support profile saved." : "Pupil support profile loaded.");
-      } catch (error) {
-        if (request === supportRequest.current) throw error;
+    const current = () => owned() && request === supportRequest.current;
+    setSupportSaving(true);
+    setMessage(save ? "Saving pupil support profile..." : "Loading pupil support profile...");
+    try {
+      const attempt = save ? prepareSupportSave({ ...supportState.draft, version: supportState.base!.version }, supportState.interests, supportState.pending) : undefined;
+      setSupportState(state => supportEditorState(state, attempt ? { type: "pending", attempt } : { type: "loading" }));
+      const result = await supportTransport.run((path, options) => apiFetch(path, options, true), pupil, attempt);
+      if (!result || !current()) return;
+      if (result.type === "denied") {
+        resetWorkspace();
+        setMessage(result.message);
+        return;
       }
-    }); } finally {
-      if (supportController.current === controller) supportController.current = null;
+      if (result.type !== "failure") setSupportState(state => supportEditorState(state, result));
+      setMessage(result.type === "loaded" && supportReadNeedsReview(supportState) ? "Saved settings refreshed for comparison. Your draft is kept." : result.message);
+    } catch {
+      if (current()) setMessage("The support request could not be verified. Your draft is kept.");
+    } finally {
+      if (current()) setSupportSaving(false);
     }
   }
 
@@ -763,78 +745,9 @@ const target = selectedEngagementStudent;
           <h2 className="font-display text-3xl font-semibold">Support &amp; interventions</h2>
           <p className="mb-5 mt-2 text-sm leading-6 text-[#42506b]">These tools use the pupil selected in <a href="#school-learning" className="font-semibold underline">Learning &amp; evidence</a>. Support changes access and pacing, not curriculum entitlement.</p>
           <div className="grid items-start gap-6 lg:grid-cols-2">
-            <Panel title="SENCO Pupil Support Profile">
-
-              <div className="flex justify-end border-b border-[#17233f]/10 p-5">
-                <button onClick={() => syncEngagementProfile(false)} disabled={!selectedEngagementStudent || saving} className="btn-pop bg-[#55cbd3] px-5 py-3 text-sm disabled:opacity-50">Load profile</button>
-              </div>
-              {!supportVerified && <p className="px-5 pt-4 text-sm leading-6 text-[#42506b]">Choose a pupil and load their saved settings before editing. This protects their existing access and pacing supports.</p>}
-              <fieldset disabled={saving || !supportVerified || !selectedEngagementStudent} className="min-w-0">
-              <legend className="sr-only">Pupil support settings</legend>
-              <ChoiceGrid
-                label="Declared support needs"
-                values={supportNeeds}
-                selected={engagementProfile.declared_support_needs}
-                onChange={(declared_support_needs) => setEngagementProfile({ ...engagementProfile, declared_support_needs })}
-              />
-              <ChoiceGrid
-                label="Learning and access approaches"
-                hint="These settings can adapt presentation and controls at runtime without changing the curriculum objective."
-                values={learningApproaches}
-                selected={engagementProfile.learning_approaches}
-                onChange={(learning_approaches) => setEngagementProfile({ ...engagementProfile, learning_approaches })}
-              />
-              <div className="grid md:grid-cols-2">
-                <LabeledSelect label="Session length" value={engagementProfile.session_length} values={supportChoices.session_length} onChange={(session_length) => setEngagementProfile({ ...engagementProfile, session_length })} />
-                <LabeledSelect label="Sensory load" value={engagementProfile.sensory_load} values={supportChoices.sensory_load} onChange={(sensory_load) => setEngagementProfile({ ...engagementProfile, sensory_load })} />
-                <LabeledSelect label="Attention support" value={engagementProfile.attention_support} values={supportChoices.attention_support} onChange={(attention_support) => setEngagementProfile({ ...engagementProfile, attention_support })} />
-                <LabeledSelect label="Communication support" value={engagementProfile.communication_support} values={supportChoices.communication_support} onChange={(communication_support) => setEngagementProfile({ ...engagementProfile, communication_support })} />
-                <LabeledSelect label="Processing support" value={engagementProfile.processing_support} values={supportChoices.processing_support} onChange={(processing_support) => setEngagementProfile({ ...engagementProfile, processing_support })} />
-                <LabeledSelect label="Confidence support" value={engagementProfile.confidence_support} values={supportChoices.confidence_support} onChange={(confidence_support) => setEngagementProfile({ ...engagementProfile, confidence_support })} />
-                <LabeledSelect label="Celebrations" value={engagementProfile.celebration_intensity} values={supportChoices.celebration_intensity} onChange={(celebration_intensity) => setEngagementProfile({ ...engagementProfile, celebration_intensity })} />
-                <LabeledSelect label="Companion style" value={engagementProfile.companion_style} values={supportChoices.companion_style} onChange={(companion_style) => setEngagementProfile({ ...engagementProfile, companion_style })} />
-                <LabeledSelect label="Reward style" value={engagementProfile.reward_style} values={supportChoices.reward_style} onChange={(reward_style) => setEngagementProfile({ ...engagementProfile, reward_style })} />
-              </div>
-              <div className="grid border-y border-[#17233f]/10 md:grid-cols-2">
-                <BooleanField label="Audio support" checked={engagementProfile.audio_support} onChange={(audio_support) => setEngagementProfile({ ...engagementProfile, audio_support })} />
-                <BooleanField label="Reading support" checked={engagementProfile.reading_support} onChange={(reading_support) => setEngagementProfile({ ...engagementProfile, reading_support })} />
-              </div>
-              <section className="p-5" aria-label="Runtime adaptation preview">
-                <div className="rounded-2xl border border-[#55cbd3]/35 bg-[#f3fbfc] p-4">
-                  <div className="flex flex-wrap items-start justify-between gap-3">
-                    <div>
-                      <p className="font-display text-xs uppercase tracking-[0.16em] text-[#155d64]">Runtime adaptation preview</p>
-                      <h3 className="font-display mt-1 text-xl font-semibold text-[#17233f]">What this changes for the child</h3>
-                      <p className="mt-1 max-w-2xl text-sm leading-6 text-[#17233f]/68">
-                        This preview translates SENCO choices into the mission behaviours the learner will actually experience.
-                      </p>
-                    </div>
-                    <span className="rounded-full bg-[#55cbd3]/18 px-4 py-2 text-sm font-semibold text-[#155d64]">
-                      {runtimePreview.length || "No"} active adaptation{runtimePreview.length === 1 ? "" : "s"}
-                    </span>
-                  </div>
-                  {runtimePreview.length > 0 ? (
-                    <div className="mt-4 grid gap-3 md:grid-cols-2">
-                      {runtimePreview.map(([title, detail]) => (
-                        <article key={`${title}-${detail}`} className="rounded-2xl border border-[#17233f]/10 bg-white p-4">
-                          <p className="font-display text-sm font-semibold text-[#17233f]">{title}</p>
-                          <p className="mt-1 text-sm leading-6 text-[#17233f]/68">{detail}</p>
-                        </article>
-                      ))}
-                    </div>
-                  ) : (
-                    <p className="mt-4 rounded-2xl bg-white p-4 text-sm leading-6 text-[#17233f]/68">
-                      Select support approaches above to preview the runtime changes before saving the profile.
-                    </p>
-                  )}
-                </div>
-              </section>
-              <Field label="Interests (comma separated)" value={engagementInterests} onChange={setEngagementInterests} />
-              <TextArea label="Operational notes" value={engagementProfile.notes} onChange={(notes) => setEngagementProfile({ ...engagementProfile, notes })} />
-              {engagementProfile.updated_at && <p className="px-5 pb-2 text-xs text-[#17233f]/52">Last updated {new Date(engagementProfile.updated_at).toLocaleString()}</p>}
-              <Actions label="Save support profile" disabled={!selectedEngagementStudent || !supportVerified || saving} onClick={() => syncEngagementProfile(true)} />
-              </fieldset>
-            </Panel>
+            <Suspense fallback={<Panel title="SENCO Pupil Support Profile"><p className="p-5">Loading support editor...</p></Panel>}>
+              <SchoolSupportEditor key={engagementPupil} pupil={selectedEngagementStudent?.external_ref ?? ""} state={supportState} disabled={saving} onChange={changeSupport} onSync={syncEngagementProfile} />
+            </Suspense>
             <SchoolLearningTask key={`intervention:${engagementPupil}`} kind="intervention" learner={selectedEngagementStudent} disabled={saving} request={apiFetch} onSaved={() => refreshLearningTask("intervention")} onBusyChange={setTaskSaving} />
             <Panel title="Active Interventions">
               <RecordStatus state={recordStates.intervention} retry={() => void refreshLearningTask("intervention").catch(() => {})} disabled={saving} />
