@@ -19,7 +19,7 @@ export default function ProgressSnapshot({
   const ink = tone === "navy" ? "#17233f" : "#1d1a3e";
 
   if (!progress) {
-    return <p className="border-t border-[#1d1a3e]/10 p-5 text-sm" style={{ color: `${ink}94` }}>{empty}</p>;
+    return <p className="border-t border-[#1d1a3e]/10 p-5 text-sm" style={{ color: `${ink}b0` }}>{empty}</p>;
   }
 
   return (

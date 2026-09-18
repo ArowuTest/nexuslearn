@@ -1415,10 +1415,11 @@ export default function Mission() {
           {Array.from({ length: 28 }).map((_, i) => (
             <span
               key={i}
-              className="absolute text-xl"
+              className="mission-confetti absolute text-xl"
               style={{
                 left: `${(i * 37) % 100}%`,
-                animation: `confetti-fall ${2.4 + (i % 5) * 0.5}s linear ${(i % 7) * 0.25}s forwards`,
+                animationDuration: `${2.4 + (i % 5) * 0.5}s`,
+                animationDelay: `${(i % 7) * 0.25}s`,
               }}
             >
               {["*", "+", "*", "+", "*"][i % 5]}

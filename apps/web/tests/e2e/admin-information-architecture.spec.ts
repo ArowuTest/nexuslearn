@@ -1,6 +1,7 @@
 import { expect, test, type Page } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 import { openAdminNavigation, selectAdminSection } from "./helpers/adminNavigation";
+import { accessibleReflow } from "./helpers/accessibility";
 
 test.describe.configure({ timeout: 60_000 });
 
@@ -59,13 +60,42 @@ async function stubReviewReadiness(page: Page) {
 }
 
 async function stubAdminAPI(page: Page) {
+  const worlds = [{ key: "wonder-garden", name: "Wonder Garden", year_group: 1, theme: "garden", enabled: true }];
+  const directories: Record<string, object> = {
+    "/v1/admin/learner-directory": { students: [], student_credentials: [], student_next_cursor: "", credential_next_cursor: "" },
+    "/v1/admin/organisation-directory": { schools: [], school_users: [], classes: [], school_next_cursor: "", school_user_next_cursor: "", class_next_cursor: "" },
+    "/v1/admin/group-directory": { groups: [], next_cursor: "" },
+    "/v1/admin/parent-directory": { parent_links: [], parent_invitations: [], parent_link_next_cursor: "", parent_invitation_next_cursor: "" },
+    "/v1/admin/access-request-directory": { access_requests: [], next_cursor: "" },
+    "/v1/admin/world-directory": { worlds, next_cursor: "" },
+    "/v1/admin/feature-flag-directory": { feature_flags: [], next_cursor: "" },
+    "/v1/admin/content/activity-directory": { activities: [], next_cursor: "" },
+    "/v1/admin/content/question-directory": { questions: [], next_cursor: "" },
+    "/v1/admin/content/reward-directory": { reward_rules: [], next_cursor: "" },
+  };
   await page.route("http://api.test/**", async (route) => {
     const url = new URL(route.request().url());
+    if (Object.hasOwn(directories, url.pathname)) {
+      await route.fulfill({ json: directories[url.pathname] });
+      return;
+    }
+    if (url.pathname === "/v1/admin/ai-reviews") {
+      await route.fulfill({ json: { items: [], next_cursor: "" } });
+      return;
+    }
+    if (url.pathname === "/v1/admin/ai-reviews/summary") {
+      await route.fulfill({ json: {
+        packs: 0, variants: 0, current_ai_curriculum_lead: 0, current_ai_send_lead: 0,
+        stale: 0, revision_required: 0, escalation_required: 0, blocking_findings: 0,
+        escalation_findings: 0, controlled_pilot_allowed: false,
+      } });
+      return;
+    }
     if (url.pathname === "/v1/admin/config") {
       await route.fulfill({
         contentType: "application/json",
         body: JSON.stringify({
-          worlds: [{ key: "wonder-garden", name: "Wonder Garden", year_group: 1, theme: "garden", enabled: true }],
+          worlds,
           students: [],
           schools: [],
           school_users: [],
@@ -147,6 +177,34 @@ async function openAuthenticatedAdmin(page: Page) {
   });
   await page.goto("/admin", { waitUntil: "domcontentloaded" });
   await openAdminNavigation(page);
+}
+
+for (const section of ["Overview", "Access", "Schools", "Learners", "Progress", "Groups", "Parents", "Objectives", "Activities", "Questions", "Reviews", "Readiness", "Audio", "Releases", "Worlds", "Rewards", "Flags", "Audit"]) {
+  test(`320px admin ${section} workspace is readable and the menu returns keyboard focus`, async ({ page }, info) => {
+    await page.setViewportSize({ width: 320, height: 900 });
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await openAuthenticatedAdmin(page);
+    const navigation = page.getByRole("navigation", { name: "Admin sections" });
+    const item = navigation.getByRole("button", { name: section, exact: true });
+    await item.focus();
+    await page.keyboard.press("Enter");
+    await expect(page.getByRole("button", { name: `Sections: ${section}`, exact: true })).toHaveAttribute("aria-expanded", "false");
+    await expect(navigation).toBeHidden();
+    await expect(page.getByRole("region", { name: `${section} workspace`, exact: true })).toBeFocused();
+    await expect(page.getByText(`${section} workspace loaded.`, { exact: true })).toBeVisible();
+    await expect(page.getByText(/directory returned an invalid response|Could not load .*directory/)).toHaveCount(0);
+    if (section === "Reviews") await expect(page.getByText("No governed evidence matches this filter.", { exact: true })).toBeVisible();
+    if (section === "Audio") {
+      await expect(page.getByRole("button", { name: "Apply audio filters", exact: true })).toBeEnabled();
+      await expect(page.getByText("No recordings match these filters. Change the decision or curriculum filters to continue.", { exact: true })).toBeVisible();
+    }
+    if (section === "Releases") {
+      await expect(page.getByRole("textbox", { name: "Live release manifest JSON", exact: true })).toBeVisible();
+      await expect(page.getByText("No release has been staged in the connected backend yet.", { exact: true })).toBeVisible();
+    }
+    await accessibleReflow(page);
+    await page.screenshot({ path: info.outputPath(`admin-${section.toLowerCase()}-320.png`), animations: "disabled" });
+  });
 }
 
 test("unauthenticated admin is only the sign-in and bootstrap migration surface", async ({ page }) => {

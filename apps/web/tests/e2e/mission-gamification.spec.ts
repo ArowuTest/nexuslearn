@@ -1,6 +1,9 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
 
-test("mission renders the learner reward style and backend reward moment", async ({ page }, testInfo) => {
+async function rewardFixture(page: Page) {
+  await page.route("http://api.test/**", route => route.fulfill({ status: 404, json: { error: "No optional progress fixture" } }));
+  await page.route("http://api.test/v1/runtime/flags", route => route.fulfill({ json: { flags: { child_play_enabled: true } } }));
+  await page.route("http://api.test/v1/learning/event", route => route.fulfill({ json: {} }));
   await page.route("http://api.test/v1/learning/mission**", async (route) => {
     await route.fulfill({
       contentType: "application/json",
@@ -90,6 +93,10 @@ test("mission renders the learner reward style and backend reward moment", async
     });
   });
 
+}
+
+test("mission renders the learner reward style and backend reward moment", async ({ page }, testInfo) => {
+  await rewardFixture(page);
   await page.goto("/play/mission?studentId=reward-learner");
   await expect(page.getByTestId("mission-reward-track")).toContainText("Collection route");
   await page.getByTestId("mission-reward-track").scrollIntoViewIfNeeded();
@@ -99,4 +106,18 @@ test("mission renders the learner reward style and backend reward moment", async
   await page.getByRole("button", { name: "Submit answer" }).click();
   await expect(page.getByTestId("mission-reward-moment")).toContainText("Compass fragment collected");
   await page.screenshot({ path: testInfo.outputPath("journey-reward.png"), animations: "disabled" });
+});
+
+for (const reduce of [false, true]) test(`mission hatch ${reduce ? "honours OS reduced motion" : "keeps normal celebration motion"} with a standard pupil profile`, async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: reduce ? "reduce" : "no-preference" });
+  await rewardFixture(page);
+  await page.goto("/play/mission?studentId=reward-learner");
+  await page.getByRole("button", { name: "Keyboard answer" }).click();
+  await page.getByLabel("Keyboard answer").fill("12");
+  await page.getByRole("button", { name: "Submit answer" }).click();
+  await page.getByRole("button", { name: "See my discoveries", exact: true }).click();
+  const confetti = page.locator(".pointer-events-none.fixed.inset-0[aria-hidden] > span");
+  await expect(confetti).toHaveCount(28);
+  await expect(confetti.first()).toHaveCSS("animation-name", reduce ? "none" : "confetti-fall");
+  await expect(page.getByRole("link", { name: "Back to my route", exact: true })).toBeVisible();
 });

@@ -1,5 +1,6 @@
 import { expect, test, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import { accessibleReflow, keyboardFocus } from "./helpers/accessibility";
 
 async function routeFixture(page: Page, options: { year?: number; mode?: string; session?: boolean; expiry?: string; denied?: boolean; progressUnavailable?: boolean; paused?: boolean; flagsUnavailable?: boolean; standard?: boolean } = {}) {
   const year = options.year ?? 3;
@@ -101,12 +102,12 @@ test("pupil explanations do not render staff-authored intervention notes", async
   await expect(page.locator("body")).not.toContainText("CONFIDENTIAL-STAFF-NOTE");
 });
 
-test("the primary action has a contrasting visible keyboard focus ring", async ({ page }) => {
+test("the high-contrast primary action has a contrasting visible keyboard focus ring", async ({ page }) => {
   await routeFixture(page);
   await page.goto("/play/today");
   const start = page.getByRole("link", { name: "Start warm-up", exact: true });
   await start.focus();
-  await expect(start).toHaveCSS("outline-color", "rgb(23, 35, 63)");
+  await expect(start).toHaveCSS("outline-color", "rgb(0, 255, 255)");
   await expect(start).toHaveCSS("outline-width", "3px");
 });
 
@@ -120,6 +121,22 @@ test("standard presentation stays readable with discoveries and explanations exp
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   await page.screenshot({ path: testInfo.outputPath("pupil-standard.png"), fullPage: true, scale: "css" });
+});
+
+for (const standard of [true, false]) test(`320px pupil route keeps keyboard access and readable ${standard ? "standard" : "SEND"} support`, async ({ page }, info) => {
+  await page.setViewportSize({ width: 320, height: 900 });
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await routeFixture(page, { standard, mode: "teach" });
+  await page.goto("/play/today");
+  await expect(page.getByRole("heading", { name: "Ready, Ava?" })).toBeVisible();
+  // The personal route owns its existing 3px ring; shared controls retain 4px.
+  await keyboardFocus(page, page.getByRole("link", { name: "Start mission", exact: true }), standard ? "rgb(23, 35, 63)" : "rgb(0, 255, 255)", 3, standard ? 6 : 8);
+  const discoveries = page.getByText("Open my discoveries", { exact: true });
+  await discoveries.focus();
+  await page.keyboard.press("Enter");
+  await expect(page.getByRole("region", { name: "Your world growth" })).toContainText("wonder seed");
+  await accessibleReflow(page);
+  await page.screenshot({ path: info.outputPath(`pupil-${standard ? "standard" : "send"}-320.png`), fullPage: true, animations: "disabled" });
 });
 
 for (const expiry of ["2000-01-01T00:00:00Z", "not-a-date"]) test(`expired or malformed session requires a card (${expiry})`, async ({ page }) => {

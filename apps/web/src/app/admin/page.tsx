@@ -3085,7 +3085,7 @@ export default function AdminPage() {
                     ]} />
                   </div>
                 </div>
-                <p className="mt-3 text-xs leading-5 opacity-75">
+                <p className="mt-3 text-xs leading-5">
                   {contentReviewLedger ? `Batch hash ${contentReviewLedger.batch_sha256.slice(0, 12)}… · ${contentReviewLedger.served_by === "api" ? "persisted backend ledger" : "fallback"}` : "The static evidence report is not a substitute for persisted reviewer decisions."}
                 </p>
               </div>

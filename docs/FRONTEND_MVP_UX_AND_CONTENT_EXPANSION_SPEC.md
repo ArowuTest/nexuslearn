@@ -384,6 +384,10 @@ No new subject is ready for release until it has:
   exposes SEND/equivalent-response checks and links authorised operators to
   learner progress without presenting AI review as human approval.
 - [ ] Responsive, keyboard and reduced-motion visual QA across all lanes.
+  Shared focus/motion hardening and a 320px cross-role regression matrix are
+  recorded in `reviews/2026-09-18-cross-role-accessibility.md`. This engineering
+  coverage does not close independent assistive-technology and pupil usability
+  acceptance or imply that every populated record has been visually reviewed.
 
 ### Then platform readiness
 

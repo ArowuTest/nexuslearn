@@ -52,7 +52,7 @@ export default function AdminSignInSurface({
           </p>
         </form>
         <p className="mt-4 bg-white/70 px-4 py-3 text-sm text-[#1d1a3e]/66" role="status">{message}</p>
-        <details className="mt-6 text-xs text-[#1d1a3e]/55">
+        <details className="mt-6 text-xs text-[#565267]">
           <summary className="cursor-pointer text-center font-semibold">First-time platform setup</summary>
           <div className="mt-3 border border-[#1d1a3e]/10 bg-white p-4">
             <p className="leading-5">
