@@ -299,7 +299,7 @@ export default function FamilyPage() {
           <div className="grid gap-5">
             {invitation && (
               <section className="overflow-hidden rounded-lg bg-white shadow-[0_22px_60px_rgba(21,33,61,0.14)]">
-                <SectionHeader eyebrow="Invitation" title="Join your child's learning workspace" detail="The invitation links only the named child after you create a secure parent account." />
+                <SectionHeader level={portal ? "h2" : "h1"} eyebrow="Invitation" title="Join your child's learning workspace" detail="The invitation links only the named child after you create a secure parent account." />
                 <fieldset disabled={saving || !authentication.ready} className="grid min-w-0 gap-0 border-t border-[#15213d]/10 md:grid-cols-2">
                   <Field label="Your name" value={invitationProfile.display_name} onChange={(display_name) => setInvitationProfile({ ...invitationProfile, display_name })} />
                   <Field label="Choose password" type="password" value={invitationProfile.password} onChange={(password) => setInvitationProfile({ ...invitationProfile, password })} />
@@ -314,7 +314,7 @@ export default function FamilyPage() {
                 <p className="text-sm font-semibold">Signed in as {portal.parent.display_name || portal.parent.login_id}</p>
                 <button type="button" onClick={logout} className="btn-pop bg-[#15213d] px-5 py-3 text-sm text-white">Sign out</button>
               </div> : <>
-              <SectionHeader eyebrow="Step 1" title="Parent access" detail="Create a private family workspace or load an existing one." />
+              <SectionHeader level={invitation ? "h2" : "h1"} eyebrow="Step 1" title="Parent access" detail="Create a private family workspace or load an existing one." />
               <fieldset disabled={saving || !authentication.ready} className="grid min-w-0 gap-0 border-t border-[#15213d]/10 md:grid-cols-3">
                 <Field label="Parent name" value={parent.display_name} onChange={(display_name) => setParent({ ...parent, display_name })} />
                 <Field label="Email" value={parent.email} onChange={(email) => setParent({ ...parent, email: email.trim().toLowerCase() })} />
@@ -467,11 +467,12 @@ function inclusionSummary(profile: StudentEngagementProfile) {
   return items;
 }
 
-function SectionHeader({ eyebrow, title, detail }: { eyebrow: string; title: string; detail: string }) {
+function SectionHeader({ eyebrow, title, detail, level = "h2" }: { eyebrow: string; title: string; detail: string; level?: "h1" | "h2" }) {
+  const Heading = level;
   return (
     <div className="p-5">
       <p className="font-display text-xs uppercase tracking-[0.16em] text-[#7357c9]">{eyebrow}</p>
-      <h2 className="font-display mt-2 text-2xl font-semibold">{title}</h2>
+      <Heading className="font-display mt-2 text-2xl font-semibold">{title}</Heading>
       <p className="mt-2 text-sm leading-6 text-[#15213d]/62">{detail}</p>
     </div>
   );

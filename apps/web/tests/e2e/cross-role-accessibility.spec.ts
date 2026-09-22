@@ -13,6 +13,8 @@ for (const [role, path, field] of [
     await page.goto(path);
     const control = page.getByRole("textbox", { name: field, exact: true });
     await expect(control).toBeEnabled();
+    await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
+    await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
     await keyboardFocus(page, control);
     await page.screenshot({ path: info.outputPath(`${role}-keyboard.png`), animations: "disabled" });
     await accessibleReflow(page);
@@ -36,6 +38,15 @@ for (const [role, path, field] of [
     await expect(control).toHaveCSS("transition-duration", "0s");
   });
 }
+
+test("family invitation retains one page heading and a subordinate sign-in section", async ({ page }) => {
+  await page.goto("/family?invitation=local-accessibility-invitation");
+  await expect(page.getByRole("textbox", { name: "Your name", exact: true })).toBeEnabled();
+  await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
+  await expect(page.getByRole("heading", { level: 1, name: "Join your child's learning workspace" })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 2, name: "Parent access" })).toBeVisible();
+  await accessibleReflow(page);
+});
 
 // These are CSS-contract fixtures, not a claim that an API-unavailable public
 // world directory loaded. Real role journeys above/below use the actual UI.
@@ -147,6 +158,8 @@ test("linked family cards and support setup reflow and remain keyboard operable 
   });
   await page.goto("/family");
   await expect(page.getByRole("navigation", { name: "Family workspace sections" })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
+  await expect(page.getByRole("heading", { level: 1, name: "Set up learning around the child." })).toBeVisible();
   const card = page.getByText("Show child login card", { exact: true });
   await keyboardFocus(page, card);
   await page.keyboard.press("Enter");
@@ -164,4 +177,12 @@ test("linked family cards and support setup reflow and remain keyboard operable 
   await expect(page.getByRole("combobox", { name: "Linked child", exact: true })).toHaveValue(child.external_ref);
   await accessibleReflow(page);
   await page.screenshot({ path: info.outputPath("parent-progress-320.png"), animations: "disabled" });
+  await page.goto("/family");
+  await expect(page.getByRole("navigation", { name: "Family workspace sections" })).toBeVisible();
+  await page.getByRole("button", { name: "Sign out", exact: true }).click();
+  await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
+  await expect(page.getByRole("heading", { level: 1, name: "Parent access" })).toBeVisible();
+  await expect(page.getByRole("navigation", { name: "Family workspace sections" })).toHaveCount(0);
+  await expect(page.locator("#family-children")).toHaveCount(0);
+  await expect(page.locator("#family-support")).toHaveCount(0);
 });
