@@ -20,6 +20,9 @@ export function deploymentProblems(snapshot, expected) {
   validateExpected(expected);
   const problems = [];
   if (snapshot.health?.status !== 200 || snapshot.health?.body?.status !== 'ok') problems.push('API health is not ready');
+  if (snapshot.persistence?.status !== 200 || snapshot.persistence?.body?.mode !== 'postgres') {
+    problems.push('API PostgreSQL persistence is not configured');
+  }
   const version = snapshot.version?.body;
   if (snapshot.version?.status !== 200 || !version) problems.push('API version response is unavailable');
   if (version?.git_revision !== expected) problems.push(`API revision does not match target ${expected}`);
@@ -46,6 +49,7 @@ export function deploymentProblems(snapshot, expected) {
 export async function collectDeployment(fetcher = fetch) {
   const requests = [
     ['health', `${api}/healthz`, true], ['version', `${api}/v1/version`, true],
+    ['persistence', `${api}/v1/system/persistence`, true],
     ['webVersion', `${web}/api/version`, true], ['pupilToday', `${web}/play/today`, false],
     ['family', `${web}/family`, false],
     ['privateReport', `${web}/content/pilot-review-evidence-template.json`, false],
@@ -75,7 +79,7 @@ export async function waitForDeployment(expected, { attempts = 30, collect = col
     const snapshot = await collect();
     problems = deploymentProblems(snapshot, expected);
     if (!problems.length) {
-      log(`Verified backend and frontend revision ${expected} (${snapshot.version.body.git_revision_source}, ${snapshot.webVersion.body.git_revision_source}) and deployed access boundaries.`);
+      log(`Verified backend and frontend revision ${expected} (${snapshot.version.body.git_revision_source}, ${snapshot.webVersion.body.git_revision_source}), PostgreSQL persistence mode and deployed access boundaries.`);
       return snapshot;
     }
     log(`Deployment not ready (${attempt}/${attempts}): ${problems.join('; ')}`);

@@ -6,6 +6,7 @@ const sha = 'a'.repeat(40);
 function healthy() {
   return {
     health: { status: 200, body: { status: 'ok' } },
+    persistence: { status: 200, body: { mode: 'postgres' } },
     version: { status: 200, body: {
       git_revision: sha, git_revision_source: 'go-vcs', git_revision_state: 'clean',
       grading_contract: 'canonical-v1', pupil_question_contract: 'render-v1',
@@ -30,6 +31,20 @@ test('exact clean revision and all existing boundaries are required', () => {
 test('legacy contract-only backend cannot pass', () => {
   const old = healthy(); delete old.version.body.git_revision;
   assert.ok(deploymentProblems(old, sha).length);
+});
+
+test('a healthy API on the correct revision cannot pass with in-memory persistence', () => {
+  const snapshot = healthy(); snapshot.persistence.body.mode = 'memory';
+  assert.deepEqual(deploymentProblems(snapshot, sha), ['API PostgreSQL persistence is not configured']);
+});
+
+test('unavailable or unrecognised persistence fails closed without exposing response data', () => {
+  for (const persistence of [undefined, { status: 200, body: null }, { status: 200, body: {} },
+    { status: 200, body: { mode: 'unknown-private-response' } },
+    { status: 503, body: { mode: 'postgres' } }, { status: 0, body: null }]) {
+    const snapshot = healthy(); snapshot.persistence = persistence;
+    assert.deepEqual(deploymentProblems(snapshot, sha), ['API PostgreSQL persistence is not configured']);
+  }
 });
 
 test('a current API cannot hide a stale frontend or a missing pupil entry page', () => {
@@ -73,7 +88,7 @@ test('HTTP failures, redirects, malformed JSON and exposed private surfaces cann
     const snapshot = healthy(); snapshot[key].status = 302;
     assert.ok(deploymentProblems(snapshot, sha).length, key);
   }
-  for (const key of ['health', 'version', 'webVersion', 'publicAudio']) {
+  for (const key of ['health', 'persistence', 'version', 'webVersion', 'publicAudio']) {
     const snapshot = healthy(); snapshot[key].body = null;
     assert.ok(deploymentProblems(snapshot, sha).length, key);
   }
@@ -89,7 +104,8 @@ test('collector does not follow redirects or forward credentials and bounds ever
     calls.push({ url, options });
     return { status: 200, json: async () => { throw new Error('malformed response'); }, body: { cancel: async () => {} } };
   });
-  assert.equal(calls.length, 8);
+  assert.equal(calls.length, 9);
+  assert.ok(calls.some(call => call.url === 'https://nexuslearn-api.onrender.com/v1/system/persistence'));
   assert.ok(calls.some(call => call.url === 'https://nexuslearn-woad.vercel.app/api/version'));
   assert.ok(calls.some(call => call.url === 'https://nexuslearn-woad.vercel.app/play/today'));
   for (const { url, options } of calls) {
@@ -100,6 +116,14 @@ test('collector does not follow redirects or forward credentials and bounds ever
     assert.ok(options.signal instanceof AbortSignal);
   }
   assert.equal(snapshot.version.body, null);
+  assert.equal(snapshot.persistence.body, null);
+});
+
+test('collector reads PostgreSQL persistence as JSON and contains network failures', async () => {
+  const collected = await collectDeployment(async () => new Response(JSON.stringify({ mode: 'postgres' })));
+  assert.deepEqual(collected.persistence, { status: 200, body: { mode: 'postgres' } });
+  const failed = await collectDeployment(async () => { throw new Error('private network detail'); });
+  assert.deepEqual(failed.persistence, { status: 0, body: null });
 });
 
 test('bounded polling waits for the target rather than passing an older deployment', async () => {
@@ -134,4 +158,26 @@ test('polling waits for the frontend even when the backend has already caught up
     }, sleep: async () => { sleeps += 1; }, log: () => {},
   });
   assert.equal(calls, 3); assert.equal(sleeps, 2);
+});
+
+test('polling cannot finish until the exact release reports PostgreSQL persistence', async () => {
+  let calls = 0; let sleeps = 0;
+  const result = await waitForDeployment(sha, {
+    attempts: 3, collect: async () => {
+      calls += 1; const snapshot = healthy();
+      if (calls < 3) snapshot.persistence.body.mode = 'memory';
+      return snapshot;
+    }, sleep: async () => { sleeps += 1; }, log: () => {},
+  });
+  assert.equal(result.persistence.body.mode, 'postgres');
+  assert.equal(calls, 3); assert.equal(sleeps, 2);
+});
+
+test('an exact release that stays in memory mode exhausts the bounded wait', async () => {
+  let sleeps = 0;
+  await assert.rejects(waitForDeployment(sha, {
+    attempts: 2, collect: async () => { const snapshot = healthy(); snapshot.persistence.body.mode = 'memory'; return snapshot; },
+    sleep: async () => { sleeps += 1; }, log: () => {},
+  }), /PostgreSQL persistence/);
+  assert.equal(sleeps, 1);
 });
