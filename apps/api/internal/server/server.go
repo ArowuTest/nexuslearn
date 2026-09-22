@@ -5055,7 +5055,12 @@ func chooseAdaptiveActivity(
 		masteryByObjective[item.ObjectiveID] = item
 	}
 
+	now := time.Now()
 	for _, review := range warmUps {
+		dueAt, err := time.Parse(time.RFC3339, review.DueAt)
+		if err != nil || dueAt.IsZero() || dueAt.After(now) {
+			continue
+		}
 		if options := liveByObjective[review.ObjectiveID]; len(options) > 0 {
 			return adaptiveActivityChoice{
 				Activity:    options[0],

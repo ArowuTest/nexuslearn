@@ -838,7 +838,17 @@ func (r *PostgresRepository) WarmUpItems(ctx context.Context, studentID string, 
 		limit = 3
 	}
 
+	// A warm-up is a learner-owned review that is due now, not a preview of
+	// future reviews or a fallback to published questions. Keep earlier-year
+	// objectives eligible when their content is still available at runtime.
 	rows, err := r.db.Query(ctx, `
+		WITH active_release AS (
+			SELECT id
+			FROM content_releases
+			WHERE channel='live' AND status='applied'
+			ORDER BY applied_at DESC NULLS LAST, id DESC
+			LIMIT 1
+		)
 		SELECT
 		  q.objective_id,
 		  q.due_at,
@@ -848,14 +858,25 @@ func (r *PostgresRepository) WarmUpItems(ctx context.Context, studentID string, 
 		  COALESCE(o.required_formats[1], 'review')
 		FROM spaced_review_queue q
 		JOIN students s ON s.id=q.student_id
-		LEFT JOIN curriculum_objectives o ON o.id = q.objective_id
+		JOIN curriculum_objectives o ON o.id=q.objective_id
+		LEFT JOIN active_release ON TRUE
 		WHERE s.external_ref=$1
 		  AND q.completed_at IS NULL
-		  AND q.due_at <= now() + interval '30 days'
-		ORDER BY
-		  CASE WHEN q.due_at <= now() THEN 0 ELSE 1 END,
-		  q.priority DESC,
-		  q.due_at ASC
+		  AND q.due_at <= now()
+		  AND (active_release.id IS NULL OR o.content_release_id=active_release.id)
+		  AND EXISTS (
+			SELECT 1 FROM activities a
+			WHERE a.objective_id=q.objective_id
+			  AND a.status IN ('approved','published','live')
+			  AND (active_release.id IS NULL OR a.content_release_id=active_release.id)
+			  AND EXISTS (
+				SELECT 1 FROM questions question
+				WHERE question.status IN ('approved','published','live')
+				  AND (active_release.id IS NULL OR question.content_release_id=active_release.id)
+				  AND (question.activity_id=a.id OR (question.activity_id IS NULL AND question.objective_id=a.objective_id))
+			  )
+		  )
+		ORDER BY q.priority DESC, q.due_at ASC, q.objective_id
 		LIMIT $2
 	`, studentID, limit)
 	if err != nil {
@@ -885,49 +906,7 @@ func (r *PostgresRepository) WarmUpItems(ctx context.Context, studentID string, 
 	if err := rows.Err(); err != nil {
 		return nil, err
 	}
-	if len(items) == 0 {
-		return r.configuredWarmUpItems(ctx, limit)
-	}
 	return items, nil
-}
-
-func (r *PostgresRepository) configuredWarmUpItems(ctx context.Context, limit int) ([]WarmUpItem, error) {
-	rows, err := r.db.Query(ctx, `
-		SELECT
-			q.objective_id,
-			COALESCE(NULLIF(q.body->>'prompt', ''), o.statement, q.objective_id),
-			q.format,
-			COALESCE(NULLIF(q.body->>'animation_hook', ''), ''),
-			COALESCE(NULLIF(q.body->>'companion_nudge', ''), ''),
-			q.difficulty
-		FROM questions q
-		LEFT JOIN curriculum_objectives o ON o.id = q.objective_id
-		LEFT JOIN LATERAL (
-			SELECT id
-			FROM content_releases
-			WHERE channel='live' AND status='applied'
-			ORDER BY applied_at DESC NULLS LAST, id DESC
-			LIMIT 1
-		) active_release ON TRUE
-		WHERE q.status IN ('published', 'approved', 'live')
-		  AND (active_release.id IS NULL OR q.content_release_id=active_release.id)
-		ORDER BY q.difficulty, q.updated_at DESC, q.id
-		LIMIT $1
-	`, limit)
-	if err != nil {
-		return nil, err
-	}
-	defer rows.Close()
-	items := []WarmUpItem{}
-	for rows.Next() {
-		var item WarmUpItem
-		if err := rows.Scan(&item.ObjectiveID, &item.Prompt, &item.Format, &item.AnimationHook, &item.CompanionNudge, &item.Priority); err != nil {
-			return nil, err
-		}
-		item.Reason = "Selected from published configured question content."
-		items = append(items, item)
-	}
-	return items, rows.Err()
 }
 
 func (r *PostgresRepository) EvidenceSummary(ctx context.Context, studentID string) (EvidenceSummary, error) {

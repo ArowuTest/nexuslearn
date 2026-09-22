@@ -137,13 +137,15 @@ function readMissionRoute(): MissionRoute {
   };
 }
 
-function supportPlanItems(adaptations: MissionConfig["runtime_adaptations"] | undefined): Array<[string, string]> {
+function supportPlanItems(adaptations: MissionConfig["runtime_adaptations"] | undefined, audioReady: boolean): Array<[string, string]> {
   const reasons = Array.isArray(adaptations?.reasons) ? adaptations.reasons.slice(0, 2) : [];
   return [
     adaptations?.session_length === "short" ? ["Short mission", "A smaller set keeps effort focused and finishable."] : null,
     adaptations?.animation_tier === "static" || adaptations?.reduced_motion ? ["Still mode", "Movement can be replaced with static steps that keep the same learning evidence."] : null,
     adaptations?.animation_tier === "low" && !adaptations?.reduced_motion ? ["Calm movement", "Animations stay quieter so the task remains the focus."] : null,
-    adaptations?.audio_support ? ["Audio-first", "Replay teaching audio whenever listening support helps."] : null,
+    adaptations?.audio_support ? audioReady
+      ? ["Audio-first", "Use the replay control for this step whenever listening helps."]
+      : ["Audio requested", "A recording is not ready for this step. You can use the text and pictures."] : null,
     adaptations?.reading_support || adaptations?.simple_text ? ["Reading support", "Extra plain-language cues stay visible during practice."] : null,
     adaptations?.scaffold_level === "step_by_step" ? ["Step-by-step", "The mission teaches, models and checks before independent practice."] : null,
     adaptations?.scaffold_level === "chunked" || adaptations?.scaffold_level === "high_structure" ? ["Chunked route", "The mission keeps the routine predictable and breaks the task into manageable pieces."] : null,
@@ -156,11 +158,11 @@ function supportPlanItems(adaptations: MissionConfig["runtime_adaptations"] | un
   ].filter((item): item is [string, string] => Boolean(item));
 }
 
-function activeSupportBadges(adaptations: MissionConfig["runtime_adaptations"] | undefined) {
+function activeSupportBadges(adaptations: MissionConfig["runtime_adaptations"] | undefined, audioReady: boolean) {
   return [
     adaptations?.session_length === "short" ? "short" : "",
     adaptations?.reduced_motion || adaptations?.animation_tier === "static" ? "still" : "",
-    adaptations?.audio_support ? "audio" : "",
+    adaptations?.audio_support ? audioReady ? "audio" : "audio requested" : "",
     adaptations?.reading_support || adaptations?.simple_text ? "reading" : "",
     adaptations?.large_targets ? "large targets" : "",
     adaptations?.switch_access ? "switch" : "",
@@ -345,7 +347,7 @@ export default function Mission() {
                 question_ids: configured.map((question) => question.id),
                 runtime_adaptations: data.runtime_adaptations,
               });
-              const activeSupports = supportPlanItems(data.runtime_adaptations);
+              const activeSupports = supportPlanItems(data.runtime_adaptations, false);
               if (activeSupports.length > 0) {
                 void recordLearningEvent("runtime_adaptations_applied", {
                   activity_id: data.activity.id,
@@ -816,8 +818,11 @@ export default function Mission() {
   const savedArtefacts = Array.isArray(mission?.world_state?.state?.artefacts) ? mission.world_state.state.artefacts.length : 0;
   const questionAudioScriptText = questionAudioScript(q);
   const questionAudioPending = questionHasAudioReference(q);
-  const activeSupportPlan = supportPlanItems(adaptations);
-  const supportBadges = activeSupportBadges(adaptations);
+  // A preference, script or unreleased asset is not a playable recording. Link
+  // only to the active step's mounted playback control, including feedback.
+  const audioReady = !done && Boolean(inLesson ? lessonAudioURL : questionAudio);
+  const activeSupportPlan = supportPlanItems(adaptations, audioReady);
+  const supportBadges = activeSupportBadges(adaptations, audioReady);
   const progressPct = total ? Math.round((charge / total) * 100) : 0;
   const missionStyle = {
     "--world-accent": worldAccent,
@@ -831,8 +836,6 @@ export default function Mission() {
     : "";
   const journeyStage = done ? "grow" : inLesson ? "learn" : "practise";
   const journeyContext = `${mission?.objective?.subject || "Learning"} · Year ${mission?.objective?.year || mission?.world?.year_group || "—"} · ${mission?.objective?.topic || "today's mission"}`;
-  const hasLessonAudio = Boolean(lessonAudioURL || lessonStep?.audio_script);
-  const hasQuestionAudio = Boolean(questionAudio || questionAudioScriptText || questionAudioPending);
 
   return (
     <main
@@ -985,7 +988,7 @@ export default function Mission() {
                   ))}
                 </div>
               )}
-              {(hasLessonAudio || hasQuestionAudio) && (
+              {audioReady && (
                 <div className="mt-3 flex flex-wrap gap-2" aria-label="Audio shortcuts">
                   <a href={`#${inLesson ? "lesson-audio" : "question-audio"}`} className="rounded-full border border-[#ffdf8a]/35 bg-[#ffdf8a]/10 px-3 py-1 text-xs font-semibold text-[#ffdf8a]">
                     Jump to audio replay
@@ -1150,7 +1153,7 @@ export default function Mission() {
             <h2>{rewardMoment}</h2>
             <p>{message}</p>
             {journeyEntries.at(-1)?.feedback !== message && <p>{journeyEntries.at(-1)?.feedback}</p>}
-            {hasQuestionAudio && <button type="button" className="btn-pop bg-white/15 px-4 py-3 text-white" onClick={() => readAloud(questionAudio)}>Listen to the question again</button>}
+            {questionAudio && <button id="question-audio" type="button" className="btn-pop bg-white/15 px-4 py-3 text-white" onClick={() => readAloud(questionAudio)}>Listen to the question again</button>}
             <button type="button" className="btn-pop bg-sun px-6 py-3 text-ink" onClick={continueJourney}>
               {idx + 1 >= total ? "See my discoveries" : "Next discovery"}
             </button>
@@ -1207,8 +1210,8 @@ export default function Mission() {
               <div id="question-audio" className="mt-5 rounded-2xl border border-[#7fe7d7]/45 bg-[#17233f] p-4" aria-label="Question audio support">
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div>
-                    <p className="font-display text-sm font-semibold text-[#7fe7d7]">Listen to the question</p>
-                    <p className="mt-1 text-xs leading-5 text-white/70">{listeningPending ? "Listen to the full recording before answering." : "Replay whenever you need."}</p>
+                    <p className="font-display text-sm font-semibold text-[#7fe7d7]">{questionAudio ? "Listen to the question" : "Question narration"}</p>
+                    {questionAudio && <p className="mt-1 text-xs leading-5 text-white/70">{listeningPending ? "Listen to the full recording before answering." : "Replay whenever you need."}</p>}
                   </div>
                   {questionAudio && (
                     <button type="button" onClick={() => void readAloud(questionAudio)} className="btn-pop bg-white/12 px-4 py-2 text-sm text-white">

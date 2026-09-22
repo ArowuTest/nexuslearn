@@ -50,6 +50,14 @@ test("today uses the signed-in pupil, real review selection and independent subj
   expect(requests.length).toBe(5);
 });
 
+test("today describes listening as a preference, not confirmed audio availability", async ({ page }) => {
+  await routeFixture(page);
+  await page.goto("/play/today");
+  await expect(page.getByRole("heading", { name: "Ready, Ava?" })).toBeVisible();
+  await expect(page.getByText("Listening support requested", { exact: true })).toBeVisible();
+  await expect(page.getByText("Audio replay", { exact: true })).toHaveCount(0);
+});
+
 test("growth reads the selected world explicitly and never labels another world's discoveries as its own", async ({ page }) => {
   await routeFixture(page);
   await page.route("**/v1/students/ava/world**", route => {

@@ -571,6 +571,7 @@ func TestHandleWarmUpUsesRepository(t *testing.T) {
 				Prompt:         "Power the lab.",
 				Format:         "timed-recall",
 				Reason:         "Spaced review is due.",
+				DueAt:          time.Now().Add(-time.Hour).UTC().Format(time.RFC3339),
 				Priority:       70,
 				AnimationHook:  "machine-charge",
 				CompanionNudge: "Let's review this together.",
@@ -944,7 +945,7 @@ func TestChooseAdaptiveActivityPrioritisesDueReview(t *testing.T) {
 		activities,
 		[]learning.Objective{{ID: "objective-new", Year: 4}, {ID: "objective-review", Year: 4}},
 		nil,
-		[]learning.WarmUpItem{{ObjectiveID: "objective-review"}},
+		[]learning.WarmUpItem{{ObjectiveID: "objective-review", DueAt: time.Now().Add(-time.Hour).UTC().Format(time.RFC3339)}},
 		nil,
 		nil,
 		nil,
@@ -998,7 +999,7 @@ func TestChooseAdaptiveActivityKeepsEarlierYearReviewAfterProgression(t *testing
 	}
 	choice, ok := chooseAdaptiveActivity(
 		activities, objectives, mastery,
-		[]learning.WarmUpItem{{ObjectiveID: "en-y3"}},
+		[]learning.WarmUpItem{{ObjectiveID: "en-y3", DueAt: time.Now().Add(-time.Hour).UTC().Format(time.RFC3339)}},
 		nil, nil, nil, nil, 3,
 	)
 	if !ok || choice.Activity.ID != "y3-review" || !choice.Review {
@@ -1082,7 +1083,7 @@ func TestNextDecisionPrioritisesActiveDiagnosticBaseline(t *testing.T) {
 			{ID: "diagnostic-activity", ObjectiveID: "objective-diagnostic", Status: "published"},
 			{ID: "review-activity", ObjectiveID: "objective-review", Status: "published"},
 		},
-		warmUp: []learning.WarmUpItem{{ObjectiveID: "objective-review"}},
+		warmUp: []learning.WarmUpItem{{ObjectiveID: "objective-review", DueAt: time.Now().Add(-time.Hour).UTC().Format(time.RFC3339)}},
 	}, "postgres")
 
 	decision, err := srv.nextDecision(context.Background(), "alex-demo")

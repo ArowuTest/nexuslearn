@@ -40,7 +40,7 @@ export default function PupilToday() {
     : null;
   const symbol = yearSymbols[Math.max(0, Math.min(6, (data?.profile.year_group ?? 1) - 1))];
   const supports = [
-    quiet && "Calm movement", adaptations?.audio_support && "Audio replay", adaptations?.simple_text && "Simple text",
+    quiet && "Calm movement", adaptations?.audio_support && "Listening support requested", adaptations?.simple_text && "Simple text",
     adaptations?.visual_guide && "Visual steps", adaptations?.session_length === "short" && "Short steps",
     adaptations?.high_contrast && "High contrast", adaptations?.switch_access && "Switch access",
   ].filter(Boolean);

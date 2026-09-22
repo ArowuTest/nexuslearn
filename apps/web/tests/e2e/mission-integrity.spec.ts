@@ -1,18 +1,18 @@
 import { expect, test, type Page } from "@playwright/test";
 
-type Fixture = { format: string; body: Record<string, unknown>; expected: string | number; hints?: string[]; switchAccess?: boolean; responseKind?: string; version?: string | null };
+type Fixture = { format: string; body: Record<string, unknown>; expected: string | number; hints?: string[]; switchAccess?: boolean; responseKind?: string; version?: string | null; audioSupport?: boolean; lesson?: Record<string, unknown> };
 async function mission(page: Page, fixture: Fixture) {
   await page.route("http://api.test/**", async route => {
     // Unconfigured reports are unavailable, not malformed successful reports.
     if (!route.request().url().includes("/v1/learning/mission")) return route.fulfill({ status: route.request().method() === "GET" ? 404 : 200, json: {} });
     return route.fulfill({ json: {
       student_id: "integrity-learner",
-      activity: { id: "integrity-activity", objective_id: "integrity-objective", title: "Discovery trail", prompt: "Explore the next idea.", interaction: {}, feedback: {}, animation_hooks: {}, status: "published" },
+      activity: { id: "integrity-activity", objective_id: "integrity-objective", title: "Discovery trail", prompt: "Explore the next idea.", interaction: fixture.lesson ? { teaching_sequence: [fixture.lesson] } : {}, feedback: {}, animation_hooks: {}, status: "published" },
       objective: { id: "integrity-objective", year: 3, subject: "Mathematics", strand: "Number", topic: "Learning", statement: "Explore a learning model.", prerequisites: [], misconceptions: [], mastery: { expected: 80, secure: 90, retention_days: [1, 7, 30], required_formats: [fixture.format] }, parent_explanation: "", teacher_evidence: "" },
       world: { key: "explorer-islands", name: "Explorer Islands", year_group: 3, config: { accent: "#55cbd3", companion: "Nixi" }, enabled: true },
       world_state: { student_id: "integrity-learner", world_key: "explorer-islands", state: { artefacts: [] } },
       questions: [{ id: "integrity-question", question_version: fixture.version === null ? undefined : "version-1", response_kind: fixture.responseKind ?? (typeof fixture.expected === "number" ? "number" : "text"), objective_id: "integrity-objective", activity_id: "integrity-activity", format: fixture.format, body: fixture.body, hints: fixture.hints ?? [], status: "published" }],
-      runtime_adaptations: { animation_tier: "static", reduced_motion: true, celebration_intensity: "quiet", question_limit: 1, scaffold_level: "standard", audio_support: false, reading_support: false, reward_style: "collecting", switch_access: fixture.switchAccess ?? false, reasons: [] },
+      runtime_adaptations: { animation_tier: "static", reduced_motion: true, celebration_intensity: "quiet", question_limit: 1, scaffold_level: "standard", audio_support: fixture.audioSupport ?? false, reading_support: false, reward_style: "collecting", switch_access: fixture.switchAccess ?? false, reasons: [] },
     } });
   });
 }
@@ -516,4 +516,66 @@ test("switch scanning stays inside the pause dialog", async ({ page }) => {
   await page.keyboard.press("Space");
   await expect(dialog).toHaveCount(0);
   await expect(page.getByText("Draw three equal groups.", { exact: true })).toHaveCount(0);
+});
+
+test("a requested listening preference never claims an unavailable recording is ready", async ({ page }) => {
+  await mission(page, { ...numberFixture, audioSupport: true });
+  await open(page);
+  const support = page.getByRole("region", { name: "Active support plan" });
+  await expect(support).toContainText("Audio requested");
+  await expect(support).toContainText("A recording is not ready for this step.");
+  await expect(support.getByRole("link", { name: "Jump to audio replay" })).toHaveCount(0);
+  await expect(support).not.toContainText("Replay teaching audio whenever");
+});
+
+for (const source of ["script", "pending asset"] as const) test(`optional ${source} keeps visual practice without a dead feedback replay control`, async ({ page }) => {
+  await audioHarness(page);
+  await page.route("**/content/narration-manifest.json", route => route.fulfill({ json: { items: [{ id: "pending-voice", file: "/not-released.mp3", technical_pass: true, production_status: "review" }] } }));
+  const optional = source === "script" ? { audio_script: "Three groups of four." } : { audio_asset_id: "pending-voice" };
+  await mission(page, { ...numberFixture, audioSupport: true, body: { ...numberFixture.body, ...optional } });
+  await page.route("http://api.test/v1/learning/attempt", route => route.fulfill({ json: result() }));
+  await open(page);
+  const panel = page.locator("#question-audio");
+  await expect(panel).toContainText("Optional narration is not ready yet.");
+  await expect(panel).not.toContainText("Replay whenever you need.");
+  await expect(page.getByRole("link", { name: "Jump to audio replay" })).toHaveCount(0);
+  await typeNumber(page, "12");
+  await page.getByRole("button", { name: "Submit answer", exact: true }).click();
+  await expect(page.getByTestId("mission-reward-moment")).toBeVisible();
+  await expect(page.getByRole("button", { name: "Listen to the question again" })).toHaveCount(0);
+  expect(await page.evaluate(() => (window as unknown as { __qaClips: unknown[] }).__qaClips)).toEqual([]);
+});
+
+for (const recordedStep of ["lesson", "question"] as const) test(`audio shortcuts follow the visible ${recordedStep} recording, not hidden steps`, async ({ page }) => {
+  await audioHarness(page);
+  await mission(page, {
+    ...numberFixture, audioSupport: true,
+    lesson: { step_id: "model", kind: "worked_example", child_prompt: "Make three equal groups.", audio_script: "Look at the groups.", ...(recordedStep === "lesson" ? { audio_url: "/qa-lesson.mp3" } : {}) },
+    body: { ...numberFixture.body, ...(recordedStep === "question" ? { prompt_audio_url: "/qa-question.mp3" } : {}) },
+  });
+  await page.route("http://api.test/v1/learning/attempt", route => route.fulfill({ json: result() }));
+  await page.goto("/play/mission?studentId=integrity-learner");
+  await expect(page.getByRole("heading", { name: "Make three equal groups." })).toBeVisible();
+  const shortcut = page.getByRole("link", { name: "Jump to audio replay" });
+  if (recordedStep === "lesson") {
+    await expect(shortcut).toHaveAttribute("href", "#lesson-audio");
+    await expect(page.locator("#lesson-audio").getByRole("button", { name: "Read this aloud" })).toBeVisible();
+  } else await expect(shortcut).toHaveCount(0);
+  await page.getByRole("button", { name: "Start practice" }).click();
+  await expect(page.getByRole("region", { name: "Mission question" })).toBeVisible();
+  if (recordedStep === "question") {
+    await expect(shortcut).toHaveAttribute("href", "#question-audio");
+    await expect(page.locator("#question-audio").getByRole("button", { name: "Hear question", exact: true })).toBeVisible();
+  } else await expect(shortcut).toHaveCount(0);
+  await typeNumber(page, "12");
+  await page.getByRole("button", { name: "Submit answer", exact: true }).click();
+  await expect(page.getByTestId("mission-reward-moment")).toBeVisible();
+  if (recordedStep === "question") {
+    await expect(shortcut).toHaveAttribute("href", "#question-audio");
+    await expect(page.locator("#question-audio")).toBeVisible();
+    await page.getByRole("button", { name: "Listen to the question again" }).click();
+    await expect.poll(() => activeAudio(page)).toBe(1);
+  } else await expect(page.getByRole("button", { name: "Listen to the question again" })).toHaveCount(0);
+  await page.getByRole("button", { name: "See my discoveries" }).click();
+  await expect(shortcut).toHaveCount(0);
 });
