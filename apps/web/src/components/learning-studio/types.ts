@@ -24,6 +24,7 @@ export type LearningStudioProps = {
   input: string;
   showHint: boolean;
   hintPanel?: ReactNode;
+  showPrompt?: boolean;
   onChoose: (value: string) => void;
   onKey: (key: string) => void;
   onSubmit: () => void;

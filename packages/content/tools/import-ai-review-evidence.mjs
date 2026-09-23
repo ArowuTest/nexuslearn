@@ -5,6 +5,7 @@ import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
 import { sha256Content } from "./lib/review-evidence.mjs";
+import { createAdminJSONTransport } from "./lib/admin-json-transport.mjs";
 
 const toolPath = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(toolPath), "../../..");
@@ -40,11 +41,13 @@ export function verifyBatchIdentity(batch) {
 }
 
 export async function importEvidence({ report, batch, api, dryRun = false, maxRetries = 4, sleep = defaultSleep, onProgress }) {
+  if (!Number.isInteger(maxRetries) || maxRetries < 0 || maxRetries > 4) throw new Error("review retry limit must be an integer from 0 to 4");
   verifyBatchIdentity(batch);
   const decisions = Array.isArray(report?.evidence) ? report.evidence : [];
   if (report?.batch_hash && report.batch_hash !== batch.batch_hash) throw new Error("evidence report does not match the current review batch");
   const current = reviewUnitIndex(batch);
-  const ordered = [...decisions].sort(compareEvidence);
+  // Retain an immutable input snapshot even if the caller changes its report during retries.
+  const ordered = structuredClone(decisions).sort(compareEvidence);
   const seen = new Set();
 
   for (const evidence of ordered) {
@@ -65,13 +68,12 @@ export async function importEvidence({ report, batch, api, dryRun = false, maxRe
   return { total: ordered.length, imported, network_writes: dryRun ? 0 : imported, malformed_identities: 0 };
 }
 
-export function createReviewAPI({ baseURL, token, fetchImpl = fetch }) {
-  const root = String(baseURL ?? "").replace(/\/$/, "");
-  if (!root) throw new Error("AI review API URL is required");
+export function createReviewAPI({ baseURL, token, fetchImpl = fetch, timeoutMs, maxResponseBytes }) {
+  const request = createAdminJSONTransport({ baseURL, fetchImpl, timeoutMs, maxResponseBytes });
   if (!token) throw new Error("a named admin account session is required");
   return {
     async save(evidence, idempotencyKey) {
-      const response = await fetchImpl(`${root}/v1/admin/ai-reviews`, {
+      const result = await request("/v1/admin/ai-reviews", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -80,14 +82,11 @@ export function createReviewAPI({ baseURL, token, fetchImpl = fetch }) {
         },
         body: JSON.stringify(evidence),
       });
-      if (!response.ok) {
-        const error = new Error(`AI review API rejected an evidence record with status ${response.status}`);
-        error.status = response.status;
-        const retryAfter = Number(response.headers.get("retry-after"));
-        error.retryAfterMs = Number.isFinite(retryAfter) ? retryAfter * 1000 : 0;
-        throw error;
+      const fields = ["content_id", "content_hash", "lane_id", "rubric_revision", "source_set_revision", "reviewer_implementation", "status"];
+      if (!result || typeof result.id !== "string" || !result.id.trim() || fields.some(field => result[field] !== evidence[field])) {
+        throw new Error("AI review API returned an invalid acknowledgement");
       }
-      return response.json();
+      return result;
     },
   };
 }
@@ -98,8 +97,10 @@ async function saveWithRetry(api, evidence, key, { maxRetries, sleep }) {
     try {
       return await api.save(evidence, key);
     } catch (error) {
-      if (!retryStatuses.has(error?.status) || attempt >= maxRetries) throw error;
-      const delay = error.retryAfterMs || Math.min(8_000, 250 * 2 ** attempt);
+      // The backend atomically replays this identity/key/body, including lost acknowledgements.
+      if ((!retryStatuses.has(error?.status) && error?.kind !== "network" && error?.kind !== "timeout") || attempt >= maxRetries) throw error;
+      const delay = Number.isFinite(error.retryAfterMs) && error.retryAfterMs > 0
+        ? Math.min(8_000, error.retryAfterMs) : Math.min(8_000, 250 * 2 ** attempt);
       await sleep(delay);
     }
   }

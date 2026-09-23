@@ -86,8 +86,11 @@ test("flagship mission visual states remain stable", async ({ page }, testInfo) 
     threshold: 0.35,
   });
 
+  await page.getByRole("button", { name: "Support & audio", exact: true }).click();
   await page.getByRole("button", { name: "Calm" }).click();
+  await page.getByRole("button", { name: "Close support", exact: true }).click();
   await expect(page.locator("main")).toHaveClass(/reduced-motion/);
+  await page.evaluate(() => window.scrollTo(0, 0));
   await expect(page).toHaveScreenshot("mission-calm.png", {
     animations: "disabled",
     fullPage: false,
@@ -96,8 +99,11 @@ test("flagship mission visual states remain stable", async ({ page }, testInfo) 
     threshold: 0.35,
   });
 
+  await page.getByRole("button", { name: "Support & audio", exact: true }).click();
   await page.getByRole("button", { name: "Contrast" }).click();
+  await page.getByRole("button", { name: "Close support", exact: true }).click();
   await expect(page.locator("main")).toHaveClass(/high-contrast/);
+  await page.evaluate(() => window.scrollTo(0, 0));
   await expect(page).toHaveScreenshot("mission-high-contrast.png", {
     animations: "disabled",
     fullPage: false,
@@ -201,7 +207,9 @@ test("every released renderer contract keeps standard and high-contrast visual b
       threshold: 0.35,
     });
 
+    await page.getByRole("button", { name: "Support & audio", exact: true }).click();
     await page.getByRole("button", { name: "Contrast" }).click();
+    await page.getByRole("button", { name: "Close support", exact: true }).click();
     await expect(page.locator("main")).toHaveClass(/high-contrast/);
     await interaction.scrollIntoViewIfNeeded();
     await alignVisualBounds(interaction);

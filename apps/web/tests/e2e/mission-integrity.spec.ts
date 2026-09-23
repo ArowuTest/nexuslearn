@@ -258,7 +258,9 @@ test("attempts preserve answer help separately from access support context", asy
   let sent: Record<string, unknown> | undefined;
   await page.route("http://api.test/v1/learning/attempt", async route => { sent = route.request().postDataJSON(); await route.fulfill({ json: result() }); });
   await open(page);
+  await page.getByRole("button", { name: "Support & audio", exact: true }).click();
   await page.getByRole("button", { name: "Calm", exact: true }).click();
+  await page.getByRole("button", { name: "Close support", exact: true }).click();
   await page.getByRole("button", { name: "Hear question", exact: true }).click();
   await page.getByRole("button", { name: "Hear c", exact: true }).click();
   await page.getByRole("button", { name: "Show a hint", exact: true }).click();
@@ -457,6 +459,7 @@ test("switch scanning can continue from saved feedback using Space", async ({ pa
   await expect(next).toHaveCount(0);
   await expect(page.getByText("XP earned", { exact: true })).toBeVisible();
   await page.keyboard.press("Escape");
+  await page.getByRole("button", { name: "Support & audio", exact: true }).click();
   await expect(page.getByRole("button", { name: "Switch access", exact: true })).toHaveAttribute("aria-pressed", "false");
 });
 
@@ -467,6 +470,7 @@ test("switch activation never substitutes a new control when the highlighted hin
   const time = new Date("2026-09-06T12:00:00Z");
   await page.clock.install({ time });
   await page.clock.pauseAt(new Date(time.getTime() + 1000));
+  await page.getByRole("button", { name: "Support & audio", exact: true }).click();
   await page.getByRole("button", { name: "Switch access", exact: true }).click();
   await expect(page.getByRole("button", { name: "Show a hint", exact: true })).toBeFocused();
   await page.keyboard.press("Space");
@@ -499,6 +503,7 @@ test("support toggles record one event per pupil action", async ({ page }) => {
     await route.fulfill({ json: {} });
   });
   await open(page);
+  await page.getByRole("button", { name: "Support & audio", exact: true }).click();
   const focus = page.getByRole("button", { name: "Focus", exact: true });
   await focus.click();
   await expect(focus).toHaveAttribute("aria-pressed", "true");
@@ -521,6 +526,7 @@ test("switch scanning stays inside the pause dialog", async ({ page }) => {
 test("a requested listening preference never claims an unavailable recording is ready", async ({ page }) => {
   await mission(page, { ...numberFixture, audioSupport: true });
   await open(page);
+  await page.getByRole("button", { name: "Support & audio", exact: true }).click();
   const support = page.getByRole("region", { name: "Active support plan" });
   await expect(support).toContainText("Audio requested");
   await expect(support).toContainText("A recording is not ready for this step.");
@@ -556,6 +562,7 @@ for (const recordedStep of ["lesson", "question"] as const) test(`audio shortcut
   await page.route("http://api.test/v1/learning/attempt", route => route.fulfill({ json: result() }));
   await page.goto("/play/mission?studentId=integrity-learner");
   await expect(page.getByRole("heading", { name: "Make three equal groups." })).toBeVisible();
+  await page.getByRole("button", { name: "Support & audio", exact: true }).click();
   const shortcut = page.getByRole("link", { name: "Jump to audio replay" });
   if (recordedStep === "lesson") {
     await expect(shortcut).toHaveAttribute("href", "#lesson-audio");

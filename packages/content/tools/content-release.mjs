@@ -4,10 +4,13 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
 import { validateReleaseMetadata } from "./lib/content-release-evidence.mjs";
+import { createAdminJSONTransport } from "./lib/admin-json-transport.mjs";
+
+const retryStatuses = new Set([429, 500, 502, 503, 504]);
 
 main().catch((error) => {
   console.error(error.message);
-  process.exit(1);
+  process.exitCode = 1;
 });
 
 async function main() {
@@ -22,15 +25,20 @@ async function main() {
   const api = options.api ?? process.env.NEXUSLEARN_API_URL ?? process.env.NEXT_PUBLIC_API_URL;
   const auth = adminAuth(options);
   if (!api || !auth) throw new Error(`${command} requires --api and --token or --admin-key`);
+  const transport = createAdminJSONTransport({ baseURL: api });
   if (command === "preflight") {
     if (bundle.manifest.channel !== "live") throw new Error("preflight requires a live bundle");
-    const report = await request(api, "/v1/admin/content/releases/preflight", "POST", auth, bundle.manifest);
-    if (report.release_id !== bundle.manifest.id || report.manifest_sha256 !== bundle.manifest.manifest_sha256) {
+    const report = await request(transport, "/v1/admin/content/releases/preflight", "POST", auth, bundle.manifest);
+    if (report?.release_id !== bundle.manifest.id || report?.manifest_sha256 !== bundle.manifest.manifest_sha256) {
       throw new Error("preflight response does not match the requested release");
     }
     if (!Array.isArray(report.checks) || report.checks.length === 0) throw new Error("preflight response is missing evidence checks");
-    for (const check of report.checks) console.log(`${check.passed === true ? "PASS" : "BLOCKED"} ${check.code}: ${check.message}`);
     const requiredChecks = ["ai_review", "safeguarding", "audio_release", "audio_listening", "child_pilot"];
+    if (report.checks.some(check => !check || !requiredChecks.includes(check.code) || typeof check.passed !== "boolean")) {
+      throw new Error("preflight response contains invalid evidence checks");
+    }
+    // Only emit allowlisted codes and local labels, never server-supplied messages.
+    for (const check of report.checks) console.log(`${check.passed ? "PASS" : "BLOCKED"} ${check.code}`);
     if (report.checks.length !== requiredChecks.length || requiredChecks.some(code => report.checks.filter(check => check.code === code).length !== 1)) {
       throw new Error("preflight response does not contain every required evidence check exactly once");
     }
@@ -38,14 +46,17 @@ async function main() {
     console.log("Release evidence is current. Activation will recheck evidence and uploaded content.");
     return;
   }
-  await request(api, "/v1/admin/content/releases", "POST", auth, bundle.manifest);
+  const staged = await request(transport, "/v1/admin/content/releases", "POST", auth, bundle.manifest);
+  verifyReleaseResponse(staged, bundle.manifest);
   console.log(`release staged ${bundle.manifest.id}`);
   for (const chunk of bundle.chunks) {
-    await request(api, `/v1/admin/content/releases/${encodeURIComponent(bundle.manifest.id)}/packs/${encodeURIComponent(chunk.pack_id)}`, "PUT", auth, chunk);
+    const uploaded = await request(transport, `/v1/admin/content/releases/${encodeURIComponent(bundle.manifest.id)}/packs/${encodeURIComponent(chunk.pack_id)}`, "PUT", auth, chunk);
+    verifyReleaseResponse(uploaded, bundle.manifest, { packID: chunk.pack_id });
     console.log(`release uploaded ${chunk.pack_id}`);
   }
   if (options.activate) {
-    await request(api, `/v1/admin/content/releases/${encodeURIComponent(bundle.manifest.id)}/activate`, "POST", auth);
+    const activated = await request(transport, `/v1/admin/content/releases/${encodeURIComponent(bundle.manifest.id)}/activate`, "POST", auth);
+    verifyReleaseResponse(activated, bundle.manifest, { activated: true });
     console.log(`release activated ${bundle.manifest.id}`);
   } else {
     console.log("release upload complete; activation intentionally not requested");
@@ -75,18 +86,27 @@ async function readBundle(directory) {
   return { manifest, chunks };
 }
 
-async function request(api, route, method, auth, body) {
-  const url = `${api.replace(/\/$/, "")}${route}`;
+function verifyReleaseResponse(result, manifest, { packID, activated = false } = {}) {
+  const release = result?.content_release;
+  const fields = ["id", "schema_version", "channel", "manifest_sha256", "expected_pack_count", "expected_objective_count", "expected_activity_count", "expected_question_count", "expected_reward_rule_count"];
+  if (!release || fields.some(field => release[field] !== manifest[field]) ||
+      !Array.isArray(release.packs) || !["staged", "applied", "superseded"].includes(release.status) ||
+      (packID !== undefined && result.pack_id !== packID) ||
+      (activated && (result.activated !== true || release.status !== "applied"))) {
+    throw new Error("release API returned an invalid acknowledgement");
+  }
+}
+
+async function request(transport, route, method, auth, body) {
+  const serialized = body === undefined ? undefined : JSON.stringify(body);
+  // Backend replay contract: manifest digest, exact signed chunk, or already-applied release.
   for (let attempt = 1; attempt <= 3; attempt += 1) {
-    const response = await fetch(url, {
-      method,
-      headers: { "Content-Type": "application/json", ...auth },
-      body: body === undefined ? undefined : JSON.stringify(body),
-    });
-    if (response.ok) return response.json();
-    const detail = await response.text();
-    if (attempt === 3 || (response.status < 500 && response.status !== 429)) throw new Error(`${method} ${route} failed ${response.status}: ${detail}`);
-    await new Promise((resolve) => setTimeout(resolve, attempt * 500));
+    try {
+      return await transport(route, { method, headers: { "Content-Type": "application/json", ...auth }, body: serialized });
+    } catch (error) {
+      if (attempt === 3 || (!retryStatuses.has(error.status) && error.kind !== "network" && error.kind !== "timeout")) throw error;
+      await new Promise((resolve) => setTimeout(resolve, attempt * 500));
+    }
   }
 }
 

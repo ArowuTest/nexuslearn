@@ -5,7 +5,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import ChildJourneyChrome, { ApiStateCard } from "@/components/ChildJourneyChrome";
 import Dino, { type DinoMood } from "@/components/Dino";
-import LearningStudio from "@/components/LearningStudio";
+import LearningStudio, { StudioPrompt } from "@/components/LearningStudio";
 import MissionJourney, { type JourneyEntry } from "@/components/MissionJourney";
 import MockObjectiveGuidance from "@/components/MockObjectiveGuidance";
 import ProgressSnapshot from "@/components/ProgressSnapshot";
@@ -29,7 +29,6 @@ import { resolveNarrationFields, useNarrationAssets } from "@/lib/narration";
 const missionSubheadingClass = "font-display text-sm font-semibold uppercase tracking-[0.14em] text-[#5a3ca8]";
 const missionPanelClass = "rounded-blob border border-white/10 bg-white/10 p-6 shadow-[0_24px_70px_rgba(0,0,0,0.22)] backdrop-blur md:p-8";
 const missionUnavailableClass = "flex min-h-screen items-center justify-center bg-gradient-to-b from-[#241f56] to-[#1a3a3d] px-6 text-white";
-const missionStatusClass = "mission-status-pill rounded-full bg-white/10 px-4 py-1.5 text-white/75";
 
 type Q = {
   id: string;
@@ -137,7 +136,7 @@ function readMissionRoute(): MissionRoute {
   };
 }
 
-function supportPlanItems(adaptations: MissionConfig["runtime_adaptations"] | undefined, audioReady: boolean): Array<[string, string]> {
+function supportPlanItems(adaptations: Partial<NonNullable<MissionConfig["runtime_adaptations"]>> | undefined, audioReady: boolean): Array<[string, string]> {
   const reasons = Array.isArray(adaptations?.reasons) ? adaptations.reasons.slice(0, 2) : [];
   return [
     adaptations?.session_length === "short" ? ["Short mission", "A smaller set keeps effort focused and finishable."] : null,
@@ -158,7 +157,7 @@ function supportPlanItems(adaptations: MissionConfig["runtime_adaptations"] | un
   ].filter((item): item is [string, string] => Boolean(item));
 }
 
-function activeSupportBadges(adaptations: MissionConfig["runtime_adaptations"] | undefined, audioReady: boolean) {
+function activeSupportBadges(adaptations: Partial<NonNullable<MissionConfig["runtime_adaptations"]>> | undefined, audioReady: boolean) {
   return [
     adaptations?.session_length === "short" ? "short" : "",
     adaptations?.reduced_motion || adaptations?.animation_tier === "static" ? "still" : "",
@@ -187,6 +186,9 @@ export default function Mission() {
   const [lessonComplete, setLessonComplete] = useState(false);
   const [paused, setPaused] = useState(false);
   const [focusMode, setFocusMode] = useState(false);
+  const [supportOpen, setSupportOpen] = useState(false);
+  const supportToggleRef = useRef<HTMLButtonElement>(null);
+  const supportCloseRef = useRef<HTMLButtonElement>(null);
   const [mood, setMood] = useState<DinoMood>("idle");
   const [message, setMessage] = useState("Loading configured mission content...");
   const [hintCount, setHintCount] = useState(0);
@@ -281,6 +283,7 @@ export default function Mission() {
       setProgressReport(null);
       setProgressState("not-requested");
       setLoadState("loading");
+      setSupportOpen(false);
       setMessage("Loading configured mission content...");
       if (!studentId) {
         if (!cancelled) {
@@ -399,6 +402,33 @@ export default function Mission() {
     if (q?.body.audio_required === true && src === questionAudio) (completed ? setCompletedListening : setFailedListening)(listeningKey);
   }), [q, questionAudio, listeningKey]);
 
+  const closeSupport = useCallback((restoreFocus = true) => {
+    setSupportOpen(false);
+    if (restoreFocus && !switchAccess) supportToggleRef.current?.focus();
+  }, [switchAccess]);
+
+  useEffect(() => {
+    if (loadState !== "ready") return;
+    const openFromHash = () => {
+      if (window.location.hash === "#mission-support") setSupportOpen(true);
+    };
+    openFromHash();
+    window.addEventListener("hashchange", openFromHash);
+    return () => window.removeEventListener("hashchange", openFromHash);
+  }, [loadState]);
+
+  useEffect(() => {
+    if (!supportOpen || paused) return;
+    supportCloseRef.current?.focus();
+    const onEscape = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      event.preventDefault();
+      closeSupport();
+    };
+    window.addEventListener("keydown", onEscape, true);
+    return () => window.removeEventListener("keydown", onEscape, true);
+  }, [supportOpen, paused, closeSupport]);
+
   useEffect(() => {
     if (!switchAccess) {
       return;
@@ -406,13 +436,15 @@ export default function Mission() {
 
     let activeIndex = 0;
     let highlightedTarget: HTMLElement | null = null;
-    const region = paused ? "[role='dialog']" : "[data-switch-region]";
-    const targets = () =>
-      Array.from(
-        document.querySelectorAll<HTMLElement>(
-          `${region} button:not(:disabled), ${region} a[href], ${region} [tabindex='0']`,
-        ),
-      ).filter((target) => target.offsetParent !== null && !target.closest("[inert], fieldset[disabled]") && target.getAttribute("aria-disabled") !== "true");
+    let firstFocus = true;
+    const region = paused ? "[role='dialog']" : supportOpen ? "#mission-support" : "[data-switch-region]";
+    const regionSelector = `${region} button:not(:disabled),${region} a[href],${region} summary,${region} [tabindex='0']`;
+    const labelFor = (target: HTMLElement) => target.getAttribute("aria-label") || target.textContent?.trim() || "Control";
+    const targets = () => {
+      const available = Array.from(document.querySelectorAll<HTMLElement>(regionSelector));
+      if (!paused && !supportOpen) available.push(...Array.from(document.querySelectorAll<HTMLElement>("[data-switch-audio], [data-switch-extra]")));
+      return available.filter((target) => target.offsetParent !== null && !target.closest("[inert], fieldset[disabled]") && target.getAttribute("aria-disabled") !== "true");
+    };
     const focusTarget = () => {
       const available = targets();
       if (!available.length) {
@@ -420,14 +452,31 @@ export default function Mission() {
         setSwitchLabel("No available controls");
         return;
       }
+      if (firstFocus && !paused && !supportOpen && listeningPending && questionAudio) {
+        const audioIndex = available.findIndex((target) => target.hasAttribute("data-switch-audio"));
+        if (audioIndex >= 0) activeIndex = audioIndex;
+      }
       activeIndex %= available.length;
       const target = available[activeIndex];
       highlightedTarget = target;
-      target.focus({ preventScroll: true });
-      setSwitchLabel(target.getAttribute("aria-label") || target.textContent?.trim() || "Current control");
+      target.focus();
+      setSwitchLabel(labelFor(target));
+      firstFocus = false;
+    };
+    const onFocus = (event: FocusEvent) => {
+      // Audio shortcuts, keyboard focus and pointer focus must select the same
+      // control that Space will activate; never retain a different scan target.
+      const target = event.target instanceof HTMLElement ? event.target : null;
+      const index = target ? targets().indexOf(target) : -1;
+      highlightedTarget = index >= 0 ? target : null;
+      if (index >= 0 && target) {
+        activeIndex = index;
+        setSwitchLabel(labelFor(target));
+      }
     };
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
+        if (supportOpen) return; // Closing support must not turn off the saved access mode.
         event.preventDefault();
         setSwitchAccess(false);
         return;
@@ -442,6 +491,7 @@ export default function Mission() {
       }
     };
 
+    window.addEventListener("focusin", onFocus, true);
     focusTarget();
     const scan = window.setInterval(() => {
       activeIndex += 1;
@@ -451,8 +501,9 @@ export default function Mission() {
     return () => {
       window.clearInterval(scan);
       window.removeEventListener("keydown", onKeyDown, true);
+      window.removeEventListener("focusin", onFocus, true);
     };
-  }, [switchAccess, q?.id, awaitingContinue, idx, lessonIdx, lessonComplete, saveState, paused]);
+  }, [switchAccess, q?.id, awaitingContinue, idx, lessonIdx, lessonComplete, saveState, paused, supportOpen, questionAudio, listeningPending]);
   const done = idx >= total;
   const teachingSequence = Array.isArray(mission?.activity?.interaction?.teaching_sequence)
     ? (mission.activity.interaction.teaching_sequence as LessonStep[])
@@ -821,8 +872,12 @@ export default function Mission() {
   // A preference, script or unreleased asset is not a playable recording. Link
   // only to the active step's mounted playback control, including feedback.
   const audioReady = !done && Boolean(inLesson ? lessonAudioURL : questionAudio);
-  const activeSupportPlan = supportPlanItems(adaptations, audioReady);
-  const supportBadges = activeSupportBadges(adaptations, audioReady);
+  const currentSupports = {
+    ...adaptations, reduced_motion: reducedMotion, animation_tier: reducedMotion ? "static" as const : "standard" as const,
+    high_contrast: highContrast, simple_text: readingReduced, visual_guide: visualGuide, switch_access: switchAccess,
+  };
+  const activeSupportPlan = supportPlanItems(currentSupports, audioReady);
+  const supportBadges = activeSupportBadges(currentSupports, audioReady);
   const progressPct = total ? Math.round((charge / total) * 100) : 0;
   const missionStyle = {
     "--world-accent": worldAccent,
@@ -864,41 +919,51 @@ export default function Mission() {
         context={journeyContext}
         backHref="/play/today"
         backLabel="Exit"
-        actionHref="#mission-support"
-        actionLabel="Support & audio"
+        scanBack
+        onBack={() => void recordLearningEvent("mission_exited", { activity_id: mission?.activity?.id || "", question_id: q?.id || "", completed_questions: results.length })}
       />
 
-      {/* top bar */}
-      <div className="relative z-10 mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3">
-        <Link
-          href="/play/today"
-          onClick={() => void recordLearningEvent("mission_exited", { activity_id: mission?.activity?.id || "", question_id: q?.id || "", completed_questions: results.length })}
-          className="btn-pop bg-white/10 px-4 py-2 text-sm"
-        >
-          Exit
-        </Link>
-        <div className="font-display order-3 flex w-full flex-wrap items-center justify-center gap-2 text-sm md:gap-3">
-          <span className="mission-status-pill rounded-full bg-sun/20 px-4 py-1.5 text-sun">{xp} XP</span>
-          <span className="mission-status-pill rounded-full bg-white/10 px-4 py-1.5 text-white/80">{progressPct}% charged</span>
-          <span className={missionStatusClass}>{savedArtefacts} world artefacts</span>
-          {adaptations?.session_length === "short" && <span className="mission-status-pill rounded-full bg-[#55cbd3]/20 px-4 py-1.5 text-[#9df5fa]">Short mission</span>}
-          {(adaptations?.animation_tier === "low" || adaptations?.animation_tier === "static" || adaptations?.reduced_motion) && <span className={missionStatusClass}>Calm mode</span>}
-          {adaptations?.large_targets && <span className={missionStatusClass}>Large controls</span>}
-          {adaptations?.switch_access && <span className="mission-status-pill rounded-full bg-[#ffdf8a]/18 px-4 py-1.5 text-[#ffdf8a]">Switch ready</span>}
-        </div>
-        <div className="ml-auto flex max-w-[calc(100%_-_4.5rem)] flex-wrap justify-end gap-2">
+      <div className="relative z-10 mx-auto mt-3 flex max-w-6xl flex-wrap items-center justify-between gap-3">
+        <p className="font-display text-sm text-white/85">{xp} XP · {progressPct}% charged</p>
+        <div className="flex flex-wrap gap-2">
           <button
+            data-switch-extra
             onClick={() => {
               setPaused(true);
               void recordLearningEvent("mission_paused", { activity_id: mission?.activity?.id || "", question_id: q?.id || "" });
             }}
-            className="btn-pop bg-[#3b386f] px-3 py-2 text-sm"
+            className="btn-pop min-h-11 bg-[#3b386f] px-3 py-2 text-sm"
           >
             Pause
           </button>
+          <button type="button" data-switch-extra aria-label={mute ? "Unmute sounds" : "Mute sounds"}
+            onClick={() => {
+              setMute(!mute);
+              void recordLearningEvent("support_changed", { support: "mute", enabled: !mute, source: "child_control" });
+            }}
+            className="btn-pop min-h-11 bg-[#3b386f] px-3 py-2 text-sm">
+            {mute ? "Sound off" : "Sound on"}
+          </button>
+          <button ref={supportToggleRef} type="button" data-switch-extra
+            aria-expanded={supportOpen} aria-controls="mission-support"
+            onClick={() => supportOpen ? closeSupport() : setSupportOpen(true)}
+            className="btn-pop min-h-11 bg-[#ffbf45] px-3 py-2 text-sm font-semibold text-[#17233f]">
+            Support & audio
+          </button>
+        </div>
+      </div>
+
+      <section id="mission-support" aria-label="Support & audio" hidden={!supportOpen}
+        className="relative z-10 mx-auto mt-4 max-w-6xl rounded-3xl border border-white/20 bg-[#17233f] p-4">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <h2 className="font-display text-xl font-semibold">Support & audio</h2>
+          <button ref={supportCloseRef} type="button" onClick={() => closeSupport()} className="btn-pop min-h-11 bg-white px-4 py-2 text-sm font-semibold text-ink">Close support</button>
+        </div>
+        <p className="mt-2 text-sm leading-6 text-white/85">Choose support that helps you learn. Your answer stays safe.</p>
+        <p className="reading-extra mt-2 text-sm text-white/85">{worldFocus}</p>
+        <div className="mt-4 flex flex-wrap gap-2">
           {[
             { support: "focus_mode", label: "Focus", enabled: focusMode, update: setFocusMode, activeClass: "bg-sun text-ink" },
-            { support: "mute", label: mute ? "Sound off" : "Sound on", enabled: mute, update: setMute, activeClass: "bg-[#3b386f]", ariaLabel: mute ? "Unmute sounds" : "Mute sounds" },
             { support: "reduced_motion", label: "Calm", enabled: reducedMotion, update: setReducedMotion, activeClass: "bg-sun text-ink", title: "Reduced motion" },
             { support: "high_contrast", label: "Contrast", enabled: highContrast, update: setHighContrast, activeClass: "bg-white text-black" },
             { support: "simple_text", label: "Simple text", enabled: readingReduced, update: setReadingReduced, activeClass: "bg-[#55cbd3] text-ink" },
@@ -911,65 +976,38 @@ export default function Mission() {
               onClick={() => {
                 const enabled = !control.enabled;
                 control.update(enabled);
-                if (control.support !== "mute") noteAssistance(control.support);
+                noteAssistance(control.support);
+                if (control.support === "switch_access" && enabled) setSupportOpen(false);
                 // State updaters must remain pure; log once in the user event.
                 void recordLearningEvent("support_changed", { support: control.support, enabled, source: "child_control" });
               }}
               className={`btn-pop px-3 py-2 text-sm ${control.enabled ? control.activeClass : "bg-[#3b386f]"}`}
-              aria-pressed={control.support === "mute" ? undefined : control.enabled}
-              aria-label={control.ariaLabel}
+              aria-pressed={control.enabled}
               title={control.title}
             >
               {control.label}
             </button>
           ))}
+
         </div>
-      </div>
-
-      <section className="relative z-10 mx-auto mt-5 max-w-6xl overflow-hidden rounded-[1.6rem] border border-white/10 bg-white/8 p-4 shadow-[0_24px_80px_rgba(0,0,0,0.22)] backdrop-blur">
-        <div className="grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
-          <div>
-            <p className="font-display text-xs uppercase tracking-[0.18em] text-[var(--world-accent)]">{realm}</p>
-            <h1 className="font-display mt-1 text-2xl font-semibold md:text-4xl">{mission?.activity?.title || "Configured Mission"}</h1>
-            <p className="reading-extra mission-world-focus mt-2 inline-block max-w-3xl rounded-xl bg-[#17233f] px-3 py-1.5 text-sm leading-6 text-white">{worldFocus}</p>
+        {audioReady && (
+          <div className="mt-3 flex flex-wrap gap-2" aria-label="Audio shortcuts">
+            <a href={`#${inLesson ? "lesson-audio" : "question-audio"}`} onClick={event => {
+              event.preventDefault();
+              closeSupport(false);
+              requestAnimationFrame(() => {
+                const player = document.getElementById(inLesson ? "lesson-audio" : "question-audio");
+                (player instanceof HTMLButtonElement ? player : player?.querySelector("button"))?.focus();
+              });
+            }} className="rounded-full border border-[#ffdf8a]/35 bg-[#ffdf8a]/10 px-3 py-1 text-xs font-semibold text-[#ffdf8a]">
+              Jump to audio replay
+            </a>
+            <span className="rounded-full border border-white/10 bg-white/8 px-3 py-1 text-xs text-white/70">Produced studio audio only</span>
           </div>
-          <div className="reading-extra grid grid-cols-3 gap-2 text-center">
-            {[
-              ["Objective", mission?.objective?.topic || "Skill"],
-              ["Format", mission?.activity?.template_id || "Activity"],
-              ["Review", `${results.length}/${total}`],
-            ].map(([label, value]) => (
-              <div key={label} className="energy-card rounded-2xl border border-white/10 bg-white/10 px-4 py-3">
-                <p className="font-display text-xs uppercase tracking-[0.14em] text-white/44">{label}</p>
-                <p className="mt-1 max-w-[120px] truncate text-sm font-semibold text-white">{value}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <nav className="relative z-10 mx-auto mt-4 flex max-w-3xl items-center justify-center gap-2" aria-label="Mission schedule">
-        {[
-          ["Learn", inLesson],
-          ["Practise", !inLesson && !done],
-          ["Finish", done],
-        ].map(([label, active]) => (
-          <span
-            key={String(label)}
-            className={`rounded-full px-4 py-2 text-sm font-semibold ${
-              active ? "bg-[var(--world-accent)] text-ink" : "bg-white/8 text-white/60"
-            }`}
-            aria-current={active ? "step" : undefined}
-          >
-            {label}
-          </span>
-        ))}
-      </nav>
-
+        )}
       {activeSupportPlan.length > 0 && (
         <section
           className="relative z-10 mx-auto mt-4 max-w-6xl rounded-[1.4rem] border border-[#55cbd3]/35 bg-[#10233f]/82 p-4 shadow-[0_18px_60px_rgba(0,0,0,0.18)]"
-          id="mission-support"
           aria-label="Active support plan"
         >
           <div className="flex flex-wrap items-start justify-between gap-3">
@@ -977,7 +1015,7 @@ export default function Mission() {
               <p className="font-display text-xs uppercase tracking-[0.18em] text-[#9df5fa]">Support plan active</p>
               <h2 className="font-display mt-1 text-xl font-semibold text-white">This mission is tuned for you</h2>
               <p className="mt-1 max-w-2xl text-sm leading-6 text-white/72">
-                These settings come from the learner profile and can still be adjusted with the support buttons above.
+                Your learner profile sets the starting supports. These controls show what is active.
               </p>
               {supportBadges.length > 0 && (
                 <div className="mt-3 flex flex-wrap gap-2" aria-label="Active support badges">
@@ -986,14 +1024,6 @@ export default function Mission() {
                       {badge}
                     </span>
                   ))}
-                </div>
-              )}
-              {audioReady && (
-                <div className="mt-3 flex flex-wrap gap-2" aria-label="Audio shortcuts">
-                  <a href={`#${inLesson ? "lesson-audio" : "question-audio"}`} className="rounded-full border border-[#ffdf8a]/35 bg-[#ffdf8a]/10 px-3 py-1 text-xs font-semibold text-[#ffdf8a]">
-                    Jump to audio replay
-                  </a>
-                  <span className="rounded-full border border-white/10 bg-white/8 px-3 py-1 text-xs text-white/70">Produced studio audio only</span>
                 </div>
               )}
             </div>
@@ -1012,6 +1042,36 @@ export default function Mission() {
         </section>
       )}
 
+
+        {!inLesson && !done && <section aria-label="About this question">
+            <div className="reading-extra mt-5 grid gap-2 sm:grid-cols-3">
+              {[
+                ["Recall", "Answer from memory first"],
+                ["Repair", showHint ? "Scaffold is open" : "Hint waits if needed"],
+                ["Mastery", "Saved to evidence"],
+              ].map(([title, body]) => (
+                <div key={title} className="rounded-2xl bg-[#17233f] px-4 py-3">
+                  <p className="font-display text-sm font-semibold text-[#ffdf8a]">{title}</p>
+                  <p className="mt-1 text-xs leading-5 text-white/80">{body}</p>
+                </div>
+              ))}
+            </div>
+
+            <details className="reading-extra mt-5 rounded-2xl border border-white/15 bg-[#17233f] px-4 py-3">
+              <summary className="cursor-pointer font-display text-sm font-semibold text-[#ffdf8a]">
+                Why this question?
+              </summary>
+              <p className="mt-2 text-xs leading-5 text-white/80">{q.selectionReason}</p>
+              {mission?.assessment_blueprint && (
+                <p className="mt-2 text-xs leading-5 text-white/75">
+                  {mission.assessment_blueprint.mode.replaceAll("_", " ")} set · target challenge {mission.assessment_blueprint.target_difficulty}/10 ·{" "}
+                  {mission.assessment_blueprint.formats.length} response format{mission.assessment_blueprint.formats.length === 1 ? "" : "s"}
+                </p>
+              )}
+            </details>
+
+
+        </section>}
       <details
         className="relative z-10 mx-auto mt-4 max-w-6xl rounded-[1.4rem] border border-white/12 bg-white/8 p-4 text-sm leading-6 text-white/76"
         aria-label="Fair mission promise"
@@ -1033,73 +1093,16 @@ export default function Mission() {
         </div>
       </details>
 
-      <div className={`relative z-10 mx-auto mt-6 grid max-w-6xl items-start gap-8 ${focusMode ? "grid-cols-1" : "md:grid-cols-[0.95fr_1.05fr]"}`}>
-        <div className={`relative flex flex-col items-center ${focusMode ? "hidden" : ""}`}>
-          <MissionJourney
-            key={mission?.activity?.id}
-            style={adaptations?.reward_style}
-            year={Number(mission?.world?.year_group || 1)}
-            total={total}
-            entries={journeyEntries}
-            currentPrompt={q?.prompt || "Your discoveries are ready to revisit."}
-            quiet={reducedMotion || adaptations?.celebration_intensity === "quiet"}
-          />
-          <div className="pointer-events-none absolute inset-0 z-10" aria-hidden>
-            {sparks.map((s) => (
-              <span
-                key={s.id}
-                className="absolute left-1/2 top-1/2 h-2 w-2 rounded-full bg-[var(--world-accent)]"
-                style={{
-                  "--dx": `${s.dx}px`,
-                  "--dy": `${s.dy}px`,
-                  animation: "spark 0.8s ease-out forwards",
-                } as CSSProperties}
-              />
-            ))}
-          </div>
 
-          <div className="absolute top-12 h-[310px] w-[310px]">
-            <div className="portal-ring anim-portal-spin" />
-            <div className="portal-ring anim-portal-pulse scale-75 opacity-60" />
-            <span className="anim-orbit absolute left-1/2 top-1/2 h-3 w-3 rounded-full bg-[var(--world-accent)] shadow-[0_0_24px_var(--world-accent)]" />
-          </div>
+      </section>
 
-          <div className="relative z-10">
-            <svg width="280" height="300" viewBox="0 0 280 300" aria-hidden>
-              <path d="M40 190 A100 105 0 0 1 240 190 L240 230 L40 230 Z" fill="rgba(140,200,255,0.12)" stroke="rgba(140,200,255,0.45)" strokeWidth="3" />
-              <clipPath id="dome"><path d="M40 190 A100 105 0 0 1 240 190 L240 230 L40 230 Z" /></clipPath>
-              <rect clipPath="url(#dome)" x="40" y={230 - (145 * charge) / total} width="200" height={(145 * charge) / total} fill="color-mix(in srgb, var(--world-accent), transparent 65%)" style={{ transition: "all 0.6s cubic-bezier(0.34,1.56,0.64,1)" }} />
-              <rect className="anim-scan-line" clipPath="url(#dome)" x="48" y="70" width="184" height="18" fill="rgba(255,255,255,0.18)" />
-              <rect x="20" y="228" width="240" height="34" rx="12" fill="#3b3470" />
-              <rect x="36" y="262" width="208" height="14" rx="7" fill="#2c2757" />
-              {Array.from({ length: total }).map((_, i) => (
-                <circle key={i} cx={56 + i * 24} cy="245" r="6" fill={i < charge ? worldAccent : "#1d1a3e"} className={i < charge ? "anim-glow" : ""} />
-              ))}
-            </svg>
-            <div className="absolute left-1/2 top-[108px] -translate-x-1/2">
-              <div key={`${charge}-${hatched}`} className={`flex h-28 w-28 items-center justify-center rounded-full bg-white/85 text-6xl shadow-[0_18px_48px_rgba(0,0,0,0.22)] ${charge > 0 ? "anim-egg-rock" : ""} ${hatched ? "anim-pop anim-glow" : ""}`} role="img" aria-label={hatched ? reward.complete : `${reward.building}, ${progressPct}% complete`}>
-                {reward.symbol}
-              </div>
-            </div>
-          </div>
+      <div className="relative z-10 mx-auto mt-4 max-w-6xl">
+        <p className="font-display text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">{realm}</p>
+        <h1 className="font-display mt-1 text-xl font-semibold md:text-2xl">{mission?.activity?.title || "Configured Mission"}</h1>
+      </div>
 
-          {/* companion + speech */}
-          <div className="mt-2 flex items-end gap-3">
-            <Dino mood={mood} size={110} />
-            <div
-              className={`max-w-[260px] rounded-2xl rounded-bl-sm bg-white p-4 text-sm font-medium text-ink shadow-card ${
-                correctFlash ? "anim-pop" : ""
-              }`}
-              role="status"
-              aria-live="polite"
-            >
-              {message}
-              <span className="mt-2 block text-xs font-semibold text-grape/65">{companionName}</span>
-            </div>
-          </div>
-        </div>
-
-        {/* RIGHT: question + pad, or summary */}
+      <div className={`relative z-10 mx-auto mt-6 grid max-w-6xl items-start gap-8 ${focusMode ? "grid-cols-1" : "md:grid-cols-[1.05fr_0.95fr]"}`}>
+        {/* Task first in DOM order, including on small screens and screen readers. */}
         {inLesson && lessonStep ? (
           <div data-switch-region className={missionPanelClass}>
             <div className="flex items-center justify-between gap-4">
@@ -1161,7 +1164,7 @@ export default function Mission() {
         ) : !done ? (
           <div ref={questionRef} tabIndex={-1} role="region" aria-label="Mission question" className={missionPanelClass}>
             {rewardMoment === "Repair route opened" && <p className="journey-repair" data-testid="mission-reward-moment" role="status">{message} You can try again or ask for a hint.</p>}
-            <div className="flex items-center justify-between text-sm text-white/60">
+            <div className="flex flex-wrap items-center justify-between gap-2 text-sm text-white/80">
               <span className="font-display">
               Mission: {mission?.activity?.title || "Configured Mission"} - Q{idx + 1}/{total}
               </span>
@@ -1180,31 +1183,7 @@ export default function Mission() {
               ))}
             </div>
 
-            <div className="reading-extra mt-5 grid gap-2 sm:grid-cols-3">
-              {[
-                ["Recall", "Answer from memory first"],
-                ["Repair", showHint ? "Scaffold is open" : "Hint waits if needed"],
-                ["Mastery", "Saved to evidence"],
-              ].map(([title, body]) => (
-                <div key={title} className="rounded-2xl bg-[#17233f] px-4 py-3">
-                  <p className="font-display text-sm font-semibold text-[#ffdf8a]">{title}</p>
-                  <p className="mt-1 text-xs leading-5 text-white/80">{body}</p>
-                </div>
-              ))}
-            </div>
-
-            <details className="reading-extra mt-5 rounded-2xl border border-white/15 bg-[#17233f] px-4 py-3">
-              <summary className="cursor-pointer font-display text-sm font-semibold text-[#ffdf8a]">
-                Why this question?
-              </summary>
-              <p className="mt-2 text-xs leading-5 text-white/80">{q.selectionReason}</p>
-              {mission?.assessment_blueprint && (
-                <p className="mt-2 text-xs leading-5 text-white/75">
-                  {mission.assessment_blueprint.mode.replaceAll("_", " ")} set · target challenge {mission.assessment_blueprint.target_difficulty}/10 ·{" "}
-                  {mission.assessment_blueprint.formats.length} response format{mission.assessment_blueprint.formats.length === 1 ? "" : "s"}
-                </p>
-              )}
-            </details>
+            <StudioPrompt question={q} input={input} />
 
             {(questionAudio || questionAudioScriptText || questionAudioPending) && (
               <div id="question-audio" className="mt-5 rounded-2xl border border-[#7fe7d7]/45 bg-[#17233f] p-4" aria-label="Question audio support">
@@ -1214,7 +1193,7 @@ export default function Mission() {
                     {questionAudio && <p className="mt-1 text-xs leading-5 text-white/70">{listeningPending ? "Listen to the full recording before answering." : "Replay whenever you need."}</p>}
                   </div>
                   {questionAudio && (
-                    <button type="button" onClick={() => void readAloud(questionAudio)} className="btn-pop bg-white/12 px-4 py-2 text-sm text-white">
+                    <button type="button" data-switch-audio onClick={() => void readAloud(questionAudio)} className="btn-pop bg-white/12 px-4 py-2 text-sm text-white">
                       Hear question
                     </button>
                   )}
@@ -1295,6 +1274,7 @@ export default function Mission() {
                 key={`${q.id}-${responseMode}`}
                 question={q}
                 input={input}
+                showPrompt={false}
                 showHint={showHint}
                 hintPanel={!route.mockAssessmentId && q.hints.length > 0 ? (
                   <section aria-label="Question hints" className="mx-auto mt-5 max-w-lg rounded-2xl border border-white/20 bg-[#17233f] p-4 text-white">
@@ -1410,6 +1390,72 @@ export default function Mission() {
             </div>
           </div>
         )}
+        <div className={`relative flex flex-col items-center ${focusMode ? "hidden" : ""}`}>
+          <p className="mb-3 text-sm text-white/85">{savedArtefacts} world artefacts · Your learning journey</p>
+          <MissionJourney
+            key={mission?.activity?.id}
+            style={adaptations?.reward_style}
+            year={Number(mission?.world?.year_group || 1)}
+            total={total}
+            entries={journeyEntries}
+            currentPrompt={q?.prompt || "Your discoveries are ready to revisit."}
+            quiet={reducedMotion || adaptations?.celebration_intensity === "quiet"}
+          />
+          <div className="pointer-events-none absolute inset-0 z-10" aria-hidden>
+            {sparks.map((s) => (
+              <span
+                key={s.id}
+                className="absolute left-1/2 top-1/2 h-2 w-2 rounded-full bg-[var(--world-accent)]"
+                style={{
+                  "--dx": `${s.dx}px`,
+                  "--dy": `${s.dy}px`,
+                  animation: "spark 0.8s ease-out forwards",
+                } as CSSProperties}
+              />
+            ))}
+          </div>
+
+          <div className="absolute top-12 h-[310px] w-[310px]">
+            <div className="portal-ring anim-portal-spin" />
+            <div className="portal-ring anim-portal-pulse scale-75 opacity-60" />
+            <span className="anim-orbit absolute left-1/2 top-1/2 h-3 w-3 rounded-full bg-[var(--world-accent)] shadow-[0_0_24px_var(--world-accent)]" />
+          </div>
+
+          <div className="relative z-10">
+            <svg width="280" height="300" viewBox="0 0 280 300" aria-hidden>
+              <path d="M40 190 A100 105 0 0 1 240 190 L240 230 L40 230 Z" fill="rgba(140,200,255,0.12)" stroke="rgba(140,200,255,0.45)" strokeWidth="3" />
+              <clipPath id="dome"><path d="M40 190 A100 105 0 0 1 240 190 L240 230 L40 230 Z" /></clipPath>
+              <rect clipPath="url(#dome)" x="40" y={230 - (145 * charge) / total} width="200" height={(145 * charge) / total} fill="color-mix(in srgb, var(--world-accent), transparent 65%)" style={{ transition: "all 0.6s cubic-bezier(0.34,1.56,0.64,1)" }} />
+              <rect className="anim-scan-line" clipPath="url(#dome)" x="48" y="70" width="184" height="18" fill="rgba(255,255,255,0.18)" />
+              <rect x="20" y="228" width="240" height="34" rx="12" fill="#3b3470" />
+              <rect x="36" y="262" width="208" height="14" rx="7" fill="#2c2757" />
+              {Array.from({ length: total }).map((_, i) => (
+                <circle key={i} cx={56 + i * 24} cy="245" r="6" fill={i < charge ? worldAccent : "#1d1a3e"} className={i < charge ? "anim-glow" : ""} />
+              ))}
+            </svg>
+            <div className="absolute left-1/2 top-[108px] -translate-x-1/2">
+              <div key={`${charge}-${hatched}`} className={`flex h-28 w-28 items-center justify-center rounded-full bg-white/85 text-6xl shadow-[0_18px_48px_rgba(0,0,0,0.22)] ${charge > 0 ? "anim-egg-rock" : ""} ${hatched ? "anim-pop anim-glow" : ""}`} role="img" aria-label={hatched ? reward.complete : `${reward.building}, ${progressPct}% complete`}>
+                {reward.symbol}
+              </div>
+            </div>
+          </div>
+
+          {/* companion + speech */}
+          <div className="mt-2 flex items-end gap-3">
+            <Dino mood={mood} size={110} />
+            <div
+              className={`max-w-[260px] rounded-2xl rounded-bl-sm bg-white p-4 text-sm font-medium text-ink shadow-card ${
+                correctFlash ? "anim-pop" : ""
+              }`}
+              role="status"
+              aria-live="polite"
+            >
+              {message}
+              <span className="mt-2 block text-xs font-semibold text-grape/65">{companionName}</span>
+            </div>
+          </div>
+        </div>
+
       </div>
 
       {/* confetti on hatch */}

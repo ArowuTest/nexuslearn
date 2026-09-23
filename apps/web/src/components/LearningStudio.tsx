@@ -2,13 +2,14 @@
 
 import { LearningActivityRenderer, rendererOwnsSubmission, resolveStudioRenderer } from "./learning-studio/registry";
 import { NumericArray } from "./learning-studio/primitives";
-import { ENERGY_SIMULATOR, choiceOptions, formatLabel, type LearningStudioProps } from "./learning-studio/types";
+import { ENERGY_SIMULATOR, choiceOptions, formatLabel, type LearningStudioProps, type StudioQuestion } from "./learning-studio/types";
 
 export default function LearningStudio({
   question,
   input,
   showHint,
   hintPanel,
+  showPrompt = true,
   onChoose,
   onKey,
   onSubmit,
@@ -45,19 +46,7 @@ export default function LearningStudio({
 
   return (
     <>
-      <div className="font-display mx-auto mt-8 max-w-3xl rounded-3xl bg-[#17233f] px-5 py-5 text-center text-4xl font-semibold tracking-wide text-white shadow-[0_18px_48px_rgba(0,0,0,0.22)] md:text-5xl">
-        {isNumeric && question.a && question.b ? (
-          <>
-            {question.prompt.replace("What is ", "").replace("?", "")} = <span className="text-sun">{input || "?"}</span>
-          </>
-        ) : (
-          <span className="leading-tight">{question.prompt}</span>
-        )}
-      </div>
-
-      <div className="mt-3 text-center">
-        <span className="rounded-full bg-[#17233f] px-3 py-1 text-xs font-semibold text-white">{formatLabel(question.format)}</span>
-      </div>
+      {showPrompt && <StudioPrompt question={question} input={input} />}
 
       {hintPanel}
 
@@ -204,4 +193,19 @@ export default function LearningStudio({
       )}
     </>
   );
+}
+
+export function StudioPrompt({ question, input }: { question: StudioQuestion; input: string }) {
+  const isNumeric = question.responseKind === "number" && !choiceOptions(question).length
+    && question.format.toLowerCase() !== "array-build" && !rendererOwnsSubmission(question.format.toLowerCase());
+  return <>
+    <div className="font-display mx-auto mt-5 max-w-3xl rounded-3xl bg-[#17233f] px-5 py-5 text-center text-2xl font-semibold tracking-wide text-white shadow-[0_18px_48px_rgba(0,0,0,0.22)] sm:text-3xl md:text-4xl">
+      {isNumeric && question.a && question.b ? (
+        <>{question.prompt.replace("What is ", "").replace("?", "")} = <span className="text-sun">{input || "?"}</span></>
+      ) : <span className="leading-tight">{question.prompt}</span>}
+    </div>
+    <div className="mt-3 text-center">
+      <span className="rounded-full bg-[#17233f] px-3 py-1 text-xs font-semibold text-white">{formatLabel(question.format)}</span>
+    </div>
+  </>;
 }

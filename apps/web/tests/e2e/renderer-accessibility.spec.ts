@@ -294,6 +294,9 @@ test("mission controls expose a visible keyboard focus ring and high contrast mo
   });
   await page.goto("/play/mission?studentId=renderer-learner");
 
+  const supportToggle = page.getByRole("button", { name: "Support & audio", exact: true });
+  await supportToggle.focus();
+  await page.keyboard.press("Enter");
   const contrast = page.getByRole("button", { name: "Contrast" });
   await contrast.focus();
   const focusStyle = await contrast.evaluate((element) => {
@@ -318,6 +321,7 @@ test("simple text mode removes secondary reading without hiding the task", async
   });
   await page.goto("/play/mission?studentId=renderer-learner");
 
+  await page.getByRole("button", { name: "Support & audio", exact: true }).click();
   await expect(page.getByText("Model and explain", { exact: true })).toBeVisible();
   await expect(page.getByText("Why this question?")).toBeVisible();
   const simpleText = page.getByRole("button", { name: "Simple text" });
@@ -341,6 +345,7 @@ test("visual guide presents icon-supported task steps", async ({ page }) => {
   });
   await page.goto("/play/mission?studentId=renderer-learner");
 
+  await page.getByRole("button", { name: "Support & audio", exact: true }).click();
   const visualGuide = page.getByRole("button", { name: "Visual guide" });
   await visualGuide.focus();
   await page.keyboard.press("Enter");
@@ -364,9 +369,10 @@ test("switch access scans task controls and selects with one key", async ({ page
   });
   await page.goto("/play/mission?studentId=renderer-learner");
 
+  await page.getByRole("button", { name: "Support & audio", exact: true }).click();
   const switchAccess = page.getByRole("button", { name: "Switch access" });
   await switchAccess.click();
-  await expect(switchAccess).toHaveAttribute("aria-pressed", "true");
+  await expect(page.getByRole("button", { name: "Switch access", exact: true, includeHidden: true })).toHaveAttribute("aria-pressed", "true");
   await expect
     .poll(
       () => page.evaluate(() => document.activeElement?.textContent?.trim()),
@@ -377,6 +383,7 @@ test("switch access scans task controls and selects with one key", async ({ page
   await expect(page.getByRole("button", { name: "second", exact: true })).toHaveClass(/ring-4/);
   await expect(page.getByRole("button", { name: "Submit answer" })).toBeEnabled();
   await page.keyboard.press("Escape");
+  await page.getByRole("button", { name: "Support & audio", exact: true }).click();
   await expect(switchAccess).toHaveAttribute("aria-pressed", "false");
   await expectNoSeriousAxeViolations(page);
 });

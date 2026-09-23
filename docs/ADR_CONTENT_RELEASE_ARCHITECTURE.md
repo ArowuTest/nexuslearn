@@ -156,6 +156,54 @@ node packages/content/tools/content-release.mjs publish <release-dir> \
 The manual GitHub workflow uses protected environments and serialises releases
 per channel. Live activation must require repository-environment approval.
 
+### Content operator HTTP transport
+
+`content-release.mjs` and `import-ai-review-evidence.mjs` share a one-attempt
+admin JSON transport; retry policy remains in each operator, not in both layers.
+API URLs must use HTTPS, or explicit local HTTP at `localhost`, `127.0.0.1` or
+`[::1]`. Userinfo (including empty userinfo), query strings and fragments
+(including empty `?`/`#`) are rejected before requests. Numeric/shorthand
+loopback aliases are not accepted. Existing base path prefixes are retained:
+`https://host/prefix/` targets `/prefix/v1/admin/...`, not `/v1/admin/...`.
+
+Every attempt has a 30-second deadline covering headers **and body consumption**
+and an 8 MiB decoded JSON response limit. All redirects are refused, including
+same-origin redirects. Error and redirect bodies are cancelled without reading
+or logging them. Network and JSON errors use fixed diagnostics without raw
+causes, response bodies or Location URLs. Preflight prints only allowlisted
+check codes and local PASS/BLOCKED labels, not server-provided messages.
+The review API factory permits smaller positive timeout/byte limits for callers
+and local tests, never limits larger than these defaults.
+
+- Release staging, chunk upload, preflight and explicitly requested activation
+  have at most three attempts. Only network errors, deadlines and HTTP
+  429/500/502/503/504 retry, with 500 ms then 1,000 ms backoff. The serialized
+  body is unchanged across attempts; server Retry-After does not alter this
+  existing schedule.
+- AI evidence has at most four retries (five attempts), configurable downward.
+  Only network errors, deadlines and HTTP 429/502/503/504 retry. Positive numeric
+  Retry-After seconds are capped at eight seconds; missing, negative, zero,
+  nonnumeric (including HTTP-date) or nonfinite values use 250 ms exponential
+  backoff capped at eight seconds. The importer snapshots the input records
+  before writing, retaining the same body and Idempotency-Key on replay.
+- Authentication failures, conflicts (409), schema errors, redirects, oversized
+  responses, malformed JSON and invalid/mismatched acknowledgements stop the
+  operation; the importer does not continue with later records. Successful
+  acknowledgements must match the release identity/counts or review identity
+  and decision. Acknowledgement validation is not an independent review of the
+  curriculum or its evidence.
+
+A lost acknowledgement is not proof that a write failed. Retrying these exact
+operations relies on existing backend contracts: release staging uses the
+channel/manifest digest, chunks must match the signed descriptor, an already
+applied activation returns the existing release, and AI evidence atomically
+stores/replays its idempotency key and immutable identity. Conflicting state
+fails closed. No new identities or payload edits are made to bypass a failure.
+If retries are exhausted, inspect the authenticated ledger before deciding what
+to do next; do not infer rollback or activation from a timeout. Activation still
+requires `--activate`; offline release `validate` and evidence `--dry-run` make
+no requests. Authentication priority and API routes are unchanged.
+
 ## Security and privacy
 
 - The release API is administrator-only.
