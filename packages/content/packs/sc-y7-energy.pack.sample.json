@@ -27058,7 +27058,7 @@
     "teacher_review": "not_started",
     "accessibility_review": "not_started",
     "safeguarding_review": "not_started",
-    "readiness_status": "pilot",
+    "readiness_status": "review",
     "notes": "Year 7 energy reaches the 240-item pilot target with four preserved curated variants and 236 deterministic review candidates spanning stores and transfers, conservation, pathways, efficiency, heating, work, evidence, diagrams and misconceptions. Every generated item includes visual, static text, spoken and tactile routes; keyboard, switch, eye-gaze, AAC, oral and partner-mediated interactions; rich repair feedback; safe simulator or teacher-managed investigation boundaries; and private engineering missions without timers, lives, streak pressure, leaderboards or peer comparison. Independent physics, teacher, SEND, accessibility, safeguarding, practical-safety, renderer and pilot review remain required before promotion."
   },
   "accessibility_policy": {

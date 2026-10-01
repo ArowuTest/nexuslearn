@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { ScienceFormat } from "./formats";
-import { asStringArray, choiceOptions, ENERGY_SIMULATOR, type StudioQuestion, type StudioRendererDefinition, type StudioRendererProps, type StudioRendererRegistry } from "./types";
+import { asStringArray, choiceOptions, ENERGY_SIMULATOR, isParticleQuestion, type StudioQuestion, type StudioRendererDefinition, type StudioRendererProps, type StudioRendererRegistry } from "./types";
 
 function SequenceBoard({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
   const format = question.format.toLowerCase();
@@ -303,7 +303,7 @@ function FairTestPlanner({ question, input, onChoose }: { question: StudioQuesti
 function ParticleLab({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
   const format = question.format.toLowerCase();
   const [energy, setEnergy] = useState(45);
-  if (!["particle-simulation", "model-sort", "explain-choice"].includes(format)) return null;
+  if (!isParticleQuestion(question)) return null;
   const options = choiceOptions(question);
   const observedState = energy < 34 ? "solid" : energy < 70 ? "liquid" : "gas";
   return (

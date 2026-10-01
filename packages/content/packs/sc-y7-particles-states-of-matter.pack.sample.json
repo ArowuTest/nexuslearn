@@ -15172,7 +15172,7 @@
     "teacher_review": "not_started",
     "accessibility_review": "not_started",
     "safeguarding_review": "not_started",
-    "readiness_status": "pilot",
+    "readiness_status": "review",
     "notes": "Year 7 particle flagship reaches the 240-item pilot target with three preserved curated variants, the complete established generated bank, and deterministic mission candidates spanning particle models, state changes, conservation, diffusion, temperature and energy, evidence, misconceptions and model limitations. Every generated model preserves particle count and particle size and provides supported SEND interactions, static and reduced-motion alternatives, and rich low-pressure feedback; review candidates still require independent science-teacher, accessibility, safeguarding and simulation-usability review before promotion."
   },
   "accessibility_policy": {

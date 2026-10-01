@@ -2,7 +2,6 @@ package learning
 
 import (
 	"context"
-	"strings"
 
 	"github.com/jackc/pgx/v5"
 )
@@ -26,22 +25,7 @@ func requiresListening(q QuestionConfig) bool {
 }
 
 func requiredListeningReferences(q QuestionConfig) []string {
-	refs := []string{}
-	seen := map[string]bool{}
-	keys := []string{"audio_asset_id", "audio_ref", "whole_audio_asset_id"}
-	if value, _ := q.Body["whole_audio_asset_id"].(string); strings.TrimSpace(value) == "" {
-		keys = append(keys, "whole_word_audio_asset_id")
-	}
-	for _, key := range keys {
-		if ref, ok := q.Body[key].(string); ok && strings.TrimSpace(ref) != "" {
-			ref = strings.TrimSpace(ref)
-			if !seen[ref] {
-				refs = append(refs, ref)
-				seen[ref] = true
-			}
-		}
-	}
-	return refs
+	return authoredAudioReferences(q.Body)
 }
 
 func listeningReady(q QuestionConfig) bool {

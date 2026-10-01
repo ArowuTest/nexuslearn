@@ -32,6 +32,9 @@ export const SCIENCE_FORMATS = [
   "model-sort", "explain-choice",
 ] as const;
 
+// "explain-choice" is context-sensitive: particle metadata opts into the
+// particle lab; otherwise the Studio supplies its generic accessible choices.
+
 export const CROSS_CURRICULAR_FORMATS = [
   "meaning-substitute", "reference-map", "observation-record",
   "noun-pronoun-repair", "habitat-evidence-map", "register-slider",

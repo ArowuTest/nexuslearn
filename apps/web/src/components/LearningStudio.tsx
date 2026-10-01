@@ -2,7 +2,7 @@
 
 import { LearningActivityRenderer, rendererOwnsSubmission, resolveStudioRenderer } from "./learning-studio/registry";
 import { NumericArray } from "./learning-studio/primitives";
-import { ENERGY_SIMULATOR, choiceOptions, formatLabel, type LearningStudioProps, type StudioQuestion } from "./learning-studio/types";
+import { ENERGY_SIMULATOR, choiceOptions, formatLabel, isParticleQuestion, type LearningStudioProps, type StudioQuestion } from "./learning-studio/types";
 
 export default function LearningStudio({
   question,
@@ -21,7 +21,7 @@ export default function LearningStudio({
   const isTrace = format === "trace-path";
   const isWordBuild = format === "word-build";
   const isArrayBuild = format === "array-build";
-  const isParticle = ["particle-simulation", "model-sort", "explain-choice"].includes(format);
+  const isParticle = isParticleQuestion(question);
   const isSentence = ["sentence-sort", "paragraph-build", "theme-choice"].includes(format);
   const isSequence = ["audio-sequence", ENERGY_SIMULATOR, "fossil-sequence", "growth-sequence", "hygiene-step-order", "life-cycle-sequence", "picture-sequence", "time-interval-sequence"].includes(format);
   const isCoordinatePlot = format === "coordinate-plot";

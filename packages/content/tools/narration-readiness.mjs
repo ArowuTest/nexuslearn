@@ -20,6 +20,13 @@ const expectedProvider = "ElevenLabs";
 const pendingStatuses = new Set(["generated_pending_human_listening", "required_human_listening_review"]);
 const approvedStatuses = new Set(["human_listening_approved", "approved", "production_approved", "released"]);
 const validProductionStatuses = new Set([...pendingStatuses, ...approvedStatuses]);
+const validReferenceStatuses = new Set([
+  ...validProductionStatuses,
+  "required",
+  "required_before_pilot",
+  "required_human_ssp_listening_review",
+  "specialist_recording_required",
+]);
 const exactApprovalCriteria = ["natural", "clear", "pronunciation", "age_suitable"];
 const sha256Pattern = /^[a-f0-9]{64}$/;
 
@@ -232,7 +239,7 @@ function makeExpected(pack, kind, sourceID, text, voice) {
   };
 }
 
-function collectVariantReferences(packs) {
+export function collectVariantReferences(packs) {
   const declarations = [];
   for (const pack of packs) {
     asArray(pack.question_variants).forEach((variant, index) => {
@@ -267,7 +274,17 @@ function walkReferenceFields(value, visit, location = "question_variant", seen =
   }
   for (const [key, entry] of Object.entries(value)) {
     const next = `${location}.${key}`;
-    if (["audio_asset_id", "audio_ref", "whole_audio_asset_id"].includes(key)) visit(key, entry, value, next);
+    if ([
+      "audio_asset_id", "audio_ref", "whole_audio_asset_id",
+      "audio_asset_ids", "whole_word_audio_asset_id", "whole_word_audio_asset_ids",
+      "phoneme_audio_asset_ids",
+    ].includes(key)) {
+      if (Array.isArray(entry)) {
+        entry.forEach((item, index) => visit(key, item, value, `${next}[${index}]`));
+      } else {
+        visit(key, entry, value, next);
+      }
+    }
     if (entry && typeof entry === "object") walkReferenceFields(entry, visit, next, seen);
   }
 }
@@ -409,10 +426,12 @@ function buildReport() {
   const actualRefs = refs.filter((entry) => typeof entry.asset_id === "string" && entry.asset_id.length > 0);
   const emptyRefs = refs.filter((entry) => typeof entry.asset_id !== "string" || entry.asset_id.length === 0);
   const nonconformingRefs = actualRefs.filter((entry) =>
-    entry.audio_provider !== expectedProvider
-    || !validProductionStatuses.has(entry.audio_asset_status)
-    || entry.human_listening_approval_required !== true
-    || entry.browser_tts_allowed !== false,
+    entry.audio_asset_status === "specialist_recording_required"
+      ? entry.browser_tts_allowed !== false
+      : entry.audio_provider !== expectedProvider
+        || !validReferenceStatuses.has(entry.audio_asset_status)
+        || entry.human_listening_approval_required !== true
+        || entry.browser_tts_allowed !== false,
   );
   const producedManifestIDs = new Set(manifestItems.filter((item) => {
     const relative = normalPath(item.relative_file);
@@ -518,6 +537,14 @@ function buildReport() {
       unique_audio_ref_references: new Set(actualRefs.filter((entry) => entry.field === "audio_ref").map((entry) => entry.asset_id)).size,
       whole_audio_asset_id_references: actualRefs.filter((entry) => entry.field === "whole_audio_asset_id").length,
       unique_whole_audio_asset_id_references: new Set(actualRefs.filter((entry) => entry.field === "whole_audio_asset_id").map((entry) => entry.asset_id)).size,
+      audio_asset_ids_references: actualRefs.filter((entry) => entry.field === "audio_asset_ids").length,
+      unique_audio_asset_ids_references: new Set(actualRefs.filter((entry) => entry.field === "audio_asset_ids").map((entry) => entry.asset_id)).size,
+      whole_word_audio_asset_id_references: actualRefs.filter((entry) => entry.field === "whole_word_audio_asset_id").length,
+      unique_whole_word_audio_asset_id_references: new Set(actualRefs.filter((entry) => entry.field === "whole_word_audio_asset_id").map((entry) => entry.asset_id)).size,
+      whole_word_audio_asset_ids_references: actualRefs.filter((entry) => entry.field === "whole_word_audio_asset_ids").length,
+      unique_whole_word_audio_asset_ids_references: new Set(actualRefs.filter((entry) => entry.field === "whole_word_audio_asset_ids").map((entry) => entry.asset_id)).size,
+      phoneme_audio_asset_ids_references: actualRefs.filter((entry) => entry.field === "phoneme_audio_asset_ids").length,
+      unique_phoneme_audio_asset_ids_references: new Set(actualRefs.filter((entry) => entry.field === "phoneme_audio_asset_ids").map((entry) => entry.asset_id)).size,
       resolved_variant_references: resolvedRefs.length,
       unique_resolved_variant_references: new Set(resolvedRefs.map((entry) => entry.asset_id)).size,
       unresolved_variant_references: unresolvedRefs.length,

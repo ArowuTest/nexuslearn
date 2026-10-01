@@ -26,3 +26,32 @@ func TestPupilAuthoredPhonemeAudioAliases(t *testing.T) {
 		t.Fatalf("misaligned clips guessed: %v", got)
 	}
 }
+
+func TestPupilQuestionPromotesPluralWholeWordAudioAlias(t *testing.T) {
+	q := QuestionConfig{Format: "word-build", Body: map[string]any{
+		"audio_required":             true,
+		"whole_word_audio_asset_ids": []any{"word-cat", "word-dog"},
+		"words":                      []any{"cat", "dog"},
+	}}
+	public := PupilQuestion(q)
+	if public.Body["whole_audio_asset_id"] != "word-cat" {
+		t.Fatalf("plural whole-word audio was not promoted: %v", public.Body)
+	}
+	if !reflect.DeepEqual(public.Body["whole_word_audio_assets"], map[string]any{"cat": "word-cat", "dog": "word-dog"}) {
+		t.Fatalf("plural whole-word controls were not projected: %v", public.Body)
+	}
+	if _, leaked := public.Body["whole_word_audio_asset_ids"]; leaked {
+		t.Fatal("private plural audio references leaked to the pupil")
+	}
+}
+
+func TestPupilQuestionMapsGeneratedPhonicsAudioListToSoundControls(t *testing.T) {
+	q := QuestionConfig{Format: "audio_blend", Body: map[string]any{
+		"sounds":          []any{"c", "a", "t"},
+		"audio_asset_ids": []any{"phoneme-c", "phoneme-a", "phoneme-t", "word-cat"},
+	}}
+	public := PupilQuestion(q)
+	if !reflect.DeepEqual(public.Body["audio_assets"], map[string]any{"c": "phoneme-c", "a": "phoneme-a", "t": "phoneme-t"}) {
+		t.Fatalf("generated phonics clips did not reach sound controls: %v", public.Body)
+	}
+}

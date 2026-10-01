@@ -3,6 +3,7 @@ package learning
 import (
 	"encoding/json"
 	"errors"
+	"reflect"
 	"testing"
 )
 
@@ -31,5 +32,18 @@ func TestOptionalNarrationDoesNotBlockVisualAssessment(t *testing.T) {
 	q := QuestionConfig{Format: "word-build", Body: map[string]any{"audio_asset_id": "pending-optional", "audio_required": false}, ExpectedAnswer: AuthoredAnswer{"value": "cat"}}
 	if kind, _, err := canonicalAnswer(q); err != nil || kind != "text" {
 		t.Fatalf("optional narration blocked marking: %s %v", kind, err)
+	}
+}
+
+func TestRequiredListeningReferencesIncludePluralAuthoredAudioFields(t *testing.T) {
+	q := QuestionConfig{Body: map[string]any{
+		"audio_asset_ids":            []any{"phoneme-k", "phoneme-a", "word-cat"},
+		"whole_word_audio_asset_ids": []any{"word-cat"},
+		"phoneme_audio_asset_ids":    []any{"phoneme-k", "phoneme-a"},
+	}}
+	got := requiredListeningReferences(q)
+	want := []string{"word-cat", "phoneme-k", "phoneme-a"}
+	if !reflect.DeepEqual(got, want) {
+		t.Fatalf("plural audio references = %#v, want %#v", got, want)
 	}
 }

@@ -75,6 +75,23 @@ func PupilQuestion(q QuestionConfig) PupilQuestionConfig {
 	assets, hasAssets := q.Body["audio_assets"].(map[string]any)
 	phonemes, hasPhonemes := q.Body["phoneme_audio_asset_ids"].([]any)
 	sounds, _ := q.Body["sounds"].([]any)
+	if !hasPhonemes {
+		// The generated phonics bank stores phoneme clips and the whole-word
+		// clip in audio_asset_ids. Only derive the positional map when the
+		// shape proves it is one whole-word clip plus one clip per sound.
+		generic := audioReferenceValues(q.Body["audio_asset_ids"])
+		if len(sounds) > 0 && len(generic) == len(sounds)+1 {
+			derived := []any{}
+			for _, ref := range generic {
+				if !isWholeWordAudioReference(ref) {
+					derived = append(derived, ref)
+				}
+			}
+			if len(derived) == len(sounds) {
+				phonemes, hasPhonemes = derived, true
+			}
+		}
+	}
 	if hasAssets || hasPhonemes {
 		publicAssets := map[string]any{}
 		for index, sound := range sounds {
@@ -95,8 +112,11 @@ func PupilQuestion(q QuestionConfig) PupilQuestionConfig {
 		}
 		body["audio_assets"] = publicAssets
 	}
+	if wordAssets := publicWholeWordAudioAssets(q.Body); len(wordAssets) > 0 {
+		body["whole_word_audio_assets"] = wordAssets
+	}
 	if canonical, _ := body["whole_audio_asset_id"].(string); strings.TrimSpace(canonical) == "" {
-		if clip, ok := q.Body["whole_word_audio_asset_id"].(string); ok && strings.TrimSpace(clip) != "" {
+		if clip := primaryWholeWordAudioReference(q.Body); clip != "" {
 			body["whole_audio_asset_id"] = clip
 		}
 	}
@@ -123,6 +143,36 @@ func PupilQuestion(q QuestionConfig) PupilQuestionConfig {
 	return PupilQuestionConfig{ID: q.ID, ActivityID: q.ActivityID, ObjectiveID: q.ObjectiveID,
 		Format: q.Format, QuestionVersion: questionContractVersion(q), ResponseKind: kind,
 		SelectionCount: count, Body: body, Hints: q.Hints, Difficulty: q.Difficulty, SelectionReason: q.SelectionReason}
+}
+
+func publicWholeWordAudioAssets(body map[string]any) map[string]any {
+	refs := audioReferenceValues(body["whole_word_audio_asset_ids"])
+	if len(refs) == 0 {
+		refs = audioReferenceValues(body["whole_word_audio_asset_id"])
+	}
+	if len(refs) == 0 {
+		return nil
+	}
+	labels := audioReferenceValues(body["words"])
+	if len(labels) == 0 {
+		labels = audioReferenceValues(body["target_words"])
+	}
+	if len(labels) == 0 {
+		labels = audioReferenceValues(body["target_word"])
+	}
+	if len(labels) != len(refs) {
+		if len(refs) != 1 || !isWholeWordAudioReference(refs[0]) {
+			return nil
+		}
+		labels = []string{strings.TrimPrefix(refs[0], "word-")}
+	}
+	assets := map[string]any{}
+	for index, label := range labels {
+		if strings.TrimSpace(label) != "" && strings.TrimSpace(refs[index]) != "" {
+			assets[label] = refs[index]
+		}
+	}
+	return assets
 }
 
 // Nested models/data can contain author annotations too. Copy rather than

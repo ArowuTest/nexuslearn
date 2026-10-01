@@ -34722,7 +34722,7 @@
     "teacher_review": "not_started",
     "accessibility_review": "not_started",
     "safeguarding_review": "not_started",
-    "readiness_status": "pilot",
+    "readiness_status": "review",
     "notes": "Year 7 graphs and tables reaches the 260-item pilot target with five preserved curated variants and 255 deterministic review candidates covering table and chart reading and construction, axes and scales, bar and line representations, frequency and grouped data, comparisons and trends, interpolation cautions, misleading displays, missing data, representation choice, multistep reasoning and transfer. Every generated item includes complete visual descriptions, SEND reduced-load scaffolds, supported non-drag interactions, rich feedback, optional human-reviewed ElevenLabs references with browser TTS prohibited, and private data-investigation missions without speed or social pressure. Independent mathematics, teacher, SEND, accessibility, safeguarding, audio, renderer and pilot review remain required before promotion."
   },
   "accessibility_policy": {

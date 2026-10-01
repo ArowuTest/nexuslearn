@@ -32255,7 +32255,7 @@
     "teacher_review": "not_started",
     "accessibility_review": "not_started",
     "safeguarding_review": "not_started",
-    "readiness_status": "pilot",
+    "readiness_status": "review",
     "notes": "Year 7 disciplinary vocabulary reaches the 260-item pilot target with five preserved curated variants and 255 deterministic review candidates covering morphology, context, polysemy, subject-specific meanings, register, precise use, word families, etymology and misconceptions across disciplines. Every generated item includes SEND scaffolds, supported non-drag routes, rich feedback, optional human-reviewed ElevenLabs references with browser TTS prohibited, and private knowledge missions without timers, lives, streak pressure, leaderboards or peer comparison. Independent English, disciplinary, teacher, SEND, accessibility, safeguarding, audio, renderer and pilot review remain required before promotion."
   },
   "accessibility_policy": {

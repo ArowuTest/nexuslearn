@@ -14246,7 +14246,7 @@
     "teacher_review": "not_started",
     "accessibility_review": "not_started",
     "safeguarding_review": "not_started",
-    "readiness_status": "pilot",
+    "readiness_status": "review",
     "notes": "Review-stage Year 2 fluency pack with a deterministic 180-item pilot bank covering model following, accuracy, phrase chunking, punctuation-led expression, repeated reading, comprehension and self-monitoring. There are no speed scores, timers or leaderboards. Optional narration requires ElevenLabs production and human listening approval; browser TTS is prohibited. Independent English, SEND, audio, safeguarding and renderer review remain required before promotion."
   },
   "accessibility_policy": {

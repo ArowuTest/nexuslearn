@@ -31765,7 +31765,7 @@
     "teacher_review": "not_started",
     "accessibility_review": "not_started",
     "safeguarding_review": "not_started",
-    "readiness_status": "pilot",
+    "readiness_status": "review",
     "notes": "Year 7 negative numbers reaches the 240-item pilot target with four preserved curated variants and 236 deterministic review candidates covering ordering, number lines, integer addition and subtraction, neutral contexts, directed change, distance, operation reasoning and misconceptions. Every generated item includes labelled visual, tactile/concrete, static text and spoken routes; keyboard, switch, eye-gaze, AAC, oral and partner-mediated interactions; rich strategy and misconception feedback; and private expedition progress without timers, speed scores, lives, streak pressure, leaderboards or peer comparison. Independent mathematics, teacher, SEND, accessibility, safeguarding, renderer and pilot review remain required before promotion."
   },
   "accessibility_policy": {

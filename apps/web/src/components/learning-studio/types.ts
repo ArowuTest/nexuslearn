@@ -45,6 +45,15 @@ export type StudioRendererRegistry = Record<string, StudioRendererDefinition>;
 
 export const ENERGY_SIMULATOR = "energy-transfer-simulator";
 
+export function isParticleQuestion(question: Pick<StudioQuestion, "format" | "body">) {
+  const format = question.format.toLowerCase();
+  return ["particle-simulation", "model-sort"].includes(format)
+    || (format === "explain-choice" && (
+      question.body.particle_count_invariant === true
+      || question.body.particle_size_invariant === true
+    ));
+}
+
 export function asStringArray(value: unknown): string[] {
   return Array.isArray(value)
     ? value.filter((item): item is string | number => typeof item === "string" || typeof item === "number").map(String)

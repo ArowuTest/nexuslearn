@@ -29,8 +29,10 @@ export function AudioBlend({ question }: { question: StudioQuestion }) {
   const narrationAssets = useNarrationAssets();
   const sounds = asStringArray(question.body.sounds);
   const audioAssets = resolveNarrationAssetMap(question.body.audio_assets, narrationAssets);
+  const wholeWordAssets = resolveNarrationAssetMap(question.body.whole_word_audio_assets, narrationAssets);
+  const wholeWordEntries = Object.entries(wholeWordAssets);
   const promptAudio = resolveNarrationFields(question.body, narrationAssets);
-  if (!["audio_blend", "audio-blend", "audio-choice", "listen-read"].includes(question.format.toLowerCase()) && sounds.length === 0) return null;
+  if (!["audio_blend", "audio-blend", "audio-choice", "listen-read"].includes(question.format.toLowerCase()) && sounds.length === 0 && wholeWordEntries.length === 0) return null;
 
   function audioFor(sound: string) {
     return audioAssets[`phoneme-${sound}`] || audioAssets[sound] || "";
@@ -46,7 +48,7 @@ export function AudioBlend({ question }: { question: StudioQuestion }) {
   }
 
   return (
-    <div className="mx-auto mt-6 max-w-md rounded-3xl border border-white/10 bg-white/10 p-5 text-center" role="group" aria-label="Sound blending controls">
+    <div className="mx-auto mt-6 max-w-md rounded-3xl border border-white/10 bg-white/10 p-5 text-center" role="group" aria-label={sounds.length || !wholeWordEntries.length ? "Sound blending controls" : "Whole-word listening controls"}>
       <p className="font-display text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Listen and build</p>
       <div className="mt-4 flex flex-wrap justify-center gap-3">
         {(sounds.length ? sounds : ["listen", "think", "choose"]).map((sound) => {
@@ -65,6 +67,14 @@ export function AudioBlend({ question }: { question: StudioQuestion }) {
           );
         })}
       </div>
+      {wholeWordEntries.length > 0 && <div className="mt-4 rounded-2xl bg-white/8 p-3" role="group" aria-label="Whole-word listening controls">
+        <p className="text-sm font-semibold text-white">Hear each whole word</p>
+        <div className="mt-3 grid gap-2 sm:grid-cols-2">
+          {wholeWordEntries.map(([word, audioURL]) => <button key={word} type="button" className="sound-chip min-h-12" onClick={() => void playClip(audioURL, word)} aria-label={`Hear ${word}`}>
+            Hear {word}
+          </button>)}
+        </div>
+      </div>}
       <button
         type="button"
         onClick={() => void playClip(promptAudio, "Whole prompt")}
@@ -74,7 +84,7 @@ export function AudioBlend({ question }: { question: StudioQuestion }) {
         Hear the whole prompt
       </button>
       {audioStatus && <p className="mt-3 text-xs leading-5 text-white/80" aria-live="polite">{audioStatus}</p>}
-      {!promptAudio && Object.keys(audioAssets).length === 0 && (
+      {!promptAudio && Object.keys(audioAssets).length === 0 && wholeWordEntries.length === 0 && (
         <p className="mt-3 text-xs leading-5 text-white/80">Studio audio is being prepared. You can keep learning with the visual prompt.</p>
       )}
     </div>

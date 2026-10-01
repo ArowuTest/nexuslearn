@@ -94,6 +94,8 @@ test("particle renderer exposes model meaning and keyboard energy control", asyn
     prompt: "Increase the energy until the particles behave like a gas.",
     body: {
       choices: ["solid", "liquid", "gas"],
+      particle_count_invariant: true,
+      particle_size_invariant: true,
     },
     expected: "gas",
   });
@@ -107,6 +109,24 @@ test("particle renderer exposes model meaning and keyboard energy control", asyn
   await energy.focus();
   await page.keyboard.press("End");
   await expect(page.getByText(/model now behaves like a gas/i)).toBeVisible();
+  await expectNoSeriousAxeViolations(page);
+});
+
+test("generic explain-choice keeps the choice flow free of an unrelated particle model", async ({ page }) => {
+  await routeMission(page, {
+    id: "generic-explain-choice-question",
+    format: "explain-choice",
+    prompt: "Which material is best for a window?",
+    body: {
+      choices: ["Glass", "Wool", "Cardboard"],
+    },
+    expected: "Glass",
+  });
+  await page.goto("/play/mission?studentId=renderer-learner");
+
+  await expect(page.getByRole("group", { name: "Particle model comparison" })).toHaveCount(0);
+  await expect(page.getByRole("button", { name: "Glass", exact: true })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Submit answer", exact: true })).toBeVisible();
   await expectNoSeriousAxeViolations(page);
 });
 
@@ -149,6 +169,8 @@ test("audio blend renderer exposes named replay controls to the keyboard", async
         "phoneme-a": audioData,
         "phoneme-t": audioData,
       },
+      whole_word_audio_assets: { cat: audioData },
+      words: ["cat"],
       prompt_audio_url: audioData,
     },
     expected: "cat",
@@ -156,6 +178,8 @@ test("audio blend renderer exposes named replay controls to the keyboard", async
   await page.goto("/play/mission?studentId=renderer-learner");
 
   await expect(page.getByRole("group", { name: "Sound blending controls" })).toBeVisible();
+  await expect(page.getByRole("group", { name: "Whole-word listening controls" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Hear cat", exact: true })).toBeVisible();
   const sound = page.getByRole("button", { name: "Hear c", exact: true });
   await sound.focus();
   await page.keyboard.press("Enter");

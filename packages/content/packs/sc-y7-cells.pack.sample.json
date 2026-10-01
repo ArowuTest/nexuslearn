@@ -26475,7 +26475,7 @@
     "teacher_review": "not_started",
     "accessibility_review": "not_started",
     "safeguarding_review": "not_started",
-    "readiness_status": "pilot",
+    "readiness_status": "review",
     "notes": "Year 7 cells reaches the 240-item pilot target with four preserved curated variants and 236 deterministic review candidates spanning animal and plant cells, organelles and functions, specialised cells, microscopy, scale, tissues and organs, model limitations and misconceptions. Every generated item includes described-image, static text, tactile-model, visual, audio-replay, keyboard, switch, eye-gaze, AAC, oral and partner-mediated routes; rich evidence and repair feedback; explicit prepared-slide, glass, stain and body-fluid safety boundaries; and private lab-mission progress without timers, lives, streak pressure, leaderboards or peer comparison. Independent science, teacher, SEND, accessibility, safeguarding, practical-safety, renderer and pilot review remain required before promotion."
   },
   "accessibility_policy": {
