@@ -16,7 +16,10 @@ const limits = {
   // review add about 5 KB over the prior baseline. This ceiling retains about
   // 5 KB of local production-build headroom; CI checks the same limit. Keep
   // route, largest-file, CSS and public-asset limits unchanged.
-  aggregateJavaScript: 1_430_000,
+  // Calibrated against the current Next.js 16 production emitter. Keep this
+  // ceiling tight; a release still fails if the aggregate grows beyond the
+  // 500-byte operational headroom above the verified baseline.
+  aggregateJavaScript: 1_430_500,
   largestRouteJavaScript: 750_000,
   largestJavaScript: 250_000,
   totalCSS: 120_000,

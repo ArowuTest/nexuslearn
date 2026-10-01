@@ -4,8 +4,10 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
+	"net/url"
 	"os"
 	"path/filepath"
 	"strings"
@@ -130,6 +132,64 @@ func TestNarrationReviewQueuePaginatesAndFiltersTheWholeManifest(t *testing.T) {
 	}
 	if len(repo.limits) != 0 || len(repo.lookups) != 1 || len(repo.lookups[0]) != 3 {
 		t.Fatalf("expected one catalogue-scoped lookup for three assets, got lookups %#v and history limits %#v", repo.lookups, repo.limits)
+	}
+}
+
+func TestNarrationReviewQueueReturnsOpaqueCursorForForwardPaging(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "test-admin")
+	manifestPath := filepath.Join(t.TempDir(), "narration-manifest.json")
+	items := make([]map[string]any, 0, 3)
+	for index := 1; index <= 3; index++ {
+		items = append(items, map[string]any{
+			"id": fmt.Sprintf("en-y%d-listening--lesson--item", index), "pack_id": fmt.Sprintf("en-y%d-listening", index),
+			"kind": "lesson", "source_id": fmt.Sprintf("item-%d", index), "text": "Listen carefully.",
+			"text_sha256": strings.Repeat("a", 64), "sha256": strings.Repeat("b", 64),
+			"file": "/audio/listen.mp3", "technical_pass": true,
+		})
+	}
+	manifest, err := json.Marshal(map[string]any{"provider": "ElevenLabs", "voice": map[string]string{"name": "Alice", "model_id": "eleven_multilingual_v2"}, "items": items})
+	if err != nil {
+		t.Fatalf("marshal manifest: %v", err)
+	}
+	if err := os.WriteFile(manifestPath, manifest, 0o600); err != nil {
+		t.Fatalf("write manifest: %v", err)
+	}
+	t.Setenv("NARRATION_MANIFEST_PATH", manifestPath)
+
+	request := httptest.NewRequest(http.MethodGet, "/v1/admin/content/narration-queue?status=all&limit=1", nil)
+	request.Header.Set("X-Admin-Key", "test-admin")
+	response := httptest.NewRecorder()
+	New(&narrationReviewTestRepository{fakeRepository: &fakeRepository{}}, "postgres").ServeHTTP(response, request)
+	if response.Code != http.StatusOK {
+		t.Fatalf("queue returned %d: %s", response.Code, response.Body.String())
+	}
+	var payload struct {
+		Items      []narrationQueueItem `json:"items"`
+		NextCursor *string              `json:"next_cursor"`
+		NextOffset *int                 `json:"next_offset"`
+	}
+	if err := json.Unmarshal(response.Body.Bytes(), &payload); err != nil {
+		t.Fatal(err)
+	}
+	if len(payload.Items) != 1 || payload.NextCursor == nil || *payload.NextCursor == "" || payload.NextOffset == nil {
+		t.Fatalf("expected both opaque and legacy forward cursors, got %#v", payload)
+	}
+	if *payload.NextCursor == "1" {
+		t.Fatalf("cursor must not expose a plain offset: %q", *payload.NextCursor)
+	}
+
+	request = httptest.NewRequest(http.MethodGet, "/v1/admin/content/narration-queue?status=all&limit=1&cursor="+url.QueryEscape(*payload.NextCursor), nil)
+	request.Header.Set("X-Admin-Key", "test-admin")
+	response = httptest.NewRecorder()
+	New(&narrationReviewTestRepository{fakeRepository: &fakeRepository{}}, "postgres").ServeHTTP(response, request)
+	if response.Code != http.StatusOK {
+		t.Fatalf("cursor queue returned %d: %s", response.Code, response.Body.String())
+	}
+	if err := json.Unmarshal(response.Body.Bytes(), &payload); err != nil {
+		t.Fatal(err)
+	}
+	if len(payload.Items) != 1 || payload.Items[0].AssetID == "en-y1-listening--lesson--item" {
+		t.Fatalf("cursor did not advance the page: %#v", payload.Items)
 	}
 }
 
