@@ -73,6 +73,7 @@ export type NarrationQueuePage = {
   limit: number;
   offset: number;
   next_offset: number | null;
+  next_cursor?: string | null;
   served_by: "api";
   provider?: string;
   voice_name?: string;

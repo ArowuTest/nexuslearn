@@ -3,6 +3,7 @@ package server
 import (
 	"context"
 	"crypto/sha256"
+	"encoding/base64"
 	"encoding/hex"
 	"encoding/json"
 	"errors"
@@ -285,15 +286,21 @@ func (s *Server) handleNarrationReviewQueue(w http.ResponseWriter, r *http.Reque
 	}
 	limit := queryBoundedInt(r, "limit", 20, 1, 100)
 	offset := queryBoundedInt(r, "offset", 0, 0, len(filtered))
+	if cursor := strings.TrimSpace(r.URL.Query().Get("cursor")); cursor != "" {
+		offset = narrationQueueCursorOffset(filtered, cursor)
+	}
 	end := offset + limit
 	if end > len(filtered) {
 		end = len(filtered)
 	}
 	page := filtered[offset:end]
 	var nextOffset *int
+	var nextCursor *string
 	if end < len(filtered) {
 		next := end
 		nextOffset = &next
+		cursor := encodeNarrationQueueCursor(filtered[end-1])
+		nextCursor = &cursor
 	}
 	years := make([]narrationQueueYearSummary, 0, len(yearCounts))
 	for year, statuses := range yearCounts {
@@ -305,10 +312,50 @@ func (s *Server) handleNarrationReviewQueue(w http.ResponseWriter, r *http.Reque
 	sort.Slice(years, func(i, j int) bool { return years[i].Year < years[j].Year })
 	writeJSON(w, http.StatusOK, map[string]any{
 		"items": page, "total": len(filtered), "counts": counts, "years": years, "limit": limit,
-		"offset": offset, "next_offset": nextOffset, "served_by": "api", "manifest_available": true,
+		"offset": offset, "next_offset": nextOffset, "next_cursor": nextCursor, "served_by": "api", "manifest_available": true,
 		"release_id": manifest.ReleaseID, "catalogue_id": manifest.CatalogueID,
 		"provider": manifest.Provider, "voice_name": manifest.Voice.Name, "model_id": manifest.Voice.ModelID,
 	})
+}
+
+const narrationQueueCursorPrefix = "nexuslearn-audio-v1|"
+
+func encodeNarrationQueueCursor(item narrationQueueItem) string {
+	payload := fmt.Sprintf("%s%d|%s", narrationQueueCursorPrefix, item.Rank, item.AssetID)
+	return base64.RawURLEncoding.EncodeToString([]byte(payload))
+}
+
+func narrationQueueCursorOffset(items []narrationQueueItem, encoded string) int {
+	raw, err := base64.RawURLEncoding.DecodeString(encoded)
+	if err != nil {
+		return 0
+	}
+	value := string(raw)
+	if !strings.HasPrefix(value, narrationQueueCursorPrefix) {
+		return 0
+	}
+	parts := strings.SplitN(strings.TrimPrefix(value, narrationQueueCursorPrefix), "|", 2)
+	if len(parts) != 2 {
+		return 0
+	}
+	rank, err := strconv.Atoi(parts[0])
+	if err != nil || rank < 1 || strings.TrimSpace(parts[1]) == "" {
+		return 0
+	}
+	for index, item := range items {
+		if item.AssetID == parts[1] {
+			return index + 1
+		}
+	}
+	// If a reviewed item disappeared between requests, resume at the first
+	// remaining item with a strictly later stable queue rank. Never treat a
+	// rank as an array offset: filters and completed reviews can remove rows.
+	for index, item := range items {
+		if item.Rank > rank {
+			return index
+		}
+	}
+	return len(items)
 }
 
 func queryBoundedInt(r *http.Request, key string, fallback, minimum, maximum int) int {
