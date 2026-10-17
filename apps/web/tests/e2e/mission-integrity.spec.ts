@@ -216,7 +216,7 @@ test("an existing generated MP3 decodes through the mission player and mute stop
   // Technical playback in a disposable fixture is not listening approval or a
   // production manifest promotion. No Audio mock: Chromium decodes the file.
   const clip = "/audio/narration/alice/en-y1-listening-comprehension/lesson/ready-to-listen-warm-up.mp3";
-  await page.route(`**${clip}`, async route => route.fulfill({ contentType: "audio/mpeg", body: await readFile(`public${clip}`) }));
+  await page.route(`**${clip}`, async route => route.fulfill({ contentType: "audio/mpeg", body: await readFile(`private${clip}`) }));
   await page.route("**/content/narration-manifest.json", route => route.fulfill({ json: { items: [
     { id: "ready-listen", file: clip, technical_pass: true, production_status: "released" },
   ] } }));
