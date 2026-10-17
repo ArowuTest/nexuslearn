@@ -297,14 +297,15 @@ test("SEND-aware mission teaches before practice and records child confidence", 
   await expect(page.getByRole("button", { name: "Calm", exact: true })).toHaveAttribute("aria-pressed", "true");
   await expect(page.getByRole("region", { name: "Active support plan" })).toContainText("Support plan active");
   await expect(page.getByRole("region", { name: "Active support plan" })).toContainText("Short mission");
-  await expect(page.getByRole("region", { name: "Active support plan" })).toContainText("Audio-first");
+  await expect(page.getByRole("region", { name: "Active support plan" })).toContainText("Audio requested");
+  await expect(page.getByRole("region", { name: "Active support plan" })).toContainText("A recording is not ready for this step.");
   await expect(page.getByRole("region", { name: "Active support plan" })).toContainText("Low-sensory profile.");
   await expect(page.getByRole("navigation", { name: "Child learning route" })).toContainText("Learn");
   await page.getByRole("button", { name: "Close support", exact: true }).click();
   await expect(page.getByRole("heading", { name: "Listen as the sounds join together." })).toBeVisible();
   await expect(page.getByText("We are practising: Blend continuously.")).toBeVisible();
-  await expect(page.getByRole("button", { name: "Read this aloud" })).toBeVisible();
-  await page.getByRole("button", { name: "Read this aloud" }).click();
+  await expect(page.getByRole("button", { name: "Read this aloud" })).toHaveCount(0);
+  await expect(page.getByText("Studio narration is being prepared for this step.", { exact: false })).toBeVisible();
   expect(await page.evaluate(() => "speechSynthesis" in window ? window.speechSynthesis.speaking : false)).toBe(false);
   await page.getByRole("button", { name: "Pause" }).click();
   await expect(page.getByRole("dialog", { name: "Take a quiet pause" })).toBeVisible();
