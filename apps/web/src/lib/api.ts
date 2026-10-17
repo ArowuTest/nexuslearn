@@ -972,7 +972,7 @@ async function readParentAccount(path: string, failure: string, signal?: AbortSi
   }
 }
 
-export async function createParentChild(child: { external_ref: string; display_name: string; year_group: number; engagement: StudentEngagementProfile }) {
+export async function createParentChild(child: { external_ref: string; display_name: string; year_group: number; engagement: StudentEngagementProfile; consent?: boolean }) {
   if (!API) throw new Error("The NexusLearn API is not configured yet.");
   const res = await fetch(`${API}/v1/parent/children/${encodeURIComponent(child.external_ref)}`, {
     method: "PUT",

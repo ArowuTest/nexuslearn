@@ -63,10 +63,12 @@ test("real family signup opens an empty workspace ready for its first child", as
   await page.getByRole("button", { name: "Reduced motion", exact: true }).click();
   await page.getByRole("button", { name: "Read aloud", exact: true }).click();
   const created = page.waitForResponse(response => response.url().endsWith(`/v1/parent/children/${childId}`) && response.request().method() === "PUT");
+  await page.getByRole("checkbox", { name: "I agree this child can use NexusLearn." }).check();
   await page.getByRole("button", { name: "Create child profile" }).click();
   const childResponse = await created;
   expect(childResponse.status()).toBe(200);
   const saved = await childResponse.json();
+  expect(childResponse.request().postDataJSON().consent).toBe(true);
   expect(saved.engagement.learning_approaches).toContain("reduced_motion");
   expect(saved.engagement.learning_approaches).toContain("audio_read_aloud");
   expect(saved.engagement.version).toBeGreaterThan(0);

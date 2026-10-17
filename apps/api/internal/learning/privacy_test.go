@@ -20,4 +20,8 @@ func TestPrivacyDefaultsStayOffAndRegionsAreClosed(t *testing.T) {
 	if !ValidConsentPurpose("core_learning") || ValidConsentPurpose("marketing") {
 		t.Fatal("consent purposes drifted")
 	}
+	consent := FamilyLearningConsent(" home-child ")
+	if consent.StudentExternalRef != "home-child" || !consent.Granted || consent.Purpose != "core_learning" || consent.PolicyVersion != "2026-10" || consent.Region != "england" || consent.Statement != FamilyLearningConsentStatement || consent.Statement == "" {
+		t.Fatalf("family consent record drifted: %+v", consent)
+	}
 }

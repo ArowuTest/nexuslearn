@@ -2678,6 +2678,7 @@ func (s *Server) handleParentUpsertChild(w http.ResponseWriter, r *http.Request)
 		DisplayName string                            `json:"display_name"`
 		YearGroup   int                               `json:"year_group"`
 		Engagement  learning.StudentEngagementProfile `json:"engagement"`
+		Consent     bool                              `json:"consent"`
 	}
 	if err := json.NewDecoder(r.Body).Decode(&in); err != nil {
 		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
@@ -2700,6 +2701,19 @@ func (s *Server) handleParentUpsertChild(w http.ResponseWriter, r *http.Request)
 	if err != nil {
 		s.writeAdminSaveError(w, err, "parent child")
 		return
+	}
+	if in.Consent {
+		store, ok := s.repo.(interface {
+			RecordConsent(context.Context, string, learning.ConsentRecord) (learning.ConsentRecord, error)
+		})
+		if !ok {
+			writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "family privacy tools need the database"})
+			return
+		}
+		if _, err := store.RecordConsent(r.Context(), parent.ID, learning.FamilyLearningConsent(student.ExternalRef)); err != nil {
+			s.writePrivacyError(w, err)
+			return
+		}
 	}
 	writeJSON(w, http.StatusOK, saved)
 }

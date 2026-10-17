@@ -241,7 +241,7 @@ export default function AdminAudioWorkspace({ request, readiness }: { request: A
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
             <h2 id="audio-filter-title" className="font-display text-xl font-semibold">Listening queue</h2>
-            <p className="mt-1 text-sm text-[#1d1a3e]/62">Filters stay in the page address. Enter one pack id, then play each clip before approving it.</p>
+            <p className="mt-1 text-sm text-[#1d1a3e]/62">Play one pack, then approve each clip.</p>
           </div>
           <p aria-live="polite" role="status" className="rounded-full bg-white px-3 py-2 text-xs font-semibold text-[#155d64]">{message}</p>
         </div>
@@ -375,8 +375,8 @@ export default function AdminAudioWorkspace({ request, readiness }: { request: A
                     </select>
                   </label>
                 </div>
-                <label className="mt-3 block text-xs font-semibold text-[#1d1a3e]/68">Review notes
-                  <textarea aria-label="Review notes" value={draft.notes} onChange={(event) => updateDraft(item, { notes: event.target.value })} maxLength={2000} placeholder="Evidence for a re-record or useful approval context" className="mt-1 min-h-24 w-full rounded-xl border border-[#1d1a3e]/15 px-3 py-2 text-sm font-normal" />
+                <label className={`mt-3 block ${audioLabelClass}`}>Review notes
+                  <textarea aria-label="Review notes" value={draft.notes} onChange={(event) => updateDraft(item, { notes: event.target.value })} maxLength={2000} placeholder="Evidence for a re-record or useful approval context" className={`${audioFieldClass} min-h-24 py-2`} />
                 </label>
 
                 <div className="mt-4 flex flex-wrap gap-2">

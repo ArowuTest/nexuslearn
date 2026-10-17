@@ -78,6 +78,46 @@ func TestParentChildHandlerValidatesBeforeRepositoryWrites(t *testing.T) {
 	}
 }
 
+type consentRecordingParentChild struct {
+	parentChildHandlerRepository
+	parentID string
+	record   learning.ConsentRecord
+}
+
+func (f *consentRecordingParentChild) RecordConsent(_ context.Context, parentID string, record learning.ConsentRecord) (learning.ConsentRecord, error) {
+	f.parentID = parentID
+	f.record = record
+	record.ID = "consent-1"
+	return record, nil
+}
+
+func TestParentChildCreateRecordsCoreLearningConsent(t *testing.T) {
+	repo := &consentRecordingParentChild{parentChildHandlerRepository: parentChildHandlerRepository{fakeRepository: fakeRepository{accountSession: learning.AccountSession{UserID: "verified-parent-id", Role: "parent"}}}}
+	srv, token := parentChildHandlerSession(t, repo, "parent")
+	res := putParentChild(srv, token, "consented-child", `{"display_name":"Child","year_group":2,"consent":true}`)
+	if res.Code != http.StatusOK || repo.called != 1 || repo.parentID != "verified-parent-id" || repo.record.StudentExternalRef != "consented-child" || repo.record.Statement != learning.FamilyLearningConsentStatement || !repo.record.Granted || repo.record.Purpose != "core_learning" {
+		t.Fatalf("consent was not stored with the child: status=%d calls=%d parent=%q record=%+v body=%s", res.Code, repo.called, repo.parentID, repo.record, res.Body.String())
+	}
+}
+
+func TestParentChildCreateWithoutConsentDoesNotGrantIt(t *testing.T) {
+	repo := &consentRecordingParentChild{parentChildHandlerRepository: parentChildHandlerRepository{fakeRepository: fakeRepository{accountSession: learning.AccountSession{UserID: "verified-parent-id", Role: "parent"}}}}
+	srv, token := parentChildHandlerSession(t, repo, "parent")
+	res := putParentChild(srv, token, "ungranted-child", `{"display_name":"Child","year_group":2}`)
+	if res.Code != http.StatusOK || repo.called != 1 || repo.record.Statement != "" || repo.record.Granted {
+		t.Fatalf("missing tick must not grant consent: status=%d calls=%d record=%+v", res.Code, repo.called, repo.record)
+	}
+}
+
+func TestParentChildConsentFailsClosedWithoutPrivacyStore(t *testing.T) {
+	repo := &parentChildHandlerRepository{fakeRepository: fakeRepository{accountSession: learning.AccountSession{UserID: "verified-parent-id", Role: "parent"}}}
+	srv, token := parentChildHandlerSession(t, repo, "parent")
+	res := putParentChild(srv, token, "privacy-missing", `{"display_name":"Child","year_group":2,"consent":true}`)
+	if res.Code != http.StatusServiceUnavailable || repo.called != 1 || !strings.Contains(res.Body.String(), "family privacy tools need the database") {
+		t.Fatalf("consent without a privacy store must fail closed: status=%d calls=%d body=%s", res.Code, repo.called, res.Body.String())
+	}
+}
+
 func TestParentChildHandlerRequiresParentRole(t *testing.T) {
 	for _, role := range []string{"platform_admin", "content_editor", "content_reviewer", "school_admin", "teacher", "pupil"} {
 		t.Run(role, func(t *testing.T) {

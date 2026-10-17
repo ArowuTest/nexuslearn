@@ -13,6 +13,12 @@ import (
 
 var ErrChildDeletionBlocked = errors.New("this learner is enrolled at a school and cannot be deleted from the family account")
 
+// FamilyLearningConsentStatement is the sentence shown beside the family
+// create-child control. The API stores this exact wording when a parent ticks it.
+const FamilyLearningConsentStatement = "I agree this child can use NexusLearn."
+
+const familyLearningConsentPolicy = "2026-10"
+
 type ConsentRecord struct {
 	ID                 string `json:"id"`
 	StudentExternalRef string `json:"student_external_ref"`
@@ -68,6 +74,17 @@ func DefaultRetentionPolicies() []RetentionPolicy {
 		{Category: "parental_consent", RetainDays: 2190, Action: "keep_after_account_deletion", Notes: "Keep the consent decision for six years so the family can show what was agreed. It does not keep the child's answers."},
 		{Category: "login_lockout", RetainDays: 1, Action: "memory_only", Notes: "Failed login counts stay in the API process and are forgotten on restart."},
 		{Category: "support_notes", RetainDays: 730, Action: "delete_on_family_request", Notes: "Support notes are private to the family or school and are removed with the learner."},
+	}
+}
+
+func FamilyLearningConsent(studentExternalRef string) ConsentRecord {
+	return ConsentRecord{
+		StudentExternalRef: strings.TrimSpace(studentExternalRef),
+		Purpose:            "core_learning",
+		PolicyVersion:      familyLearningConsentPolicy,
+		Granted:            true,
+		Region:             "england",
+		Statement:          FamilyLearningConsentStatement,
 	}
 }
 
