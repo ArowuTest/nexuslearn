@@ -15,7 +15,7 @@ if (copyFlag >= 0 && !copyTo) {
   process.exit(1);
 }
 
-const tracked = execFileSync("git", ["ls-files", "-z"], { cwd: repo }).toString("utf8").split("\0").filter(Boolean);
+const tracked = execFileSync("git", ["-c", "safe.directory=*", "ls-files", "-z"], { cwd: repo }).toString("utf8").split("\0").filter(Boolean);
 const rows = [];
 for (const relative of tracked) {
   const absolute = path.join(repo, relative);
