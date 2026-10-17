@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test("anonymous users cannot download authoring reports or unapproved narration", async ({ request }) => {
+test("anonymous users cannot download authoring reports or unapproved narration", async ({ request, baseURL }) => {
   for (const url of [
     "/content/pilot-review-evidence-template.json",
     "/content/flagship-review.json",
@@ -19,7 +19,9 @@ test("anonymous users cannot download authoring reports or unapproved narration"
   expect((await request.get(`/%61${file.slice(2)}`)).status(), "encoded audio prefix").toBe(404);
   expect((await request.get(file.replace("/audio/", "/audio%2F"))).status(), "encoded slash").toBe(404);
   expect((await request.get(file.replace("/audio/", "/Audio/"))).status(), "case variant").toBe(404);
-  expect((await request.get(`/${file}`)).status(), "double slash").toBe(404);
+  // A leading "//" is a protocol-relative URL, so pin it to this server.
+  expect((await request.get(`${baseURL}/${file}`)).status(), "double slash").toBe(404);
+  expect((await request.get(file.replace("/audio/", "/audio//"))).status(), "embedded double slash").toBe(404);
   const summary = await request.get("/review/safety-summary.json");
   expect(summary.status()).toBe(200);
   expect(await summary.text()).not.toContain("/audio/narration/");
