@@ -12,4 +12,6 @@ test("the review summary matches the catalogue a child can and cannot hear", asy
   assert.equal(fresh.narration.blocked, 874);
   assert.equal(fresh.variants.servable_status, 62);
   assert.equal(fresh.variants.blocked, 20148);
+  assert.equal(JSON.stringify(committed).includes("/audio/"), false);
+  assert.equal(JSON.stringify(fresh).includes("\"file\""), false);
 });

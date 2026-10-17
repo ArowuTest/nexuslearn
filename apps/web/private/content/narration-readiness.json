@@ -9,7 +9,7 @@
     "minimum_mp3_bytes": 2000,
     "minimum_complete_frames": 3,
     "minimum_duration_seconds": 0.1,
-    "narration_root": "apps/web/public/audio/narration/alice",
+    "narration_root": "apps/web/private/audio/narration/alice",
     "human_listening_approval_required": true,
     "variant_references_require_independently_registered_matching_asset_id": true
   },

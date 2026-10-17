@@ -20,7 +20,7 @@
 <body>
   <main>
     <h1>Review one pack</h1>
-    <p class="note">Nothing on this page is shown to a child until you approve it. Question variants still need the separate live-release checks. Sign in as a parent or teacher in NexusLearn first, in this same browser.</p>
+    <p class="note">Nothing on this page is shown to a child until a content reviewer approves it. Question variants still need the separate live-release checks. Sign in as a content reviewer or platform administrator in NexusLearn first, in this same browser.</p>
     <p id="counts"></p>
     <label for="pack">Pack</label>
     <select id="pack"></select>
@@ -34,6 +34,7 @@
     <p id="result" role="status"></p>
   </main>
   <script>
+    (async function () {
     const token = sessionStorage.getItem("nexuslearn_account_session") || "";
     const counts = document.querySelector("#counts");
     const packSelect = document.querySelector("#pack");
@@ -56,19 +57,19 @@
         const play = document.createElement("button");
         play.type = "button";
         play.textContent = "Play";
-        play.addEventListener("click", () => playClip(clip.file, play));
+        play.addEventListener("click", () => playClip(clip.id, play));
         row.append(name, play);
         clips.append(row);
       }
     }
 
-    async function playClip(file, button) {
+    async function playClip(id, button) {
       result.textContent = "Loading the recording…";
       button.disabled = true;
       try {
-        const response = await fetch(`/audio/review-listen?file=${encodeURIComponent(file)}`, { headers: { Authorization: `Bearer ${token}` } });
+        const response = await fetch(`/audio/review-listen?id=${encodeURIComponent(id)}`, { headers: { Authorization: `Bearer ${token}` } });
         if (!response.ok) {
-          result.textContent = "Sign in as a parent or teacher, then try the recording again.";
+          result.textContent = "Sign in as a content reviewer, then try the recording again.";
           return;
         }
         const audio = new Audio(URL.createObjectURL(await response.blob()));
@@ -111,6 +112,7 @@
       packSelect.append(option);
     }
     renderClips();
+    })();
   </script>
 </body>
 </html>

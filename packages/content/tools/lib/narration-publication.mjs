@@ -16,7 +16,7 @@ const journalDirectory = root => path.join(root, ".agent/narration-production/pu
 
 function targetFile(root, relative) {
   if (typeof relative !== "string" || relative.includes("\\") || relative.split("/").some(part => !part || part === "." || part === "..")
-    || (!metadataFiles.has(relative) && !/^apps\/web\/public\/audio\/narration\/alice\/[a-zA-Z0-9_/-]+\.mp3$/.test(relative))) {
+    || (!metadataFiles.has(relative) && !/^apps\/web\/private\/audio\/narration\/alice\/[a-zA-Z0-9_/-]+\.mp3$/.test(relative))) {
     throw new Error("Narration publication contains an out-of-scope path");
   }
   return path.join(root, relative);

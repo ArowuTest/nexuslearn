@@ -94,7 +94,7 @@ function PupilLoginForm({ initialPupil, initialCode, card }: { initialPupil: str
 
         <section className="grid items-start gap-6 py-8 lg:grid-cols-[0.72fr_1.28fr]">
           <aside className="rounded-lg border border-white/10 bg-white/8 p-6">
-            <p className="font-display text-sm uppercase tracking-[0.18em] text-[#ffdf8a]">Pupil login</p>
+            <p className="nl-gold">Pupil login</p>
             <h1 className="font-display mt-3 text-4xl font-semibold leading-tight md:text-5xl">Open your learning card.</h1>
             <p className="mt-4 leading-7 text-white/70">
               Children can use a school card, login code and picture password without needing an email account.
@@ -170,7 +170,7 @@ function LoginShell() {
   return (
     <main className="grid min-h-screen place-items-center bg-[#111a33] px-5 text-white">
       <section className="rounded-lg border border-white/10 bg-white/8 p-8 text-center">
-        <p className="font-display text-sm uppercase tracking-[0.18em] text-[#ffdf8a]">Pupil login</p>
+        <p className="nl-gold">Pupil login</p>
         <h1 className="font-display mt-3 text-4xl font-semibold">Opening your card...</h1>
       </section>
     </main>
@@ -181,7 +181,7 @@ function Field({ label, value, onChange }: { label: string; value: string; onCha
   return (
     <label className="block p-6">
       <span className="text-sm font-semibold text-[#17233f]/70">{label}</span>
-      <input value={value} onChange={(event) => onChange(event.target.value)} className="mt-2 w-full rounded-lg border border-[#17233f]/14 px-4 py-3 text-sm outline-none focus:border-[#7357c9]" />
+      <input value={value} onChange={(event) => onChange(event.target.value)} className="nl-line" />
     </label>
   );
 }

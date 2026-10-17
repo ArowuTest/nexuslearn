@@ -1,13 +1,10 @@
 import { createHmac, timingSafeEqual } from "node:crypto";
 
-const DEV_SECRET = "local-narration-access-only";
-
+// There is no built-in signing secret. Preview, production and an unset
+// environment all fail closed. Local development must set NARRATION_ACCESS_SECRET
+// when a signed URL is required; approved clips do not need one.
 export function narrationAccessSecret() {
-  const configured = String(process.env.NARRATION_ACCESS_SECRET || "").trim();
-  if (configured) return configured;
-  const env = String(process.env.NEXUSLEARN_ENV || process.env.VERCEL_ENV || "").toLowerCase();
-  if (env === "production") return "";
-  return DEV_SECRET;
+  return String(process.env.NARRATION_ACCESS_SECRET || "").trim();
 }
 
 export function signNarrationPath(pathname, expiresAt, secret = narrationAccessSecret()) {
@@ -23,6 +20,6 @@ export function narrationSignatureValid(pathname, expiresAt, signature, nowSecon
   const expected = signNarrationPath(pathname, String(Math.trunc(exp)), secret);
   const got = Buffer.from(String(signature));
   const want = Buffer.from(expected);
-  if (got.length !== want.length) return false;
+  if (got.length !== want.length || expected === "") return false;
   return timingSafeEqual(got, want);
 }

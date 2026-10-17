@@ -24,9 +24,12 @@ export default defineConfig({
     { name: "mobile-chromium", use: { ...devices["Pixel 7"] } },
   ],
   webServer: {
-    command: `npx next ${productionServer ? "start" : "dev --webpack"} --hostname 127.0.0.1 --port ${port}`,
+    command: "node tools/playwright-web.mjs",
     env: {
       NEXT_PUBLIC_API_URL: "http://api.test",
+      API_URL: "http://127.0.0.1:3999",
+      PLAYWRIGHT_PORT: port,
+      PLAYWRIGHT_SERVER_MODE: productionServer ? "production" : "",
     },
     url: baseURL,
     reuseExistingServer: !process.env.CI && !productionServer,

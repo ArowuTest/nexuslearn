@@ -115,6 +115,16 @@ func TestProductionRefusesIncompleteConfig(t *testing.T) {
 	t.Setenv("ACCOUNT_SESSION_SECRET", "account")
 	t.Setenv("PUPIL_SESSION_SECRET", "pupil")
 	t.Setenv("CORS_ALLOWED_ORIGINS", "https://family.example")
+	if err := ValidateProductionEnvironment(); err == nil {
+		t.Fatal("short session secrets were accepted")
+	}
+	t.Setenv("ACCOUNT_SESSION_SECRET", strings.Repeat("a", 32))
+	t.Setenv("PUPIL_SESSION_SECRET", strings.Repeat("b", 32))
+	t.Setenv("ALLOW_LEGACY_CREDENTIAL_HEADERS", "true")
+	if err := ValidateProductionEnvironment(); err == nil {
+		t.Fatal("legacy header authentication was allowed in production")
+	}
+	t.Setenv("ALLOW_LEGACY_CREDENTIAL_HEADERS", "false")
 	if err := ValidateProductionEnvironment(); err != nil {
 		t.Fatal(err)
 	}
@@ -182,7 +192,7 @@ func TestPackApprovalDoesNotPublishUntilAPersonApprovesAudio(t *testing.T) {
 	if err := json.Unmarshal(loginRes.Body.Bytes(), &session); err != nil {
 		t.Fatal(err)
 	}
-	req := httptest.NewRequest(http.MethodPost, "/v1/admin/content/pack-approvals", strings.NewReader(`{"pack_id":"en-y1-listening","decision":"approved","notes":"I listened to this pack with the child nearby.","narration_ids":["clip-1"]}`))
+	req := httptest.NewRequest(http.MethodPost, "/v1/admin/content/pack-approvals", strings.NewReader(`{"pack_id":"en-y1-listening-comprehension","decision":"approved","notes":"I listened to this pack with the child nearby.","narration_ids":["en-y1-listening-comprehension--vocabulary--listen"]}`))
 	req.Header.Set("Authorization", "Bearer "+session.Session.Token)
 	res := httptest.NewRecorder()
 	srv.ServeHTTP(res, req)
@@ -192,7 +202,7 @@ func TestPackApprovalDoesNotPublishUntilAPersonApprovesAudio(t *testing.T) {
 	req = httptest.NewRequest(http.MethodGet, "/v1/runtime/narration-approvals", nil)
 	res = httptest.NewRecorder()
 	srv.ServeHTTP(res, req)
-	if !strings.Contains(res.Body.String(), "clip-1") {
+	if !strings.Contains(res.Body.String(), "en-y1-listening-comprehension--vocabulary--listen") {
 		t.Fatalf("approvals %s", res.Body.String())
 	}
 }
@@ -273,6 +283,229 @@ func TestFamilyLoginRequiresConsentWhenConfigured(t *testing.T) {
 	srv.ServeHTTP(res, req)
 	if res.Code != http.StatusOK {
 		t.Fatalf("consent should allow login, got %d %s", res.Code, res.Body.String())
+	}
+}
+
+type guardedSignupRepo struct {
+	fakeRepository
+	blockedEmail string
+}
+
+func (g guardedSignupRepo) CreateParentAccount(ctx context.Context, parent learning.ParentAccountConfig) (learning.ParentAccountConfig, error) {
+	if strings.EqualFold(parent.Email, g.blockedEmail) {
+		return learning.ParentAccountConfig{}, learning.ErrParentAccountExists
+	}
+	return g.fakeRepository.CreateParentAccount(ctx, parent)
+}
+
+func TestSignupRejectsExistingEmailWithoutASession(t *testing.T) {
+	t.Setenv("ACCOUNT_SESSION_SECRET", strings.Repeat("s", 32))
+	srv := New(guardedSignupRepo{blockedEmail: "root@example.com"}, "memory")
+	for _, email := range []string{"root@example.com", "ROOT@example.com"} {
+		req := httptest.NewRequest(http.MethodPost, "/v1/parents/signup", strings.NewReader(`{"email":"`+email+`","display_name":"Attacker","password":"a-new-password"}`))
+		res := httptest.NewRecorder()
+		srv.ServeHTTP(res, req)
+		if res.Code != http.StatusConflict || strings.Contains(strings.ToLower(res.Body.String()), "exist") || strings.Contains(res.Body.String(), "session") {
+			t.Fatalf("signup %s status %d body %s", email, res.Code, res.Body.String())
+		}
+	}
+	fresh := httptest.NewRequest(http.MethodPost, "/v1/parents/signup", strings.NewReader(`{"email":"new-parent@example.com","display_name":"New Parent","password":"a-new-password"}`))
+	freshRes := httptest.NewRecorder()
+	srv.ServeHTTP(freshRes, fresh)
+	if freshRes.Code != http.StatusCreated || !strings.Contains(freshRes.Body.String(), "session") {
+		t.Fatalf("new signup %d %s", freshRes.Code, freshRes.Body.String())
+	}
+}
+
+func TestSignupRateLimitCountsConflicts(t *testing.T) {
+	srv := New(guardedSignupRepo{blockedEmail: "root@example.com"}, "memory")
+	for attempt := 1; attempt <= 5; attempt++ {
+		req := httptest.NewRequest(http.MethodPost, "/v1/parents/signup", strings.NewReader(`{"email":"root@example.com","display_name":"Attacker","password":"a-new-password"}`))
+		req.RemoteAddr = "203.0.113.9:1000"
+		res := httptest.NewRecorder()
+		srv.ServeHTTP(res, req)
+		if res.Code != http.StatusConflict {
+			t.Fatalf("attempt %d status %d", attempt, res.Code)
+		}
+	}
+	req := httptest.NewRequest(http.MethodPost, "/v1/parents/signup", strings.NewReader(`{"email":"other@example.com","display_name":"Other","password":"a-new-password"}`))
+	req.RemoteAddr = "203.0.113.9:1000"
+	req.Header.Set("X-Forwarded-For", "198.51.100.4")
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusTooManyRequests {
+		t.Fatalf("signup lockout status %d body %s", res.Code, res.Body.String())
+	}
+}
+
+func TestClientIPUsesTheTrustedProxyHop(t *testing.T) {
+	t.Setenv("NEXUSLEARN_ENV", "")
+	t.Setenv("APP_ENV", "")
+	t.Setenv("RENDER", "")
+	t.Setenv("NEXUSLEARN_TRUST_PROXY", "true")
+	proxied := httptest.NewRequest(http.MethodGet, "/healthz", nil)
+	proxied.RemoteAddr = "10.0.0.8:443"
+	proxied.Header.Set("X-Forwarded-For", "198.51.100.4, 203.0.113.9")
+	if clientIP(proxied) != "203.0.113.9" {
+		t.Fatalf("trusted hop = %s", clientIP(proxied))
+	}
+	t.Setenv("NEXUSLEARN_TRUST_PROXY", "false")
+	direct := httptest.NewRequest(http.MethodGet, "/healthz", nil)
+	direct.RemoteAddr = "203.0.113.8:443"
+	direct.Header.Set("X-Forwarded-For", "198.51.100.4")
+	if clientIP(direct) != "203.0.113.8" {
+		t.Fatalf("direct connection trusted the caller header: %s", clientIP(direct))
+	}
+	t.Setenv("NEXUSLEARN_ENV", "production")
+	t.Setenv("NEXUSLEARN_TRUST_PROXY", "")
+	behindRender := httptest.NewRequest(http.MethodGet, "/healthz", nil)
+	behindRender.RemoteAddr = "10.0.0.8:443"
+	behindRender.Header.Set("X-Forwarded-For", "198.51.100.4, 203.0.113.10")
+	if clientIP(behindRender) != "203.0.113.10" {
+		t.Fatalf("production proxy hop = %s", clientIP(behindRender))
+	}
+}
+
+func TestLimiterDropsExpiredBuckets(t *testing.T) {
+	limiter := newAttemptLimiter()
+	limiter.maxKeys = 1
+	limiter.window = time.Minute
+	now := time.Now()
+	limiter.now = func() time.Time { return now }
+	limiter.fail("old")
+	now = now.Add(2 * time.Minute)
+	limiter.fail("new")
+	limiter.mu.Lock()
+	defer limiter.mu.Unlock()
+	if _, ok := limiter.failures["old"]; ok {
+		t.Fatal("expired limiter bucket was kept")
+	}
+	if _, ok := limiter.failures["new"]; !ok {
+		t.Fatal("current limiter bucket was dropped")
+	}
+}
+
+func TestParentsCannotApproveNarration(t *testing.T) {
+	t.Setenv("ALLOW_LEGACY_CREDENTIAL_HEADERS", "false")
+	t.Setenv("ACCOUNT_SESSION_SECRET", strings.Repeat("s", 32))
+	repo := sessionParentRepo{fakeRepository: fakeRepository{
+		verifyParent:   true,
+		accountSession: learning.AccountSession{UserID: "parent-1", LoginID: "parent@example.com", Role: "parent"},
+	}}
+	srv := New(repo, "memory")
+	login := httptest.NewRequest(http.MethodPost, "/v1/auth/parent-login", strings.NewReader(`{"login_id":"parent@example.com","password":"secret"}`))
+	loginRes := httptest.NewRecorder()
+	srv.ServeHTTP(loginRes, login)
+	if loginRes.Code != http.StatusOK {
+		t.Fatalf("parent login %d %s", loginRes.Code, loginRes.Body.String())
+	}
+	var session struct {
+		Session struct {
+			Token string `json:"token"`
+		} `json:"session"`
+	}
+	if err := json.Unmarshal(loginRes.Body.Bytes(), &session); err != nil {
+		t.Fatal(err)
+	}
+	req := httptest.NewRequest(http.MethodPost, "/v1/admin/content/pack-approvals", strings.NewReader(`{"pack_id":"en-y1-listening-comprehension","decision":"approved","notes":"I listened to this pack with the child nearby.","narration_ids":["en-y1-listening-comprehension--vocabulary--listen"]}`))
+	req.Header.Set("Authorization", "Bearer "+session.Session.Token)
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusForbidden {
+		t.Fatalf("parent approval status %d %s", res.Code, res.Body.String())
+	}
+}
+
+type sessionParentRepo struct {
+	fakeRepository
+}
+
+func (s sessionParentRepo) VerifyParentUser(_ context.Context, loginID string, _ string) (learning.ParentAccountConfig, bool, error) {
+	if !s.verifyParent {
+		return learning.ParentAccountConfig{}, false, nil
+	}
+	return learning.ParentAccountConfig{ID: "parent-1", Email: loginID, LoginID: loginID, DisplayName: "Parent"}, true, nil
+}
+
+func TestFamilyPrivacyUsesSessionsAndRejectsAnotherFamily(t *testing.T) {
+	t.Setenv("ALLOW_LEGACY_CREDENTIAL_HEADERS", "false")
+	t.Setenv("ACCOUNT_SESSION_SECRET", strings.Repeat("s", 32))
+	repo := sessionParentRepo{fakeRepository: fakeRepository{
+		verifyParent: true,
+		accountSession: learning.AccountSession{
+			UserID: "parent-1", LoginID: "parent@example.com", Role: "parent",
+		},
+		parentPortal: learning.ParentPortalConfig{
+			Parent:   learning.ParentAccountConfig{ID: "parent-1", LoginID: "parent@example.com"},
+			Children: []learning.ParentChildConfig{{Student: learning.StudentProfileConfig{ExternalRef: "ada-home"}}},
+		},
+	}}
+	srv := New(repo, "memory")
+	legacy := httptest.NewRequest(http.MethodGet, "/v1/parent/children/ada-home/export", nil)
+	legacy.Header.Set("X-Parent-Login", "parent@example.com")
+	legacy.Header.Set("X-Parent-Password", "secret")
+	legacyRes := httptest.NewRecorder()
+	srv.ServeHTTP(legacyRes, legacy)
+	if legacyRes.Code != http.StatusUnauthorized {
+		t.Fatalf("legacy privacy header status %d", legacyRes.Code)
+	}
+	login := httptest.NewRequest(http.MethodPost, "/v1/auth/parent-login", strings.NewReader(`{"login_id":"parent@example.com","password":"secret"}`))
+	loginRes := httptest.NewRecorder()
+	srv.ServeHTTP(loginRes, login)
+	if loginRes.Code != http.StatusOK {
+		t.Fatalf("login %d %s", loginRes.Code, loginRes.Body.String())
+	}
+	var session struct {
+		Session struct {
+			Token string `json:"token"`
+		} `json:"session"`
+	}
+	if err := json.Unmarshal(loginRes.Body.Bytes(), &session); err != nil {
+		t.Fatal(err)
+	}
+	export := httptest.NewRequest(http.MethodGet, "/v1/parent/children/ada-home/export", nil)
+	export.Header.Set("Authorization", "Bearer "+session.Session.Token)
+	exportRes := httptest.NewRecorder()
+	srv.ServeHTTP(exportRes, export)
+	if exportRes.Code != http.StatusOK || !strings.Contains(exportRes.Body.String(), `"mastery"`) || !strings.Contains(exportRes.Body.String(), `"secrets_included":false`) {
+		t.Fatalf("session export %d %s", exportRes.Code, exportRes.Body.String())
+	}
+	for _, target := range []struct {
+		method string
+		path   string
+		body   string
+	}{
+		{http.MethodGet, "/v1/parent/children/other-child/export", ""},
+		{http.MethodDelete, "/v1/parent/children/other-child", `{"confirm":"delete"}`},
+	} {
+		req := httptest.NewRequest(target.method, target.path, strings.NewReader(target.body))
+		req.Header.Set("Authorization", "Bearer "+session.Session.Token)
+		res := httptest.NewRecorder()
+		srv.ServeHTTP(res, req)
+		if res.Code != http.StatusForbidden {
+			t.Fatalf("%s %s status %d %s", target.method, target.path, res.Code, res.Body.String())
+		}
+	}
+}
+
+func TestBootstrapKeyStopsAfterTheFirstAdministrator(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "test-admin")
+	t.Setenv("ALLOW_LEGACY_CREDENTIAL_HEADERS", "false")
+	open := New(fakeRepository{}, "memory")
+	req := httptest.NewRequest(http.MethodPut, "/v1/admin/platform-users/first@example.com", strings.NewReader(`{"display_name":"First Admin","password":"a-long-password","roles":["platform_admin"]}`))
+	req.Header.Set("X-Admin-Key", "test-admin")
+	res := httptest.NewRecorder()
+	open.ServeHTTP(res, req)
+	if res.Code != http.StatusOK {
+		t.Fatalf("first administrator status %d %s", res.Code, res.Body.String())
+	}
+	closed := New(fakeRepository{platformAdminExists: true}, "memory")
+	req = httptest.NewRequest(http.MethodPut, "/v1/admin/platform-users/second@example.com", strings.NewReader(`{"display_name":"Second Admin","password":"a-long-password","roles":["platform_admin"]}`))
+	req.Header.Set("X-Admin-Key", "test-admin")
+	res = httptest.NewRecorder()
+	closed.ServeHTTP(res, req)
+	if res.Code != http.StatusForbidden {
+		t.Fatalf("later bootstrap status %d %s", res.Code, res.Body.String())
 	}
 }
 

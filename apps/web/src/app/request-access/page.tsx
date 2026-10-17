@@ -90,7 +90,7 @@ export default function RequestAccessPage() {
 
         <section className="grid gap-6 py-8 lg:grid-cols-[0.74fr_1.26fr]">
           <aside className="rounded-lg border border-white/10 bg-white/8 p-6">
-            <p className="font-display text-sm uppercase tracking-[0.18em] text-[#ffdf8a]">Access request</p>
+            <p className="nl-gold">Access request</p>
             <h1 className="font-display mt-3 text-4xl font-semibold leading-tight md:text-5xl">Set up the right route from day one.</h1>
             <p className="mt-4 leading-7 text-white/72">
               Choose the route, share only the essential details, then optionally add Year groups and support needs so onboarding can be prepared properly.

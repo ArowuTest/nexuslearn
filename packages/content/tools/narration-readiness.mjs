@@ -10,7 +10,7 @@ const repoRoot = path.resolve(toolDir, "../../..");
 const packDir = path.join(repoRoot, "packages/content/packs");
 const manifestPath = path.join(repoRoot, "packages/content/audio/narration-manifest.json");
 const reviewLedgerPath = path.join(repoRoot, "packages/content/audio/narration-listening-reviews.json");
-const audioRoot = path.join(repoRoot, "apps/web/public/audio/narration/alice");
+const audioRoot = path.join(repoRoot, "apps/web/private/audio/narration/alice");
 const coverageDir = path.join(repoRoot, "packages/content/generated/coverage");
 const publicDir = path.join(repoRoot, "apps/web/private/content");
 const strict = process.argv.includes("--strict");
@@ -501,7 +501,7 @@ function buildReport() {
       minimum_mp3_bytes: 2000,
       minimum_complete_frames: 3,
       minimum_duration_seconds: 0.1,
-      narration_root: "apps/web/public/audio/narration/alice",
+      narration_root: "apps/web/private/audio/narration/alice",
       human_listening_approval_required: true,
       variant_references_require_independently_registered_matching_asset_id: true,
     },

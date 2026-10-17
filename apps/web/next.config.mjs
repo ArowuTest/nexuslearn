@@ -28,6 +28,13 @@ const contentSecurityPolicy = [
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  // Pending narration is not in public/. Trace the private copies into the
+  // audio route so a Vercel function can read them. Next matches this against
+  // the app entry path (/app/audio/...), not the public URL. If a deploy
+  // exceeds the function size limit, set NARRATION_AUDIO_ROOT to a private mount.
+  outputFileTracingIncludes: {
+    "/app/audio/**": ["./private/audio/narration/**/*"],
+  },
   async headers() {
     return [
       {

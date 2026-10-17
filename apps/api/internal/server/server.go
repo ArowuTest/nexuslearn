@@ -269,7 +269,7 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("POST /v1/auth/school-login", s.limitLogin("login_id", s.handleSchoolLogin))
 	s.mux.HandleFunc("POST /v1/auth/parent-login", s.limitLogin("login_id", s.handleParentLogin))
 	s.mux.HandleFunc("POST /v1/auth/logout", s.handleAccountLogout)
-	s.mux.HandleFunc("POST /v1/parents/signup", s.limitLogin("email", s.handleParentSignup))
+	s.mux.HandleFunc("POST /v1/parents/signup", s.limitSignup(s.handleParentSignup))
 	s.mux.HandleFunc("POST /v1/parent/consent", s.handleParentConsent)
 	s.mux.HandleFunc("GET /v1/parent/children/{externalRef}/export", s.handleParentExportChild)
 	s.mux.HandleFunc("DELETE /v1/parent/children/{externalRef}", s.handleParentDeleteChild)
@@ -543,6 +543,19 @@ func (s *Server) requireBootstrapAdmin(w http.ResponseWriter, r *http.Request) b
 	if subtle.ConstantTimeCompare([]byte(token), []byte(s.adminKey)) != 1 {
 		writeJSON(w, http.StatusUnauthorized, map[string]string{"error": "bootstrap administrator access required"})
 		return false
+	}
+	if directory, ok := s.repo.(interface {
+		PlatformAdminExists(ctx context.Context) (bool, error)
+	}); ok {
+		exists, err := directory.PlatformAdminExists(r.Context())
+		if err != nil {
+			writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not check administrator setup"})
+			return false
+		}
+		if exists {
+			writeJSON(w, http.StatusForbidden, map[string]string{"error": "the bootstrap key can only create the first administrator"})
+			return false
+		}
 	}
 	return true
 }
@@ -2467,8 +2480,12 @@ func (s *Server) handleParentSignup(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
 		return
 	}
-	saved, err := s.repo.UpsertParentAccount(r.Context(), parent)
+	saved, err := s.repo.CreateParentAccount(r.Context(), parent)
 	if err != nil {
+		if errors.Is(err, learning.ErrParentAccountExists) {
+			writeJSON(w, http.StatusConflict, map[string]string{"error": "an account could not be created with those details"})
+			return
+		}
 		if errors.Is(err, learning.ErrInvalidConfiguration) {
 			writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
 			return

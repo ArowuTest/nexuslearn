@@ -21,8 +21,8 @@ function ContextChoiceBoard({ question, input, onChoose, onSubmit }: { question:
   return <section className="studio-workspace-panel" aria-label={title}>
     <p className="studio-step-label">{title}</p>
     <p className="mt-2 text-center text-sm text-white/80">{context}</p>
-    {source && <p className="mt-4 rounded-2xl bg-[#fff7df] p-4 text-sm leading-6 text-ink"><span className="font-display text-xs uppercase">Text to inspect</span><br />{source}</p>}
-    {original && <p className="mt-4 rounded-2xl bg-[#fff7df] p-4 text-sm leading-6 text-ink"><span className="font-display text-xs uppercase">Original wording</span><br />{original}</p>}
+    {source && <p className="nl-note"><span className="font-display text-xs uppercase">Text to inspect</span><br />{source}</p>}
+    {original && <p className="nl-note"><span className="font-display text-xs uppercase">Original wording</span><br />{original}</p>}
     {evidenceIcons.length > 0 && <div className="mt-4 flex flex-wrap justify-center gap-2">{evidenceIcons.map((icon) => <span key={icon} className="rounded-xl bg-sun px-3 py-2 text-sm font-semibold text-ink">{icon}</span>)}</div>}
     {(day3 || day7) && <div className="mt-4 grid gap-2 sm:grid-cols-2"><div className="rounded-xl bg-white/10 p-3 text-sm text-white"><span className="font-display text-xs text-sun">Earlier</span><br />{day3 ? `${String(day3.height_cm ?? '')} cm, ${String(day3.leaf_count ?? '')} leaves — ${String(day3.description ?? '')}` : 'First observation'}</div><div className="rounded-xl bg-white/10 p-3 text-sm text-white"><span className="font-display text-xs text-sun">Later</span><br />{day7 ? `${String(day7.height_cm ?? '')} cm, ${String(day7.leaf_count ?? '')} leaves — ${String(day7.description ?? '')}` : 'Second observation'}</div></div>}
     <div className="mt-4 grid gap-2" role="group" aria-label="Contextual answer choices">

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { resolveNarrationCandidate } from "./narration-policy.mjs";
 
 type NarrationManifestItem = {
   id?: string;
@@ -55,17 +56,10 @@ export function useNarrationAssets(): NarrationAssetIndex {
 
 export function resolveNarrationAsset(value: unknown, assets: NarrationAssetIndex) {
   if (typeof value !== "string" || !value.trim()) return "";
-  const candidate = value.trim();
-  // Authored test fixtures and a small number of runtime integrations can
-  // provide a direct playable URL. Manifest IDs still require a released,
-  // technically validated asset before they resolve.
-  if (
-    candidate.startsWith("/") ||
-    candidate.startsWith("blob:") ||
-    candidate.startsWith("data:audio/") ||
-    /^https?:\/\//i.test(candidate)
-  ) return candidate;
-  return assets.get(candidate) ?? "";
+  // Released catalogue files, /qa- fixtures, blob and data audio only.
+  // Unapproved /audio paths and remote URLs stay unresolved; the server
+  // repeats that check before any private file is streamed.
+  return resolveNarrationCandidate(value.trim(), assets);
 }
 
 export function resolveNarrationFields(body: Record<string, unknown>, assets: NarrationAssetIndex) {

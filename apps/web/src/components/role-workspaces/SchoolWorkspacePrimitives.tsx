@@ -34,7 +34,7 @@ export function LoginCard({ credential, schoolName }: { credential: StudentCrede
   const loginURL = loginCardURL(credential, currentOrigin, process.env.NEXT_PUBLIC_APP_ORIGIN);
   return (
     <article className="break-inside-avoid rounded-lg border-2 border-[#17233f] bg-white p-5 text-[#17233f]">
-      <p className="font-display text-xs uppercase tracking-[0.16em] text-[#7357c9]">NexusLearn</p>
+      <p className="nl-kicker">NexusLearn</p>
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0 flex-1 break-words">
           <h3 className="font-display mt-1 text-2xl font-semibold">{credential.display_name || credential.student_external_ref}</h3>
@@ -71,7 +71,7 @@ function Info({ label, value }: { label: string; value: string }) {
 }
 
 export function Field({ label, value, onChange, type = "text" }: { label: string; value: string | number; onChange: (value: string) => void; type?: "text" | "number" | "password" | "datetime-local" }) {
-  return <label className="block p-5"><span className="text-sm font-semibold text-[#17233f]/70">{label}</span><input type={type} value={value} onChange={(event) => onChange(event.target.value)} className="mt-2 w-full rounded-lg border border-[#17233f]/14 px-4 py-3 text-sm outline-none focus:border-[#7357c9]" /></label>;
+  return <label className="block p-5"><span className="text-sm font-semibold text-[#17233f]/70">{label}</span><input type={type} value={value} onChange={(event) => onChange(event.target.value)} className="nl-line" /></label>;
 }
 
 export function PurposeSelect({ value, values, onChange }: { value: string; values: string[]; onChange: (value: string) => void }) {
@@ -79,7 +79,7 @@ export function PurposeSelect({ value, values, onChange }: { value: string; valu
 }
 
 export function LabeledSelect({ label, value, values, labels = {}, onChange }: { label: string; value: string; values: string[]; labels?: Record<string, string>; onChange: (value: string) => void }) {
-  return <label className="block p-5"><span className="text-sm font-semibold text-[#17233f]/70">{label}</span><select value={value} onChange={(event) => onChange(event.target.value)} className="mt-2 w-full rounded-lg border border-[#17233f]/14 px-4 py-3 text-sm outline-none focus:border-[#7357c9]">{values.map((item) => <option key={item || "blank"} value={item}>{labels[item] || friendly(item) || "Select..."}</option>)}</select></label>;
+  return <label className="block p-5"><span className="text-sm font-semibold text-[#17233f]/70">{label}</span><select value={value} onChange={(event) => onChange(event.target.value)} className="nl-line">{values.map((item) => <option key={item || "blank"} value={item}>{labels[item] || friendly(item) || "Select..."}</option>)}</select></label>;
 }
 
 export function ChoiceGrid({ label, hint, values, selected, onChange }: { label: string; hint?: string; values: string[]; selected: string[]; onChange: (values: string[]) => void }) {
@@ -91,7 +91,7 @@ export function BooleanField({ label, checked, onChange }: { label: string; chec
 }
 
 export function TextArea({ label, value, onChange }: { label: string; value: string; onChange: (value: string) => void }) {
-  return <label className="block p-5"><span className="text-sm font-semibold text-[#17233f]/70">{label}</span><textarea value={value} onChange={(event) => onChange(event.target.value)} rows={4} className="mt-2 w-full rounded-lg border border-[#17233f]/14 px-4 py-3 text-sm outline-none focus:border-[#7357c9]" /></label>;
+  return <label className="block p-5"><span className="text-sm font-semibold text-[#17233f]/70">{label}</span><textarea value={value} onChange={(event) => onChange(event.target.value)} rows={4} className="nl-line" /></label>;
 }
 
 export function Row({ title, meta, body, onClick, action = null }: { title: string; meta: string; body: string; onClick?: () => void; action?: ReactNode }) {
@@ -99,7 +99,7 @@ export function Row({ title, meta, body, onClick, action = null }: { title: stri
 }
 
 export function Actions({ label, disabled, onClick }: { label: string; disabled: boolean; onClick: () => void }) {
-  return <div className="flex justify-end p-5"><button onClick={onClick} disabled={disabled} className="btn-pop bg-[#ffbf45] px-5 py-3 text-sm disabled:opacity-50">{label}</button></div>;
+  return <div className="flex justify-end p-5"><button onClick={onClick} disabled={disabled} className="btn-pop nl-go">{label}</button></div>;
 }
 
 export function LearnerScopeNotice({ purpose, learner }: { purpose: string; learner?: { external_ref: string; display_name: string; year_group: number } }) {

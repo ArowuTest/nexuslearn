@@ -40,6 +40,13 @@ func (s *Server) memoryExport(parentID string, ref string) learning.FamilyExport
 		Child:           map[string]any{"external_ref": ref, "parent_user_id": parentID, "deleted": s.privacyMemory.deleted[ref]},
 		Consent:         consent,
 		Attempts:        []map[string]any{},
+		Mastery:         []map[string]any{},
+		MasteryHistory:  []map[string]any{},
+		Baselines:       []map[string]any{},
+		MockAssessments: []map[string]any{},
+		WorldState:      []map[string]any{},
+		LessonSteps:     []map[string]any{},
+		Events:          []map[string]any{},
 		Sharing:         map[string]bool{"school": false, "marketing": false, "research": false},
 		SecretsIncluded: false,
 	}

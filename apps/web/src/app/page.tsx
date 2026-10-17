@@ -152,7 +152,7 @@ export default async function Home() {
 
           <div className="grid min-h-[calc(100vh-92px)] items-center gap-10 py-10 lg:grid-cols-[0.88fr_1.12fr]">
             <div>
-              <p className="font-display text-sm uppercase tracking-[0.18em] text-[#ffdf8a]">{curriculumHeadline()}</p>
+              <p className="nl-gold">{curriculumHeadline()}</p>
               <h1 className="font-display mt-5 max-w-3xl text-5xl font-semibold leading-[0.98] md:text-7xl">NexusLearn</h1>
               <p className="mt-5 max-w-2xl text-xl leading-8 text-white/80">
                 Animated missions, adaptive support and evidence-rich curriculum pathways for children, families and schools.

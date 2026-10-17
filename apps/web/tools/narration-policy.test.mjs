@@ -3,8 +3,8 @@ import assert from "node:assert/strict";
 import { webcrypto } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import { isReleasedNarration, narrationByFile, narrationPathApproved, releasedNarrationPaths, resolveNarrationCandidate } from "../src/lib/narration-policy.mjs";
-import { narrationSignatureValid, signNarrationPath } from "../src/lib/narration-access.mjs";
-import { safePublicAudioPath } from "../src/lib/review-audio-path.mjs";
+import { narrationAccessSecret, narrationSignatureValid, signNarrationPath } from "../src/lib/narration-access.mjs";
+import { canonicalNarrationPath, privateAudioFile } from "../src/lib/private-audio.mjs";
 
 test("children only receive human-approved narration paths", () => {
   const released = new Map([["clip", "/audio/narration/alice/clip.mp3"]]);
@@ -48,8 +48,33 @@ test("node and webcrypto sign the same narration URL", async () => {
   assert.equal(narrationSignatureValid(pathname, exp, nodeSignature, 2_000_000_001, secret), false);
 });
 
-test("review audio stays inside the public narration directory", () => {
-  assert.equal(safePublicAudioPath("/app", "/audio/narration/alice/clip.mp3"), "/app/public/audio/narration/alice/clip.mp3");
-  assert.equal(safePublicAudioPath("/app", "/audio/narration/../../etc/passwd"), "");
-  assert.equal(safePublicAudioPath("/app", "/private/secret.mp3"), "");
+test("private narration paths reject encoded, case and traversal variants", () => {
+  const previous = process.env.NARRATION_AUDIO_ROOT;
+  delete process.env.NARRATION_AUDIO_ROOT;
+  try {
+    assert.equal(privateAudioFile("/app", "/audio/narration/alice/clip.mp3"), "/app/private/audio/narration/alice/clip.mp3");
+    assert.equal(canonicalNarrationPath("/%61udio/narration/alice/clip.mp3"), "");
+    assert.equal(canonicalNarrationPath("/audio%2Fnarration/alice/clip.mp3"), "");
+    assert.equal(canonicalNarrationPath("/Audio/narration/alice/clip.mp3"), "");
+    assert.equal(canonicalNarrationPath("//audio/narration/alice/clip.mp3"), "");
+    assert.equal(canonicalNarrationPath("/audio/narration/../../etc/passwd"), "");
+    assert.equal(privateAudioFile("/app", "/private/secret.mp3"), "");
+  } finally {
+    if (previous === undefined) delete process.env.NARRATION_AUDIO_ROOT;
+    else process.env.NARRATION_AUDIO_ROOT = previous;
+  }
+});
+
+test("narration signing fails closed when the secret is unset", () => {
+  const saved = process.env.NARRATION_ACCESS_SECRET;
+  delete process.env.NARRATION_ACCESS_SECRET;
+  process.env.VERCEL_ENV = "preview";
+  process.env.NEXUSLEARN_ENV = "";
+  try {
+    assert.equal(narrationAccessSecret(), "");
+    assert.equal(narrationSignatureValid("/audio/narration/alice/clip.mp3", "2000000000", "ab".repeat(32), 1_999_999_000), false);
+  } finally {
+    if (saved === undefined) delete process.env.NARRATION_ACCESS_SECRET;
+    else process.env.NARRATION_ACCESS_SECRET = saved;
+  }
 });

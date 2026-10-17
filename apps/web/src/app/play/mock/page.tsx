@@ -69,7 +69,7 @@ export default function PupilMockPage() {
           backLabel="Back to learning"
         />
         <section className="mt-10 rounded-lg bg-white p-6 text-[#15213d] shadow-[0_24px_70px_rgba(0,0,0,0.25)] md:p-8">
-          <p className="font-display text-xs uppercase tracking-[0.16em] text-[#7357c9]">Practice studio</p>
+          <p className="nl-kicker">Practice studio</p>
           <h1 className="font-display mt-2 text-4xl font-semibold">Build a subject check.</h1>
           <p className="mt-3 max-w-2xl leading-7 text-[#15213d]/65">Choose what you want to practise. The platform keeps your learning supports, mixes retrieval with fresh evidence and never turns a mock into a speed penalty.</p>
           <div className="mt-6">

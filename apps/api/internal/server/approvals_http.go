@@ -22,7 +22,7 @@ func newApprovalMemory() *approvalMemory {
 }
 
 func (s *Server) handleReviewAccess(w http.ResponseWriter, r *http.Request) {
-	payload, ok := s.requireAccountSession(w, r, "platform_admin", "content_editor", "content_reviewer", "parent", "teacher", "school_admin")
+	payload, ok := s.requireAccountSession(w, r, "platform_admin", "content_reviewer")
 	if !ok {
 		return
 	}
@@ -39,7 +39,11 @@ func (s *Server) handleNarrationApprovals(w http.ResponseWriter, r *http.Request
 }
 
 func (s *Server) handlePackApproval(w http.ResponseWriter, r *http.Request) {
-	payload, ok := s.requireAccountSession(w, r, "platform_admin", "content_editor", "content_reviewer", "parent", "teacher", "school_admin")
+	// narration_reviews stays the per-clip listening ledger. It requires sha256
+	// hashes, playback coverage and only approved|rejected. A pack-level hold
+	// has none of those, and inventing hashes would record clips as heard.
+	// human_content_approvals is the child-playback allowlist for a real pack.
+	payload, ok := s.requireAccountSession(w, r, "platform_admin", "content_reviewer")
 	if !ok {
 		return
 	}
@@ -55,16 +59,28 @@ func (s *Server) handlePackApproval(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "pack_id, a decision of approved or hold, and notes of at least 20 characters are required"})
 		return
 	}
+	if !learning.KnownNarrationPack(in.PackID) {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "that pack is not in the narration catalogue"})
+		return
+	}
 	if len(in.NarrationIDs) > 500 {
 		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "approve one pack at a time"})
 		return
 	}
 	clean := make([]string, 0, len(in.NarrationIDs))
+	seen := map[string]bool{}
 	for _, id := range in.NarrationIDs {
 		id = strings.TrimSpace(id)
-		if id != "" && !strings.Contains(id, "/") && len(id) <= 160 {
-			clean = append(clean, id)
+		if id == "" || strings.Contains(id, "/") || len(id) > 160 || seen[id] || !learning.NarrationBelongsToPack(in.PackID, id) {
+			writeJSON(w, http.StatusBadRequest, map[string]string{"error": "every recording must belong to this pack"})
+			return
 		}
+		seen[id] = true
+		clean = append(clean, id)
+	}
+	if in.Decision == "approved" && len(clean) == 0 {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "name the recordings you listened to before approving"})
+		return
 	}
 	in.NarrationIDs = clean
 	store, ok := s.repo.(interface {

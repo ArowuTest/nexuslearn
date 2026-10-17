@@ -42,7 +42,7 @@ async function fixture(t, items) {
     const packPath = path.join(root, "packages/content/packs", `${packID}.json`);
     await fs.mkdir(path.dirname(packPath), { recursive: true });
     await fs.writeFile(packPath, JSON.stringify({ pack_id: packID, source_alignment: { year: row.year }, teaching_sequence: [{ step_id: "teach", audio_script: text }] }));
-    const file = path.join(root, "apps/web/public/audio/narration/alice", relative);
+    const file = path.join(root, "apps/web/private/audio/narration/alice", relative);
     await fs.mkdir(path.dirname(file), { recursive: true });
     await fs.writeFile(file, audio);
   }
@@ -325,7 +325,7 @@ test("a later provider failure keeps published files intact and resumes verified
   assert.notEqual(first.status, 0);
   assert.equal(await fs.readFile(f.manifestPath, "utf8"), before);
   for (const row of f.rows) {
-    assert.deepEqual(await fs.readFile(path.join(f.root, "apps/web/public/audio/narration/alice", row.relative_file)), audio,
+    assert.deepEqual(await fs.readFile(path.join(f.root, "apps/web/private/audio/narration/alice", row.relative_file)), audio,
       "no selected public file is replaced until the entire provider batch is ready");
   }
   const second = f.run(["--force"]);
@@ -391,7 +391,7 @@ test("a manifest publication failure rolls back files and resumes without anothe
   const first = f.run(["--force"], [200], "failure");
   assert.notEqual(first.status, 0);
   assert.equal(await fs.readFile(f.manifestPath, "utf8"), before, "canonical inventory must roll back with the files");
-  assert.deepEqual(await fs.readFile(path.join(f.root, "apps/web/public/audio/narration/alice", f.rows[0].relative_file)), audio);
+  assert.deepEqual(await fs.readFile(path.join(f.root, "apps/web/private/audio/narration/alice", f.rows[0].relative_file)), audio);
   const second = f.run(["--force"]);
   assert.equal(second.status, 0, second.stderr);
   assert.equal((await f.requests()).length, 1);

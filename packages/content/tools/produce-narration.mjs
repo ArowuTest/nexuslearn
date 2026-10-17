@@ -12,7 +12,7 @@ import { publishNarrationBatch, recoverNarrationPublication } from "./lib/narrat
 const toolDir = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(toolDir, "../../..");
 const packDir = path.join(repoRoot, "packages/content/packs");
-const publicRoot = path.join(repoRoot, "apps/web/public/audio/narration/alice");
+const publicRoot = path.join(repoRoot, "apps/web/private/audio/narration/alice");
 const manifestPath = path.join(repoRoot, "packages/content/audio/narration-manifest.json");
 const publicManifestPath = path.join(repoRoot, "apps/web/public/content/narration-manifest.json");
 const reviewPath = path.join(repoRoot, "packages/content/generated/audio/narration-review.html");

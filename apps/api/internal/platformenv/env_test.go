@@ -2,21 +2,43 @@ package platformenv
 
 import "testing"
 
-func TestProductionSignals(t *testing.T) {
-	t.Setenv("NEXUSLEARN_ENV", "")
-	t.Setenv("APP_ENV", "")
-	t.Setenv("RENDER", "")
-	if Production() {
-		t.Fatal("empty environment is not production")
+func TestProductionDefaultsClosed(t *testing.T) {
+	getenv := func(key string) string { return "" }
+	if !production(getenv, false) {
+		t.Fatal("an unmarked process is production")
 	}
-	t.Setenv("RENDER", "true")
-	if !Production() {
-		t.Fatal("Render web services are production")
+	if production(getenv, true) {
+		t.Fatal("go test stays non-production until it opts in")
 	}
-	t.Setenv("RENDER", "")
-	t.Setenv("APP_ENV", "production")
-	if !Production() {
-		t.Fatal("APP_ENV=production is production")
+	dev := func(key string) string {
+		if key == "NEXUSLEARN_ENV" {
+			return "development"
+		}
+		return ""
+	}
+	if production(dev, false) {
+		t.Fatal("explicit development is not production")
+	}
+	render := func(key string) string {
+		if key == "RENDER" {
+			return "true"
+		}
+		if key == "NEXUSLEARN_ENV" {
+			return "development"
+		}
+		return ""
+	}
+	if production(render, false) {
+		t.Fatal("an explicit development flag wins over Render")
+	}
+	live := func(key string) string {
+		if key == "APP_ENV" {
+			return "production"
+		}
+		return ""
+	}
+	if !production(live, true) {
+		t.Fatal("tests can still opt into production")
 	}
 }
 

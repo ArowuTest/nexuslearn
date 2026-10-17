@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, type SyntheticEvent } from "react";
+import { accountSessionHeaders } from "@/lib/api";
 import { assessPace } from "@/lib/audio-pace.mjs";
 import { assessPlaybackCoverage } from "@/lib/audio-playback-coverage.mjs";
 import {
@@ -44,6 +45,54 @@ const rerecordReasons = [
   ["transcript_change", "Transcript changed"],
   ["other", "Other"],
 ] as const;
+
+function ReviewableClip({
+  file,
+  label,
+  playbackKey,
+  onLoadedMetadata,
+  onError,
+  onCanPlay,
+  onRateChange,
+  onEnded,
+}: {
+  file: string;
+  label: string;
+  playbackKey: string;
+  onLoadedMetadata: (event: SyntheticEvent<HTMLAudioElement>) => void;
+  onError: () => void;
+  onCanPlay: () => void;
+  onRateChange: (event: SyntheticEvent<HTMLAudioElement>) => void;
+  onEnded: (event: SyntheticEvent<HTMLAudioElement>) => void;
+}) {
+  const [src, setSrc] = useState("");
+  const onErrorRef = useRef(onError);
+  onErrorRef.current = onError;
+  useEffect(() => {
+    const controller = new AbortController();
+    let objectUrl = "";
+    (async () => {
+      try {
+        const response = await fetch(`/audio/review-listen?file=${encodeURIComponent(file)}`, {
+          headers: accountSessionHeaders(),
+          signal: controller.signal,
+        });
+        if (!response.ok) throw new Error("listen failed");
+        objectUrl = URL.createObjectURL(await response.blob());
+        if (!controller.signal.aborted) setSrc(objectUrl);
+      } catch {
+        if (!controller.signal.aborted) onErrorRef.current();
+      }
+    })();
+    return () => {
+      controller.abort();
+      if (objectUrl) URL.revokeObjectURL(objectUrl);
+    };
+  }, [file, playbackKey]);
+  if (!src) return <p className="mt-4 text-xs text-[#1d1a3e]/62" role="status">Loading the recording…</p>;
+  return <audio key={playbackKey} className="mt-4 w-full" controls controlsList="noplaybackrate" preload="metadata" src={src} aria-label={label}
+    onLoadedMetadata={onLoadedMetadata} onError={onError} onCanPlay={onCanPlay} onRateChange={onRateChange} onEnded={onEnded} />;
+}
 
 function draftFor(item: NarrationQueueItem): ReviewDraft {
   const review = item.review?.stale ? undefined : item.review;
@@ -245,22 +294,22 @@ export default function AdminAudioWorkspace({ request, readiness }: { request: A
 
         <form className="mt-4 grid gap-3 rounded-2xl bg-white p-4 md:grid-cols-2 xl:grid-cols-6" onSubmit={(event) => { event.preventDefault(); applyFilters(); }}>
           <label className="text-xs font-semibold text-[#1d1a3e]/68">Decision status
-            <select aria-label="Audio decision status" value={filters.status} onChange={(event) => updateFilter("status", event.target.value as AudioQueueFilters["status"])} className="mt-1 min-h-11 w-full rounded-xl border border-[#1d1a3e]/15 bg-white px-3 text-sm font-normal">
+            <select aria-label="Audio decision status" value={filters.status} onChange={(event) => updateFilter("status", event.target.value as AudioQueueFilters["status"])} className="nl-clip">
               <option value="awaiting">Awaiting listening</option><option value="rejected">Re-record required</option><option value="stale">Stale decisions</option><option value="approved">Approved</option><option value="all">All statuses</option>
             </select>
           </label>
           <label className="text-xs font-semibold text-[#1d1a3e]/68">Subject
-            <select aria-label="Audio subject" value={filters.subject} onChange={(event) => updateFilter("subject", event.target.value)} className="mt-1 min-h-11 w-full rounded-xl border border-[#1d1a3e]/15 bg-white px-3 text-sm font-normal">
+            <select aria-label="Audio subject" value={filters.subject} onChange={(event) => updateFilter("subject", event.target.value)} className="nl-clip">
               <option value="">All subjects</option><option>English</option><option>Mathematics</option><option>Science</option>
             </select>
           </label>
           <label className="text-xs font-semibold text-[#1d1a3e]/68">Year
-            <select aria-label="Audio year" value={filters.year} onChange={(event) => updateFilter("year", event.target.value)} className="mt-1 min-h-11 w-full rounded-xl border border-[#1d1a3e]/15 bg-white px-3 text-sm font-normal">
+            <select aria-label="Audio year" value={filters.year} onChange={(event) => updateFilter("year", event.target.value)} className="nl-clip">
               <option value="">All years</option>{[1, 2, 3, 4, 5, 6, 7].map((year) => <option key={year} value={year}>Year {year}</option>)}
             </select>
           </label>
           <label className="text-xs font-semibold text-[#1d1a3e]/68">Asset type
-            <select aria-label="Audio asset type" value={filters.kind} onChange={(event) => updateFilter("kind", event.target.value)} className="mt-1 min-h-11 w-full rounded-xl border border-[#1d1a3e]/15 bg-white px-3 text-sm font-normal">
+            <select aria-label="Audio asset type" value={filters.kind} onChange={(event) => updateFilter("kind", event.target.value)} className="nl-clip">
               <option value="">All types</option><option value="lesson">Lessons</option><option value="vocabulary">Vocabulary</option>
             </select>
           </label>
@@ -290,7 +339,7 @@ export default function AdminAudioWorkspace({ request, readiness }: { request: A
 
                 {stale && <div className="mt-4 rounded-2xl border border-[#f0b35a]/50 bg-[#fff8e8] p-3 text-sm text-[#725100]" role="alert"><strong>The previous decision is stale.</strong> Re-listen and create a new decision against the current file and profile.</div>}
 
-                <audio key={`${key}:${playbackRuns[key] ?? 0}`} className="mt-4 w-full" controls controlsList="noplaybackrate" preload="metadata" src={item.file} aria-label={`Listen to ${item.asset_id}`}
+                <ReviewableClip file={item.file} label={`Listen to ${item.asset_id}`} playbackKey={`${key}:${playbackRuns[key] ?? 0}`}
                   onLoadedMetadata={(event) => {
                     const seconds = event.currentTarget.duration;
                     if (Number.isFinite(seconds) && seconds > 0) setDurations((current) => ({ ...current, [key]: seconds }));
@@ -364,7 +413,7 @@ export default function AdminAudioWorkspace({ request, readiness }: { request: A
                     <input aria-label="Reviewer name" value={draft.reviewerName} onChange={(event) => updateDraft(item, { reviewerName: event.target.value })} autoComplete="name" className="mt-1 min-h-11 w-full rounded-xl border border-[#1d1a3e]/15 px-3 text-sm font-normal" />
                   </label>
                   <label className="text-xs font-semibold text-[#1d1a3e]/68">Re-record reason
-                    <select aria-label="Re-record reason" value={draft.reason} onChange={(event) => updateDraft(item, { reason: event.target.value })} className="mt-1 min-h-11 w-full rounded-xl border border-[#1d1a3e]/15 bg-white px-3 text-sm font-normal">
+                    <select aria-label="Re-record reason" value={draft.reason} onChange={(event) => updateDraft(item, { reason: event.target.value })} className="nl-clip">
                       {rerecordReasons.map(([value, label]) => <option key={value} value={value}>{label}</option>)}
                     </select>
                   </label>

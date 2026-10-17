@@ -18,6 +18,7 @@ import (
 )
 
 var ErrInvalidConfiguration = errors.New("invalid configuration")
+var ErrParentAccountExists = errors.New("parent account exists")
 
 type contentVersionStore interface {
 	Exec(ctx context.Context, sql string, args ...any) (pgconn.CommandTag, error)
@@ -737,7 +738,7 @@ func (r *PostgresRepository) UpsertStudent(ctx context.Context, student StudentP
 		RETURNING id::text, created_at, updated_at
 	`, student.ExternalRef, student.DisplayName, student.YearGroup).Scan(&id, &createdAt, &updatedAt)
 	if err == nil {
-		_, err = tx.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'student', $1, $2::jsonb)`, student.ExternalRef, mustJSON(student))
+		_, err = tx.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'student', $1, $2::jsonb)`, student.ExternalRef, mustJSON(map[string]any{"external_ref": student.ExternalRef, "year_group": student.YearGroup}))
 	}
 	if err == nil {
 		err = tx.Commit(ctx)
@@ -1267,7 +1268,7 @@ func (r *PostgresRepository) UpsertStudentCredential(ctx context.Context, creden
 		RETURNING updated_at
 	`, credential.StudentExternalRef, credential.LoginCode, mustJSON(credential.PicturePassword), credential.QRSecretHash).Scan(&updatedAt)
 	if err == nil {
-		_, err = tx.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'student_credential', $1, $2::jsonb)`, credential.StudentExternalRef, mustJSON(credential))
+		_, err = tx.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'student_credential', $1, $2::jsonb)`, credential.StudentExternalRef, mustJSON(map[string]any{"student_external_ref": credential.StudentExternalRef, "credentials_stored": true}))
 	}
 	if err == nil {
 		err = tx.Commit(ctx)
@@ -1337,7 +1338,7 @@ func (r *PostgresRepository) GenerateClassCredentials(ctx context.Context, class
 		batch.Credentials = append(batch.Credentials, saved)
 	}
 	batch.GeneratedCount = len(batch.Credentials)
-	_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('generate', 'class_credentials', $1, $2::jsonb)`, classID, mustJSON(batch))
+	_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('generate', 'class_credentials', $1, $2::jsonb)`, classID, mustJSON(map[string]any{"class_id": classID, "generated_count": batch.GeneratedCount}))
 	return batch, err
 }
 
@@ -1615,6 +1616,85 @@ func (r *PostgresRepository) UpsertParentAccount(ctx context.Context, parent Par
 	parent.CreatedAt = createdAt.UTC().Format(time.RFC3339)
 	parent.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
 	return parent, err
+}
+
+func (r *PostgresRepository) CreateParentAccount(ctx context.Context, parent ParentAccountConfig) (ParentAccountConfig, error) {
+	if err := validateParentAccount(parent); err != nil {
+		return parent, err
+	}
+	email := strings.ToLower(strings.TrimSpace(parent.Email))
+	loginID := strings.ToLower(strings.TrimSpace(parent.LoginID))
+	if loginID == "" {
+		loginID = email
+	}
+	password := parent.Password
+	if password == "" {
+		password = randomPassword()
+		parent.TemporaryPassword = password
+		parent.TemporaryPasswordRequired = true
+	} else {
+		parent.TemporaryPasswordRequired = false
+	}
+	if parent.Status == "" {
+		parent.Status = "active"
+	}
+	tx, err := r.db.Begin(ctx)
+	if err != nil {
+		return parent, err
+	}
+	defer tx.Rollback(ctx)
+	var exists bool
+	if err := tx.QueryRow(ctx, `
+		SELECT EXISTS (
+			SELECT 1 FROM app_users
+			WHERE lower(email) = lower($1)
+			   OR lower(COALESCE(login_id, email)) = lower($2)
+		)
+	`, email, loginID).Scan(&exists); err != nil {
+		return parent, err
+	}
+	if exists {
+		return parent, ErrParentAccountExists
+	}
+	var id string
+	var createdAt, updatedAt time.Time
+	err = tx.QueryRow(ctx, `
+		INSERT INTO app_users (email, display_name, user_type, status, login_id, password_hash, temporary_password_required, updated_at)
+		VALUES ($1,$2,'parent',$3,$4,$5,$6,now())
+		RETURNING id::text, created_at, updated_at
+	`, email, strings.TrimSpace(parent.DisplayName), parent.Status, loginID, credentialHash(loginID, password), parent.TemporaryPasswordRequired).Scan(&id, &createdAt, &updatedAt)
+	if err != nil {
+		var pgErr *pgconn.PgError
+		if errors.As(err, &pgErr) && pgErr.Code == "23505" {
+			return parent, ErrParentAccountExists
+		}
+		return parent, err
+	}
+	if _, err = tx.Exec(ctx, `INSERT INTO roles (id, description) VALUES ('parent', 'Can manage home child profiles and view family evidence.') ON CONFLICT DO NOTHING`); err != nil {
+		return parent, err
+	}
+	if _, err = tx.Exec(ctx, `INSERT INTO user_roles (user_id, role_id) VALUES ($1, 'parent') ON CONFLICT DO NOTHING`, id); err != nil {
+		return parent, err
+	}
+	if _, err = tx.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('create', 'parent_account', $1, $2::jsonb)`, id, mustJSON(map[string]string{"email": email, "login_id": loginID})); err != nil {
+		return parent, err
+	}
+	if err = tx.Commit(ctx); err != nil {
+		return parent, err
+	}
+	parent.ID = id
+	parent.Email = email
+	parent.LoginID = loginID
+	parent.Password = ""
+	parent.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+	parent.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+	return parent, nil
+}
+
+func (r *PostgresRepository) PlatformAdminExists(ctx context.Context) (bool, error) {
+	var exists bool
+	err := r.db.QueryRow(ctx, `SELECT EXISTS (SELECT 1 FROM user_roles WHERE role_id = 'platform_admin')`).Scan(&exists)
+	return exists, err
 }
 
 func (r *PostgresRepository) VerifyParentUser(ctx context.Context, loginID string, password string) (ParentAccountConfig, bool, error) {

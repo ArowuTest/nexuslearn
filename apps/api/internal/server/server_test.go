@@ -50,6 +50,7 @@ type fakeRepository struct {
 	versions            []learning.ContentVersion
 	accountSession      learning.AccountSession
 	platformUser        learning.PlatformUserConfig
+	platformAdminExists bool
 	invitations         []learning.ParentInvitation
 	recordAttemptErr    error
 	assignments         []learning.Assignment
@@ -361,6 +362,19 @@ func (f fakeRepository) UpsertParentAccount(_ context.Context, parent learning.P
 	parent.ID = "parent-1"
 	parent.LoginID = parent.Email
 	return parent, nil
+}
+
+func (f fakeRepository) CreateParentAccount(_ context.Context, parent learning.ParentAccountConfig) (learning.ParentAccountConfig, error) {
+	parent.ID = "parent-1"
+	if parent.LoginID == "" {
+		parent.LoginID = parent.Email
+	}
+	parent.Password = ""
+	return parent, nil
+}
+
+func (f fakeRepository) PlatformAdminExists(context.Context) (bool, error) {
+	return f.platformAdminExists, nil
 }
 
 func (f fakeRepository) VerifyParentUser(_ context.Context, loginID string, _ string) (learning.ParentAccountConfig, bool, error) {

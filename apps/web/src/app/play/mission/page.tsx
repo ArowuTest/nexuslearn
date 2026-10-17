@@ -1097,7 +1097,7 @@ export default function Mission() {
       </section>
 
       <div className="relative z-10 mx-auto mt-4 max-w-6xl">
-        <p className="font-display text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">{realm}</p>
+        <p className="nl-eye">{realm}</p>
         <h1 className="font-display mt-1 text-xl font-semibold md:text-2xl">{mission?.activity?.title || "Configured Mission"}</h1>
       </div>
 

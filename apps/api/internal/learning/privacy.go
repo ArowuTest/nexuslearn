@@ -41,6 +41,13 @@ type FamilyExport struct {
 	Consent           []ConsentRecord  `json:"consent"`
 	Attempts          []map[string]any `json:"attempts"`
 	AttemptsTruncated bool             `json:"attempts_truncated"`
+	Mastery           []map[string]any `json:"mastery"`
+	MasteryHistory    []map[string]any `json:"mastery_history"`
+	Baselines         []map[string]any `json:"baselines"`
+	MockAssessments   []map[string]any `json:"mock_assessments"`
+	WorldState        []map[string]any `json:"world_state"`
+	LessonSteps       []map[string]any `json:"lesson_steps"`
+	Events            []map[string]any `json:"events"`
 	Sharing           map[string]bool  `json:"sharing"`
 	SecretsIncluded   bool             `json:"secrets_included"`
 }

@@ -8,7 +8,7 @@ const toolDir = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(toolDir, "../../..");
 const manifestPath = path.join(repoRoot, "packages/content/audio/narration-manifest.json");
 const ledgerPath = path.join(repoRoot, "packages/content/audio/narration-listening-reviews.json");
-const audioRoot = path.join(repoRoot, "apps/web/public/audio/narration/alice");
+const audioRoot = path.join(repoRoot, "apps/web/private/audio/narration/alice");
 const requiredCriteria = ["natural", "clear", "pronunciation", "age_suitable"];
 const dryRun = process.argv.includes("--dry-run");
 

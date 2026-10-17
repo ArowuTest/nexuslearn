@@ -34,7 +34,7 @@ export async function childSafetyReport() {
   const clipsByPack = new Map();
   for (const clip of clips) {
     const bucket = clipsByPack.get(clip.pack_id) ?? [];
-    bucket.push({ id: clip.id, file: clip.file, kind: clip.kind, status: clip.production_status });
+    bucket.push({ id: clip.id, kind: clip.kind, status: clip.production_status });
     clipsByPack.set(clip.pack_id, bucket);
   }
   return {

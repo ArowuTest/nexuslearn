@@ -4,7 +4,7 @@
   "decoder": "Chromium 149.0.7827.55 Web Audio PCM",
   "manifest_sha256": "c012b0dc327c70e802e79902edb687c8cafc617164fc363a5433a6ab5d83ad3c",
   "public_manifest_sha256": "6c0e34b67a27bcdfcd7304541f16c6300998b7e0a451eacf0404f16b16dd84ae",
-  "scope": "All MP3/WAV/OGG/M4A files under apps/web/public/audio; no subjective listening approval",
+  "scope": "All MP3/WAV/OGG/M4A files under apps/web/private/audio; no subjective listening approval",
   "thresholds": "20ms silence windows below -50dBFS; >65% silence / >0.1% near-full-scale samples flagged for review. Script rate is not transcription; WPM screens Y1>160,Y2>170,Y3-7>190 or <70, scripts >=8 words only. Not educational standards.",
   "total_files": 874,
   "manifest_items": 874,

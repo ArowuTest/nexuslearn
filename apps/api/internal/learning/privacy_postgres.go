@@ -4,6 +4,8 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"fmt"
+	"strconv"
 	"time"
 
 	"github.com/jackc/pgx/v5"
@@ -73,11 +75,19 @@ func (r *PostgresRepository) ExportFamilyChild(ctx context.Context, parentUserID
 		return FamilyExport{}, ErrChildNotOwned
 	}
 	export := FamilyExport{
-		ExportedAt:      time.Now().UTC().Format(time.RFC3339),
-		Sharing:         map[string]bool{"school": false, "marketing": false, "research": false},
-		SecretsIncluded: false,
-		Consent:         []ConsentRecord{},
-		Attempts:        []map[string]any{},
+		ExportedAt:        time.Now().UTC().Format(time.RFC3339),
+		Sharing:           map[string]bool{"school": false, "marketing": false, "research": false},
+		SecretsIncluded:   false,
+		Consent:           []ConsentRecord{},
+		Attempts:          []map[string]any{},
+		AttemptsTruncated: false,
+		Mastery:           []map[string]any{},
+		MasteryHistory:    []map[string]any{},
+		Baselines:         []map[string]any{},
+		MockAssessments:   []map[string]any{},
+		WorldState:        []map[string]any{},
+		LessonSteps:       []map[string]any{},
+		Events:            []map[string]any{},
 	}
 	var year int
 	var name string
@@ -97,7 +107,84 @@ func (r *PostgresRepository) ExportFamilyChild(ctx context.Context, parentUserID
 	if err != nil {
 		return FamilyExport{}, err
 	}
-	export.Attempts, export.AttemptsTruncated, err = r.attemptExport(ctx, externalRef)
+	export.Attempts, err = r.attemptExport(ctx, externalRef)
+	if err != nil {
+		return FamilyExport{}, err
+	}
+	export.Mastery, err = r.rowsForChild(ctx, externalRef, `
+		SELECT m.objective_id, m.score, m.band, m.last_signal, m.updated_at
+		FROM student_objective_mastery m
+		JOIN students s ON s.id = m.student_id
+		WHERE s.external_ref = $1
+		ORDER BY m.objective_id
+	`)
+	if err != nil {
+		return FamilyExport{}, err
+	}
+	export.MasteryHistory, err = r.rowsForChild(ctx, externalRef, `
+		SELECT h.objective_id, h.question_id, h.prior_score, h.new_score, h.mastery_delta, h.correct, h.hint_used, h.response_format, h.recorded_at
+		FROM mastery_history h
+		JOIN students s ON s.id = h.student_id
+		WHERE s.external_ref = $1
+		ORDER BY h.recorded_at, h.id
+	`)
+	if err != nil {
+		return FamilyExport{}, err
+	}
+	export.Baselines, err = r.rowsForChild(ctx, externalRef, `
+		SELECT b.id::text AS id, b.year_group, b.status, b.started_at, b.completed_at,
+		       COALESCE((
+		         SELECT jsonb_agg(jsonb_build_object(
+		           'objective_id', i.objective_id, 'position', i.position, 'status', i.status,
+		           'attempt_count', i.attempt_count, 'correct_count', i.correct_count
+		         ) ORDER BY i.position)
+		         FROM diagnostic_baseline_items i WHERE i.baseline_id = b.id
+		       ), '[]'::jsonb) AS items
+		FROM diagnostic_baselines b
+		JOIN students s ON s.id = b.student_id
+		WHERE s.external_ref = $1
+		ORDER BY b.created_at, b.id
+	`)
+	if err != nil {
+		return FamilyExport{}, err
+	}
+	export.MockAssessments, err = r.rowsForChild(ctx, externalRef, `
+		SELECT m.id::text AS id, m.subject, m.year_group, m.title, m.status, m.question_count, m.created_at, m.completed_at
+		FROM mock_assessments m
+		JOIN students s ON s.id = m.student_id
+		WHERE s.external_ref = $1
+		ORDER BY m.created_at, m.id
+	`)
+	if err != nil {
+		return FamilyExport{}, err
+	}
+	export.WorldState, err = r.rowsForChild(ctx, externalRef, `
+		SELECT w.world_key, w.state, w.updated_at
+		FROM student_world_state w
+		JOIN students s ON s.id = w.student_id
+		WHERE s.external_ref = $1
+		ORDER BY w.world_key
+	`)
+	if err != nil {
+		return FamilyExport{}, err
+	}
+	export.LessonSteps, err = r.rowsForChild(ctx, externalRef, `
+		SELECT a.activity_id, a.objective_id, a.step_id, a.step_kind, a.status, a.duration_ms, a.recorded_at
+		FROM lesson_step_attempts a
+		JOIN students s ON s.id = a.student_id
+		WHERE s.external_ref = $1
+		ORDER BY a.recorded_at, a.id
+	`)
+	if err != nil {
+		return FamilyExport{}, err
+	}
+	export.Events, err = r.rowsForChild(ctx, externalRef, `
+		SELECT e.event_type, e.event_payload, e.created_at
+		FROM learning_events e
+		JOIN students s ON s.id = e.student_id
+		WHERE s.external_ref = $1
+		ORDER BY e.created_at, e.id
+	`)
 	if err != nil {
 		return FamilyExport{}, err
 	}
@@ -149,9 +236,32 @@ func (r *PostgresRepository) DeleteFamilyChild(ctx context.Context, parentUserID
 		return err
 	}
 	if _, err := tx.Exec(ctx, `
+		UPDATE audit_logs
+		SET payload = COALESCE(payload, '{}'::jsonb)
+		             - 'login_code' - 'picture_password' - 'qr_secret_hash'
+		             - 'password' - 'temporary_password' - 'password_hash'
+		WHERE entity_id = $1
+		   OR payload->>'student_external_ref' = $1
+		   OR payload->>'external_ref' = $1
+	`, externalRef); err != nil {
+		return err
+	}
+	if _, err := tx.Exec(ctx, `
+		UPDATE learning_events
+		SET event_payload = '{}'::jsonb, event_type = 'redacted'
+		WHERE student_id = $1::uuid
+	`, studentID); err != nil {
+		return err
+	}
+	if _, err := tx.Exec(ctx, `
+		UPDATE privacy_actions SET subject_ref = '' WHERE subject_ref = $1
+	`, externalRef); err != nil {
+		return err
+	}
+	if _, err := tx.Exec(ctx, `
 		INSERT INTO privacy_actions (action, actor, subject_ref, detail)
-		VALUES ('delete', $1, $2, '{}'::jsonb)
-	`, parentUserID, externalRef); err != nil {
+		VALUES ('delete', $1, '', '{}'::jsonb)
+	`, parentUserID); err != nil {
 		return err
 	}
 	if _, err := tx.Exec(ctx, `DELETE FROM students WHERE id = $1::uuid`, studentID); err != nil {
@@ -304,44 +414,67 @@ func (r *PostgresRepository) consentExport(ctx context.Context, externalRef stri
 	return records, rows.Err()
 }
 
-func (r *PostgresRepository) attemptExport(ctx context.Context, externalRef string) ([]map[string]any, bool, error) {
-	rows, err := r.db.Query(ctx, `
-		SELECT a.question_id, a.format, a.given_answer, a.correct, a.response_ms, a.hint_used, a.created_at
-		FROM question_attempts a
-		JOIN students s ON s.id = a.student_id
-		WHERE s.external_ref = $1
-		ORDER BY a.created_at DESC
-		LIMIT 5001
-	`, externalRef)
+func (r *PostgresRepository) attemptExport(ctx context.Context, externalRef string) ([]map[string]any, error) {
+	attempts := []map[string]any{}
+	const pageSize = 1000
+	for offset := 0; ; offset += pageSize {
+		page, err := r.rowsForChild(ctx, externalRef, `
+			SELECT a.question_id, a.format, a.given_answer, a.correct, a.response_ms, a.hint_used, a.created_at
+			FROM question_attempts a
+			JOIN students s ON s.id = a.student_id
+			WHERE s.external_ref = $1
+			ORDER BY a.created_at, a.id
+			LIMIT `+strconvPage(pageSize)+` OFFSET `+strconvPage(offset)+`
+		`)
+		if err != nil {
+			return nil, err
+		}
+		attempts = append(attempts, page...)
+		if len(page) < pageSize {
+			return attempts, nil
+		}
+	}
+}
+
+func strconvPage(value int) string {
+	return strconv.Itoa(value)
+}
+
+func (r *PostgresRepository) rowsForChild(ctx context.Context, externalRef string, query string) ([]map[string]any, error) {
+	rows, err := r.db.Query(ctx, query, externalRef)
 	if err != nil {
-		return nil, false, err
+		return nil, err
 	}
 	defer rows.Close()
-	attempts := []map[string]any{}
+	items := []map[string]any{}
 	for rows.Next() {
-		var question, format, given string
-		var created time.Time
-		var correct, hint bool
-		var responseMS int
-		if err := rows.Scan(&question, &format, &given, &correct, &responseMS, &hint, &created); err != nil {
-			return nil, false, err
+		values, err := rows.Values()
+		if err != nil {
+			return nil, err
 		}
-		attempts = append(attempts, map[string]any{
-			"question_id":  question,
-			"format":       format,
-			"given_answer": given,
-			"correct":      correct,
-			"response_ms":  responseMS,
-			"hint_used":    hint,
-			"created_at":   created.UTC().Format(time.RFC3339),
-		})
+		fields := rows.FieldDescriptions()
+		item := map[string]any{}
+		for i, field := range fields {
+			item[string(field.Name)] = exportValue(values[i])
+		}
+		items = append(items, item)
 	}
-	if err := rows.Err(); err != nil {
-		return nil, false, err
+	return items, rows.Err()
+}
+
+func exportValue(value any) any {
+	switch typed := value.(type) {
+	case time.Time:
+		return typed.UTC().Format(time.RFC3339)
+	case []byte:
+		var decoded any
+		if json.Unmarshal(typed, &decoded) == nil {
+			return decoded
+		}
+		return string(typed)
+	case [16]byte:
+		return fmt.Sprintf("%x", typed[:])
+	default:
+		return value
 	}
-	truncated := len(attempts) > 5000
-	if truncated {
-		attempts = attempts[:5000]
-	}
-	return attempts, truncated, nil
 }
