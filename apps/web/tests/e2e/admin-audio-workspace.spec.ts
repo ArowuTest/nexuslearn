@@ -20,6 +20,12 @@ async function openAudioWorkspace(page: Page, recording?: ProducedAudio) {
   let audioFile = recording?.file ?? "/audio/narration/alice/y1/blend-together.mp3";
   let voiceSettings: Record<string, number> = recording ? {} : { speed: 0.92 };
   let previousReviewCurrent = false;
+  if (recording) {
+    await page.route(`**${recording.file}`, async route => route.fulfill({
+      contentType: "audio/mpeg",
+      body: await readFile(`public${recording.file}`),
+    }));
+  }
   if (!recording) {
     // Workflow tests simulate native telemetry, not real ElevenLabs playback.
     // Serve valid deterministic media so a late 404 cannot erase that evidence.

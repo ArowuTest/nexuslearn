@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test("anonymous users cannot download authoring reports but can resolve learner narration", async ({ request }) => {
+test("anonymous users cannot download authoring reports or unapproved narration", async ({ request }) => {
   for (const url of [
     "/content/pilot-review-evidence-template.json",
     "/content/flagship-review.json",
@@ -14,5 +14,5 @@ test("anonymous users cannot download authoring reports but can resolve learner 
   expect(audio.status()).toBe(200);
   const manifest = await audio.json();
   expect(manifest.items.length).toBeGreaterThan(0);
-  expect((await request.get(manifest.items[0].file)).status()).toBe(200);
+  expect((await request.get(manifest.items[0].file)).status(), "unapproved narration stays hidden").toBe(404);
 });

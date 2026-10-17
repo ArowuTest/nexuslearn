@@ -35,6 +35,9 @@ type Server struct {
 	adminKey        string
 	accountSecret   string
 	allowLegacyAuth bool
+	loginAttempts   *attemptLimiter
+	privacyMemory   *privacyMemory
+	approvalMemory  *approvalMemory
 }
 
 type adaptiveCatalogueRepository interface {
@@ -245,20 +248,33 @@ func New(repo learning.Repository, persistence string) *Server {
 		persistence:     persistence,
 		adminKey:        os.Getenv("ADMIN_API_KEY"),
 		accountSecret:   strings.TrimSpace(os.Getenv("ACCOUNT_SESSION_SECRET")),
-		allowLegacyAuth: envBoolDefault("ALLOW_LEGACY_CREDENTIAL_HEADERS", true),
+		allowLegacyAuth: envBoolDefault("ALLOW_LEGACY_CREDENTIAL_HEADERS", false),
+		loginAttempts:   newAttemptLimiter(),
+		privacyMemory:   newPrivacyMemory(),
+		approvalMemory:  newApprovalMemory(),
 	}
 
 	s.mux.HandleFunc("GET /healthz", s.handleHealth)
+	s.mux.HandleFunc("GET /readyz", s.handleReady)
 	s.mux.HandleFunc("GET /v1/version", s.handleVersion)
+	s.mux.HandleFunc("GET /v1/privacy/policy", s.handlePrivacyPolicy)
+	s.mux.HandleFunc("GET /v1/curriculum/region", s.handleCurriculumRegion)
+	s.mux.HandleFunc("GET /v1/runtime/narration-approvals", s.handleNarrationApprovals)
+	s.mux.HandleFunc("GET /v1/auth/review-access", s.handleReviewAccess)
 	s.mux.HandleFunc("GET /v1/system/persistence", s.handlePersistence)
 	s.mux.HandleFunc("GET /v1/system/diagnostics", s.handleDiagnostics)
 	s.mux.HandleFunc("POST /v1/access-requests", s.handleCreateAccessRequest)
-	s.mux.HandleFunc("POST /v1/auth/pupil-login", s.handlePupilLogin)
-	s.mux.HandleFunc("POST /v1/auth/admin-login", s.handleAdminLogin)
-	s.mux.HandleFunc("POST /v1/auth/school-login", s.handleSchoolLogin)
-	s.mux.HandleFunc("POST /v1/auth/parent-login", s.handleParentLogin)
+	s.mux.HandleFunc("POST /v1/auth/pupil-login", s.limitLogin("student_external_ref", s.handlePupilLogin))
+	s.mux.HandleFunc("POST /v1/auth/admin-login", s.limitLogin("login_id", s.handleAdminLogin))
+	s.mux.HandleFunc("POST /v1/auth/school-login", s.limitLogin("login_id", s.handleSchoolLogin))
+	s.mux.HandleFunc("POST /v1/auth/parent-login", s.limitLogin("login_id", s.handleParentLogin))
 	s.mux.HandleFunc("POST /v1/auth/logout", s.handleAccountLogout)
-	s.mux.HandleFunc("POST /v1/parents/signup", s.handleParentSignup)
+	s.mux.HandleFunc("POST /v1/parents/signup", s.limitLogin("email", s.handleParentSignup))
+	s.mux.HandleFunc("POST /v1/parent/consent", s.handleParentConsent)
+	s.mux.HandleFunc("GET /v1/parent/children/{externalRef}/export", s.handleParentExportChild)
+	s.mux.HandleFunc("DELETE /v1/parent/children/{externalRef}", s.handleParentDeleteChild)
+	s.mux.HandleFunc("POST /v1/admin/privacy/purge", s.handlePrivacyPurge)
+	s.mux.HandleFunc("POST /v1/admin/content/pack-approvals", s.handlePackApproval)
 	s.mux.HandleFunc("POST /v1/parent/invitations/accept", s.handleAcceptParentInvitation)
 	s.mux.HandleFunc("GET /v1/parent/config", s.handleParentConfig)
 	s.mux.HandleFunc("GET /v1/parent/children/{externalRef}/evidence", s.handleParentChildEvidence)
@@ -390,20 +406,7 @@ func New(repo learning.Repository, persistence string) *Server {
 }
 
 func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	withCORS(s.mux).ServeHTTP(w, r)
-}
-
-func withCORS(next http.Handler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Access-Control-Allow-Origin", "*")
-		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS")
-		w.Header().Set("Access-Control-Allow-Headers", "Authorization, Content-Type, Idempotency-Key, X-Admin-Key, X-School-URN, X-School-Login, X-School-Password, X-Parent-Login, X-Parent-Password, X-Pupil-Session")
-		if r.Method == http.MethodOptions {
-			w.WriteHeader(http.StatusNoContent)
-			return
-		}
-		next.ServeHTTP(w, r)
-	})
+	s.serve(w, r)
 }
 
 func requestIdempotencyKey(r *http.Request, bodyID string) string {
@@ -934,6 +937,9 @@ func (s *Server) handlePupilLogin(w http.ResponseWriter, r *http.Request) {
 	}
 	if student.ExternalRef == "" {
 		writeJSON(w, http.StatusNotFound, map[string]string{"error": "pupil profile was not found"})
+		return
+	}
+	if !s.familyConsentAllows(w, r, student.ExternalRef) {
 		return
 	}
 	if _, ok, baselineErr := s.repo.DiagnosticBaseline(r.Context(), student.ExternalRef); baselineErr == nil && !ok {
@@ -3881,7 +3887,7 @@ func (s *Server) handleConfiguredMission(w http.ResponseWriter, r *http.Request)
 		questionLimit = 10
 	}
 	for _, question := range questions {
-		if !isRuntimeStatus(question.Status) {
+		if !learning.ChildMaySeeQuestion(question) {
 			continue
 		}
 		if !s.questionAllowedByReleaseFlags(r.Context(), studentID, question, releaseFlags) {
@@ -4876,15 +4882,17 @@ func containsString(values []string, target string) bool {
 }
 
 func sameStringSequence(got []string, want []string) bool {
-	if len(got) != len(want) {
-		return false
+	left := sha256.Sum256([]byte(normaliseSequence(got)))
+	right := sha256.Sum256([]byte(normaliseSequence(want)))
+	return subtle.ConstantTimeCompare(left[:], right[:]) == 1
+}
+
+func normaliseSequence(values []string) string {
+	parts := make([]string, len(values))
+	for i, value := range values {
+		parts[i] = strings.ToLower(strings.TrimSpace(value))
 	}
-	for i := range want {
-		if !strings.EqualFold(strings.TrimSpace(got[i]), strings.TrimSpace(want[i])) {
-			return false
-		}
-	}
-	return true
+	return strings.Join(parts, "\x1f")
 }
 
 type adaptiveActivityChoice struct {
@@ -5446,7 +5454,7 @@ func (s *Server) createPupilSession(studentExternalRef string) pupilSession {
 }
 
 func (s *Server) requirePupilSession(w http.ResponseWriter, r *http.Request, studentExternalRef string) bool {
-	if !envBool("REQUIRE_PUPIL_SESSION") {
+	if !pupilSessionsRequired() {
 		return true
 	}
 	secret := strings.TrimSpace(os.Getenv("PUPIL_SESSION_SECRET"))

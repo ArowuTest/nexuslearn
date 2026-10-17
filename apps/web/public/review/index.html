@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NexusLearn pack review</title>
+  <style>
+    body { margin: 0; font-family: "Atkinson Hyperlegible", "Segoe UI", sans-serif; background: #f6f3ea; color: #172033; }
+    main { max-width: 880px; margin: 0 auto; padding: 24px; }
+    h1 { font-size: 1.6rem; }
+    label, button, select { font: inherit; }
+    button, select { min-height: 44px; }
+    button { background: #204060; color: white; border: 0; border-radius: 999px; padding: 0 16px; }
+    button[disabled] { opacity: 0.55; }
+    .clip { display: flex; gap: 12px; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #d9d3c4; }
+    textarea { width: 100%; min-height: 96px; }
+    .note { background: white; border-radius: 12px; padding: 12px 16px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Review one pack</h1>
+    <p class="note">Nothing on this page is shown to a child until you approve it. Question variants still need the separate live-release checks. Sign in as a parent or teacher in NexusLearn first, in this same browser.</p>
+    <p id="counts"></p>
+    <label for="pack">Pack</label>
+    <select id="pack"></select>
+    <div id="clips"></div>
+    <label for="notes">What did you hear?</label>
+    <textarea id="notes" minlength="20" required></textarea>
+    <p>
+      <button id="approve" type="button">Approve this pack's audio</button>
+      <button id="hold" type="button">Hold this pack</button>
+    </p>
+    <p id="result" role="status"></p>
+  </main>
+  <script>
+    const token = sessionStorage.getItem("nexuslearn_account_session") || "";
+    const counts = document.querySelector("#counts");
+    const packSelect = document.querySelector("#pack");
+    const clips = document.querySelector("#clips");
+    const result = document.querySelector("#result");
+    let summary = { packs: [] };
+
+    function selectedPack() {
+      return summary.packs.find((pack) => pack.pack_id === packSelect.value);
+    }
+
+    function renderClips() {
+      const pack = selectedPack();
+      clips.replaceChildren();
+      for (const clip of pack?.clips || []) {
+        const row = document.createElement("div");
+        row.className = "clip";
+        const name = document.createElement("span");
+        name.textContent = `${clip.kind}: ${clip.id} (${clip.status})`;
+        const play = document.createElement("button");
+        play.type = "button";
+        play.textContent = "Play";
+        play.addEventListener("click", () => playClip(clip.file, play));
+        row.append(name, play);
+        clips.append(row);
+      }
+    }
+
+    async function playClip(file, button) {
+      result.textContent = "Loading the recording…";
+      button.disabled = true;
+      try {
+        const response = await fetch(`/audio/review-listen?file=${encodeURIComponent(file)}`, { headers: { Authorization: `Bearer ${token}` } });
+        if (!response.ok) {
+          result.textContent = "Sign in as a parent or teacher, then try the recording again.";
+          return;
+        }
+        const audio = new Audio(URL.createObjectURL(await response.blob()));
+        await audio.play();
+        result.textContent = "Playing. Listen for the words, pace and warmth before you approve.";
+      } finally {
+        button.disabled = false;
+      }
+    }
+
+    async function decide(decision) {
+      const pack = selectedPack();
+      const notes = document.querySelector("#notes").value.trim();
+      if (!pack || notes.length < 20) {
+        result.textContent = "Write at least 20 characters about what you heard.";
+        return;
+      }
+      const response = await fetch("/audio/review-decision", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+        body: JSON.stringify({ pack_id: pack.pack_id, decision, notes, narration_ids: pack.clips.map((clip) => clip.id) }),
+      });
+      const body = await response.json().catch(() => ({}));
+      result.textContent = response.ok
+        ? "Saved. Approved recordings can play for children. The question bank is unchanged."
+        : (body.error || "The decision was not saved.");
+    }
+
+    document.querySelector("#approve").addEventListener("click", () => decide("approved"));
+    document.querySelector("#hold").addEventListener("click", () => decide("hold"));
+    packSelect.addEventListener("change", renderClips);
+
+    const response = await fetch("/review/safety-summary.json");
+    summary = await response.json();
+    counts.textContent = `Recordings a child can hear now: ${summary.narration.servable}. Waiting for a person: ${summary.narration.blocked}. Question variants marked review: ${summary.variants.blocked}.`;
+    for (const pack of summary.packs.filter((item) => item.clips.length)) {
+      const option = document.createElement("option");
+      option.value = pack.pack_id;
+      option.textContent = `${pack.pack_id} (${pack.clips.length} recordings)`;
+      packSelect.append(option);
+    }
+    renderClips();
+  </script>
+</body>
+</html>

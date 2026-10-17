@@ -2,16 +2,21 @@ package database
 
 import (
 	"context"
+	"errors"
 	"log/slog"
 	"os"
 	"time"
 
+	"github.com/ArowuTest/nexuslearn/apps/api/internal/platformenv"
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 func Connect(ctx context.Context) (*pgxpool.Pool, error) {
 	dsn := os.Getenv("DATABASE_URL")
 	if dsn == "" {
+		if platformenv.Production() {
+			return nil, errors.New("DATABASE_URL is required in production")
+		}
 		slog.Info("database disabled: DATABASE_URL is not set")
 		return nil, nil
 	}

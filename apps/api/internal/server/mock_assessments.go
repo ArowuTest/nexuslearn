@@ -362,7 +362,7 @@ func (s *Server) createMockAssessment(r *http.Request, in mockAssessmentRequest,
 	})
 	questionsByObjective := map[string][]learning.QuestionConfig{}
 	for _, question := range questions {
-		if !isRuntimeStatus(question.Status) || question.ObjectiveID == "" {
+		if !learning.ChildMaySeeQuestion(question) || question.ObjectiveID == "" {
 			continue
 		}
 		if _, ok := objectiveByID[question.ObjectiveID]; !ok {

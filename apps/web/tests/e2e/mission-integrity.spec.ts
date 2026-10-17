@@ -1,4 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
+import { readFile } from "node:fs/promises";
 
 type Fixture = { format: string; body: Record<string, unknown>; expected: string | number; hints?: string[]; switchAccess?: boolean; responseKind?: string; version?: string | null; audioSupport?: boolean; lesson?: Record<string, unknown> };
 async function mission(page: Page, fixture: Fixture) {
@@ -214,6 +215,11 @@ test("muting a pending narration play cancels it without recording a transport f
 test("an existing generated MP3 decodes through the mission player and mute stops it", async ({ page }) => {
   // Technical playback in a disposable fixture is not listening approval or a
   // production manifest promotion. No Audio mock: Chromium decodes the file.
+  const clip = "/audio/narration/alice/en-y1-listening-comprehension/lesson/ready-to-listen-warm-up.mp3";
+  await page.route(`**${clip}`, async route => route.fulfill({ contentType: "audio/mpeg", body: await readFile(`public${clip}`) }));
+  await page.route("**/content/narration-manifest.json", route => route.fulfill({ json: { items: [
+    { id: "ready-listen", file: clip, technical_pass: true, production_status: "released" },
+  ] } }));
   await page.addInitScript(() => {
     const NativeAudio = window.Audio;
     window.Audio = class extends NativeAudio {

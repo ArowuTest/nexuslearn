@@ -66,6 +66,7 @@ jobs:
           test "$(psql "$DATABASE_URL" -Atc "select count(*) from information_schema.tables where table_name in ('diagnostic_baselines','diagnostic_baseline_items')")" -eq 2
           test "$(psql "$DATABASE_URL" -Atc "select count(*) from information_schema.columns where table_name in ('question_attempts','mastery_history') and column_name='response_mode'")" -eq 2
           test "$(psql "$DATABASE_URL" -Atc "select count(*) from pg_indexes where indexname='mock_assessments_student_created_id_idx'")" -eq 1
+          test "$(psql "$DATABASE_URL" -Atc "select count(*) from information_schema.tables where table_name in ('consent_records','human_content_approvals','privacy_actions')")" -eq 3
 
   web-quality:
     runs-on: ubuntu-latest
@@ -113,7 +114,7 @@ jobs:
         run: node --test ../../ops/deployment-smoke.test.mjs
 
       - name: Verify pupil session and bundle boundary regressions
-        run: node --test tools/pupil-journey.test.mjs tools/adult-auth.test.mjs tools/school-directory.test.mjs tools/school-support-profile.test.mjs tools/client-chunks.test.mjs tools/deployment-version.test.mjs tools/login-card-qr.test.mjs
+        run: node --experimental-strip-types --test tools/pupil-journey.test.mjs tools/adult-auth.test.mjs tools/school-directory.test.mjs tools/school-support-profile.test.mjs tools/client-chunks.test.mjs tools/deployment-version.test.mjs tools/login-card-qr.test.mjs tools/narration-policy.test.mjs tools/year-label.test.mjs tools/child-safety-summary.test.mjs
 
       - name: Build frontend
         env:

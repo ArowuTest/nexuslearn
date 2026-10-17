@@ -48,7 +48,7 @@ export function AudioBlend({ question }: { question: StudioQuestion }) {
   }
 
   return (
-    <div className="mx-auto mt-6 max-w-md rounded-3xl border border-white/10 bg-white/10 p-5 text-center" role="group" aria-label={sounds.length || !wholeWordEntries.length ? "Sound blending controls" : "Whole-word listening controls"}>
+    <div className="mx-auto mt-6 max-w-md rounded-3xl border border-white/10 bg-white/10 p-5 text-center" role="group" aria-label="Sound blending controls">
       <p className="font-display text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Listen and build</p>
       <div className="mt-4 flex flex-wrap justify-center gap-3">
         {(sounds.length ? sounds : ["listen", "think", "choose"]).map((sound) => {
@@ -67,13 +67,8 @@ export function AudioBlend({ question }: { question: StudioQuestion }) {
           );
         })}
       </div>
-      {wholeWordEntries.length > 0 && <div className="mt-4 rounded-2xl bg-white/8 p-3" role="group" aria-label="Whole-word listening controls">
-        <p className="text-sm font-semibold text-white">Hear each whole word</p>
-        <div className="mt-3 grid gap-2 sm:grid-cols-2">
-          {wholeWordEntries.map(([word, audioURL]) => <button key={word} type="button" className="sound-chip min-h-12" onClick={() => void playClip(audioURL, word)} aria-label={`Hear ${word}`}>
-            Hear {word}
-          </button>)}
-        </div>
+      {wholeWordEntries.length > 0 && <div className="mt-4 flex flex-wrap justify-center gap-3" role="group" aria-label="Whole-word listening controls">
+        {wholeWordEntries.map(([word, audioURL]) => <button key={word} type="button" className="sound-chip min-h-12" onClick={() => void playClip(audioURL, word)} aria-label={`Hear ${word}`}>{word}</button>)}
       </div>}
       <button
         type="button"

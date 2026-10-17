@@ -1,0 +1,31 @@
+{
+  "default": "england",
+  "regions": {
+    "england": {
+      "label": "England",
+      "range": "Years 1-7",
+      "groups": {
+        "1": "Year 1",
+        "2": "Year 2",
+        "3": "Year 3",
+        "4": "Year 4",
+        "5": "Year 5",
+        "6": "Year 6",
+        "7": "Year 7"
+      }
+    },
+    "nigeria": {
+      "label": "Nigeria",
+      "range": "Primary 1-6 and JSS 1",
+      "groups": {
+        "1": "Primary 1",
+        "2": "Primary 2",
+        "3": "Primary 3",
+        "4": "Primary 4",
+        "5": "Primary 5",
+        "6": "Primary 6",
+        "7": "JSS 1"
+      }
+    }
+  }
+}
