@@ -71,6 +71,11 @@ func TestPrivacyAndNarrationApprovalPostgres(t *testing.T) {
 		SELECT id, 'answer', '{"login_code":"SECRET-CODE"}'::jsonb FROM students WHERE external_ref = 'privacy-child';
 		INSERT INTO audit_logs (action, entity_type, entity_id, payload)
 		VALUES ('upsert', 'student_credential', 'privacy-child', '{"login_code":"SECRET-CODE","picture_password":["sun","moon"]}'::jsonb);
+		INSERT INTO audit_logs (action, entity_type, entity_id, payload)
+		VALUES (
+			'generate', 'class_credentials', 'privacy-child',
+			'{"class_id":"privacy-class","credentials":[{"login_code":"SECRET-CODE","picture_password":["sun"],"display_name":"Ada","student_external_ref":"privacy-child"}]}'::jsonb
+		);
 	`); err != nil {
 		t.Fatal(err)
 	}

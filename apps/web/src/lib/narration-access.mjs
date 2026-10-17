@@ -1,8 +1,8 @@
 import { createHmac, timingSafeEqual } from "node:crypto";
 
-// There is no built-in signing secret. Preview, production and an unset
-// environment all fail closed. Local development must set NARRATION_ACCESS_SECRET
-// when a signed URL is required; approved clips do not need one.
+// Optional. Production does not require NARRATION_ACCESS_SECRET, and there is
+// no built-in value. Approved clips play from the API approval list. Signed
+// links fail closed wherever the secret is unset, including production.
 export function narrationAccessSecret() {
   return String(process.env.NARRATION_ACCESS_SECRET || "").trim();
 }

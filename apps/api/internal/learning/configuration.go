@@ -944,7 +944,9 @@ func (r *PostgresRepository) UpsertSchoolUser(ctx context.Context, user SchoolUs
 	`, user.SchoolURN, userID, user.Role); err != nil {
 		return user, err
 	}
-	if _, err := tx.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'school_user', $1, $2::jsonb)`, userID, mustJSON(user)); err != nil {
+	auditedUser := user
+	auditedUser.TemporaryPassword = ""
+	if _, err := tx.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'school_user', $1, $2::jsonb)`, userID, mustJSON(auditedUser)); err != nil {
 		return user, err
 	}
 	if err := tx.Commit(ctx); err != nil {
@@ -1654,6 +1656,9 @@ func (r *PostgresRepository) CreateParentAccount(ctx context.Context, parent Par
 		return parent, err
 	}
 	if exists {
+		// Spend the same bcrypt work as a new account. The result is discarded
+		// and the stored password is left unchanged.
+		signupPasswordWork(loginID, password, true)
 		return parent, ErrParentAccountExists
 	}
 	var id string
@@ -1662,7 +1667,7 @@ func (r *PostgresRepository) CreateParentAccount(ctx context.Context, parent Par
 		INSERT INTO app_users (email, display_name, user_type, status, login_id, password_hash, temporary_password_required, updated_at)
 		VALUES ($1,$2,'parent',$3,$4,$5,$6,now())
 		RETURNING id::text, created_at, updated_at
-	`, email, strings.TrimSpace(parent.DisplayName), parent.Status, loginID, credentialHash(loginID, password), parent.TemporaryPasswordRequired).Scan(&id, &createdAt, &updatedAt)
+	`, email, strings.TrimSpace(parent.DisplayName), parent.Status, loginID, signupPasswordWork(loginID, password, false), parent.TemporaryPasswordRequired).Scan(&id, &createdAt, &updatedAt)
 	if err != nil {
 		var pgErr *pgconn.PgError
 		if errors.As(err, &pgErr) && pgErr.Code == "23505" {
@@ -3541,6 +3546,34 @@ func credentialHash(loginID string, password string) string {
 	}
 	sum := sha256.Sum256([]byte(strings.ToLower(strings.TrimSpace(loginID)) + ":" + password))
 	return hex.EncodeToString(sum[:])
+}
+
+// dummySignupHash is a bcrypt hash at DefaultCost. Signup of an email that
+// already has an account compares the supplied password with this hash and
+// throws the result away, so that path costs the same as hashing a new password.
+var dummySignupHash = mustDummySignupHash()
+
+func mustDummySignupHash() []byte {
+	hash, err := bcrypt.GenerateFromPassword([]byte("nexuslearn-signup-timing-equaliser"), bcrypt.DefaultCost)
+	if err != nil {
+		panic(err)
+	}
+	return hash
+}
+
+// compareSignupPassword is the cost-matched check used when an email is already
+// registered. Tests replace it to prove that path calls the hasher.
+var compareSignupPassword = bcrypt.CompareHashAndPassword
+
+// signupPasswordWork is the parent-signup hasher. existing is true when the
+// account is already registered: the comparison is discarded and nothing is
+// stored. existing is false when the returned hash is saved for a new account.
+var signupPasswordWork = func(loginID, password string, existing bool) string {
+	if existing {
+		_ = compareSignupPassword(dummySignupHash, []byte(password))
+		return ""
+	}
+	return credentialHash(loginID, password)
 }
 
 func credentialMatches(stored string, loginID string, password string) bool {

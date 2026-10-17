@@ -237,9 +237,29 @@ func (r *PostgresRepository) DeleteFamilyChild(ctx context.Context, parentUserID
 	}
 	if _, err := tx.Exec(ctx, `
 		UPDATE audit_logs
-		SET payload = COALESCE(payload, '{}'::jsonb)
-		             - 'login_code' - 'picture_password' - 'qr_secret_hash'
-		             - 'password' - 'temporary_password' - 'password_hash'
+		SET payload = (
+			SELECT CASE
+				WHEN jsonb_typeof(body -> 'credentials') = 'array' THEN
+					jsonb_set(body, '{credentials}', COALESCE((
+						SELECT jsonb_agg(
+							CASE
+								WHEN jsonb_typeof(element) = 'object' THEN
+									element
+										- 'login_code' - 'picture_password' - 'qr_secret_hash'
+										- 'password' - 'temporary_password' - 'password_hash'
+								ELSE element
+							END
+						)
+						FROM jsonb_array_elements(body -> 'credentials') AS element
+					), '[]'::jsonb))
+				ELSE body
+			END
+			FROM (
+				SELECT COALESCE(audit_logs.payload, '{}'::jsonb)
+				       - 'login_code' - 'picture_password' - 'qr_secret_hash'
+				       - 'password' - 'temporary_password' - 'password_hash' AS body
+			) AS stripped
+		)
 		WHERE entity_id = $1
 		   OR payload->>'student_external_ref' = $1
 		   OR payload->>'external_ref' = $1
