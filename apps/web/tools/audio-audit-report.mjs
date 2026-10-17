@@ -41,7 +41,7 @@ function select(row){
  resetPlayer();
  // Do not allow source data to construct remote or traversal URLs.
  if(!/^\\/audio\\/[a-zA-Z0-9_./-]+\\.(mp3|wav|ogg|m4a)$/i.test(row.file)||row.file.split('/').some(p=>p==='.'||p==='..')){el('rate').textContent='Unsafe audio path: cannot play.';return;}
- player.src='../../../../apps/web/public'+row.file;player.playbackRate=1;player.preservesPitch=true;player.load();
+ player.src='../../../../apps/web/private'+row.file;player.playbackRate=1;player.preservesPitch=true;player.load();
  el('original').disabled=el('slower').disabled=false;el('selected').textContent=row.id;el('script').textContent=row.text??'Script unavailable';el('hash').textContent='Audited audio SHA-256: '+row.sha256;
  el('player-title').focus();
 }

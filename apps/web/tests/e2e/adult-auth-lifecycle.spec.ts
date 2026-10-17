@@ -142,7 +142,15 @@ for (const account of accounts) {
   test(`${account.name} server-rendered credentials wait for hydration`, async ({ request }) => {
     const response = await request.get(account.page);
     expect(response.ok()).toBe(true);
-    expect(await response.text()).toMatch(/<fieldset[^>]*disabled/);
+    const html = await response.text();
+    if (account.name === "admin") {
+      // The admin form arrives with its client bundle. The first HTML has no
+      // password field, so credentials cannot be submitted before hydration.
+      expect(html).toContain("Loading the admin workspace");
+      expect(html).not.toMatch(/type="password"/);
+      return;
+    }
+    expect(html).toMatch(/<fieldset[^>]*disabled/);
   });
 }
 

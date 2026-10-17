@@ -106,7 +106,7 @@ export default function AdminWorkspaceShell({
               aria-expanded={menuOpen}
               aria-controls="admin-navigation"
               onClick={() => setMenuOpen(open => !open)}
-              className="flex min-h-11 w-full items-center justify-between gap-3 rounded-xl px-3 py-2 text-left text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7357c9] lg:hidden"
+              className="nl-section-toggle"
             >
               <span>Sections <span className="ml-2 font-normal">{activeSection}</span></span>
               <span aria-hidden="true">{menuOpen ? "−" : "+"}</span>

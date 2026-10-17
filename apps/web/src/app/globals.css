@@ -13,6 +13,13 @@
   .studio-check-answer {
     @apply mt-4 min-h-14 w-full bg-sun px-4 py-3 text-lg text-ink disabled:opacity-50;
   }
+  /* Named once so the same control styling is not copied into every client bundle. */
+  .nl-line-button {
+    @apply min-h-11 rounded-lg border border-[#17233f]/20 bg-white px-4 py-2 text-sm font-semibold disabled:opacity-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7357c9];
+  }
+  .nl-section-toggle {
+    @apply flex min-h-11 w-full items-center justify-between gap-3 rounded-xl px-3 py-2 text-left text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7357c9] lg:hidden;
+  }
 }
 
 .mission-status-pill {
@@ -239,6 +246,24 @@
 .anim-orbit { animation: orbit 7s linear infinite; }
 
 /* ---------- Components ---------- */
+
+/* Shared names for controls that were copied through client JavaScript. */
+.nl-field, .nl-line, .nl-box { width: 100%; outline: none; }
+.nl-field { margin-top: 0.25rem; border-radius: 0.5rem; border: 1px solid rgb(21 33 61 / 0.14); background: #fff; padding: 0.5rem 0.75rem; font-size: 0.875rem; line-height: 1.25rem; font-weight: 400; }
+.nl-clip { margin-top: 0.25rem; min-height: 2.75rem; width: 100%; border-radius: 0.75rem; border: 1px solid rgb(29 26 62 / 0.15); background: #fff; padding-left: 0.75rem; padding-right: 0.75rem; font-size: 0.875rem; line-height: 1.25rem; font-weight: 400; }
+.nl-quiet { margin-top: 0.5rem; max-width: 48rem; font-size: 0.875rem; line-height: 1.5rem; color: rgb(29 26 62 / 0.62); }
+.nl-line { margin-top: 0.5rem; border-radius: 0.5rem; border: 1px solid rgb(23 35 63 / 0.14); padding: 0.75rem 1rem; font-size: 0.875rem; line-height: 1.25rem; }
+.nl-box { margin-top: 0.5rem; border: 1px solid rgb(29 26 62 / 0.15); padding: 0.75rem 1rem; }
+.nl-field:focus, .nl-line:focus, .nl-box:focus { border-color: #7357c9; }
+.nl-eye, .nl-gold, .nl-kicker { font-family: "Atkinson Hyperlegible", system-ui, sans-serif; text-transform: uppercase; }
+.nl-eye { font-size: 0.75rem; line-height: 1rem; letter-spacing: 0.14em; color: var(--world-accent); }
+.nl-panel { scroll-margin-top: 7rem; overflow: hidden; border-radius: 0.5rem; background: #fff; box-shadow: 0 22px 60px rgb(21 33 61 / 0.14); }
+.nl-pick { margin-top: 0.5rem; min-height: 3rem; width: 100%; border-radius: 0.75rem; background: #fff7df; padding-left: 0.75rem; padding-right: 0.75rem; font-size: 1.125rem; line-height: 1.75rem; color: #1d1a3e; }
+.nl-gold { font-size: 0.875rem; line-height: 1.25rem; letter-spacing: 0.18em; color: #ffdf8a; }
+.nl-kicker { font-size: 0.75rem; line-height: 1rem; letter-spacing: 0.16em; color: #7357c9; }
+.nl-note { margin-top: 1rem; border-radius: 1rem; background: #fff7df; padding: 1rem; font-size: 0.875rem; line-height: 1.5rem; color: #1d1a3e; }
+.nl-go { background: #ffbf45; padding: 0.75rem 1.25rem; font-size: 0.875rem; line-height: 1.25rem; }
+.nl-go:disabled { opacity: 0.5; }
 
 .btn-pop {
   @apply font-display font-semibold rounded-lg shadow-pop transition-transform duration-100 select-none;

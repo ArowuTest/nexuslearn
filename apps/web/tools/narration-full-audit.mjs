@@ -10,7 +10,8 @@ import { renderAudioAuditReport } from "./audio-audit-report.mjs";
 
 const repo = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
 const publicRoot = path.join(repo, "apps/web/public");
-const audioRoot = path.join(publicRoot, "audio");
+const audioRoot = path.join(repo, "apps/web/private/audio");
+const logicalRoot = path.join(repo, "apps/web/private");
 const output = path.join(repo, "packages/content/generated/coverage/narration-full-audit.json");
 const manifestBytes = fs.readFileSync(path.join(repo, "packages/content/audio/narration-manifest.json"));
 const manifest = JSON.parse(manifestBytes);
@@ -21,7 +22,7 @@ function walk(dir) {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap(entry => entry.isDirectory() ? walk(path.join(dir, entry.name)) : entry.isFile() && /\.(mp3|wav|ogg|m4a)$/i.test(entry.name) ? [path.join(dir, entry.name)] : []);
 }
 const files = walk(audioRoot).sort();
-const paths = new Set(files.map(file => "/" + path.relative(publicRoot, file).replaceAll("\\", "/")));
+const paths = new Set(files.map(file => "/" + path.relative(logicalRoot, file).replaceAll("\\", "/")));
 const inventoryIssues = reconcileAudioInventory(manifest.items ?? [], publicManifest.items ?? [], [...paths]);
 const byFile = new Map((manifest.items ?? []).filter(Boolean).map(item => [item.file, item]));
 const missing = inventoryIssues.filter(issue => issue.code === "missing_file");
@@ -34,7 +35,7 @@ try {
     await page.addScriptTag({ content: `window.measurePCM = ${measurePCM.toString()}; window.auditContext = new OfflineAudioContext(1, 1, 44100);` });
     while (cursor < files.length) {
       const file = files[cursor++];
-      const relative = "/" + path.relative(publicRoot, file).replaceAll("\\", "/");
+      const relative = "/" + path.relative(logicalRoot, file).replaceAll("\\", "/");
       const item = byFile.get(relative);
       const bytes = fs.readFileSync(file);
       const sha = hash(bytes);
@@ -89,7 +90,7 @@ const summary = Array.from({ length: 7 }, (_, i) => {
   const rates = selected.filter(row => row.pace?.words >= 8).map(row => row.pace.wpm).sort((a, b) => a - b);
   return { year: i + 1, files: selected.length, decoded: selected.filter(row => row.pcm).length, measured_scripts: rates.length, median_wpm: rates.length ? rates[Math.floor(rates.length / 2)] : null, max_wpm: rates.at(-1) ?? null, fast_review: selected.filter(row => row.flags.includes("pace_review_fast")).length };
 });
-const report = { schema: "nexuslearn.audio-technical-audit.v1", generated_at: new Date().toISOString(), decoder: `Chromium ${browser.version()} Web Audio PCM`, manifest_sha256: hash(manifestBytes), public_manifest_sha256: hash(publicManifestBytes), scope: "All MP3/WAV/OGG/M4A files under apps/web/public/audio; no subjective listening approval", thresholds: "20ms silence windows below -50dBFS; >65% silence / >0.1% near-full-scale samples flagged for review. Script rate is not transcription; WPM screens Y1>160,Y2>170,Y3-7>190 or <70, scripts >=8 words only. Not educational standards.", total_files: files.length, manifest_items: manifest.items?.length ?? 0, inventory_issues: inventoryIssues, missing_files: missing, duplicate_audio_groups: [...groups.values()].filter(ids => ids.length > 1), flag_counts: counts, by_year: summary, items: rows };
+const report = { schema: "nexuslearn.audio-technical-audit.v1", generated_at: new Date().toISOString(), decoder: `Chromium ${browser.version()} Web Audio PCM`, manifest_sha256: hash(manifestBytes), public_manifest_sha256: hash(publicManifestBytes), scope: "All MP3/WAV/OGG/M4A files under apps/web/private/audio; no subjective listening approval", thresholds: "20ms silence windows below -50dBFS; >65% silence / >0.1% near-full-scale samples flagged for review. Script rate is not transcription; WPM screens Y1>160,Y2>170,Y3-7>190 or <70, scripts >=8 words only. Not educational standards.", total_files: files.length, manifest_items: manifest.items?.length ?? 0, inventory_issues: inventoryIssues, missing_files: missing, duplicate_audio_groups: [...groups.values()].filter(ids => ids.length > 1), flag_counts: counts, by_year: summary, items: rows };
 fs.mkdirSync(path.dirname(output), { recursive: true });
 fs.writeFileSync(output, JSON.stringify(report, null, 2) + "\n");
 fs.writeFileSync(output.replace(/\.json$/, ".html"), renderAudioAuditReport(report));

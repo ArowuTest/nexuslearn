@@ -12,7 +12,7 @@ test("required answers stay disabled before and during delayed playback, then fa
       student_id:"audio-pupil",activity:{id:"audio-a",title:"Listen",interaction:{}},
       objective:{id:"audio-o",year:1,subject:"English"},world:{key:"wonder-garden",year_group:1,config:{}},
       runtime_adaptations:{animation_tier:"static",reduced_motion:true,question_limit:1},
-      questions:[{id:"audio-q",question_version:"v1",objective_id:"audio-o",format:"number-input",response_kind:"number",body:{prompt:"Which number did you hear?",input:"number",audio_required:true,audio_url:"/missing-required.mp3"},hints:[]}],
+      questions:[{id:"audio-q",question_version:"v1",objective_id:"audio-o",format:"number-input",response_kind:"number",body:{prompt:"Which number did you hear?",input:"number",audio_required:true,audio_url:"/qa-missing-required.mp3"},hints:[]}],
     }});
     if(route.request().url().endsWith("/v1/learning/attempt"))attempts.push(route.request().postData()??"");
     return route.fulfill({status:404,json:{}});

@@ -95,7 +95,7 @@ export default function MockAssessmentBuilder({
       <div className="mt-3 grid gap-2 sm:grid-cols-3">
         <label className="text-xs font-semibold">
           Subject
-          <select value={subject} onChange={(event) => setSubject(event.target.value as MockAssessmentRequest["subject"])} className="mt-1 w-full rounded-lg border border-[#15213d]/14 bg-white px-3 py-2 text-sm font-normal outline-none focus:border-[#7357c9]">
+          <select value={subject} onChange={(event) => setSubject(event.target.value as MockAssessmentRequest["subject"])} className="nl-field">
             <option>Mathematics</option>
             <option>English</option>
             <option>Science</option>
@@ -103,13 +103,13 @@ export default function MockAssessmentBuilder({
         </label>
         <label className="text-xs font-semibold">
           Target year
-          <select value={year} onChange={(event) => setYear(Number(event.target.value))} className="mt-1 w-full rounded-lg border border-[#15213d]/14 bg-white px-3 py-2 text-sm font-normal outline-none focus:border-[#7357c9]">
+          <select value={year} onChange={(event) => setYear(Number(event.target.value))} className="nl-field">
             {Array.from({ length: 7 }, (_, index) => index + 1).map((value) => <option key={value} value={value}>Year {value}</option>)}
           </select>
         </label>
         <label className="text-xs font-semibold">
           Questions
-          <select value={questionCount} onChange={(event) => setQuestionCount(Number(event.target.value))} className="mt-1 w-full rounded-lg border border-[#15213d]/14 bg-white px-3 py-2 text-sm font-normal outline-none focus:border-[#7357c9]">
+          <select value={questionCount} onChange={(event) => setQuestionCount(Number(event.target.value))} className="nl-field">
             {[5, 10, 15, 20, 30].map((value) => <option key={value} value={value}>{value} questions</option>)}
           </select>
         </label>

@@ -133,7 +133,7 @@ export default function SchoolSupportEditor({ state, pupil, disabled, onChange, 
       <Field label="Interests (comma separated)" value={state.interests} onChange={interests => onChange({ type: "edit", interests })} />
       <TextArea label={supportFieldLabels.notes} value={draft.notes} onChange={notes => edit({ notes })} />
       {state.base?.updated_at && <p className="px-5 pb-2 text-xs text-[#17233f]/52">Last updated {new Date(state.base.updated_at).toLocaleString()}</p>}
-      <div className="flex justify-end p-5"><button ref={save} className="btn-pop bg-[#ffbf45] px-5 py-3 text-sm disabled:opacity-50" disabled={!pupil || !state.ready || disabled || Boolean(review)} onClick={() => onSync(true)}>Save support profile</button></div>
+      <div className="flex justify-end p-5"><button ref={save} className="btn-pop nl-go" disabled={!pupil || !state.ready || disabled || Boolean(review)} onClick={() => onSync(true)}>Save support profile</button></div>
     </fieldset>
   </Panel>;
 }

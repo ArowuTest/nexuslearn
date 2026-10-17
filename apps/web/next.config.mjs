@@ -1,6 +1,55 @@
+function apiConnectOrigin() {
+  const raw = process.env.NEXT_PUBLIC_API_URL || "";
+  try {
+    return raw ? new URL(raw).origin : "";
+  } catch {
+    return "";
+  }
+}
+
+const scriptSrc = process.env.NODE_ENV === "production"
+  ? "script-src 'self' 'unsafe-inline'"
+  : "script-src 'self' 'unsafe-inline' 'unsafe-eval'";
+
+const contentSecurityPolicy = [
+  "default-src 'self'",
+  scriptSrc,
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob:",
+  "media-src 'self' blob:",
+  "font-src 'self' data:",
+  `connect-src 'self'${apiConnectOrigin() ? ` ${apiConnectOrigin()}` : ""}`,
+  "frame-ancestors 'none'",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+].join("; ");
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  // Pending narration is not in public/. Trace the private copies into the
+  // audio route so a Vercel function can read them. Next matches this against
+  // the app entry path (/app/audio/...), not the public URL. If a deploy
+  // exceeds the function size limit, set NARRATION_AUDIO_ROOT to a private mount.
+  outputFileTracingIncludes: {
+    "/app/audio/**": ["./private/audio/narration/**/*"],
+  },
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          { key: "Content-Security-Policy", value: contentSecurityPolicy },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "X-Frame-Options", value: "DENY" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=()" },
+          { key: "X-DNS-Prefetch-Control", value: "off" },
+        ],
+      },
+    ];
+  },
   webpack(config, { dev, isServer }) {
     // Keep Next's framework/lib groups, thresholds and server layers intact.
     // The small API client was repeated in five route chunks. Sharing only

@@ -117,7 +117,7 @@ function collect() {
       failures.push("produced narration: browser TTS and unreviewed phonemes must remain excluded");
     }
     for (const item of asArray(produced.items)) {
-      const localFile = path.join(repoRoot, "apps/web/public", String(item.file ?? "").replace(/^\//, ""));
+      const localFile = path.join(repoRoot, "apps/web/private", String(item.file ?? "").replace(/^\//, ""));
       if (!item.technical_pass || !fs.existsSync(localFile) || fs.statSync(localFile).size < 2_000) {
         failures.push(`${item.id ?? "unknown narration"}: produced MP3 is missing or invalid`);
       }

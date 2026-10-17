@@ -66,16 +66,12 @@ export default function FamilyPage() {
 
   async function signup() {
     if (authentication.busy()) return;
+    const email = parent.email.trim();
     await guarded("Creating parent account...", async () => {
-      const result = await authentication.run(signal => createParentAccount(parent, signal));
-      if (!result) { setMessage("Sign-in cancelled because the account session changed."); return; }
-      const saved = result.parent;
-      const loginID = saved.login_id || saved.email;
-      const password = parent.password || saved.temporary_password || "";
-      setLogin({ login_id: loginID ?? "", password: "" });
+      const result = await createParentAccount(parent);
+      setLogin({ login_id: email, password: "" });
       setParent({ email: "", display_name: "", password: "" });
-      setMessage(`Parent account created. Login ID: ${loginID}.`);
-      if (password) await fetchPortal();
+      setMessage(`${result.message} Then sign in here with the password you chose.`);
     });
   }
 
@@ -276,7 +272,7 @@ export default function FamilyPage() {
 
         <section className={`grid gap-6 py-8 ${portal ? "lg:grid-cols-[0.62fr_1.38fr]" : "mx-auto max-w-4xl"}`}>
           {portal ? <aside className="self-start rounded-lg bg-[#15213d] p-6 text-white shadow-[0_24px_70px_rgba(21,33,61,0.22)]">
-            <p className="font-display text-sm uppercase tracking-[0.18em] text-[#ffdf8a]">Family workspace</p>
+            <p className="nl-gold">Family workspace</p>
             <h1 className="font-display mt-3 text-4xl font-semibold leading-tight md:text-5xl">Set up learning around the child.</h1>
             <p className="mt-4 leading-7 text-white/72">
               Parent access creates child profiles without asking children for email accounts. The Adaptive Inclusion Profile then shapes pacing, scaffolds, animation intensity, audio and reward style.
@@ -309,7 +305,7 @@ export default function FamilyPage() {
                 </ActionBar>
               </section>
             )}
-            <section id="family-account" className="scroll-mt-28 overflow-hidden rounded-lg bg-white shadow-[0_22px_60px_rgba(21,33,61,0.14)]">
+            <section id="family-account" className="nl-panel">
               {portal ? <div className="flex flex-wrap items-center justify-between gap-3 p-5">
                 <p className="text-sm font-semibold">Signed in as {portal.parent.display_name || portal.parent.login_id}</p>
                 <button type="button" onClick={logout} className="btn-pop bg-[#15213d] px-5 py-3 text-sm text-white">Sign out</button>
@@ -321,7 +317,7 @@ export default function FamilyPage() {
                 <Field label="Password" type="password" value={parent.password} onChange={(password) => setParent({ ...parent, password })} />
               </fieldset>
               <ActionBar message="Parent access is private. Children use their own child-safe login card rather than the parent password.">
-                <button onClick={signup} disabled={!parent.email || !parent.display_name || !parent.password || saving} className="btn-pop bg-[#ffbf45] px-5 py-3 text-sm disabled:opacity-50">Create account</button>
+                <button onClick={signup} disabled={!parent.email || !parent.display_name || !parent.password || saving} className="btn-pop nl-go">Create account</button>
               </ActionBar>
               <form aria-label="Parent sign in" onSubmit={(event) => { event.preventDefault(); if (!saving && login.login_id && login.password) void loadPortal(); }} className="grid gap-0 border-t border-[#15213d]/10 md:grid-cols-[1fr_1fr_auto_auto]">
                 <fieldset disabled={saving || !authentication.ready} className="contents">
@@ -333,7 +329,7 @@ export default function FamilyPage() {
               </>}
             </section>
 
-            {portal ? <section id="family-children" className="scroll-mt-28 overflow-hidden rounded-lg bg-white shadow-[0_22px_60px_rgba(21,33,61,0.14)]">
+            {portal ? <section id="family-children" className="nl-panel">
               <SectionHeader eyebrow="Step 2" title="Children" detail="Generated pupil-style credentials keep the child login simple and school-safe." />
               {portal && portal.children.length > 0 ? (
                 <div className="grid gap-3 border-t border-[#15213d]/10 p-5" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 20rem), 1fr))" }}>
@@ -394,7 +390,7 @@ export default function FamilyPage() {
               )}
             </section> : null}
 
-            {portal ? <section id="family-support" className="scroll-mt-28 overflow-hidden rounded-lg bg-white shadow-[0_22px_60px_rgba(21,33,61,0.14)]">
+            {portal ? <section id="family-support" className="nl-panel">
               <SectionHeader eyebrow="Step 3" title="Adaptive child profile" detail="Everything here is configurable support, not a label forced on the child." />
               <div className="grid gap-0 border-t border-[#15213d]/10 md:grid-cols-3">
                 <Field label="Child ID" value={child.external_ref} onChange={(external_ref) => setChild({ ...child, external_ref: slug(external_ref) })} />
@@ -471,7 +467,7 @@ function SectionHeader({ eyebrow, title, detail, level = "h2" }: { eyebrow: stri
   const Heading = level;
   return (
     <div className="p-5">
-      <p className="font-display text-xs uppercase tracking-[0.16em] text-[#7357c9]">{eyebrow}</p>
+      <p className="nl-kicker">{eyebrow}</p>
       <Heading className="font-display mt-2 text-2xl font-semibold">{title}</Heading>
       <p className="mt-2 text-sm leading-6 text-[#15213d]/62">{detail}</p>
     </div>

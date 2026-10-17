@@ -101,7 +101,7 @@ export default function SchoolAccessCards({ classes, schoolName, loadPage, onCla
   const activeClass = classes.find(item => item.id === view.classID);
   const cards = activeClass ? view.data?.student_credentials ?? [] : [];
   const printable = cards.filter(card => ready(card) && selected.includes(card.student_external_ref));
-  const button = "min-h-11 rounded-lg border border-[#17233f]/20 bg-white px-4 py-2 text-sm font-semibold disabled:opacity-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7357c9]";
+  const button = "nl-line-button";
   return <>
     <Panel id="school-access" title="Pupil Login Packs" accessibleName="Pupil Login Packs">
       <p className="p-5 text-sm leading-6 text-[#42506b]">Choose one class. Cards load 12 at a time and stay hidden until opened. Print only the pupils you select on this page; keep their cards with trusted adults.</p>

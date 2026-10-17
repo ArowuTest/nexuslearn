@@ -32,7 +32,7 @@ async function openAudioWorkspace(page: Page, recording?: ProducedAudio) {
     wav.writeUInt32LE(samples, 24); wav.writeUInt32LE(samples * 2, 28);
     wav.writeUInt16LE(2, 32); wav.writeUInt16LE(16, 34);
     wav.write("data", 36); wav.writeUInt32LE(samples * 2, 40);
-    await page.route("**/audio/narration/alice/y1/**", route => route.fulfill({ contentType: "audio/wav", body: wav }));
+    await page.route("**/audio/review-listen**", route => route.fulfill({ contentType: "audio/wav", body: wav }));
   }
   await page.route("http://api.test/**", async (route) => {
     const request = route.request();

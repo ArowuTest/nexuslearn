@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"log/slog"
-	"net/http"
 	"os"
 
 	"github.com/ArowuTest/nexuslearn/apps/api/internal/database"
@@ -14,6 +13,11 @@ import (
 func main() {
 	logger := slog.New(slog.NewJSONHandler(os.Stdout, nil))
 	slog.SetDefault(logger)
+
+	if err := server.ValidateProductionEnvironment(); err != nil {
+		slog.Error("production configuration refused", "error", err)
+		os.Exit(1)
+	}
 
 	port := os.Getenv("PORT")
 	if port == "" {
@@ -43,7 +47,7 @@ func main() {
 	repo := learning.NewRepository(db)
 	srv := server.New(repo, persistence)
 	slog.Info("nexuslearn api starting", "port", port, "persistence", persistence)
-	if err := http.ListenAndServe(":"+port, srv); err != nil {
+	if err := server.NewHTTPServer(":"+port, srv).ListenAndServe(); err != nil {
 		slog.Error("server exited", "error", err)
 		os.Exit(1)
 	}

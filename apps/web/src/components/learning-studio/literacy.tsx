@@ -261,7 +261,7 @@ function EvidenceSpanSelector({ question, input, onChoose }: { question: StudioQ
   if (candidates.length < 2) return <section className="studio-workspace-panel" aria-label={title}>
     <p className="studio-step-label">{title}</p>
     {inference && <p className="mt-2 rounded-2xl bg-[#fff7df] p-4 text-sm font-semibold leading-6 text-ink">Claim or idea: {inference}</p>}
-    {source && <p className="mt-4 rounded-2xl bg-[#fff7df] p-4 text-sm leading-6 text-ink"><span className="font-display text-xs uppercase">Text to inspect</span><br />{source}</p>}
+    {source && <p className="nl-note"><span className="font-display text-xs uppercase">Text to inspect</span><br />{source}</p>}
     {preciseWords}
     {!preciseWords && <label className="mt-4 block text-sm font-semibold text-white">Type the exact evidence phrase
       <input value={input} onChange={(event) => onChoose(event.target.value)} className="mt-2 min-h-14 w-full rounded-xl bg-[#fff7df] px-4 text-lg text-ink" aria-label="Evidence phrase" />
@@ -271,7 +271,7 @@ function EvidenceSpanSelector({ question, input, onChoose }: { question: StudioQ
     <p className="studio-step-label">{title}</p>
     <p className="mt-2 text-center text-sm text-white/80">{instruction}</p>
     {inference && <p className="mt-4 rounded-2xl bg-[#fff7df] p-4 text-sm font-semibold leading-6 text-ink"><span className="font-display text-xs uppercase">Claim or idea</span><br />{inference}</p>}
-    {source && <p className="mt-4 rounded-2xl bg-[#fff7df] p-4 text-sm leading-6 text-ink"><span className="font-display text-xs uppercase">Text to inspect</span><br />{source}</p>}
+    {source && <p className="nl-note"><span className="font-display text-xs uppercase">Text to inspect</span><br />{source}</p>}
     <div className="mt-5 grid gap-3" role="group" aria-label="Evidence choices">{candidates.map((candidate, index) => {
       const active = selected.includes(candidate);
       return <button key={`${candidate}-${index}`} type="button" onClick={() => toggle(candidate)} aria-pressed={active} className={`rounded-2xl border-2 p-4 text-left ${active ? 'border-sun bg-[#fff7df] text-ink ring-2 ring-sun' : 'border-white/15 bg-white/5 text-white'}`}><span className="mr-2 font-display text-xs opacity-70">{index + 1}.</span>{candidate}</button>;
@@ -295,8 +295,8 @@ function FeatureExplorer({ question, input, onChoose }: { question: StudioQuesti
 function MeaningPurposeCard({ question }: { question: StudioQuestion }) {
   if (question.format.toLowerCase() !== 'meaning-choice') return null;
   const context = typeof question.body.transfer_context === 'string' ? question.body.transfer_context.replaceAll('_', ' ') : '';
-  return <aside className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5 text-center" aria-label="Meaning check strategy">
-    <p className="font-display text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Meaning check</p>
+  return <aside className="studio-workspace-panel text-center" aria-label="Meaning check strategy">
+    <p className="nl-eye">Meaning check</p>
     <p className="mt-2 text-sm leading-6 text-white/85">Choose the sentence that says exactly what the reader needs—clear details matter more than extra words.</p>
     {context && <span className="mt-3 inline-block rounded-full bg-[#fff7df] px-3 py-1 text-xs font-semibold capitalize text-ink">Context: {context}</span>}
   </aside>;
@@ -306,8 +306,8 @@ function ParagraphThemeCard({ question }: { question: StudioQuestion }) {
   if (question.format.toLowerCase() !== 'paragraph-sort') return null;
   const theme = typeof question.body.theme === 'string' ? question.body.theme : '';
   if (!theme) return null;
-  return <aside className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5 text-center" aria-label="Paragraph theme card">
-    <p className="font-display text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Paragraph detective</p>
+  return <aside className="studio-workspace-panel text-center" aria-label="Paragraph theme card">
+    <p className="nl-eye">Paragraph detective</p>
     <p className="mt-3 rounded-2xl bg-[#fff7df] p-4 text-lg font-semibold text-ink">Theme: {theme}</p>
     <p className="mt-3 text-sm leading-6 text-white/80">Keep the theme card open. Choose the sentence that gives the reader a useful detail about this topic.</p>
     <p className="mt-3 text-xs text-white/70">One thoughtful connection grows your writing map—there is no timer, streak or penalty for revising.</p>
@@ -402,7 +402,7 @@ function ParagraphRelationshipCard({ question }: { question: StudioQuestion }) {
   if (question.format.toLowerCase() !== 'paragraph-order') return null;
   const relationship = typeof question.body.relationship === 'string' ? question.body.relationship : '';
   if (!relationship) return null;
-  return <aside className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5 text-center" aria-label="Paragraph relationship clue"><p className="font-display text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Cohesion clue</p><p className="mt-3 rounded-xl bg-[#fff7df] p-3 font-semibold capitalize text-ink">Relationship: {relationship}</p><p className="mt-3 text-sm text-white/80">Choose the signpost that tells the reader how this paragraph connects to the last one.</p></aside>;
+  return <aside className="studio-workspace-panel text-center" aria-label="Paragraph relationship clue"><p className="nl-eye">Cohesion clue</p><p className="mt-3 rounded-xl bg-[#fff7df] p-3 font-semibold capitalize text-ink">Relationship: {relationship}</p><p className="mt-3 text-sm text-white/80">Choose the signpost that tells the reader how this paragraph connects to the last one.</p></aside>;
 }
 
 function ClaimEvidenceTray({ question }: { question: StudioQuestion }) {

@@ -129,7 +129,7 @@ for (const [name, read] of [
 
 // Execute the real handler; browser coverage separately checks rendered state.
 test("admin sign-out clears private UI before remote revocation settles", async () => {
-  const pageSource = await readFile(new URL("../src/app/admin/page.tsx", import.meta.url), "utf8");
+  const pageSource = await readFile(new URL("../src/components/admin/AdminConsole.tsx", import.meta.url), "utf8");
   const file = ts.createSourceFile("page.tsx", pageSource, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
   let handler;
   function visit(node) {
@@ -155,7 +155,7 @@ test("admin sign-out clears private UI before remote revocation settles", async 
 });
 
 async function adminProgressHarness() {
-  const pageSource = await readFile(new URL("../src/app/admin/page.tsx", import.meta.url), "utf8");
+  const pageSource = await readFile(new URL("../src/components/admin/AdminConsole.tsx", import.meta.url), "utf8");
   const file = ts.createSourceFile("page.tsx", pageSource, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
   const handlers = [];
   function visit(node) {

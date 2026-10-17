@@ -9,7 +9,7 @@ type Filters = { year: number; subject: string; query: string };
 type Page = Filters & { objectives: SchoolObjective[]; limit: number; release_id: string; has_more: boolean; next_cursor: string };
 const subjects = ["English", "Mathematics", "Science"];
 const authorization = () => accountSessionHeaders(["school_admin", "teacher"]).Authorization ?? "";
-const button = "min-h-11 rounded-lg border border-[#17233f]/20 bg-white px-4 py-2 text-sm font-semibold disabled:opacity-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7357c9]";
+const button = "nl-line-button";
 
 function validPage(value: unknown, filter: Filters, cursors: string[], release?: string): value is Page {
   const page = value as Page;

@@ -6,7 +6,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "NexusLearn - Learning worlds for Years 1-7",
   description:
-    "An adaptive learning adventure for UK Years 1-7. Curriculum-mapped missions, animated worlds, and clear progress for parents and schools.",
+    "An adaptive learning adventure. England Years 1-7, or Nigeria Primary 1-6 and JSS 1. Curriculum-mapped missions, animated worlds, and clear progress for parents and schools.",
 };
 
 export default function RootLayout({

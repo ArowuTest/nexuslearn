@@ -27,7 +27,7 @@ export function WorkspaceSection({ id, eyebrow, title, detail, children, classNa
   return (
     <section id={id} className={`scroll-mt-28 overflow-hidden rounded-2xl bg-white shadow-card ${className}`}>
       <header className="border-b border-[#17233f]/10 p-5 md:p-6">
-        {eyebrow ? <p className="font-display text-xs uppercase tracking-[0.16em] text-[#7357c9]">{eyebrow}</p> : null}
+        {eyebrow ? <p className="nl-kicker">{eyebrow}</p> : null}
         <h2 className="font-display mt-1 text-2xl font-semibold text-[#17233f]">{title}</h2>
         {detail ? <p className="mt-2 max-w-3xl text-sm leading-6 text-[#17233f]/62">{detail}</p> : null}
       </header>

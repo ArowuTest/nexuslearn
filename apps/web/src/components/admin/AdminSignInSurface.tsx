@@ -37,11 +37,11 @@ export default function AdminSignInSurface({
           <fieldset disabled={loading || !ready} className="contents">
           <label className="block">
             <span className="text-sm font-semibold">Login ID</span>
-            <input value={login.login_id} onChange={(event) => onLoginChange({ ...login, login_id: event.target.value })} className="mt-2 w-full border border-[#1d1a3e]/15 px-4 py-3 outline-none focus:border-[#7357c9]" placeholder="name@example.com" autoComplete="username" autoFocus />
+            <input value={login.login_id} onChange={(event) => onLoginChange({ ...login, login_id: event.target.value })} className="nl-box" placeholder="name@example.com" autoComplete="username" autoFocus />
           </label>
           <label className="mt-4 block">
             <span className="text-sm font-semibold">Password</span>
-            <input value={login.password} onChange={(event) => onLoginChange({ ...login, password: event.target.value })} type="password" className="mt-2 w-full border border-[#1d1a3e]/15 px-4 py-3 outline-none focus:border-[#7357c9]" placeholder="Password" autoComplete="current-password" />
+            <input value={login.password} onChange={(event) => onLoginChange({ ...login, password: event.target.value })} type="password" className="nl-box" placeholder="Password" autoComplete="current-password" />
           </label>
           <button type="submit" disabled={loading || !login.login_id || !login.password} className="btn-pop mt-6 w-full bg-[#ffbf45] px-6 py-3 text-[#1d1a3e] disabled:cursor-not-allowed disabled:opacity-50">
             {loading ? "Signing in" : "Sign in"}

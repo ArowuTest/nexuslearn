@@ -27,8 +27,10 @@ curriculum subjects.
 
 ```bash
 cd apps/api
-go run ./cmd/server
+NEXUSLEARN_ENV=development go run ./cmd/server
 ```
+
+Local runs need `NEXUSLEARN_ENV=development` (or `dev` or `test`). Without that flag the API treats the process as production and refuses to start until `DATABASE_URL`, 32-character session secrets, and an allowed web origin are set. `NARRATION_ACCESS_SECRET` is not one of those checks. It is optional: children hear approved recordings without it. Set it only to mint signed narration links, and leave it unset to keep signed links off.
 
 ```bash
 cd apps/web

@@ -213,7 +213,7 @@ export default function AdminReviewWorkspace() {
                 <EditorInput label="Reviewer implementation revision" value={implementation} onChange={setImplementation} />
                 <EditorInput label="Model identifier" value={modelIdentifier} onChange={setModelIdentifier} />
                 <EditorInput label="Confidence (0–1)" value={confidence} onChange={setConfidence} />
-                <label className="sm:col-span-2"><span className="text-sm font-semibold">Evidence notes</span><textarea value={evidenceNotes} onChange={(event) => setEvidenceNotes(event.target.value)} rows={4} className="mt-2 w-full border border-[#1d1a3e]/15 px-4 py-3 outline-none focus:border-[#7357c9]" /></label>
+                <label className="sm:col-span-2"><span className="text-sm font-semibold">Evidence notes</span><textarea value={evidenceNotes} onChange={(event) => setEvidenceNotes(event.target.value)} rows={4} className="nl-box" /></label>
               </div>
               {approvalBlocked && <p className="mt-4 bg-[#fff8e4] px-4 py-3 text-sm text-[#725100]">Approval is disabled while blocking criteria, stale evidence, missing sources or governed findings remain.</p>}
               <div className="mt-5 flex flex-wrap justify-end gap-3">
@@ -241,7 +241,7 @@ function FilterInput({ label, value, onChange }: { label: string; value: string;
 }
 
 function EditorInput({ label, value, onChange }: { label: string; value: string; onChange: (value: string) => void }) {
-  return <label><span className="text-sm font-semibold">{label}</span><input value={value} onChange={(event) => onChange(event.target.value)} className="mt-2 w-full border border-[#1d1a3e]/15 px-4 py-3 outline-none focus:border-[#7357c9]" /></label>;
+  return <label><span className="text-sm font-semibold">{label}</span><input value={value} onChange={(event) => onChange(event.target.value)} className="nl-box" /></label>;
 }
 
 function EvidenceFact({ label, value, mono = false }: { label: string; value: string; mono?: boolean }) {

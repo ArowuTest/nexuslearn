@@ -111,7 +111,7 @@ export default function MockAssessmentHistory({
           <select
             value={subject}
             onChange={(event) => setSubject(event.target.value as typeof subject)}
-            className="mt-1 w-full rounded-lg border border-[#15213d]/14 bg-white px-3 py-2 text-sm font-normal outline-none focus:border-[#7357c9]"
+            className="nl-field"
           >
             <option value="">All subjects</option>
             <option value="English">English</option>
@@ -124,7 +124,7 @@ export default function MockAssessmentHistory({
           <select
             value={status}
             onChange={(event) => setStatus(event.target.value as typeof status)}
-            className="mt-1 w-full rounded-lg border border-[#15213d]/14 bg-white px-3 py-2 text-sm font-normal outline-none focus:border-[#7357c9]"
+            className="nl-field"
           >
             <option value="">All statuses</option>
             <option value="ready">Ready</option>
