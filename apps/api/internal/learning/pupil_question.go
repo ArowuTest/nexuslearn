@@ -1,6 +1,10 @@
 package learning
 
-import "strings"
+import (
+	"strings"
+
+	"github.com/ArowuTest/nexuslearn/apps/api/internal/contentgate"
+)
 
 // Separate from the authoring DTO: new private fields must not become public.
 type PupilQuestionConfig struct {
@@ -140,9 +144,46 @@ func PupilQuestion(q QuestionConfig) PupilQuestionConfig {
 			count = len(sequence)
 		}
 	}
+	approvedAudio := map[string]bool{}
+	for _, asset := range q.RequiredListening {
+		if asset.File != "" {
+			approvedAudio[asset.File] = true
+		}
+	}
+	redactUnreleasedCatalogueAudio(body, approvedAudio)
 	return PupilQuestionConfig{ID: q.ID, ActivityID: q.ActivityID, ObjectiveID: q.ObjectiveID,
 		Format: q.Format, QuestionVersion: questionContractVersion(q), ResponseKind: kind,
 		SelectionCount: count, Body: body, Hints: q.Hints, Difficulty: q.Difficulty, SelectionReason: q.SelectionReason}
+}
+
+func redactUnreleasedCatalogueAudio(body map[string]any, approved map[string]bool) {
+	for _, key := range []string{"prompt_audio_url", "audio_url", "narration_url", "audio_asset_id", "audio_ref", "whole_audio_asset_id"} {
+		value, ok := body[key].(string)
+		if ok && contentgate.CatalogueAudioPath(value) && !approved[value] {
+			delete(body, key)
+		}
+	}
+	for _, key := range []string{"audio_assets", "whole_word_audio_assets"} {
+		raw, ok := body[key].(map[string]any)
+		if !ok {
+			continue
+		}
+		next := map[string]any{}
+		for label, value := range raw {
+			text, isString := value.(string)
+			if isString && contentgate.CatalogueAudioPath(text) && !approved[text] {
+				continue
+			}
+			next[label] = value
+		}
+		// An empty map is a real "no clips" projection. Delete only when every
+		// remaining value was an unreleased catalogue file.
+		if len(next) == 0 && len(raw) > 0 {
+			delete(body, key)
+		} else {
+			body[key] = next
+		}
+	}
 }
 
 func publicWholeWordAudioAssets(body map[string]any) map[string]any {

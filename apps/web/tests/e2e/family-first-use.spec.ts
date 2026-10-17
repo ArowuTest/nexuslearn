@@ -136,6 +136,7 @@ test("retrying a child save reuses its ID and late completion cannot reopen a si
     await route.fulfill({ json: child });
   });
   await page.getByLabel("Child name", { exact: true }).fill("QA retry child");
+  await page.getByRole("checkbox", { name: "I agree this child can use NexusLearn." }).check();
   const save = page.getByRole("button", { name: "Create child profile" });
   await save.click();
   await expect(page.getByRole("status")).toHaveText("Try again");

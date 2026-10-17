@@ -7,6 +7,7 @@ export type AudioQueueFilters = {
   subject: string;
   year: string;
   kind: string;
+  pack: string;
   search: string;
 };
 
@@ -110,6 +111,7 @@ export const DEFAULT_AUDIO_FILTERS: AudioQueueFilters = {
   subject: "",
   year: "",
   kind: "",
+  pack: "",
   search: "",
 };
 
@@ -123,6 +125,7 @@ export function audioFiltersFromSearch(search: string): AudioQueueFilters {
     subject: query.get("audio_subject") ?? "",
     year: query.get("audio_year") ?? "",
     kind: query.get("audio_kind") ?? "",
+    pack: query.get("audio_pack") ?? "",
     search: query.get("audio_search") ?? "",
   };
 }
@@ -132,6 +135,7 @@ export function audioQueueQuery(filters: AudioQueueFilters, offset: number, limi
   if (filters.subject) query.set("subject", filters.subject);
   if (filters.year) query.set("year", filters.year);
   if (filters.kind) query.set("kind", filters.kind);
+  if (filters.pack.trim()) query.set("pack", filters.pack.trim());
   if (filters.search.trim()) query.set("search", filters.search.trim());
   return query;
 }
@@ -143,6 +147,7 @@ export function syncAudioFiltersToURL(filters: AudioQueueFilters) {
     ["subject", "audio_subject"],
     ["year", "audio_year"],
     ["kind", "audio_kind"],
+    ["pack", "audio_pack"],
     ["search", "audio_search"],
   ];
   for (const [field, queryName] of fields) {

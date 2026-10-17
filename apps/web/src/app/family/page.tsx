@@ -13,6 +13,8 @@ import { WorkspaceNavigation, WorkspaceState } from "@/components/role-workspace
 import { engagementDefaults, supportChoices, supportNeedOptions as supportNeeds, familyApproachOptions as approaches } from "@/components/role-workspaces/engagementProfileOptions";
 import { acceptParentInvitation, createParentAccount, createParentChild, getParentChildEvidence, getParentPortal, logoutAccount, parentLogin, type ParentChildEvidence, type ParentPortal, type StudentEngagementProfile } from "@/lib/api";
 
+const familyConsent = "I agree this child can use NexusLearn.";
+
 const baseEngagement: StudentEngagementProfile = {
   ...engagementDefaults(),
   learning_approaches: ["predictable_routine", "worked_examples"],
@@ -31,6 +33,7 @@ export default function FamilyPage() {
   const [saving, setSaving] = useState(false);
   const [invitation, setInvitation] = useState("");
   const [invitationProfile, setInvitationProfile] = useState({ display_name: "", password: "" });
+  const consentBox = useRef<HTMLInputElement>(null);
   const portalLoadVersion = useRef(0);
   const sessionVersion = useRef(0);
   const portalController = useRef<AbortController | null>(null);
@@ -95,6 +98,7 @@ export default function FamilyPage() {
   }
 
   async function createChild() {
+    if (!consentBox.current?.checked) { setMessage(familyConsent); return; }
     const version = sessionVersion.current;
     // Keep the allocated ID in the draft so an uncertain response can be
     // retried without silently creating a second child.
@@ -107,8 +111,10 @@ export default function FamilyPage() {
         external_ref: externalRef,
         year_group: Number(child.year_group),
         engagement: { ...engagement, interests },
+        consent: true,
       });
       if (version !== sessionVersion.current) return;
+      if (consentBox.current) consentBox.current.checked = false;
       setChild({ external_ref: "", display_name: "", year_group: 1 });
       setEngagement(baseEngagement);
       setInterestText("");
@@ -424,7 +430,7 @@ export default function FamilyPage() {
                 <Field label="Parent notes" value={engagement.notes} onChange={(notes) => setEngagement({ ...engagement, notes })} placeholder="Optional context for the learning team" />
               </div>
               <div className="flex flex-wrap items-center justify-between gap-3 border-t border-[#15213d]/10 bg-[#fbfaf6] p-5">
-                <p className="max-w-xl text-sm leading-6 text-[#15213d]/62">The runtime already uses this profile to tune mission length, scaffolds, audio, reading support and animation intensity.</p>
+                <label className="max-w-xl text-sm leading-6 text-[#15213d]/62"><input ref={consentBox} type="checkbox" className="mr-2" />{familyConsent}</label>
                 <button onClick={createChild} disabled={!portal || !child.display_name.trim() || child.year_group < 1 || child.year_group > 7 || saving} className="btn-pop bg-[#ffbf45] px-6 py-3 text-sm disabled:opacity-50">Create child profile</button>
               </div>
             </section> : null}

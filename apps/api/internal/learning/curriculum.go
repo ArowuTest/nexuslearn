@@ -490,12 +490,13 @@ type RewardRule struct {
 }
 
 type StudentProfileConfig struct {
-	ID          string `json:"id"`
-	ExternalRef string `json:"external_ref"`
-	DisplayName string `json:"display_name"`
-	YearGroup   int    `json:"year_group"`
-	CreatedAt   string `json:"created_at"`
-	UpdatedAt   string `json:"updated_at"`
+	ID              string `json:"id"`
+	ExternalRef     string `json:"external_ref"`
+	DisplayName     string `json:"display_name"`
+	YearGroup       int    `json:"year_group"`
+	CreatedAt       string `json:"created_at"`
+	UpdatedAt       string `json:"updated_at"`
+	ConsentRequired bool   `json:"consent_required,omitempty"`
 }
 
 type SchoolConfig struct {

@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"log/slog"
-	"net/http"
 	"os"
 
 	"github.com/ArowuTest/nexuslearn/apps/api/internal/database"
@@ -19,6 +18,10 @@ func main() {
 	if port == "" {
 		port = "8080"
 	}
+	if err := server.ValidateProductionConfig(); err != nil {
+		slog.Error("production configuration refused to start", "error", err)
+		os.Exit(1)
+	}
 
 	db, err := database.Connect(context.Background())
 	if err != nil {
@@ -27,6 +30,10 @@ func main() {
 	}
 	if db != nil {
 		defer db.Close()
+	}
+	if server.Production() && db == nil {
+		slog.Error("production configuration refused to start", "error", "DATABASE_URL is required in production")
+		os.Exit(1)
 	}
 	if db != nil && os.Getenv("AUTO_MIGRATE") == "true" {
 		if err := database.RunMigrations(context.Background(), db, "migrations"); err != nil {
@@ -43,7 +50,7 @@ func main() {
 	repo := learning.NewRepository(db)
 	srv := server.New(repo, persistence)
 	slog.Info("nexuslearn api starting", "port", port, "persistence", persistence)
-	if err := http.ListenAndServe(":"+port, srv); err != nil {
+	if err := server.NewHTTPServer(":"+port, srv).ListenAndServe(); err != nil {
 		slog.Error("server exited", "error", err)
 		os.Exit(1)
 	}

@@ -217,6 +217,25 @@ func TestParentChildSecuritySessionIdentityLoginAndRevocationPostgres(t *testing
 		t.Fatal("parent login was used as a mutable email identity")
 	}
 
+	// A new family child cannot sign in until a parent records core learning consent.
+	blockedBody, err := json.Marshal(map[string]any{"student_external_ref": child.Student.ExternalRef, "login_code": child.Credential.LoginCode, "picture_password": child.Credential.PicturePassword})
+	if err != nil {
+		t.Fatal(err)
+	}
+	blockedReq := httptest.NewRequest(http.MethodPost, "/v1/auth/pupil-login", strings.NewReader(string(blockedBody)))
+	blockedRes := httptest.NewRecorder()
+	srv.ServeHTTP(blockedRes, blockedReq)
+	if blockedRes.Code != http.StatusForbidden || !strings.Contains(blockedRes.Body.String(), "consent") {
+		t.Fatalf("new child signed in before consent: %d %s", blockedRes.Code, blockedRes.Body.String())
+	}
+	consentReq := httptest.NewRequest(http.MethodPost, "/v1/parent/children/"+child.Student.ExternalRef+"/consent", strings.NewReader(`{"purpose":"core_learning","policy_version":"2026-10","granted":true,"region":"england","statement":"I agree NexusLearn can keep this child's learning record."}`))
+	consentReq.Header.Set("Authorization", "Bearer "+session.Token)
+	consentRes := httptest.NewRecorder()
+	srv.ServeHTTP(consentRes, consentReq)
+	if consentRes.Code != http.StatusOK {
+		t.Fatalf("consent was not recorded: %d %s", consentRes.Code, consentRes.Body.String())
+	}
+
 	// The generated six-picture credential works through the real pupil handler.
 	loginBody, err := json.Marshal(map[string]any{"student_external_ref": child.Student.ExternalRef, "login_code": child.Credential.LoginCode, "picture_password": child.Credential.PicturePassword})
 	if err != nil {

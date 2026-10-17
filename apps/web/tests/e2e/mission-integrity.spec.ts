@@ -213,7 +213,12 @@ test("muting a pending narration play cancels it without recording a transport f
 
 test("an existing generated MP3 decodes through the mission player and mute stops it", async ({ page }) => {
   // Technical playback in a disposable fixture is not listening approval or a
-  // production manifest promotion. No Audio mock: Chromium decodes the file.
+  // production manifest promotion. This one file is released only inside the
+  // test so Chromium can decode it. No Audio mock.
+  const file = "/audio/narration/alice/en-y1-listening-comprehension/lesson/ready-to-listen-warm-up.mp3";
+  await page.route("**/content/narration-manifest.json", route => route.fulfill({
+    json: { items: [{ id: "ready-to-listen-warm-up", file, technical_pass: true, production_status: "human_listening_approved" }] },
+  }));
   await page.addInitScript(() => {
     const NativeAudio = window.Audio;
     window.Audio = class extends NativeAudio {
@@ -223,7 +228,7 @@ test("an existing generated MP3 decodes through the mission player and mute stop
       }
     };
   });
-  await mission(page, { ...numberFixture, body: { ...numberFixture.body, prompt_audio_url: "/audio/narration/alice/en-y1-listening-comprehension/lesson/ready-to-listen-warm-up.mp3" } });
+  await mission(page, { ...numberFixture, body: { ...numberFixture.body, prompt_audio_url: file } });
   await open(page);
   await page.getByRole("button", { name: "Hear question", exact: true }).click();
   await expect.poll(() => page.evaluate(() => {

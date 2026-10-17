@@ -3,9 +3,10 @@ import { readFile } from "node:fs/promises";
 import { test } from "node:test";
 import vm from "node:vm";
 import ts from "typescript";
+import { yearGroupLabel } from "../src/lib/year-labels.mjs";
 
 const source = ts.transpileModule(await readFile(new URL("../src/components/role-workspaces/useSchoolDirectories.ts", import.meta.url), "utf8"), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText;
-const context = { exports: {}, require: () => ({}) };
+const context = { exports: {}, require: (id) => String(id).includes("year-labels") ? { yearGroupLabel } : {} };
 vm.runInNewContext(source, context);
 const { schoolDirectoryPage, schoolDirectoryOverview } = context.exports;
 const pupil = { external_ref: "one", display_name: "One", year_group: 3 };

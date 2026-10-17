@@ -24,6 +24,7 @@ import (
 	"time"
 
 	"github.com/ArowuTest/nexuslearn/apps/api/internal/learning"
+	"github.com/ArowuTest/nexuslearn/apps/api/internal/security"
 	"github.com/jackc/pgx/v5/pgtype"
 	"golang.org/x/sync/errgroup"
 )
@@ -35,6 +36,8 @@ type Server struct {
 	adminKey        string
 	accountSecret   string
 	allowLegacyAuth bool
+	loginLimiter    *security.LoginLimiter
+	cors            corsPolicy
 }
 
 type adaptiveCatalogueRepository interface {
@@ -245,11 +248,17 @@ func New(repo learning.Repository, persistence string) *Server {
 		persistence:     persistence,
 		adminKey:        os.Getenv("ADMIN_API_KEY"),
 		accountSecret:   strings.TrimSpace(os.Getenv("ACCOUNT_SESSION_SECRET")),
-		allowLegacyAuth: envBoolDefault("ALLOW_LEGACY_CREDENTIAL_HEADERS", true),
+		allowLegacyAuth: envBoolDefault("ALLOW_LEGACY_CREDENTIAL_HEADERS", false),
+		loginLimiter:    security.NewLoginLimiter(),
+		cors:            loadCORS(),
 	}
 
 	s.mux.HandleFunc("GET /healthz", s.handleHealth)
+	s.mux.HandleFunc("GET /readyz", s.handleReady)
 	s.mux.HandleFunc("GET /v1/version", s.handleVersion)
+	s.mux.HandleFunc("GET /v1/curriculum/year-labels", s.handleYearLabels)
+	s.mux.HandleFunc("GET /v1/privacy/retention", s.handleRetentionPolicy)
+	s.mux.HandleFunc("GET /v1/admin/content/child-safety", s.handleChildSafety)
 	s.mux.HandleFunc("GET /v1/system/persistence", s.handlePersistence)
 	s.mux.HandleFunc("GET /v1/system/diagnostics", s.handleDiagnostics)
 	s.mux.HandleFunc("POST /v1/access-requests", s.handleCreateAccessRequest)
@@ -261,6 +270,12 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("POST /v1/parents/signup", s.handleParentSignup)
 	s.mux.HandleFunc("POST /v1/parent/invitations/accept", s.handleAcceptParentInvitation)
 	s.mux.HandleFunc("GET /v1/parent/config", s.handleParentConfig)
+	s.mux.HandleFunc("GET /v1/parent/privacy", s.handleParentPrivacy)
+	s.mux.HandleFunc("PUT /v1/parent/privacy", s.handleParentSavePrivacy)
+	s.mux.HandleFunc("POST /v1/parent/children/{externalRef}/consent", s.handleParentRecordConsent)
+	s.mux.HandleFunc("GET /v1/parent/children/{externalRef}/consent", s.handleParentListConsent)
+	s.mux.HandleFunc("GET /v1/parent/children/{externalRef}/export", s.handleParentExportChild)
+	s.mux.HandleFunc("DELETE /v1/parent/children/{externalRef}", s.handleParentDeleteChild)
 	s.mux.HandleFunc("GET /v1/parent/children/{externalRef}/evidence", s.handleParentChildEvidence)
 	s.mux.HandleFunc("GET /v1/parent/children/{externalRef}/mock-assessments", s.handleParentMockAssessments)
 	s.mux.HandleFunc("POST /v1/parent/children/{externalRef}/mock-assessments", s.handleParentCreateMockAssessment)
@@ -390,20 +405,7 @@ func New(repo learning.Repository, persistence string) *Server {
 }
 
 func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	withCORS(s.mux).ServeHTTP(w, r)
-}
-
-func withCORS(next http.Handler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Access-Control-Allow-Origin", "*")
-		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS")
-		w.Header().Set("Access-Control-Allow-Headers", "Authorization, Content-Type, Idempotency-Key, X-Admin-Key, X-School-URN, X-School-Login, X-School-Password, X-Parent-Login, X-Parent-Password, X-Pupil-Session")
-		if r.Method == http.MethodOptions {
-			w.WriteHeader(http.StatusNoContent)
-			return
-		}
-		next.ServeHTTP(w, r)
-	})
+	s.applyCORS(s.logRequests(s.mux)).ServeHTTP(w, r)
 }
 
 func requestIdempotencyKey(r *http.Request, bodyID string) string {
@@ -532,6 +534,10 @@ func (s *Server) handleUpsertPlatformUser(w http.ResponseWriter, r *http.Request
 }
 
 func (s *Server) requireBootstrapAdmin(w http.ResponseWriter, r *http.Request) bool {
+	if Production() && !envBool("ALLOW_BOOTSTRAP_ADMIN") {
+		writeJSON(w, http.StatusUnauthorized, map[string]string{"error": "bootstrap administrator access is disabled"})
+		return false
+	}
 	if s.adminKey == "" {
 		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "bootstrap admin key is not configured"})
 		return false
@@ -614,8 +620,13 @@ func (s *Server) handleAdminLogin(w http.ResponseWriter, r *http.Request) {
 		LoginID  string `json:"login_id"`
 		Password string `json:"password"`
 	}
+	r.Body = http.MaxBytesReader(w, r.Body, 1<<16)
 	if err := json.NewDecoder(r.Body).Decode(&in); err != nil {
 		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	identity := strings.ToLower(strings.TrimSpace(in.LoginID))
+	if !s.beginLogin(w, r, identity) {
 		return
 	}
 	verifier, ok := s.repo.(platformUserVerifier)
@@ -630,9 +641,11 @@ func (s *Server) handleAdminLogin(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if !verified || len(user.Roles) == 0 {
+		s.noteLoginFailure(r, identity)
 		writeJSON(w, http.StatusUnauthorized, map[string]string{"error": "administrator login failed"})
 		return
 	}
+	s.noteLoginSuccess(r, identity)
 	role := preferredPlatformRole(user.Roles)
 	session, err := s.createAccountSession(r.Context(), user.ID, user.LoginID, role, "", 2*time.Hour)
 	if err != nil {
@@ -648,8 +661,13 @@ func (s *Server) handleSchoolLogin(w http.ResponseWriter, r *http.Request) {
 		LoginID   string `json:"login_id"`
 		Password  string `json:"password"`
 	}
+	r.Body = http.MaxBytesReader(w, r.Body, 1<<16)
 	if err := json.NewDecoder(r.Body).Decode(&in); err != nil {
 		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	identity := strings.ToLower(strings.TrimSpace(in.SchoolURN) + ":" + strings.TrimSpace(in.LoginID))
+	if !s.beginLogin(w, r, identity) {
 		return
 	}
 	user, verified, err := s.repo.VerifySchoolUser(r.Context(), strings.TrimSpace(in.SchoolURN), strings.TrimSpace(in.LoginID), in.Password)
@@ -659,9 +677,11 @@ func (s *Server) handleSchoolLogin(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if !verified {
+		s.noteLoginFailure(r, identity)
 		writeJSON(w, http.StatusUnauthorized, map[string]string{"error": "school login failed"})
 		return
 	}
+	s.noteLoginSuccess(r, identity)
 	session, err := s.createAccountSession(r.Context(), user.ID, user.LoginID, user.Role, user.SchoolURN, 8*time.Hour)
 	if err != nil {
 		s.writeAccountSessionError(w, err)
@@ -676,8 +696,13 @@ func (s *Server) handleParentLogin(w http.ResponseWriter, r *http.Request) {
 		LoginID  string `json:"login_id"`
 		Password string `json:"password"`
 	}
+	r.Body = http.MaxBytesReader(w, r.Body, 1<<16)
 	if err := json.NewDecoder(r.Body).Decode(&in); err != nil {
 		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	identity := strings.ToLower(strings.TrimSpace(in.LoginID))
+	if !s.beginLogin(w, r, identity) {
 		return
 	}
 	parent, verified, err := s.repo.VerifyParentUser(r.Context(), strings.TrimSpace(in.LoginID), in.Password)
@@ -687,9 +712,11 @@ func (s *Server) handleParentLogin(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if !verified {
+		s.noteLoginFailure(r, identity)
 		writeJSON(w, http.StatusUnauthorized, map[string]string{"error": "parent login failed"})
 		return
 	}
+	s.noteLoginSuccess(r, identity)
 	session, err := s.createAccountSession(r.Context(), parent.ID, parent.LoginID, "parent", "", 12*time.Hour)
 	if err != nil {
 		s.writeAccountSessionError(w, err)
@@ -882,6 +909,7 @@ func (s *Server) handlePupilLogin(w http.ResponseWriter, r *http.Request) {
 		PicturePassword    []string `json:"picture_password"`
 		QRSecretHash       string   `json:"qr_secret_hash"`
 	}
+	r.Body = http.MaxBytesReader(w, r.Body, 1<<16)
 	if err := json.NewDecoder(r.Body).Decode(&in); err != nil {
 		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
 		return
@@ -890,6 +918,9 @@ func (s *Server) handlePupilLogin(w http.ResponseWriter, r *http.Request) {
 	loginCode := strings.ToUpper(strings.TrimSpace(in.LoginCode))
 	if studentRef == "" || loginCode == "" {
 		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "student_external_ref and login_code are required"})
+		return
+	}
+	if !s.beginLogin(w, r, studentRef) {
 		return
 	}
 
@@ -907,15 +938,27 @@ func (s *Server) handlePupilLogin(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 	if credential.StudentExternalRef == "" || !strings.EqualFold(strings.TrimSpace(credential.LoginCode), loginCode) {
+		s.noteLoginFailure(r, studentRef)
 		writeJSON(w, http.StatusUnauthorized, map[string]string{"error": "login code did not match"})
 		return
 	}
 	if in.QRSecretHash != "" && credential.QRSecretHash != "" && subtle.ConstantTimeCompare([]byte(in.QRSecretHash), []byte(credential.QRSecretHash)) != 1 {
+		s.noteLoginFailure(r, studentRef)
 		writeJSON(w, http.StatusUnauthorized, map[string]string{"error": "login card did not match"})
 		return
 	}
 	if len(credential.PicturePassword) > 0 && !sameStringSequence(in.PicturePassword, credential.PicturePassword) {
+		s.noteLoginFailure(r, studentRef)
 		writeJSON(w, http.StatusUnauthorized, map[string]string{"error": "picture password did not match"})
+		return
+	}
+	s.noteLoginSuccess(r, studentRef)
+	if blocked, consentErr := s.childLoginBlockedByConsent(r.Context(), studentRef); consentErr != nil {
+		slog.Warn("failed to read parental consent", "student", studentRef, "error", consentErr)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not check parental consent"})
+		return
+	} else if blocked {
+		writeJSON(w, http.StatusForbidden, map[string]string{"error": "a parent needs to record consent before this child can sign in"})
 		return
 	}
 
@@ -2635,6 +2678,7 @@ func (s *Server) handleParentUpsertChild(w http.ResponseWriter, r *http.Request)
 		DisplayName string                            `json:"display_name"`
 		YearGroup   int                               `json:"year_group"`
 		Engagement  learning.StudentEngagementProfile `json:"engagement"`
+		Consent     bool                              `json:"consent"`
 	}
 	if err := json.NewDecoder(r.Body).Decode(&in); err != nil {
 		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
@@ -2657,6 +2701,19 @@ func (s *Server) handleParentUpsertChild(w http.ResponseWriter, r *http.Request)
 	if err != nil {
 		s.writeAdminSaveError(w, err, "parent child")
 		return
+	}
+	if in.Consent {
+		store, ok := s.repo.(interface {
+			RecordConsent(context.Context, string, learning.ConsentRecord) (learning.ConsentRecord, error)
+		})
+		if !ok {
+			writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "family privacy tools need the database"})
+			return
+		}
+		if _, err := store.RecordConsent(r.Context(), parent.ID, learning.FamilyLearningConsent(student.ExternalRef)); err != nil {
+			s.writePrivacyError(w, err)
+			return
+		}
 	}
 	writeJSON(w, http.StatusOK, saved)
 }
@@ -5446,7 +5503,7 @@ func (s *Server) createPupilSession(studentExternalRef string) pupilSession {
 }
 
 func (s *Server) requirePupilSession(w http.ResponseWriter, r *http.Request, studentExternalRef string) bool {
-	if !envBool("REQUIRE_PUPIL_SESSION") {
+	if !pupilSessionsRequired() {
 		return true
 	}
 	secret := strings.TrimSpace(os.Getenv("PUPIL_SESSION_SECRET"))
