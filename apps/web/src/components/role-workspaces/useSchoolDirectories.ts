@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { yearGroupLabel } from "@/lib/year-labels";
 
 export type DirectoryKind = "classes" | "groups" | "students";
 export type DirectoryStudent = { external_ref: string; display_name: string; year_group: number };
@@ -25,7 +26,7 @@ function count(value: unknown): number {
   if (!Number.isSafeInteger(value) || (value as number) < 0) throw failure();
   return value as number;
 }
-export function classYearLabel(value: number): string { return value === 0 ? "Year not set" : `Year ${value}`; }
+export function classYearLabel(value: number): string { return yearGroupLabel(value); }
 function year(value: unknown, unset = false): number {
   const result = count(value);
   if (result < (unset ? 0 : 1) || result > 7) throw failure();

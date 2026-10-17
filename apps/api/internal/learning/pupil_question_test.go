@@ -42,6 +42,31 @@ func TestPupilProjectionPreservesStimuliAndCanonicalSnapshot(t *testing.T) {
 	}
 }
 
+func TestPupilProjectionHidesUnapprovedCatalogueAudio(t *testing.T) {
+	q := QuestionConfig{Body: map[string]any{
+		"prompt_audio_url": "/audio/narration/alice/pending.mp3",
+		"audio_url":        "/qa-fixture.mp3",
+		"audio_asset_id":   "word-cat",
+		"sounds":           []any{"c"},
+		"audio_assets":     map[string]any{"c": "/audio/narration/alice/pending.mp3", "phoneme-c": "phoneme-c"},
+	}}
+	public := PupilQuestion(q)
+	if _, ok := public.Body["prompt_audio_url"]; ok {
+		t.Fatal("unapproved catalogue audio was sent to the child")
+	}
+	if public.Body["audio_url"] != "/qa-fixture.mp3" || public.Body["audio_asset_id"] != "word-cat" {
+		t.Fatalf("non-catalogue references changed: %+v", public.Body)
+	}
+	assets := public.Body["audio_assets"].(map[string]any)
+	if _, pending := assets["c"]; pending || assets["phoneme-c"] != "phoneme-c" {
+		t.Fatalf("audio map: %+v", assets)
+	}
+	released := QuestionConfig{Body: map[string]any{"audio_url": "/audio/narration/alice/ready.mp3"}, RequiredListening: []RequiredListeningAsset{{File: "/audio/narration/alice/ready.mp3"}}}
+	if PupilQuestion(released).Body["audio_url"] != "/audio/narration/alice/ready.mp3" {
+		t.Fatal("human-approved required listening was removed")
+	}
+}
+
 func TestPupilNestedObjectsDenyUnrecognisedAuthorFields(t *testing.T) {
 	q := QuestionConfig{Body: map[string]any{"model": map[string]any{"label": "Diagram", "explanation": "secret", "private_author_note": "secret", "new_private_field": "secret"}}}
 	p := PupilQuestion(q)

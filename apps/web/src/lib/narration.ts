@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { isBlockedCatalogueAudio } from "./narration-safety.mjs";
 
 type NarrationManifestItem = {
   id?: string;
@@ -56,9 +57,10 @@ export function useNarrationAssets(): NarrationAssetIndex {
 export function resolveNarrationAsset(value: unknown, assets: NarrationAssetIndex) {
   if (typeof value !== "string" || !value.trim()) return "";
   const candidate = value.trim();
-  // Authored test fixtures and a small number of runtime integrations can
-  // provide a direct playable URL. Manifest IDs still require a released,
-  // technically validated asset before they resolve.
+  const approvedFiles = new Set(assets.values());
+  // Catalogue files are blocked until a human listening decision releases them.
+  // Direct fixture, blob and data URLs stay available for tests and previews.
+  if (isBlockedCatalogueAudio(candidate, approvedFiles)) return "";
   if (
     candidate.startsWith("/") ||
     candidate.startsWith("blob:") ||

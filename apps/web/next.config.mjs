@@ -1,6 +1,11 @@
+import { securityHeaders } from "./src/lib/security-headers.mjs";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  async headers() {
+    return [{ source: "/:path*", headers: securityHeaders() }];
+  },
   webpack(config, { dev, isServer }) {
     // Keep Next's framework/lib groups, thresholds and server layers intact.
     // The small API client was repeated in five route chunks. Sharing only

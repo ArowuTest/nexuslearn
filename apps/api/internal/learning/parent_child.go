@@ -55,8 +55,8 @@ func (r *PostgresRepository) UpsertParentChild(ctx context.Context, parentID str
 	// administrator-style ON CONFLICT UPDATE. The unique index arbitrates new
 	// claims, including other writers that do not use this repository method.
 	err = tx.QueryRow(ctx, `
-		INSERT INTO students(external_ref,display_name,year_group)
-		VALUES($1,$2,$3) ON CONFLICT(external_ref) DO NOTHING
+		INSERT INTO students(external_ref,display_name,year_group,consent_required)
+		VALUES($1,$2,$3,true) ON CONFLICT(external_ref) DO NOTHING
 		RETURNING id::text,created_at,updated_at
 	`, student.ExternalRef, student.DisplayName, student.YearGroup).Scan(&student.ID, &createdAt, &updatedAt)
 	created := err == nil
@@ -87,6 +87,7 @@ func (r *PostgresRepository) UpsertParentChild(ctx context.Context, parentID str
 		return ParentChildConfig{}, err
 	}
 	student.CreatedAt, student.UpdatedAt = createdAt.UTC().Format(time.RFC3339), updatedAt.UTC().Format(time.RFC3339)
+	student.ConsentRequired = created
 
 	credential, err := parentChildCredential(ctx, tx, student)
 	if err != nil {

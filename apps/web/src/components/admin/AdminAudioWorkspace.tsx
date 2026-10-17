@@ -26,6 +26,9 @@ type ReviewDraft = {
   playbackEvidence?: NarrationPlaybackEvidence;
 };
 
+const audioFieldClass = "mt-1 min-h-11 w-full rounded-xl border border-[#1d1a3e]/15 bg-white px-3 text-sm font-normal";
+const audioLabelClass = "text-xs font-semibold text-[#1d1a3e]/68";
+
 const criteria = [
   ["natural", "Natural, warm voice"],
   ["clear", "Clear and intelligible"],
@@ -238,34 +241,37 @@ export default function AdminAudioWorkspace({ request, readiness }: { request: A
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
             <h2 id="audio-filter-title" className="font-display text-xl font-semibold">Listening queue</h2>
-            <p className="mt-1 text-sm text-[#1d1a3e]/62">Filters are saved in the page URL so a review lane can be shared or resumed.</p>
+            <p className="mt-1 text-sm text-[#1d1a3e]/62">Filters stay in the page address. Enter one pack id, then play each clip before approving it.</p>
           </div>
           <p aria-live="polite" role="status" className="rounded-full bg-white px-3 py-2 text-xs font-semibold text-[#155d64]">{message}</p>
         </div>
 
         <form className="mt-4 grid gap-3 rounded-2xl bg-white p-4 md:grid-cols-2 xl:grid-cols-6" onSubmit={(event) => { event.preventDefault(); applyFilters(); }}>
-          <label className="text-xs font-semibold text-[#1d1a3e]/68">Decision status
-            <select aria-label="Audio decision status" value={filters.status} onChange={(event) => updateFilter("status", event.target.value as AudioQueueFilters["status"])} className="mt-1 min-h-11 w-full rounded-xl border border-[#1d1a3e]/15 bg-white px-3 text-sm font-normal">
+          <label className={audioLabelClass}>Decision status
+            <select aria-label="Audio decision status" value={filters.status} onChange={(event) => updateFilter("status", event.target.value as AudioQueueFilters["status"])} className={audioFieldClass}>
               <option value="awaiting">Awaiting listening</option><option value="rejected">Re-record required</option><option value="stale">Stale decisions</option><option value="approved">Approved</option><option value="all">All statuses</option>
             </select>
           </label>
-          <label className="text-xs font-semibold text-[#1d1a3e]/68">Subject
-            <select aria-label="Audio subject" value={filters.subject} onChange={(event) => updateFilter("subject", event.target.value)} className="mt-1 min-h-11 w-full rounded-xl border border-[#1d1a3e]/15 bg-white px-3 text-sm font-normal">
+          <label className={audioLabelClass}>Subject
+            <select aria-label="Audio subject" value={filters.subject} onChange={(event) => updateFilter("subject", event.target.value)} className={audioFieldClass}>
               <option value="">All subjects</option><option>English</option><option>Mathematics</option><option>Science</option>
             </select>
           </label>
-          <label className="text-xs font-semibold text-[#1d1a3e]/68">Year
-            <select aria-label="Audio year" value={filters.year} onChange={(event) => updateFilter("year", event.target.value)} className="mt-1 min-h-11 w-full rounded-xl border border-[#1d1a3e]/15 bg-white px-3 text-sm font-normal">
+          <label className={audioLabelClass}>Year
+            <select aria-label="Audio year" value={filters.year} onChange={(event) => updateFilter("year", event.target.value)} className={audioFieldClass}>
               <option value="">All years</option>{[1, 2, 3, 4, 5, 6, 7].map((year) => <option key={year} value={year}>Year {year}</option>)}
             </select>
           </label>
-          <label className="text-xs font-semibold text-[#1d1a3e]/68">Asset type
-            <select aria-label="Audio asset type" value={filters.kind} onChange={(event) => updateFilter("kind", event.target.value)} className="mt-1 min-h-11 w-full rounded-xl border border-[#1d1a3e]/15 bg-white px-3 text-sm font-normal">
+          <label className={audioLabelClass}>Asset type
+            <select aria-label="Audio asset type" value={filters.kind} onChange={(event) => updateFilter("kind", event.target.value)} className={audioFieldClass}>
               <option value="">All types</option><option value="lesson">Lessons</option><option value="vocabulary">Vocabulary</option>
             </select>
           </label>
-          <label className="text-xs font-semibold text-[#1d1a3e]/68">Search
-            <input aria-label="Search audio queue" value={filters.search} onChange={(event) => updateFilter("search", event.target.value)} placeholder="Pack, script or asset" className="mt-1 min-h-11 w-full rounded-xl border border-[#1d1a3e]/15 px-3 text-sm font-normal" />
+          <label className={audioLabelClass}>One pack
+            <input aria-label="Audio pack" value={filters.pack} onChange={(event) => updateFilter("pack", event.target.value)} placeholder="pack id" className={audioFieldClass} />
+          </label>
+          <label className={audioLabelClass}>Search
+            <input aria-label="Search audio queue" value={filters.search} onChange={(event) => updateFilter("search", event.target.value)} placeholder="Pack, script or asset" className={audioFieldClass} />
           </label>
           <button type="submit" disabled={loading} className="btn-pop mt-auto min-h-11 rounded-xl bg-[#155d64] px-4 text-sm font-semibold text-white disabled:opacity-50">Apply audio filters</button>
         </form>
@@ -353,18 +359,18 @@ export default function AdminAudioWorkspace({ request, readiness }: { request: A
                 </details>
 
                 <fieldset className="mt-4">
-                  <legend className="text-xs font-semibold text-[#1d1a3e]/68">Approval criteria</legend>
+                  <legend className={audioLabelClass}>Approval criteria</legend>
                   <div className="mt-2 grid gap-2 sm:grid-cols-2">
                     {criteria.map(([id, label]) => <label key={id} className="rounded-xl border border-[#1d1a3e]/8 p-3 text-xs text-[#1d1a3e]/72"><input type="checkbox" checked={Boolean(draft.criteria[id])} onChange={(event) => updateDraft(item, { criteria: { ...draft.criteria, [id]: event.target.checked } })} className="mr-2 accent-[#155d64]" />{label}</label>)}
                   </div>
                 </fieldset>
 
                 <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                  <label className="text-xs font-semibold text-[#1d1a3e]/68">Reviewer name
-                    <input aria-label="Reviewer name" value={draft.reviewerName} onChange={(event) => updateDraft(item, { reviewerName: event.target.value })} autoComplete="name" className="mt-1 min-h-11 w-full rounded-xl border border-[#1d1a3e]/15 px-3 text-sm font-normal" />
+                  <label className={audioLabelClass}>Reviewer name
+                    <input aria-label="Reviewer name" value={draft.reviewerName} onChange={(event) => updateDraft(item, { reviewerName: event.target.value })} autoComplete="name" className={audioFieldClass} />
                   </label>
-                  <label className="text-xs font-semibold text-[#1d1a3e]/68">Re-record reason
-                    <select aria-label="Re-record reason" value={draft.reason} onChange={(event) => updateDraft(item, { reason: event.target.value })} className="mt-1 min-h-11 w-full rounded-xl border border-[#1d1a3e]/15 bg-white px-3 text-sm font-normal">
+                  <label className={audioLabelClass}>Re-record reason
+                    <select aria-label="Re-record reason" value={draft.reason} onChange={(event) => updateDraft(item, { reason: event.target.value })} className={audioFieldClass}>
                       {rerecordReasons.map(([value, label]) => <option key={value} value={value}>{label}</option>)}
                     </select>
                   </label>

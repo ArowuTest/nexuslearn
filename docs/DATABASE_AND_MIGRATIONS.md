@@ -27,7 +27,7 @@ unchanged. See [school access audit](reviews/2026-09-09-school-access-workflows.
 
 The API can run with or without `DATABASE_URL`.
 
-- Without `DATABASE_URL`, the API uses a no-op repository that returns honest empty state. It does not invent learner progress.
+- Without `DATABASE_URL`, a development API uses a no-op repository that returns honest empty state. It does not invent learner progress. A production process refuses to start instead of serving children's data from memory.
 - With `DATABASE_URL`, the API connects to PostgreSQL and persists learning attempts, projected mastery and spaced review entries.
 - With `AUTO_MIGRATE=true`, the API applies pending migrations on startup before serving traffic.
 
@@ -419,8 +419,11 @@ deployments must set `PUPIL_SESSION_SECRET`; development environments can omit
 it, in which case login still works but the response reports
 `"configured": false`.
 
-Set `REQUIRE_PUPIL_SESSION=true` only after learner clients send the returned
-token as `X-Pupil-Session` or `Authorization: Bearer <token>`. When enabled,
+Learner clients send the returned token as `X-Pupil-Session` or
+`Authorization: Bearer <token>`. Set `REQUIRE_PUPIL_SESSION=true` to enforce
+that check in development. A production process (`NEXUSLEARN_ENV=production`
+or Render's `RENDER=true`) requires the pupil session unless
+`ALLOW_ANONYMOUS_PUPIL_ROUTES=true` is set on purpose. When the check is on,
 learner profile, mastery, attempts, summary, world-state, warm-up, next-mission,
 mission and attempt-recording endpoints reject missing, expired or mismatched
 pupil sessions.
