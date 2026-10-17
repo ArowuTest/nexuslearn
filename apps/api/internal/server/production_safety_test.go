@@ -3,17 +3,21 @@ package server
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"os"
+	"strconv"
 	"strings"
 	"testing"
 	"time"
 
 	"github.com/ArowuTest/nexuslearn/apps/api/internal/learning"
+	"github.com/ArowuTest/nexuslearn/apps/api/internal/platformenv"
 )
 
 func TestMain(m *testing.M) {
+	platformenv.EnableTestProcess()
 	if os.Getenv("ALLOW_LEGACY_CREDENTIAL_HEADERS") == "" {
 		_ = os.Setenv("ALLOW_LEGACY_CREDENTIAL_HEADERS", "true")
 	}
@@ -301,19 +305,22 @@ func (g guardedSignupRepo) CreateParentAccount(ctx context.Context, parent learn
 func TestSignupRejectsExistingEmailWithoutASession(t *testing.T) {
 	t.Setenv("ACCOUNT_SESSION_SECRET", strings.Repeat("s", 32))
 	srv := New(guardedSignupRepo{blockedEmail: "root@example.com"}, "memory")
-	for _, email := range []string{"root@example.com", "ROOT@example.com"} {
+	var first string
+	for _, email := range []string{"root@example.com", "ROOT@example.com", "new-parent@example.com"} {
 		req := httptest.NewRequest(http.MethodPost, "/v1/parents/signup", strings.NewReader(`{"email":"`+email+`","display_name":"Attacker","password":"a-new-password"}`))
 		res := httptest.NewRecorder()
 		srv.ServeHTTP(res, req)
-		if res.Code != http.StatusConflict || strings.Contains(strings.ToLower(res.Body.String()), "exist") || strings.Contains(res.Body.String(), "session") {
-			t.Fatalf("signup %s status %d body %s", email, res.Code, res.Body.String())
+		body := res.Body.String()
+		if res.Code != http.StatusCreated || strings.Contains(strings.ToLower(body), "exist") || strings.Contains(body, "session") || !strings.Contains(body, parentSignupAcknowledgement) {
+			t.Fatalf("signup %s status %d body %s", email, res.Code, body)
 		}
-	}
-	fresh := httptest.NewRequest(http.MethodPost, "/v1/parents/signup", strings.NewReader(`{"email":"new-parent@example.com","display_name":"New Parent","password":"a-new-password"}`))
-	freshRes := httptest.NewRecorder()
-	srv.ServeHTTP(freshRes, fresh)
-	if freshRes.Code != http.StatusCreated || !strings.Contains(freshRes.Body.String(), "session") {
-		t.Fatalf("new signup %d %s", freshRes.Code, freshRes.Body.String())
+		if first == "" {
+			first = body
+			continue
+		}
+		if body != first {
+			t.Fatalf("existing and new signup responses differ: %s vs %s", first, body)
+		}
 	}
 }
 
@@ -324,7 +331,7 @@ func TestSignupRateLimitCountsConflicts(t *testing.T) {
 		req.RemoteAddr = "203.0.113.9:1000"
 		res := httptest.NewRecorder()
 		srv.ServeHTTP(res, req)
-		if res.Code != http.StatusConflict {
+		if res.Code != http.StatusCreated {
 			t.Fatalf("attempt %d status %d", attempt, res.Code)
 		}
 	}
@@ -382,6 +389,97 @@ func TestLimiterDropsExpiredBuckets(t *testing.T) {
 	}
 	if _, ok := limiter.failures["new"]; !ok {
 		t.Fatal("current limiter bucket was dropped")
+	}
+}
+
+func TestLimiterEvictsOldestUnlockedKey(t *testing.T) {
+	limiter := newAttemptLimiter()
+	limiter.maxKeys = 1
+	now := time.Now()
+	limiter.now = func() time.Time { return now }
+	limiter.fail("older")
+	now = now.Add(time.Second)
+	limiter.fail("newer")
+	limiter.mu.Lock()
+	defer limiter.mu.Unlock()
+	if _, ok := limiter.failures["older"]; ok {
+		t.Fatal("older unlocked key was kept")
+	}
+	if _, ok := limiter.failures["newer"]; !ok {
+		t.Fatal("newer key was dropped")
+	}
+}
+
+func TestLimiterFloodDoesNotEvictActiveLock(t *testing.T) {
+	limiter := newAttemptLimiter()
+	now := time.Now()
+	limiter.now = func() time.Time { return now }
+	const victim = "login|account|victim@example.com|/v1/auth/admin-login"
+	for i := 0; i < 5; i++ {
+		limiter.fail(victim)
+	}
+	if !limiter.blocked(victim) {
+		t.Fatal("account was not locked before the flood")
+	}
+	for i := 0; i < 4200; i++ {
+		limiter.fail("login|account|user-" + strconv.Itoa(i) + "|/v1/auth/admin-login")
+	}
+	if !limiter.blocked(victim) {
+		t.Fatal("flood past the key cap evicted the locked account")
+	}
+	limiter.mu.Lock()
+	defer limiter.mu.Unlock()
+	if _, ok := limiter.lockedUntil[victim]; !ok {
+		t.Fatal("locked entry was deleted")
+	}
+	if limiter.occupancy() > limiter.maxKeys {
+		t.Fatalf("limiter grew to %d keys", limiter.occupancy())
+	}
+}
+
+func TestLoginLockoutSurvivesFloodPastTheCap(t *testing.T) {
+	srv := New(fakeRepository{}, "memory")
+	srv.loginAttempts.maxKeys = 8
+	victim := `{"login_id":"victim@example.com","password":"wrong"}`
+	for attempt := 1; attempt <= 5; attempt++ {
+		req := httptest.NewRequest(http.MethodPost, "/v1/auth/admin-login", strings.NewReader(victim))
+		req.RemoteAddr = "203.0.113.8:1000"
+		res := httptest.NewRecorder()
+		srv.ServeHTTP(res, req)
+		if res.Code != http.StatusUnauthorized {
+			t.Fatalf("setup attempt %d status %d", attempt, res.Code)
+		}
+	}
+	otherIP := httptest.NewRequest(http.MethodPost, "/v1/auth/admin-login", strings.NewReader(victim))
+	otherIP.RemoteAddr = "203.0.113.9:1000"
+	otherRes := httptest.NewRecorder()
+	srv.ServeHTTP(otherRes, otherIP)
+	if otherRes.Code != http.StatusTooManyRequests {
+		t.Fatalf("account lock did not follow the username, status %d", otherRes.Code)
+	}
+	for i := 1; i <= 30; i++ {
+		body := fmt.Sprintf(`{"login_id":"flood-%d@example.com","password":"wrong"}`, i)
+		req := httptest.NewRequest(http.MethodPost, "/v1/auth/admin-login", strings.NewReader(body))
+		req.RemoteAddr = fmt.Sprintf("198.51.100.%d:1000", i)
+		res := httptest.NewRecorder()
+		srv.ServeHTTP(res, req)
+		if res.Code != http.StatusUnauthorized {
+			t.Fatalf("flood %d status %d", i, res.Code)
+		}
+	}
+	stillLocked := httptest.NewRequest(http.MethodPost, "/v1/auth/admin-login", strings.NewReader(victim))
+	stillLocked.RemoteAddr = "203.0.113.10:1000"
+	stillRes := httptest.NewRecorder()
+	srv.ServeHTTP(stillRes, stillLocked)
+	if stillRes.Code != http.StatusTooManyRequests {
+		t.Fatalf("flood evicted the account lockout, status %d", stillRes.Code)
+	}
+	sameIP := httptest.NewRequest(http.MethodPost, "/v1/auth/admin-login", strings.NewReader(`{"login_id":"someone-else@example.com","password":"wrong"}`))
+	sameIP.RemoteAddr = "203.0.113.8:1000"
+	sameRes := httptest.NewRecorder()
+	srv.ServeHTTP(sameRes, sameIP)
+	if sameRes.Code != http.StatusTooManyRequests {
+		t.Fatalf("ip lock did not apply to a different username, status %d", sameRes.Code)
 	}
 }
 

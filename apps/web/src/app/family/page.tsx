@@ -66,16 +66,12 @@ export default function FamilyPage() {
 
   async function signup() {
     if (authentication.busy()) return;
+    const email = parent.email.trim();
     await guarded("Creating parent account...", async () => {
-      const result = await authentication.run(signal => createParentAccount(parent, signal));
-      if (!result) { setMessage("Sign-in cancelled because the account session changed."); return; }
-      const saved = result.parent;
-      const loginID = saved.login_id || saved.email;
-      const password = parent.password || saved.temporary_password || "";
-      setLogin({ login_id: loginID ?? "", password: "" });
+      const result = await createParentAccount(parent);
+      setLogin({ login_id: email, password: "" });
       setParent({ email: "", display_name: "", password: "" });
-      setMessage(`Parent account created. Login ID: ${loginID}.`);
-      if (password) await fetchPortal();
+      setMessage(`${result.message} Then sign in here with the password you chose.`);
     });
   }
 

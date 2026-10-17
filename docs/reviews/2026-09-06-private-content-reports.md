@@ -6,7 +6,7 @@ The pupil mission DTO was separated from canonical answer keys in `ea06a13`, but
 
 ## Remediation
 
-- Keep only `narration-manifest.json` in `apps/web/public/content`. Learner audio files remain public teaching assets. No audio is generated or newly approved here.
+- Keep only `narration-manifest.json` in `apps/web/public/content`. Learner MP3s live under `apps/web/private/audio` and play only after a pack approval. No audio is generated or newly approved here.
 - Move report copies intact to `apps/web/private/content`, outside Next's public directory. Existing local report edits are preserved at their new paths, not included as new review decisions.
 - Redirect the 17 report-producing tools to the private destination. The full authoring reports under `packages/content/generated` remain unchanged by this access-boundary decision.
 - Serve JSON reports only through the existing allowlisted, authenticated Go admin endpoint, with `Cache-Control: private, no-store`. Do not fall back to old public copies.

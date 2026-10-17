@@ -52,8 +52,11 @@ test("real family signup opens an empty workspace ready for its first child", as
   await page.getByLabel("Parent name").fill("QA Parent");
   await page.getByLabel("Email", { exact: true }).fill(`parent-${info.project.name}@example.test`);
   await page.getByLabel("Password", { exact: true }).first().fill("local-disposable-password-only");
-  const portalLoaded = page.waitForResponse(response => response.url().endsWith("/v1/parent/config"));
   await page.getByRole("button", { name: "Create account" }).click();
+  await expect(page.getByRole("status")).toContainText("Check your email to finish setting up this account.");
+  const portalLoaded = page.waitForResponse(response => response.url().endsWith("/v1/parent/config"));
+  await page.getByRole("form", { name: "Parent sign in" }).getByLabel("Password").fill("local-disposable-password-only");
+  await page.getByRole("button", { name: "Sign in" }).click();
   expect((await portalLoaded).status()).toBe(200);
   await expect(page.getByRole("heading", { name: "Children", exact: true })).toBeVisible();
   await capture(page, info, "01-empty-family");

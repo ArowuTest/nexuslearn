@@ -260,7 +260,7 @@ export default function AdminAudioWorkspace({ request, readiness }: { request: A
           <div>
             <h1 id="audio-workspace-title" className="font-display text-3xl font-semibold">Audio listening QA</h1>
             <p className="mt-3 max-w-3xl text-sm leading-6 text-white/78">
-              Listen to the exact produced file, verify the displayed transcript and profile, then record a named human decision. Technical checks never substitute for listening approval.
+              Listen to the exact produced file, verify the displayed transcript and profile, then record a named human decision. Technical checks never substitute for listening approval. Decisions on this screen do not unlock audio for children. A content reviewer unlocks a pack for children from the pack review page.
             </p>
           </div>
           <span className={`rounded-full px-3 py-1 text-xs font-semibold ${outstanding === 0 && queue ? "bg-[#dff7e7] text-[#28613c]" : "bg-[#fff4d5] text-[#725100]"}`}>

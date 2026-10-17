@@ -5,14 +5,25 @@ import (
 	"os"
 	"strconv"
 	"strings"
-	"testing"
 )
 
+// testProcess is set only by EnableTestProcess. Production binaries never call
+// that function, so they cannot inherit a test-only exception.
+var testProcess bool
+
+// EnableTestProcess marks this process as an explicit test harness.
+// Call it from TestMain in packages that boot the API. It does not read the
+// testing package, so production code has no test-only import.
+func EnableTestProcess() {
+	testProcess = true
+}
+
 // Production is the safe default. A process is not production only when it is
-// explicitly marked development, or when it is a Go test that has not opted in.
+// explicitly marked development, or when a test harness has called
+// EnableTestProcess and has not opted into production.
 // Render and any other host are production unless that flag is set.
 func Production() bool {
-	return production(os.Getenv, testing.Testing())
+	return production(os.Getenv, testProcess)
 }
 
 func production(getenv func(string) string, inTest bool) bool {

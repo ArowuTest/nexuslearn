@@ -135,7 +135,7 @@ test("bounded variant production writes a v2 review inventory without replacing 
   assert.equal(manifest.assets[0].reference_ids.length, 2);
   assert.equal((await f.requests()).length, 1, "deduplicated aliases must make one paid request; specialist phonemes make none");
   assert.equal(await fs.readFile(f.manifestPath, "utf8"), before);
-  assert.deepEqual(await fs.readFile(path.join(f.root, "apps/web/public", manifest.assets[0].file)), generatedAudio);
+  assert.deepEqual(await fs.readFile(path.join(f.root, "apps/web/private", manifest.assets[0].file)), generatedAudio);
   assert.doesNotMatch(JSON.stringify(manifest), /offline-test-only/);
 });
 
@@ -212,7 +212,7 @@ for (const scenario of ["forced", "corrupt", "orphaned"]) {
     const manifestFile = path.join(f.root, "packages/content/audio/narration-manifest-v2.json");
     const beforeManifest = await fs.readFile(manifestFile, "utf8");
     const manifest = JSON.parse(beforeManifest);
-    const audioFile = path.join(f.root, "apps/web/public", manifest.assets[0].file);
+    const audioFile = path.join(f.root, "apps/web/private", manifest.assets[0].file);
     if (scenario === "corrupt") await fs.writeFile(audioFile, "corrupt historical audio");
     if (scenario === "orphaned") await fs.unlink(manifestFile);
     const beforeAudio = await fs.readFile(audioFile);
@@ -233,7 +233,7 @@ test("filtered publication cannot forget a missing historical recording and rege
   assert.equal(first.status, 0, first.stderr);
   const manifestFile = path.join(f.root, "packages/content/audio/narration-manifest-v2.json");
   const manifest = JSON.parse(await fs.readFile(manifestFile, "utf8"));
-  const oldURL = path.join(f.root, "apps/web/public", manifest.assets[0].file);
+  const oldURL = path.join(f.root, "apps/web/private", manifest.assets[0].file);
   await fs.unlink(oldURL);
   const second = f.run([...args, "--pack", f.rows[1].pack_id]);
   assert.equal(second.status, 0, second.stderr);

@@ -2480,12 +2480,8 @@ func (s *Server) handleParentSignup(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
 		return
 	}
-	saved, err := s.repo.CreateParentAccount(r.Context(), parent)
-	if err != nil {
-		if errors.Is(err, learning.ErrParentAccountExists) {
-			writeJSON(w, http.StatusConflict, map[string]string{"error": "an account could not be created with those details"})
-			return
-		}
+	_, err := s.repo.CreateParentAccount(r.Context(), parent)
+	if err != nil && !errors.Is(err, learning.ErrParentAccountExists) {
 		if errors.Is(err, learning.ErrInvalidConfiguration) {
 			writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
 			return
@@ -2494,13 +2490,13 @@ func (s *Server) handleParentSignup(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not create parent account"})
 		return
 	}
-	session, sessionErr := s.createAccountSession(r.Context(), saved.ID, saved.LoginID, "parent", "", 12*time.Hour)
-	if sessionErr != nil {
-		s.writeAccountSessionError(w, sessionErr)
-		return
-	}
-	writeJSON(w, http.StatusCreated, map[string]any{"parent": saved, "session": session})
+	// The same acknowledgement for a new address and an address that is already
+	// registered. No session is issued, so the response cannot be used to sign in
+	// or to learn whether the email was taken.
+	writeJSON(w, http.StatusCreated, map[string]string{"message": parentSignupAcknowledgement})
 }
+
+const parentSignupAcknowledgement = "Check your email to finish setting up this account."
 
 func (s *Server) handleAcceptParentInvitation(w http.ResponseWriter, r *http.Request) {
 	repository, ok := s.repo.(parentInvitationRepository)

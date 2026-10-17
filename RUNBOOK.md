@@ -38,8 +38,8 @@ A family child who is linked to a parent cannot sign in until that parent record
 
 - Parents record consent at `POST /v1/parent/consent`.
 - A parent can download one linked child's record at `GET /v1/parent/children/{id}/export`. The copy includes mastery, history, baselines, mocks, world state, lesson steps, events and every attempt. Sign-in secrets and answer keys are left out. Another family's child is refused.
-- Signing up with an email that already has an account fails with the same message whether or not that person is an admin. It does not change their password or sign them in.
-- Deleting a family child needs `{"confirm":"delete"}`. A child who is also on a school roll is kept and the school has to release them first. The delete also clears login codes and picture passwords from the audit log, empties that child's learning-event contents, and removes the child id from privacy-action rows.
+- Signing up returns the same message for a new email and an email that already has an account: check your email to finish setting up this account. Neither response includes a session. An existing password is left unchanged.
+- Deleting a family child needs `{"confirm":"delete"}`. A child who is also on a school roll is kept and the school has to release them first. The delete also clears login codes and picture passwords from that child's audit rows, empties that child's learning-event contents, and removes the child id from privacy-action rows. Migration `0062_scrub_audit_credential_payloads` removes those same credential keys from every existing `audit_logs` row. Its down migration cannot put the values back.
 - Old attempts are not deleted on a timer. An admin can run `POST /v1/admin/privacy/purge` with `{"confirm":"purge"}` to remove attempts older than the retention setting.
 - Sharing for school, marketing and research is off in the public privacy policy. This is a technical default, not a lawyer's privacy notice. Have a person write the UK and Nigeria notices before a pilot.
 
@@ -47,7 +47,7 @@ A family child who is linked to a parent cannot sign in until that parent record
 
 Question variants in the content packs are still in review (62 carry an approved status, 20,148 are blocked, and all 87 packs are status `review`). They do not replace the live catalogue until the existing human release checks pass.
 
-Narration: 0 of 874 recordings are approved for children. 874 are blocked. A content reviewer or platform administrator opens `/review`, plays one pack, and writes what they heard. Parents cannot approve audio. Every clip id has to belong to that pack. Approving a pack lets those recordings play. It does not publish the question bank. Pack holds stay in `human_content_approvals` because the per-clip listening ledger requires audio hashes and cannot store a hold.
+Narration: 0 of 874 recordings are approved for children. 874 are blocked. A content reviewer or platform administrator opens `/review`, plays one pack, and writes what they heard. That pack approval is what unlocks the recordings for children. The admin Audio listening QA screen records a separate per-clip listening decision and does not unlock playback. Parents cannot approve audio. Every clip id has to belong to that pack. Approving a pack lets those recordings play. It does not publish the question bank. Pack holds stay in `human_content_approvals` because the per-clip listening ledger requires audio hashes and cannot store a hold.
 
 ## Backups
 

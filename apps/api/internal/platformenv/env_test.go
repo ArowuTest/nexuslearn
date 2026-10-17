@@ -42,6 +42,23 @@ func TestProductionDefaultsClosed(t *testing.T) {
 	}
 }
 
+func TestEnableTestProcessIsExplicit(t *testing.T) {
+	t.Setenv("NEXUSLEARN_ENV", "")
+	t.Setenv("APP_ENV", "")
+	t.Setenv("RENDER", "")
+	if !Production() {
+		t.Fatal("production code stays production until a harness calls EnableTestProcess")
+	}
+	EnableTestProcess()
+	if Production() {
+		t.Fatal("EnableTestProcess is the explicit test mechanism")
+	}
+	t.Setenv("NEXUSLEARN_ENV", "production")
+	if !Production() {
+		t.Fatal("an opted-in harness can still represent production")
+	}
+}
+
 func TestRetentionDays(t *testing.T) {
 	t.Setenv("DATA_RETENTION_DAYS", "")
 	days, err := RetentionDays()

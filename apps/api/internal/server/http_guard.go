@@ -9,6 +9,7 @@ import (
 	"net"
 	"net/http"
 	"os"
+	"sort"
 	"strconv"
 	"strings"
 	"sync"
@@ -139,6 +140,8 @@ type attemptLimiter struct {
 	mu          sync.Mutex
 	failures    map[string][]time.Time
 	lockedUntil map[string]time.Time
+	order       map[string]uint64
+	nextSeq     uint64
 	now         func() time.Time
 	max         int
 	window      time.Duration
@@ -150,6 +153,7 @@ func newAttemptLimiter() *attemptLimiter {
 	return &attemptLimiter{
 		failures:    map[string][]time.Time{},
 		lockedUntil: map[string]time.Time{},
+		order:       map[string]uint64{},
 		now:         time.Now,
 		max:         5,
 		window:      15 * time.Minute,
@@ -161,17 +165,25 @@ func newAttemptLimiter() *attemptLimiter {
 func (l *attemptLimiter) blocked(key string) bool {
 	l.mu.Lock()
 	defer l.mu.Unlock()
-	l.prune(l.now())
-	until, ok := l.lockedUntil[key]
-	return ok && l.now().Before(until)
+	now := l.now()
+	l.pruneExpired(now)
+	l.evictOverflow(now)
+	return l.locked(key, now)
 }
 
 func (l *attemptLimiter) fail(key string) {
 	l.mu.Lock()
 	defer l.mu.Unlock()
 	now := l.now()
-	l.prune(now)
-	recent := l.failures[key][:0]
+	l.pruneExpired(now)
+	if !l.ensureRoom(key, now) {
+		return
+	}
+	if _, ok := l.order[key]; !ok {
+		l.nextSeq++
+		l.order[key] = l.nextSeq
+	}
+	recent := make([]time.Time, 0, len(l.failures[key])+1)
 	for _, when := range l.failures[key] {
 		if now.Sub(when) < l.window {
 			recent = append(recent, when)
@@ -182,7 +194,7 @@ func (l *attemptLimiter) fail(key string) {
 	if len(recent) >= l.max {
 		l.lockedUntil[key] = now.Add(l.lockFor)
 	}
-	l.prune(now)
+	l.evictOverflow(now)
 }
 
 func (l *attemptLimiter) success(key string) {
@@ -190,16 +202,42 @@ func (l *attemptLimiter) success(key string) {
 	defer l.mu.Unlock()
 	delete(l.failures, key)
 	delete(l.lockedUntil, key)
+	delete(l.order, key)
 }
 
-func (l *attemptLimiter) prune(now time.Time) {
+func (l *attemptLimiter) locked(key string, now time.Time) bool {
+	until, ok := l.lockedUntil[key]
+	return ok && now.Before(until)
+}
+
+func (l *attemptLimiter) occupancy() int {
+	count := len(l.failures)
+	for key := range l.lockedUntil {
+		if _, ok := l.failures[key]; !ok {
+			count++
+		}
+	}
+	return count
+}
+
+func (l *attemptLimiter) ensureRoom(key string, now time.Time) bool {
+	if _, ok := l.failures[key]; ok || l.locked(key, now) {
+		return true
+	}
+	if l.maxKeys <= 0 || l.occupancy() < l.maxKeys {
+		return true
+	}
+	return l.dropOldestUnlocked(now, 1)
+}
+
+func (l *attemptLimiter) pruneExpired(now time.Time) {
 	for key, until := range l.lockedUntil {
 		if !now.Before(until) {
 			delete(l.lockedUntil, key)
 		}
 	}
 	for key, times := range l.failures {
-		kept := times[:0]
+		kept := make([]time.Time, 0, len(times))
 		for _, when := range times {
 			if now.Sub(when) < l.window {
 				kept = append(kept, when)
@@ -207,22 +245,57 @@ func (l *attemptLimiter) prune(now time.Time) {
 		}
 		if len(kept) == 0 {
 			delete(l.failures, key)
+			if !l.locked(key, now) {
+				delete(l.order, key)
+			}
 		} else {
 			l.failures[key] = kept
 		}
 	}
-	if l.maxKeys <= 0 || len(l.failures) <= l.maxKeys {
+}
+
+// evictOverflow drops the oldest keys that are not currently locked.
+// A live lock is never removed to make room for a new caller.
+func (l *attemptLimiter) evictOverflow(now time.Time) {
+	if l.maxKeys <= 0 {
 		return
 	}
-	overflow := len(l.failures) - l.maxKeys
-	for key := range l.failures {
-		if overflow == 0 {
+	for l.occupancy() > l.maxKeys {
+		if !l.dropOldestUnlocked(now, 1) {
 			return
 		}
-		delete(l.failures, key)
-		delete(l.lockedUntil, key)
-		overflow--
 	}
+}
+
+func (l *attemptLimiter) dropOldestUnlocked(now time.Time, need int) bool {
+	if need <= 0 {
+		return true
+	}
+	type slot struct {
+		key string
+		seq uint64
+	}
+	unlocked := make([]slot, 0)
+	for key := range l.failures {
+		if l.locked(key, now) {
+			continue
+		}
+		unlocked = append(unlocked, slot{key: key, seq: l.order[key]})
+	}
+	if len(unlocked) < need {
+		return false
+	}
+	sort.Slice(unlocked, func(i, j int) bool {
+		if unlocked[i].seq == unlocked[j].seq {
+			return unlocked[i].key < unlocked[j].key
+		}
+		return unlocked[i].seq < unlocked[j].seq
+	})
+	for i := 0; i < need; i++ {
+		delete(l.failures, unlocked[i].key)
+		delete(l.order, unlocked[i].key)
+	}
+	return true
 }
 
 func (s *Server) limitLogin(loginField string, next http.HandlerFunc) http.HandlerFunc {
@@ -239,8 +312,10 @@ func (s *Server) limitLogin(loginField string, next http.HandlerFunc) http.Handl
 			return
 		}
 		r.Body = io.NopCloser(bytes.NewReader(body))
-		key := clientIP(r) + "|" + r.URL.Path + "|" + loginIdentity(body, loginField)
-		if s.loginAttempts.blocked(key) {
+		ipKey := "login|ip|" + clientIP(r) + "|" + r.URL.Path
+		identity := loginIdentity(body, loginField)
+		accountKey := "login|account|" + identity + "|" + r.URL.Path
+		if s.loginAttempts.blocked(ipKey) || (identity != "" && s.loginAttempts.blocked(accountKey)) {
 			w.Header().Set("Retry-After", strconv.Itoa(int(s.loginAttempts.lockFor.Seconds())))
 			writeJSON(w, http.StatusTooManyRequests, map[string]string{"error": "too many sign-in attempts, please wait"})
 			return
@@ -248,11 +323,17 @@ func (s *Server) limitLogin(loginField string, next http.HandlerFunc) http.Handl
 		recorder := &statusRecorder{ResponseWriter: w, status: http.StatusOK}
 		next(recorder, r)
 		if recorder.status == http.StatusUnauthorized {
-			s.loginAttempts.fail(key)
+			s.loginAttempts.fail(ipKey)
+			if identity != "" {
+				s.loginAttempts.fail(accountKey)
+			}
 			return
 		}
 		if recorder.status >= 200 && recorder.status < 300 {
-			s.loginAttempts.success(key)
+			s.loginAttempts.success(ipKey)
+			if identity != "" {
+				s.loginAttempts.success(accountKey)
+			}
 		}
 	}
 }

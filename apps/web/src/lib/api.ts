@@ -930,8 +930,21 @@ async function parentAccountSession(path: string, payload: unknown, signal?: Abo
   return { ...result, parent };
 }
 
-export function createParentAccount(parent: ParentAccount, signal?: AbortSignal) {
-  return parentAccountSession("/v1/parents/signup", parent, signal);
+export async function createParentAccount(parent: ParentAccount, signal?: AbortSignal): Promise<{ message: string }> {
+  if (!API) throw new Error("The NexusLearn API is not configured yet.");
+  const res = await fetch(`${API}/v1/parents/signup`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(parent),
+    signal,
+  });
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(typeof body.error === "string" ? body.error : "Could not create the parent account.");
+  if (body.session || body.parent) throw new Error("The parent sign-up response could not be verified. Please retry.");
+  const message = typeof body.message === "string" && body.message.trim()
+    ? body.message
+    : "Check your email to finish setting up this account.";
+  return { message };
 }
 
 export function parentLogin(loginID: string, password: string, signal?: AbortSignal) {

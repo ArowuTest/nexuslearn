@@ -2,8 +2,16 @@ package database
 
 import (
 	"context"
+	"os"
 	"testing"
+
+	"github.com/ArowuTest/nexuslearn/apps/api/internal/platformenv"
 )
+
+func TestMain(m *testing.M) {
+	platformenv.EnableTestProcess()
+	os.Exit(m.Run())
+}
 
 func TestConnectRefusesMemoryInProduction(t *testing.T) {
 	t.Setenv("DATABASE_URL", "")

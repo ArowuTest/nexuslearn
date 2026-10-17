@@ -7,7 +7,7 @@ import { renderAudioAuditReport } from "./audio-audit-report.mjs";
 test("listening comparison plays real MP3, resets speed, paginates and stops obsolete audio", async () => {
   const manifest = JSON.parse(fs.readFileSync(new URL("../../../packages/content/audio/narration-manifest.json", import.meta.url)));
   const source = manifest.items[0];
-  const bytes = fs.readFileSync(new URL("../public" + source.file, import.meta.url));
+  const bytes = fs.readFileSync(new URL("../private" + source.file, import.meta.url));
   const items = Array.from({ length: 30 }, (_, i) => ({ ...source, id: `sample-${i}`, year: i < 26 ? 1 : 2, pace: { wpm: 200, status: "pace_review_fast" }, flags: ["pace_review_fast"] }));
   items[0].text = "</script><script>window.injection=true</script>";
   const html = renderAudioAuditReport({ total_files: items.length, generated_at: "test", inventory_issues: [], items });

@@ -2636,8 +2636,8 @@ func TestHandleParentSignupAndChildProfileUseRepository(t *testing.T) {
 	}`))
 	res := httptest.NewRecorder()
 	srv.ServeHTTP(res, req)
-	if res.Code != http.StatusCreated {
-		t.Fatalf("expected 201 for signup, got %d", res.Code)
+	if res.Code != http.StatusCreated || strings.Contains(res.Body.String(), "session") || !strings.Contains(res.Body.String(), "Check your email") {
+		t.Fatalf("expected a generic signup acknowledgement, got %d %s", res.Code, res.Body.String())
 	}
 
 	req = httptest.NewRequest(http.MethodPut, "/v1/parent/children/ava-home", strings.NewReader(`{
